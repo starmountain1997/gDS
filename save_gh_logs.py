@@ -133,14 +133,42 @@ def get_job_log(run_id: int, job_id: int) -> str:
     return "\n".join(cleaned_lines)
 
 
+import re
+
+
+def extract_output_token_throughput(log_content: str) -> float | None:
+    """Extracts output token throughput from log content."""
+    # Example: "Output Token Throughput │ total   │ 100.2022 token/s"
+    match = re.search(
+        r"Output Token Throughput │ total\s+│ (\d+\.\d+) token/s", log_content
+    )
+    if match:
+        try:
+            return float(match.group(1))
+        except ValueError:
+            return None
+    return None
+
+
 def append_result_to_csv(
-    keyword: str, conclusion: str, commit_sha: str, run_time: str, job_id: int
+    keyword: str,
+    conclusion: str,
+    commit_sha: str,
+    run_time: str,
+    job_id: int,
+    output_token_throughput: float | None = None,
 ):
     """Append monitoring result to CSV file, avoiding duplicates."""
     csv_path = get_csv_path(keyword)
     csv_path.parent.mkdir(parents=True, exist_ok=True)
 
-    header = ["任务运行时间", "是否成功", "最后commit", "job_id"]
+    header = [
+        "任务运行时间",
+        "是否成功",
+        "最后commit",
+        "job_id",
+        "Output Token Throughput",
+    ]
     existing_job_ids = set()
     rows_to_write = []
 
@@ -148,14 +176,26 @@ def append_result_to_csv(
         with open(csv_path, "r", newline="", encoding="utf-8") as f:
             reader = csv.reader(f)
             file_header = next(reader, None)  # Read header
-            if file_header == header:
+            if (
+                file_header
+                and len(file_header) == len(header)
+                and file_header[:-1] == header[:-1]
+            ):
+                # If existing header matches new header up to the last column,
+                # or if it's an old header that just needs the new column appended
+                if file_header != header:
+                    print(
+                        f"Warning: CSV header for {csv_path} updated. Rewriting file."
+                    )
                 for row in reader:
                     if len(row) > 3:  # Ensure job_id column exists
                         existing_job_ids.add(row[3])
+                        # Pad old rows with empty string for the new column if missing
+                        if len(row) < len(header):
+                            row.extend([""] * (len(header) - len(row)))
                         rows_to_write.append(row)
             else:
-                # If header doesn't match, re-write the file. This handles cases where the script
-                # or CSV format might have changed.
+                # If header doesn't match or is malformed, rewrite the file completely.
                 print(
                     f"Warning: CSV header for {csv_path} does not match expected. Rewriting file."
                 )
@@ -164,7 +204,15 @@ def append_result_to_csv(
         print(f"Result for job {job_id} already exists in {csv_path}, skipping.")
         return
 
-    rows_to_write.append([run_time, conclusion, commit_sha, job_id])
+    rows_to_write.append(
+        [
+            run_time,
+            conclusion,
+            commit_sha,
+            job_id,
+            output_token_throughput if output_token_throughput is not None else "",
+        ]
+    )
 
     with open(csv_path, "w", newline="", encoding="utf-8") as f:
         writer = csv.writer(f)
@@ -253,6 +301,7 @@ def main():
             print(f"  Conclusion: {job.get('conclusion', 'N/A')}")
 
             log_content = get_job_log(run_id, job["databaseId"])
+            output_token_throughput = None
             if log_content:
                 log_path = save_log(
                     run_date,
@@ -267,6 +316,7 @@ def main():
                     print(f"  Log skipped (already exists)")
                 else:
                     print(f"  Log saved: {log_path}")
+                output_token_throughput = extract_output_token_throughput(log_content)
 
             # 记录 job 的实际运行状态
             emoji_status = {
@@ -282,6 +332,7 @@ def main():
                 commit_sha,
                 created_at,
                 job["databaseId"],
+                output_token_throughput,
             )
 
 
