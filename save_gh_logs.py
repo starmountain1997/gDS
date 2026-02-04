@@ -89,9 +89,10 @@ def save_log(run_date: str, run_id: int, job: dict, log_content: str, commit_sha
     log_dir = Path("logs") / run_date
     log_dir.mkdir(parents=True, exist_ok=True)
 
-    # Use short SHA as filename prefix if available
+    # Filename: {date}_{commit_sha}_{target_keyword}.log
     short_sha = commit_sha[:7] if commit_sha else str(run_id)
-    log_path = log_dir / f"{short_sha}.log"
+    filename = f"{run_date}_{short_sha}_{TARGET_JOB_KEYWORD}.log"
+    log_path = log_dir / filename
 
     # Write metadata header
     with open(log_path, "w", encoding="utf-8") as f:
