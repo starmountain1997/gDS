@@ -5,10 +5,11 @@ Save GitHub Actions workflow run logs to files.
 Targets: vllm-project/vllm-ascend / Nightly-A3 / multi-node & single-node DeepSeek-V3 tests
 """
 
+import csv
 import json
 import subprocess
+from datetime import datetime
 from pathlib import Path
-
 
 REPO = "vllm-project/vllm-ascend"
 WORKFLOW_NAME = "Nightly-A3"
@@ -17,6 +18,12 @@ TARGET_JOBS = [
     "multi-node-dpsk3.2-2node",  # DeepSeek-V3_2-W8A8-A3-dual-nodes.yaml
     "test_deepseek_v3_2_w8a8",  # single-node test
 ]
+LOGS_DIR = Path("logs")
+
+
+def get_csv_path(keyword: str) -> Path:
+    """Get CSV path for a specific task."""
+    return LOGS_DIR / f"{keyword}_results.csv"
 
 
 def run_gh(args: list[str]) -> subprocess.CompletedProcess:
@@ -31,13 +38,20 @@ def run_gh(args: list[str]) -> subprocess.CompletedProcess:
 
 def get_recent_runs(limit: int = 10) -> list[dict]:
     """Get recent workflow runs for Nightly-A3."""
-    result = run_gh([
-        "run", "list",
-        "-R", REPO,
-        "-w", WORKFLOW_ID,
-        "-L", str(limit),
-        "--json", "number,databaseId,name,status,conclusion,createdAt,headBranch,headSha",
-    ])
+    result = run_gh(
+        [
+            "run",
+            "list",
+            "-R",
+            REPO,
+            "-w",
+            WORKFLOW_ID,
+            "-L",
+            str(limit),
+            "--json",
+            "number,databaseId,name,status,conclusion,createdAt,headBranch,headSha",
+        ]
+    )
     if result.returncode != 0:
         print(f"Failed to list runs: {result.stderr}")
         return []
@@ -47,12 +61,17 @@ def get_recent_runs(limit: int = 10) -> list[dict]:
 
 def get_run_jobs(run_id: int) -> list[dict]:
     """Get jobs for a specific run."""
-    result = run_gh([
-        "run", "view",
-        "-R", REPO,
-        str(run_id),
-        "--json", "jobs",
-    ])
+    result = run_gh(
+        [
+            "run",
+            "view",
+            "-R",
+            REPO,
+            str(run_id),
+            "--json",
+            "jobs",
+        ]
+    )
     if result.returncode != 0:
         print(f"Failed to get run jobs: {result.stderr}")
         return []
@@ -75,13 +94,18 @@ def find_target_jobs(run_id: int) -> list[dict]:
 
 def get_job_log(run_id: int, job_id: int) -> str:
     """Get log content for a specific job, removing job/step prefix."""
-    result = run_gh([
-        "run", "view",
-        "-R", REPO,
-        "--log",
-        "--job", str(job_id),
-        str(run_id),
-    ])
+    result = run_gh(
+        [
+            "run",
+            "view",
+            "-R",
+            REPO,
+            "--log",
+            "--job",
+            str(job_id),
+            str(run_id),
+        ]
+    )
     if result.returncode != 0:
         print(f"Failed to get job log: {result.stderr}")
         return ""
@@ -101,12 +125,37 @@ def get_job_log(run_id: int, job_id: int) -> str:
                 cleaned_lines.append(line)
             else:
                 # Keep from second tab (timestamp) onwards
-                cleaned_lines.append(line[second_tab + 1:])
+                cleaned_lines.append(line[second_tab + 1 :])
 
     return "\n".join(cleaned_lines)
 
 
-def save_log(run_date: str, run_id: int, job: dict, log_content: str, keyword: str, commit_sha: str = ""):
+def append_result_to_csv(keyword: str, conclusion: str, commit_sha: str):
+    """Append monitoring result to CSV file."""
+    csv_path = get_csv_path(keyword)
+    now = datetime.now().isoformat()
+    csv_path.parent.mkdir(parents=True, exist_ok=True)
+
+    # Initialize CSV with header if not exists
+    if not csv_path.exists():
+        with open(csv_path, "w", newline="", encoding="utf-8") as f:
+            writer = csv.writer(f)
+            writer.writerow(["时间", "任务", "是否成功", "最后commit"])
+
+    with open(csv_path, "a", newline="", encoding="utf-8") as f:
+        writer = csv.writer(f)
+        writer.writerow([now, keyword, conclusion, commit_sha])
+    print(f"Result recorded to {csv_path}")
+
+
+def save_log(
+    run_date: str,
+    run_id: int,
+    job: dict,
+    log_content: str,
+    keyword: str,
+    commit_sha: str = "",
+):
     """Save log content to file."""
     log_dir = Path("logs") / run_date
     log_dir.mkdir(parents=True, exist_ok=True)
@@ -134,13 +183,14 @@ def main():
     print(f"Job keywords: {TARGET_JOBS}")
     print("-" * 50)
 
+    # Ensure logs directory exists
+    LOGS_DIR.mkdir(parents=True, exist_ok=True)
+
     # Get recent runs
     runs = get_recent_runs(limit=10)
     if not runs:
         print("No runs found")
         return
-
-    saved_count = 0
 
     # Find runs with any target job
     for run in runs:
@@ -148,7 +198,9 @@ def main():
         created_at = run["createdAt"]
         conclusion = run.get("conclusion", "unknown")
 
-        print(f"Checking run #{run['number']} (databaseId: {run_id}, {created_at[:10]}) - {conclusion}")
+        print(
+            f"Checking run #{run['number']} (databaseId: {run_id}, {created_at[:10]}) - {conclusion}"
+        )
 
         jobs = find_target_jobs(run_id)
         if not jobs:
@@ -168,18 +220,23 @@ def main():
 
             print(f"  Found job: {job['name']}")
             print(f"  Job ID: {job['databaseId']}")
+            print(f"  Conclusion: {job.get('conclusion', 'N/A')}")
 
             log_content = get_job_log(run_id, job["databaseId"])
             if log_content:
-                save_log(run_date, run_id, job, log_content, matched_keyword, commit_sha)
-                saved_count += 1
+                log_path = save_log(
+                    run_date, run_id, job, log_content, matched_keyword, commit_sha
+                )
+                print(f"  Log saved: {'Yes' if log_path else 'No'}")
 
-        if saved_count >= len(TARGET_JOBS):
-            print("\nAll target jobs saved")
-            break
-
-    else:
-        print("No runs with target jobs found")
+            # 记录 job 的实际运行状态
+            job_conclusion = job.get("conclusion", "")
+            if job_conclusion == "success":
+                append_result_to_csv(matched_keyword, "成功", commit_sha)
+            else:
+                append_result_to_csv(
+                    matched_keyword, job_conclusion or "失败", commit_sha
+                )
 
 
 if __name__ == "__main__":
