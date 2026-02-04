@@ -13,6 +13,8 @@ TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S")
 git add logs/
 
 # Create a commit
-git commit -m "track ci data + $TIMESTAMP"
+git commit -m "track ci data $TIMESTAMP"
 
-echo "Script finished. Review the commit and push if desired."
+git push
+
+echo "Script finished. Changes committed and pushed."

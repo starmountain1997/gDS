@@ -37,7 +37,7 @@ def run_gh(args: list[str]) -> subprocess.CompletedProcess:
     return result
 
 
-def get_recent_runs(limit: int = 10) -> list[dict]:
+def get_recent_runs(limit: int = 4) -> list[dict]:
     """Get recent workflow runs for Nightly-A3."""
     result = run_gh(
         [
@@ -271,7 +271,7 @@ def main():
     LOGS_DIR.mkdir(parents=True, exist_ok=True)
 
     # Get recent runs
-    runs = get_recent_runs(limit=10)
+    runs = get_recent_runs()
     if not runs:
         print("No runs found")
         return
