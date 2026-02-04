@@ -34,7 +34,7 @@ def get_recent_runs(limit: int = 10) -> list[dict]:
         "-R", REPO,
         "-w", WORKFLOW_ID,
         "-L", str(limit),
-        "--json", "number,databaseId,name,status,conclusion,createdAt,headBranch",
+        "--json", "number,databaseId,name,status,conclusion,createdAt,headBranch,headSha",
     ])
     if result.returncode != 0:
         print(f"Failed to list runs: {result.stderr}")
@@ -84,16 +84,22 @@ def get_job_log(run_id: int, job_id: int) -> str:
     return result.stdout
 
 
-def save_log(run_date: str, run_id: int, job: dict, log_content: str):
+def save_log(run_date: str, run_id: int, job: dict, log_content: str, commit_sha: str = ""):
     """Save log content to file."""
     log_dir = Path("logs") / run_date
     log_dir.mkdir(parents=True, exist_ok=True)
 
-    # Sanitize job name for filename
-    safe_name = job["name"].replace("/", "_").replace(" ", "_")
-    log_path = log_dir / f"{run_id}_{safe_name}.log"
+    # Use short SHA as filename prefix if available
+    short_sha = commit_sha[:7] if commit_sha else str(run_id)
+    log_path = log_dir / f"{short_sha}.log"
 
+    # Write metadata header
     with open(log_path, "w", encoding="utf-8") as f:
+        f.write(f"# Run ID: {run_id}\n")
+        f.write(f"# Commit: {commit_sha}\n")
+        f.write(f"# Job: {job['name']}\n")
+        f.write(f"# Date: {run_date}\n")
+        f.write("=" * 60 + "\n\n")
         f.write(log_content)
 
     print(f"Saved: {log_path}")
@@ -128,7 +134,8 @@ def main():
             log_content = get_job_log(run_id, job["databaseId"])
             if log_content:
                 run_date = created_at[:10]  # YYYY-MM-DD
-                save_log(run_date, run_id, job, log_content)
+                commit_sha = run.get("headSha", "")
+                save_log(run_date, run_id, job, log_content, commit_sha)
                 break
         else:
             print(f"  No target job found")
