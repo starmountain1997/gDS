@@ -11,7 +11,7 @@ import subprocess
 from pathlib import Path
 
 REPO = "vllm-project/vllm-ascend"
-WORKFLOW_NAME = "Nightly-A3"
+WORKFLOW_NAME = "schedule_nightly_test_a3.yaml"
 WORKFLOW_ID = "215695701"  # Nightly-A3 workflow ID
 TARGET_JOBS = [
     "multi-node-dpsk3.2-2node",  # DeepSeek-V3_2-W8A8-A3-dual-nodes.yaml
@@ -44,7 +44,7 @@ def get_recent_runs(limit: int = 10) -> list[dict]:
             "-R",
             REPO,
             "-w",
-            WORKFLOW_ID,
+            WORKFLOW_NAME,
             "-b",
             "main",
             "-L",
