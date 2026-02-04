@@ -74,7 +74,7 @@ def find_target_jobs(run_id: int) -> list[dict]:
 
 
 def get_job_log(run_id: int, job_id: int) -> str:
-    """Get log content for a specific job."""
+    """Get log content for a specific job, removing job/step prefix."""
     result = run_gh([
         "run", "view",
         "-R", REPO,
@@ -86,7 +86,24 @@ def get_job_log(run_id: int, job_id: int) -> str:
         print(f"Failed to get job log: {result.stderr}")
         return ""
 
-    return result.stdout
+    # Remove job name and step prefix from each line
+    # Format: "{job}\t{step}\t{timestamp}\t{content}"
+    lines = result.stdout.split("\n")
+    cleaned_lines = []
+    for line in lines:
+        # Find first tab, then second tab, keep from third tab onwards
+        first_tab = line.find("\t")
+        if first_tab == -1:
+            cleaned_lines.append(line)
+        else:
+            second_tab = line.find("\t", first_tab + 1)
+            if second_tab == -1:
+                cleaned_lines.append(line)
+            else:
+                # Keep from second tab (timestamp) onwards
+                cleaned_lines.append(line[second_tab + 1:])
+
+    return "\n".join(cleaned_lines)
 
 
 def save_log(run_date: str, run_id: int, job: dict, log_content: str, keyword: str, commit_sha: str = ""):
