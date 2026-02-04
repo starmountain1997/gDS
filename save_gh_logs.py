@@ -133,20 +133,43 @@ def get_job_log(run_id: int, job_id: int) -> str:
     return "\n".join(cleaned_lines)
 
 
-def append_result_to_csv(keyword: str, conclusion: str, commit_sha: str, run_time: str):
-    """Append monitoring result to CSV file."""
+def append_result_to_csv(
+    keyword: str, conclusion: str, commit_sha: str, run_time: str, job_id: int
+):
+    """Append monitoring result to CSV file, avoiding duplicates."""
     csv_path = get_csv_path(keyword)
     csv_path.parent.mkdir(parents=True, exist_ok=True)
 
-    # Initialize CSV with header if not exists
-    if not csv_path.exists():
-        with open(csv_path, "w", newline="", encoding="utf-8") as f:
-            writer = csv.writer(f)
-            writer.writerow(["任务运行时间", "是否成功", "最后commit"])
+    header = ["任务运行时间", "是否成功", "最后commit", "job_id"]
+    existing_job_ids = set()
+    rows_to_write = []
 
-    with open(csv_path, "a", newline="", encoding="utf-8") as f:
+    if csv_path.exists():
+        with open(csv_path, "r", newline="", encoding="utf-8") as f:
+            reader = csv.reader(f)
+            file_header = next(reader, None)  # Read header
+            if file_header == header:
+                for row in reader:
+                    if len(row) > 3:  # Ensure job_id column exists
+                        existing_job_ids.add(row[3])
+                        rows_to_write.append(row)
+            else:
+                # If header doesn't match, re-write the file. This handles cases where the script
+                # or CSV format might have changed.
+                print(
+                    f"Warning: CSV header for {csv_path} does not match expected. Rewriting file."
+                )
+
+    if str(job_id) in existing_job_ids:
+        print(f"Result for job {job_id} already exists in {csv_path}, skipping.")
+        return
+
+    rows_to_write.append([run_time, conclusion, commit_sha, job_id])
+
+    with open(csv_path, "w", newline="", encoding="utf-8") as f:
         writer = csv.writer(f)
-        writer.writerow([run_time, conclusion, commit_sha])
+        writer.writerow(header)  # Always write header first
+        writer.writerows(rows_to_write)
     print(f"Result recorded to {csv_path}")
 
 
@@ -156,16 +179,21 @@ def save_log(
     job: dict,
     log_content: str,
     keyword: str,
+    job_id: int,
     commit_sha: str = "",
 ):
     """Save log content to file."""
     log_dir = Path("logs") / run_date
     log_dir.mkdir(parents=True, exist_ok=True)
 
-    # Filename: {date}_{commit_sha}_{keyword}.log
+    # Filename: {date}_{commit_sha}_{keyword}_{job_id}.log
     short_sha = commit_sha[:7] if commit_sha else str(run_id)
-    filename = f"{run_date}_{short_sha}_{keyword}.log"
+    filename = f"{run_date}_{short_sha}_{keyword}_{job_id}.log"
     log_path = log_dir / filename
+
+    if log_path.exists():
+        print(f"Log already exists, skipping: {log_path}")
+        return None
 
     # Write metadata header
     with open(log_path, "w", encoding="utf-8") as f:
@@ -227,9 +255,18 @@ def main():
             log_content = get_job_log(run_id, job["databaseId"])
             if log_content:
                 log_path = save_log(
-                    run_date, run_id, job, log_content, matched_keyword, commit_sha
+                    run_date,
+                    run_id,
+                    job,
+                    log_content,
+                    matched_keyword,
+                    job["databaseId"],
+                    commit_sha,
                 )
-                print(f"  Log saved: {'Yes' if log_path else 'No'}")
+                if log_path is None:
+                    print(f"  Log skipped (already exists)")
+                else:
+                    print(f"  Log saved: {log_path}")
 
             # 记录 job 的实际运行状态
             emoji_status = {
@@ -240,7 +277,11 @@ def main():
             }
             emoji_conclusion = emoji_status.get(job.get("conclusion", ""), "?")
             append_result_to_csv(
-                matched_keyword, emoji_conclusion, commit_sha, created_at
+                matched_keyword,
+                emoji_conclusion,
+                commit_sha,
+                created_at,
+                job["databaseId"],
             )
 
 
