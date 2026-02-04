@@ -8,7 +8,6 @@ Targets: vllm-project/vllm-ascend / Nightly-A3 / multi-node & single-node DeepSe
 import csv
 import json
 import subprocess
-from datetime import datetime
 from pathlib import Path
 
 REPO = "vllm-project/vllm-ascend"
@@ -46,8 +45,12 @@ def get_recent_runs(limit: int = 10) -> list[dict]:
             REPO,
             "-w",
             WORKFLOW_ID,
+            "-b",
+            "main",
             "-L",
             str(limit),
+            "-e",
+            "schedule",
             "--json",
             "number,databaseId,name,status,conclusion,createdAt,headBranch,headSha",
         ]
@@ -130,21 +133,20 @@ def get_job_log(run_id: int, job_id: int) -> str:
     return "\n".join(cleaned_lines)
 
 
-def append_result_to_csv(keyword: str, conclusion: str, commit_sha: str):
+def append_result_to_csv(keyword: str, conclusion: str, commit_sha: str, run_time: str):
     """Append monitoring result to CSV file."""
     csv_path = get_csv_path(keyword)
-    now = datetime.now().isoformat()
     csv_path.parent.mkdir(parents=True, exist_ok=True)
 
     # Initialize CSV with header if not exists
     if not csv_path.exists():
         with open(csv_path, "w", newline="", encoding="utf-8") as f:
             writer = csv.writer(f)
-            writer.writerow(["时间", "任务", "是否成功", "最后commit"])
+            writer.writerow(["任务运行时间", "是否成功", "最后commit"])
 
     with open(csv_path, "a", newline="", encoding="utf-8") as f:
         writer = csv.writer(f)
-        writer.writerow([now, keyword, conclusion, commit_sha])
+        writer.writerow([run_time, conclusion, commit_sha])
     print(f"Result recorded to {csv_path}")
 
 
@@ -230,13 +232,16 @@ def main():
                 print(f"  Log saved: {'Yes' if log_path else 'No'}")
 
             # 记录 job 的实际运行状态
-            job_conclusion = job.get("conclusion", "")
-            if job_conclusion == "success":
-                append_result_to_csv(matched_keyword, "成功", commit_sha)
-            else:
-                append_result_to_csv(
-                    matched_keyword, job_conclusion or "失败", commit_sha
-                )
+            emoji_status = {
+                "success": "✅",
+                "failure": "❌",
+                "cancelled": "⚪",
+                "skipped": "🚫",
+            }
+            emoji_conclusion = emoji_status.get(job.get("conclusion", ""), "?")
+            append_result_to_csv(
+                matched_keyword, emoji_conclusion, commit_sha, created_at
+            )
 
 
 if __name__ == "__main__":
