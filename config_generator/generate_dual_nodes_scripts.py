@@ -31,7 +31,18 @@ CONFIG_URL_TEMPLATE = "https://raw.githubusercontent.com/starmountain1997/vllm-a
     default=None,
     help="Model path (default: read from config)",
 )
-def main(output: str, branch: str, model: str | None):
+@click.option(
+    "--served-model-name",
+    default="dsv3",
+    show_default=True,
+    help="Served model name for OpenAI API",
+)
+def main(
+    output: str,
+    branch: str,
+    model: str | None,
+    served_model_name: str,
+):
     """Fetch DeepSeek-V3 config and generate node0.sh / node1.sh scripts."""
     output_dir = Path(output)
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -47,10 +58,10 @@ def main(output: str, branch: str, model: str | None):
     model_path = model or default_model
 
     node0_script = generate_script(
-        deployments[0], env_common, model_path, is_master=True
+        deployments[0], env_common, model_path, served_model_name, is_master=True
     )
     node1_script = generate_script(
-        deployments[1], env_common, model_path, is_master=False
+        deployments[1], env_common, model_path, served_model_name, is_master=False
     )
 
     (output_dir / "node0.sh").write_text(node0_script)
@@ -81,7 +92,11 @@ def extract_model_from_cmd(cmd_block: str) -> str:
 
 
 def generate_script(
-    deploy: dict, env_common: dict, model_path: str, is_master: bool
+    deploy: dict,
+    env_common: dict,
+    model_path: str,
+    served_model_name: str,
+    is_master: bool,
 ) -> str:
     """Generate startup script for a single node."""
     cmd_block = deploy.get("server_cmd", "")
@@ -118,6 +133,10 @@ def generate_script(
             result.append(token)
 
         i += 1
+
+    # 找到第一个 -- 参数的位置，插入 --served-model-name
+    first_flag_idx = next((i for i, r in enumerate(result) if r.startswith("--")), 3)
+    result.insert(first_flag_idx, f"--served-model-name {served_model_name}")
 
     full_cmd = " \\\n    ".join(result)
 

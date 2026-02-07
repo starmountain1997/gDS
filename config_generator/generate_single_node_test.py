@@ -35,7 +35,19 @@ CONFIG_URL = "https://raw.githubusercontent.com/starmountain1997/vllm-ascend/{br
     default=None,
     help="Server port (default: read from config)",
 )
-def main(output: str, branch: str, model_path: str | None, port: int | None):
+@click.option(
+    "--served-model-name",
+    default="dsv3",
+    show_default=True,
+    help="Served model name for OpenAI API",
+)
+def main(
+    output: str,
+    branch: str,
+    model_path: str | None,
+    port: int | None,
+    served_model_name: str,
+):
     """Fetch single-node test config and generate vLLM server startup script."""
     output_dir = Path(output)
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -52,6 +64,7 @@ def main(output: str, branch: str, model_path: str | None, port: int | None):
 
     script = generate_script(
         model,
+        served_model_name,
         config.get("server_args", []),
         tp_size,
         dp_size,
@@ -180,7 +193,13 @@ def format_args(args: list, tp_size: int, dp_size: int, port: int) -> str:
 
 
 def generate_script(
-    model: str, args: list, tp_size: int, dp_size: int, server_port: int, env: dict
+    model: str,
+    served_model_name: str,
+    args: list,
+    tp_size: int,
+    dp_size: int,
+    server_port: int,
+    env: dict,
 ) -> str:
     """Generate vLLM server startup script."""
     formatted_args = format_args(args, tp_size, dp_size, server_port)
@@ -196,6 +215,7 @@ def generate_script(
 
 # ==================== Server Configuration ====================
 # Model: {model}
+# Served Model Name: {served_model_name}
 # Tensor Parallel: {tp_size}
 # Data Parallel: {dp_size}
 # Port: {server_port}
@@ -203,6 +223,7 @@ def generate_script(
 # ==================== Startup Command ====================
 python -m vllm.entrypoints.openai.api_server \\
     {model} \\
+    --served-model-name {served_model_name} \\
     {formatted_args}
 """
 
