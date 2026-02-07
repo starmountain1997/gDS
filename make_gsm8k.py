@@ -94,8 +94,6 @@ def create_data(input_len, batch_size, model_path=None, save_path="."):
     else:
         dataset_2k = dataset_2k[:batch_size]
 
-    json_str = json.dumps(dataset_2k, ensure_ascii=False, indent=4)
-
     with open(
         os.path.join(save_path, f"GSM8K-{input_len}-bs{batch_size}.jsonl"),
         "w",
@@ -111,4 +109,4 @@ def create_data(input_len, batch_size, model_path=None, save_path="."):
 
 
 if __name__ == "__main__":
-    create_data(input_len=64000, batch_size=1000)
+    create_data(input_len=64000, batch_size=2800)

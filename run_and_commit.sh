@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Source the virtual environment
-source .venv/bin/activate
+conda activate gDS
 
 # Run the Python script to save GitHub logs
 python3 save_gh_logs.py
