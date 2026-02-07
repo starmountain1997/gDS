@@ -135,48 +135,47 @@ def generate_script(
     """Generate startup script for a single node."""
     cmd_block = deploy.get("server_cmd", "")
     tokens = shlex.split(cmd_block)
-    result = []
 
+    # The original config expects `vllm serve <model_path>`
+    # so `tokens[0]` is 'vllm', `tokens[1]` is 'serve', `tokens[2]` is the model path.
+    if len(tokens) > 2 and not tokens[2].startswith(
+        "-"
+    ):  # Ensure tokens[2] is indeed the model path and not a flag
+        tokens[2] = model_path  # Replace with the user-provided model_path
+
+    # Insert --served-model-name
+    # The original code inserted before the first '--' flag, or at index 3 of `result`.
+    # Let's find the first '--' flag after 'vllm serve' and the model path.
+    # If no flags exist, insert after the model path (which is now tokens[2]).
+    insert_idx = len(tokens)  # Default to end
+    for i in range(3, len(tokens)):  # Start searching from after model path
+        if tokens[i].startswith("--") or tokens[i].startswith("-"):
+            insert_idx = i
+            break
+
+    tokens.insert(insert_idx, f"--served-model-name {served_model_name}")
+
+    # Combine flags and values that are separated (e.g., --flag value)
+    formatted_cmd_args = []
     i = 0
     while i < len(tokens):
         token = tokens[i]
-
-        if i == 0:
-            # 第一个命令是 vllm，第二个是 serve，合并成 "vllm serve"
-            result.append(f"{token} {tokens[i + 1]}")
-        elif i == 1:
-            # 第二个 token（serve）已被上面处理，跳过
-            pass
-        elif i == 2:
-            # 第三个 token 是 model path，使用用户指定的
-            result.append(model_path)
-        elif token.startswith("--"):
-            # 长参数（以 -- 开头）
-            if "=" in token:
-                result.append(token)
-            else:
-                result.append(token)
-                if i + 1 < len(tokens) and not tokens[i + 1].startswith("-"):
-                    result[-1] += f" {tokens[i + 1]}"
-                    i += 1
-        elif token.startswith("-"):
-            # 短参数如 -v，直接拼接下一个值
-            result.append(f"{token} {tokens[i + 1]}")
-            i += 1
+        if (
+            (token.startswith("--") or token.startswith("-"))
+            and i + 1 < len(tokens)
+            and not (tokens[i + 1].startswith("--") or tokens[i + 1].startswith("-"))
+        ):
+            formatted_cmd_args.append(f"{token} {tokens[i + 1]}")
+            i += 1  # Skip next token as it's part of current arg
         else:
-            result.append(token)
-
+            formatted_cmd_args.append(token)
         i += 1
 
-    # 找到第一个 -- 参数的位置，插入 --served-model-name
-    first_flag_idx = next((i for i, r in enumerate(result) if r.startswith("--")), 3)
-    result.insert(first_flag_idx, f"--served-model-name {served_model_name}")
+    full_cmd = " \\\n    ".join(formatted_cmd_args)
 
-    # 如果是 worker 节点且指定了 master_ip，替换 $MASTER_IP
+    # If it's a worker node and master_ip is specified, replace $MASTER_IP
     if not is_master and master_ip:
-        result = [r.replace("$MASTER_IP", master_ip) for r in result]
-
-    full_cmd = " \\\n    ".join(result)
+        full_cmd = full_cmd.replace("$MASTER_IP", master_ip)
 
     env_lines = ["# ==================== Environment Variables ===================="]
     for key, value in env_common.items():
@@ -184,6 +183,7 @@ def generate_script(
         env_lines.append(f'export {key}="{value_str}"')
 
     node_type = "Master Node" if is_master else "Worker Node"
+    node_idx = "0" if is_master else "1"
     ip_hint = (
         "LOCAL_IP needs to be replaced with actual machine IP"
         if is_master
@@ -191,7 +191,7 @@ def generate_script(
     )
 
     return f"""#!/bin/bash
-# Node {{node_idx}} ({node_type})
+# Node {node_idx} ({node_type})
 
 {chr(10).join(env_lines)}
 

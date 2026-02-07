@@ -59,8 +59,7 @@ def main(
 
     tp_size = config.get("TENSOR_PARALLELS", [1])[0]
     dp_size = config.get("DATA_PARALLELS", [1])[0]
-    default_port = config.get("PORT", 8087)
-    server_port = port if port is not None else default_port
+    server_port = port if port is not None else config.get("PORT", 8087)
 
     script = generate_script(
         model,
@@ -88,6 +87,33 @@ def fetch_config(branch: str) -> dict:
         return parse_python_config(content)
 
 
+def _get_ast_node_value(node: ast.AST) -> object | None:
+    """Recursively extract value from an AST node, handling various types and str() calls."""
+    if isinstance(node, ast.Constant):
+        return node.value
+    elif isinstance(node, ast.Name):
+        return node.id
+    elif isinstance(node, ast.List):
+        return [_get_ast_node_value(elt) for elt in node.elts]
+    elif isinstance(node, ast.Dict):
+        return {
+            _get_ast_node_value(k): _get_ast_node_value(v)
+            for k, v in zip(node.keys, node.values)
+        }
+    elif (
+        isinstance(node, ast.Call)
+        and isinstance(node.func, ast.Name)
+        and node.func.id == "str"
+    ):
+        # Handle str(xxx) calls - extract the variable name
+        arg = node.args[0]
+        if isinstance(arg, ast.Name):
+            return f"STR_{arg.id.upper()}"
+        else:
+            return _get_ast_node_value(arg)
+    return None
+
+
 def parse_python_config(content: str) -> dict:
     """Parse Python config file using AST."""
     tree = ast.parse(content)
@@ -98,57 +124,8 @@ def parse_python_config(content: str) -> dict:
             for target in node.targets:
                 if isinstance(target, ast.Name):
                     name = target.id
-                    if isinstance(node.value, ast.List):
-                        result[name] = [
-                            get_list_element_value(elt) for elt in node.value.elts
-                        ]
-                    elif isinstance(node.value, ast.Dict):
-                        result[name] = {
-                            get_value(k): get_value(v)
-                            for k, v in zip(node.value.keys, node.value.values)
-                        }
-                    elif isinstance(node.value, ast.Constant):
-                        result[name] = node.value.value
-                    elif (
-                        isinstance(node.value, ast.Call)
-                        and isinstance(node.value.func, ast.Name)
-                        and node.value.func.id == "str"
-                    ):
-                        # Handle str(xxx) calls - extract the variable name
-                        arg = node.value.args[0]
-                        if isinstance(arg, ast.Name):
-                            result[name] = f"STR_{arg.id.upper()}"
-                        else:
-                            result[name] = get_value(arg)
-
+                    result[name] = _get_ast_node_value(node.value)
     return result
-
-
-def get_list_element_value(node: ast.AST) -> str | int | bool | None:
-    """Extract value from a list element AST node, handling str() calls."""
-    if isinstance(node, ast.Constant):
-        return node.value
-    elif (
-        isinstance(node, ast.Call)
-        and isinstance(node.func, ast.Name)
-        and node.func.id == "str"
-    ):
-        # Handle str(xxx) calls - extract the variable name
-        arg = node.args[0]
-        if isinstance(arg, ast.Name):
-            return f"STR_{arg.id.upper()}"
-    elif isinstance(node, ast.Name):
-        return node.id
-    return None
-
-
-def get_value(node: ast.AST) -> str | int | bool | None:
-    """Extract value from AST node."""
-    if isinstance(node, ast.Constant):
-        return node.value
-    elif isinstance(node, ast.Name):
-        return node.id
-    return None
 
 
 def format_args(args: list, tp_size: int, dp_size: int, port: int) -> str:
