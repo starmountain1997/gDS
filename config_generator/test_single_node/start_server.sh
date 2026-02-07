@@ -29,8 +29,8 @@ vllm serve /mnt/weight/DeepSeek-V3.2-Exp-W8A8 \
     --trust-remote-code \
     --quantization ascend \
     --gpu-memory-utilization 0.92 \
-    --compilation-config {"cudagraph_capture_sizes":[3, 6, 9, 12], "cudagraph_mode":"FULL_DECODE_ONLY"} \
-    --speculative-config {"num_speculative_tokens": 2, "method":"deepseek_mtp"} \
-    --additional-config {"layer_sharding": ["q_b_proj", "o_proj"]} \
+    --compilation-config='{"cudagraph_capture_sizes":[8, 16], "cudagraph_mode":"FULL_DECODE_ONLY"}' \
+    --speculative-config='{"num_speculative_tokens": 3, "method":"deepseek_mtp"}' \
+    --additional-config='{"layer_sharding": ["q_b_proj", "o_proj"]}' \
     --reasoning-parser deepseek_v3 \
     --tokenizer_mode deepseek_v32

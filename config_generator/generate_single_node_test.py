@@ -129,7 +129,7 @@ def parse_python_config(content: str) -> dict:
 
 
 def format_args(args: list, tp_size: int, dp_size: int, port: int) -> str:
-    """Format server args, merging flag + value pairs."""
+    """Format server args, merging flag + value pairs and quoting special chars."""
     if not args:
         return ""
 
@@ -144,29 +144,47 @@ def format_args(args: list, tp_size: int, dp_size: int, port: int) -> str:
         else a
         for a in args
     ]
-    result = []
 
     i = 0
+    formatted = []
     while i < len(tokens):
         token = tokens[i]
 
         if token.startswith("--"):
             if "=" in token:
-                result.append(token)
+                # --foo=bar 格式
+                flag, value = token.split("=", 1)
+                needs_quoting = (
+                    " " in value or value.startswith("{") or value.startswith("[")
+                )
+                if needs_quoting:
+                    formatted.append(f"{flag}='{value}'")
+                else:
+                    formatted.append(f"{flag} {value}")
             else:
-                result.append(token)
-                if i + 1 < len(tokens) and not tokens[i + 1].startswith("-"):
-                    result[-1] += f" {tokens[i + 1]}"
+                # --foo bar 格式或布尔标志
+                # 检查下一个 token 是否是值（不以 - 开头）
+                if (
+                    i + 1 < len(tokens)
+                    and not tokens[i + 1].startswith("-")
+                    and not tokens[i + 1].startswith("STR_")
+                ):
+                    value = tokens[i + 1]
                     i += 1
-        elif token.startswith("-"):
-            result.append(f"{token} {tokens[i + 1]}")
-            i += 1
-        else:
-            result.append(token)
+                    needs_quoting = (
+                        " " in value or value.startswith("{") or value.startswith("[")
+                    )
+                    if needs_quoting:
+                        formatted.append(f"{token}='{value}'")
+                    else:
+                        formatted.append(f"{token} {value}")
+                else:
+                    # 布尔标志，没有值
+                    formatted.append(token)
 
         i += 1
 
-    return " \\\n    ".join(result)
+    return " \\\n    ".join(formatted)
 
 
 def generate_script(
