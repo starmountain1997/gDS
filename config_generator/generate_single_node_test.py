@@ -198,8 +198,7 @@ def generate_script(
 # Port: {server_port}
 
 # ==================== Startup Command ====================
-vllm serve \\
-    {model} \\
+vllm serve {model} \\
     --served-model-name {served_model_name} \\
     {formatted_args}
 """
