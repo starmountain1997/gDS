@@ -1,24 +1,102 @@
+#!/usr/bin/env python3
+"""Generate GSM8K dataset for benchmarking."""
+
 import json
 import os
 import subprocess
+from pathlib import Path
 
+import click
+from loguru import logger
 from modelscope import snapshot_download
 from transformers import AutoTokenizer
 
 
-def unzip_gsm8k(zip_path="./gsm8k.zip", output_dir="."):
-    """解压 gsm8k.zip 文件"""
-    if not os.path.exists(zip_path):
-        print(f"{zip_path} 不存在...")
-        return False
-    print(f"正在解压 {zip_path}...")
-    subprocess.run(["unzip", "-o", zip_path, "-d", output_dir], check=True)
-    print("解压完成")
-    return True
+@click.command()
+@click.option("--input-len", default=64000, show_default=True, help="Input token length")
+@click.option("--batch-size", default=2800, show_default=True, help="Batch size")
+@click.option("--model-id", default="deepseek-ai/DeepSeek-V3", help="Model ID from modelscope")
+@click.option("--cache-dir", default="./tokenizer_cache", help="Tokenizer cache directory")
+@click.option("--zip-path", default="./gsm8k.zip", help="Path to GSM8K zip file")
+@click.option("--gsm8k-dir", default="./gsm8k", help="GSM8K extracted directory")
+def main(
+    input_len: int,
+    batch_size: int,
+    model_id: str,
+    cache_dir: str,
+    zip_path: str,
+    gsm8k_dir: str,
+):
+    """Generate GSM8K dataset with specified input length and batch size."""
+    cache_dir = Path(cache_dir)
+    zip_path = Path(zip_path)
+    gsm8k_file = Path(gsm8k_dir) / "train.jsonl"
+
+    output_file = Path(f"GSM8K-in{input_len}-bs{batch_size}.jsonl")
+
+    if output_file.exists():
+        logger.info(f"Dataset already exists: {output_file}")
+        return
+
+    tokenizer_path = download_tokenizer_only(model_id, str(cache_dir))
+    logger.success(f"Tokenizer downloaded to: {tokenizer_path}")
+
+    if not gsm8k_file.exists():
+        if not zip_path.exists():
+            logger.error(f"{zip_path} not found")
+            return
+        logger.info(f"Unzipping {zip_path}...")
+        subprocess.run(["unzip", "-o", str(zip_path), "-d", str(zip_path.parent)], check=True)
+
+    if not gsm8k_file.exists():
+        logger.error(f"Still not found after unzip: {gsm8k_file}")
+        return
+
+    tokenizer = AutoTokenizer.from_pretrained(tokenizer_path)
+    logger.info(f"Loading GSM8K from {gsm8k_file}...")
+
+    dataset = []
+    with open(gsm8k_file, "r", encoding="utf-8") as f:
+        for line in f:
+            data = json.loads(line)
+            dataset.append(data["question"])
+
+    logger.info(f"Processing {len(dataset)} questions...")
+
+    dataset_2k = []
+    for sentence in dataset:
+        words = tokenizer.tokenize(sentence)
+        if not words:
+            continue
+        len_num = len(words)
+
+        if len_num < input_len:
+            multiplier = input_len // len_num + 1
+            words = (words * multiplier)[:input_len]
+        else:
+            words = words[:input_len]
+
+        decoded_text = tokenizer.convert_tokens_to_string(words)
+        dataset_2k.append(decoded_text)
+
+    batch_num = len(dataset_2k) // batch_size
+    if batch_num == 0:
+        multiplier = batch_size // len(dataset_2k) + 1
+        dataset_2k = (dataset_2k * multiplier)[:batch_size]
+    else:
+        dataset_2k = dataset_2k[:batch_size]
+
+    logger.info(f"Writing {len(dataset_2k)} samples to {output_file}...")
+
+    with open(output_file, "w", encoding="utf-8") as f:
+        for item in dataset_2k:
+            f.write(json.dumps({"question": item, "answer": "none"}, ensure_ascii=False) + "\n")
+
+    logger.success(f"Done: {output_file}")
 
 
-def download_tokenizer_only(model_id, cache_dir="./tokenizer_cache"):
-    """只从 modelscope 下载 tokenizer 文件，不下载模型权重"""
+def download_tokenizer_only(model_id: str, cache_dir: str) -> str:
+    """Download tokenizer files only from modelscope."""
     tokenizer_files = [
         "tokenizer_config.json",
         "tokenizer.json",
@@ -33,80 +111,10 @@ def download_tokenizer_only(model_id, cache_dir="./tokenizer_cache"):
         model_id,
         cache_dir=cache_dir,
         ignore_patterns=["*.bin", "*.safetensors", "*.pth", "*.model", "*.gguf"],
-        # 只下载 tokenizer 相关文件
         allow_patterns=tokenizer_files,
     )
     return model_path
 
 
-def create_data(input_len, batch_size, model_path=None, save_path="."):
-    # 如果没有指定 model_path，自动从 modelscope 下载 tokenizer
-    if model_path is None:
-        print("正在从 modelscope 下载 DeepSeek-V3 的 tokenizer...")
-        model_path = download_tokenizer_only("deepseek-ai/DeepSeek-V3")
-        print(f"Tokenizer 已下载到: {model_path}")
-
-    tokenizer = AutoTokenizer.from_pretrained(model_path)
-
-    if os.path.exists(f"GSM8K-in{input_len}-bs{batch_size}.jsonl"):
-        print("dataset already exists...")
-        exit(0)
-
-    gsm8k_file = "./gsm8k/train.jsonl"
-    if not os.path.exists(gsm8k_file):
-        print("gsm8k dataset not exists...")
-        unzip_gsm8k()
-        if not os.path.exists(gsm8k_file):
-            print(f"解压后仍未找到 {gsm8k_file}")
-            exit(1)
-
-    dataset = []
-    with open(gsm8k_file, "r", encoding="utf-8") as f:
-        for line in f:
-            data = json.loads(line)
-            dataset.append(data["question"])
-
-    dataset_2k = []
-    for sentence in dataset:
-        words = tokenizer.tokenize(sentence)
-        if len(words) == 0:
-            continue
-        len_num = len(words)
-
-        if len_num < input_len:
-            # token数量不足时，重复文本直到达到input_len
-            multiplier = (input_len) // len_num + 1
-            repeated_len = words * multiplier
-            words = repeated_len[:input_len]
-        else:
-            # token数量足够时，截断到input_len
-            words = words[:input_len]
-
-        decoded_text = tokenizer.convert_tokens_to_string(words)
-        dataset_2k.append(decoded_text)
-
-    batch_num = len(dataset_2k) // batch_size
-    if batch_num == 0:
-        multiplier = (batch_size // len(dataset_2k)) + 1
-
-        repeated_batch = dataset_2k * multiplier
-        dataset_2k = repeated_batch[:batch_size]
-    else:
-        dataset_2k = dataset_2k[:batch_size]
-
-    with open(
-        os.path.join(save_path, f"GSM8K-{input_len}-bs{batch_size}.jsonl"),
-        "w",
-        encoding="utf-8",
-    ) as f:
-        for i in range(len(dataset_2k)):
-            f.write(
-                json.dumps(
-                    {"question": dataset_2k[i], "answer": "none"}, ensure_ascii=False
-                )
-            )
-            f.write("\n")
-
-
 if __name__ == "__main__":
-    create_data(input_len=64000, batch_size=2800)
+    main()

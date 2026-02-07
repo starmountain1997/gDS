@@ -12,136 +12,142 @@ import subprocess
 from datetime import datetime
 from pathlib import Path
 
+import click
+from loguru import logger
+
 REPO = "vllm-project/vllm-ascend"
 WORKFLOW_NAME = "schedule_nightly_test_a3.yaml"
-WORKFLOW_ID = "215695701"  # Nightly-A3 workflow ID
 TARGET_JOBS = [
-    "multi-node-dpsk3.2-2node",  # DeepSeek-V3_2-W8A8-A3-dual-nodes.yaml
-    "test_deepseek_v3_2_w8a8",  # single-node test
+    "multi-node-dpsk3.2-2node",
+    "test_deepseek_v3_2_w8a8",
 ]
-SCRIPT_DIR = Path(__file__).parent.resolve()
-LOGS_DIR = SCRIPT_DIR / "logs"
 
 
-def get_csv_path(keyword: str) -> Path:
-    """Get CSV path for a specific task."""
-    return LOGS_DIR / f"{keyword}_results.csv"
+@click.command()
+@click.option("--runs", "-n", default=4, show_default=True, help="Number of recent runs to check")
+def main(runs: int):
+    SCRIPT_DIR = Path(__file__).parent.resolve()
+    LOGS_DIR = SCRIPT_DIR / "logs"
 
+    logger.info(f"Target: {REPO} / {WORKFLOW_NAME}")
+    logger.info(f"Job keywords: {TARGET_JOBS}")
+    logger.info(f"Checking last {runs} runs")
+    logger.info("-" * 50)
 
-def run_gh(args: list[str]) -> subprocess.CompletedProcess:
-    """Run gh CLI command."""
-    result = subprocess.run(
-        ["gh"] + args,
-        capture_output=True,
-        text=True,
-    )
-    return result
+    LOGS_DIR.mkdir(parents=True, exist_ok=True)
+
+    runs_data = get_recent_runs(runs)
+    if not runs_data:
+        logger.error("No runs found")
+        return
+
+    for run in runs_data:
+        run_id = run["databaseId"]
+        created_at = run["createdAt"]
+        conclusion = run.get("conclusion", "unknown")
+
+        logger.info(
+            f"Run #{run['number']} (databaseId: {run_id}, {created_at[:10]}) - {conclusion}"
+        )
+
+        jobs = find_target_jobs(run_id)
+        if not jobs:
+            logger.info("  No target jobs found")
+            continue
+
+        commit_sha = run.get("headSha", "")
+        run_date = created_at[:10]
+
+        for job in jobs:
+            matched_keyword = next(
+                (k for k in TARGET_JOBS if k in job.get("name", "")), ""
+            )
+
+            logger.info(f"  Found job: {job['name']}")
+            logger.info(f"  Job ID: {job['databaseId']}")
+            logger.info(f"  Conclusion: {job.get('conclusion', 'N/A')}")
+
+            log_content = get_job_log(run_id, job["databaseId"])
+            output_token_throughput = None
+
+            if log_content:
+                log_path = save_log(
+                    LOGS_DIR, run_date, run_id, job, log_content, matched_keyword, commit_sha
+                )
+                if log_path is None:
+                    logger.info("  Log skipped (already exists)")
+                else:
+                    logger.success(f"  Log saved: {log_path}")
+
+                output_token_throughput = extract_output_token_throughput(log_content)
+
+            emoji_conclusion = {
+                "success": "✅",
+                "failure": "❌",
+                "cancelled": "⚪",
+                "skipped": "🚫",
+            }.get(job.get("conclusion", ""), "?")
+
+            append_result_to_csv(
+                LOGS_DIR, matched_keyword, emoji_conclusion, commit_sha, created_at, job["databaseId"], output_token_throughput
+            )
 
 
 def get_recent_runs(limit: int = 4) -> list[dict]:
     """Get recent workflow runs for Nightly-A3."""
     result = run_gh(
         [
-            "run",
-            "list",
-            "-R",
-            REPO,
-            "-w",
-            WORKFLOW_NAME,
-            "-b",
-            "main",
-            "-L",
-            str(limit),
-            "-e",
-            "schedule",
-            "--json",
-            "number,databaseId,name,status,conclusion,createdAt,headBranch,headSha",
+            "run", "list", "-R", REPO, "-w", WORKFLOW_NAME, "-b", "main",
+            "-L", str(limit), "-e", "schedule",
+            "--json", "number,databaseId,name,status,conclusion,createdAt,headBranch,headSha",
         ]
     )
     if result.returncode != 0:
-        print(f"Failed to list runs: {result.stderr}")
+        logger.error(f"Failed to list runs: {result.stderr}")
         return []
-
     return json.loads(result.stdout)
 
 
 def get_run_jobs(run_id: int) -> list[dict]:
     """Get jobs for a specific run."""
-    result = run_gh(
-        [
-            "run",
-            "view",
-            "-R",
-            REPO,
-            str(run_id),
-            "--json",
-            "jobs",
-        ]
-    )
+    result = run_gh(["run", "view", "-R", REPO, str(run_id), "--json", "jobs"])
     if result.returncode != 0:
-        print(f"Failed to get run jobs: {result.stderr}")
+        logger.error(f"Failed to get run jobs: {result.stderr}")
         return []
-
-    data = json.loads(result.stdout)
-    return data.get("jobs", [])
+    return json.loads(result.stdout).get("jobs", [])
 
 
 def find_target_jobs(run_id: int) -> list[dict]:
     """Find all target jobs in a run."""
     jobs = get_run_jobs(run_id)
-    found = []
-    for job in jobs:
-        for keyword in TARGET_JOBS:
-            if keyword in job.get("name", ""):
-                found.append(job)
-                break
-    return found
+    return [j for j in jobs if any(k in j.get("name", "") for k in TARGET_JOBS)]
 
 
 def get_job_log(run_id: int, job_id: int) -> str:
     """Get log content for a specific job, removing job/step prefix."""
-    result = run_gh(
-        [
-            "run",
-            "view",
-            "-R",
-            REPO,
-            "--log",
-            "--job",
-            str(job_id),
-            str(run_id),
-        ]
-    )
+    result = run_gh(["run", "view", "-R", REPO, "--log", "--job", str(job_id), str(run_id)])
     if result.returncode != 0:
-        print(f"Failed to get job log: {result.stderr}")
+        logger.error(f"Failed to get job log: {result.stderr}")
         return ""
 
-    # Remove job name and step prefix from each line
-    # Format: "{job}\t{step}\t{timestamp}\t{content}"
     lines = result.stdout.split("\n")
     cleaned_lines = []
     for line in lines:
-        # Find first tab, then second tab, keep from third tab onwards
         first_tab = line.find("\t")
         if first_tab == -1:
             cleaned_lines.append(line)
+            continue
+        second_tab = line.find("\t", first_tab + 1)
+        if second_tab == -1:
+            cleaned_lines.append(line)
         else:
-            second_tab = line.find("\t", first_tab + 1)
-            if second_tab == -1:
-                cleaned_lines.append(line)
-            else:
-                # Keep from second tab (timestamp) onwards
-                cleaned_lines.append(line[second_tab + 1 :])
-
+            cleaned_lines.append(line[second_tab + 1:])
     return "\n".join(cleaned_lines)
 
 
 def extract_output_token_throughput(log_content: str) -> float | None:
-    """Extracts output token throughput from log content."""
-    # Example: "Output Token Throughput │ total   │ 100.2022 token/s"
-    match = re.search(
-        r"Output Token Throughput │ total\s+│ (\d+\.\d+) token/s", log_content
-    )
+    """Extract output token throughput from log content."""
+    match = re.search(r"Output Token Throughput │ total\s+│ (\d+\.\d+) token/s", log_content)
     if match:
         try:
             return float(match.group(1))
@@ -150,107 +156,26 @@ def extract_output_token_throughput(log_content: str) -> float | None:
     return None
 
 
-def append_result_to_csv(
-    keyword: str,
-    conclusion: str,
-    commit_sha: str,
-    run_time: str,
-    job_id: int,
-    output_token_throughput: float | None = None,
-):
-    """Append monitoring result to CSV file, avoiding duplicates."""
-    csv_path = get_csv_path(keyword)
-    csv_path.parent.mkdir(parents=True, exist_ok=True)
-
-    header = [
-        "任务运行时间",
-        "是否成功",
-        "最后commit",
-        "job_id",
-        "Output Token Throughput",
-    ]
-    existing_job_ids = set()
-    rows_to_process = []
-
-    if csv_path.exists():
-        with open(csv_path, "r", newline="", encoding="utf-8") as f:
-            reader = csv.reader(f)
-            file_header = next(reader, None)  # Read header
-            if (
-                file_header
-                and len(file_header) == len(header)
-                and file_header[:-1] == header[:-1]
-            ):
-                if file_header != header:
-                    print(
-                        f"Warning: CSV header for {csv_path} updated. Rewriting file."
-                    )
-                for row in reader:
-                    if len(row) > 3:  # Ensure job_id column exists
-                        existing_job_ids.add(row[3])
-                        if len(row) < len(header):
-                            row.extend([""] * (len(header) - len(row)))
-                        rows_to_process.append(row)
-            else:
-                print(
-                    f"Warning: CSV header for {csv_path} does not match expected. Rewriting file."
-                )
-
-    if str(job_id) in existing_job_ids:
-        print(f"Result for job {job_id} already exists in {csv_path}, skipping.")
-        return
-
-    new_row = [
-        run_time,
-        conclusion,
-        commit_sha,
-        job_id,
-        output_token_throughput if output_token_throughput is not None else "",
-    ]
-    rows_to_process.append(new_row)
-
-    # Sort rows by run_time (first column)
-    # The format is ISO 8601, e.g., "2026-02-03T08:00:00Z"
-    # datetime.fromisoformat handles 'Z' by converting it to '+00:00'
-    try:
-        rows_to_process.sort(
-            key=lambda x: datetime.fromisoformat(x[0].replace("Z", "+00:00"))
-        )
-    except ValueError as e:
-        print(
-            f"Warning: Could not sort CSV due to date parsing error: {e}. Writing unsorted."
-        )
-
-    with open(csv_path, "w", newline="", encoding="utf-8") as f:
-        writer = csv.writer(f)
-        writer.writerow(header)
-        writer.writerows(rows_to_process)
-    print(f"Result recorded to {csv_path}")
-
-
 def save_log(
+    LOGS_DIR: Path,
     run_date: str,
     run_id: int,
     job: dict,
     log_content: str,
     keyword: str,
-    job_id: int,
     commit_sha: str = "",
-):
+) -> Path | None:
     """Save log content to file."""
     log_dir = LOGS_DIR / run_date
     log_dir.mkdir(parents=True, exist_ok=True)
 
-    # Filename: {date}_{commit_sha}_{keyword}_{job_id}.log
     short_sha = commit_sha[:7] if commit_sha else str(run_id)
-    filename = f"{run_date}_{short_sha}_{keyword}_{job_id}.log"
+    filename = f"{run_date}_{short_sha}_{keyword}_{job['databaseId']}.log"
     log_path = log_dir / filename
 
     if log_path.exists():
-        print(f"Log already exists, skipping: {log_path}")
         return None
 
-    # Write metadata header
     with open(log_path, "w", encoding="utf-8") as f:
         f.write(f"# Run ID: {run_id}\n")
         f.write(f"# Commit: {commit_sha}\n")
@@ -259,88 +184,83 @@ def save_log(
         f.write("=" * 60 + "\n\n")
         f.write(log_content)
 
-    print(f"Saved: {log_path}")
     return log_path
 
 
-def main():
-    print(f"Target: {REPO} / {WORKFLOW_NAME}")
-    print(f"Job keywords: {TARGET_JOBS}")
-    print("-" * 50)
+def append_result_to_csv(
+    LOGS_DIR: Path,
+    keyword: str,
+    conclusion: str,
+    commit_sha: str,
+    run_time: str,
+    job_id: int,
+    output_token_throughput: float | None = None,
+):
+    """Append monitoring result to CSV file, avoiding duplicates."""
+    csv_path = LOGS_DIR / f"{keyword}_results.csv"
 
-    # Ensure logs directory exists
-    LOGS_DIR.mkdir(parents=True, exist_ok=True)
+    header = [
+        "任务运行时间",
+        "是否成功",
+        "最后commit",
+        "job_id",
+        "Output Token Throughput",
+    ]
 
-    # Get recent runs
-    runs = get_recent_runs()
-    if not runs:
-        print("No runs found")
-        return
+    if csv_path.exists():
+        with open(csv_path, "r", newline="", encoding="utf-8") as f:
+            reader = csv.reader(f)
+            file_header = next(reader, None)
+            if file_header and file_header[:-1] == header[:-1]:
+                existing_job_ids = {row[3] for row in reader if len(row) > 3}
+                if str(job_id) in existing_job_ids:
+                    logger.info(f"Result for job {job_id} already exists, skipping")
+                    return
+            else:
+                logger.warning(f"CSV header mismatch, rewriting {csv_path}")
+                csv_path.unlink()
 
-    # Find runs with any target job
-    for run in runs:
-        run_id = run["databaseId"]
-        created_at = run["createdAt"]
-        conclusion = run.get("conclusion", "unknown")
+    new_row = [
+        run_time,
+        conclusion,
+        commit_sha,
+        job_id,
+        output_token_throughput if output_token_throughput is not None else "",
+    ]
 
-        print(
-            f"Checking run #{run['number']} (databaseId: {run_id}, {created_at[:10]}) - {conclusion}"
+    existing_rows = []
+    if csv_path.exists():
+        with open(csv_path, "r", newline="", encoding="utf-8") as f:
+            reader = csv.reader(f)
+            next(reader)  # skip header
+            for row in reader:
+                if len(row) < len(header):
+                    row.extend([""] * (len(header) - len(row)))
+                existing_rows.append(row)
+    existing_rows.append(new_row)
+
+    # Sort by run_time
+    try:
+        existing_rows.sort(
+            key=lambda x: datetime.fromisoformat(x[0].replace("Z", "+00:00"))
         )
+    except ValueError as e:
+        logger.warning(f"Could not sort CSV: {e}")
 
-        jobs = find_target_jobs(run_id)
-        if not jobs:
-            print(f"  No target jobs found")
-            continue
+    with open(csv_path, "w", newline="", encoding="utf-8") as f:
+        writer = csv.writer(f)
+        writer.writerow(header)
+        writer.writerows(existing_rows)
+    logger.success(f"Result recorded to {csv_path}")
 
-        commit_sha = run.get("headSha", "")
-        run_date = created_at[:10]  # YYYY-MM-DD
 
-        for job in jobs:
-            # Find which keyword matched this job
-            matched_keyword = ""
-            for keyword in TARGET_JOBS:
-                if keyword in job.get("name", ""):
-                    matched_keyword = keyword
-                    break
-
-            print(f"  Found job: {job['name']}")
-            print(f"  Job ID: {job['databaseId']}")
-            print(f"  Conclusion: {job.get('conclusion', 'N/A')}")
-
-            log_content = get_job_log(run_id, job["databaseId"])
-            output_token_throughput = None
-            if log_content:
-                log_path = save_log(
-                    run_date,
-                    run_id,
-                    job,
-                    log_content,
-                    matched_keyword,
-                    job["databaseId"],
-                    commit_sha,
-                )
-                if log_path is None:
-                    print(f"  Log skipped (already exists)")
-                else:
-                    print(f"  Log saved: {log_path}")
-                output_token_throughput = extract_output_token_throughput(log_content)
-
-            # 记录 job 的实际运行状态
-            emoji_status = {
-                "success": "✅",
-                "failure": "❌",
-                "cancelled": "⚪",
-                "skipped": "🚫",
-            }
-            emoji_conclusion = emoji_status.get(job.get("conclusion", ""), "?")
-            append_result_to_csv(
-                matched_keyword,
-                emoji_conclusion,
-                commit_sha,
-                created_at,
-                job["databaseId"],
-                output_token_throughput,
-            )
+def run_gh(args: list[str]) -> subprocess.CompletedProcess:
+    """Run gh CLI command."""
+    return subprocess.run(
+        ["gh"] + args,
+        capture_output=True,
+        text=True,
+    )
 
 
 if __name__ == "__main__":
