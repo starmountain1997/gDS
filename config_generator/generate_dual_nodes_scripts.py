@@ -160,15 +160,23 @@ def generate_script(
     i = 0
     while i < len(tokens):
         token = tokens[i]
+        # Check if it's a flag that takes a value
         if (
             (token.startswith("--") or token.startswith("-"))
             and i + 1 < len(tokens)
             and not (tokens[i + 1].startswith("--") or tokens[i + 1].startswith("-"))
         ):
-            formatted_cmd_args.append(f"{token} {tokens[i + 1]}")
+            flag = token
+            value = tokens[i + 1]
+            # Quote the value to ensure it's treated as a single argument by the shell
+            quoted_value = shlex.quote(value)
+            formatted_cmd_args.append(f"{flag} {quoted_value}")
             i += 1  # Skip next token as it's part of current arg
         else:
-            formatted_cmd_args.append(token)
+            # For standalone tokens or flags without a separate value (e.g., --some-flag)
+            # Quote if it contains characters that need quoting in shell
+            # shlex.quote will handle this correctly, adding quotes only if necessary
+            formatted_cmd_args.append(shlex.quote(token))
         i += 1
 
     full_cmd = " \\\n    ".join(formatted_cmd_args)
