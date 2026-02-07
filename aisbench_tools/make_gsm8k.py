@@ -48,8 +48,22 @@ def main(
 
     if not gsm8k_file.exists():
         if not zip_path.exists():
-            logger.error(f"{zip_path} not found")
-            return
+            download_url = "http://opencompass.oss-cn-shanghai.aliyuncs.com/datasets/data/gsm8k.zip"
+            logger.info(
+                f"{zip_path} not found locally. Attempting to download from {download_url}..."
+            )
+            try:
+                # Try with wget
+                subprocess.run(["wget", "-O", str(zip_path), download_url], check=True)
+                logger.success(f"Successfully downloaded {zip_path}")
+            except FileNotFoundError:
+                logger.error(
+                    "wget not found. Please install wget to download the zip file."
+                )
+                return
+            except subprocess.CalledProcessError as e:
+                logger.error(f"Wget download failed: {e}")
+                return
         logger.info(f"Unzipping {zip_path}...")
         subprocess.run(
             ["unzip", "-o", str(zip_path), "-d", str(zip_path.parent)], check=True
@@ -75,25 +89,26 @@ def main(
         words = tokenizer.tokenize(sentence)
         if not words:
             continue
-        len_num = len(words)
-
-        if len_num < input_len:
-            multiplier = input_len // len_num + 1
-            words = (words * multiplier)[:input_len]
-        else:
-            words = words[:input_len]
+        # Ensure words has at least input_len tokens, by repeating if necessary
+        while len(words) < input_len:
+            words.extend(words)
+        # Then truncate to input_len
+        words = words[:input_len]
 
         decoded_text = tokenizer.convert_tokens_to_string(words)
         dataset_2k.append(decoded_text)
 
-    batch_num = len(dataset_2k) // batch_size
-    if batch_num == 0:
-        multiplier = batch_size // len(dataset_2k) + 1
-        dataset_2k = (dataset_2k * multiplier)[:batch_size]
-    else:
-        dataset_2k = dataset_2k[:batch_size]
-
     logger.info(f"Writing {len(dataset_2k)} samples to {output_file}...")
+
+    if not dataset_2k:
+        logger.warning("No samples to write to output file. Skipping file creation.")
+        return
+
+    # Ensure dataset_2k has at least batch_size samples, by repeating if necessary
+    while len(dataset_2k) < batch_size:
+        dataset_2k.extend(dataset_2k)
+    # Then truncate to batch_size
+    dataset_2k = dataset_2k[:batch_size]
 
     with open(output_file, "w", encoding="utf-8") as f:
         for item in dataset_2k:
