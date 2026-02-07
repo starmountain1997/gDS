@@ -24,7 +24,9 @@ TARGET_JOBS = [
 
 
 @click.command()
-@click.option("--runs", "-n", default=4, show_default=True, help="Number of recent runs to check")
+@click.option(
+    "--runs", "-n", default=4, show_default=True, help="Number of recent runs to check"
+)
 def main(runs: int):
     SCRIPT_DIR = Path(__file__).parent.resolve()
     LOGS_DIR = SCRIPT_DIR / "logs"
@@ -72,7 +74,13 @@ def main(runs: int):
 
             if log_content:
                 log_path = save_log(
-                    LOGS_DIR, run_date, run_id, job, log_content, matched_keyword, commit_sha
+                    LOGS_DIR,
+                    run_date,
+                    run_id,
+                    job,
+                    log_content,
+                    matched_keyword,
+                    commit_sha,
                 )
                 if log_path is None:
                     logger.info("  Log skipped (already exists)")
@@ -89,7 +97,13 @@ def main(runs: int):
             }.get(job.get("conclusion", ""), "?")
 
             append_result_to_csv(
-                LOGS_DIR, matched_keyword, emoji_conclusion, commit_sha, created_at, job["databaseId"], output_token_throughput
+                LOGS_DIR,
+                matched_keyword,
+                emoji_conclusion,
+                commit_sha,
+                created_at,
+                job["databaseId"],
+                output_token_throughput,
             )
 
 
@@ -97,9 +111,20 @@ def get_recent_runs(limit: int = 4) -> list[dict]:
     """Get recent workflow runs for Nightly-A3."""
     result = run_gh(
         [
-            "run", "list", "-R", REPO, "-w", WORKFLOW_NAME, "-b", "main",
-            "-L", str(limit), "-e", "schedule",
-            "--json", "number,databaseId,name,status,conclusion,createdAt,headBranch,headSha",
+            "run",
+            "list",
+            "-R",
+            REPO,
+            "-w",
+            WORKFLOW_NAME,
+            "-b",
+            "main",
+            "-L",
+            str(limit),
+            "-e",
+            "schedule",
+            "--json",
+            "number,databaseId,name,status,conclusion,createdAt,headBranch,headSha",
         ]
     )
     if result.returncode != 0:
@@ -125,7 +150,9 @@ def find_target_jobs(run_id: int) -> list[dict]:
 
 def get_job_log(run_id: int, job_id: int) -> str:
     """Get log content for a specific job, removing job/step prefix."""
-    result = run_gh(["run", "view", "-R", REPO, "--log", "--job", str(job_id), str(run_id)])
+    result = run_gh(
+        ["run", "view", "-R", REPO, "--log", "--job", str(job_id), str(run_id)]
+    )
     if result.returncode != 0:
         logger.error(f"Failed to get job log: {result.stderr}")
         return ""
@@ -141,13 +168,15 @@ def get_job_log(run_id: int, job_id: int) -> str:
         if second_tab == -1:
             cleaned_lines.append(line)
         else:
-            cleaned_lines.append(line[second_tab + 1:])
+            cleaned_lines.append(line[second_tab + 1 :])
     return "\n".join(cleaned_lines)
 
 
 def extract_output_token_throughput(log_content: str) -> float | None:
     """Extract output token throughput from log content."""
-    match = re.search(r"Output Token Throughput │ total\s+│ (\d+\.\d+) token/s", log_content)
+    match = re.search(
+        r"Output Token Throughput │ total\s+│ (\d+\.\d+) token/s", log_content
+    )
     if match:
         try:
             return float(match.group(1))

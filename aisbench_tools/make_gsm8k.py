@@ -2,7 +2,6 @@
 """Generate GSM8K dataset for benchmarking."""
 
 import json
-import os
 import subprocess
 from pathlib import Path
 
@@ -13,10 +12,16 @@ from transformers import AutoTokenizer
 
 
 @click.command()
-@click.option("--input-len", default=64000, show_default=True, help="Input token length")
+@click.option(
+    "--input-len", default=64000, show_default=True, help="Input token length"
+)
 @click.option("--batch-size", default=2800, show_default=True, help="Batch size")
-@click.option("--model-id", default="deepseek-ai/DeepSeek-V3", help="Model ID from modelscope")
-@click.option("--cache-dir", default="./tokenizer_cache", help="Tokenizer cache directory")
+@click.option(
+    "--model-id", default="deepseek-ai/DeepSeek-V3", help="Model ID from modelscope"
+)
+@click.option(
+    "--cache-dir", default="./tokenizer_cache", help="Tokenizer cache directory"
+)
 @click.option("--zip-path", default="./gsm8k.zip", help="Path to GSM8K zip file")
 @click.option("--gsm8k-dir", default="./gsm8k", help="GSM8K extracted directory")
 def main(
@@ -46,7 +51,9 @@ def main(
             logger.error(f"{zip_path} not found")
             return
         logger.info(f"Unzipping {zip_path}...")
-        subprocess.run(["unzip", "-o", str(zip_path), "-d", str(zip_path.parent)], check=True)
+        subprocess.run(
+            ["unzip", "-o", str(zip_path), "-d", str(zip_path.parent)], check=True
+        )
 
     if not gsm8k_file.exists():
         logger.error(f"Still not found after unzip: {gsm8k_file}")
@@ -90,7 +97,10 @@ def main(
 
     with open(output_file, "w", encoding="utf-8") as f:
         for item in dataset_2k:
-            f.write(json.dumps({"question": item, "answer": "none"}, ensure_ascii=False) + "\n")
+            f.write(
+                json.dumps({"question": item, "answer": "none"}, ensure_ascii=False)
+                + "\n"
+            )
 
     logger.success(f"Done: {output_file}")
 
