@@ -29,7 +29,13 @@ CONFIG_URL = "https://raw.githubusercontent.com/starmountain1997/vllm-ascend/{br
     default=None,
     help="Model path (default: read from config)",
 )
-def main(output: str, branch: str, model_path: str | None):
+@click.option(
+    "--port",
+    type=int,
+    default=None,
+    help="Server port (default: read from config)",
+)
+def main(output: str, branch: str, model_path: str | None, port: int | None):
     """Fetch single-node test config and generate vLLM server startup script."""
     output_dir = Path(output)
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -41,14 +47,15 @@ def main(output: str, branch: str, model_path: str | None):
 
     tp_size = config.get("TENSOR_PARALLELS", [1])[0]
     dp_size = config.get("DATA_PARALLELS", [1])[0]
-    port = 8000
+    default_port = config.get("PORT", 8087)
+    server_port = port if port is not None else default_port
 
     script = generate_script(
         model,
         config.get("server_args", []),
         tp_size,
         dp_size,
-        port,
+        server_port,
         config.get("env_dict", {}),
     )
     (output_dir / "start_server.sh").write_text(script)
@@ -173,10 +180,10 @@ def format_args(args: list, tp_size: int, dp_size: int, port: int) -> str:
 
 
 def generate_script(
-    model: str, args: list, tp_size: int, dp_size: int, port: int, env: dict
+    model: str, args: list, tp_size: int, dp_size: int, server_port: int, env: dict
 ) -> str:
     """Generate vLLM server startup script."""
-    formatted_args = format_args(args, tp_size, dp_size, port)
+    formatted_args = format_args(args, tp_size, dp_size, server_port)
 
     env_lines = []
     for key, value in env.items():
@@ -191,10 +198,11 @@ def generate_script(
 # Model: {model}
 # Tensor Parallel: {tp_size}
 # Data Parallel: {dp_size}
-# Port: {port}
+# Port: {server_port}
 
 # ==================== Startup Command ====================
 python -m vllm.entrypoints.openai.api_server \\
+    {model} \\
     {formatted_args}
 """
 
