@@ -4,6 +4,7 @@ Generate dual-node deployment scripts from GitHub config.
 """
 
 import shlex
+import socket
 from pathlib import Path
 from urllib.request import urlopen
 
@@ -12,6 +13,18 @@ import yaml
 from loguru import logger
 
 CONFIG_URL_TEMPLATE = "https://raw.githubusercontent.com/starmountain1997/vllm-ascend/{branch}/tests/e2e/nightly/multi_node/config/DeepSeek-V3_2-W8A8-A3-dual-nodes.yaml"
+
+
+def get_local_ip() -> str:
+    """Get the local IP address of this machine."""
+    try:
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.connect(("8.8.8.8", 80))
+        ip = s.getsockname()[0]
+        s.close()
+        return ip
+    except Exception:
+        return "127.0.0.1"
 
 
 @click.command()
@@ -37,11 +50,17 @@ CONFIG_URL_TEMPLATE = "https://raw.githubusercontent.com/starmountain1997/vllm-a
     show_default=True,
     help="Served model name for OpenAI API",
 )
+@click.option(
+    "--master-ip",
+    default=None,
+    help="Master node IP (for node1 script)",
+)
 def main(
     output: str,
     branch: str,
     model: str | None,
     served_model_name: str,
+    master_ip: str | None,
 ):
     """Fetch DeepSeek-V3 config and generate node0.sh / node1.sh scripts."""
     output_dir = Path(output)
@@ -57,11 +76,25 @@ def main(
     default_model = extract_model_from_cmd(deployments[0].get("server_cmd", ""))
     model_path = model or default_model
 
+    # 如果 master_ip 未指定，自动获取本机 IP
+    if master_ip is None:
+        master_ip = get_local_ip()
+
     node0_script = generate_script(
-        deployments[0], env_common, model_path, served_model_name, is_master=True
+        deployments[0],
+        env_common,
+        model_path,
+        served_model_name,
+        master_ip,
+        is_master=True,
     )
     node1_script = generate_script(
-        deployments[1], env_common, model_path, served_model_name, is_master=False
+        deployments[1],
+        env_common,
+        model_path,
+        served_model_name,
+        master_ip,
+        is_master=False,
     )
 
     (output_dir / "node0.sh").write_text(node0_script)
@@ -70,9 +103,9 @@ def main(
     logger.success(f"Generated: {output_dir / 'node0.sh'}")
     logger.success(f"Generated: {output_dir / 'node1.sh'}")
 
-    click.echo("\nConfigure before execution:")
-    click.echo("  Node 0: export LOCAL_IP=<this_machine_ip>")
-    click.echo("  Node 1: export MASTER_IP=<node0_ip>")
+    click.echo("\nConfiguration:")
+    click.echo(f"  Master IP (node0): {master_ip}")
+    click.echo(f"  Master IP (node1): {master_ip}")
 
 
 def fetch_config(branch: str = "main") -> dict:
@@ -96,6 +129,7 @@ def generate_script(
     env_common: dict,
     model_path: str,
     served_model_name: str,
+    master_ip: str | None,
     is_master: bool,
 ) -> str:
     """Generate startup script for a single node."""
@@ -137,6 +171,10 @@ def generate_script(
     # 找到第一个 -- 参数的位置，插入 --served-model-name
     first_flag_idx = next((i for i, r in enumerate(result) if r.startswith("--")), 3)
     result.insert(first_flag_idx, f"--served-model-name {served_model_name}")
+
+    # 如果是 worker 节点且指定了 master_ip，替换 $MASTER_IP
+    if not is_master and master_ip:
+        result = [r.replace("$MASTER_IP", master_ip) for r in result]
 
     full_cmd = " \\\n    ".join(result)
 
