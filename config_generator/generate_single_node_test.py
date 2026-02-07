@@ -4,6 +4,7 @@ Generate single-node vLLM server startup script from GitHub config.
 """
 
 import ast
+import shlex
 from pathlib import Path
 from urllib.request import urlopen
 
@@ -133,7 +134,6 @@ def format_args(args: list, tp_size: int, dp_size: int, port: int) -> str:
     if not args:
         return ""
 
-    # 替换占位符
     tokens = [
         str(tp_size)
         if a == "STR_TP_SIZE"
@@ -145,46 +145,34 @@ def format_args(args: list, tp_size: int, dp_size: int, port: int) -> str:
         for a in args
     ]
 
+    formatted_parts = []
     i = 0
-    formatted = []
     while i < len(tokens):
         token = tokens[i]
 
         if token.startswith("--"):
             if "=" in token:
-                # --foo=bar 格式
+                # Handle --flag=value format
                 flag, value = token.split("=", 1)
-                needs_quoting = (
-                    " " in value or value.startswith("{") or value.startswith("[")
-                )
-                if needs_quoting:
-                    formatted.append(f"{flag}='{value}'")
-                else:
-                    formatted.append(f"{flag} {value}")
+                formatted_parts.append(f"{flag}={shlex.quote(value)}")
             else:
-                # --foo bar 格式或布尔标志
-                # 检查下一个 token 是否是值（不以 - 开头）
-                if (
-                    i + 1 < len(tokens)
-                    and not tokens[i + 1].startswith("-")
-                    and not tokens[i + 1].startswith("STR_")
-                ):
+                # Handle --flag value or --flag (boolean)
+                # Check if the next token is a value (not starting with '-')
+                if i + 1 < len(tokens) and not tokens[i + 1].startswith("-"):
                     value = tokens[i + 1]
-                    i += 1
-                    needs_quoting = (
-                        " " in value or value.startswith("{") or value.startswith("[")
-                    )
-                    if needs_quoting:
-                        formatted.append(f"{token}='{value}'")
-                    else:
-                        formatted.append(f"{token} {value}")
+                    formatted_parts.append(f"{token} {shlex.quote(value)}")
+                    i += 1  # Consume the value token
                 else:
-                    # 布尔标志，没有值
-                    formatted.append(token)
-
+                    # Boolean flag, no separate value
+                    formatted_parts.append(token)
+        else:
+            # This case means a token that does not start with '--' is encountered.
+            # This should ideally not happen if `server_args` is well-formed.
+            # For robustness, we quote it.
+            formatted_parts.append(shlex.quote(token))
         i += 1
 
-    return " \\\n    ".join(formatted)
+    return " \\\n    ".join(formatted_parts)
 
 
 def generate_script(
@@ -199,9 +187,7 @@ def generate_script(
     """Generate vLLM server startup script."""
     formatted_args = format_args(args, tp_size, dp_size, server_port)
 
-    env_lines = []
-    for key, value in env.items():
-        env_lines.append(f'export {key}="{value}"')
+    env_lines = [f'export {key}="{value}"' for key, value in env.items()]
 
     return f"""#!/bin/bash
 # vLLM Server Startup Script
