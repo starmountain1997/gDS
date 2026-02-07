@@ -15,10 +15,6 @@ dependencies = [
     "pyyaml",
 ]
 
-[project.scripts]
-gen-single-node = "config_generator.generate_single_node_test:main"
-gen-dual-nodes = "config_generator.generate_dual_nodes_scripts:main"
-
 [dependency-groups]
 dev = [
     "autoflake>=2.3.1",
@@ -28,4 +24,9 @@ dev = [
 ]
 
 [tool.setuptools.packages.find]
-include = ["config_generator*"]
+include = ["config_generator*", "gh_action_watcher*"]
+
+[project.scripts]
+gen-single-node = "config_generator.generate_single_node_test:main"
+gen-dual-nodes = "config_generator.generate_dual_nodes_scripts:main"
+gh-watcher = "gh_action_watcher.gh_watcher:main"
