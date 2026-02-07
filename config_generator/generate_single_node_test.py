@@ -198,7 +198,7 @@ def generate_script(
 # Port: {server_port}
 
 # ==================== Startup Command ====================
-python -m vllm.entrypoints.openai.api_server \\
+vllm serve \\
     {model} \\
     --served-model-name {served_model_name} \\
     {formatted_args}
