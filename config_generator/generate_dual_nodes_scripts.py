@@ -39,7 +39,7 @@ def get_local_ip() -> str:
     "--branch", "-b", default="main", show_default=True, help="Git branch name"
 )
 @click.option(
-    "--model",
+    "--model-path",
     "-m",
     default=None,
     help="Model path (default: read from config)",
@@ -58,7 +58,7 @@ def get_local_ip() -> str:
 def main(
     output: str,
     branch: str,
-    model: str | None,
+    model_path: str | None,
     served_model_name: str,
     master_ip: str | None,
 ):
@@ -74,7 +74,7 @@ def main(
         raise click.ClickException(f"Expected 2 deployments, found {len(deployments)}")
 
     default_model = extract_model_from_cmd(deployments[0].get("server_cmd", ""))
-    model_path = model or default_model
+    model = model_path or default_model
 
     # 如果 master_ip 未指定，自动获取本机 IP
     if master_ip is None:
@@ -83,7 +83,7 @@ def main(
     node0_script = generate_script(
         deployments[0],
         env_common,
-        model_path,
+        model,
         served_model_name,
         master_ip,
         is_master=True,
@@ -91,7 +91,7 @@ def main(
     node1_script = generate_script(
         deployments[1],
         env_common,
-        model_path,
+        model,
         served_model_name,
         master_ip,
         is_master=False,
