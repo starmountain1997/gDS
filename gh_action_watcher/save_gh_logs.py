@@ -19,7 +19,8 @@ TARGET_JOBS = [
     "multi-node-dpsk3.2-2node",  # DeepSeek-V3_2-W8A8-A3-dual-nodes.yaml
     "test_deepseek_v3_2_w8a8",  # single-node test
 ]
-LOGS_DIR = Path("logs")
+SCRIPT_DIR = Path(__file__).parent.resolve()
+LOGS_DIR = SCRIPT_DIR / "logs"
 
 
 def get_csv_path(keyword: str) -> Path:
@@ -237,7 +238,7 @@ def save_log(
     commit_sha: str = "",
 ):
     """Save log content to file."""
-    log_dir = Path("logs") / run_date
+    log_dir = LOGS_DIR / run_date
     log_dir.mkdir(parents=True, exist_ok=True)
 
     # Filename: {date}_{commit_sha}_{keyword}_{job_id}.log
