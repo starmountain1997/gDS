@@ -133,53 +133,53 @@ def generate_script(
     is_master: bool,
 ) -> str:
     """Generate startup script for a single node."""
+    # Initialize a list for the new command arguments
+    new_cmd_args = []
+
+    # Parse the original command block
     cmd_block = deploy.get("server_cmd", "")
-    tokens = shlex.split(cmd_block)
+    original_tokens = shlex.split(cmd_block)
 
-    # The original config expects `vllm serve <model_path>`
-    # so `tokens[0]` is 'vllm', `tokens[1]` is 'serve', `tokens[2]` is the model path.
-    if len(tokens) > 2 and not tokens[2].startswith(
-        "-"
-    ):  # Ensure tokens[2] is indeed the model path and not a flag
-        tokens[2] = model_path  # Replace with the user-provided model_path
+    # Add 'vllm' and 'serve' if they exist in the original command
+    if len(original_tokens) >= 2:
+        new_cmd_args.extend(original_tokens[:2])  # ['vllm', 'serve']
+    else:
+        # Fallback for unexpected short command blocks, though unlikely with current config
+        logger.warning(
+            f"Unexpected short command block: '{cmd_block}'. Assuming 'vllm serve'."
+        )
+        new_cmd_args.extend(["vllm", "serve"])
 
-    # Insert --served-model-name
-    # The original code inserted before the first '--' flag, or at index 3 of `result`.
-    # Let's find the first '--' flag after 'vllm serve' and the model path.
-    # If no flags exist, insert after the model path (which is now tokens[2]).
-    insert_idx = len(tokens)  # Default to end
-    for i in range(3, len(tokens)):  # Start searching from after model path
-        if tokens[i].startswith("--") or tokens[i].startswith("-"):
-            insert_idx = i
-            break
+    # Add the (potentially new) model path
+    new_cmd_args.append(model_path)
 
-    tokens.insert(insert_idx, f"--served-model-name {served_model_name}")
+    # Add the --served-model-name flag and its value
+    new_cmd_args.append("--served-model-name")
+    new_cmd_args.append(served_model_name)
 
-    # Combine flags and values that are separated (e.g., --flag value)
-    formatted_cmd_args = []
-    i = 0
-    while i < len(tokens):
-        token = tokens[i]
-        # Check if it's a flag that takes a value
-        if (
-            (token.startswith("--") or token.startswith("-"))
-            and i + 1 < len(tokens)
-            and not (tokens[i + 1].startswith("--") or tokens[i + 1].startswith("-"))
-        ):
-            flag = token
-            value = tokens[i + 1]
-            # Quote the value to ensure it's treated as a single argument by the shell
-            quoted_value = shlex.quote(value)
-            formatted_cmd_args.append(f"{flag} {quoted_value}")
-            i += 1  # Skip next token as it's part of current arg
-        else:
-            # For standalone tokens or flags without a separate value (e.g., --some-flag)
-            # Quote if it contains characters that need quoting in shell
-            # shlex.quote will handle this correctly, adding quotes only if necessary
-            formatted_cmd_args.append(shlex.quote(token))
+    # Append any other flags and values from the original command.
+    # We start iterating from index 2, which is where the original model path would be.
+    # We need to filter out the original model path and any pre-existing --served-model-name flags.
+    i = 2
+    while i < len(original_tokens):
+        token = original_tokens[i]
+
+        # Skip the original model path if it was at index 2 and not a flag
+        if i == 2 and not original_tokens[2].startswith("-"):
+            i += 1
+            continue
+
+        # Skip --served-model-name and its value if it already exists (defensive check)
+        if token == "--served-model-name":
+            # Assuming --served-model-name always has a value immediately following it
+            i += 2
+            continue
+
+        new_cmd_args.append(token)
         i += 1
 
-    full_cmd = " \\\n    ".join(formatted_cmd_args)
+    # Quote each argument and join them for the shell script
+    full_cmd = " \\\n    ".join([shlex.quote(arg) for arg in new_cmd_args])
 
     # If it's a worker node and master_ip is specified, replace $MASTER_IP
     if not is_master and master_ip:
