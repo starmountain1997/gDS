@@ -225,7 +225,7 @@ def append_result_to_csv(
     job_id: int,
     output_token_throughput: float | None = None,
 ):
-    """Append monitoring result to CSV file, avoiding duplicates."""
+    """Append monitoring result to CSV file, avoiding duplicates, and ensuring sorted order."""
     csv_path = LOGS_DIR / f"{keyword}_results.csv"
 
     header = [
@@ -236,50 +236,59 @@ def append_result_to_csv(
         "Output Token Throughput",
     ]
 
+    all_rows: list[dict] = []
+    existing_job_ids = set()
+
     if csv_path.exists():
         with open(csv_path, "r", newline="", encoding="utf-8") as f:
-            reader = csv.reader(f)
-            file_header = next(reader, None)
-            if file_header and file_header[:-1] == header[:-1]:
-                existing_job_ids = {row[3] for row in reader if len(row) > 3}
-                if str(job_id) in existing_job_ids:
-                    logger.info(f"Result for job {job_id} already exists, skipping")
-                    return
+            reader = csv.DictReader(f)
+            # Check if header matches, if not, treat as new file
+            if reader.fieldnames != header:
+                logger.warning(
+                    f"CSV header mismatch in {csv_path}. Rewriting with new header."
+                )
+                # If header mismatch, we don't load existing rows, effectively rewriting.
             else:
-                logger.warning(f"CSV header mismatch, rewriting {csv_path}")
-                csv_path.unlink()
+                for row in reader:
+                    # Ensure all header keys are present in the row, fill missing with ''
+                    for h in header:
+                        row.setdefault(h, "")
+                    all_rows.append(row)
+                    existing_job_ids.add(row.get("job_id"))  # Use .get() for safety
 
-    new_row = [
-        run_time,
-        conclusion,
-        commit_sha,
-        job_id,
-        output_token_throughput if output_token_throughput is not None else "",
-    ]
+    # Prepare new row as a dictionary
+    new_row = {
+        "任务运行时间": run_time,
+        "是否成功": conclusion,
+        "最后commit": commit_sha,
+        "job_id": str(
+            job_id
+        ),  # Ensure job_id is string for consistent comparison with set
+        "Output Token Throughput": (
+            str(output_token_throughput) if output_token_throughput is not None else ""
+        ),
+    }
 
-    existing_rows = []
-    if csv_path.exists():
-        with open(csv_path, "r", newline="", encoding="utf-8") as f:
-            reader = csv.reader(f)
-            next(reader)  # skip header
-            for row in reader:
-                if len(row) < len(header):
-                    row.extend([""] * (len(header) - len(row)))
-                existing_rows.append(row)
-    existing_rows.append(new_row)
+    if new_row["job_id"] in existing_job_ids:
+        logger.info(f"Result for job {job_id} already exists in {csv_path}, skipping.")
+    else:
+        all_rows.append(new_row)
 
-    # Sort by run_time
+    # Sort all_rows by '任务运行时间'
     try:
-        existing_rows.sort(
-            key=lambda x: datetime.fromisoformat(x[0].replace("Z", "+00:00"))
+        all_rows.sort(
+            key=lambda x: datetime.fromisoformat(
+                x["任务运行时间"].replace("Z", "+00:00")
+            )
         )
-    except ValueError as e:
+    except Exception as e:
         logger.warning(f"Could not sort CSV: {e}")
 
+    # Write all rows back to the CSV file
     with open(csv_path, "w", newline="", encoding="utf-8") as f:
-        writer = csv.writer(f)
-        writer.writerow(header)
-        writer.writerows(existing_rows)
+        writer = csv.DictWriter(f, fieldnames=header)
+        writer.writeheader()
+        writer.writerows(all_rows)
     logger.success(f"Result recorded to {csv_path}")
 
 
