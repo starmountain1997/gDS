@@ -1,0 +1,519 @@
+# Run ID: 21994466849
+# Commit: e2175d9c7e62b437391dfee996b1375674ba7c18
+# Job: single-node (deepseek3_2-w8a8, linux-aarch64-a3-16, tests/e2e/nightly/single_node/models/test_dee... / tests/e2e/nightly/single_node/models/test_deepseek_v3_2_w8a8.py
+# Date: 2026-02-13
+============================================================
+
+﻿2026-02-13T22:02:28.2699452Z Current runner version: '2.330.0'
+2026-02-13T22:02:28.2706572Z Runner name: 'linux-aarch64-a3-16-jl5bl-runner-kzmv4'
+2026-02-13T22:02:28.2707615Z Runner group name: 'Default'
+2026-02-13T22:02:28.2708694Z Machine name: 'linux-aarch64-a3-16-jl5bl-runner-kzmv4'
+2026-02-13T22:02:28.2713956Z ##[group]GITHUB_TOKEN Permissions
+2026-02-13T22:02:28.2716898Z Actions: write
+2026-02-13T22:02:28.2717643Z ArtifactMetadata: write
+2026-02-13T22:02:28.2718333Z Attestations: write
+2026-02-13T22:02:28.2718983Z Checks: write
+2026-02-13T22:02:28.2719550Z Contents: write
+2026-02-13T22:02:28.2720119Z Deployments: write
+2026-02-13T22:02:28.2720690Z Discussions: write
+2026-02-13T22:02:28.2721265Z Issues: write
+2026-02-13T22:02:28.2721759Z Metadata: read
+2026-02-13T22:02:28.2722444Z Models: read
+2026-02-13T22:02:28.2722973Z Packages: write
+2026-02-13T22:02:28.2723523Z Pages: write
+2026-02-13T22:02:28.2724082Z PullRequests: write
+2026-02-13T22:02:28.2724692Z RepositoryProjects: write
+2026-02-13T22:02:28.2725643Z SecurityEvents: write
+2026-02-13T22:02:28.2726302Z Statuses: write
+2026-02-13T22:02:28.2726856Z ##[endgroup]
+2026-02-13T22:02:28.2729274Z Secret source: Actions
+2026-02-13T22:02:28.2729992Z Prepare workflow directory
+2026-02-13T22:02:28.3569421Z Prepare all required actions
+2026-02-13T22:02:28.3655386Z Uses: vllm-project/vllm-ascend/.github/workflows/_e2e_nightly_single_node.yaml@refs/heads/main (e2175d9c7e62b437391dfee996b1375674ba7c18)
+2026-02-13T22:02:28.3662078Z ##[group] Inputs
+2026-02-13T22:02:28.3662924Z   runner: linux-aarch64-a3-16
+2026-02-13T22:02:28.3664007Z   image: swr.cn-southwest-2.myhuaweicloud.com/base_image/ascend-ci/vllm-ascend:nightly-a3
+2026-02-13T22:02:28.3665435Z   tests: tests/e2e/nightly/single_node/models/test_deepseek_v3_2_w8a8.py
+2026-02-13T22:02:28.3666370Z   name: deepseek3_2-w8a8
+2026-02-13T22:02:28.3666969Z ##[endgroup]
+2026-02-13T22:02:28.3668547Z Complete job name: single-node (deepseek3_2-w8a8, linux-aarch64-a3-16, tests/e2e/nightly/single_node/models/test_dee... / tests/e2e/nightly/single_node/models/test_deepseek_v3_2_w8a8.py
+2026-02-13T22:02:28.4417720Z ##[group]Run '/home/runner/k8s/index.js'
+2026-02-13T22:02:28.4428441Z shell: /home/runner/externals/node20/bin/node {0}
+2026-02-13T22:02:28.4429649Z ##[endgroup]
+2026-02-13T22:03:00.1787965Z (node:54) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-02-13T22:03:00.1789403Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-02-13T22:03:00.7218056Z ##[group]Run npu-smi info
+2026-02-13T22:03:00.7218527Z [36;1mnpu-smi info[0m
+2026-02-13T22:03:00.7219134Z [36;1mcat /usr/local/Ascend/ascend-toolkit/latest/"$(uname -i)"-linux/ascend_toolkit_install.info[0m
+2026-02-13T22:03:00.7220067Z shell: bash -el {0}
+2026-02-13T22:03:00.7220352Z env:
+2026-02-13T22:03:00.7220627Z   HF_HUB_OFFLINE: 1
+2026-02-13T22:03:00.7220925Z   VLLM_USE_MODELSCOPE: true
+2026-02-13T22:03:00.7221263Z ##[endgroup]
+2026-02-13T22:03:00.7355145Z ##[group]Run '/home/runner/k8s/index.js'
+2026-02-13T22:03:00.7356479Z shell: /home/runner/externals/node20/bin/node {0}
+2026-02-13T22:03:00.7356892Z ##[endgroup]
+2026-02-13T22:03:01.2795723Z (node:80) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-02-13T22:03:01.2796981Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-02-13T22:03:03.9092996Z +------------------------------------------------------------------------------------------------+
+2026-02-13T22:03:03.9093821Z | npu-smi 25.5.0                   Version: 25.5.0                                               |
+2026-02-13T22:03:03.9094518Z +---------------------------+---------------+----------------------------------------------------+
+2026-02-13T22:03:03.9095381Z | NPU   Name                | Health        | Power(W)    Temp(C)           Hugepages-Usage(page)|
+2026-02-13T22:03:03.9096757Z | Chip  Phy-ID              | Bus-Id        | AICore(%)   Memory-Usage(MB)  HBM-Usage(MB)        |
+2026-02-13T22:03:03.9097414Z +===========================+===============+====================================================+
+2026-02-13T22:03:03.9098026Z | 0     Ascend910           | OK            | 161.5       37                0    / 0             |
+2026-02-13T22:03:03.9098638Z | 0     0                   | 0000:9D:00.0  | 0           0    / 0          3150 / 65536         |
+2026-02-13T22:03:03.9099315Z +------------------------------------------------------------------------------------------------+
+2026-02-13T22:03:03.9100004Z | 0     Ascend910           | OK            | -           35                0    / 0             |
+2026-02-13T22:03:03.9100640Z | 1     1                   | 0000:9F:00.0  | 0           0    / 0          2895 / 65536         |
+2026-02-13T22:03:03.9101212Z +===========================+===============+====================================================+
+2026-02-13T22:03:03.9101804Z | 1     Ascend910           | OK            | 164.5       37                0    / 0             |
+2026-02-13T22:03:03.9102557Z | 0     2                   | 0000:99:00.0  | 0           0    / 0          3165 / 65536         |
+2026-02-13T22:03:03.9103230Z +------------------------------------------------------------------------------------------------+
+2026-02-13T22:03:03.9103934Z | 1     Ascend910           | OK            | -           36                0    / 0             |
+2026-02-13T22:03:03.9104557Z | 1     3                   | 0000:9B:00.0  | 0           0    / 0          2887 / 65536         |
+2026-02-13T22:03:03.9105259Z +===========================+===============+====================================================+
+2026-02-13T22:03:03.9105862Z | 2     Ascend910           | OK            | 164.3       36                0    / 0             |
+2026-02-13T22:03:03.9106458Z | 0     4                   | 0000:95:00.0  | 0           0    / 0          3151 / 65536         |
+2026-02-13T22:03:03.9107098Z +------------------------------------------------------------------------------------------------+
+2026-02-13T22:03:03.9107747Z | 2     Ascend910           | OK            | -           37                0    / 0             |
+2026-02-13T22:03:03.9108338Z | 1     5                   | 0000:97:00.0  | 0           0    / 0          2898 / 65536         |
+2026-02-13T22:03:03.9108901Z +===========================+===============+====================================================+
+2026-02-13T22:03:03.9109700Z | 3     Ascend910           | OK            | 169.0       37                0    / 0             |
+2026-02-13T22:03:03.9110315Z | 0     6                   | 0000:91:00.0  | 0           0    / 0          3162 / 65536         |
+2026-02-13T22:03:03.9110952Z +------------------------------------------------------------------------------------------------+
+2026-02-13T22:03:03.9111612Z | 3     Ascend910           | OK            | -           36                0    / 0             |
+2026-02-13T22:03:03.9112230Z | 1     7                   | 0000:93:00.0  | 0           0    / 0          2888 / 65536         |
+2026-02-13T22:03:03.9112878Z +===========================+===============+====================================================+
+2026-02-13T22:03:03.9113480Z | 4     Ascend910           | OK            | 166.0       37                0    / 0             |
+2026-02-13T22:03:03.9114073Z | 0     8                   | 0000:8D:00.0  | 0           0    / 0          3149 / 65536         |
+2026-02-13T22:03:03.9114716Z +------------------------------------------------------------------------------------------------+
+2026-02-13T22:03:03.9115533Z | 4     Ascend910           | OK            | -           36                0    / 0             |
+2026-02-13T22:03:03.9116125Z | 1     9                   | 0000:8F:00.0  | 0           0    / 0          2894 / 65536         |
+2026-02-13T22:03:03.9116688Z +===========================+===============+====================================================+
+2026-02-13T22:03:03.9117411Z | 5     Ascend910           | OK            | 161.3       35                0    / 0             |
+2026-02-13T22:03:03.9118021Z | 0     10                  | 0000:89:00.0  | 0           0    / 0          3146 / 65536         |
+2026-02-13T22:03:03.9118666Z +------------------------------------------------------------------------------------------------+
+2026-02-13T22:03:03.9119303Z | 5     Ascend910           | OK            | -           36                0    / 0             |
+2026-02-13T22:03:03.9119913Z | 1     11                  | 0000:8B:00.0  | 0           0    / 0          2894 / 65536         |
+2026-02-13T22:03:04.2112911Z +===========================+===============+====================================================+
+2026-02-13T22:03:04.2113532Z | 6     Ascend910           | OK            | 161.1       37                0    / 0             |
+2026-02-13T22:03:04.2114067Z | 0     12                  | 0000:85:00.0  | 0           0    / 0          3152 / 65536         |
+2026-02-13T22:03:04.2114689Z +------------------------------------------------------------------------------------------------+
+2026-02-13T22:03:04.2115404Z | 6     Ascend910           | OK            | -           35                0    / 0             |
+2026-02-13T22:03:04.2115933Z | 1     13                  | 0000:87:00.0  | 0           0    / 0          2898 / 65536         |
+2026-02-13T22:03:04.2116419Z +===========================+===============+====================================================+
+2026-02-13T22:03:04.2116931Z | 7     Ascend910           | OK            | 165.4       36                0    / 0             |
+2026-02-13T22:03:04.2117514Z | 0     14                  | 0000:81:00.0  | 0           0    / 0          3162 / 65536         |
+2026-02-13T22:03:04.2118060Z +------------------------------------------------------------------------------------------------+
+2026-02-13T22:03:04.2118630Z | 7     Ascend910           | OK            | -           37                0    / 0             |
+2026-02-13T22:03:04.2119158Z | 1     15                  | 0000:83:00.0  | 0           0    / 0          2885 / 65536         |
+2026-02-13T22:03:04.2119628Z +===========================+===============+====================================================+
+2026-02-13T22:03:04.2120160Z +---------------------------+---------------+----------------------------------------------------+
+2026-02-13T22:03:04.2120807Z | NPU     Chip              | Process id    | Process name             | Process memory(MB)      |
+2026-02-13T22:03:04.2121837Z +===========================+===============+====================================================+
+2026-02-13T22:03:04.2122484Z | No running processes found in NPU 0                                                            |
+2026-02-13T22:03:04.2123021Z +===========================+===============+====================================================+
+2026-02-13T22:03:04.2123572Z | No running processes found in NPU 1                                                            |
+2026-02-13T22:03:04.2124114Z +===========================+===============+====================================================+
+2026-02-13T22:03:04.2124655Z | No running processes found in NPU 2                                                            |
+2026-02-13T22:03:04.2125381Z +===========================+===============+====================================================+
+2026-02-13T22:03:04.2125916Z | No running processes found in NPU 3                                                            |
+2026-02-13T22:03:04.2126466Z +===========================+===============+====================================================+
+2026-02-13T22:03:04.2126995Z | No running processes found in NPU 4                                                            |
+2026-02-13T22:03:04.2127531Z +===========================+===============+====================================================+
+2026-02-13T22:03:04.2128072Z | No running processes found in NPU 5                                                            |
+2026-02-13T22:03:04.2128727Z +===========================+===============+====================================================+
+2026-02-13T22:03:04.2129272Z | No running processes found in NPU 6                                                            |
+2026-02-13T22:03:04.2129864Z +===========================+===============+====================================================+
+2026-02-13T22:03:04.2130460Z | No running processes found in NPU 7                                                            |
+2026-02-13T22:03:04.2131001Z +===========================+===============+====================================================+
+2026-02-13T22:03:04.2165336Z package_name=Ascend-cann-toolkit
+2026-02-13T22:03:04.2165686Z version=8.5.0
+2026-02-13T22:03:04.2165928Z innerversion=V100R001C25SPC001B232
+2026-02-13T22:03:04.2166489Z compatible_version=[V100R001C15],[V100R001C18],[V100R001C19],[V100R001C20],[V100R001C21],[V100R001C23]
+2026-02-13T22:03:04.2167021Z arch=aarch64
+2026-02-13T22:03:04.2167241Z os=linux
+2026-02-13T22:03:04.2167493Z path=/usr/local/Ascend/cann-8.5.0
+2026-02-13T22:03:04.6257409Z ##[group]Run echo "Installed vLLM-related Python packages:"
+2026-02-13T22:03:04.6258436Z [36;1mecho "Installed vLLM-related Python packages:"[0m
+2026-02-13T22:03:04.6259274Z [36;1mpip list | grep vllm || echo "No vllm packages found."[0m
+2026-02-13T22:03:04.6259967Z [36;1m[0m
+2026-02-13T22:03:04.6260332Z [36;1mecho ""[0m
+2026-02-13T22:03:04.6260752Z [36;1mecho "============================"[0m
+2026-02-13T22:03:04.6261362Z [36;1mecho "vLLM Git information"[0m
+2026-02-13T22:03:04.6261925Z [36;1mecho "============================"[0m
+2026-02-13T22:03:04.6262625Z [36;1mcd vllm[0m
+2026-02-13T22:03:04.6263038Z [36;1mif [ -d .git ]; then[0m
+2026-02-13T22:03:04.6263685Z [36;1m  echo "Branch:      $(git rev-parse --abbrev-ref HEAD)"[0m
+2026-02-13T22:03:04.6264522Z [36;1m  echo "Commit hash: $(git rev-parse HEAD)"[0m
+2026-02-13T22:03:04.6265493Z [36;1m  echo "Author:      $(git log -1 --pretty=format:'%an <%ae>')"[0m
+2026-02-13T22:03:04.6266522Z [36;1m  echo "Date:        $(git log -1 --pretty=format:'%ad' --date=iso)"[0m
+2026-02-13T22:03:04.6267421Z [36;1m  echo "Message:     $(git log -1 --pretty=format:'%s')"[0m
+2026-02-13T22:03:04.6268324Z [36;1m  echo "Tags:        $(git tag --points-at HEAD || echo 'None')"[0m
+2026-02-13T22:03:04.6269174Z [36;1m  echo "Remote:      $(git remote -v | head -n1)"[0m
+2026-02-13T22:03:04.6269849Z [36;1m  echo ""[0m
+2026-02-13T22:03:04.6270259Z [36;1melse[0m
+2026-02-13T22:03:04.6270720Z [36;1m  echo "No .git directory found in vllm"[0m
+2026-02-13T22:03:04.6271328Z [36;1mfi[0m
+2026-02-13T22:03:04.6271690Z [36;1mcd ..[0m
+2026-02-13T22:03:04.6272063Z [36;1m[0m
+2026-02-13T22:03:04.6272499Z [36;1mecho ""[0m
+2026-02-13T22:03:04.6272946Z [36;1mecho "============================"[0m
+2026-02-13T22:03:04.6273568Z [36;1mecho "vLLM-Ascend Git information"[0m
+2026-02-13T22:03:04.6274179Z [36;1mecho "============================"[0m
+2026-02-13T22:03:04.6274753Z [36;1mcd vllm-ascend[0m
+2026-02-13T22:03:04.6275361Z [36;1mif [ -d .git ]; then[0m
+2026-02-13T22:03:04.6275997Z [36;1m  echo "Branch:      $(git rev-parse --abbrev-ref HEAD)"[0m
+2026-02-13T22:03:04.6276800Z [36;1m  echo "Commit hash: $(git rev-parse HEAD)"[0m
+2026-02-13T22:03:04.6277616Z [36;1m  echo "Author:      $(git log -1 --pretty=format:'%an <%ae>')"[0m
+2026-02-13T22:03:04.6278558Z [36;1m  echo "Date:        $(git log -1 --pretty=format:'%ad' --date=iso)"[0m
+2026-02-13T22:03:04.6279485Z [36;1m  echo "Message:     $(git log -1 --pretty=format:'%s')"[0m
+2026-02-13T22:03:04.6280387Z [36;1m  echo "Tags:        $(git tag --points-at HEAD || echo 'None')"[0m
+2026-02-13T22:03:04.6281241Z [36;1m  echo "Remote:      $(git remote -v | head -n1)"[0m
+2026-02-13T22:03:04.6282083Z [36;1m  echo ""[0m
+2026-02-13T22:03:04.6282677Z [36;1melse[0m
+2026-02-13T22:03:04.6283342Z [36;1m  echo "No .git directory found in vllm-ascend"[0m
+2026-02-13T22:03:04.6284058Z [36;1mfi[0m
+2026-02-13T22:03:04.6284531Z [36;1mcd ..[0m
+2026-02-13T22:03:04.6285613Z shell: bash -el {0}
+2026-02-13T22:03:04.6286211Z env:
+2026-02-13T22:03:04.6286688Z   HF_HUB_OFFLINE: 1
+2026-02-13T22:03:04.6287153Z   VLLM_USE_MODELSCOPE: true
+2026-02-13T22:03:04.6287779Z ##[endgroup]
+2026-02-13T22:03:04.6388477Z ##[group]Run '/home/runner/k8s/index.js'
+2026-02-13T22:03:04.6390397Z shell: /home/runner/externals/node20/bin/node {0}
+2026-02-13T22:03:04.6391162Z ##[endgroup]
+2026-02-13T22:03:05.1766595Z (node:112) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-02-13T22:03:05.1767711Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-02-13T22:03:05.9689380Z Installed vLLM-related Python packages:
+2026-02-13T22:03:07.1015905Z ais_bench_benchmark               3.0.20250930                /vllm-workspace/vllm-ascend/benchmark
+2026-02-13T22:03:07.1016553Z vllm                              0.15.0+empty                /vllm-workspace/vllm
+2026-02-13T22:03:07.1017607Z vllm_ascend                       0.14.0rc2.dev166+ge2175d9c7 /vllm-workspace/vllm-ascend
+2026-02-13T22:03:07.1018313Z 
+2026-02-13T22:03:07.1018475Z ============================
+2026-02-13T22:03:07.1018756Z vLLM Git information
+2026-02-13T22:03:07.1019056Z ============================
+2026-02-13T22:03:07.1165839Z Branch:      HEAD
+2026-02-13T22:03:07.1186695Z Commit hash: f176443446f659dbab5315e056e605d8984fd976
+2026-02-13T22:03:07.1255436Z Author:      TJian <tunjian.tan@embeddedllm.com>
+2026-02-13T22:03:07.1277990Z Date:        2026-01-29 14:45:42 +0800
+2026-02-13T22:03:07.1301220Z Message:     [Release] [CI] Optim release pipeline (#33156)
+2026-02-13T22:03:07.1324980Z Tags:        v0.15.0
+2026-02-13T22:03:07.1353314Z Remote:      origin	https://gh-proxy.test.osinfra.cn/https://github.com/vllm-project/vllm.git (fetch)
+2026-02-13T22:03:07.1354281Z 
+2026-02-13T22:03:07.1354291Z 
+2026-02-13T22:03:07.1354465Z ============================
+2026-02-13T22:03:07.1354805Z vLLM-Ascend Git information
+2026-02-13T22:03:07.1355249Z ============================
+2026-02-13T22:03:07.1425164Z Branch:      main
+2026-02-13T22:03:07.1448277Z Commit hash: e2175d9c7e62b437391dfee996b1375674ba7c18
+2026-02-13T22:03:07.1519020Z Author:      whx <56632993+whx-sjtu@users.noreply.github.com>
+2026-02-13T22:03:07.1543551Z Date:        2026-02-13 15:53:16 +0800
+2026-02-13T22:03:07.1566768Z Message:     [Lint] Adapt lint tools for windows (#6727)
+2026-02-13T22:03:07.1852561Z Tags:        
+2026-02-13T22:03:07.1853178Z Remote:      origin	https://gh-proxy.test.osinfra.cn/https://github.com/vllm-project/vllm-ascend (fetch)
+2026-02-13T22:03:07.1853684Z 
+2026-02-13T22:03:07.6080162Z ##[group]Run apt-get update && apt-get -y install clang-15
+2026-02-13T22:03:07.6080676Z [36;1mapt-get update && apt-get -y install clang-15[0m
+2026-02-13T22:03:07.6081226Z [36;1mupdate-alternatives --install /usr/bin/clang clang /usr/bin/clang-15 20[0m
+2026-02-13T22:03:07.6081905Z [36;1mupdate-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-15 20[0m
+2026-02-13T22:03:07.6082619Z shell: bash -l {0}
+2026-02-13T22:03:07.6082858Z env:
+2026-02-13T22:03:07.6083059Z   HF_HUB_OFFLINE: 1
+2026-02-13T22:03:07.6083313Z   VLLM_USE_MODELSCOPE: true
+2026-02-13T22:03:07.6083575Z ##[endgroup]
+2026-02-13T22:03:07.6183390Z ##[group]Run '/home/runner/k8s/index.js'
+2026-02-13T22:03:07.6185523Z shell: /home/runner/externals/node20/bin/node {0}
+2026-02-13T22:03:07.6186158Z ##[endgroup]
+2026-02-13T22:03:08.1560209Z (node:154) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-02-13T22:03:08.1561320Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-02-13T22:03:09.6819932Z Get:1 http://ports.ubuntu.com/ubuntu-ports jammy InRelease [270 kB]
+2026-02-13T22:03:11.1871145Z Get:2 http://ports.ubuntu.com/ubuntu-ports jammy-updates InRelease [128 kB]
+2026-02-13T22:03:11.5559023Z Get:3 http://ports.ubuntu.com/ubuntu-ports jammy-backports InRelease [127 kB]
+2026-02-13T22:03:11.9226106Z Get:4 http://ports.ubuntu.com/ubuntu-ports jammy-security InRelease [129 kB]
+2026-02-13T22:03:12.2925877Z Get:5 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 Packages [1758 kB]
+2026-02-13T22:03:13.1409878Z Get:6 http://ports.ubuntu.com/ubuntu-ports jammy/restricted arm64 Packages [24.2 kB]
+2026-02-13T22:03:13.1410646Z Get:7 http://ports.ubuntu.com/ubuntu-ports jammy/universe arm64 Packages [17.2 MB]
+2026-02-13T22:03:14.7187024Z Get:8 http://ports.ubuntu.com/ubuntu-ports jammy/multiverse arm64 Packages [224 kB]
+2026-02-13T22:03:14.7427039Z Get:9 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 Packages [3819 kB]
+2026-02-13T22:03:15.0855978Z Get:10 http://ports.ubuntu.com/ubuntu-ports jammy-updates/universe arm64 Packages [1651 kB]
+2026-02-13T22:03:15.2268452Z Get:11 http://ports.ubuntu.com/ubuntu-ports jammy-updates/multiverse arm64 Packages [47.7 kB]
+2026-02-13T22:03:15.2303981Z Get:12 http://ports.ubuntu.com/ubuntu-ports jammy-updates/restricted arm64 Packages [6450 kB]
+2026-02-13T22:03:15.7886834Z Get:13 http://ports.ubuntu.com/ubuntu-ports jammy-backports/main arm64 Packages [83.5 kB]
+2026-02-13T22:03:15.7944205Z Get:14 http://ports.ubuntu.com/ubuntu-ports jammy-backports/universe arm64 Packages [35.3 kB]
+2026-02-13T22:03:15.7977812Z Get:15 http://ports.ubuntu.com/ubuntu-ports jammy-security/main arm64 Packages [3486 kB]
+2026-02-13T22:03:16.0992317Z Get:16 http://ports.ubuntu.com/ubuntu-ports jammy-security/restricted arm64 Packages [6249 kB]
+2026-02-13T22:03:16.6408277Z Get:17 http://ports.ubuntu.com/ubuntu-ports jammy-security/universe arm64 Packages [1347 kB]
+2026-02-13T22:03:16.7600176Z Get:18 http://ports.ubuntu.com/ubuntu-ports jammy-security/multiverse arm64 Packages [41.2 kB]
+2026-02-13T22:03:16.9346779Z Fetched 43.1 MB in 8s (5490 kB/s)
+2026-02-13T22:03:17.8169778Z Reading package lists...
+2026-02-13T22:03:18.7616994Z Reading package lists...
+2026-02-13T22:03:18.9566622Z Building dependency tree...
+2026-02-13T22:03:18.9574306Z Reading state information...
+2026-02-13T22:03:19.1904541Z clang-15 is already the newest version (1:15.0.7-0ubuntu0.22.04.3).
+2026-02-13T22:03:19.1905269Z The following packages were automatically installed and are no longer required:
+2026-02-13T22:03:19.1906876Z   autoconf automake autotools-dev file javascript-common libboost-atomic-dev
+2026-02-13T22:03:19.1907479Z   libboost-atomic1.74-dev libboost-atomic1.74.0 libboost-chrono-dev
+2026-02-13T22:03:19.1908065Z   libboost-chrono1.74-dev libboost-chrono1.74.0 libboost-container-dev
+2026-02-13T22:03:19.1909137Z   libboost-container1.74-dev libboost-container1.74.0 libboost-context-dev
+2026-02-13T22:03:19.1909770Z   libboost-context1.74-dev libboost-context1.74.0 libboost-coroutine-dev
+2026-02-13T22:03:19.1910386Z   libboost-coroutine1.74-dev libboost-coroutine1.74.0 libboost-date-time-dev
+2026-02-13T22:03:19.1910998Z   libboost-date-time1.74-dev libboost-date-time1.74.0 libboost-dev
+2026-02-13T22:03:19.1911595Z   libboost-exception-dev libboost-exception1.74-dev libboost-fiber-dev
+2026-02-13T22:03:19.1912182Z   libboost-fiber1.74-dev libboost-fiber1.74.0 libboost-filesystem-dev
+2026-02-13T22:03:19.1912873Z   libboost-filesystem1.74-dev libboost-filesystem1.74.0 libboost-graph-dev
+2026-02-13T22:03:19.1913464Z   libboost-graph-parallel-dev libboost-graph-parallel1.74-dev
+2026-02-13T22:03:19.1914072Z   libboost-graph-parallel1.74.0 libboost-graph1.74-dev libboost-graph1.74.0
+2026-02-13T22:03:19.1914717Z   libboost-iostreams-dev libboost-iostreams1.74-dev libboost-iostreams1.74.0
+2026-02-13T22:03:19.1915452Z   libboost-locale-dev libboost-locale1.74-dev libboost-locale1.74.0
+2026-02-13T22:03:19.1916054Z   libboost-log-dev libboost-log1.74-dev libboost-log1.74.0 libboost-math-dev
+2026-02-13T22:03:19.1916683Z   libboost-math1.74-dev libboost-math1.74.0 libboost-mpi1.74.0
+2026-02-13T22:03:19.1917419Z   libboost-nowide-dev libboost-nowide1.74-dev libboost-nowide1.74.0
+2026-02-13T22:03:19.1917968Z   libboost-numpy-dev libboost-numpy1.74-dev libboost-numpy1.74.0
+2026-02-13T22:03:19.1918889Z   libboost-program-options-dev libboost-program-options1.74-dev
+2026-02-13T22:03:19.1919709Z   libboost-program-options1.74.0 libboost-python-dev libboost-python1.74-dev
+2026-02-13T22:03:19.1920427Z   libboost-python1.74.0 libboost-random-dev libboost-random1.74-dev
+2026-02-13T22:03:19.1920987Z   libboost-random1.74.0 libboost-regex-dev libboost-regex1.74-dev
+2026-02-13T22:03:19.1921461Z   libboost-regex1.74.0 libboost-serialization-dev
+2026-02-13T22:03:19.1921939Z   libboost-serialization1.74-dev libboost-serialization1.74.0
+2026-02-13T22:03:19.1922534Z   libboost-stacktrace-dev libboost-stacktrace1.74-dev
+2026-02-13T22:03:19.1923080Z   libboost-stacktrace1.74.0 libboost-system-dev libboost-system1.74-dev
+2026-02-13T22:03:19.1923642Z   libboost-system1.74.0 libboost-test-dev libboost-test1.74-dev
+2026-02-13T22:03:19.1924186Z   libboost-test1.74.0 libboost-thread-dev libboost-thread1.74-dev
+2026-02-13T22:03:19.1924741Z   libboost-thread1.74.0 libboost-timer-dev libboost-timer1.74-dev
+2026-02-13T22:03:19.1925457Z   libboost-timer1.74.0 libboost-tools-dev libboost-type-erasure-dev
+2026-02-13T22:03:19.1926085Z   libboost-type-erasure1.74-dev libboost-type-erasure1.74.0 libboost-wave-dev
+2026-02-13T22:03:19.1926666Z   libboost-wave1.74-dev libboost-wave1.74.0 libboost1.74-dev
+2026-02-13T22:03:19.1927245Z   libboost1.74-tools-dev libcaf-openmpi-3 libcoarrays-dev libevent-2.1-7
+2026-02-13T22:03:19.1927867Z   libevent-core-2.1-7 libevent-dev libevent-extra-2.1-7 libevent-openssl-2.1-7
+2026-02-13T22:03:19.1928478Z   libevent-pthreads-2.1-7 libhwloc-dev libjs-jquery libjs-jquery-ui
+2026-02-13T22:03:19.1929092Z   libjs-sphinxdoc libjs-underscore libltdl-dev libltdl7 libmagic-mgc libmagic1
+2026-02-13T22:03:19.1929673Z   libopenmpi3 libpmix-dev libpmix2 libsigsegv2 libtool libucx0 m4
+2026-02-13T22:03:19.1930404Z   openmpi-common python3-dev python3-distutils python3-lib2to3 python3.10-dev
+2026-02-13T22:03:19.1930964Z Use 'apt autoremove' to remove them.
+2026-02-13T22:03:19.2228829Z 0 upgraded, 0 newly installed, 0 to remove and 8 not upgraded.
+2026-02-13T22:03:19.6872415Z ##[group]Run # ignore test_dispatch_ffn_combine until the test is fixed
+2026-02-13T22:03:19.6873202Z [36;1m# ignore test_dispatch_ffn_combine until the test is fixed[0m
+2026-02-13T22:03:19.6873811Z [36;1mpytest -sv tests/e2e/nightly/single_node/models/test_deepseek_v3_2_w8a8.py \[0m
+2026-02-13T22:03:19.6874483Z [36;1m--ignore=tests/e2e/nightly/single_node/ops/singlecard_ops/test_fused_moe.py[0m
+2026-02-13T22:03:19.6875354Z shell: bash -el {0}
+2026-02-13T22:03:19.6875753Z env:
+2026-02-13T22:03:19.6876125Z   HF_HUB_OFFLINE: 1
+2026-02-13T22:03:19.6876560Z   VLLM_USE_MODELSCOPE: true
+2026-02-13T22:03:19.6876898Z   VLLM_WORKER_MULTIPROC_METHOD: spawn
+2026-02-13T22:03:19.6877232Z   VLLM_CI_RUNNER: linux-aarch64-a3-16
+2026-02-13T22:03:19.6877605Z   BENCHMARK_HOME: /vllm-workspace/vllm-ascend/benchmark
+2026-02-13T22:03:19.6877977Z ##[endgroup]
+2026-02-13T22:03:19.7038013Z ##[group]Run '/home/runner/k8s/index.js'
+2026-02-13T22:03:19.7039692Z shell: /home/runner/externals/node20/bin/node {0}
+2026-02-13T22:03:19.7040422Z ##[endgroup]
+2026-02-13T22:03:20.2587672Z (node:210) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-02-13T22:03:20.2588785Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-02-13T22:03:34.9405050Z INFO 02-13 22:03:34 [__init__.py:43] Available plugins for group vllm.platform_plugins:
+2026-02-13T22:03:34.9405701Z INFO 02-13 22:03:34 [__init__.py:45] - ascend -> vllm_ascend:register
+2026-02-13T22:03:34.9406423Z INFO 02-13 22:03:34 [__init__.py:48] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+2026-02-13T22:03:35.1576560Z INFO 02-13 22:03:35 [__init__.py:217] Platform plugin ascend is activated
+2026-02-13T22:03:42.1880923Z ============================= test session starts ==============================
+2026-02-13T22:03:42.1882010Z platform linux -- Python 3.11.14, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/python3.11.14/bin/python3
+2026-02-13T22:03:42.1882628Z cachedir: .pytest_cache
+2026-02-13T22:03:42.1882925Z rootdir: /vllm-workspace/vllm-ascend
+2026-02-13T22:03:42.1883256Z configfile: pyproject.toml
+2026-02-13T22:03:42.1883617Z plugins: asyncio-1.3.0, mock-3.15.1, cov-7.0.0, anyio-4.12.1
+2026-02-13T22:03:42.1884339Z asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+2026-02-13T22:03:42.9534652Z collecting ... collected 1 item
+2026-02-13T22:03:42.9535017Z 
+2026-02-13T22:03:42.9560625Z [2026-02-13 22:03:42] INFO conftest.py:241: Starting server with command: vllm serve vllm-ascend/DeepSeek-V3.2-W8A8 --enable-expert-parallel --tensor-parallel-size 8 --data-parallel-size 2 --port 43231 --max-model-len 8192 --max-num-batched-tokens 8192 --max-num-seqs 4 --trust-remote-code --quantization ascend --gpu-memory-utilization 0.92 --compilation-config {"cudagraph_capture_sizes":[3, 6, 9, 12], "cudagraph_mode":"FULL_DECODE_ONLY"} --speculative-config {"num_speculative_tokens": 2, "method":"deepseek_mtp"} --additional-config {"layer_sharding": ["q_b_proj", "o_proj"]} --reasoning-parser deepseek_v3 --tokenizer_mode deepseek_v32
+2026-02-13T22:03:47.3357278Z tests/e2e/nightly/single_node/models/test_deepseek_v3_2_w8a8.py::test_models[2-8-vllm-ascend/DeepSeek-V3.2-W8A8] INFO 02-13 22:03:47 [__init__.py:43] Available plugins for group vllm.platform_plugins:
+2026-02-13T22:03:47.3358396Z INFO 02-13 22:03:47 [__init__.py:45] - ascend -> vllm_ascend:register
+2026-02-13T22:03:47.3359121Z INFO 02-13 22:03:47 [__init__.py:48] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+2026-02-13T22:03:47.3424108Z INFO 02-13 22:03:47 [__init__.py:217] Platform plugin ascend is activated
+2026-02-13T22:03:53.3165554Z 2026-02-13 22:03:53,315 - 981 - vllmProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.15.0+empty: default 1
+2026-02-13T22:03:53.3462367Z INFO 02-13 22:03:53 [__init__.py:108] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+2026-02-13T22:03:53.4849378Z INFO 02-13 22:03:53 [serve.py:100] Defaulting api_server_count to data_parallel_size (2).
+2026-02-13T22:03:53.4850323Z INFO 02-13 22:03:53 [utils.py:325] 
+2026-02-13T22:03:53.4952832Z INFO 02-13 22:03:53 [utils.py:325]        █     █     █▄   ▄█
+2026-02-13T22:03:53.4953660Z INFO 02-13 22:03:53 [utils.py:325]  ▄▄ ▄█ █     █     █ ▀▄▀ █  version 0.15.0
+2026-02-13T22:03:53.4954415Z INFO 02-13 22:03:53 [utils.py:325]   █▄█▀ █     █     █     █  model   vllm-ascend/DeepSeek-V3.2-W8A8
+2026-02-13T22:03:53.4955158Z INFO 02-13 22:03:53 [utils.py:325]    ▀▀  ▀▀▀▀▀ ▀▀▀▀▀ ▀     ▀
+2026-02-13T22:03:53.4955534Z INFO 02-13 22:03:53 [utils.py:325] 
+2026-02-13T22:03:53.4961719Z INFO 02-13 22:03:53 [utils.py:261] non-default args: {'model_tag': 'vllm-ascend/DeepSeek-V3.2-W8A8', 'api_server_count': 2, 'port': 43231, 'model': 'vllm-ascend/DeepSeek-V3.2-W8A8', 'tokenizer_mode': 'deepseek_v32', 'trust_remote_code': True, 'max_model_len': 8192, 'quantization': 'ascend', 'reasoning_parser': 'deepseek_v3', 'tensor_parallel_size': 8, 'data_parallel_size': 2, 'enable_expert_parallel': True, 'gpu_memory_utilization': 0.92, 'max_num_batched_tokens': 8192, 'max_num_seqs': 4, 'speculative_config': {'num_speculative_tokens': 2, 'method': 'deepseek_mtp'}, 'compilation_config': {'level': None, 'mode': None, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'vllm_ascend.compilation.compiler_interface.AscendCompiler', 'custom_ops': [], 'splitting_ops': None, 'compile_mm_encoder': False, 'compile_sizes': None, 'compile_ranges_split_points': None, 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.FULL_DECODE_ONLY: (2, 0)>, 'cudagraph_num_of_warmups': 0, 'cudagraph_capture_sizes': [3, 6, 9, 12], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': None, 'pass_config': {}, 'max_cudagraph_capture_size': None, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': True}, 'local_cache_dir': None}, 'additional_config': {'layer_sharding': ['q_b_proj', 'o_proj']}}
+2026-02-13T22:03:53.5451958Z 2026-02-13 22:03:53,544 - modelscope - WARNING - We can not confirm the cached file is for revision: master
+2026-02-13T22:03:53.5494411Z INFO 02-13 22:03:53 [arg_utils.py:602] HF_HUB_OFFLINE is True, replace model_id [vllm-ascend/DeepSeek-V3.2-W8A8] to model_path [/root/.cache/modelscope/hub/models/vllm-ascend/DeepSeek-V3___2-W8A8]
+2026-02-13T22:03:53.5501244Z The argument `trust_remote_code` is to be used with Auto classes. It has no effect here and is ignored.
+2026-02-13T22:03:53.5502267Z [2026-02-13 22:03:53] WARNING configuration_utils.py:697: The argument `trust_remote_code` is to be used with Auto classes. It has no effect here and is ignored.
+2026-02-13T22:03:53.5562454Z The argument `trust_remote_code` is to be used with Auto classes. It has no effect here and is ignored.
+2026-02-13T22:03:53.5563528Z [2026-02-13 22:03:53] WARNING configuration_utils.py:697: The argument `trust_remote_code` is to be used with Auto classes. It has no effect here and is ignored.
+2026-02-13T22:03:53.5571973Z The argument `trust_remote_code` is to be used with Auto classes. It has no effect here and is ignored.
+2026-02-13T22:03:53.5573031Z [2026-02-13 22:03:53] WARNING configuration_utils.py:697: The argument `trust_remote_code` is to be used with Auto classes. It has no effect here and is ignored.
+2026-02-13T22:03:53.5580833Z You are using a model of type deepseek_v32 to instantiate a model of type deepseek_v3. This is not supported for all configurations of models and can yield errors.
+2026-02-13T22:03:53.5582776Z [2026-02-13 22:03:53] WARNING configuration_utils.py:635: You are using a model of type deepseek_v32 to instantiate a model of type deepseek_v3. This is not supported for all configurations of models and can yield errors.
+2026-02-13T22:03:53.5795381Z INFO 02-13 22:03:53 [model.py:541] Resolved architecture: DeepseekV32ForCausalLM
+2026-02-13T22:03:53.5795937Z INFO 02-13 22:03:53 [model.py:1561] Using max model len 8192
+2026-02-13T22:03:53.8262051Z WARNING 02-13 22:03:53 [speculative.py:270] method `deepseek_mtp` is deprecated and replaced with mtp.
+2026-02-13T22:03:53.8264171Z The argument `trust_remote_code` is to be used with Auto classes. It has no effect here and is ignored.
+2026-02-13T22:03:53.8265253Z [2026-02-13 22:03:53] WARNING configuration_utils.py:697: The argument `trust_remote_code` is to be used with Auto classes. It has no effect here and is ignored.
+2026-02-13T22:03:53.8273860Z The argument `trust_remote_code` is to be used with Auto classes. It has no effect here and is ignored.
+2026-02-13T22:03:53.8274963Z [2026-02-13 22:03:53] WARNING configuration_utils.py:697: The argument `trust_remote_code` is to be used with Auto classes. It has no effect here and is ignored.
+2026-02-13T22:03:53.8282980Z You are using a model of type deepseek_v32 to instantiate a model of type deepseek_v3. This is not supported for all configurations of models and can yield errors.
+2026-02-13T22:03:53.8284477Z [2026-02-13 22:03:53] WARNING configuration_utils.py:635: You are using a model of type deepseek_v32 to instantiate a model of type deepseek_v3. This is not supported for all configurations of models and can yield errors.
+2026-02-13T22:03:53.8381032Z INFO 02-13 22:03:53 [model.py:541] Resolved architecture: DeepSeekMTPModel
+2026-02-13T22:03:53.8382688Z INFO 02-13 22:03:53 [model.py:1561] Using max model len 163840
+2026-02-13T22:03:53.8383719Z WARNING 02-13 22:03:53 [speculative.py:388] Enabling num_speculative_tokens > 1 will runmultiple times of forward on same MTP layer,which may result in lower acceptance rate
+2026-02-13T22:03:53.8385370Z INFO 02-13 22:03:53 [scheduler.py:226] Chunked prefill is enabled with max_num_batched_tokens=8192.
+2026-02-13T22:03:54.1721625Z INFO 02-13 22:03:54 [vllm.py:624] Asynchronous scheduling is enabled.
+2026-02-13T22:03:54.1722901Z INFO 02-13 22:03:54 [vllm.py:634] Disabling NCCL for DP synchronization when using async scheduling.
+2026-02-13T22:03:54.1724720Z WARNING 02-13 22:03:54 [platform.py:730] Speculative quantization is set but Ascend automatically uses the main model's quantization method. Resetting to None.
+2026-02-13T22:03:54.1727424Z WARNING 02-13 22:03:54 [platform.py:771] Ignored parameter 'use_trtllm_ragged_deepseek_prefill'. This is a GPU-specific feature not supported on Ascend. Resetting to False.
+2026-02-13T22:03:54.1729083Z INFO 02-13 22:03:54 [ascend_config.py:412] Dynamic EPLB is False
+2026-02-13T22:03:54.1730062Z INFO 02-13 22:03:54 [ascend_config.py:413] The number of redundant experts is 0
+2026-02-13T22:03:54.1732841Z INFO 02-13 22:03:54 [ascend_config.py:54] Linear layer sharding enabled with config: ['q_b_proj', 'o_proj']. Note: This feature works optimally with FLASHCOMM2 and DSA-CP enabled; using it without these features may result in significant performance degradation.
+2026-02-13T22:03:54.1736360Z WARNING 02-13 22:03:54 [vllm.py:1062] Batch sizes [3, 6, 9, 12] are removed because they are not multiple of tp_size 8 when sequence parallelism is enabled
+2026-02-13T22:03:54.1744155Z Traceback (most recent call last):
+2026-02-13T22:03:54.1744986Z   File "/usr/local/python3.11.14/bin/vllm", line 7, in <module>
+2026-02-13T22:03:54.1745683Z     sys.exit(main())
+2026-02-13T22:03:54.1746067Z              ^^^^^^
+2026-02-13T22:03:54.1746707Z   File "/vllm-workspace/vllm/vllm/entrypoints/cli/main.py", line 73, in main
+2026-02-13T22:03:54.1747575Z     args.dispatch_function(args)
+2026-02-13T22:03:54.1748347Z   File "/vllm-workspace/vllm/vllm/entrypoints/cli/serve.py", line 108, in cmd
+2026-02-13T22:03:54.1749187Z     run_multi_api_server(args)
+2026-02-13T22:03:54.1750094Z   File "/vllm-workspace/vllm/vllm/entrypoints/cli/serve.py", line 232, in run_multi_api_server
+2026-02-13T22:03:54.1751771Z     vllm_config = engine_args.create_engine_config(usage_context=usage_context)
+2026-02-13T22:03:54.1752781Z                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-02-13T22:03:54.1753788Z   File "/vllm-workspace/vllm/vllm/engine/arg_utils.py", line 1754, in create_engine_config
+2026-02-13T22:03:54.1754751Z     config = VllmConfig(
+2026-02-13T22:03:54.1755470Z              ^^^^^^^^^^^
+2026-02-13T22:03:54.1756523Z   File "/usr/local/python3.11.14/lib/python3.11/site-packages/pydantic/_internal/_dataclasses.py", line 121, in __init__
+2026-02-13T22:03:54.1759230Z     s.__pydantic_validator__.validate_python(ArgsKwargs(args, kwargs), self_instance=s)
+2026-02-13T22:03:54.1776503Z pydantic_core._pydantic_core.ValidationError: 1 validation error for VllmConfig
+2026-02-13T22:03:54.1778817Z   Assertion failed, cudagraph_capture_sizes [3, 6, 9, 12] does not containvalues that are multiples of tp_size 8 [type=assertion_error, input_value=ArgsKwargs((), {'model_co...timizationLevel.O2: 2>}), input_type=ArgsKwargs]
+2026-02-13T22:03:54.1781180Z     For further information visit https://errors.pydantic.dev/2.12/v/assertion_error
+2026-02-13T22:03:54.2300667Z [ERROR] 2026-02-13-22:03:54 (PID:981, Device:-1, RankID:-1) ERR99999 UNKNOWN applicaiton exception
+2026-02-13T22:03:54.5029635Z sys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute
+2026-02-13T22:03:59.4413483Z FAILED
+2026-02-13T22:03:59.4413726Z 
+2026-02-13T22:03:59.4414003Z =================================== FAILURES ===================================
+2026-02-13T22:03:59.4414555Z _______________ test_models[2-8-vllm-ascend/DeepSeek-V3.2-W8A8] ________________
+2026-02-13T22:03:59.4415404Z 
+2026-02-13T22:03:59.4415713Z model = 'vllm-ascend/DeepSeek-V3.2-W8A8', tp_size = 8, dp_size = 2
+2026-02-13T22:03:59.4416233Z 
+2026-02-13T22:03:59.4416400Z     @pytest.mark.asyncio
+2026-02-13T22:03:59.4416857Z     @pytest.mark.parametrize("model", MODELS)
+2026-02-13T22:03:59.4417626Z     @pytest.mark.parametrize("tp_size", TENSOR_PARALLELS)
+2026-02-13T22:03:59.4418087Z     @pytest.mark.parametrize("dp_size", DATA_PARALLELS)
+2026-02-13T22:03:59.4418612Z     async def test_models(model: str, tp_size: int, dp_size: int) -> None:
+2026-02-13T22:03:59.4419045Z         port = get_open_port()
+2026-02-13T22:03:59.4419323Z         env_dict = {
+2026-02-13T22:03:59.4419580Z             "HCCL_OP_EXPANSION_MODE": "AIV",
+2026-02-13T22:03:59.4419912Z             "OMP_PROC_BIND": "false",
+2026-02-13T22:03:59.4420256Z             "OMP_NUM_THREADS": "1",
+2026-02-13T22:03:59.4420791Z             "HCCL_BUFFSIZE": "1024",
+2026-02-13T22:03:59.4421144Z             "VLLM_ASCEND_ENABLE_MLAPO": "1",
+2026-02-13T22:03:59.4422046Z             "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:True",
+2026-02-13T22:03:59.4422771Z             "VLLM_ASCEND_ENABLE_FLASHCOMM1": "1",
+2026-02-13T22:03:59.4423082Z         }
+2026-02-13T22:03:59.4423286Z     
+2026-02-13T22:03:59.4423493Z         server_args = [
+2026-02-13T22:03:59.4423846Z             "--enable-expert-parallel", "--tensor-parallel-size",
+2026-02-13T22:03:59.4424262Z             str(tp_size), "--data-parallel-size",
+2026-02-13T22:03:59.4424605Z             str(dp_size), "--port",
+2026-02-13T22:03:59.4425115Z             str(port), "--max-model-len", "8192", "--max-num-batched-tokens",
+2026-02-13T22:03:59.4425669Z             "8192", "--max-num-seqs", "4", "--trust-remote-code", "--quantization",
+2026-02-13T22:03:59.4426459Z             "ascend", "--gpu-memory-utilization", "0.92", "--compilation-config",
+2026-02-13T22:03:59.4427110Z             '{"cudagraph_capture_sizes":[3, 6, 9, 12], "cudagraph_mode":"FULL_DECODE_ONLY"}',
+2026-02-13T22:03:59.4427701Z             "--speculative-config",
+2026-02-13T22:03:59.4428071Z             '{"num_speculative_tokens": 2, "method":"deepseek_mtp"}',
+2026-02-13T22:03:59.4428471Z             "--additional-config",
+2026-02-13T22:03:59.4428907Z             '{"layer_sharding": ["q_b_proj", "o_proj"]}',
+2026-02-13T22:03:59.4429969Z             "--reasoning-parser", "deepseek_v3", "--tokenizer_mode", "deepseek_v32"
+2026-02-13T22:03:59.4430429Z         ]
+2026-02-13T22:03:59.4430668Z         request_keyword_args: dict[str, Any] = {
+2026-02-13T22:03:59.4431006Z             **api_keyword_args,
+2026-02-13T22:03:59.4431259Z         }
+2026-02-13T22:03:59.4431501Z >       with RemoteOpenAIServer(model,
+2026-02-13T22:03:59.4431814Z                                 server_args,
+2026-02-13T22:03:59.4432140Z                                 server_port=port,
+2026-02-13T22:03:59.4432468Z                                 env_dict=env_dict,
+2026-02-13T22:03:59.4432950Z                                 auto_port=False) as server:
+2026-02-13T22:03:59.4433195Z 
+2026-02-13T22:03:59.4433427Z tests/e2e/nightly/single_node/models/test_deepseek_v3_2_w8a8.py:95: 
+2026-02-13T22:03:59.4434057Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-02-13T22:03:59.4434672Z tests/e2e/conftest.py:306: in __init__
+2026-02-13T22:03:59.4435209Z     self._wait_for_multiple_servers(
+2026-02-13T22:03:59.4435763Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-02-13T22:03:59.4436046Z 
+2026-02-13T22:03:59.4436301Z self = <tests.e2e.conftest.RemoteOpenAIServer object at 0xffff0eec6450>
+2026-02-13T22:03:59.4437119Z targets = [('0.0.0.0', 'http://0.0.0.0:43231/health')], timeout = 2800
+2026-02-13T22:03:59.4437554Z log_interval = 30.0
+2026-02-13T22:03:59.4437789Z 
+2026-02-13T22:03:59.4437951Z     def _wait_for_multiple_servers(self,
+2026-02-13T22:03:59.4438434Z                                    targets,
+2026-02-13T22:03:59.4438990Z                                    timeout: float,
+2026-02-13T22:03:59.4439356Z                                    log_interval: float = 30.0):
+2026-02-13T22:03:59.4439678Z         """
+2026-02-13T22:03:59.4439907Z         targets: List[(node_ip, url)]
+2026-02-13T22:03:59.4440232Z         log_interval
+2026-02-13T22:03:59.4440483Z         """
+2026-02-13T22:03:59.4440964Z         start = time.time()
+2026-02-13T22:03:59.4441241Z         client = requests
+2026-02-13T22:03:59.4441582Z     
+2026-02-13T22:03:59.4442059Z         ready = {node_ip: False for node_ip, _ in targets}
+2026-02-13T22:03:59.4442628Z     
+2026-02-13T22:03:59.4442918Z         last_log_time = 0.0
+2026-02-13T22:03:59.4443379Z     
+2026-02-13T22:03:59.4443752Z         while True:
+2026-02-13T22:03:59.4444266Z             now = time.time()
+2026-02-13T22:03:59.4444741Z             all_ready = True
+2026-02-13T22:03:59.4445464Z             should_log = (now - last_log_time) >= log_interval
+2026-02-13T22:03:59.4446085Z     
+2026-02-13T22:03:59.4446302Z             for node_ip, url in targets:
+2026-02-13T22:03:59.4446623Z                 if ready[node_ip]:
+2026-02-13T22:03:59.4446900Z                     continue
+2026-02-13T22:03:59.4447153Z     
+2026-02-13T22:03:59.4447342Z                 try:
+2026-02-13T22:03:59.4447605Z                     resp = client.get(url)
+2026-02-13T22:03:59.4447929Z                     if resp.status_code == 200:
+2026-02-13T22:03:59.4448288Z                         ready[node_ip] = True
+2026-02-13T22:03:59.4448678Z                         logger.info(f"[READY] Node {node_ip} is ready.")
+2026-02-13T22:03:59.4449073Z                 except RequestException:
+2026-02-13T22:03:59.4449722Z                     all_ready = False
+2026-02-13T22:03:59.4450079Z                     if should_log:
+2026-02-13T22:03:59.4450649Z                         logger.debug(f"[WAIT] {url}: connection failed")
+2026-02-13T22:03:59.4451199Z     
+2026-02-13T22:03:59.4451567Z                     # check unexpected exit
+2026-02-13T22:03:59.4451882Z                     result = self._poll()
+2026-02-13T22:03:59.4452233Z                     if result is not None and result != 0:
+2026-02-13T22:03:59.4452701Z >                       raise RuntimeError(
+2026-02-13T22:03:59.4453069Z                             f"Server at {node_ip} exited unexpectedly."
+2026-02-13T22:03:59.4453444Z                         ) from None
+2026-02-13T22:03:59.4454016Z E                       RuntimeError: Server at 0.0.0.0 exited unexpectedly.
+2026-02-13T22:03:59.4454338Z 
+2026-02-13T22:03:59.4454457Z tests/e2e/conftest.py:399: RuntimeError
+2026-02-13T22:03:59.4454976Z ------------------------------ Captured log call -------------------------------
+2026-02-13T22:03:59.4458587Z INFO     tests.e2e.conftest:conftest.py:241 Starting server with command: vllm serve vllm-ascend/DeepSeek-V3.2-W8A8 --enable-expert-parallel --tensor-parallel-size 8 --data-parallel-size 2 --port 43231 --max-model-len 8192 --max-num-batched-tokens 8192 --max-num-seqs 4 --trust-remote-code --quantization ascend --gpu-memory-utilization 0.92 --compilation-config {"cudagraph_capture_sizes":[3, 6, 9, 12], "cudagraph_mode":"FULL_DECODE_ONLY"} --speculative-config {"num_speculative_tokens": 2, "method":"deepseek_mtp"} --additional-config {"layer_sharding": ["q_b_proj", "o_proj"]} --reasoning-parser deepseek_v3 --tokenizer_mode deepseek_v32
+2026-02-13T22:03:59.4461554Z =============================== warnings summary ===============================
+2026-02-13T22:03:59.4461974Z <frozen importlib._bootstrap>:241
+2026-02-13T22:03:59.4462670Z   <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute
+2026-02-13T22:03:59.4463523Z 
+2026-02-13T22:03:59.4463638Z <frozen importlib._bootstrap>:241
+2026-02-13T22:03:59.4464232Z   <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute
+2026-02-13T22:03:59.4464736Z 
+2026-02-13T22:03:59.4465248Z ../../usr/local/python3.11.14/lib/python3.11/site-packages/transformers/models/auto/image_processing_auto.py:647
+2026-02-13T22:03:59.4466876Z   /usr/local/python3.11.14/lib/python3.11/site-packages/transformers/models/auto/image_processing_auto.py:647: FutureWarning: The image_processor_class argument is deprecated and will be removed in v4.42. Please use `slow_image_processor_class`, or `fast_image_processor_class` instead
+2026-02-13T22:03:59.4468373Z     warnings.warn(
+2026-02-13T22:03:59.4468533Z 
+2026-02-13T22:03:59.4468868Z ../../usr/local/python3.11.14/lib/python3.11/site-packages/torch_npu/dynamo/torchair/__init__.py:8
+2026-02-13T22:03:59.4470189Z   /usr/local/python3.11.14/lib/python3.11/site-packages/torch_npu/dynamo/torchair/__init__.py:8: DeprecationWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html
+2026-02-13T22:03:59.4471596Z     import pkg_resources
+2026-02-13T22:03:59.4471784Z 
+2026-02-13T22:03:59.4472021Z -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+2026-02-13T22:03:59.4472634Z =========================== short test summary info ============================
+2026-02-13T22:03:59.4473739Z FAILED tests/e2e/nightly/single_node/models/test_deepseek_v3_2_w8a8.py::test_models[2-8-vllm-ascend/DeepSeek-V3.2-W8A8] - RuntimeError: Server at 0.0.0.0 exited unexpectedly.
+2026-02-13T22:03:59.4475304Z ======================== 1 failed, 4 warnings in 15.97s ========================
+2026-02-13T22:04:01.5337968Z ##[error]Error: failed to run script step: Error: command terminated with non-zero exit code: command terminated with exit code 1
+2026-02-13T22:04:01.5400549Z ##[error]Process completed with exit code 1.
+2026-02-13T22:04:01.6229515Z ##[error]Executing the custom container implementation failed. Please contact your self hosted runner administrator.
+2026-02-13T22:04:01.6290172Z ##[group]Run '/home/runner/k8s/index.js'
+2026-02-13T22:04:01.6291255Z shell: /home/runner/externals/node20/bin/node {0}
+2026-02-13T22:04:01.6291596Z ##[endgroup]
+2026-02-13T22:04:02.3636411Z Cleaning up orphan processes
