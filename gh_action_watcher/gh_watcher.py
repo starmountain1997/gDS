@@ -18,6 +18,7 @@ WORKFLOW_NAME = "schedule_nightly_test_a3.yaml"
 TARGET_JOBS = [
     "multi-node-dpsk3.2-2node",
     "test_deepseek_v3_2_w8a8",
+    "deepseek-v3.2-W8A8-EP",
 ]
 
 
