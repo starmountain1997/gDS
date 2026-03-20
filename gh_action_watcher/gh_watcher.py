@@ -6,7 +6,9 @@ Runs save_gh_logs.py, then commits and pushes changes to git.
 import csv
 import json
 import re
+import sqlite3
 import subprocess
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime
 from pathlib import Path
 
@@ -157,8 +159,27 @@ def save_log(
     return log_path
 
 
-def append_result_to_csv(
-    LOGS_DIR: Path,
+def init_db(logs_dir: Path) -> sqlite3.Connection:
+    """Initialize SQLite database."""
+    db_path = logs_dir / "results.db"
+    conn = sqlite3.connect(db_path)
+    conn.execute("""
+        CREATE TABLE IF NOT EXISTS results (
+            keyword     TEXT NOT NULL,
+            job_id      TEXT NOT NULL,
+            run_time    TEXT NOT NULL,
+            success     TEXT NOT NULL,
+            commit_sha  TEXT NOT NULL,
+            throughput  REAL,
+            PRIMARY KEY (keyword, job_id)
+        )
+    """)
+    conn.commit()
+    return conn
+
+
+def upsert_result(
+    conn: sqlite3.Connection,
     keyword: str,
     conclusion: str,
     commit_sha: str,
@@ -166,156 +187,143 @@ def append_result_to_csv(
     job_id: int,
     output_token_throughput: float | None = None,
 ):
-    """Append monitoring result to CSV file, avoiding duplicates, and ensuring sorted order."""
-    csv_path = LOGS_DIR / f"{keyword}_results.csv"
-
-    header = [
-        "任务运行时间",
-        "是否成功",
-        "最后commit",
-        "job_id",
-        "Output Token Throughput",
-    ]
-
-    all_rows: list[dict] = []
-    existing_job_ids = set()
-
-    if csv_path.exists():
-        with open(csv_path, "r", newline="", encoding="utf-8") as f:
-            reader = csv.DictReader(f)
-            # Check if header matches, if not, treat as new file
-            if reader.fieldnames != header:
-                logger.warning(
-                    f"CSV header mismatch in {csv_path}. Rewriting with new header."
-                )
-                # If header mismatch, we don't load existing rows, effectively rewriting.
-            else:
-                for row in reader:
-                    # Ensure all header keys are present in the row, fill missing with ''
-                    for h in header:
-                        row.setdefault(h, "")
-                    all_rows.append(row)
-                    existing_job_ids.add(row.get("job_id"))  # Use .get() for safety
-
-    # Prepare new row as a dictionary
-    new_row = {
-        "任务运行时间": run_time,
-        "是否成功": conclusion,
-        "最后commit": commit_sha,
-        "job_id": str(
-            job_id
-        ),  # Ensure job_id is string for consistent comparison with set
-        "Output Token Throughput": (
-            str(output_token_throughput) if output_token_throughput is not None else ""
+    """Insert result into SQLite, ignoring duplicates."""
+    conn.execute(
+        "INSERT OR IGNORE INTO results VALUES (?,?,?,?,?,?)",
+        (
+            keyword,
+            str(job_id),
+            run_time,
+            conclusion,
+            commit_sha,
+            output_token_throughput,
         ),
-    }
+    )
+    conn.commit()
+    logger.success(f"Result recorded for job {job_id}")
 
-    if new_row["job_id"] in existing_job_ids:
-        logger.info(f"Result for job {job_id} already exists in {csv_path}, skipping.")
-    else:
-        all_rows.append(new_row)
 
-    # Sort all_rows by '任务运行时间'
-    try:
-        all_rows.sort(
-            key=lambda x: datetime.fromisoformat(
-                x["任务运行时间"].replace("Z", "+00:00")
+def export_csv(logs_dir: Path, conn: sqlite3.Connection):
+    """Export SQLite results to per-keyword CSV files."""
+    keywords = [
+        r[0] for r in conn.execute("SELECT DISTINCT keyword FROM results").fetchall()
+    ]
+    for keyword in keywords:
+        rows = conn.execute(
+            "SELECT run_time, success, commit_sha, job_id, throughput "
+            "FROM results WHERE keyword = ? ORDER BY run_time",
+            (keyword,),
+        ).fetchall()
+        csv_path = logs_dir / f"{keyword}_results.csv"
+        with open(csv_path, "w", newline="", encoding="utf-8") as f:
+            writer = csv.writer(f)
+            writer.writerow(
+                [
+                    "任务运行时间",
+                    "是否成功",
+                    "最后commit",
+                    "job_id",
+                    "Output Token Throughput",
+                ]
             )
-        )
-    except Exception as e:
-        logger.warning(f"Could not sort CSV: {e}")
+            for run_time, success, commit_sha, job_id, throughput in rows:
+                writer.writerow(
+                    [
+                        run_time,
+                        success,
+                        commit_sha,
+                        job_id,
+                        throughput if throughput is not None else "",
+                    ]
+                )
+        logger.info(f"Exported {len(rows)} rows → {csv_path.name}")
 
-    # Write all rows back to the CSV file
-    with open(csv_path, "w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=header)
-        writer.writeheader()
-        writer.writerows(all_rows)
-    logger.success(f"Result recorded to {csv_path}")
+
+EMOJI = {"success": "✅", "failure": "❌", "cancelled": "⚪", "skipped": "🚫"}
 
 
 @click.command()
 @click.option(
     "--runs", "-n", default=4, show_default=True, help="Number of recent runs to check"
 )
-def main(runs: int):
+@click.option(
+    "--workers", "-w", default=8, show_default=True, help="Concurrent workers"
+)
+def main(runs: int, workers: int):
     script_dir = Path(__file__).parent.resolve()
     LOGS_DIR = script_dir / "logs"
 
     logger.info(f"Target: {REPO} / {WORKFLOW_NAME}")
     logger.info(f"Job keywords: {TARGET_JOBS}")
-    logger.info(f"Checking last {runs} runs")
+    logger.info(f"Checking last {runs} runs with {workers} workers")
     logger.info("-" * 50)
 
     LOGS_DIR.mkdir(parents=True, exist_ok=True)
+    db = init_db(LOGS_DIR)
 
     runs_data = get_recent_runs(runs)
     if not runs_data:
         logger.error("No runs found")
-        # Do not return here if no runs found, still proceed to git ops
-        # if there are existing logs to commit/push.
 
-    for run in runs_data:
-        run_id = run["databaseId"]
-        created_at = run["createdAt"]
-        conclusion = run.get("conclusion", "unknown")
+    # Phase 1: fetch jobs for all runs concurrently
+    run_jobs: list[tuple[dict, list[dict]]] = []
+    with ThreadPoolExecutor(max_workers=workers) as pool:
+        futures = {pool.submit(find_target_jobs, r["databaseId"]): r for r in runs_data}
+        for fut in as_completed(futures):
+            run = futures[fut]
+            jobs = fut.result()
+            logger.info(
+                f"Run #{run['number']} ({run['createdAt'][:10]}) "
+                f"- {run.get('conclusion', '?')} - {len(jobs)} target jobs"
+            )
+            if jobs:
+                run_jobs.append((run, jobs))
 
-        logger.info(
-            f"Run #{run['number']} (databaseId: {run_id}, {created_at[:10]}) - {conclusion}"
-        )
+    # Phase 2: fetch logs for all (run, job) pairs concurrently
+    tasks = [(run, job) for run, jobs in run_jobs for job in jobs]
 
-        jobs = find_target_jobs(run_id)
-        if not jobs:
-            logger.info("  No target jobs found")
-            continue
-
-        commit_sha = run.get("headSha", "")
-        run_date = created_at[:10]
-
-        for job in jobs:
+    with ThreadPoolExecutor(max_workers=workers) as pool:
+        futures = {
+            pool.submit(get_job_log, run["databaseId"], job["databaseId"]): (run, job)
+            for run, job in tasks
+        }
+        for fut in as_completed(futures):
+            run, job = futures[fut]
+            log_content = fut.result()
+            commit_sha = run.get("headSha", "")
+            run_date = run["createdAt"][:10]
             matched_keyword = next(
                 (k for k in TARGET_JOBS if k in job.get("name", "")), ""
             )
 
-            logger.info(f"  Found job: {job['name']}")
-            logger.info(f"  Job ID: {job['databaseId']}")
-            logger.info(f"  Conclusion: {job.get('conclusion', 'N/A')}")
-
-            log_content = get_job_log(run_id, job["databaseId"])
             output_token_throughput = None
-
             if log_content:
                 log_path = save_log(
                     LOGS_DIR,
                     run_date,
-                    run_id,
+                    run["databaseId"],
                     job,
                     log_content,
                     matched_keyword,
                     commit_sha,
                 )
                 if log_path is None:
-                    logger.info("  Log skipped (already exists)")
+                    logger.info(f"  {job['name']} log skipped (already exists)")
                 else:
                     logger.success(f"  Log saved: {log_path}")
-
                 output_token_throughput = extract_output_token_throughput(log_content)
 
-            emoji_conclusion = {
-                "success": "✅",
-                "failure": "❌",
-                "cancelled": "⚪",
-                "skipped": "🚫",
-            }.get(job.get("conclusion", ""), "?")
-
-            append_result_to_csv(
-                LOGS_DIR,
+            upsert_result(
+                db,
                 matched_keyword,
-                emoji_conclusion,
+                EMOJI.get(job.get("conclusion", ""), "?"),
                 commit_sha,
-                created_at,
+                run["createdAt"],
                 job["databaseId"],
                 output_token_throughput,
             )
+
+    export_csv(LOGS_DIR, db)
 
     logger.info("Step 2: Adding changes to git")
     # The logs directory is relative to the git repository root.
