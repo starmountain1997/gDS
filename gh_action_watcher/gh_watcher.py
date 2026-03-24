@@ -171,9 +171,14 @@ def init_db(logs_dir: Path) -> sqlite3.Connection:
             success     TEXT NOT NULL,
             commit_sha  TEXT NOT NULL,
             throughput  REAL,
+            run_id      TEXT,
             PRIMARY KEY (keyword, job_id)
         )
     """)
+    # Migrate existing DBs
+    cols = {r[1] for r in conn.execute("PRAGMA table_info(results)").fetchall()}
+    if "run_id" not in cols:
+        conn.execute("ALTER TABLE results ADD COLUMN run_id TEXT")
     conn.commit()
     return conn
 
@@ -184,12 +189,13 @@ def upsert_result(
     conclusion: str,
     commit_sha: str,
     run_time: str,
+    run_id: int,
     job_id: int,
     output_token_throughput: float | None = None,
 ):
     """Insert result into SQLite, ignoring duplicates."""
     conn.execute(
-        "INSERT OR IGNORE INTO results VALUES (?,?,?,?,?,?)",
+        "INSERT OR IGNORE INTO results VALUES (?,?,?,?,?,?,?)",
         (
             keyword,
             str(job_id),
@@ -197,6 +203,7 @@ def upsert_result(
             conclusion,
             commit_sha,
             output_token_throughput,
+            str(run_id),
         ),
     )
     conn.commit()
@@ -210,7 +217,7 @@ def export_csv(logs_dir: Path, conn: sqlite3.Connection):
     ]
     for keyword in keywords:
         rows = conn.execute(
-            "SELECT run_time, success, commit_sha, job_id, throughput "
+            "SELECT run_time, success, commit_sha, job_id, throughput, run_id "
             "FROM results WHERE keyword = ? ORDER BY run_time",
             (keyword,),
         ).fetchall()
@@ -224,9 +231,15 @@ def export_csv(logs_dir: Path, conn: sqlite3.Connection):
                     "最后commit",
                     "job_id",
                     "Output Token Throughput",
+                    "job_link",
                 ]
             )
-            for run_time, success, commit_sha, job_id, throughput in rows:
+            for run_time, success, commit_sha, job_id, throughput, run_id in rows:
+                job_link = (
+                    f"https://github.com/{REPO}/actions/runs/{run_id}/job/{job_id}"
+                    if run_id
+                    else ""
+                )
                 writer.writerow(
                     [
                         run_time,
@@ -234,6 +247,7 @@ def export_csv(logs_dir: Path, conn: sqlite3.Connection):
                         commit_sha,
                         job_id,
                         throughput if throughput is not None else "",
+                        job_link,
                     ]
                 )
         logger.info(f"Exported {len(rows)} rows → {csv_path.name}")
@@ -319,6 +333,7 @@ def main(runs: int, workers: int):
                 EMOJI.get(job.get("conclusion", ""), "?"),
                 commit_sha,
                 run["createdAt"],
+                run["databaseId"],
                 job["databaseId"],
                 output_token_throughput,
             )
