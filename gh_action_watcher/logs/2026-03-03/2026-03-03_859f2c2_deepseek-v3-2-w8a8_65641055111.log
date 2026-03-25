@@ -1,0 +1,347 @@
+# Run ID: 22632712302
+# Commit: 859f2c25b9c6a3a828a351f284572846f90bd06d
+# Job: single-node (deepseek-v3-2-w8a8, linux-aarch64-a3-16, DeepSeek-V3.2-W8A8.yaml) / deepseek-v3-2-w8a8
+# Date: 2026-03-03
+============================================================
+
+﻿2026-03-03T23:49:44.8318808Z Current runner version: '2.330.0'
+2026-03-03T23:49:44.8323286Z Runner name: 'linux-aarch64-a3-16-jl5bl-runner-66vtk'
+2026-03-03T23:49:44.8324057Z Runner group name: 'Default'
+2026-03-03T23:49:44.8324861Z Machine name: 'linux-aarch64-a3-16-jl5bl-runner-66vtk'
+2026-03-03T23:49:44.8328543Z ##[group]GITHUB_TOKEN Permissions
+2026-03-03T23:49:44.8330646Z Actions: write
+2026-03-03T23:49:44.8331094Z ArtifactMetadata: write
+2026-03-03T23:49:44.8331598Z Attestations: write
+2026-03-03T23:49:44.8332146Z Checks: write
+2026-03-03T23:49:44.8332549Z Contents: write
+2026-03-03T23:49:44.8332932Z Deployments: write
+2026-03-03T23:49:44.8333327Z Discussions: write
+2026-03-03T23:49:44.8333690Z Issues: write
+2026-03-03T23:49:44.8334127Z Metadata: read
+2026-03-03T23:49:44.8334511Z Models: read
+2026-03-03T23:49:44.8334878Z Packages: write
+2026-03-03T23:49:44.8335294Z Pages: write
+2026-03-03T23:49:44.8335683Z PullRequests: write
+2026-03-03T23:49:44.8336079Z RepositoryProjects: write
+2026-03-03T23:49:44.8336694Z SecurityEvents: write
+2026-03-03T23:49:44.8337159Z Statuses: write
+2026-03-03T23:49:44.8337551Z ##[endgroup]
+2026-03-03T23:49:44.8339287Z Secret source: Actions
+2026-03-03T23:49:44.8339779Z Prepare workflow directory
+2026-03-03T23:49:44.8961264Z Prepare all required actions
+2026-03-03T23:49:44.9013351Z Uses: vllm-project/vllm-ascend/.github/workflows/_e2e_nightly_single_node.yaml@refs/heads/main (859f2c25b9c6a3a828a351f284572846f90bd06d)
+2026-03-03T23:49:44.9017382Z ##[group] Inputs
+2026-03-03T23:49:44.9017938Z   runner: linux-aarch64-a3-16
+2026-03-03T23:49:44.9018649Z   image: swr.cn-southwest-2.myhuaweicloud.com/base_image/ascend-ci/vllm-ascend:nightly-a3
+2026-03-03T23:49:44.9019347Z   tests: 
+2026-03-03T23:49:44.9019745Z   config_file_path: DeepSeek-V3.2-W8A8.yaml
+2026-03-03T23:49:44.9020202Z   name: deepseek-v3-2-w8a8
+2026-03-03T23:49:44.9020645Z ##[endgroup]
+2026-03-03T23:49:44.9021461Z Complete job name: single-node (deepseek-v3-2-w8a8, linux-aarch64-a3-16, DeepSeek-V3.2-W8A8.yaml) / deepseek-v3-2-w8a8
+2026-03-03T23:49:44.9519169Z ##[group]Run '/home/runner/k8s/index.js'
+2026-03-03T23:49:44.9526282Z shell: /home/runner/externals/node20/bin/node {0}
+2026-03-03T23:49:44.9527204Z ##[endgroup]
+2026-03-03T23:50:16.5676860Z (node:53) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-03-03T23:50:16.5677784Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-03-03T23:50:17.0788698Z ##[group]Run npu-smi info
+2026-03-03T23:50:17.0789069Z [36;1mnpu-smi info[0m
+2026-03-03T23:50:17.0789496Z [36;1mcat /usr/local/Ascend/ascend-toolkit/latest/"$(uname -i)"-linux/ascend_toolkit_install.info[0m
+2026-03-03T23:50:17.0790147Z shell: bash -el {0}
+2026-03-03T23:50:17.0790355Z env:
+2026-03-03T23:50:17.0790659Z   HF_HUB_OFFLINE: 1
+2026-03-03T23:50:17.0790890Z   VLLM_USE_MODELSCOPE: true
+2026-03-03T23:50:17.0791149Z ##[endgroup]
+2026-03-03T23:50:17.0926783Z ##[group]Run '/home/runner/k8s/index.js'
+2026-03-03T23:50:17.0927831Z shell: /home/runner/externals/node20/bin/node {0}
+2026-03-03T23:50:17.0928271Z ##[endgroup]
+2026-03-03T23:50:17.4439376Z (node:80) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-03-03T23:50:17.4440369Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-03-03T23:50:35.7637314Z +------------------------------------------------------------------------------------------------+
+2026-03-03T23:50:35.7637989Z | npu-smi 25.5.0                   Version: 25.5.0                                               |
+2026-03-03T23:50:35.7638651Z +---------------------------+---------------+----------------------------------------------------+
+2026-03-03T23:50:35.7639194Z | NPU   Name                | Health        | Power(W)    Temp(C)           Hugepages-Usage(page)|
+2026-03-03T23:50:35.7639688Z | Chip  Phy-ID              | Bus-Id        | AICore(%)   Memory-Usage(MB)  HBM-Usage(MB)        |
+2026-03-03T23:50:35.7640520Z +===========================+===============+====================================================+
+2026-03-03T23:50:35.7640972Z | 0     Ascend910           | OK            | 165.2       36                0    / 0             |
+2026-03-03T23:50:35.7641451Z | 0     0                   | 0000:9D:00.0  | 0           0    / 0          3168 / 65536         |
+2026-03-03T23:50:35.7641958Z +------------------------------------------------------------------------------------------------+
+2026-03-03T23:50:35.7642591Z | 0     Ascend910           | OK            | -           35                0    / 0             |
+2026-03-03T23:50:35.7643099Z | 1     1                   | 0000:9F:00.0  | 0           0    / 0          2886 / 65536         |
+2026-03-03T23:50:35.7643487Z +===========================+===============+====================================================+
+2026-03-03T23:50:35.7643936Z | 1     Ascend910           | OK            | 169.0       36                0    / 0             |
+2026-03-03T23:50:35.7644394Z | 0     2                   | 0000:99:00.0  | 0           0    / 0          3166 / 65536         |
+2026-03-03T23:50:35.7644875Z +------------------------------------------------------------------------------------------------+
+2026-03-03T23:50:35.7645532Z | 1     Ascend910           | OK            | -           36                0    / 0             |
+2026-03-03T23:50:35.7645947Z | 1     3                   | 0000:9B:00.0  | 0           0    / 0          2882 / 65536         |
+2026-03-03T23:50:35.7646348Z +===========================+===============+====================================================+
+2026-03-03T23:50:35.7646775Z | 2     Ascend910           | OK            | 168.2       37                0    / 0             |
+2026-03-03T23:50:35.7647164Z | 0     4                   | 0000:95:00.0  | 0           0    / 0          3153 / 65536         |
+2026-03-03T23:50:35.7647609Z +------------------------------------------------------------------------------------------------+
+2026-03-03T23:50:35.7648077Z | 2     Ascend910           | OK            | -           36                0    / 0             |
+2026-03-03T23:50:35.7648476Z | 1     5                   | 0000:97:00.0  | 0           0    / 0          2897 / 65536         |
+2026-03-03T23:50:35.7648867Z +===========================+===============+====================================================+
+2026-03-03T23:50:35.7649368Z | 3     Ascend910           | OK            | 168.7       35                0    / 0             |
+2026-03-03T23:50:35.7649807Z | 0     6                   | 0000:91:00.0  | 0           0    / 0          3164 / 65536         |
+2026-03-03T23:50:35.7650427Z +------------------------------------------------------------------------------------------------+
+2026-03-03T23:50:35.7651207Z | 3     Ascend910           | OK            | -           36                0    / 0             |
+2026-03-03T23:50:35.7651649Z | 1     7                   | 0000:93:00.0  | 0           0    / 0          2886 / 65536         |
+2026-03-03T23:50:35.7652205Z +===========================+===============+====================================================+
+2026-03-03T23:50:35.7652642Z | 4     Ascend910           | OK            | 170.1       35                0    / 0             |
+2026-03-03T23:50:35.7653071Z | 0     8                   | 0000:8D:00.0  | 0           0    / 0          3165 / 65536         |
+2026-03-03T23:50:35.7653500Z +------------------------------------------------------------------------------------------------+
+2026-03-03T23:50:35.7653960Z | 4     Ascend910           | OK            | -           37                0    / 0             |
+2026-03-03T23:50:35.7654365Z | 1     9                   | 0000:8F:00.0  | 0           0    / 0          2886 / 65536         |
+2026-03-03T23:50:35.7654766Z +===========================+===============+====================================================+
+2026-03-03T23:50:35.7655172Z | 5     Ascend910           | OK            | 163.6       34                0    / 0             |
+2026-03-03T23:50:35.7655665Z | 0     10                  | 0000:89:00.0  | 0           0    / 0          3151 / 65536         |
+2026-03-03T23:50:35.7656202Z +------------------------------------------------------------------------------------------------+
+2026-03-03T23:50:35.7656611Z | 5     Ascend910           | OK            | -           35                0    / 0             |
+2026-03-03T23:50:35.7657050Z | 1     11                  | 0000:8B:00.0  | 0           0    / 0          2894 / 65536         |
+2026-03-03T23:50:36.0657978Z +===========================+===============+====================================================+
+2026-03-03T23:50:36.0658485Z | 6     Ascend910           | OK            | 170.8       36                0    / 0             |
+2026-03-03T23:50:36.0658945Z | 0     12                  | 0000:85:00.0  | 0           0    / 0          3163 / 65536         |
+2026-03-03T23:50:36.0659325Z +------------------------------------------------------------------------------------------------+
+2026-03-03T23:50:36.0659762Z | 6     Ascend910           | OK            | -           35                0    / 0             |
+2026-03-03T23:50:36.0660122Z | 1     13                  | 0000:87:00.0  | 0           0    / 0          2885 / 65536         |
+2026-03-03T23:50:36.0660563Z +===========================+===============+====================================================+
+2026-03-03T23:50:36.0660961Z | 7     Ascend910           | OK            | 169.8       36                0    / 0             |
+2026-03-03T23:50:36.0661364Z | 0     14                  | 0000:81:00.0  | 0           0    / 0          3160 / 65536         |
+2026-03-03T23:50:36.0661837Z +------------------------------------------------------------------------------------------------+
+2026-03-03T23:50:36.0662309Z | 7     Ascend910           | OK            | -           36                0    / 0             |
+2026-03-03T23:50:36.0662701Z | 1     15                  | 0000:83:00.0  | 0           0    / 0          2885 / 65536         |
+2026-03-03T23:50:36.0663054Z +===========================+===============+====================================================+
+2026-03-03T23:50:36.0663390Z +---------------------------+---------------+----------------------------------------------------+
+2026-03-03T23:50:36.0663855Z | NPU     Chip              | Process id    | Process name             | Process memory(MB)      |
+2026-03-03T23:50:36.0664382Z +===========================+===============+====================================================+
+2026-03-03T23:50:36.0664764Z | No running processes found in NPU 0                                                            |
+2026-03-03T23:50:36.0665166Z +===========================+===============+====================================================+
+2026-03-03T23:50:36.0665563Z | No running processes found in NPU 1                                                            |
+2026-03-03T23:50:36.0665923Z +===========================+===============+====================================================+
+2026-03-03T23:50:36.0666306Z | No running processes found in NPU 2                                                            |
+2026-03-03T23:50:36.0666803Z +===========================+===============+====================================================+
+2026-03-03T23:50:36.0667200Z | No running processes found in NPU 3                                                            |
+2026-03-03T23:50:36.0667580Z +===========================+===============+====================================================+
+2026-03-03T23:50:36.0667956Z | No running processes found in NPU 4                                                            |
+2026-03-03T23:50:36.0668305Z +===========================+===============+====================================================+
+2026-03-03T23:50:36.0668692Z | No running processes found in NPU 5                                                            |
+2026-03-03T23:50:36.0669063Z +===========================+===============+====================================================+
+2026-03-03T23:50:36.0669512Z | No running processes found in NPU 6                                                            |
+2026-03-03T23:50:36.0669930Z +===========================+===============+====================================================+
+2026-03-03T23:50:36.0670404Z | No running processes found in NPU 7                                                            |
+2026-03-03T23:50:36.0670813Z +===========================+===============+====================================================+
+2026-03-03T23:50:36.0718006Z package_name=Ascend-cann-toolkit
+2026-03-03T23:50:36.0718270Z version=8.5.1
+2026-03-03T23:50:36.0718521Z innerversion=V100R001C25SPC002B220
+2026-03-03T23:50:36.0718874Z compatible_version=[V100R001C15],[V100R001C18],[V100R001C19],[V100R001C20],[V100R001C21],[V100R001C23]
+2026-03-03T23:50:36.0719266Z arch=aarch64
+2026-03-03T23:50:36.0719482Z os=linux
+2026-03-03T23:50:36.0719659Z path=/usr/local/Ascend/cann-8.5.1
+2026-03-03T23:50:36.4998261Z ##[group]Run echo "Installed vLLM-related Python packages:"
+2026-03-03T23:50:36.4998744Z [36;1mecho "Installed vLLM-related Python packages:"[0m
+2026-03-03T23:50:36.4999069Z [36;1mpip list | grep vllm || echo "No vllm packages found."[0m
+2026-03-03T23:50:36.4999361Z [36;1m[0m
+2026-03-03T23:50:36.4999551Z [36;1mecho ""[0m
+2026-03-03T23:50:36.4999790Z [36;1mecho "============================"[0m
+2026-03-03T23:50:36.5000036Z [36;1mecho "vLLM Git information"[0m
+2026-03-03T23:50:36.5000368Z [36;1mecho "============================"[0m
+2026-03-03T23:50:36.5000802Z [36;1mcd vllm[0m
+2026-03-03T23:50:36.5001007Z [36;1mif [ -d .git ]; then[0m
+2026-03-03T23:50:36.5001334Z [36;1m  echo "Branch:      $(git rev-parse --abbrev-ref HEAD)"[0m
+2026-03-03T23:50:36.5001648Z [36;1m  echo "Commit hash: $(git rev-parse HEAD)"[0m
+2026-03-03T23:50:36.5002099Z [36;1m  echo "Author:      $(git log -1 --pretty=format:'%an <%ae>')"[0m
+2026-03-03T23:50:36.5002566Z [36;1m  echo "Date:        $(git log -1 --pretty=format:'%ad' --date=iso)"[0m
+2026-03-03T23:50:36.5002926Z [36;1m  echo "Message:     $(git log -1 --pretty=format:'%s')"[0m
+2026-03-03T23:50:36.5003324Z [36;1m  echo "Tags:        $(git tag --points-at HEAD || echo 'None')"[0m
+2026-03-03T23:50:36.5003661Z [36;1m  echo "Remote:      $(git remote -v | head -n1)"[0m
+2026-03-03T23:50:36.5003945Z [36;1m  echo ""[0m
+2026-03-03T23:50:36.5004113Z [36;1melse[0m
+2026-03-03T23:50:36.5004369Z [36;1m  echo "No .git directory found in vllm"[0m
+2026-03-03T23:50:36.5004674Z [36;1mfi[0m
+2026-03-03T23:50:36.5004874Z [36;1mcd ..[0m
+2026-03-03T23:50:36.5005101Z [36;1m[0m
+2026-03-03T23:50:36.5005272Z [36;1mecho ""[0m
+2026-03-03T23:50:36.5005486Z [36;1mecho "============================"[0m
+2026-03-03T23:50:36.5005759Z [36;1mecho "vLLM-Ascend Git information"[0m
+2026-03-03T23:50:36.5006132Z [36;1mecho "============================"[0m
+2026-03-03T23:50:36.5006377Z [36;1mcd vllm-ascend[0m
+2026-03-03T23:50:36.5006649Z [36;1mif [ -d .git ]; then[0m
+2026-03-03T23:50:36.5006927Z [36;1m  echo "Branch:      $(git rev-parse --abbrev-ref HEAD)"[0m
+2026-03-03T23:50:36.5007279Z [36;1m  echo "Commit hash: $(git rev-parse HEAD)"[0m
+2026-03-03T23:50:36.5007618Z [36;1m  echo "Author:      $(git log -1 --pretty=format:'%an <%ae>')"[0m
+2026-03-03T23:50:36.5008033Z [36;1m  echo "Date:        $(git log -1 --pretty=format:'%ad' --date=iso)"[0m
+2026-03-03T23:50:36.5008413Z [36;1m  echo "Message:     $(git log -1 --pretty=format:'%s')"[0m
+2026-03-03T23:50:36.5008730Z [36;1m  echo "Tags:        $(git tag --points-at HEAD || echo 'None')"[0m
+2026-03-03T23:50:36.5009096Z [36;1m  echo "Remote:      $(git remote -v | head -n1)"[0m
+2026-03-03T23:50:36.5009389Z [36;1m  echo ""[0m
+2026-03-03T23:50:36.5009565Z [36;1melse[0m
+2026-03-03T23:50:36.5009827Z [36;1m  echo "No .git directory found in vllm-ascend"[0m
+2026-03-03T23:50:36.5010082Z [36;1mfi[0m
+2026-03-03T23:50:36.5010272Z [36;1mcd ..[0m
+2026-03-03T23:50:36.5010761Z shell: bash -el {0}
+2026-03-03T23:50:36.5011125Z env:
+2026-03-03T23:50:36.5011333Z   HF_HUB_OFFLINE: 1
+2026-03-03T23:50:36.5011613Z   VLLM_USE_MODELSCOPE: true
+2026-03-03T23:50:36.5011852Z ##[endgroup]
+2026-03-03T23:50:36.5144038Z ##[group]Run '/home/runner/k8s/index.js'
+2026-03-03T23:50:36.5145024Z shell: /home/runner/externals/node20/bin/node {0}
+2026-03-03T23:50:36.5145343Z ##[endgroup]
+2026-03-03T23:50:36.8655740Z (node:116) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-03-03T23:50:36.8656534Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-03-03T23:50:48.7918935Z Installed vLLM-related Python packages:
+2026-03-03T23:50:49.6623263Z ais_bench_benchmark               3.0.20250930               /vllm-workspace/vllm-ascend/benchmark
+2026-03-03T23:50:49.6623795Z vllm                              0.16.0+empty               /vllm-workspace/vllm
+2026-03-03T23:50:49.6624646Z vllm_ascend                       0.15.0rc2.dev34+g2064afe38 /vllm-workspace/vllm-ascend
+2026-03-03T23:50:49.6624972Z 
+2026-03-03T23:50:49.6625058Z ============================
+2026-03-03T23:50:49.6625308Z vLLM Git information
+2026-03-03T23:50:49.6625556Z ============================
+2026-03-03T23:50:49.6873495Z Branch:      HEAD
+2026-03-03T23:50:49.6894968Z Commit hash: 89a77b10846fd96273cce78d86d2556ea582d26e
+2026-03-03T23:50:49.6977985Z Author:      Andreas Karatzas <akaratza@amd.com>
+2026-03-03T23:50:49.7000526Z Date:        2026-02-12 12:47:34 -0600
+2026-03-03T23:50:49.7023046Z Message:     [ROCm][CI] Pin TorchCodec to v0.10.0 for ROCm compatibility (#34447)
+2026-03-03T23:50:49.7073409Z Tags:        v0.16.0
+2026-03-03T23:50:49.7078030Z Remote:      origin	https://gh-proxy.test.osinfra.cn/https://github.com/vllm-project/vllm.git (fetch)
+2026-03-03T23:50:49.7078328Z 
+2026-03-03T23:50:49.7078343Z 
+2026-03-03T23:50:49.7078444Z ============================
+2026-03-03T23:50:49.7078748Z vLLM-Ascend Git information
+2026-03-03T23:50:49.7078965Z ============================
+2026-03-03T23:50:49.7131703Z Branch:      main
+2026-03-03T23:50:49.7152175Z Commit hash: 2064afe38054c5441b3c5778314fc810bd1eafa6
+2026-03-03T23:50:49.7292387Z Author:      Shaoxu Cheng <2906339855@qq.com>
+2026-03-03T23:50:49.7292674Z Date:        2026-03-03 15:57:26 +0800
+2026-03-03T23:50:49.7292982Z Message:     [300I][Bugfix] fix unquant model weight nd2nz error (#6851)
+2026-03-03T23:50:49.7636191Z Tags:        
+2026-03-03T23:50:49.7636607Z Remote:      origin	https://gh-proxy.test.osinfra.cn/https://github.com/vllm-project/vllm-ascend (fetch)
+2026-03-03T23:50:49.7636934Z 
+2026-03-03T23:50:50.2633754Z ##[group]Run apt-get update && apt-get -y install clang-15
+2026-03-03T23:50:50.2634219Z [36;1mapt-get update && apt-get -y install clang-15[0m
+2026-03-03T23:50:50.2634661Z [36;1mupdate-alternatives --install /usr/bin/clang clang /usr/bin/clang-15 20[0m
+2026-03-03T23:50:50.2635110Z [36;1mupdate-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-15 20[0m
+2026-03-03T23:50:50.2635603Z shell: bash -l {0}
+2026-03-03T23:50:50.2635816Z env:
+2026-03-03T23:50:50.2636026Z   HF_HUB_OFFLINE: 1
+2026-03-03T23:50:50.2636273Z   VLLM_USE_MODELSCOPE: true
+2026-03-03T23:50:50.2636524Z ##[endgroup]
+2026-03-03T23:50:50.2733351Z ##[group]Run '/home/runner/k8s/index.js'
+2026-03-03T23:50:50.2734388Z shell: /home/runner/externals/node20/bin/node {0}
+2026-03-03T23:50:50.2734658Z ##[endgroup]
+2026-03-03T23:50:50.6260109Z (node:161) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-03-03T23:50:50.6260841Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-03-03T23:51:02.7724968Z Get:1 http://ports.ubuntu.com/ubuntu-ports jammy InRelease [270 kB]
+2026-03-03T23:51:04.3078509Z Get:2 http://ports.ubuntu.com/ubuntu-ports jammy-updates InRelease [128 kB]
+2026-03-03T23:51:04.6853387Z Get:3 http://ports.ubuntu.com/ubuntu-ports jammy-backports InRelease [127 kB]
+2026-03-03T23:51:05.0608315Z Get:4 http://ports.ubuntu.com/ubuntu-ports jammy-security InRelease [129 kB]
+2026-03-03T23:51:05.4395491Z Get:5 http://ports.ubuntu.com/ubuntu-ports jammy/universe arm64 Packages [17.2 MB]
+2026-03-03T23:51:07.8062345Z Get:6 http://ports.ubuntu.com/ubuntu-ports jammy/multiverse arm64 Packages [224 kB]
+2026-03-03T23:51:07.8063037Z Get:7 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 Packages [1758 kB]
+2026-03-03T23:51:07.9441178Z Get:8 http://ports.ubuntu.com/ubuntu-ports jammy/restricted arm64 Packages [24.2 kB]
+2026-03-03T23:51:07.9487761Z Get:9 http://ports.ubuntu.com/ubuntu-ports jammy-updates/multiverse arm64 Packages [47.7 kB]
+2026-03-03T23:51:07.9550542Z Get:10 http://ports.ubuntu.com/ubuntu-ports jammy-updates/restricted arm64 Packages [6700 kB]
+2026-03-03T23:51:08.5593923Z Get:11 http://ports.ubuntu.com/ubuntu-ports jammy-updates/universe arm64 Packages [1659 kB]
+2026-03-03T23:51:08.7147282Z Get:12 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 Packages [3895 kB]
+2026-03-03T23:51:09.0582154Z Get:13 http://ports.ubuntu.com/ubuntu-ports jammy-backports/main arm64 Packages [83.5 kB]
+2026-03-03T23:51:09.0648485Z Get:14 http://ports.ubuntu.com/ubuntu-ports jammy-backports/universe arm64 Packages [35.3 kB]
+2026-03-03T23:51:09.0671656Z Get:15 http://ports.ubuntu.com/ubuntu-ports jammy-security/universe arm64 Packages [1355 kB]
+2026-03-03T23:51:09.1943179Z Get:16 http://ports.ubuntu.com/ubuntu-ports jammy-security/restricted arm64 Packages [6492 kB]
+2026-03-03T23:51:09.7705951Z Get:17 http://ports.ubuntu.com/ubuntu-ports jammy-security/main arm64 Packages [3572 kB]
+2026-03-03T23:51:10.0856618Z Get:18 http://ports.ubuntu.com/ubuntu-ports jammy-security/multiverse arm64 Packages [41.2 kB]
+2026-03-03T23:51:10.2399938Z Fetched 43.7 MB in 8s (5417 kB/s)
+2026-03-03T23:51:11.1995583Z Reading package lists...
+2026-03-03T23:51:12.1865152Z Reading package lists...
+2026-03-03T23:51:12.3927023Z Building dependency tree...
+2026-03-03T23:51:12.3933462Z Reading state information...
+2026-03-03T23:51:12.6412155Z clang-15 is already the newest version (1:15.0.7-0ubuntu0.22.04.3).
+2026-03-03T23:51:12.6412644Z The following packages were automatically installed and are no longer required:
+2026-03-03T23:51:12.6414883Z   autoconf automake autotools-dev file javascript-common libboost-atomic-dev
+2026-03-03T23:51:12.6415459Z   libboost-atomic1.74-dev libboost-atomic1.74.0 libboost-chrono-dev
+2026-03-03T23:51:12.6415866Z   libboost-chrono1.74-dev libboost-chrono1.74.0 libboost-container-dev
+2026-03-03T23:51:12.6416584Z   libboost-container1.74-dev libboost-container1.74.0 libboost-context-dev
+2026-03-03T23:51:12.6417038Z   libboost-context1.74-dev libboost-context1.74.0 libboost-coroutine-dev
+2026-03-03T23:51:12.6417609Z   libboost-coroutine1.74-dev libboost-coroutine1.74.0 libboost-date-time-dev
+2026-03-03T23:51:12.6418036Z   libboost-date-time1.74-dev libboost-date-time1.74.0 libboost-dev
+2026-03-03T23:51:12.6418441Z   libboost-exception-dev libboost-exception1.74-dev libboost-fiber-dev
+2026-03-03T23:51:12.6418876Z   libboost-fiber1.74-dev libboost-fiber1.74.0 libboost-filesystem-dev
+2026-03-03T23:51:12.6419268Z   libboost-filesystem1.74-dev libboost-filesystem1.74.0 libboost-graph-dev
+2026-03-03T23:51:12.6419731Z   libboost-graph-parallel-dev libboost-graph-parallel1.74-dev
+2026-03-03T23:51:12.6420214Z   libboost-graph-parallel1.74.0 libboost-graph1.74-dev libboost-graph1.74.0
+2026-03-03T23:51:12.6420648Z   libboost-iostreams-dev libboost-iostreams1.74-dev libboost-iostreams1.74.0
+2026-03-03T23:51:12.6421115Z   libboost-locale-dev libboost-locale1.74-dev libboost-locale1.74.0
+2026-03-03T23:51:12.6421511Z   libboost-log-dev libboost-log1.74-dev libboost-log1.74.0 libboost-math-dev
+2026-03-03T23:51:12.6421915Z   libboost-math1.74-dev libboost-math1.74.0 libboost-mpi1.74.0
+2026-03-03T23:51:12.6422459Z   libboost-nowide-dev libboost-nowide1.74-dev libboost-nowide1.74.0
+2026-03-03T23:51:12.6422839Z   libboost-numpy-dev libboost-numpy1.74-dev libboost-numpy1.74.0
+2026-03-03T23:51:12.6423409Z   libboost-program-options-dev libboost-program-options1.74-dev
+2026-03-03T23:51:12.6423838Z   libboost-program-options1.74.0 libboost-python-dev libboost-python1.74-dev
+2026-03-03T23:51:12.6424276Z   libboost-python1.74.0 libboost-random-dev libboost-random1.74-dev
+2026-03-03T23:51:12.6424658Z   libboost-random1.74.0 libboost-regex-dev libboost-regex1.74-dev
+2026-03-03T23:51:12.6425022Z   libboost-regex1.74.0 libboost-serialization-dev
+2026-03-03T23:51:12.6425375Z   libboost-serialization1.74-dev libboost-serialization1.74.0
+2026-03-03T23:51:12.6425723Z   libboost-stacktrace-dev libboost-stacktrace1.74-dev
+2026-03-03T23:51:12.6426120Z   libboost-stacktrace1.74.0 libboost-system-dev libboost-system1.74-dev
+2026-03-03T23:51:12.6426511Z   libboost-system1.74.0 libboost-test-dev libboost-test1.74-dev
+2026-03-03T23:51:12.6426913Z   libboost-test1.74.0 libboost-thread-dev libboost-thread1.74-dev
+2026-03-03T23:51:12.6427270Z   libboost-thread1.74.0 libboost-timer-dev libboost-timer1.74-dev
+2026-03-03T23:51:12.6427742Z   libboost-timer1.74.0 libboost-tools-dev libboost-type-erasure-dev
+2026-03-03T23:51:12.6428182Z   libboost-type-erasure1.74-dev libboost-type-erasure1.74.0 libboost-wave-dev
+2026-03-03T23:51:12.6428569Z   libboost-wave1.74-dev libboost-wave1.74.0 libboost1.74-dev
+2026-03-03T23:51:12.6428986Z   libboost1.74-tools-dev libcaf-openmpi-3 libcoarrays-dev libevent-2.1-7
+2026-03-03T23:51:12.6429405Z   libevent-core-2.1-7 libevent-dev libevent-extra-2.1-7 libevent-openssl-2.1-7
+2026-03-03T23:51:12.6429930Z   libevent-pthreads-2.1-7 libhwloc-dev libjs-jquery libjs-jquery-ui
+2026-03-03T23:51:12.6430486Z   libjs-sphinxdoc libjs-underscore libltdl-dev libltdl7 libmagic-mgc libmagic1
+2026-03-03T23:51:12.6430886Z   libopenmpi3 libpmix-dev libpmix2 libsigsegv2 libtool libucx0 m4
+2026-03-03T23:51:12.6437909Z   openmpi-common python3-dev python3-distutils python3-lib2to3 python3.10-dev
+2026-03-03T23:51:12.6438319Z Use 'apt autoremove' to remove them.
+2026-03-03T23:51:12.6744194Z 0 upgraded, 0 newly installed, 0 to remove and 2 not upgraded.
+2026-03-03T23:51:13.1607538Z ##[group]Run if [[ -z "" && -z "DeepSeek-V3.2-W8A8.yaml" ]]; then
+2026-03-03T23:51:13.1607973Z [36;1mif [[ -z "" && -z "DeepSeek-V3.2-W8A8.yaml" ]]; then[0m
+2026-03-03T23:51:13.1608334Z [36;1m  echo "Error: Either 'tests' or 'config_file_path' must be provided."[0m
+2026-03-03T23:51:13.1608673Z [36;1m  exit 1[0m
+2026-03-03T23:51:13.1608897Z [36;1mfi[0m
+2026-03-03T23:51:13.1609213Z shell: bash -el {0}
+2026-03-03T23:51:13.1609433Z env:
+2026-03-03T23:51:13.1609627Z   HF_HUB_OFFLINE: 1
+2026-03-03T23:51:13.1609909Z   VLLM_USE_MODELSCOPE: true
+2026-03-03T23:51:13.1610121Z ##[endgroup]
+2026-03-03T23:51:13.1757356Z ##[group]Run '/home/runner/k8s/index.js'
+2026-03-03T23:51:13.1758102Z shell: /home/runner/externals/node20/bin/node {0}
+2026-03-03T23:51:13.1758353Z ##[endgroup]
+2026-03-03T23:51:13.5647751Z (node:222) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-03-03T23:51:13.5648562Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-03-03T23:51:25.5245695Z ##[group]Run echo "Running YAML-driven test with config: DeepSeek-V3.2-W8A8.yaml"
+2026-03-03T23:51:25.5246170Z [36;1mecho "Running YAML-driven test with config: DeepSeek-V3.2-W8A8.yaml"[0m
+2026-03-03T23:51:25.5246649Z [36;1mpytest -sv tests/e2e/nightly/single_node/models/scripts/test_single_node.py[0m
+2026-03-03T23:51:25.5247137Z shell: bash -el {0}
+2026-03-03T23:51:25.5247375Z env:
+2026-03-03T23:51:25.5247598Z   HF_HUB_OFFLINE: 1
+2026-03-03T23:51:25.5247795Z   VLLM_USE_MODELSCOPE: true
+2026-03-03T23:51:25.5248053Z   VLLM_WORKER_MULTIPROC_METHOD: spawn
+2026-03-03T23:51:25.5248308Z   VLLM_CI_RUNNER: linux-aarch64-a3-16
+2026-03-03T23:51:25.5248589Z   CONFIG_YAML_PATH: DeepSeek-V3.2-W8A8.yaml
+2026-03-03T23:51:25.5248857Z ##[endgroup]
+2026-03-03T23:51:25.5391955Z ##[group]Run '/home/runner/k8s/index.js'
+2026-03-03T23:51:25.5393102Z shell: /home/runner/externals/node20/bin/node {0}
+2026-03-03T23:51:25.5393380Z ##[endgroup]
+2026-03-03T23:51:25.8881305Z (node:290) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-03-03T23:51:25.8882191Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-03-03T23:51:37.6716400Z Running YAML-driven test with config: DeepSeek-V3.2-W8A8.yaml
+2026-03-03T23:51:38.1834569Z ============================= test session starts ==============================
+2026-03-03T23:51:38.1835068Z platform linux -- Python 3.11.14, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/python3.11.14/bin/python3
+2026-03-03T23:51:38.1835545Z cachedir: .pytest_cache
+2026-03-03T23:51:38.1835835Z rootdir: /vllm-workspace/vllm-ascend
+2026-03-03T23:51:38.1836097Z configfile: pyproject.toml
+2026-03-03T23:51:38.1836421Z plugins: cov-7.0.0, asyncio-1.3.0, mock-3.15.1, anyio-4.12.1
+2026-03-03T23:51:38.1836925Z asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+2026-03-03T23:51:38.2209415Z collecting ... collected 0 items
+2026-03-03T23:51:38.2209900Z ERROR: file or directory not found: tests/e2e/nightly/single_node/models/scripts/test_single_node.py
+2026-03-03T23:51:38.2210276Z 
+2026-03-03T23:51:38.2210279Z 
+2026-03-03T23:51:38.2210410Z ============================ no tests ran in 0.00s =============================
+2026-03-03T23:51:38.3255942Z ##[error]Error: failed to run script step: Error: command terminated with non-zero exit code: command terminated with exit code 4
+2026-03-03T23:51:38.3295608Z ##[error]Process completed with exit code 1.
+2026-03-03T23:51:38.3381498Z ##[error]Executing the custom container implementation failed. Please contact your self hosted runner administrator.
+2026-03-03T23:51:38.3425330Z ##[group]Run '/home/runner/k8s/index.js'
+2026-03-03T23:51:38.3426208Z shell: /home/runner/externals/node20/bin/node {0}
+2026-03-03T23:51:38.3426514Z ##[endgroup]
+2026-03-03T23:51:38.8690423Z Cleaning up orphan processes
