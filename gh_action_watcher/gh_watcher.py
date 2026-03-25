@@ -181,6 +181,8 @@ def init_db(logs_dir: Path) -> sqlite3.Connection:
     cols = {r[1] for r in conn.execute("PRAGMA table_info(results)").fetchall()}
     if "run_id" not in cols:
         conn.execute("ALTER TABLE results ADD COLUMN run_id TEXT")
+    if "error_type" not in cols:
+        conn.execute("ALTER TABLE results ADD COLUMN error_type TEXT")
     conn.commit()
     return conn
 
@@ -219,7 +221,7 @@ def export_csv(logs_dir: Path, conn: sqlite3.Connection):
     ]
     for keyword in keywords:
         rows = conn.execute(
-            "SELECT run_time, success, commit_sha, job_id, throughput, run_id "
+            "SELECT run_time, success, commit_sha, job_id, throughput, run_id, error_type "
             "FROM results WHERE keyword = ? ORDER BY run_time",
             (keyword,),
         ).fetchall()
@@ -234,9 +236,10 @@ def export_csv(logs_dir: Path, conn: sqlite3.Connection):
                     "job_id",
                     "Output Token Throughput",
                     "job_link",
+                    "错误类型",
                 ]
             )
-            for run_time, success, commit_sha, job_id, throughput, run_id in rows:
+            for run_time, success, commit_sha, job_id, throughput, run_id, error_type in rows:
                 job_link = (
                     f"https://github.com/{REPO}/actions/runs/{run_id}/job/{job_id}"
                     if run_id
@@ -250,6 +253,7 @@ def export_csv(logs_dir: Path, conn: sqlite3.Connection):
                         job_id,
                         throughput if throughput is not None else "",
                         job_link,
+                        error_type or "",
                     ]
                 )
         logger.info(f"Exported {len(rows)} rows → {csv_path.name}")
@@ -384,13 +388,23 @@ def fetch(runs: int, workers: int):
 
 
 ANALYZE_PROMPT = """\
-You are a CI failure analyst. Below is a GitHub Actions job log that ended in failure.
-Identify the root cause concisely (≤5 bullet points), then suggest the most likely fix.
-Focus on the actual error, not setup noise.
+你是 CI 故障分析师。下面是一份以失败告终的 GitHub Actions 日志。
 
-Log:
+第一行必须是以下三种之一：
+类型: 代码问题
+类型: 性能精度不达标
+类型: 设备环境问题
+
+然后给出根本原因（≤5 条）和最可能的修复方案，用中文输出。
+
+日志：
 {log}
 """
+
+
+def _parse_error_type(analysis: str) -> str:
+    match = re.search(r"类型[:：]\s*(.+)", analysis)
+    return match.group(1).strip() if match else ""
 
 
 def _find_log_file(logs_dir: Path, job_id: str) -> Path | None:
@@ -400,18 +414,56 @@ def _find_log_file(logs_dir: Path, job_id: str) -> Path | None:
 
 
 def _call_ai(client: OpenAI, model: str, log_tail: str) -> str:
-    response = client.chat.completions.create(
-        model=model,
-        messages=[{"role": "user", "content": ANALYZE_PROMPT.format(log=log_tail)}],
-    )
-    return response.choices[0].message.content or ""
+    import time
+    from openai import RateLimitError
+
+    for attempt in range(6):
+        try:
+            response = client.chat.completions.create(
+                model=model,
+                messages=[{"role": "user", "content": ANALYZE_PROMPT.format(log=log_tail)}],
+            )
+            content = response.choices[0].message.content or ""
+            return re.sub(r"<think>.*?</think>", "", content, flags=re.DOTALL).strip()
+        except RateLimitError:
+            wait = 2 ** attempt * 5  # 5, 10, 20, 40, 80, 160s
+            logger.warning(f"Rate limited, retrying in {wait}s (attempt {attempt + 1}/6)...")
+            time.sleep(wait)
+    raise RuntimeError("AI call failed after 6 retries due to rate limit")
+
+
+def _analyze_job(
+    client: OpenAI,
+    model: str,
+    logs_dir: Path,
+    kw: str,
+    job_id: str,
+    run_time: str,
+    commit_sha: str,
+    tail: int,
+) -> tuple[str, str, str, str, str | None]:
+    """Analyze a single job; returns (kw, job_id, run_time, commit_sha, analysis_or_None)."""
+    log_file = _find_log_file(logs_dir, job_id)
+    if not log_file:
+        return kw, job_id, run_time, commit_sha, None
+
+    analysis_file = log_file.with_suffix(log_file.suffix + ".analysis")
+    if analysis_file.exists():
+        return kw, job_id, run_time, commit_sha, analysis_file.read_text(encoding="utf-8")
+
+    log_lines = log_file.read_text(encoding="utf-8", errors="replace").splitlines()
+    log_tail = "\n".join(log_lines[-tail:])
+    analysis = _call_ai(client, model, log_tail)
+    analysis_file.write_text(analysis, encoding="utf-8")
+    return kw, job_id, run_time, commit_sha, analysis
 
 
 @main.command()
 @click.option("--date", "-d", default=None, help="Filter by date (YYYY-MM-DD); defaults to latest available")
 @click.option("--keyword", "-k", default=None, help="Filter by job keyword")
 @click.option("--tail", "-t", default=300, show_default=True, help="Last N log lines sent to AI")
-def analyze(date: str | None, keyword: str | None, tail: int):
+@click.option("--workers", "-w", default=2, show_default=True, help="Concurrent AI calls")
+def analyze(date: str | None, keyword: str | None, tail: int, workers: int):
     """Analyze failed CI logs with AI."""
     script_dir = Path(__file__).parent.resolve()
     env_path = script_dir.parent / ".env"
@@ -435,6 +487,11 @@ def analyze(date: str | None, keyword: str | None, tail: int):
         raise SystemExit(1)
 
     conn = sqlite3.connect(db_path)
+    # migrate
+    cols = {r[1] for r in conn.execute("PRAGMA table_info(results)").fetchall()}
+    if "error_type" not in cols:
+        conn.execute("ALTER TABLE results ADD COLUMN error_type TEXT")
+        conn.commit()
 
     query = "SELECT keyword, job_id, run_time, commit_sha FROM results WHERE success = '❌'"
     params: list = []
@@ -444,44 +501,49 @@ def analyze(date: str | None, keyword: str | None, tail: int):
     if date:
         query += " AND run_time LIKE ?"
         params.append(f"{date}%")
-    else:
-        # latest date with failures
-        latest = conn.execute(
-            "SELECT substr(run_time,1,10) FROM results WHERE success='❌' ORDER BY run_time DESC LIMIT 1"
-        ).fetchone()
-        if latest:
-            query += " AND run_time LIKE ?"
-            params.append(f"{latest[0]}%")
 
     query += " ORDER BY run_time DESC"
     rows = conn.execute(query, params).fetchall()
-    conn.close()
 
     if not rows:
         logger.info("No failed jobs found for the given filters.")
+        conn.close()
         return
 
-    logger.info(f"Found {len(rows)} failed job(s) to analyze")
+    logger.info(f"Found {len(rows)} failed job(s) to analyze with {workers} workers")
 
-    for kw, job_id, run_time, commit_sha in rows:
+    results: list[tuple[str, str, str, str, str | None]] = []
+    with ThreadPoolExecutor(max_workers=workers) as pool:
+        futures = {
+            pool.submit(_analyze_job, client, model, logs_dir, kw, job_id, run_time, commit_sha, tail): job_id
+            for kw, job_id, run_time, commit_sha in rows
+        }
+        for fut in as_completed(futures):
+            results.append(fut.result())
+
+    results.sort(key=lambda r: r[2], reverse=True)
+
+    for kw, job_id, run_time, commit_sha, analysis in results:
         log_file = _find_log_file(logs_dir, job_id)
-        if not log_file:
-            logger.warning(f"Log file not found for job {job_id} — skipping")
-            continue
-
-        log_lines = log_file.read_text(encoding="utf-8", errors="replace").splitlines()
-        log_tail = "\n".join(log_lines[-tail:])
-
         click.echo(f"\n{'='*70}")
         click.echo(f"Job:    {kw}")
         click.echo(f"JobID:  {job_id}")
         click.echo(f"Date:   {run_time[:10]}  Commit: {commit_sha[:7]}")
-        click.echo(f"Log:    {log_file}")
+        if log_file:
+            click.echo(f"Log:    {log_file}")
         click.echo("─" * 70)
+        if analysis is None:
+            click.echo("(log file not found — skipped)")
+        else:
+            error_type = _parse_error_type(analysis)
+            conn.execute(
+                "UPDATE results SET error_type = ? WHERE job_id = ?",
+                (error_type, job_id),
+            )
+            click.echo(analysis)
 
-        logger.info(f"Calling AI for job {job_id}...")
-        analysis = _call_ai(client, model, log_tail)
-        click.echo(analysis)
+    conn.commit()
+    conn.close()
 
 
 if __name__ == "__main__":
