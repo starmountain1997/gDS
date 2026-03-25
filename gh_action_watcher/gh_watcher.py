@@ -21,8 +21,8 @@ REPO = "vllm-project/vllm-ascend"
 WORKFLOW_NAME = "schedule_nightly_test_a3.yaml"
 TARGET_JOBS = [
     "multi-node-dpsk3.2-2node",
-    "test_deepseek_v3_2_w8a8",
     "deepseek-v3.2-W8A8-EP",
+    "deepseek-v3-2-w8a8",
 ]
 
 
@@ -161,7 +161,7 @@ def save_log(
     return log_path
 
 
-def init_db(logs_dir: Path) -> sqlite3.Connection:
+def init_db(logs_dir: Path) -> None:
     """Initialize SQLite database."""
     db_path = logs_dir / "results.db"
     conn = sqlite3.connect(db_path)
@@ -184,7 +184,7 @@ def init_db(logs_dir: Path) -> sqlite3.Connection:
     if "error_type" not in cols:
         conn.execute("ALTER TABLE results ADD COLUMN error_type TEXT")
     conn.commit()
-    return conn
+    conn.close()
 
 
 def upsert_result(
@@ -199,7 +199,7 @@ def upsert_result(
 ):
     """Insert result into SQLite, ignoring duplicates."""
     conn.execute(
-        "INSERT OR IGNORE INTO results VALUES (?,?,?,?,?,?,?)",
+        "INSERT OR IGNORE INTO results (keyword, job_id, run_time, success, commit_sha, throughput, run_id) VALUES (?,?,?,?,?,?,?)",
         (
             keyword,
             str(job_id),
@@ -284,7 +284,8 @@ def fetch(runs: int, workers: int):
     logger.info("-" * 50)
 
     LOGS_DIR.mkdir(parents=True, exist_ok=True)
-    db = init_db(LOGS_DIR)
+    db_path = LOGS_DIR / "results.db"
+    init_db(LOGS_DIR)
 
     runs_data = get_recent_runs(runs)
     if not runs_data:
@@ -305,51 +306,51 @@ def fetch(runs: int, workers: int):
                 run_jobs.append((run, jobs))
 
     # Phase 2: fetch logs for all (run, job) pairs concurrently
-    tasks = [(run, job) for run, jobs in run_jobs for job in jobs]
+    def _process_job(run: dict, job: dict, _db_path: Path = db_path):
+        commit_sha = run.get("headSha", "")
+        run_date = run["createdAt"][:10]
+        matched_keyword = next(
+            (k for k in TARGET_JOBS if k in job.get("name", "")), ""
+        )
+        short_sha = commit_sha[:7] if commit_sha else str(run["databaseId"])
+        expected_log = (
+            LOGS_DIR / run_date
+            / f"{run_date}_{short_sha}_{matched_keyword}_{job['databaseId']}.log"
+        )
 
-    with ThreadPoolExecutor(max_workers=workers) as pool:
-        futures = {
-            pool.submit(get_job_log, run["databaseId"], job["databaseId"]): (run, job)
-            for run, job in tasks
-        }
-        for fut in as_completed(futures):
-            run, job = futures[fut]
-            log_content = fut.result()
-            commit_sha = run.get("headSha", "")
-            run_date = run["createdAt"][:10]
-            matched_keyword = next(
-                (k for k in TARGET_JOBS if k in job.get("name", "")), ""
-            )
-
-            output_token_throughput = None
+        if expected_log.exists():
+            logger.info(f"  {job['name']} log skipped (already exists)")
+            log_content = expected_log.read_text(encoding="utf-8", errors="replace")
+        else:
+            log_content = get_job_log(run["databaseId"], job["databaseId"])
             if log_content:
                 log_path = save_log(
-                    LOGS_DIR,
-                    run_date,
-                    run["databaseId"],
-                    job,
-                    log_content,
-                    matched_keyword,
-                    commit_sha,
+                    LOGS_DIR, run_date, run["databaseId"], job,
+                    log_content, matched_keyword, commit_sha,
                 )
-                if log_path is None:
-                    logger.info(f"  {job['name']} log skipped (already exists)")
-                else:
-                    logger.success(f"  Log saved: {log_path}")
-                output_token_throughput = extract_output_token_throughput(log_content)
+                logger.success(f"  Log saved: {log_path}")
 
-            upsert_result(
-                db,
-                matched_keyword,
-                EMOJI.get(job.get("conclusion", ""), "?"),
-                commit_sha,
-                run["createdAt"],
-                run["databaseId"],
-                job["databaseId"],
-                output_token_throughput,
-            )
+        output_token_throughput = extract_output_token_throughput(log_content) if log_content else None
+        thread_conn = sqlite3.connect(_db_path)
+        upsert_result(
+            thread_conn,
+            matched_keyword,
+            EMOJI.get(job.get("conclusion", ""), "?"),
+            commit_sha,
+            run["createdAt"],
+            run["databaseId"],
+            job["databaseId"],
+            output_token_throughput,
+        )
+        thread_conn.close()
 
-    export_csv(LOGS_DIR, db)
+    tasks = [(run, job) for run, jobs in run_jobs for job in jobs]
+    with ThreadPoolExecutor(max_workers=workers) as pool:
+        futures = {pool.submit(_process_job, run, job): (run, job) for run, job in tasks}
+        for fut in as_completed(futures):
+            fut.result()
+
+    export_csv(LOGS_DIR, sqlite3.connect(db_path))
 
     logger.info("Step 2: Adding changes to git")
     # The logs directory is relative to the git repository root.
