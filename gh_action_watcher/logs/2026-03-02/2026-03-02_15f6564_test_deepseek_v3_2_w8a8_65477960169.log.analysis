@@ -1,0 +1,15 @@
+类型: 设备环境问题
+
+根本原因：
+1. **CUDA图捕获配置不当**：使用了FULL_DECODE_ONLY模式并捕获6种不同的batch size [8, 16, 24, 32, 40, 48]，导致内存消耗过大，触发OOM或进程崩溃
+2. **NCCL同步未完成**：在捕获CUDA图前，部分NCCL集合通信操作尚未完成，导致图捕获失败
+3. **内存分配器冲突**：日志显示"Tensor not allocated by NPUCachingAllocator"，表明内存分配方式不一致，可能导致显存管理问题
+4. **gpu_memory_utilization过高**：设置为0.98，在捕获CUDA图时没有足够的预留内存
+5. **早期实验性功能**：FULL_DECODE_ONLY为实验性功能，文档明确指出可能在复杂场景下导致推理hang或OOM
+
+最可能的修复方案：
+1. **减少cudagraph_capture_sizes**：将捕获的batch size数量减少到1-2个，或使用更小的范围如[8, 16]
+2. **降低gpu_memory_utilization**：将0.98降至0.9或更低，为CUDA图捕获预留足够内存
+3. **改用REDUCED模式**：将"cudagraph_mode"从"FULL_DECODE_ONLY"改为"REDUCED"，避免捕获过多batch size
+4. **添加同步屏障**：在torch.compile之后、CUDA图捕获之前添加torch.cuda.synchronize()，确保NCCL操作完成
+5. **简化并行配置**：暂时禁用layer_sharding配置 ["q_b_proj", "o_proj"]，减少内存碎片化

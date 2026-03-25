@@ -1,0 +1,31 @@
+类型: 设备环境问题
+
+**根本原因（≤5 条）**  
+1. **Worker 进程因设备（GPU/NPU）不可见或驱动缺失而崩溃**——后台子进程在初始化时无法分配到所需的硬件资源，导致 `WorkerProc initialization failed`。  
+2. **W8A8 量化模型在目标平台（aarch64‑A3）上缺少对应 kernel 或算子实现**，导致在创建执行器时抛出异常。  
+3. **多节点网络配置/防火墙阻止了 Engine Core 之间的通信**，如 8080（health）或内部 RPC 端口被屏蔽，Worker 无法完成 `wait_for_ready`。  
+4. **容器镜像中缺少关键 Python/C++ 依赖（如 torch 扩展、vLLM 的 CUDA kernels）**，在子进程中 import 失败。  
+5. **测试配置的 `disaggregated_prefill`、`multi-node` 参数与当前 vLLM 版本不兼容**，在初始化阶段触发未捕获的异常。  
+
+**最可能的修复方案**  
+1. **确保硬件资源可见**  
+   - 在 Pod spec 中声明 `nvidia.com/gpu` 或对应的 NPU 资源（如 `huawei.com/npu`），并确认驱动已加载。  
+   - 使用 `kubectl exec <pod> -- nvidia-smi`（或 `npuctl`）验证设备是否被正确识别。  
+
+2. **检查量化支持**  
+   - 确认当前 vLLM commit 支持 `W8A8` 量化路径；若不支持，升级到最新稳定版或暂时在 CI 中关闭 `W8A8` 进行对比。  
+   - 如有自定义量化 kernel，确保已在镜像中编译并可被 `torch` 正确加载。  
+
+3. **网络连通性验证**  
+   - 在测试脚本执行前加入网络检测（如 `curl http://10.0.0.139:8080/health`），确保两端可互通。  
+   - 如有防火墙/网络策略，放行 `8080`、`7777`（或其他内部 RPC）端口，或在测试 namespace 使用 `kubectl label` 禁用网络策略进行验证。  
+
+4. **完善镜像依赖**  
+   - 在 Docker 构建阶段执行 `pip install -e .`（或对应 C++ 扩展的 `python setup.py install`），确保所有动态链接库被打包。  
+   - 如使用多阶段构建，务必把编译产物（如 `*.so`）复制到最终镜像。  
+
+5. **兼容性与日志改进**  
+   - 若 `disaggregated_prefill` 为实验特性，先在 CI 配置中将其关闭，或在 `multiproc_executor.py` 的 `wait_for_ready` 中捕获并打印子进程真实异常（`logging.exception(e)`），以便后续定位。  
+   - 增加 `VLLM_LOG_LEVEL=DEBUG` 环境变量，获取更详细的初始化日志。  
+
+通过上述步骤可定位到 Worker 进程真正的崩溃原因（设备缺失、量化不支持、网络不通或依赖缺失），并针对性修复，使 `test_multi_node` 能够在双节点环境下成功启动 vLLM Engine Core。

@@ -1,0 +1,15 @@
+类型: 代码问题
+
+根本原因（≤5 条）：
+1. **配置参数不兼容**：`cudagraph_capture_sizes` 设置为 `[3, 6, 9, 12]`，但 `tensor-parallel-size` 为 8。当启用 sequence parallelism 时，这些值必须为 `tp_size` 的倍数。
+2. **验证逻辑严格**：Pydantic 验证器在 `VllmConfig` 初始化时对 `cudagraph_capture_sizes` 进行了强制检查，确保所有值都是 `tp_size` 的倍数。
+3. **测试配置硬编码**：`test_deepseek_v3_2_w8a8.py` 中硬编码了 `cudagraph_capture_sizes` 参数，未根据 `tp_size` 动态调整。
+4. **模型架构警告**：日志显示 `DeepSeek-V3.2-W8A8` 使用了 `DeepseekV32ForCausalLM` 架构，相关的 `cudagraph` 配置可能与该架构的批处理需求不匹配。
+5. **CUDAGraph 模式冲突**：`FULL_DECODE_ONLY` 模式与当前的 batch size 配置存在冲突。
+
+最可能的修复方案：
+1. **修改测试配置**：将 `cudagraph_capture_sizes` 改为 `[8, 16, 24]` 或 `[8, 16, 24, 32]` 等 8 的倍数，以匹配 `tp_size=8`。
+2. **动态配置**：在测试代码中根据 `tp_size` 动态生成 `cudagraph_capture_sizes`，确保始终为 `tp_size` 的倍数。
+3. **调整 batch size**：如果必须使用 `[3, 6, 9, 12]`，则需要将 `tp_size` 改为 1 或 3，或禁用 sequence parallelism。
+4. **更新验证逻辑**：考虑在序列并行启用时自动调整 `cudagraph_capture_sizes`，而非直接抛出错误。
+5. **使用默认配置**：移除显式的 `--compilation-config`，使用 vLLM 的默认 `cudagraph` 配置，让系统自动选择合适的值。

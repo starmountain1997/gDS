@@ -1,0 +1,15 @@
+类型: 代码问题  
+
+**根本原因（≤5 条）**  
+1. **cudagraph_capture_sizes 与 tp_size 不匹配**：`cudagraph_capture_sizes` 为 `[3, 6, 9, 12]`，而 `tensor‑parallel‑size` 为 `8`，导致校验断言失败。  
+2. **序列并行（sequence‑parallel）被自动启用**：在启用 `tensor‑parallel‑size=8` 时，系统自动激活序列并行，导致捕获大小必须为 `tp_size` 的整数倍。  
+3. **测试配置硬编码了捕获大小**：测试脚本中直接写死了 `{"cudagraph_capture_sizes":[3, 6, 9, 12], ...}`，未根据实际的 `tp_size` 动态生成。  
+4. **vLLM 引擎在创建 `VllmConfig` 时进行严格的参数校验**，在检测到不满足条件后直接抛出 `ValidationError`，导致服务器启动失败。  
+5. **缺少对捕获大小的兼容性检查或自动调整机制**，使得用户在不满足条件的情况下无法继续执行。  
+
+**最可能的修复方案**  
+1. **修改测试的 `--compilation-config`**，将 `cudagraph_capture_sizes` 改为 `tp_size` 的倍数，例如 `[8, 16, 24]` 或更大的 8 的整数倍。  
+2. **如果业务上不需要序列并行**，在测试参数中显式关闭序列并行（例如设置 `Ulysses` 或 `ring` 等并行模式），从而避免对捕获大小的强制检查。  
+3. **在测试脚本中加入动态计算逻辑**：根据实际的 `tp_size` 自动生成合法的 `cudagraph_capture_sizes`，例如 `list(range(tp_size, tp_size*4+1, tp_size))`。  
+4. **在 CI 环境中统一 `tp_size` 与捕获大小的配置**：确保所有测试用例使用相同的 `tp_size`（如 8）并配套相应的捕获大小集合。  
+5. **若短期内难以修改测试**，可在 CI 中临时禁用 `cudagraph`（将 `cudagraph_mode` 设为 `NO_CUDA_GRAPH` 或直接不传入 `cudagraph_capture_sizes`），待捕获大小问题解决后再恢复。

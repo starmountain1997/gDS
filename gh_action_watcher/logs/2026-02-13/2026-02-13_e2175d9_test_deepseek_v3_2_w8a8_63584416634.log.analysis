@@ -1,0 +1,36 @@
+类型: 代码问题  
+
+根本原因（≤5 条）  
+1. **cudagraph_capture_sizes 与 tp_size 不匹配**  
+   - 测试中 `--compilation-config` 指定的 `cudagraph_capture_sizes` 为 `[3, 6, 9, 12]`，而 `--tensor-parallel-size` 为 `8`。  
+   - 当启用 sequence parallelism 时，capture sizes 必须为 `tp_size` 的整数倍，否则会被过滤掉并在后续校验时触发 `Assertion failed`。  
+
+2. **Sequence‑parallel 依赖导致的强制校验**  
+   - 系统在检测到 `layer_sharding`（`q_b_proj`, `o_proj`）以及 `data_parallel_size > 1` 时，认为开启了 sequence parallelism，随即要求 capture sizes 为 tp_size 的倍数。  
+
+3. **测试配置未动态适配 tp_size**  
+   - 测试脚本硬编码了 capture sizes，却没有根据当前的 `tp_size` 调整，导致配置在创建 `VllmConfig` 时被 Pydantic 验证拒绝。  
+
+4. **使用了已废弃的 speculative 方法**  
+   - `speculative-config` 中 `method: deepseek_mtp` 已被标记为 deprecated，替换为 `mtp`。虽然不是本次直接崩溃原因，但会产生额外警告并可能在未来导致错误。  
+
+5. **缺少对非法组合的提前检查**  
+   - CI/测试框架没有在启动前校验 `cudagraph_capture_sizes` 与 `tp_size` 的兼容性，导致错误到运行时才暴露。  
+
+最可能的修复方案  
+1. **调整 cudagraph_capture_sizes 为 tp_size 的倍数**  
+   - 将 `--compilation-config` 改为 `{"cudagraph_capture_sizes":[8, 16, 24, 32], "cudagraph_mode":"FULL_DECODE_ONLY"}`（或任何 8 的整数倍），使其符合 sequence‑parallel 的要求。  
+
+2. **修改 tp_size 以匹配已有的 capture sizes（可选）**  
+   - 如果业务要求保持 `cudagraph_capture_sizes` 为 `[3, 6, 9, 12]`，可将 `--tensor-parallel-size` 调整为能整除这些值的值（如 1），但这会改变并行策略，需确认是否可接受。  
+
+3. **关闭 sequence‑parallel 依赖特性**  
+   - 若不需要 `layer_sharding` 或 `data_parallel_size`，可以在测试中去掉 `--additional-config '{"layer_sharding": ["q_b_proj", "o_proj"]}'`，从而避免强制校验。  
+
+4. **替换废弃的 speculative 方法**  
+   - 将 `--speculative-config` 中的 `"method":"deepseek_mtp"` 改为 `"method":"mtp"`，防止后续版本因废弃 API 报错。  
+
+5. **在 CI 中加入前置校验**  
+   - 在执行测试前添加一个小的验证步骤，确保 `cudagraph_capture_sizes` 中的每个值都是 `tp_size` 的整数倍，或在 `conftest.py` 中对参数组合进行断言，提前捕获配置错误。  
+
+通过上述修改，测试的配置将与 vLLM 在启用 sequence‑parallel 时的要求保持一致，从而避免 `ValidationError` 与服务器启动失败。

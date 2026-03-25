@@ -1,0 +1,792 @@
+﻿number,title,state,createdAt,author,labels
+7207,[User Story]: 问题质询,OPEN,2026-03-12T11:29:09Z,Junc1,
+7205,[Bug]: vllm/vllm-ascend 0.15.0 rc1版本，使用ais-bench测试vllm服务，在bs=16的时候报下面错误，需要解决；,OPEN,2026-03-12T09:48:19Z,184603418,bug
+7201,[Bug]: TransposeKvCacheByBlock Kernel failed to initialize unknown shape dtype and format,OPEN,2026-03-12T09:03:20Z,Pz1116,bug
+7200,[Bug]: kimi-k2.5使用v0.16.0rc1报错,OPEN,2026-03-12T09:03:10Z,dvuiu,bug;kimi
+7197,[Bug]: Qwen3-next在0.16.0RC1上用客户数据集验证的时候报错,OPEN,2026-03-12T08:17:31Z,githubho,bug
+7193,[Bug]: High TTFT for the first request. Can vllm-serve warmup itself after startup?,OPEN,2026-03-12T07:13:46Z,MaoJianwei,bug
+7192,[Usage]: vllm ascend 0.15.0RC1 A2机器部署qwen3-embedding-8B模型，通过控制输入维度1024对比gpu输出是有差异的，设置4096无差异,OPEN,2026-03-12T07:00:35Z,tianyuwo,
+7191,[Bug]: getting invalid output on DeepSeek-R1-Distill-xxx models,OPEN,2026-03-12T06:52:08Z,Absoler,bug
+7190,[Doc]: https://docs.vllm.ai/projects/ascend/en/v0.13.0/installation.html,OPEN,2026-03-12T06:42:43Z,veropeaky,documentation
+7189,[Usage]: 运行test_dispatch_ffn_combine.py测试用例时，out输出全为0，是精度有问题还是测试用例有问题？,CLOSED,2026-03-12T06:09:42Z,yl-s,
+7185,[Bug]: RuntimeError when enabling profiling in the ACLGraph scenario.,OPEN,2026-03-12T03:15:29Z,mzisbest,bug
+7184,[Usage]: 300p多机多卡分布推理报错,OPEN,2026-03-12T02:58:20Z,jueshixian,310p
+7182,"[Bug]: DSv3.1, the TTFT of Prefill-Decode Disaggregation is 2 times longer than TTFT of Multi-node Deployment",OPEN,2026-03-12T02:25:58Z,hyena126,bug
+7181,[Usage]: how to resolve this notification?,OPEN,2026-03-12T02:04:55Z,MaoJianwei,
+7180,[Usage]:使用vllm ascend 0.13.0镜像部署QwQ-32B-GRPO-INT8模型推理时，对于同一条prompt，nv卡vllm推理若干次的输出tokens长度一致，而npu A2芯片vllm-ascend推理若干次的输出token长度差异大,OPEN,2026-03-12T01:55:21Z,lxr88,
+7173,[Feedback]: v0.17.0rc1 Release Feedback,OPEN,2026-03-11T12:44:15Z,MengqingCao,documentation
+7172,[Release]: Release checklist for v0.17.0rc1,OPEN,2026-03-11T12:43:18Z,MengqingCao,
+7165,[BUG] RuntimeError 161001 call aclnnApplyRotaryPosEmbV2 failed when running Dots OCR on Ascend 300I DUO(v0.15.0rc1-310p),OPEN,2026-03-11T09:50:22Z,DaWiiX,bug;310p
+7164,[Misc]: mooncake_layerwise_connector.py实现中，prefill释放kv cache的时间是否会早于分层传输完成？,OPEN,2026-03-11T09:47:21Z,lupin3333,
+7160,[Bug]: Qwen3.5 0Day版本拉起和使用MOE模型异常,OPEN,2026-03-11T08:39:21Z,soultrans,bug;triaged;qwen3.5
+7159,[Bug]: Multi node MiniMax-M2.5,OPEN,2026-03-11T08:20:19Z,lucifffer,bug;triaged
+7157,[RFC]: Roadmap for Ascend950PR / Ascend950DT (A5) Support in vllm-ascend,OPEN,2026-03-11T07:56:50Z,linfeng-yuan,RFC
+7154,[Bug]: Enable VLLM_ASCEND_ENABLE_FUSED_MC2=1 causing timeout after graph compilation  [shm_broadcast.py:542] No available shared memory broadcast block found in 60 seconds.,OPEN,2026-03-11T06:41:05Z,ShawnHSH,bug;triage review
+7150,"[Bug]: 使用 '{""cudagraph_mode"":""FULL_DECODE_ONLY""}'时validate_cudagraph_capturing_enabled()报错",OPEN,2026-03-11T03:46:49Z,leetakhing,bug;triaged
+7145,[Usage]: ：vllm ascend 0.14.0RC1 A2机器部署qwen3-rerank-4B精度问题,OPEN,2026-03-11T02:54:20Z,tianyuwo,
+7140,[Bug]: mooncake_connector.py里的超时时间使用的是NIXL配置项，而不是mooncake配置项,OPEN,2026-03-11T02:06:42Z,lupin3333,bug;triaged
+7131,[Bug]: 请问vllm-ascend目前支持gpt-oss两个模型的推理吗？,OPEN,2026-03-10T11:35:17Z,dogeeelin,bug;triage review
+7124,[Bug]: 3.10主线代码构建的版本 开启profiling 存在报错,OPEN,2026-03-10T09:37:28Z,chenweiqiang11,bug;triaged
+7123,[Bug]: kimi2.5部署，A2多机，报错NPU out of memory,OPEN,2026-03-10T09:26:19Z,15817778954,bug;triaged;kimi
+7122,[Bug]: ds3.2 infer with pcp and mtp failed,OPEN,2026-03-10T09:15:06Z,weiguihua2,bug;triaged
+7108,[Performance]: qwen3-32B模型，在A3机器TP2部署 ，vllm-ascend v0.13.0相比0.13.0rc1出现性能劣化,OPEN,2026-03-10T06:37:40Z,LIFK233,performance;triaged
+7106,[Feature]: 请问支持Qwen3.5-4B模型的批量离线推理了吗？NPU卡，910b卡,OPEN,2026-03-10T04:46:49Z,dogeeelin,feature request;qwen3.5
+7101,[Bug]: qwen3.5在suffix_decoding场景下出现精度问题,OPEN,2026-03-10T03:44:50Z,yechao237,bug;triaged;qwen3.5
+7095,"[Bug]: kimi 2.5部署报错 'aclnnAddRmsNormBias or aclnnAddRmsNormBiasGetWorkspaceSize not in libopapi.so, or libopapi.sonot found.', please check the stack trace above for the root cause",OPEN,2026-03-10T01:44:11Z,15817778954,bug;kimi
+7094,[Bug]: qwen3.5 0day版本 请求中关闭思考模式存在精度异常,OPEN,2026-03-10T01:18:08Z,Mitchellax,bug;triaged;qwen3.5
+7093,[RFC]: AI-Agent-Driven Release Automation for vllm-ascend,OPEN,2026-03-09T17:06:38Z,gcanlin,RFC
+7089,[Bug]: Dependency conflict between vllm-ascend==0.15.0rc1 and torch-npu==2.9.0 (Ascend NPU environment),OPEN,2026-03-09T11:56:33Z,cocovoc,bug;triaged
+7088,[Bug]: MoE weight loading error with Ascend W4A8 quantization,OPEN,2026-03-09T09:55:47Z,ZhongsJie,bug;triaged
+7085,[Usage]:  MooncakeLayerwiseConnector和 AscendStoreConnector是否支持同时使用？若支持，正确的配置方式是什么？,OPEN,2026-03-09T09:47:27Z,525309178,
+7084,[RFC]: Add upstream vLLM general test cases to CI,OPEN,2026-03-09T09:42:12Z,jiangyunfan1,RFC
+7083,[Bug]: RuntimeError: Get ACL JitCompile default value failed.,OPEN,2026-03-09T09:38:24Z,JackMacs,bug;triaged
+7081,[Feature]: Tool call support in GLM-5,OPEN,2026-03-09T09:35:53Z,lz19833006728-ops,feature request
+7078,[Bug]: Qwen3.5双机A2部署时加载一半权重后卡死造成超时,OPEN,2026-03-09T08:48:43Z,delwen123,bug;qwen3.5
+7077,[Usage]: Does vLLM-Ascend currently support EPLB for Kimi-K2.5?,OPEN,2026-03-09T08:39:58Z,COMOD-create,kimi
+7076,"[Bug]: kimi 2.5部署报错：No compressed-tensors compatible scheme was found for quant_type=W4A16, layer_type=linear",OPEN,2026-03-09T08:33:01Z,15817778954,bug;kimi
+7074,[RFC]: AI-Agent-Driven Main2Main Automation for vllm-ascend,OPEN,2026-03-09T06:52:01Z,Meihan-chen,RFC
+7061,[Bug]: qwen3.5 0day版本 的think标签无法正常被解析,OPEN,2026-03-07T10:02:28Z,Mitchellax,bug;qwen3.5
+7060,[Doc]: A2双机十六卡混部 Qwen3.5 可能存在服务启动超时,OPEN,2026-03-07T09:36:52Z,Mitchellax,documentation;qwen3.5
+7058,[Bug]: vllm-ascend v0.11.1 与 vLLM v0.11.1 存在严重的内部 API 耦合，导致导入失败,OPEN,2026-03-07T07:09:28Z,Xchange7,bug
+7051,[Performance]: Requesting baseline perf data for small-sized Qwen3.5 models (<35B) on A2,OPEN,2026-03-06T15:02:51Z,yjcaimeow,performance;qwen3.5
+7048,[Bug]: 版本号不严格是0.11.0时，0.11.0-dev branch中mla.py在加载vllm.attention时会出现bug,OPEN,2026-03-06T10:03:40Z,Xchange7,bug
+7047,[Performance]: 部署 Qwen3.5 122b 无法把 thinking 和 content 进行分离,OPEN,2026-03-06T09:56:44Z,rubebb,performance;qwen3.5
+7043,[Usage]: 如何使用Functioncall特性部署glm4.7？,CLOSED,2026-03-06T08:45:23Z,Muziyaa,
+7039,[Bug]: run failed for qwen2-72b w8a16 quantization,OPEN,2026-03-06T07:31:21Z,zhongzhouTan-coder,bug
+7037,[Bug]: qwen模型系列在longbenchv2数据集上无法实现数据集发布结果,OPEN,2026-03-06T07:23:04Z,linsheng1,bug;triaged
+7031,[Feature]: 支持基于SLA约束的动态DVFS功能，提升推理能效,OPEN,2026-03-06T03:27:45Z,codeofdave,feature request
+7023,[Bug][Qwen3.5]:  Attempted to assign 65 = 65 multimodal tokens to 3905 placeholders,OPEN,2026-03-05T15:38:21Z,Levi-JQ,bug;triaged;qwen3.5
+7015,[Bug]: 0.14.0.rc1 DeepSeek v3.2 A2双机场景下推理概率出现TimeoutError,OPEN,2026-03-05T08:41:43Z,nantianzhuye,bug;triaged
+6999,[Bug] Change `assert` to `warning` in `get_mc2_group` to prevent crash on NPU in vllm-omni,OPEN,2026-03-05T03:12:09Z,ElleElleWu,bug;triaged
+6992,【BUG】CPU binding may fail where the operating system language is Chinese,OPEN,2026-03-04T10:11:31Z,wqh17101,triaged
+6987,How to enable chunked_prefill,OPEN,2026-03-04T08:29:14Z,qiudepei,documentation
+6982,[Usage]:hdk25.5 vllm-ascend0.14.0rc1部署kimi k2.5时aclnnMoeDistributeDispatchV4算子报错,OPEN,2026-03-04T07:01:27Z,tianyuwo,kimi
+6980,[Bug]: 在gpustack上使用vllm-ascend:glm5部署GLM-5-w4a8模型，模型输出异常,OPEN,2026-03-04T06:24:48Z,loiuon-cyber,bug;triaged
+6978,[Misc]: 支持Qwen3-omni w8a8的量化后的版本什么时候发布,OPEN,2026-03-04T03:51:31Z,xiaobaitu-lh,
+6974,Are there any recent update plans related to #6603?,OPEN,2026-03-04T02:50:39Z,M4n5ter,
+6972,"[Bug]: vllm 启动 qwen3-omni 模型，尝试命令行方式--compilation-config '{""cudagraph_mode"": ""FULL_DECODE_ONLY"", ""cudagraph_capture_sizes"":[1,2,4,8,16,24,48]}'  或yaml 文件方式，FULL_DECODE_ONLY均未生效",OPEN,2026-03-04T02:41:38Z,wallywang1992,bug;triaged
+6970,[Release]: Release checklist for v0.16.0rc1,CLOSED,2026-03-03T15:59:56Z,gcanlin,release
+6969,[Feedback]: v0.16.0rc1 Release Feedback,OPEN,2026-03-03T15:59:01Z,gcanlin,
+6966,[RFC]: CPU Binding for vLLM Ascend,OPEN,2026-03-03T12:50:35Z,chenchuw886,RFC
+6959,[Feature]: 什么时候支持部署qwen3.5的模型，谢谢,OPEN,2026-03-03T09:39:02Z,ojslee,feature request;qwen3.5
+6954,[RFC]: NPUWorker Profiler profile_prefix Full Adaptation,CLOSED,2026-03-03T08:24:18Z,realliujiaxu,RFC
+6953,[RFC]: Refactor compressed-tensors quantization.,OPEN,2026-03-03T08:19:54Z,menogrey,RFC
+6950,"[Bug]: v0.15.0rc1, Flash Comm V1 is not supported for VL models.",OPEN,2026-03-03T07:40:59Z,jiangyunfan1,bug
+6949,"[Bug]: v0.15.0rc1, server failed to start with mooncake connector",OPEN,2026-03-03T07:38:43Z,jiangyunfan1,bug
+6946,[New Model]: OpenGuardrails-Text-2510模型执行的是GPTQ 算法的 W4A16 量化，不适用于昇腾 NPU 上的 vLLM-Ascend 框架，请求适配,OPEN,2026-03-03T05:40:52Z,bingbinn-77,new model
+6942,[Installation]: NPU卡无法调用，无法加载模型,OPEN,2026-03-03T02:13:06Z,marcushan84,installation
+6938,[Bug]: Anthropic Messages API (/v1/messages) fails to process image inputs — images passed as None to Qwen3VLProcessor,OPEN,2026-03-03T01:28:28Z,wilhelmjung,
+6935,"[Bug]: [Bug]: v16版本，存在的问题 [ERROR] 2026-03-02-15:44:05 (PID:1, Device:-1, RankID:-1) ERR99999 UNKNOWN applicaiton exception",OPEN,2026-03-02T15:50:37Z,584731180,bug
+6934,[Bug]: [kimi-k2.5] Attempted to assign 4225 = 4225 multimodal tokens to 1 placeholder,OPEN,2026-03-02T15:32:26Z,Levi-JQ,bug;triaged;kimi
+6931,[Usage]: VLLM-ASCEND v0.11.0 启动deepseek-r1-0528-w8a8服务报错,OPEN,2026-03-02T12:47:04Z,NiyahHyyodadga,
+6929,[Bug]: Qwen3-VL-235B模型，压测时模型内存占用一直提升，压测完毕后，重新压测依旧会继续上涨,OPEN,2026-03-02T12:14:29Z,zianmk2-commits,bug;triage review
+6926,"[Bug]: 开启export VLLM_TORCH_PROFILER_DIR=""./vllm_profile""这个变量后，发送多次curl请求会报错",OPEN,2026-03-02T11:22:14Z,jinshurui618,bug
+6925,[Bug]: quay.io/ascend/vllm-ascend:glm5-openeuler 部署GLM-OCR 精度劣化严重,OPEN,2026-03-02T11:09:05Z,zymprogramer,bug
+6920,[Usage]: prefill实例间KV Cache pool 使用,OPEN,2026-03-02T08:41:37Z,A-zhudong,
+6909,[Bug]: v0.15.0rc1-openeuler版本镜像部署的Qwen3-vl模型无完整回复,OPEN,2026-03-02T06:26:16Z,lllyyyqqq,bug
+6908,[Usage]: Qwen3 dense quant是否支持动态量化,OPEN,2026-03-02T06:13:49Z,hanyidadada,
+6903,[Doc]: profiler使用问题,OPEN,2026-03-02T03:50:20Z,Tflowers-0129,documentation
+6881,[RFC]: Refactor spec decoding methods and Unified Parallel Drafting,OPEN,2026-02-28T10:07:46Z,drslark,RFC
+6879,[Bug]: qwen3.5单机部署，回复很慢，思考很啰嗦,OPEN,2026-02-28T09:42:21Z,foreverzzx,bug;qwen3.5
+6875,"[Bug]: A2尝试四机部署GLM5-bf16失败，报错：NPU function error: call aclnnSwiGlu failed, error code is 507014",OPEN,2026-02-28T09:04:53Z,HusterYoung,bug;glm5
+6868,[Bug]: When Running GLM5 metrics.py make server crush,OPEN,2026-02-28T04:01:37Z,nightraid-yyf,bug;glm5
+6863,[Bug]: qwen3-next-80B 运行半个月后服务挂掉报错 Fatal Python error： none_dealloc：deallocating None,OPEN,2026-02-28T02:11:39Z,tianming2009,bug
+6862,[Bug]: Qwen3-32B-W8A8开启FLASHCOMM1后无效,CLOSED,2026-02-28T02:00:16Z,hanyidadada,bug
+6861,[Usage]: GLM5思考过程如何显示在reasoning中,OPEN,2026-02-28T01:49:52Z,ALL-FUN-d,glm5
+6853,[Bug]: Failed to apply Qwen2_5_VLProcessor for qwen2.5-vl-72b,OPEN,2026-02-27T08:36:51Z,nuclearwu,bug;module:multimodal
+6848,[Bug]: qwen3.5 A2 双机回答的思考模式为英文,OPEN,2026-02-27T07:35:07Z,ALL-FUN-d,bug;qwen3.5
+6847,[Bug]: 910B2双机推理GLM-5启动失败,CLOSED,2026-02-27T07:26:50Z,zhanghw0354,bug
+6842,[Bug]: 310P 使用quay.io/ascend/vllm-ascend:v0.14.0rc1-310p-openeuler部署qwen3-vl时报错,CLOSED,2026-02-27T03:14:56Z,fengle-great,bug
+6838,[v0.15.0rc1] FAQ / Feedback | 问题/反馈,OPEN,2026-02-26T13:46:10Z,wangxiyuan,
+6834,[RFC]: vllm IR Framework Adaptation for vllm-ascend,OPEN,2026-02-26T11:27:14Z,wxsIcey,RFC
+6833,[Usage]: 为什么Qwen3-Next多并发的时候，请求要排队那么久，而且缓存命中为0,OPEN,2026-02-26T09:53:57Z,dzy9821,
+6829,[Installation]: Atlas 800I A2单机运行Qwen3-Next-80B-A3B-Instruct加载失败,CLOSED,2026-02-26T09:02:00Z,ranzhengfeng,installation
+6820,[Bug]: vllm-ascend 0.13.0 版本 请求过程中报错 TypeError: apply_token_bitmask_inplace_cpu(): incompatible function arguments,OPEN,2026-02-26T03:03:09Z,shuixiaoer,bug
+6818,[Bug]: vllm-ascend与arctic-inference存在依赖冲突问题,OPEN,2026-02-26T01:22:40Z,MrRabbit0211,bug
+6816,[Doc]: Build from source section installation doc should be refreshed,OPEN,2026-02-26T01:17:19Z,Yikun,documentation
+6815,[Bug]: openEuler doctest failure: OSError: [Errno 116] Stale file handle,OPEN,2026-02-26T01:02:46Z,Yikun,bug
+6812,[RFC]: Support PaddleOCRVL for 300I DUO,OPEN,2026-02-25T12:10:32Z,zyz111222,RFC;310p
+6810,请问目前Atlas 300v pro支持qwen3vl吗？,OPEN,2026-02-25T10:08:18Z,HAOYON-666,
+6800,[Misc]: vllm-ascend: AWQ model launch error,OPEN,2026-02-25T04:49:53Z,zhangshuang007,
+6799,[Bug]: R1-BF16的大EP。服务拉起，单curl长度超过100token左右，D节点会挂死。,OPEN,2026-02-25T04:10:48Z,songzhengas,bug
+6796,[Bug]: RuntimeError: Can not support soc_version: 104.,OPEN,2026-02-25T03:13:27Z,Ged0,bug
+6793,[CI]: Nightly failure,OPEN,2026-02-25T01:55:45Z,Potabk,
+6791,[Misc]: 想请教下关于kv offload的使用,OPEN,2026-02-24T09:19:38Z,obj12,
+6790,[Bug]: 部署deepseek3.1报错,OPEN,2026-02-24T09:01:11Z,yqytsq,bug
+6787,[Misc]: test,CLOSED,2026-02-24T07:56:23Z,wangxiyuan,
+6784,[Bug]: quay.io/ascend/vllm-ascend:v0.14.0rc1-a3-openeuler  longcat 拉起失败,OPEN,2026-02-24T07:04:20Z,QingshuiL,bug
+6781,[Feature]: bge-m3支持sparse 和colbert embeddings,OPEN,2026-02-24T03:57:18Z,freezsm,feature request
+6774,[Bug]: qwen3.5 A2 双机启动失败,OPEN,2026-02-17T09:56:20Z,ALL-FUN-d,bug;qwen3.5
+6772,[Bug]:GLM-5-W4A8 Still display</think> token in output when thinking mode is disabled,OPEN,2026-02-14T09:06:48Z,AmosChenYQ,bug
+6769,[RFC]: vllm-ascend支持w4a8c8量化,OPEN,2026-02-14T07:33:52Z,184603418,RFC
+6765,[Bug]: quay.io/ascend/vllm-ascend   v0.14.0rc1   GLM4.7 tool_parser error,OPEN,2026-02-14T03:35:40Z,hellosfs-bot,bug
+6764,[RFC]: Support PCP&DCP for Qwen3_next,OPEN,2026-02-14T03:11:11Z,845473182,RFC
+6761,issue for test,CLOSED,2026-02-14T02:20:02Z,wangxiyuan,
+6754,"[Bug]: GLM-5 Load weight error: Following weights were not initialized from checkpoint: {'model.layers.78.shared_head.head.weight', 'model.embed_tokens.weight'}",OPEN,2026-02-13T12:01:39Z,YiYang-Eon,bug;glm5
+6737,[Bug]: The `qkv_rmsnorm_rope` operator is not registered due to the conflict between triton and triton-ascend versions in A+X environment,OPEN,2026-02-13T07:48:54Z,lianyiibo,bug
+6734,[Bug]: GLM5-W4A8 stuck on Loading safetensors checkpoint,OPEN,2026-02-13T06:36:13Z,nightraid-yyf,bug;glm5
+6716,[Misc]: 参考vllm ascend中的文档使用msprobe工具采集数据为空,OPEN,2026-02-12T02:57:00Z,lxr88,
+6710,[Bug]: MoE models using bare tensor_model_parallel_all_reduce produce garbage output in EP mode on Ascend,OPEN,2026-02-11T14:48:38Z,QwertyJack,
+6701,[Feature]: Verify / Support `Baichuan-M1-14B-Instruct`,OPEN,2026-02-11T10:46:49Z,wjunLu,feature request;Intern
+6700,[Feature]: Verify / Support `Qwen/Qwen2.5-Math-RM-72B`,OPEN,2026-02-11T10:45:08Z,wjunLu,feature request;Intern
+6699,[Bug]: Qwen3-Omni-30B-A3B-Thinking 运行音频转写任务，文本随机或者为空,CLOSED,2026-02-11T10:45:06Z,hahadashi,bug
+6698,[Feature]: Verify / Support `Phi-4-multimodal`,OPEN,2026-02-11T10:41:32Z,wjunLu,feature request;Intern
+6697,[Feature]: Verify / Support `tencent/Hunyuan-A13B-Instruct`,OPEN,2026-02-11T10:38:53Z,wjunLu,feature request;Intern
+6695,[Feature]: Verify / Support `Kimi-Linear-48B-A3B-Instruct`,OPEN,2026-02-11T10:26:42Z,wjunLu,feature request;Intern;kimi
+6694,[Feature]: Verify / Support `Phi-4-multimodal`,OPEN,2026-02-11T10:25:37Z,wjunLu,feature request;Intern
+6693,[Feature]: Verify / Support `MiniMaxAI/MiniMax-M2`,OPEN,2026-02-11T10:17:50Z,wjunLu,feature request;Intern
+6692,[Feature]: Verify / Support `deepseek-ai/DeepSeek-OCR-2`,OPEN,2026-02-11T10:16:58Z,wjunLu,feature request;Intern
+6691,[Feature]: Verify / Support `zai-org/GLM-4.7-Flash`,OPEN,2026-02-11T10:15:54Z,wjunLu,feature request;Intern
+6690,[Feature]: Verify / Support `Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign`,OPEN,2026-02-11T10:14:11Z,wjunLu,feature request;Intern
+6689,[Feature]: Verify / Support `Qwen/Qwen3-ASR-1.7B`,OPEN,2026-02-11T10:11:56Z,wjunLu,feature request;Intern
+6687,[Feature]: Verify / Support `Step3-VL/Step3-VL-10B`,OPEN,2026-02-11T10:06:09Z,wjunLu,feature request;Intern
+6684,[Feature]: Verify / Support `IQuestLab/IQuest-Coder-V1-40B-Instruct`,OPEN,2026-02-11T07:49:21Z,wjunLu,feature request;Intern
+6683,[Feature]: Verify / Support `moonshotai/Kimi-K2.5`,OPEN,2026-02-11T07:19:05Z,wjunLu,feature request;Intern;kimi
+6679,[Bug]: 使用源码安装 vllm跑GLM-4.7-W8A8时异常,OPEN,2026-02-11T04:18:57Z,wilson8677-glitch,bug
+6678,[Bug]: 4节点 * 8卡910B，PP=4，vLLM V1 引擎初始化 KV Cache 报 KeyError,OPEN,2026-02-11T03:57:20Z,liangLZH,bug
+6676,[Bug]: vllm-ascend推理报错,OPEN,2026-02-11T03:21:00Z,1091492188,bug
+6672,[Bug]: msserviceprofiler fail to pasrse output when using Symbols Configuration File,CLOSED,2026-02-11T01:47:24Z,qlibp,bug
+6671,"[Bug]: vllm-ascend 0.14.0rc1-a3镜像使用tp1,dp2方式运行qwen3-30b-a3b存在精度问题",OPEN,2026-02-11T01:28:30Z,lio1226,bug
+6669,[Feature]: 希望增加platform.get_device_uuid方法,OPEN,2026-02-10T12:28:37Z,addsubmuldiv,feature request
+6662,[Misc]: Ascend量子多目标,CLOSED,2026-02-10T08:05:08Z,wujicong,Intern
+6660,[Performance]: vllm-ascend v0.13.0 精度较差 输出错误引入functioncall内定义的参数,OPEN,2026-02-10T07:35:45Z,Patrickpan9,performance
+6656,[Performance]: vllm-ascend版本v0.14.0版本运行小模型性能差,OPEN,2026-02-10T06:46:42Z,shao-cyber,performance
+6651,[Bug]: Qwen3-Next系列模型在不同版本驱动上性能存在差异,OPEN,2026-02-10T04:12:49Z,Liuhang13244554253,bug
+6647,[Bug]: A2单节点，VeRL使用vllm-ascend进行LoRA rollout时OOM,OPEN,2026-02-10T01:27:45Z,yidingdou,bug
+6636,"[Bug]:  RuntimeError: npu_quant_matmul_symint:build/CMakeFiles/torch_npu.dir/compiler_depend.ts:211 NPU function error: call aclnnQuantMatmulWeightNz failed, error code is 161002",OPEN,2026-02-09T09:19:29Z,syg1996419,bug
+6628,[RFC][WIP]: Design of the decode-based KV cache storage solution,OPEN,2026-02-09T03:50:33Z,DreamerLeader,RFC
+6626,[Bug] TP8+DP4 for deploying dsv32-w8a8 occured errors.,OPEN,2026-02-09T03:24:25Z,xueliangyang-oeuler,bug
+6623,[Misc]: Discussion on accuracy variance,OPEN,2026-02-09T02:54:40Z,zzzzwwjj,help wanted
+6621,[Usage]: 什么时候发布v0.15.0rc1或者v0.15.1rc1？上游vllm已经发了v0.15.1,CLOSED,2026-02-09T02:24:50Z,MaoJianwei,question
+6612,[Bug]: Potential accuracy && accept rate degradation if rope parameters in eagle3 draft model is different from main model.,CLOSED,2026-02-07T10:56:39Z,Angazenn,bug
+6611,[Bug]: 0.13.0 qwen3-next-80b oom,OPEN,2026-02-07T10:24:41Z,majialing,bug
+6600,[RFC]: Support Qwen3 for 300I DUO,OPEN,2026-02-06T09:32:59Z,Tflowers-0129,RFC;310p
+6598,[Bug]: A2双机， GLM-4.7模型，使用全图模式推理报错,CLOSED,2026-02-06T09:13:05Z,Edkamoni,bug
+6597,[Bug]: A3双机背靠背，D节点TP1，KV cache传输失败,OPEN,2026-02-06T08:24:39Z,liziyu179,bug
+6588,[RFC]: Support PCP&DCP for SFA,OPEN,2026-02-06T03:15:43Z,pisceskkk,RFC
+6583,[v0.13.0] FAQ / Feedback | 问题/反馈,OPEN,2026-02-06T01:48:45Z,wangxiyuan,
+6578,[Bug]: 910B A+X 基于v0.14.0 vllm-ascend运行Qwen3-32B模型出现 no attribute qkv_rmsnorm_rope,OPEN,2026-02-05T12:42:00Z,yangjiuhua,bug
+6575,[RFC]: Add support for GR model.,OPEN,2026-02-05T12:00:31Z,yz53665,RFC
+6573,"[Bug]: FlashAttentionScore get unsupported atten_mask shape,",OPEN,2026-02-05T11:53:23Z,Gpwner,bug
+6572,[Bug]: A2 0.14.0rc1部署Qwen3-Coder-Next，其它参数相同，TP4能拉但TP8报OOM,OPEN,2026-02-05T11:50:57Z,samsuzhang,bug
+6571,[Bug]: 910B4+25.2.3+0.14.0rc1部署Qwen3-VL-32B-Instruct，v1/chat/completions无响应，但health和metrics正常,OPEN,2026-02-05T10:41:39Z,samsuzhang,bug
+6570,"[Bug]: MooncakeConnector finish req not in reqs to process.If it is a P node, this request may have been force freed.",OPEN,2026-02-05T09:58:47Z,yangqinghao-cmss,bug
+6569,[RFC]: Enhancing and Generalizing CPU Binding Capabilities.,OPEN,2026-02-05T09:36:30Z,zouyida2052,RFC
+6562,[Bug]: 部署Qwen3-Next或Qwen3-Coder-Next时，推理中出现告警,OPEN,2026-02-05T08:15:58Z,MaoJianwei,bug
+6561,[Bug]: Qwen3-Coder-Next模型结合qwen3_coder这个tool parser时，报错IndexError: list index out of range,OPEN,2026-02-05T08:13:42Z,MaoJianwei,bug
+6555,[Bug]: ModuleNotFoundError: No module named 'flash_attn.ops'; 'flash_attn' is not a package,OPEN,2026-02-05T05:15:24Z,LuckyDenKy,bug
+6549,[Bug]: 0.13.0 Release vllm-ascend MLA interface is different form 0.13.0 vllm,OPEN,2026-02-05T02:14:44Z,KnightYao,bug
+6548,[Bug]: Qwen3-Coder-Next with FULL_DECODE_ONLY compilation mode  sometimes have no response and sometimes have a normal response,OPEN,2026-02-05T01:47:14Z,tomant1024,bug
+6544,"[Bug]: [Nightly]qwen3-30b infer with eagle failed, error in fia",OPEN,2026-02-04T09:19:35Z,jiangyunfan1,bug
+6542,"[Usage]: 使用双机部署DeepSeek-V3.2-w8a8-mtp-QuaRot模型，2d8t ,A2显卡，每个node显存大小为64*8=512G data并行时每个node存储整个模型，模型权重694G>512G,为什么可以使用这种方案部署？",OPEN,2026-02-04T09:00:20Z,sixgod-666,
+6541,[Feature]: 请求支持ZhipuAI/GLM-4.7-Flash,OPEN,2026-02-04T08:59:54Z,DuncanLii,feature request;glm;glm5
+6533,"[Bug]: vllm-ascend:v0.14.0rc1 910B4, Qen3-VL-8B-Instruct 推理输出异常",OPEN,2026-02-04T06:57:23Z,zhongqing0507,bug;module:multimodal
+6529,[Bug]: vllm-ascend0.14.0rc1和0.13.0rc2 根据官方文档四机1P1D方案部署Deepseek3.2 ，手动测试，一crul，D节点两台服务器直接宕机,OPEN,2026-02-04T03:52:23Z,shx990211,bug
+6527,[Bug]: vllm-ascend v0.14.0rc1-310p 部署Qwen3-coder-30B报错,OPEN,2026-02-04T03:33:31Z,lin807095501,bug;310p
+6526,[Bug]: vllm-ascend v0.14.0rc1-310p 部署Qwen3-coder-30B报错,CLOSED,2026-02-04T03:31:14Z,lin807095501,bug
+6525,[Bug]: 0.14.0rc1 Qwen3-VL-235B-A22B-Instruct 双机部署，循环输出问题,OPEN,2026-02-04T03:18:23Z,sixgod-666,bug
+6524,"[Bug]: vllm-ascend0.13.RC2 增加speculative_config参数拉起qwen3-32B模型后调用openAI接口报错When layout is TND, queryT(21) must be equal to the last element of actualSequenceLengthQ(20)，服务挂掉",OPEN,2026-02-04T01:29:02Z,sjm0522,bug
+6512,[Bug]: vllm ascend 0.13.0rc1 + mooncake + Qwen3-Embedding-8B执行vllm bench测试的时候会卡住,CLOSED,2026-02-03T12:07:47Z,GoMarck,bug
+6509,[Bug]: eagle3 speculative method  with graph_mode FULL_DECODE_ONLY  failed  in 0.14.0RC1  AttributeError: 'ForwardContext' object has no attribute 'draft_attn_metadatas',CLOSED,2026-02-03T11:20:38Z,gao12312,bug
+6504,[Feature]: support MiniMaxAI/MiniMax-M2.1,OPEN,2026-02-03T08:37:32Z,nuclearwu,feature request
+6495,[Bug]:load_balance_proxy_server_example.py  未考虑chat传输进list类型的处理，chunk会触发list + str的错误,OPEN,2026-02-02T12:55:37Z,Sfeching,bug
+6494,"[Feature]: output repeat loop,输出死循环",OPEN,2026-02-02T12:54:06Z,hellosfs-bot,feature request
+6490,[Feature]:   integrate Qwen3-Asr,CLOSED,2026-02-02T12:22:02Z,lixikun,feature request
+6488,[Usage]: About using the moe model on the 310p platform,OPEN,2026-02-02T09:39:16Z,Sp00n-X,310p
+6486,[Misc]: Cleanup for `csrc/torch_binding.cpp`,OPEN,2026-02-02T07:58:32Z,zzzzwwjj,help wanted
+6485,[Bug]: Prefill-Decode Disaggregation abnormal TPOT  with 0.14.0.rc1,OPEN,2026-02-02T07:22:03Z,gao12312,bug
+6484,[Bug]: vllm-ascend离线推理方式运行qwen_2.5_7b模型报错,CLOSED,2026-02-02T06:40:53Z,rocks-sudo,bug
+6481,[Bug]: vLLM Ascend doesn't support W4A16 for linear.,OPEN,2026-02-02T04:00:25Z,wangtianxiong-sensetime,bug
+6478,[Bug]: Qwen3-next-80B with FULL_DECODE_ONLY compilation mode shows gradual memory growth and OOM after long-running inference,OPEN,2026-02-02T03:24:37Z,Delva0,bug
+6471,[Feature]: 【Ascend 310P】运行 Qwen3-VL-Embedding-2B 时因 --runner pooling 报错：NotImplementedError: 310P does not support runner_type='pooling',OPEN,2026-02-02T01:46:05Z,no057,feature request;310p
+6456,[Bug]:vllm0.13.0.rc1，打开full算子入图模式后精度异常,OPEN,2026-01-31T06:55:24Z,xieanxiean,bug
+6450,[Bug]: The number of tokens generated by the deep thinking of the deepseek R1 model is less than that of deepseekV3.1 terminus,OPEN,2026-01-31T03:10:41Z,shitianlong1994,bug
+6449,"[Bug]: GLLM-4.7 MTP  infer error:RuntimeError: shape '[6, -1]' is invalid for input of size 512",OPEN,2026-01-31T02:22:40Z,Luu-Luu,bug
+6446,[Bug]: 0.14.0rc1+GLM-4.7，KV Cache满载时TPS大幅下降,OPEN,2026-01-31T01:11:46Z,samsuzhang,bug
+6445,[RFC]: eagle3 speculative decoding supports rotation quantization,OPEN,2026-01-30T15:14:01Z,pjgao,RFC
+6437,[RFC]: DeepSeek MLA supports FA3,OPEN,2026-01-30T10:18:55Z,pichangping,RFC
+6436,[RFC]: Deepseek 3.2 Indexer Operator Preprocessing Operator,OPEN,2026-01-30T09:59:42Z,weijinqian0,RFC
+6434,[RFC]: MOE fusion operator optimization,OPEN,2026-01-30T09:43:07Z,weijinqian0,RFC
+6433,[RFC]: Attention: Unified FIA operators.,OPEN,2026-01-30T09:37:14Z,weijinqian0,RFC
+6431,[RFC]: Add support for `CUDAGraphMode.FULL` mode,OPEN,2026-01-30T09:14:25Z,yiz-liu,RFC
+6429,[Bug]: ( 0.13.0rc2+ torch-npu 2.8.0.post1)  error: use of undeclared identifier 'aclOpExecutor' when deploy Qwen3-235B-A22B-Instruct-2507-w8a8-QuaRot,OPEN,2026-01-30T09:09:23Z,gao12312,bug
+6427,[RFC]: Adapting Qwen Dense Series Models to the 310P Chip,OPEN,2026-01-30T08:35:26Z,wanghengkang,RFC;310p
+6426,[RFC]: 310P adapts to Qwen series models.,CLOSED,2026-01-30T08:27:07Z,wanghengkang,RFC
+6424,[Bug] vLLM-Ascend: bge-m3推理请求客户端卡死，服务端显示200 OK,OPEN,2026-01-30T07:51:27Z,kdtmac,bug
+6423,[RFC]: Model performance enhancemnt,OPEN,2026-01-30T07:50:39Z,wangxiyuan,RFC
+6421,[Bug]: EngineCore crash: AssertionError with MTP and Structured Output in PD Disaggregation mode,CLOSED,2026-01-30T07:39:16Z,triomino,bug
+6419,[RFC]: vllm-ascend supports MXFP8 quantization,OPEN,2026-01-30T07:34:38Z,jiangli221,RFC
+6418,[RFC]: vllm-ascend supports MXFP8 quantization,CLOSED,2026-01-30T07:28:08Z,jiangli221,RFC
+6417,[RFC]: W4A4_LAOS_DYNAMIC Quantization,OPEN,2026-01-30T07:25:26Z,SlightwindSec,RFC
+6415,[RFC]: Optimizing KV Cache Pool Transfer Logic,OPEN,2026-01-30T07:12:37Z,fems14,RFC
+6414,[RFC]: DSA supports C8 quantization,OPEN,2026-01-30T07:09:31Z,kunpengW-code,RFC
+6411,[RFC]: KV pool supports sparse attention,OPEN,2026-01-30T06:54:29Z,luoxiaolin712,RFC
+6410,[RFC]: KV pool supports Memcache.,OPEN,2026-01-30T06:54:02Z,DreamerLeader,RFC
+6398,"[Usage]: vllm 0.14.RC1镜像800IA2双机拉起deepseek-V3.2报NPU function error: call aclnnMoeDistributeDispatchV4 failed, error code is 561000错误，回退到0.13.RC1则正常",CLOSED,2026-01-30T02:07:04Z,luluxiu520,
+6395,[Bug]: Qwen3-Next-80B model fails on inputs longer than 65535 tokens with index out-of-range error,OPEN,2026-01-29T23:02:28Z,zhangming880102,bug
+6394,[Bug]:Failed to import Triton kernels. Please make sure your triton version is compatible. Error: No module named 'triton.language.target_info',OPEN,2026-01-29T12:56:00Z,XuMinhan,bug
+6391,[RFC]: Adapt KV Cache Events Publishing Mechanism,OPEN,2026-01-29T11:43:18Z,yejj710,RFC
+6390,[Question]: When will support for vLLM v0.15.0rc1 or newer versions be added?,OPEN,2026-01-29T10:02:21Z,flyrae,question
+6389,[Usage]: 目前Qwen3-Next的推理性能如何了？单请求超过30tokens/s了吗,OPEN,2026-01-29T08:52:09Z,MaoJianwei,
+6384,[Feature]: Support DeepSeek-OCR-2,OPEN,2026-01-29T06:54:29Z,xiefei1026,feature request
+6381,[Bug]: GLM-4.7-W8A8 MTP Fails when multiple requests comes in together,OPEN,2026-01-29T06:06:11Z,NyaMisty,bug
+6377,[Bug]: An error occurs when using the Eagle3 feature with the Qwen3‑VL‑235B model.,OPEN,2026-01-29T02:44:11Z,sunbaosong,bug
+6376,[Usage]: VLLM-ASCEND部署QWEN多模态大模型使用AIS-bench评测报错,OPEN,2026-01-29T01:41:03Z,JeffDing,
+6374,[Usage]: 是否支持GLM-4.7-Flash？,OPEN,2026-01-29T01:23:55Z,MaoJianwei,
+6372,[RFC]: Efficient Runtime-Reconfiguration of Parallelization Configuration of MoE Models,OPEN,2026-01-29T00:21:20Z,HwVanICI,RFC
+6371,[Bug]: Performance regression issue of version 0.13.0rc1 compared with version 0.11.0,CLOSED,2026-01-28T17:29:06Z,qiudepei,bug
+6370,"The x86 image of vllm-ascend v0.14.0rc1 contains a bug that causes the error ""zeros_like.json is invalid or does not exist"".",CLOSED,2026-01-28T17:10:08Z,qiudepei,bug
+6359,[Bug]: NPU function error when using Llama-3.1-8B-Instruct with eagle3 and long seq_lens prompt,OPEN,2026-01-28T09:42:48Z,zhaomingyu13,bug
+6347,[RFC]: inductor pass and npugraph ex pass normalization,CLOSED,2026-01-28T07:24:28Z,wxsIcey,RFC
+6345,[Bug]: vllm ascend v0.13.0rc2 image to start the DeepSeek v3.2 w8a8 quantized model，indicating that the chat_template was missing,OPEN,2026-01-28T07:19:01Z,nantianzhuye,bug
+6338,[Bug]: 采用vllm-ascend部署的Qwen3-VL-30B-A3B-Instruct模型在高并发场景下英文出现概率较高，是否有解决办法？,OPEN,2026-01-28T03:57:59Z,ydzxx,bug;module:multimodal
+6336,[Bug]: RuntimeError: Get ACL JitCompile default value failed (CANN 8.5.0 + vLLM-Ascend v0.14.0rc1),OPEN,2026-01-28T03:37:27Z,novisfff,bug
+6332,[Bug] GME Model: NaN Values & Precision Overflow,OPEN,2026-01-28T02:13:58Z,panxua,bug
+6329,[Bug]: v0.13.0rc2/v0.14.0rc1 启动Qwen3-30B-A3B-Instruct报错,OPEN,2026-01-28T01:14:59Z,ponyioy,bug
+6328,[Performance]: 昇腾卡通过vllm-ascend部署Qwen3-32B模型相对于N卡在gsm8k数据集上测试，性能下降严重，使用评估代码、prompt一致,OPEN,2026-01-28T01:14:15Z,MooYeh279,performance
+6315,[Bug]: NotImplementedError: Cannot access storage of UndefinedTensorImpl,OPEN,2026-01-27T10:09:13Z,gliderguru,bug
+6309,[Doc]: 310P目前哪个版本的镜像支持？,OPEN,2026-01-27T09:05:10Z,feifei0323,documentation;310p
+6305,[New Model]: Kimi-K2.5,OPEN,2026-01-27T07:14:33Z,chenqi123,new model;kimi
+6303,[Bug]: 双机 800I A2 vllm_ascend 0.13.rc1 部署GLM-4.7 ，执行function call在高并发下会出现timeout,OPEN,2026-01-27T04:00:41Z,asunxiao,bug
+6302,[RFC]: Refactor of vllm_ascend quantized model layer name mapping logic,OPEN,2026-01-27T03:44:07Z,Feng-xiaosuo,RFC
+6300,[Bug]: vllm-ascend Qwen2.5 72B不支持叠加Suffix Decoding，开启后TPOT下降到200ms,OPEN,2026-01-27T03:25:28Z,chenghaitao1987,bug
+6299,[Bug]: memory leak when running GLM-4.7-W8A8,CLOSED,2026-01-27T03:16:47Z,CatYing,bug
+6294,[Bug]: PD分离场景下load_balance_proxy_server_example.py在流失响应时，返回的media_type不对,OPEN,2026-01-27T02:07:08Z,luobicangqiong,bug
+6283,[Bug]: pipeline parallelism errors when applying flashcomm1/sp,OPEN,2026-01-26T13:41:21Z,zxdukki,bug
+6279,[Bug]: 910b入图使用多lora起Qwen3-32B模型，发送推理请求时选择基础模型推理，进程直接挂掉。,CLOSED,2026-01-26T12:01:35Z,liaoqingqing677,bug
+6275,[Bug]: 双机910b2拉起deepseek v3.2量化版失败,OPEN,2026-01-26T11:13:05Z,gbdjxgp,bug
+6273,"[Bug]: When use_layerwise is set to true for pooling--kv-transfer-config, the pooling function is abnormal.",CLOSED,2026-01-26T09:25:39Z,luoxiaolin712,bug
+6271,[Bug]: vllm-ascend v0.13.0rc2 下载openeuler镜像，Qwen3VL-8B-Instruct拉服务报错'aclOpExecutor' 未定义,CLOSED,2026-01-26T09:05:04Z,HrDrLi,bug
+6266,[Bug]: 部署GLM-4.7 PD分离出现assert error. assert req_id in self.requests,OPEN,2026-01-26T07:19:42Z,Luu-Luu,bug
+6264,[Bug]: 在尝试安装vllm-ascend 0.13.0rc2依赖包时，提示未找到npu-smi命令，经发现是缺少NPU相关驱动,OPEN,2026-01-26T07:08:47Z,moviwhat,bug
+6262,[Bug]: OpenEuler 24.03 + vllm0.13.0RC1，Qwen3-VL-32B-Instruct模型推理十几次后vllm服务进程自动退出,OPEN,2026-01-26T06:57:01Z,Mr-Better,bug
+6261,[Bug]: 部署Qwen3-Omni-30B-A3B-Instruct模型开启FLASHCOMM启动失败,OPEN,2026-01-26T06:41:37Z,taochong123456,bug
+6257,[Bug]: 离线推理gemma-3-1b-it报错,OPEN,2026-01-26T05:50:38Z,LemonDrinkTea,bug
+6253,Qwen3 next 80b模型,OPEN,2026-01-26T03:51:47Z,shao-cyber,
+6252,[Release]: Release checklist for v,CLOSED,2026-01-26T03:50:42Z,shao-cyber,
+6251,[Release]: Release checklist for v,CLOSED,2026-01-26T03:49:22Z,shao-cyber,
+6250,[Bug]: The model of qwen-next didn't work in the version of 0.13.rc2 and the error as below,CLOSED,2026-01-26T03:49:17Z,perrypeng-peng,bug
+6249,Qwen3 next 80b模型幻觉严重,OPEN,2026-01-26T03:49:16Z,shao-cyber,
+6245,[Bug]: A3单机混部 vLLM0.13.0RC2镜像 部署DSV3.2报错,CLOSED,2026-01-26T03:01:05Z,qxh84189941,bug
+6243,[Bug]: v0.12.0rc1跑ds-v3.2偶发性报算子错误后服务中断--KvRmsNormRopeCache的tiling切分有误,OPEN,2026-01-26T02:56:58Z,fool7367,bug
+6242,[Bug]: vllm-ascend 0.13.0.rc2-a3启动失败,OPEN,2026-01-26T02:54:56Z,taochong123456,bug
+6240,[Bug]: vllm-ascend 0.13.0.rc1多并发时服务崩溃,OPEN,2026-01-26T02:37:16Z,ALL-FUN-d,bug
+6239,[Performance]: Optimization for FIA Operator Performance under High Concurrency,OPEN,2026-01-26T02:27:54Z,ZhaoJiangJiang,performance
+6235,[Bug]: e2e test failed,OPEN,2026-01-26T00:59:56Z,wangxiyuan,bug
+6214,[RFC]: make npugraph_ex become default compile backend,CLOSED,2026-01-24T08:38:20Z,ChenCangtao,RFC
+6206,[Bug]:A3上 pip install vllm-ascend==0.13.0rc1  __device_type__ 是 'A2',OPEN,2026-01-23T09:47:45Z,jnbgvcd,bug
+6202,[Feature]: 支持transformer xl中的相对位置编码吗,OPEN,2026-01-23T09:20:25Z,MengLiPKU,feature request
+6199,[Bug]: 0.11.0版本在310P场景不支持qwen_reranker 0.6B模型吗？,OPEN,2026-01-23T08:50:17Z,linshoubao,bug;310p
+6190,[Bug]: 使用vllm-ascend v0.11.0镜像在线服务遇到崩溃退出：ERR00100 PTA call acl api failed,OPEN,2026-01-23T08:10:45Z,liuzb0,bug
+6189,[Feature]: 分离prefill与decode的编译模式,OPEN,2026-01-23T08:02:37Z,sleepy-dev-bin,feature request
+6187,[Bug]: vllm-ascend v0.13.0rc1开启Eagle3特性(Qwen/Qwen3-235B-A22B)，接受率为0，草稿模型输出乱码,OPEN,2026-01-23T07:58:26Z,01lin,bug
+6186,[v0.13.0rc2] FAQ / Feedback | 问题/反馈,CLOSED,2026-01-23T07:41:05Z,wangxiyuan,
+6185,[Release]: Release checklist for v0.13.0rc2,CLOSED,2026-01-23T07:40:00Z,wangxiyuan,
+6179,[Bug]: 使用distpatch算子的fullmesh_v2版本时触发OP_TILING_CHECK错误,OPEN,2026-01-23T06:50:09Z,zakk802,bug
+6175,单台A3使用vllm ascend部署DS-R1-0528模型，权重加非常慢,OPEN,2026-01-23T02:51:58Z,327674985,
+6149,[Release]: Release checklist for v0.14.0rc1,CLOSED,2026-01-22T11:46:39Z,wangxiyuan,
+6148,[v0.14.0rc1] FAQ / Feedback | 问题/反馈,OPEN,2026-01-22T11:44:58Z,wangxiyuan,
+6143,[Bug]: vllm_ascend的lora特性使用--fully-sharded-loras报错,CLOSED,2026-01-22T10:41:36Z,CXMTAAA,bug
+6142,[Bug]: vllm ascend与qwen3-vl-30b-instruct模型适配问题,CLOSED,2026-01-22T10:09:03Z,Nemo0223,bug
+6136,[Bug]: Qwen3-Next-80B-A3B-Thinking 使用910B4-1推理出现大量感叹号,CLOSED,2026-01-22T09:06:47Z,dzy9821,bug
+6134,[Bug]: 安装vllm_ascend提示冲突,OPEN,2026-01-22T08:41:34Z,commus,bug
+6127,[Bug]: High hit rate of kvpool can cause OOM errors.,OPEN,2026-01-22T07:55:16Z,baxingpiaochong,bug
+6121,[Usage]:  离线嵌入模型哪些参数可以提高并行处理,OPEN,2026-01-22T06:20:37Z,chenhongming,
+6119,[Bug]: Qwen2.5-72b相同条件下性能测试不如0.7.3版本,OPEN,2026-01-22T05:22:35Z,chenghaitao1987,bug
+6114,[Bug]: Qwen3-235B-Instruct-Lora Inference error,OPEN,2026-01-22T03:14:21Z,5082459,bug
+6092,[RFC]: Refactor the code for Add MatmulAllReduceAddRMSNorm graph fusion for npugraph_ex.,OPEN,2026-01-21T08:00:54Z,ForBetterCodeNine,RFC
+6085,[Bug]: vllm-ascend:v0.13.0rc1运行Glm-4.7-W8A8时不能同时开启FULL_DECODE_ONLY和mtp投机，报错NotImplementedError,CLOSED,2026-01-21T07:29:37Z,jnbgvcd,bug
+6082,[Bug]: [v0.10.0rc1-310p]NPU function error: call aclnnIsNegInf failed,OPEN,2026-01-21T07:15:23Z,XY2336661,bug;310p
+6077,[RFC]: Multi-Step Graph for draft models,OPEN,2026-01-21T05:04:22Z,yiz-liu,RFC
+6076,[Bug][CANN 8.5.0]: The failed tests while upgrading CANN to 8.5.0,OPEN,2026-01-21T03:56:19Z,wjunLu,bug
+6073,[RFC]: Optimize Qwen3-VL & Qwen3-Omni Inference Stability,OPEN,2026-01-21T03:16:06Z,shen-shanshan,RFC
+6071,[RFC]: Optimize Qwen3-VL & Qwen3-Omni Inference Performance,OPEN,2026-01-21T03:06:22Z,shen-shanshan,RFC
+6065,[Doc]: msprobe_guide readme has something ambiguous,CLOSED,2026-01-21T02:18:09Z,Tjh-UKN,documentation
+6063,"[Usage]: When deploying vll-ascend using Docker, regardless of how the devices are mapped, only the first NPU device is ultimately recognized.",CLOSED,2026-01-21T02:04:57Z,Sp00n-X,
+6060,[Bug]:  RopeOperation setup failed  when _rope_forward_oot() called  in condition of  self.rotary_dim < self.head_size,OPEN,2026-01-21T01:06:54Z,huxin-wei,bug
+6059,[Bug]: An invalid call to torch_npu.npu_grouped_matmul() produces unknown padding/behaviour.,OPEN,2026-01-20T19:19:55Z,Weigaa,bug
+6050,[Bug]: vllm-ascend-v0.13.0rc1运行https://modelscope.cn/models/vllm-ascend/Qwen3-235B-A22B-W8A8输出异常,OPEN,2026-01-20T11:01:31Z,helloworlder8,bug
+6048,[Bug]: 单机910C 多batch 推理报错,OPEN,2026-01-20T09:44:39Z,xucqX,bug
+6035,[Feat]Encoder skip loading language model weight for vllm-ascend integration,OPEN,2026-01-20T06:07:06Z,Shirley125,
+6028,[CI]Add EPD end-to-end (E2E) test cases,CLOSED,2026-01-20T03:36:53Z,Shirley125,
+6027,[usage]Provide EPD proxy example,CLOSED,2026-01-20T03:36:47Z,Shirley125,
+6026,[RFC]: Tracking Remaining Work for Encode–Prefill–Decode Disaggregation,OPEN,2026-01-20T03:31:07Z,Shirley125,RFC
+6018,[Bug]: 单机910B4 8卡部署Qwen2.5 30B模型，vllm ascend 版本0.12.0.rc1，开启full decode only出现crash,OPEN,2026-01-20T01:58:55Z,jiager-npu,bug
+6017,[Feature]: support GLM-4.7-Flash,OPEN,2026-01-19T16:02:41Z,M4n5ter,feature request
+6007,[Bug]: The name conflict between npu_lighting_indexer and cann's torch_npu.npu_lighting_indexer.,OPEN,2026-01-19T09:16:03Z,wucong25,bug
+6002,[Bug]:aclgraph图捕获模式不支持,CLOSED,2026-01-19T08:06:47Z,Mitchellax,bug
+5993,[Bug]: 双机 A2 800 (64Gx8) vllm-ascend:v0.13.0rc1 部署 DeepSeek-V3.1-w8a8-mtp-QuaRot 失败,CLOSED,2026-01-19T06:12:45Z,shilongx,bug
+5991,"[Feature]: Qwen3-Omni-30B-A3B-Thinking, when max-concurrency >=2,  TPOT only 100ms",OPEN,2026-01-19T04:02:52Z,hyena126,performance;module:multimodal
+5987,[RFC]: refactor sample of model runner,OPEN,2026-01-19T03:35:48Z,realliujiaxu,RFC
+5983,[Bug]: bisheng-ub overflow,OPEN,2026-01-19T01:59:43Z,Studio-tyx,bug
+5974,"[Bug]: [main] when appling `eagle3` to `QuaRot` model, the acceptence rates drop significantly",OPEN,2026-01-17T14:24:11Z,drslark,bug
+5969,[Bug]: eplb未适配deepseek_v32,OPEN,2026-01-17T10:22:51Z,LZZhang-HW,bug
+5953,[New Model]: Qwen3-VL-Embedding-2B,OPEN,2026-01-16T07:22:08Z,hyhwmt,new model
+5949,[Bug]: 2节点，2*8*910b2拉起Qwen3-235B-A22B-Thinking-2507失败,OPEN,2026-01-16T05:52:54Z,gbdjxgp,bug
+5948,[Bug]: CPUOffloadingConnector do not work,OPEN,2026-01-16T05:49:08Z,nayihz,bug
+5947,[Bug]: 双机 A2 800 (64Gx8)  vllm-ascend:v0.13.0rc1 无法拉起 DeepSeek-R1-0528-W8A8 : call aclnnMoeDistributeDispatchV3 failed 561000,CLOSED,2026-01-16T05:45:49Z,shilongx,
+5942,[Bug]: 在双机800I A2上，使用vllm-ascend v0.13.0rc1拉起 DSv3.2-w8a8模型，DP4 TP4 一直卡住拉不起来（DP2 TP8可以拉起来）,CLOSED,2026-01-16T02:30:52Z,sjm0522,bug
+5925,[Bug]: A3设备qwen3-32B模型进行ceval精度测试运行一段时间报错服务崩溃,OPEN,2026-01-15T09:50:21Z,Zhiwen-Liu,bug
+5920,[RFC]: torch.npu.config.allow_internal_format=True in model_runner_v1.py,OPEN,2026-01-15T08:26:35Z,Rhetee,RFC
+5917,[Bug]: 单卡多vllm实例报错,OPEN,2026-01-15T07:31:42Z,hubble-bubble,bug
+5915,[Bug]: Transposing during wake_up causing MoE shape mismatch in RL scenarios.,OPEN,2026-01-15T06:22:14Z,Shangwei-Li,bug
+5914,[Bug]:use vllm server but tell me not import vllm.benchmarks.latency,OPEN,2026-01-15T05:26:29Z,ilovexsir,bug
+5905,[Usage]: 使用v0.10.0rc1-310p镜像推理Qwen3-32B，vllm启动卡住了，请问各位大神是什么问题,OPEN,2026-01-14T11:14:56Z,gck123,310p
+5898,[Bug]: vllm-ascend 0.13.0.rc1  DeepSeek V3.2 W8A8模型，开启prefix-cache && 关闭mtp 稳定性异常，服务rpc报错，plog算子搬运报错,OPEN,2026-01-14T08:30:29Z,Sfeching,bug
+5894,[Bug]: vllm-ascend:v0.13.0rc1运行Glm-4.5-air频繁出错,OPEN,2026-01-14T07:04:23Z,LYK918,bug;glm
+5893,[New Model]: Cannot found DeepSeek-V3.1-w8a8 in modelscope,OPEN,2026-01-14T06:54:50Z,moluzhui,new model
+5892,[性能]: 13rc1版本相较11版本提升不明显,OPEN,2026-01-14T06:47:33Z,jakiechris,
+5890,[Bug]: 部署qwen2.5-vl-7B，推理时有时候会输出很多个！,OPEN,2026-01-14T06:30:35Z,MrGu11,bug
+5876,[Bug]: 双机推理Qwen3-235B模型，启动时卡在Capturing CUDA graphs进度0%，卡住一小时了。,CLOSED,2026-01-14T02:51:09Z,MaoJianwei,bug
+5859,[Bug]: KV cache usage接近100%时，TPOT激增四五倍，排队waiting机制是有效的，但这似乎无法保障服务性能,OPEN,2026-01-13T09:59:52Z,samsuzhang,bug;glm
+5850,"[Bug, CI]: DeepSeek-V3_2-W8A8-A3-dual-nodes.yaml failed cos.view shape '[19, -1]' is invalid for input of size 640",CLOSED,2026-01-13T08:24:45Z,leo-pony,bug
+5847,[Bug]: v0.13.0.rc1 推理存在cpu内存泄漏,CLOSED,2026-01-13T07:30:54Z,glowwormX,bug
+5845,[RFC]: Gradual migration of linting and formatting to Ruff,OPEN,2026-01-13T07:13:34Z,MrZ20,RFC
+5838,[Bug]:  Incorrect k/v reshaping in `_forward_v1_style` causes TND layout dimension mismatch for `npu_fused_infer_attention_score`,OPEN,2026-01-13T04:26:05Z,pillumina,bug
+5835,[Bug]: v0.11.0版本部署Qwen3-235B使用Json Schema特性返回精度有问题,OPEN,2026-01-13T03:41:29Z,sxyqwang,bug
+5829,"[Bug]: When enable Prefill-Decode Separation, MTP and full graph,  some decode instances are not in full graph.",OPEN,2026-01-13T01:55:10Z,dragondream-chen,bug
+5826,[RFC]: Add DFLASH speculative decoding support,OPEN,2026-01-13T01:42:54Z,HF-001,RFC
+5825,[Bug]: `eagle3` with `sp` will cause an accuracy problem in drafter model,CLOSED,2026-01-12T14:15:27Z,drslark,bug
+5824,[Bug]: 接入MoE融合算子接口后，打开ACL Graph报错,OPEN,2026-01-12T14:03:34Z,184603418,bug
+5823,[Bug]: mla_v1.py的实现与yarn的rope_type强绑定,OPEN,2026-01-12T13:30:22Z,chenweiqiang11,bug
+5815,[Bug]: _pickle.UnpicklingError: pickle data was truncated,CLOSED,2026-01-12T10:40:03Z,slippersss,bug
+5813,[Bug]: 部署Qwen3-8B-W8A8  layers.0.mlp.gate_up_proj.deq_scale,CLOSED,2026-01-12T10:02:36Z,impptg,bug
+5812,[Bug]: 部署W8A8模型异常 layers.0.mlp.gate_up_proj.deq_scale,CLOSED,2026-01-12T09:58:42Z,impptg,bug
+5805,"[Bug]: 使用qwen3_235B模型跑pd分离，p节点和d节点同时开启时pcp=2,p节点的tp=8,d节点的tp=2,mooncake_connector出现越界的错误",CLOSED,2026-01-12T08:45:02Z,knight0528,bug
+5798,[Bug]: Cannot use eplb,OPEN,2026-01-12T07:35:09Z,qqcomuyiu,bug
+5794,"[Bug]: GLM-4.7 W8A8: `KeyError: 'model.layers.92.head.weight'`, but only 0-91 in quant_model_description.json",OPEN,2026-01-12T05:13:46Z,M4n5ter,bug;glm
+5785,[Usage]: 当前支持哪些模型的投机推理？Qwen3-235B-A22B支持吗？,OPEN,2026-01-12T02:15:52Z,MaoJianwei,
+5784,"[Bug, CI]: DeepSeek-R1-W8A8-longseq A3 multi-node run failed",CLOSED,2026-01-12T02:09:00Z,leo-pony,bug
+5772,[Bug]: vllm-ascend-v0.13.0rc1 推理 paddle-vl-0.9b 报错,CLOSED,2026-01-09T10:20:14Z,Sage520,bug
+5771,[Bug]:DeepseekOCR模型单机单卡部署，开启入图后服务无法启动,CLOSED,2026-01-09T09:45:21Z,Wangbei25,bug
+5770,[Performance]: 开启 eagle3 投机解码性能变差,OPEN,2026-01-09T09:41:50Z,Ewenwan,performance
+5766,[Usage]: 4机A2部署deepseek v3.2-w8a8模型，拉起服务卡住,OPEN,2026-01-09T08:49:06Z,ericlsp,
+5760,"[Bug]: vllm-ascend 部署 Qwen3-VL-8B-Instruct , curl 等待执行完后接受为空",OPEN,2026-01-09T06:06:39Z,tomatos9421,bug;module:multimodal
+5750,[Bug]: An error occurred while performing inference with the Qwen3-Next-80B-A3B-Instruct model using the vllm-ascend-0.13.0-rc1 image on 4 Ascend 910B cards：Failed to compile custom operators with Triton Ascend.,OPEN,2026-01-09T03:28:30Z,Wu-Yuanfei,bug;qwen3-next
+5749,[Misc]: 使用VLLM Ascend部署模型，并对模型性能进行压测，伙伴反馈当压测导致vlllm 服务崩了时，服务无法自启动。但实际业务要求需要推理服务自启动，需要实现该功能,OPEN,2026-01-09T02:27:17Z,lxr88,
+5748,[Bug]: qwen3 coder  failed to start and get HCCL function error,CLOSED,2026-01-09T02:27:11Z,gao12312,bug
+5747,[Bug]: 强化学习场景（例如Verl）开启NZ+matmul_allreduce后rollout参数无法正常更新,CLOSED,2026-01-09T02:15:04Z,icerain-alt,bug
+5745,[Bug]: 加载qwen2.5-vl-7B-Instruct有时候会输出一堆感叹号或者是引用一些莫名其妙的图片,OPEN,2026-01-09T01:52:50Z,MrGu11,bug
+5744,"[Feature]: qwen3-next, mtp can not work on aclgraph",OPEN,2026-01-09T01:31:42Z,hyena126,feature request
+5743,[RFC]: [RFC]: support matmul_allreduce_add_rmsnorm by pass for dense model,OPEN,2026-01-09T01:26:43Z,Trunrain,RFC
+5739,[Feature]: 当前版本默认配置cudagraph_mode是PIECEWISE，优化成FULLGRAPH模式,OPEN,2026-01-08T13:47:01Z,pbbb205,feature request
+5737,[Usage]: 求助！单910B部署qwen3-0.6B并基于vllm-ascend加速后，推理速度只有5-6tokens/s,OPEN,2026-01-08T13:36:48Z,AyanamiReiEva,
+5728,[Bug]: Qwen-Image NPU Inference,CLOSED,2026-01-08T09:56:07Z,May-Z-H,bug
+5725,[Bug]: Qwen3-Embedding-0.6B计算向量，同一个字符串的第一次和第二次计算的向量不一致，存在很大误差,OPEN,2026-01-08T08:40:10Z,dv0,bug
+5724,[Bug]: KIMI-k2在910B卡用vllm推理的时候报错KeyError: 'model.layers.30.self_attn.attn',OPEN,2026-01-08T08:38:06Z,ffengylong,bug;kimi
+5714,Qwen3-next-80B模型在910B，32G*8表现的推理速度较差,OPEN,2026-01-08T04:00:20Z,YangPython123,performance
+5712,[RFC]: support sequence parallelism by pass,OPEN,2026-01-08T03:40:35Z,realliujiaxu,help wanted;RFC
+5710,[Bug]: vllm-ascend 0.11.0 does not compatible with vllm 0.11.0 for mismatch of pytorch version,CLOSED,2026-01-08T03:17:47Z,iambowen,question
+5708,[RFC]: Building an Event Callback Mechanism to Achieve Fine-Grained Overlap of Shared Experts,CLOSED,2026-01-08T03:00:25Z,jianzs,RFC
+5707,[Usage]: 请问如何正确的在一张npu加速卡上面跑多个vllm 程序以启动多个模型服务,OPEN,2026-01-08T02:52:44Z,miaoyuting,
+5699,"[Bug]: Engine core proc EngineCore_DP0 died unexpectedly, shutting down client.",OPEN,2026-01-07T12:19:28Z,Mr-Xiao2021,bug
+5695,"[Usage]: deploy GME-Qwen2-VL-2B-Instruct with vllm ascend error, error no is 561103 & error msg is ERR00100 PTA call acl api failed. EZ9999: Inner Error!",OPEN,2026-01-07T09:30:44Z,TaoZC1996,
+5693,[Usage]: 我用docker部署的，启动后，是否有图形界面能控制模型选择等功能,OPEN,2026-01-07T08:06:49Z,gongxl1980,
+5690,[Bug]: 910B4-1无法运行qwen3-next-80b，triton有问题,OPEN,2026-01-07T08:01:19Z,3030373635,bug
+5689,[Performance]: qwen3 coder 480b vllm-ascend performance check,OPEN,2026-01-07T07:49:18Z,tomant1024,performance
+5687,[Bug]: Vllm-Ascend 0.11.0.rc3 Qwen3-Embedding-8B 设置Max_num_seqs=256的时候报错KeyError,OPEN,2026-01-07T07:24:30Z,yangjiuhua,bug
+5684,[Bug]: Ubuntu A2 DeepSeek-V3.2 SingleNode Start Error in docker container,OPEN,2026-01-07T06:01:38Z,moluzhui,bug
+5683,[Bug]: 思维链开启后工具调用报错,CLOSED,2026-01-07T04:33:17Z,yuliuhui,bug
+5680,[Bug]: Ubuntu A2 DeepSeek-V3.2 SingleNode Start Error in docker container,CLOSED,2026-01-07T03:42:57Z,moluzhui,bug
+5678,[Bug]: AscendMLABackend missing 'get_supported_block_size' when running Kimi-Linear on the vllm-ascend v0.13.0rc1,OPEN,2026-01-07T03:06:38Z,1926-08-17,bug;kimi
+5674,[Feature]: Needs to support switching to MoEComm.ALLGATHER communication to adapt to the A2 dual-machine back-to-back networking scenario,OPEN,2026-01-07T01:36:14Z,Mitchellax,feature request
+5670,[Performance]: The qwen3-vl model does not enable the mrope fusion operator.,OPEN,2026-01-06T15:17:30Z,Xiangyanglikecode,performance
+5663,[Bug]: 0.11.0.RC2双机部署deepseek失败,OPEN,2026-01-06T12:40:30Z,Afanmin,bug
+5661,"[Bug]: 高频出现 RuntimeError: ACL stream synchronize failed, error code:507015 问题",CLOSED,2026-01-06T12:09:00Z,chenaoxuan,bug
+5660,"Failed to transfer KV cache for request chatcmpl-7817d6df-206c-4aca-bfac-c43df205506f: Mooncake transfer failed, ret: -1",OPEN,2026-01-06T12:06:43Z,feifei0323,documentation
+5653,[Usage]: 300I DUO现在支持部署Qwen3vl吗？,OPEN,2026-01-06T09:24:55Z,lcyyyao,
+5651,Does vLLM-Ascend officially support Atlas 300I A2 (Ascend 910B PCIe card)?,OPEN,2026-01-06T09:10:46Z,VisminLab,installation
+5650,[Bug]: Unable to run multiple models on a single NPU,OPEN,2026-01-06T09:09:27Z,linyinli,bug
+5648,[Bug]: qwen3-235b开启eagle3投机解码在max-num-seqs>1时TPOT异常,CLOSED,2026-01-06T08:42:43Z,gao12312,bug
+5645,[Bug]: No exception is thrown when graph capture fails.,OPEN,2026-01-06T08:13:41Z,WithHades,bug
+5643,[Bug]: [EPLB] 按照训练的强化学习框架的精度标准静态负载均衡可能存在精度问题,OPEN,2026-01-06T08:08:37Z,shenchuxiaofugui,bug
+5640,[Performance]: Max_num_seq=256的时候报错KeyError，减小Max_num_seq之后不会报错了,OPEN,2026-01-06T07:53:41Z,yangjiuhua,performance
+5636,[BUG]Structured output crash on v0.13.0rc1/main: xgrammar indices type mismatch,CLOSED,2026-01-06T07:09:31Z,M4n5ter,
+5635,[Bug]: PD分离 mooncake tansfer bug,OPEN,2026-01-06T07:03:44Z,lmx668,bug
+5634,[Bug]: Intermittent CI failure due to a compilation error in the triton operator.,OPEN,2026-01-06T06:32:48Z,MengqingCao,bug
+5633,[RFC]: Expert Parallelism Load Balancer,OPEN,2026-01-06T04:02:52Z,shenchuxiaofugui,RFC
+5630,[Usage]: why kv-cache int8 quantization (c8) was removed?,OPEN,2026-01-06T03:40:34Z,PengtuLi,
+5629,[Usage]: 双八卡910B节点部署DeepSeek-V3.1-Terminus-w8a8-mtp-QuaRot报错,CLOSED,2026-01-06T03:32:44Z,StormMapleleaf,
+5628,[Bug]: dotsOCR模型早vllm-ascend v0.13.0rc1 openeuler上做单机1P1D分离后精度下降,OPEN,2026-01-06T03:26:03Z,Chuanwu-Qiao,bug
+5609,[Bug]: Mooncake is broken in vllm-ascend v0.12.0rc1 docker image,CLOSED,2026-01-05T08:46:58Z,gcanlin,bug
+5608,[New Model]: DeepSeek-V3.2-Speciale-w8a8,OPEN,2026-01-05T08:38:25Z,bigbosskai,new model
+5606,[Bug]: Exception in Qwen3-Next-80B-A3B-Instruct-W8A8  decode.,CLOSED,2026-01-05T08:05:49Z,kruskr,bug
+5605,[Bug]: run deepseek with disaggregated prefill and mtp=2 or mtp=3 has negative performance,OPEN,2026-01-05T08:00:29Z,machenglong2025,bug
+5604,[RFC]: Refactor of vllm_ascend/distributed module,OPEN,2026-01-05T07:50:15Z,Pz1116,RFC
+5603,"[Bug]:使用VLLM Ascend 0.13.0镜像部署ingle-NPU (Qwen3 8B W4A8)，根据量化指导配置--group_size 256量化完成后进行模型部署报错when weight's dtype is [int4], weight's format is [FRACTAL_NZ], antiquantGroupSize should be 128 or 64, but actual antiquantGroupSize is [256].，",OPEN,2026-01-05T06:55:01Z,lxr88,bug
+5599,[Bug]: socversion error on Atlas 300I Duo(310p3),OPEN,2026-01-05T03:35:10Z,lrisguan,bug;310p
+5596,[Bug]: GLM-4.7 Tool Call failed with MTP,OPEN,2026-01-05T03:29:30Z,pangsg,bug
+5591,[Feature]: applying dual-batch overlap to improve Prefill performance,OPEN,2026-01-04T12:58:50Z,zxdukki,feature request
+5589,[Doc]: We recommend using a more detailed release note format that conforms to community guidelines.,OPEN,2026-01-04T11:52:43Z,Mr-nazyw,documentation
+5588,[Bug]: `CI` may has accuracy problem.,CLOSED,2026-01-04T11:06:13Z,drslark,bug
+5585,"[Bug]: According to the documentation on the VLLM-ASCEND website, using msmodelslim to quantize Qwen-32B-W4A4 resulted in a huge loss in layer 2.",OPEN,2026-01-04T09:28:25Z,zzzzes,bug
+5583,[Bug]: The DeepSeek model may encounter accuracy issues or throw errors when speculative decoding is enabled with extremely short input sequences.,OPEN,2026-01-04T08:40:02Z,coder-fny,bug
+5580,[Doc]: https://github.com/vllm-project/vllm-ascend/blob/main/docs/source/tutorials/Qwen2.5-7B.md,CLOSED,2026-01-04T07:42:44Z,dafeige1226,documentation;help wanted
+5578,[Bug]: assert error when running flash comm2,OPEN,2026-01-04T07:32:33Z,realliujiaxu,bug
+5572,[Bug]: 0.12.0 PD分离部署qwen3vl-30B 报错AttributeError: 'Qwen3VLMoeConfig' object has no attribute 'num_key_value_heads',OPEN,2026-01-04T03:19:56Z,shuixiaoer,bug
+5571,"[Bug]: in v0.13.0rc1 version，During multimodal deployment, an error occurs: NPUAttributeError: 'NPUModelRunner' object has no attribute 'm_budget'",OPEN,2026-01-04T02:57:48Z,NewZxy,bug
+5568,[Doc]: spelling mistake of Environment Variable ASCEND_RT_VISIBLE_DEVICES,OPEN,2026-01-04T02:27:31Z,TmacAaron,documentation
+5564,"[Bug]:使用0.11.0rc3和0.13.0版本镜像部署DeepSeek-R1-Distill-Llama-70B（int8）模型，报错  is_skipped = self.quant_description[prefix + '.weight'] == ""FLOAT""",OPEN,2026-01-04T01:23:51Z,lxr88,bug
+5563,[Bug]: no module named 'flash_attn.ops',CLOSED,2026-01-03T04:08:35Z,wuruichill,bug
+5559,[New Model]: GLM 4.6,CLOSED,2025-12-31T09:29:20Z,liuainlp,new model
+5558,[Usage]: The Qwen3-235B-Instruct deployment currently only supports a concurrency of one. Sending a second request triggers a full server crash.,OPEN,2025-12-31T09:19:40Z,EnZzzzzz,
+5557,[Bug]: 通过910B4 32G VNPU部署bge-m3报错 : Failed to apply for memory.   Check the remaining storage space in the hardware environment.,OPEN,2025-12-31T08:09:04Z,AmosChenYQ,bug
+5551,"[Performance]: Enabling flashcomm1 forces SP logic and removes small batch size graphs, degrading BS=1 latency",OPEN,2025-12-31T03:44:58Z,triomino,performance
+5549,[Bug]: 310p3 启动qwen3-embeding-06B 报错,OPEN,2025-12-31T03:09:20Z,runmana,bug;310p
+5544,[Bug]: Verl + vllm-ascend(v0.11.0) dp+ep+tp+server mode inference accuracy has decreased,OPEN,2025-12-31T02:08:46Z,leo-pony,bug
+5541,[Bug] FIA operator error during 64-concurrency test with Qwen3-235B W8A8 on Ascend (vLLM 0.13.0rc1),CLOSED,2025-12-31T01:37:32Z,triomino,bug
+5527,[Bug]: A2 DeepSeek-V3.2 SingleNode  Start Error,CLOSED,2025-12-30T10:28:02Z,flyrae,bug
+5525,[Bug]: 使用vllm-bench压测qwen3-embedding-8b 的时候，会把这个embedding服务搞崩,OPEN,2025-12-30T10:02:56Z,zvezdaxms,bug
+5524,[Bug][Structured Output]: xgrammar type mismatching error on `apply_token_bitmask_inplace_cpu`,CLOSED,2025-12-30T09:49:15Z,wjunLu,bug
+5523,[RFC]: Add Wheel Variant Packaging Format,OPEN,2025-12-30T09:46:23Z,zhihangdeng,RFC
+5514,[Bug]: vllm-ascend部署GLM4.6V报错：AttributeError: 'NPUModelRunner' object has no attribute 'mm_budget',OPEN,2025-12-30T07:35:08Z,smielchk,bug
+5509,"[Bug]: DeepSeek-V3.1  RuntimeError: The Inner error is reported as above. The process exits for this inner error, and the current working operator name is aclnnInplaceCopy.",OPEN,2025-12-30T06:34:19Z,tao-xiaoxin,bug
+5507,[RFC]: KVComp Sparse Attention for Long-Context Inference,OPEN,2025-12-30T04:39:40Z,zhangsicheng5,RFC
+5504,[Feature]: Weight Prefetching In Qwen Dense Model,OPEN,2025-12-30T03:29:39Z,hust17yixuan,feature request
+5501,[RFC]: Support MoeInitRoutingCustom for CANN 8.3,CLOSED,2025-12-30T02:41:27Z,ChenxiQ,RFC
+5498,官网文档改进建议，比较更新变换频繁并缺必要的支持,OPEN,2025-12-30T02:23:08Z,lingjiajun-fae,documentation
+5497,[Bug]: ImportError: cannot import name 'SamplingParams' from 'vllm' (unknown location),CLOSED,2025-12-30T01:59:54Z,Skyminers,bug
+5494,[RFC]: Upgrade CANN from 8.3 to 8.5,CLOSED,2025-12-30T00:12:37Z,Yikun,RFC
+5493,"[Bug]: Atlas A2 start qwen3-235B-A22B in 2 node mode failed, error: launch failed for Slice, errno:361001",CLOSED,2025-12-29T13:39:57Z,leo-pony,bug
+5488,[Bug]: 0.12版本采信率相较于0.11版本明显降低,OPEN,2025-12-29T12:06:35Z,chenaoxuan,bug
+5487,[RFC]: implement batch invariant for reinforcement learning,OPEN,2025-12-29T11:54:53Z,Ronald1995,RFC
+5484,"[Bug]: ds3.2:op[Transpose_5], attr[perm], has wrong value[1], it should be less than input shape size[0]",OPEN,2025-12-29T10:35:28Z,shaojun0,bug
+5480,[Feature]: 300I DUO现在支持部署Qwen3vl吗？,OPEN,2025-12-29T09:41:15Z,lcyyyao,feature request
+5476,[RFC]: Support fused operator DispatchGmmCombineDecode,OPEN,2025-12-29T08:19:24Z,puxiaokun3721,RFC
+5473,[RFC]: Support new RoPE op which directly use cos_sin_cache && positions.,OPEN,2025-12-29T07:26:14Z,Angazenn,RFC
+5471,[RFC]: Ears a efficient adaptive rejection sampling for accelerating speculative decoding.,OPEN,2025-12-29T07:11:10Z,sunchendd,feature request
+5470,[RFC]: implment Model Runner V2,CLOSED,2025-12-29T06:59:28Z,Ronald1995,RFC
+5468,[Bug]: vllm-ascend目前使用的cann版本在部署deepseekv3.2时不支持驱动版本24.1,CLOSED,2025-12-29T05:56:17Z,shaojun0,bug
+5467,[RFC]: Refactor and unify eagle_proposer and mtp_proposer,OPEN,2025-12-29T05:24:55Z,slippersss,RFC
+5463,[RFC]: Refactor Attention module,CLOSED,2025-12-29T04:19:12Z,weijinqian0,RFC
+5461,[Doc]: How to develop to Deepseek V3.2-w8a8 on A2 * 64G *8 * node2 ?,OPEN,2025-12-29T04:03:21Z,tao-xiaoxin,documentation
+5459,[RFC]: Add support for Eagle3 in ACL Graph `FULL_DECODE_ONLY` mode,OPEN,2025-12-29T03:21:58Z,yiz-liu,RFC
+5455,[RFC]: 【910B部署】希望mindie_turbo与性能采集工具可以相互适配,CLOSED,2025-12-29T01:21:16Z,Liuzi134,question
+5453,"[RFC]: A2、A3部署需求，针对top_p,top_k参数sampling优化",OPEN,2025-12-29T01:16:45Z,Liuzi134,RFC
+5451,[Bug]: Can't recognize the PDF screenshot including many box,CLOSED,2025-12-28T15:06:12Z,dpdpbj,bug
+5449,[RFC]: Refactor npu_model_runner,CLOSED,2025-12-28T09:26:16Z,zhenwenqi2024,RFC
+5448,[Doc]: tutorials/DeepSeek-V3.2.html下相关参数意义,CLOSED,2025-12-27T15:37:19Z,chenqi123,documentation
+5446,[Feature]: 310P什么时候能支持qwen3-30b-a3b moe模型 有计划吗？,OPEN,2025-12-27T12:18:47Z,xiaobing395845388,feature request;310p
+5445,[Bug]: Fix chunk prefill bug for long_sequence feature,CLOSED,2025-12-27T11:04:33Z,LookAround0301,bug
+5439,[Bug]: test_qwen3_next_distributed_mp_eager_mtp_similarity_tp4 fail because accuracy drop,OPEN,2025-12-27T09:30:23Z,leo-pony,bug
+5438,[Bug]: Qwen3-VL-235B accuracy degradation in PD-separated scenario when KVcache is full,CLOSED,2025-12-27T09:21:27Z,Levi-JQ,bug
+5429,[Bug]: Qwen1.5-14B A2单机8卡量化推理部署，处理请求时报错,OPEN,2025-12-27T07:51:01Z,xieanxiean,bug
+5428,[Bug]: Qwen1.5-14B推理时报错,CLOSED,2025-12-27T07:47:57Z,xieanxiean,bug
+5427,[Feature]: Can we support N-Gram speculation?,OPEN,2025-12-27T07:21:54Z,lrf-059,feature request
+5425,[Bug]: Qwen1.5-14B报错,CLOSED,2025-12-27T07:11:40Z,xieanxiean,bug
+5414,[Bug]: Qwen3omni 推理时未能充分利用KV Cache,OPEN,2025-12-27T02:53:20Z,Gpwner,bug
+5408,[Feature]: Can we support Mamba2 models?,OPEN,2025-12-27T01:08:19Z,peroxider,feature request
+5406,[Usage]: 请问vllm-ascend支持部署qwen3vl吗？,CLOSED,2025-12-27T00:57:19Z,lcyyyao,question;qwen3-vl
+5404,[Bug]: Mooncake Layerwise PD分离部署DeepSeek-v3-W8A8模型，Decoder节点收到KV缓存后未应用,OPEN,2025-12-26T15:07:17Z,ZhouCunliang,bug
+5403,[User Story]: Deploy vLLM on Ascend NPU with GitCode Notebook ,CLOSED,2025-12-26T13:56:59Z,wwjwisdom,
+5401,[Bug]: Failed to load Qwen3-Next-80B on 910B by docker image v0.11.0,OPEN,2025-12-26T12:26:07Z,FalconIA,bug;qwen3-next
+5399,[Bug]: RuntimeError: bIndex is out of range: 3068 in vllm-ascend_main when deploying DeepSeek-V3.2 under high concurrency,CLOSED,2025-12-26T09:05:51Z,tan-lei,bug
+5385,[Bug]: AttributeError: 'AscendRotartEmbedding' object has no attribute 'cos_cached',OPEN,2025-12-26T03:43:41Z,yingzhao27,bug
+5384,[Bug]:,CLOSED,2025-12-26T03:40:29Z,wut220801-dotcom,bug
+5375,[Bug]: run test case in local failed: moe_expert_num = len(expert_map) TypeError: object of type 'NoneType' has no len(),CLOSED,2025-12-25T13:13:09Z,leo-pony,bug
+5370,[Bug]: Precision Issue with curl on Ultra-Short Sequences in DeepSeek-V3.2,OPEN,2025-12-25T11:59:48Z,rjg-lyh,bug
+5367,[Bug]: 未对流式输出media_type做分支处理,OPEN,2025-12-25T11:14:27Z,JackyChenHua,bug;performance
+5361,[Bug]: eagle3 run error,OPEN,2025-12-25T09:20:29Z,forgetforget,bug
+5357,[Bug]: Causal_conv1d_fwd_kernel ops fail in special Input and output length,OPEN,2025-12-25T07:40:05Z,SunnyLee151064,bug
+5353,"[Bug]: DeepSeek-V3.2  As of transformers v4.44, default chat template is no longer allowed, so you must provide a chat template if the tokenizer does not define one. None",OPEN,2025-12-25T07:10:45Z,tao-xiaoxin,bug
+5352,[Bug]: accuracy issue for triton kernel split_qkv_rmsnorm_rope_kernel,CLOSED,2025-12-25T06:59:46Z,Meihan-chen,bug
+5350,[RFC]: Support compressed tensors quantization for LLM Compressor,OPEN,2025-12-25T06:41:25Z,LHXuuu,RFC
+5349,[Bug]: Failed to run MiniCPM-V-4.5,OPEN,2025-12-25T06:31:42Z,gcanlin,bug
+5339,[Bug]: 910B部署后，跑一段时间会崩溃，模型精度也存在问题,OPEN,2025-12-25T01:55:28Z,ZhihuaH,bug;module:multimodal;qwen3-vl
+5336,[Help Wanted]: Recover full custom ops test,OPEN,2025-12-25T01:18:37Z,Potabk,bug;good first issue;help wanted
+5333,[v0.13.0rc1] FAQ / Feedback | 问题/反馈,OPEN,2025-12-24T13:48:32Z,MengqingCao,
+5321,[Doc]: Qwen3 series doc can't reproduce,CLOSED,2025-12-24T07:47:17Z,Yikun,documentation
+5318,vLLM Ascend Roadmap Q1 2026,OPEN,2025-12-24T06:56:35Z,wangxiyuan,
+5313,"[Bug]: When deploying Qwen3-VL-32B-Instruct inference using vLLM Ascend 0.11.0, the video output displays a long string of exclamation marks.",CLOSED,2025-12-24T03:06:19Z,Qiiuqh,bug;module:multimodal;qwen3-vl
+5310,"[Bug]: expert count is: 128, but currently only support 256",OPEN,2025-12-24T02:43:46Z,xiefei1026,bug
+5304,"[RFC]: Env, AdditionalConfig and Patch cleanup",OPEN,2025-12-24T01:22:43Z,wangxiyuan,RFC
+5302,[New Model]: GLM-4.6,OPEN,2025-12-24T01:07:15Z,liuainlp,new model
+5299,[Usage]: vllm-ascend是否支持mooncake store connector,OPEN,2025-12-23T13:39:57Z,Shirley125,question
+5297,[Bug]: Tencent-Hunyuan/HunyuanOCR model execute failed with linear op input shape wrong,CLOSED,2025-12-23T13:01:02Z,leo-pony,bug
+5295,[Bug]: GLM DP2 + TP8 910B 16卡,OPEN,2025-12-23T12:33:16Z,qushiyi741,bug
+5292,[Bug]: incorrect prefix passing in vLLM,CLOSED,2025-12-23T09:19:08Z,kunpengW-code,bug
+5276,[Bug]: Prefill and dcode nodes crash during accuracy testing,CLOSED,2025-12-23T05:08:10Z,jianzs,bug
+5269,[Bug] Qwen2.5 Generates Garbled Output on Prefix Cache Hit,OPEN,2025-12-23T03:19:31Z,panxua,bug
+5264,[Feature]: 现版本vllm-ascend需要支持双机直连背靠背场景起模型服务,OPEN,2025-12-23T02:31:15Z,Liuzi134,feature request
+5263,[Usage]: 关于310P推理速度相关提问,CLOSED,2025-12-23T02:29:06Z,948024326,question;310p
+5262,[Bug] VL Model Out-of-Memory (OOM) Due to Missing MM Cache in determine_available_memory,OPEN,2025-12-23T02:16:42Z,panxua,bug
+5252,[Bug]: Probabilistic failure on tests/e2e/singlecard/test_async_scheduling.py::test_with_spec_decoding,OPEN,2025-12-22T12:59:00Z,MengqingCao,bug
+5245,[Bug]:AttributeError: 'Qwen3VLConfig' object has no attribute 'num_key_value_heads,OPEN,2025-12-22T09:08:35Z,0moyi0-2024,bug;qwen3-vl
+5236,"[Usage: ] When deploying Qwen3 235B with vllm-ascend:v0.12.0rc1, an aclnnRmsNorm operator execution error occurs",CLOSED,2025-12-22T06:29:44Z,EnZzzzzz,qwen3-moe
+5229,[Release]: Release checklist for v0.13.0rc1,CLOSED,2025-12-22T03:59:08Z,MengqingCao,
+5227,[Bug]:suffix spec decode in v0.12.0rc1 run with PP>2 meet IndexError,OPEN,2025-12-22T03:34:29Z,frankie-ys,bug
+5219,[Bug]: The _PCP and _MC2 communication group did not consider the PP in the initialization process of `parallel_state.py`.,OPEN,2025-12-21T11:38:35Z,zzhx1,bug
+5215,[Bug]: Phi-4-mini-instruct benchmark推理精度异常为0.08%,OPEN,2025-12-20T08:48:55Z,leo-pony,bug
+5213,[Bug]: fail to start multi server on the same NPU,OPEN,2025-12-20T06:52:30Z,Absoler,bug;module:rl
+5209,[RFC]: Async Scheduling Plans,CLOSED,2025-12-20T02:57:50Z,Ronald1995,RFC
+5208,[RFC]: Model Runner V2,OPEN,2025-12-20T02:30:36Z,Ronald1995,RFC
+5207,[Feature]: 求一个DeepSeek-V3-0324-w8a8权重文件的下载链接,OPEN,2025-12-20T00:44:36Z,ZhouCunliang,question
+5206,[Feature]: 求一个DeepSeek-V3.1-w8a8的下载链接。,CLOSED,2025-12-20T00:41:54Z,ZhouCunliang,feature request
+5201,[Doc]: Qwen3-235B-A22B yarn config rope_theta value,CLOSED,2025-12-19T11:08:36Z,briobol,documentation
+5188,[Bug]: A3 v0.11.0.rc2 qwen3 235b dp + etp + fullgraph hang,OPEN,2025-12-19T07:14:16Z,zhaozx-cn,bug
+5186,[Bug]: Qwen3-32B-W8A8 crash when enable FULL_DECODE_ONLY,OPEN,2025-12-19T06:49:06Z,Zhang-Bryan,bug
+5185,[Bug]: deepseek v3.2 decode mtp is failure,OPEN,2025-12-19T02:44:42Z,yangqinghao-cmss,bug
+5184,[Feature]: 现在vllm-ascend支持v300 pro吗？,CLOSED,2025-12-19T02:38:21Z,lcyyyao,feature request
+5178,[Feature]: 为啥推理速度如此的慢,OPEN,2025-12-18T14:10:14Z,kellyliangly-star,feature request;qwen3-vl
+5170,[Bug]: LinearOperation CreateOperation failed,OPEN,2025-12-18T10:19:35Z,jiaolongxue,bug
+5158,[Doc]: Missing installation guide for DeepSeek-V3 custom ops in official docker (v0.12.0rc1),OPEN,2025-12-18T07:16:13Z,Alexander-Qiu,documentation
+5153,[question]: qwen3-next-80B，vllm实测的最长长度有多少？是否能到256K,OPEN,2025-12-18T05:53:24Z,HZC-hzc123,
+5148,[Bug]: VLLM EngineCore Crash after Adding response_format: type=text,OPEN,2025-12-18T03:02:38Z,nowang6,bug
+5145,[Bug]: Error occurs when running the DeepSeek quantized model with vllm-ascend version 0.11.0,OPEN,2025-12-18T02:31:31Z,hero0307,bug
+5144,[Bug]: v0.11.0 fp16推理结果出现“!!!!”,CLOSED,2025-12-18T02:15:25Z,glowwormX,bug
+5139,[Bug]: OOM problem occurs when deploy Qwen3-8B on v0.11.0rc3 ,OPEN,2025-12-17T12:46:50Z,yangqinj,bug
+5137,[Bug]: 910B4部署Qwen3 Next出现NPU OOM问题,CLOSED,2025-12-17T11:00:52Z,Sariel2,bug
+5135,[Bug]: HCCL communication failure with tensor_parallel_size=2 on Ascend 300I NPU,OPEN,2025-12-17T10:31:29Z,zhima771,bug
+5125,[Bug]: 昇腾910B部署模型后，测试时出现精度下降问题,CLOSED,2025-12-17T07:36:51Z,ZhihuaH,bug
+5124,[Bug]: AclGraph mode underperforms eager mode in Qwen speculative decoding scenario,OPEN,2025-12-17T07:31:41Z,HaoLi980405,bug
+5123,[Bug]: [Nightly]eplb failed.,CLOSED,2025-12-17T07:21:57Z,jiangyunfan1,bug
+5117,[Bug]: Error Report When Run Qwen3-VL-32B-Instruct,OPEN,2025-12-17T03:36:17Z,ponyioy,bug
+5111,[Bug]: RuntimeError: Worker failed with error 'AttributeError: 'AscendDeepseekScalingRotaryEmbedding' object has no attribute 'cos',CLOSED,2025-12-17T02:56:35Z,yangqinghao-cmss,bug
+5089,[Misc]: Is FlashComm actually only used for SP-related AllGather operations?,OPEN,2025-12-16T08:47:07Z,tangzhiyi11,
+5087,[Bug]:(EngineCore_DP1 pid=235461) INFO 12-16 08:25:51 [shm_broadcast.py:466] No available shared memory broadcast block found in 60 seconds. This typically happens when some processes are hanging or doing some time-consuming work (e.g. compilation).,OPEN,2025-12-16T08:37:57Z,bruce-he-001,bug
+5083,[Bug]: the output is None of model inference when using vllm-asend 0.12.0 rc1,OPEN,2025-12-16T07:52:03Z,184603418,bug
+5076,[Bug]: EngineCore encountered an issue running Qwen3-Coder-480B-A35B-Instruct with Full decode only graph.,OPEN,2025-12-16T06:53:48Z,Exile-Twilight,bug
+5075,[Usage]: 310系列什么时候支持图模式和量化,OPEN,2025-12-16T06:51:38Z,zyqzhang1996,
+5067,[RFC]: Token-Level Re-Inference for Fault Tolerance in vLLM-Ascend,OPEN,2025-12-16T04:08:00Z,Peter-Lu-22,RFC
+5065,[Bug]: Precision degradation with Qwen3-Next W8A8 on vLLM-Ascend v0.12.0rc1,OPEN,2025-12-16T03:52:24Z,Guozhong23,bug
+5056,"[Bug]: DeepSeek-V3.2 with A2(64G) * 16 with exception `RuntimeError: aclnnLightningIndexer or aclnnLightningIndexerGetWorkspaceSize not in libopapi.so, or libopapi.sonot found.`",OPEN,2025-12-16T02:08:15Z,CatYing,bug
+5044,[Bug]: decode fail to get kv cache from mooncake store when directly use V1 mooncake store connector,CLOSED,2025-12-15T12:00:45Z,Shichang-Zhang,bug
+5043,[Bug]: Qwen3-next enable mtp with 0.12.0rc1 ops-error occurred.,OPEN,2025-12-15T12:00:23Z,Guozhong23,bug;qwen3-next
+5041,[Bug]:  DS-V3.2 A2部署测试时，出现张量形状大小不一致的报错,OPEN,2025-12-15T11:40:43Z,wuyangjian1115,bug
+5031,"[Bug]: Launch model with lora, cannot access to the original model, and have accuracy issue",OPEN,2025-12-15T09:09:25Z,hhd52859,bug
+5027,[Feature]: cannot get vllm outputs.metrics,CLOSED,2025-12-15T08:20:37Z,mapszangban-ops,good first issue;help wanted;feature request
+5021,[Bug]: bf16 lora don't work with 0.11.0rc2,CLOSED,2025-12-15T07:20:01Z,hhd52859,bug;module:lora
+5020,[Bug]: Encounter an out of memory error with the tutorial of V0.12.0RC1 for Qwen3-Next,OPEN,2025-12-15T07:03:00Z,Aurorahsy,bug;qwen3-next
+5017,[Bug]: conv3d not supported,CLOSED,2025-12-15T06:24:46Z,andy19966212-cloud,bug;310p
+5016,MindIE部署Qwen2-vl推理速度，相比于vllm-ascend如何,CLOSED,2025-12-15T05:43:05Z,lyc1995452,new model
+5010,[Bug][v0.12.0rc1]: draft_model_config is None when Suffix Speculative Decoding is enabled,CLOSED,2025-12-15T03:21:47Z,fluctlux,bug
+5006,[Bug]: vllm-ascend serve Qwen3-235B-A22B model failed. ValueError: Following weights were not initialized from checkpoint,CLOSED,2025-12-15T02:05:24Z,oasis-0927,bug
+5005,[Bug]: 'GDNAttentionMetadataBuilder' object has no attribute 'aclgraph_support',CLOSED,2025-12-15T01:47:02Z,RyanOvO,bug
+5004,[New Model]: Qwen3-VL 310P3,OPEN,2025-12-15T01:45:23Z,andy19966212-cloud,new model
+4997,[Bug]: siglip2 failed to embed with image input,OPEN,2025-12-13T13:38:35Z,Potabk,bug;new model
+4996,[Bug]: DeepSeek-V3.2 may report errors during decode stage under high-load scenarios,CLOSED,2025-12-13T13:29:01Z,rjg-lyh,bug
+4994,[Usage]: Run multi-models,CLOSED,2025-12-13T12:42:43Z,Potabk,
+4992,[Bug]: HUNYUAN-ORC failed to run,CLOSED,2025-12-13T12:16:25Z,Potabk,new model
+4990,[Bug]: DeepSeek-R1 can not run with mtp,CLOSED,2025-12-13T11:31:34Z,Potabk,bug
+4989,[Bug]: DeepSeek-OCR loop output,CLOSED,2025-12-13T11:23:20Z,Potabk,bug
+4986,[Bug]: Server hangs when running FULL_DECODE_ONLY mode  and enabling MTP with DeepSeek V3.1,CLOSED,2025-12-13T10:35:28Z,jianzs,bug
+4985,[Bug]: server crashes when running FULL_DECODE_ONLY mode with Qwen3-235B && DeepSeek V3.1,CLOSED,2025-12-13T10:23:46Z,Angazenn,bug
+4984,[v0.12.0rc1] FAQ / Feedback | 问题/反馈,CLOSED,2025-12-13T10:19:10Z,wangxiyuan,
+4982,[Release]: Release checklist for v0.12.0rc1,CLOSED,2025-12-13T10:02:05Z,wangxiyuan,
+4972,"[Bug]: vllm-ascend-0.11.0rc0:success,vllm-ascend-main(0.12.0):The aicore execution times out.",OPEN,2025-12-12T12:30:58Z,shaojun0,bug;deepseek-v3.2
+4969,[New Model]: 希望新增DeepSeek-V3.2部署能力支持,CLOSED,2025-12-12T11:19:34Z,izhaomeng,new model
+4962,[Bug]: Qwen2.5 omni7b语音推理精度异常,CLOSED,2025-12-12T08:41:46Z,Shelleyaaa,bug
+4960,[Bug]: qwen3-vl-235B-bf16 FULL_DECODE_ONLY + VLLM_ASCEND_ENABLE_NZ=1 压测报错问题,CLOSED,2025-12-12T08:07:09Z,Levi-JQ,bug
+4948,[Bug]: 部署满血版DeepSeek R1 0528 BF16失败,OPEN,2025-12-12T06:09:12Z,Sariel2,bug
+4946,[Bug]: Pipeline parallelism doesn't work well,OPEN,2025-12-12T03:51:09Z,jianzs,bug
+4934,[Bug]: Qwen3-Next-80B-A3B-Instruct 使用vllm-ascend-0110rc0在910b2上出现严重幻觉乱码问题，以及性能很差,OPEN,2025-12-11T15:22:07Z,mushilin1992-lgtm,bug;qwen3-next
+4930,[Bug]: NPU and GPU have redundant outputs when running Qwen3-Next-MTP.,CLOSED,2025-12-11T14:01:23Z,drslark,bug;qwen3-next
+4929,"[Bug]: export ASCEND_RT_VISIBLE_DEVICES=1,2,3指定显卡不生效",OPEN,2025-12-11T11:45:53Z,lyc1995452,bug
+4917,[Installation]: vllm 0.11.0 和 vllm-ascend 0.11.0rc3安装失败,CLOSED,2025-12-11T09:47:56Z,longzhenliu0128-prog,installation
+4914,"[Bug]: DeepSeek-V3.2拉起服务报错:RuntimeError: ACL stream synchronize failed, error code:507014",OPEN,2025-12-11T09:33:11Z,kaneki-00-big,bug
+4900,[Doc]: additional_config miss “enable_weight_nz_layout” config declaration,CLOSED,2025-12-11T03:40:06Z,coder-yuzhiwei,documentation
+4898,[Feature]: Support Tree Attention in vllm_ascend for speculative decoding,OPEN,2025-12-11T02:56:38Z,ZyQiu6,feature request
+4897,[Misc]: Refactor E2E test,CLOSED,2025-12-11T02:55:49Z,menogrey,
+4891,[Bug]: cpu_offload_connector not work,CLOSED,2025-12-10T12:18:56Z,richard4fan,bug
+4889,[Bug]: Qwen3-Next-80B-A3B-Instruct 经过量化得到w8a8的模型权重后，在镜像quay.io/ascend/vllm-ascend:v0.11.0-dev启动报错,OPEN,2025-12-10T09:21:54Z,zvezdaxms,bug;qwen3-next
+4887,[Bug][v0.11.0-dev]: The qwen2.5-vl-72b-bf16 model repetition issues when acync-scheduling is enabled.,OPEN,2025-12-10T08:49:14Z,Levi-JQ,bug
+4880,[Bug]: Qwen2.5-VL-32B-instruct使用lm_eval进行精度测试时报错,OPEN,2025-12-10T07:52:26Z,MrZ20,bug
+4877,[Bug]: 开dp有精度问题,OPEN,2025-12-10T07:41:24Z,SunnyLee151064,bug
+4874,[Bug]: 使用v0.11.0rc2-310p-openeuler 执行qwen 2.5 报错,CLOSED,2025-12-10T07:04:32Z,xucqX,bug
+4867,[Feature]: Support Tensorizer for fast model loading on Ascend (NPU),OPEN,2025-12-10T03:32:43Z,yimuu,feature request
+4866,[Bug]: disaggregated_prefill_decode Mooncake transfer failed for request cmpl in decode,CLOSED,2025-12-10T03:30:03Z,ZRJ026,bug
+4863,[Bug]: Runtime Error: ImportError: cannot import name 'STR_DTYPE_TO_TORCH_DTYPE' from 'vllm.utils' when running vllm-ascend with Qwen3-Reranker-8B,OPEN,2025-12-10T03:19:49Z,novisfff,bug
+4859,"[Bug]: Encountered ""call aclnnInplaceZero failed, error code is 561103"" when running example inference test",OPEN,2025-12-10T03:09:49Z,CharlieVinnie,bug
+4855,[Feature]: 可不可以在docker镜像仓库里面更新一下deepseek-v3.2部署镜像,CLOSED,2025-12-10T02:23:50Z,shaojun0,feature request
+4847,[Bug]: Qwen3-Coder-480B-A35B-Instruct-w8a8-QuaRot双节点运行报错,CLOSED,2025-12-09T14:58:24Z,puchine,bug
+4842,[RFC]: CDCP Scheduling for Disaggregated Prefilling with KV Cache Layerwise Push Support,OPEN,2025-12-09T11:22:46Z,liziyu179,RFC
+4839,[Feature]: 何时更新至0.12.0？,CLOSED,2025-12-09T08:38:06Z,KevinXyy,feature request
+4835,[Bug]: v0.11.0rc3拉起DeepSeek-V3.2报错:KeyError: 'model.embed_tokens.weight',OPEN,2025-12-09T08:30:46Z,LIUYUE7011,bug
+4834,[RFC]: Refactor register_kv_cache for P/D disaggregation,OPEN,2025-12-09T08:03:55Z,nwpu-zxr,RFC
+4812,[Bug]: v0.11.0.rc2-310P-openeuler镜像 使用enforce-egaer模式拉起Qwen2.5-VL-7B-Instruct报错,CLOSED,2025-12-09T01:59:13Z,WeNeedMoreCode,bug
+4809,[Performance]: Optimize the performance of the mooncake layerwise connector,OPEN,2025-12-09T01:13:09Z,nwpu-zxr,performance
+4808,[v0.11.0] FAQ / Feedback | 问题/反馈,OPEN,2025-12-09T01:06:37Z,wangxiyuan,
+4807,[Release]: Release checklist for v0.11.0,CLOSED,2025-12-09T01:05:45Z,wangxiyuan,
+4803,[Bug]: PD混布多DP场景下chunksize大于8K会存在精度问题,OPEN,2025-12-08T13:40:45Z,coder-fny,bug
+4796,[Bug]: 不支持bge-reranker-v2-m3？,OPEN,2025-12-08T11:37:40Z,lyc1995452,bug
+4795,[Doc]: mooncake池化kvcache pool size 设置说明,OPEN,2025-12-08T11:36:35Z,liyu119,documentation
+4792,[Bug]: DeepSeek-V3.2 start failed,OPEN,2025-12-08T10:01:10Z,flyrae,bug
+4785,[RFC] Unit test enhancement,CLOSED,2025-12-08T07:55:07Z,wangxiyuan,help wanted
+4784,cleanup useless patch,CLOSED,2025-12-08T07:53:05Z,wangxiyuan,help wanted
+4771,[Bug]: Qwen2.5-32B-Instruct encountered an exception for the second request using its own trained eagle3 draft model,OPEN,2025-12-08T04:50:27Z,haibenben,bug
+4769,[Bug]:cos or sin batchSize must same as x batchSize.,OPEN,2025-12-08T02:25:33Z,shaojun0,bug
+4766,[Bug]: vllm v0.11.0rc0-openeuler/v0.11.0rc3双卡910B4-64G跑Qwen3-VL-32B，跑数据集压测显存一直异常增长，最后OOM,OPEN,2025-12-08T01:45:29Z,Yukari-196,bug
+4752,[RFC]: Gradually migrate Mooncake connector-related features into the main vLLM repository,OPEN,2025-12-05T12:07:12Z,LCAIZJ,RFC
+4748,[RFC]: vLLM Ascend On Call Dashboard,OPEN,2025-12-05T08:53:52Z,Potabk,RFC
+4744,[Installation]: quay.io/ascend/vllm-ascend:v0.11.0rc0-openeuler拉/home/model/Qwen3-1.7B/失败,OPEN,2025-12-05T07:40:44Z,kami-z-ai,installation
+4738,[Feature]: About video input for qwen3vl,OPEN,2025-12-05T04:17:23Z,lingcco,feature request
+4737,[Usage]: vllm-ascend 0.11.0rc2、0.11.0rc3镜像没有安装vllm bench的依赖，导致镜像无法在离线环境进行vllm bench测试,CLOSED,2025-12-05T03:51:07Z,SakuraChaser,
+4735,[RFC]: Integerate grouped_matmul_swiglu_quant_weight_nz_tensor_list operator into dynamic EPLB,OPEN,2025-12-05T03:04:26Z,845473182,RFC
+4730,[Bug]: quay.io/ascend/vllm-ascend:v0.11.0rc1镜像BUG,OPEN,2025-12-05T02:08:29Z,shao-cyber,bug
+4725,[Bug]: MoonCake disaggregate prefill fail to start when p and d on same machine due to port conflict,CLOSED,2025-12-04T14:50:40Z,mitseng,bug
+4718,verl使用vllm-ascend 0.11.0.rc2开启dp和ep在npu上报错,OPEN,2025-12-04T12:16:29Z,glowwormX,
+4715,[RFC]: npugraph_ex backend,OPEN,2025-12-04T11:59:51Z,ChenCangtao,RFC
+4713,[Bug]: gemma-2-9b-it and gemma-3-4b-it accuracy test failed,OPEN,2025-12-04T10:55:02Z,zhangxinyuehfad,bug
+4709,[Usage]: Elegant main2main scrolling upgrade,OPEN,2025-12-04T09:37:11Z,Potabk,
+4696,[Doc]: Qwen2.5-Omni 教程中 “full_cuda_graph” 无法开启 / 不适用于 NPU,OPEN,2025-12-04T03:48:31Z,yooooo00,documentation
+4695,[Bug]: 设置VLLM_ENABLE_FUSED_EXPERTS_ALLGATHER_EP=1推理deepseek-r1，模型乱回答问题,OPEN,2025-12-04T03:33:31Z,zhanghw0354,bug
+4686,[Bug]: Upstream CI failed due to SOC_VERSION detect failure,CLOSED,2025-12-04T01:22:29Z,Yikun,bug;high
+4682,[Usage]: 310P does not support opType MoeInitRoutiong. how to disable moe_fusion on vllmserver,OPEN,2025-12-03T19:34:26Z,Cipheeer,310p
+4679,[Bug]: Hardware Compatibility Issue when Running qwen3-reranker-8b on Image Version v0.11.0rc3,OPEN,2025-12-03T12:39:21Z,xiaomofang,bug
+4678,[Bug]: Qwen3-VL-32B跑一半会报500错误,CLOSED,2025-12-03T12:34:52Z,ZhihuaH,bug
+4677,[Bug]: qwen3-235B A3单机用ray作分布式调度抛异常,CLOSED,2025-12-03T12:24:41Z,bingnanchina,bug
+4669,[Bug]: 调用vllm benchmark_serviceing.py进行Ascend pytorch profiler工具采集性能数据报错,OPEN,2025-12-03T09:03:59Z,Muxin828,bug
+4665,[Bug]: Qwen3-VL-235B-A22B-Instruct inference error,OPEN,2025-12-03T08:07:11Z,smallccn,bug
+4664,[Bug]: A+X环境部署12月1日发布的deepseek-V3.2模型InterleaveRope和KvRmsNormRopeCache算子编译失败。,OPEN,2025-12-03T07:58:30Z,ZhouCunliang,bug;high
+4663,[Bug]: Qwen3-Omni-30B-A3B-Thinking模型服务拉起失败,CLOSED,2025-12-03T07:37:02Z,Zhiwen-Liu,bug
+4661,[Bug]:  Qwen3-235B-A22B-Instruct-2507  index 0 is out of bounds for dimension 0 with size 0,CLOSED,2025-12-03T06:49:00Z,ZRJ026,bug
+4659,[Performance]: v0.11.0rc2版本qwen2.5-vl-3b-w8a8量化模型性能比qwen2.5-vl-3b非量化模型劣化,OPEN,2025-12-03T04:03:03Z,Shirley125,performance;module:quantization
+4656,[Performance]: Qwen3-30B-A3B 对比Qwen3-32B TPOT不及预期,OPEN,2025-12-03T03:35:57Z,BBji123,performance;qwen3-moe
+4649,"[Bug]: vllm-ascend:v0.11.0rc2 use ""async-scheduling flag"" Feature encountered precision issues",OPEN,2025-12-03T01:13:29Z,ponyioy,bug;high;module:graph
+4643,[Release]: Release checklist for v0.11.0rc3,CLOSED,2025-12-02T12:46:59Z,wangxiyuan,
+4642,[v0.11.0rc3] FAQ / Feedback | 问题/反馈,CLOSED,2025-12-02T12:45:57Z,wangxiyuan,
+4637,[Bug]: ascend多模态不支持merge_by_field_config,CLOSED,2025-12-02T09:54:06Z,Dog-Boss,bug;module:multimodal
+4629,[RFC]: Refactor Attention module,CLOSED,2025-12-02T08:26:40Z,weijinqian0,RFC
+4627,[Misc]: 使用最新镜像vllm-ascend-v0.11.0rc2.tar跑whisper模型报错，vLLM-Ascend 的 ModelRunner 中 get_kv_cache_spec() 根本没实现,CLOSED,2025-12-02T08:19:38Z,helloworlder8,
+4624,[Misc]: 是否可以用自定义pybind算子替换vllm中的算子？,OPEN,2025-12-02T07:21:07Z,yuantao313,
+4621,[Installation]: 安装vllm-ascend0.11.0rc1报错,CLOSED,2025-12-02T06:36:32Z,Guozhong23,installation
+4618,[Bug]: olmOCR-2-7B-1025: Poor Accuracy with vllm-ascend vs A100 vLLM,OPEN,2025-12-02T03:44:25Z,spencerr221,bug
+4616,[Bug]: v0.11.0rc2 qwen3-reranker-4b发现有精度问题,OPEN,2025-12-02T03:10:16Z,blank0623,bug
+4603,[Bug]: OpenBMB/MiniCPM-2B-dpo-bf16 start failed by `Duplicate layer name: .down_proj`,OPEN,2025-12-01T08:08:06Z,zhangxinyuehfad,bug
+4602,[Misc]: 请问现在VLLM-ASCEND支持310P的NPU吗？推理速度如何？,CLOSED,2025-12-01T08:05:12Z,948024326,
+4601,[Performance]: qwen3-vl-32b qwen3-vl-30b-a3b性能精度不稳定,OPEN,2025-12-01T07:49:59Z,Baihua212,performance
+4600,[Bug]: 不同对话窗口，两次prompt超过max-model-len上限后，服务会挂掉,OPEN,2025-12-01T07:48:37Z,kraken8081,bug
+4594,[Bug]: master分支aclgraph decode only测试qwen3 32B 3.5k输入长序列时，服务崩溃SelfAttentionOperation setup failed,CLOSED,2025-12-01T06:48:23Z,changdawei1,bug
+4586,[Performance]: allenai/olmOCR-2-7B-1025模型使用vllm-ascend在910B离线推理，与使用vllm在A100上相比，精度差距过大,CLOSED,2025-12-01T02:55:17Z,heathersherry,performance
+4585,[Bug]: Qwen30B MoE模型在vLLM 0.11.0上采集的profile信息异常,OPEN,2025-12-01T02:47:40Z,a-seeker,bug
+4581,[Bug]: Torchair doesn't worker with v1 scheduler,CLOSED,2025-12-01T01:30:30Z,MengqingCao,bug
+4579,[Bug]: vllm-ascend 910B4 采用 ray 部署 GLM-4.6-w8a8 模型时，报错,OPEN,2025-11-29T11:40:17Z,MooYeh279,bug
+4570,[Bug]:maximum context length(max-model-len) is not consistently the exact value configured,OPEN,2025-11-29T08:28:45Z,lifengkai,bug
+4565,[Bug]: 双机部署报错,OPEN,2025-11-29T06:59:55Z,zzc98,bug
+4554,循环生成叹号问题又出现了,CLOSED,2025-11-28T13:54:31Z,liuzhenjluccst,bug
+4549,[RFC]: Migrate from `yapf` to `ruff` format tool.,OPEN,2025-11-28T12:03:59Z,menogrey,RFC
+4548,[Bug]: Qwen2.5-VL-3B-Instruct-W8A8量化模型拉起失败,OPEN,2025-11-28T11:54:17Z,Shirley125,bug
+4546,[Bug]: DP parallel + TP > 1 offline inference failed: address already in use,CLOSED,2025-11-28T11:27:53Z,leo-pony,bug
+4535,"[Bug]: vllm-ascendv0.11.0rc1, Qwen3-VL-235B模型开启full_decode_only后，发送请求hang住",CLOSED,2025-11-28T08:04:56Z,yifeililn,bug
+4519,[Bug]: qwen2.5-omni7b推理图片时报错,OPEN,2025-11-28T02:29:38Z,Shelleyaaa,bug
+4513,[Bug]:   Accuracy issue on Qwen3-Omni-30B-A3B-Thinking,CLOSED,2025-11-27T13:17:20Z,Meihan-chen,bug
+4507,[Usage]: How to Use Triton to Improve vLLM Performance,CLOSED,2025-11-27T12:09:12Z,Yanguan619,
+4505,[Bug]: ascend不支持prompt_embeds作为输入,CLOSED,2025-11-27T10:51:56Z,Dog-Boss,bug
+4503,[Bug]: ms_swift DP 启动失败,OPEN,2025-11-27T08:31:19Z,ZongqiangZhang,bug
+4502,[Bug]: 如果在初始化同步engine之前使用过torch_npu的某些方法，会导致engine初始化失败,CLOSED,2025-11-27T08:27:31Z,myhloli,bug
+4497,[Bug]: Accuracy issue for Prefill-Decode Disaggregation on Qwen2.5VL in 0.11.0rc2,CLOSED,2025-11-27T07:50:07Z,hhd52859,bug
+4492,[Bug]: A2双机测长序列模型最后会有无意义输出,OPEN,2025-11-27T07:19:54Z,jinshurui618,bug
+4488,[Bug]: PD分离LLMDataDist在Box上超过8卡失败,OPEN,2025-11-27T06:21:10Z,wangweigao1,bug
+4487,[Bug]: vLLM-ascend0.11.0rc2-310p拉起Qwen3-32B-w4a4报错：AttributeError: 'AscendQKVParallelLinear' object has no attribute 'weight',OPEN,2025-11-27T06:13:23Z,KuanAa,bug;310p
+4486,[Usage]: 双机A2 启动qwen3-235B服务，运行一段时间 服务端会报500的错 然后服务挂掉,CLOSED,2025-11-27T03:53:16Z,jinshurui618,
+4483,[Bug]: Qwen3-next-80B-A3B multiple request concurrency failures,CLOSED,2025-11-27T03:00:33Z,leo-pony,bug
+4481,[Bug]: 启动Qwen3-Reranker模型调用rerank API直接Crash,OPEN,2025-11-27T02:40:32Z,zhengyangyong,bug
+4480,[Bug]: accuarcy test issues when upgrade to vllm 0.11.2,CLOSED,2025-11-27T02:31:08Z,zhangxinyuehfad,bug
+4474,[Bug]: vllm-ascend:v0.11.0rc2  qwen3-next-80B OOM,OPEN,2025-11-26T13:07:22Z,DavidGeW,bug
+4469,[RFC]: Support PDMIX Quantization Strategy and aclnn Adapter Layer,OPEN,2025-11-26T11:11:56Z,SlightwindSec,RFC
+4466,[Bug]: PD分离在D节点开启Full_decoce_only后多并发推理报错,OPEN,2025-11-26T09:51:19Z,wangweigao1,bug
+4463,[RFC]: Support MindSpore Models,OPEN,2025-11-26T08:08:47Z,wangtiance,RFC
+4461,[Bug]: Accuracy issue on Qwen3-30B-A3B,OPEN,2025-11-26T07:42:01Z,MengqingCao,bug
+4456,[Bug]: Ray start failed with multi-node case,CLOSED,2025-11-26T06:55:59Z,leo-pony,bug
+4454,[Bug]: RuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {},OPEN,2025-11-26T05:43:53Z,caiskk,bug
+4453,[Bug]: Qwen3-30b offline mode do not support offline data parallelism,OPEN,2025-11-26T05:21:02Z,Weigaa,bug
+4451,"[Bug]: When starting the service with Qwen3-VL-32B (Dense) integrated with ACL Graph and FlashCommonV1, an error occurs.",OPEN,2025-11-26T03:25:48Z,ltdo111,bug
+4450,[Bug]: Qwen3-Coder-480B-A35B-Instruct vllm 开启expert-parallel出现报错；开启量化报错,OPEN,2025-11-26T03:19:37Z,bruce-he-001,bug
+4449,[Misc]: DeepSeek-V3.2-Exp,OPEN,2025-11-26T02:21:45Z,helloworlder8,
+4448,[Bug]: Performance downgrade for Qwen3-8B. from v0.11.0rc2-openeuler to main-openeuler,OPEN,2025-11-26T02:21:16Z,MaoJianwei,bug
+4445,[Bug]: Qwen3-235B occasionally occurs precision issues in PD separation scenarios,OPEN,2025-11-26T01:35:04Z,huangdong2022,bug
+4435,[Bug]: qwen2.5-vl-72b often reports `Internal Server Error ` and  request cause to application shutdown.,OPEN,2025-11-25T10:08:09Z,nuclearwu,bug;module:multimodal
+4434,[Bug]: deepseek v32-Exp模型精度相比论文掉了10个点,OPEN,2025-11-25T09:08:42Z,wangmhua,bug
+4430,[Bug]: [v0.11.0-dev] qwen2.5-vl-72b reports a shape ERROR during the _prepare_inputs phase under high concurrency.,CLOSED,2025-11-25T08:11:53Z,Levi-JQ,bug
+4426,"[Bug report]: vLLM server fails when using ""cudagraph_mode"": ""FULL_DECODE_ONLY"" mode with command ""curl *****/v1/completions""",CLOSED,2025-11-25T07:29:30Z,ZhaoJiangJiang,
+4421,[Doc]: some question about VRAM,OPEN,2025-11-25T03:51:31Z,TyrionChou,documentation
+4419,[Usage]: [Help] How can I deploy Qwen3-VL on310p? It seems neither vLLM nor MindIE currently supports it. Are there any alternatives?,OPEN,2025-11-25T03:37:51Z,mickeymoss34-wq,310p;qwen3-vl
+4412,[Bug]: KV pool accuracy issues,OPEN,2025-11-24T13:46:31Z,baxingpiaochong,bug
+4408,[Usage]: How to deploy DeepSeek-V3.2-EXP-W8A8 with custom weight path?,OPEN,2025-11-24T10:58:08Z,zigzagcai,
+4406,[Bug]: DeepSeek-v3.2-EXP Crash after first request.,OPEN,2025-11-24T10:41:38Z,zkryakgul,bug
+4404,[Installation]: vllm-ascend单卡部署多模型报错,OPEN,2025-11-24T09:57:29Z,yangqianjing,installation
+4403,[Bug]: [Nightly]multi-node A3 2P1D failed,OPEN,2025-11-24T09:44:00Z,jiangyunfan1,bug
+4402,[RFC]: Support Prefix Cache and P-D transfer use UCM(Unified Cache Manager),OPEN,2025-11-24T09:38:21Z,ygwpz,RFC
+4401,[Usage]: How to deploy DeepSeek V3 or V3.1 W8A8 inference on 910C with vllm-ascend?,OPEN,2025-11-24T09:36:10Z,zigzagcai,
+4395,[性能需求]: tpot不如mindIE，期待优化,OPEN,2025-11-24T09:03:46Z,liuzhenjluccst,
+4387,[RFC]: Support DeepSeek-V3.2-Exp and Qwen3-Next with `FULL_DECODE_ONLY` mode,OPEN,2025-11-24T07:15:06Z,yiz-liu,RFC
+4379,"[Bug]: The Qwen3 - Next - 80B - A3B - Instruct model is deployed on 8 cards of the 910B with 64G memory, and out - of - memory (OOM) occurs.",OPEN,2025-11-24T04:42:47Z,KannibalH,bug
+4378,[Feature]: Add AWQ quantization support for vllm-ascend,OPEN,2025-11-24T04:12:15Z,menogrey,feature request
+4376,[Bug]: verl train error,CLOSED,2025-11-24T04:02:17Z,shaojun0,bug
+4373,"[Bug]: When layout is TND, not support Page Attention",CLOSED,2025-11-24T03:14:25Z,tardis-key,bug
+4369,[Bug]: [Nightly]2A2 deepseek single op server started failed,OPEN,2025-11-24T02:28:46Z,jiangyunfan1,bug
+4357,[Bug]: Qwen3-Next-80B too slow 太慢,OPEN,2025-11-22T08:25:59Z,entorick,bug
+4344,[Bug]: 部署qwen vl视觉类模型引起物理机宕机,OPEN,2025-11-21T09:14:49Z,wzh5516,bug
+4343,[v0.11.0rc2] FAQ / Feedback | 问题/反馈,CLOSED,2025-11-21T08:59:43Z,wangxiyuan,
+4342,[Release]: Release checklist for v0.11.0rc2,CLOSED,2025-11-21T08:55:24Z,wangxiyuan,
+4339,"[Bug]: [Nightly]multi-node A3 eplb and A2 deepseek eplb failed,",OPEN,2025-11-21T08:38:41Z,jiangyunfan1,bug
+4329,[RFC]: Refactor the KV pooling connector into the AscendConnector,OPEN,2025-11-21T06:58:17Z,fems14,RFC
+4326,[Bug]: Qwen3-moe FULL_DECODE_ONLY inference crash,OPEN,2025-11-21T06:13:26Z,mitseng,bug
+4323,[Bug]: vllm-ascend 0.11.x 版本qwen3-32b-eagle3乱码以及无法启动,CLOSED,2025-11-21T03:21:01Z,sunchendd,bug
+4322,[Bug]: x86+npu环境，部署DeepSeek-V3.2-Exp-BF16后curl请求程序崩溃,OPEN,2025-11-21T01:47:06Z,ZhouCunliang,bug
+4320,[Support]MiniMaxAI/MiniMax-M2,OPEN,2025-11-20T15:35:27Z,xueliangyang-oeuler,new model
+4313,[Bug]: KeyError: 'visual.blocks.0.attn.qkv.weight' when Loading FP8 Quantized Qwen2.5-VL Model,CLOSED,2025-11-20T09:27:29Z,spencerr221,bug
+4312,[RFC]: Pooling feature combined with PCP and DCP,OPEN,2025-11-20T09:18:16Z,DreamerLeader,RFC
+4310,[RFC]: PCP DCP,CLOSED,2025-11-20T09:14:38Z,DreamerLeader,documentation
+4309,[Bug]: Qwen/Qwen2.5-7B-Instruct-1M start failed caused by dual_chunk_attention_config,OPEN,2025-11-20T08:43:53Z,zhangxinyuehfad,bug
+4308,[Bug]: LoRA + Ascend Quantization Fails on Qwen3-32B-W8A8 with AscendRMSNorm AttributeError,OPEN,2025-11-20T08:21:31Z,scott-sensimintel,bug
+4305,[Bug]: Fail to run offline dp with 'examples/offline_data_parallel.py',OPEN,2025-11-20T07:54:51Z,whx-sjtu,bug
+4300,[RFC]: Support MTP running in full_decode_only graph mode.,CLOSED,2025-11-20T06:54:42Z,zouyida2052,RFC
+4299,[Usage]: 请问vllm-ascend何时可以支持Qwen3-vl 系列W8A8量化版本呢,OPEN,2025-11-20T06:40:46Z,qqcomuyiu,
+4298,[RFC]: vLLM-Ascend Operator Direct Tuning,OPEN,2025-11-20T06:37:47Z,kunpengW-code,RFC
+4296,[Bug]: DeepSeek-V3.2-Exp-w8a8性能测试torch_npu.npu_scatter_nd_update_算子报错,OPEN,2025-11-20T04:02:46Z,xxs-project,bug
+4295,[Usage]: DeepSeek-R1-0528模型+A2服务器+PD分离场景性能和mindie相差比较大的问题,OPEN,2025-11-20T03:23:31Z,zhanghw0354,
+4293,[Bug]: qwen3-vl-235b-w8a8 load weight ERROR when start service,CLOSED,2025-11-20T03:11:54Z,Levi-JQ,bug
+4290,[Bug]: B150镜像，Qwen3-235B模型，开启FULL_DECODE_ONLY，A2四机，2P2D，走mooncake非池化或者llmdatadist，精度异常,OPEN,2025-11-20T02:51:40Z,whdcwsj,bug
+4289,[Bug]：最新的镜像跑qwen3-30b-a3b性能比较差，现有的优化方式有哪些，或者有什么后续的优化计划没？,OPEN,2025-11-20T02:19:43Z,djj-space,bug
+4288,[Bug]: [Nightly]multi-node A3 eplb failed,CLOSED,2025-11-20T01:58:18Z,jiangyunfan1,bug
+4286,[Bug]: aclnnCat算子调用失败,OPEN,2025-11-20T01:16:14Z,Bondest,bug
+4284,[Bug]: npu init 失败,CLOSED,2025-11-19T11:23:00Z,jc7ctzphbf-dotcom,bug
+4283,[Bug]: GPT-oss inference outputs garbled text,OPEN,2025-11-19T11:16:41Z,yucc-leon,bug
+4281,[Bug]: vllm起服务ip设为服务器ip报错,OPEN,2025-11-19T09:43:53Z,djj-space,bug
+4278,[Feature]: 是否考虑支持MiniMax-M2,OPEN,2025-11-19T09:21:36Z,XiaoHanChina,feature request
+4273,[Bug]: DP8 场景下量化推理存在精度问题,OPEN,2025-11-19T07:51:01Z,wuyangjian1115,bug
+4269,[Bug]: GLM4.6 PD分离 使用mooncake池化 八机部署无法稳定启动,OPEN,2025-11-19T06:09:29Z,liyu119,bug
+4267,[RFC]: add W8A16 support,OPEN,2025-11-19T03:46:40Z,realliujiaxu,RFC
+4266,[Bug]: Get random output in Qwen3-next,CLOSED,2025-11-19T03:28:32Z,drslark,bug
+4260,[Bug]: QWEN3-VL-235B-A22B使用910B单机16卡部署，开EP无法启动,OPEN,2025-11-18T12:49:59Z,kellyliangly-star,bug
+4256,[Bug]: DeepSeek-v3.2-EXP-W8A8 Deployment Fails on 2 x A2 Nodes.,CLOSED,2025-11-18T10:51:15Z,zkryakgul,bug
+4250,[Doc]: vllm-ascend双机直连部署qwen3-vl-235b，关闭专家并行可以跑，打开专家并行就会报错,OPEN,2025-11-18T08:09:33Z,zsk151,documentation
+4246,[Doc]: Qwen3-reranker-0.6B OOM issue caused by export PYTORCH_NPU_ALLOC_CONF=max_split_size_mb:256,OPEN,2025-11-18T06:55:02Z,huangdong2022,documentation
+4244,[Bug]: PD分离分布式DP场景MooncakeConnector没有考虑PP并行，kv传输端口分配会冲突,OPEN,2025-11-18T06:16:37Z,tiankaijin,bug
+4239,[RFC]:  Ops fusion for vLLM-Ascend using Inductor Pattern Matcher,CLOSED,2025-11-18T02:43:25Z,wxsIcey,RFC
+4237,[User Story]: 请问为什么从先P后D到现在的先D后P呢？,OPEN,2025-11-18T02:01:38Z,willow-god,
+4236,"[Bug]: [Nightly]qwen3-32b-w8a8 server error, terminate called after throwing an instance of 'c10::Error'",CLOSED,2025-11-18T01:37:59Z,jiangyunfan1,bug
+4231,[Usage]: 双机16卡配置tp=16无法拉起推理服务,OPEN,2025-11-17T11:26:45Z,LZZhang-HW,
+4229,[Bug]: AttributeError: '_OpNamespace' '_C' object has no attribute,CLOSED,2025-11-17T09:53:42Z,leo-pony,bug
+4219,[RFC]: Support Offloading KVCache In Decode Side,OPEN,2025-11-17T02:48:59Z,Liziqi-77,RFC
+4217,[Doc]:  the url is 404: https://docs.vllm.ai/en/stable/performance/optimization/#chunked-prefill,CLOSED,2025-11-17T02:18:54Z,184603418,documentation
+4213,[Bug]: MoeDistributeCombineV2_116(MoeDistributeCombineV2) Verify failed. reason: contains negative or zero dimension.,OPEN,2025-11-15T06:00:25Z,shaojun0,bug
+4211,[Bug]: lora weight 不生效,OPEN,2025-11-14T13:22:07Z,VictoryDong,bug
+4208,[Bug]: v0.11.0rc1部署910c单机部署deepseekv3.1 w8a8同时开启mtp和整图推理报错,OPEN,2025-11-14T08:46:15Z,ivan-zouming,bug
+4207,[Misc]: 使用vllm-ascend:v0.11.0rc0镜像 vLLM 在昇腾（Ascend）后端的一个调度器（scheduler）逻辑 bug 访问越界,OPEN,2025-11-14T08:42:21Z,helloworlder8,
+4206,[Misc]: 使用vllm-ascend:v0.11.0rc0镜像 vLLM 在昇腾（Ascend）注册了qwen3-next但是无法正常启动服务,OPEN,2025-11-14T08:41:01Z,helloworlder8,
+4204,[Bug]: `copy_between_host_and_device_opapi` error when enable `VLLM_ASCEND_ENABLE_FLASHCOMM1=1`,OPEN,2025-11-14T08:18:34Z,shen-shanshan,bug
+4203,[RFC]: Implement Elastic Speculation: Adaptive Draft Length + Confidence-Based Early Exit,OPEN,2025-11-14T08:07:04Z,HF-001,RFC
+4201,[Bug]: qwen3-coder 偶现 IndexError,OPEN,2025-11-14T07:40:16Z,slipfre,bug
+4197,[Bug]: ValueError: Unknown attention backend: 'ASCEND'.,CLOSED,2025-11-14T06:58:51Z,amy-why-3459,bug
+4193,[Bug]: Inconsistent outputs for the same input in Qwen3-Next,CLOSED,2025-11-14T02:53:47Z,QilaiZhang,bug
+4186,[Bug]: Unable to use Qwen3-VL to infer videos in 0.11.0rc1,CLOSED,2025-11-13T12:54:27Z,hhd52859,bug;module:multimodal
+4180,[Bug]: V0.9.1 开启full_cuda_graph: true 后会hang住,OPEN,2025-11-13T11:48:02Z,csy0225,bug
+4178,[Bug]: FULL_DECODE_ONLY not work for Qwen2.5/2.5VL/3VL in 0.11.0rc1,CLOSED,2025-11-13T10:55:38Z,hhd52859,bug
+4177,[Usage]: 如何提升Qwen3-Next-80B-A3B-Instruct的推理速度？,OPEN,2025-11-13T10:31:59Z,SiegeLionDCM,
+4175,[Bug]: 部署Qwen3-Next-80B-A3B-Instruct成功，但是发送带有参数response_format的请求时服务会崩溃,CLOSED,2025-11-13T10:02:45Z,zxh0315,bug
+4171,[Bug]: 使用vllm-ascend的v0.11.0rc1镜像跑不通v0.11.0rc1分支的一个脚本，但是0.9.1镜像能跑通，脚本路径：https://github.com/vllm-project/vllm/blob/v0.11.0rc1/examples/offline_inference/prompt_embed_inference.py,OPEN,2025-11-13T07:49:03Z,hwj-cl,bug
+4169,[Feature]: Support W4A16 inference？,OPEN,2025-11-13T07:21:32Z,blueWatermelonFri,feature request
+4167,[Performance]: 升级 v0.11.0rc1 后，会导致算子性能变差,OPEN,2025-11-13T06:30:43Z,csy0225,performance
+4164,[Bug]: load_balance_proxy_server_example.py doesn't work on IPV6 host net,OPEN,2025-11-13T05:53:34Z,mitseng,bug
+4148,[Bug]: 310p运行qwen3报错,CLOSED,2025-11-12T07:35:30Z,ReolC,bug;310p
+4146,[RFC]: Speed up e2e tests,OPEN,2025-11-12T07:14:32Z,Potabk,RFC
+4145,[Feature]: GQA Multi Stream Support,OPEN,2025-11-12T06:28:10Z,sgSillage,feature request
+4140,[RFC]: KV cache layout combining all layers per block,OPEN,2025-11-12T03:56:14Z,HF-001,RFC
+4136,[Misc]: 请教一下，vllm-ascend部署模型后，除了启动时的标准输出外，有没有其他地方保存着推理过程中内部的日志。,OPEN,2025-11-12T03:35:33Z,Tony-tom-sudo,
+4135,[Bug]: 现在用0.11.0rc1版本镜像部署qwen3-next部署是成功了，问答时直接崩溃了。,CLOSED,2025-11-12T02:58:38Z,watch-Ultra,bug;qwen3-next
+4132,"[Bug]:  ""Worker failed with error 'Forward context is not set"" in 0.11.0rc1",OPEN,2025-11-12T01:52:16Z,hhd52859,bug;module:multimodal
+4130,[Performance]: GLM4.5V speed is too slow,OPEN,2025-11-12T01:30:48Z,lucifffer,performance
+4128,[Usage]: vllm-ascend是否支持mineru2.5,CLOSED,2025-11-12T01:22:31Z,whwususu,module:multimodal
+4127,[Doc]: Distributed deployment of qwen3 model stuck,OPEN,2025-11-12T01:17:01Z,lucifffer,documentation;qwen3-moe

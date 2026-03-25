@@ -1,0 +1,15 @@
+类型: 设备环境问题
+
+根本原因（≤5条）：
+1. HCCL通信库初始化失败：error code 7 表示通信组初始化超时或资源不足，可能由于NPU资源未正确释放或配置不匹配。
+2. 测试配置过度并行：tensor-parallel-size=8 和 data-parallel-size=2 结合 expert-parallel，增加了NPU间通信复杂度，导致通信初始化压力过大。
+3. 环境变量配置可能不足：如 HCCL_BUFFSIZE=1024 可能过小，影响高速通信；HCCL_OP_EXPANSION_MODE=AIV 的兼容性或稳定性问题。
+4. Ascend量化（w8a8_dynamic）在初始化时调用 HCCL 通信，而expert-parallel模式可能未正确处理多组通信的依赖关系。
+5. CI环境中的NPU资源可能存在竞争或状态异常，导致通信库无法在规定时间内完成初始化。
+
+最可能的修复方案：
+1. 降低测试并行度：暂时将 tensor-parallel-size 降至 4 或 data-parallel-size 降至 1，验证是否为并行配置问题。
+2. 调整HCCL环境变量：增加 HCCL_BUFFSIZE 至 4096 或更高，并添加 HCCL_TIMEOUT 等参数（如果支持）。
+3. 检查NPU资源状态：在测试前清理残留进程（如 `npu-smi` 检查并释放占用），确保通信组初始化所需的NPU可用。
+4. 更新代码容错：在 `w8a8_dynamic.py` 或 `get_quant_method_modelslim` 中添加 HCCL 初始化重试逻辑或更详细的错误日志。
+5. 验证Ascend驱动和HCCL版本：确保CI环境中的驱动与HCCL版本兼容，必要时更新或回滚相关依赖。

@@ -1,0 +1,29 @@
+**根本原因（≤5 条）**
+
+1. **RoPE 缓存尺寸不匹配**：MLA 层的 `cos`/`sin` 在推理时被预计算并缓存，但缓存的序列长度（max_position_embeddings）与实际输入的 `num_tokens`（batch_size * seq_len）不一致，导致 `rope_forward_triton_siso` 内部的断言 `cos.shape[0] == num_tokens` 失败。
+
+2. **MLA 前向传播中 token 计数错误**：在 `mla_forward` → `indexer_select_pre_process` → `rope_forward_triton_siso` 调用链中，`num_tokens` 是根据 `hidden_states.shape[0]` 计算的，而 `cos`/`sin` 来自独立的缓存查找，两者的 token 计数维度没有对齐（例如解码阶段 sliding window 与全局 window 的 token 数量混淆）。
+
+3. **torch.compile / AOTAutograd 图分割引入形状错配**：日志显示使用了 `TorchCompileWithNoGuardsWrapper`、`piecewise_backend`、`AOTAutograd` 等多层编译包装，导致在编译后的 FX Graph 中捕获的 `cos`/`sin` 绑定到了旧的 shape（可能来自编译期的第一次执行），后续不同长度的请求直接使用了错误 shape 的 tensor。
+
+4. **NPU 后端 (`torch_npu`) 与 vLLM Ascend 自定义算子协作问题**：代码路径经过 `torch_npu/dynamo/torchair/npu_fx_compiler.py`，在此处 shape 信息可能被错误地静态化，导致后续 Triton kernel (`rope_forward_triton_siso`) 收到不匹配的 `cos`/`sin` 长度。
+
+5. **MLA 中 sliding window 与普通 token 混合处理缺陷**：DeepSeek‑V2 的 MLA 采用了局部分组注意力（grouped attention），`cos`/`sin` 需要对应 **实际参与 RoPE 计算的 token 数**（可能比 `hidden_states` 的 batch‑first 维度要小），但当前实现直接把 `hidden_states.shape[0]` 当作 `num_tokens` 传给了 RoPE。
+
+---
+
+**最可能的修复方案**
+
+| 步骤 | 操作 | 说明 |
+|------|------|------|
+| **①** | **检查并统一 `cos`/`sin` 的生成逻辑**<br>在 `vllm_ascend/attention/sfa_v1.py` 的 `indexer_select_pre_process` 调用前，打印 `cos.shape`、`sin.shape` 与 `hidden_states.shape[0]`（即 `num_tokens`），确认不一致的具体数值。 | 定位是缓存太小还是计算路径错误。 |
+| **②** | **确保 RoPE 缓存覆盖最大序列长度**<br>在模型初始化或第一次 prefill 前，按 `max_position_embeddings`（或 ` sliding_window * groups + prefix_len`）预计算完整的 `cos`/`sin`，不要使用 lazy‑cache。 | 防止在解码阶段取到长度不足的缓存。 |
+| **③** | **修复 `num_tokens` 的计算方式**<br>在 `rope_forward_triton_siso` 调用点，显式传递 **实际参与 rotary 的 token 数量**（如 `k_li.shape[0]`），而不是直接使用 `hidden_states.shape[0]`。<br>示例：<br>`k_li, k_li_scale = self.indexer_select_pre_process(..., num_tokens=k_li.shape[0])` | 对齐 MLA 中 grouped attention 的 token 计数。 |
+| **④** | **禁用或回退 torch.compile**<br>在 CI 或调试时添加环境变量 `VLLM_TORCH_COMPILE_LEVEL=0`（或 `export VLLM_ENABLE_V1_MULTIPROC=0`）关闭 `TorchCompileWithNoGuardsWrapper`，确认问题是否由编译阶段的 shape 静态化导致。 | 如果关闭后不再报错，说明是编译/图分割引入的 bug。 |
+| **⑤** | **在 `rope_forward_triton_siso` 增加容错**<br>将硬断言改为广播或截断：<br>`assert cos.shape[0] == num_tokens and sin.shape[0] == num_tokens`<br>改为：<br>`if cos.shape[0] != num_tokens: cos = cos[:num_tokens]`<br>`if sin.shape[0] != num_tokens: sin = sin[:num_tokens]` | 快速止血，保证运行时不崩溃（后续仍需根本性修复）。 |
+| **⑥** | **审查 MLA 中 `self_attn` 的 sliding window 处理**<br>在 `vllm_ascend/ops/mla.py` → `mla_forward` 中，确认 `cos`/`sin` 索引时使用的 `position_ids` 与 `hidden_states` 的真实 token 顺序严格对应。 | 防止在分组注意力中把 prefix / padding token 错误计入。 |
+
+---
+
+**简要总结**  
+本次 CI 失败的根本原因是 **RoPE 的预计算 `cos`/`sin` 与当前 forward 的实际 token 数量不匹配**，最可能出现在 **MLA 分组注意力的 sliding‑window 场景** 并且被 **torch.compile 的 shape 静态化** 放大。建议先通过步骤 ①‑③ 定位并统一 token 计数，再根据需要回退编译（步骤 ④）或加容错（步骤 ⑤）。

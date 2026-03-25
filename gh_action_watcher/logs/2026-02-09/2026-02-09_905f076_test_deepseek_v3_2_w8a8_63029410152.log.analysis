@@ -1,0 +1,12 @@
+类型: 代码问题
+
+根本原因：
+1. **参数校验不匹配**：测试参数中 `--compilation-config` 的 `cudagraph_capture_sizes` 设置为 `[3, 6, 9, 12]`，但 `--tensor-parallel-size` 为 `8`。vLLM 引擎在初始化 `VllmConfig` 时强制校验该参数，断言其值必须为 `tp_size` 的倍数，导致 `AssertionError`。
+2. **服务器启动失败**：由于参数校验失败，vllm serve 进程在启动阶段立即崩溃，退出码非零。
+3. **测试配置冲突**：测试脚本硬编码了这些编译配置，但没有根据张量并行大小（TP_SIZE）动态调整 CUDA Graph 捕获的批次大小。
+4. **配置优先级问题**：尽管后续日志显示系统尝试“移除不匹配的批次大小”，但校验错误发生在配置对象构建的早期阶段，导致服务器无法正常初始化。
+
+修复方案：
+1. **调整捕获大小列表**：将 `--compilation-config` 中的 `cudagraph_capture_sizes` 修改为 `tp_size` (8) 的倍数，例如 `{"cudagraph_capture_sizes":[8, 16], "cudagraph_mode":"FULL_DECODE_ONLY"}`。
+2. **简化配置**：如果该测试不聚焦于 CUDA Graph 优化，建议移除 `--compilation-config` 参数，使用 vLLM 的默认自动配置逻辑。
+3. **增强参数校验**：在测试脚本（如 `conftest.py` 或测试用例生成逻辑）中增加校验逻辑，确保 `cudagraph_capture_sizes` 是当前 `tensor-parallel-size` 的整数倍。

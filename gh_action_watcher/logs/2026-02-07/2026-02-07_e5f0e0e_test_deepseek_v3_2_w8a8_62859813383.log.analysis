@@ -1,0 +1,13 @@
+类型: 代码问题
+
+根本原因：
+1. **CUDA Graph 配置错误**：cudagraph_capture_sizes 设置为 [3, 6, 9, 12]，但当 tensor-parallel-size=8 时，该配置必须包含 tp_size 的倍数。系统警告并移除这些值后，导致断言失败。
+2. **参数验证冲突**：编译配置中的 cudagraph_capture_sizes 与 tensor-parallel-size 不兼容，触发了 Pydantic 的 ValidationError。
+3. **服务器启动失败**：由于配置验证错误，vllm serve 进程异常终止，导致测试无法执行。
+
+最可能的修复方案：
+1. **修改 cudagraph_capture_sizes**：将值改为包含 8 的倍数的列表，如 `{"cudagraph_capture_sizes":[8, 16, 24], "cudagraph_mode":"FULL_DECODE_ONLY"}`，以匹配 tp_size=8 的要求。
+2. **降低 tensor-parallel-size**：如果希望保留原有的 cudagraph 配置，可将 tp_size 调整为 4（[3, 6, 9, 12] 是 4 的倍数）。
+3. **禁用 CUDA Graph**：如果当前硬件不支持或不需要 CUDA Graph，可在编译配置中移除 cudagraph_capture_sizes 或设置 cudagraph_mode 为 disabled。
+4. **更新测试配置**：确保 server_args 中的 compilation-config 与 tensor-parallel-size 保持一致。
+5. **检查模型兼容性**：reasoning-parser 设为 deepseek_v3，但模型类型为 deepseek_v32，可能需要调整为匹配的解析器或确认模型版本。

@@ -1,0 +1,16 @@
+类型: 性能精度不达标  
+
+根本原因（≤5 条）  
+1. **模型权重未正确加载**——checkpoint 路径、revision 或 tensorizer 配置错误，导致推理时模型输出全为占位符或随机值，进而得到 0% 准确率。  
+2. **提示/聊天模板不匹配**——aisbench 使用的 `gsm8k_gen_0_shot_cot_chat_prompt` 与 DeepSeek‑V3.2‑W8A8 训练时的 chat template（或 tokenizer 的 `chat_template`）不一致，生成的答案格式无法被评估脚本正确解析。  
+3. **CPU 后端对 W8A8 量化支持不足**——模型为 W8A8 量化权重，却在 CPU 上执行；CPU 版 vLLM 的整数算子实现可能缺失或错误，使所有输出均为 0 或无意义内容。  
+4. **评估数据集损坏或标签缺失**——本地缓存的 `gsm8k‑lite` 数据集（`/root/.cache/modelscope/hub/datasets/vllm‑ascend/gsm8k‑lite`）文件不完整或标签缺失，即使模型产生正确结果也比对失败。  
+5. **aisbench 配置阈值设定不合理**——测试要求相对误差 ≤5%（即 90~100% 之间的准确率），而实际模型准确率为 0%，直接触发断言失败。  
+
+最可能的修复方案  
+- **确认模型权重完整性**：在启动推理前打印模型加载日志，核对模型 ID、revision、文件 SHA256；必要时重新下载或使用 `trust_remote_code=True`（如适用）。  
+- **校验并对齐 chat prompt**：在 aisbench 配置或推理代码中加载对应 tokenizer 的 `chat_template`，确保输入格式与训练时一致；可先用少量样本（few‑shot）手动验证输出是否合理。  
+- **切换到 GPU 或使用 FP16/BF16 权重**：若实验环境支持 GPU，建议使用 GPU 运行以完整支持 W8A8 量化；若仅能 CPU，可先回退到未量化（FP16）模型进行基线测试，排除量化实现错误。  
+- **检查评估数据集**：对比本地 `gsm8k‑lite` 与官方 gsm8k 的文件大小、MD5，必要时删除缓存重新下载，或使用完整 gsm8k 数据集进行评估。  
+- **调低或暂时移除阈值**：在调试阶段将 `baseline` 设为 0，或将容差 `relative_tolerance` 调大，先确认模型能输出非零结果，再逐步收紧阈值到 95%。  
+- **开启调试输出**：在 aisbench 配置中加入 `"debug": true`（或等效选项），让评估脚本打印每个样本的模型回答、真实标签及匹配结果，以便快速定位是模型输出为空还是评估逻辑错误。

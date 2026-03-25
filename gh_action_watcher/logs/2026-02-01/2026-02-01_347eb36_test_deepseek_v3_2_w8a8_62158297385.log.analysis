@@ -1,0 +1,25 @@
+类型: 性能精度不达标
+
+## 根本原因
+
+1. **吞吐量未达标**: Output Token Throughput 实测为 109.0269 token/s，低于阈值 0.97 × 120 = 116.4 token/s，仅达到基线的 90.9%
+
+2. **E2E 延迟过高**: 平均端到端延迟为 54627.16ms，最高达 72394.44ms，表明请求处理时间过长
+
+3. **请求速率配置不当**: `request_rate = 11.2` req/s 导致并发压力过大，Max Concurrency 达到 4，可能造成排队
+
+4. **批处理配置不优**: `batch_size = 4`, `max_num_seqs = 4` 限制了并行处理能力，与 100 个请求的测试规模不匹配
+
+5. **投机解码可能未生效**: `speculative-config` 设置了 `num_speculative_tokens: 2` 和 `method: deepseek_mtp`，但 TTFT (Time To First Token) 仍高达 1351.78ms
+
+## 最可能的修复方案
+
+1. **调整基线或阈值**: 如果硬件环境有波动，可适当放宽阈值至 0.90 或降低基线至 110 token/s
+
+2. **优化并发配置**: 将 `request_rate` 从 11.2 降至 8.0 左右，降低并发压力，避免请求堆积
+
+3. **增大批处理参数**: 将 `batch_size` 从 4 增至 8，`max_num_seqs` 从 4 增至 8，以提升吞吐量
+
+4. **调优投机解码**: 检查 `deepseek_mtp` 配置，考虑增加 `num_speculative_tokens` 或调整 `cudagraph_capture_sizes` 以优化首次token延迟
+
+5. **检查资源竞争**: 确认测试过程中无其他进程占用 GPU/NPU 资源，导致性能波动

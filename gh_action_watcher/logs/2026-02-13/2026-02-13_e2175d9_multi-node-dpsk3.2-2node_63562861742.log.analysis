@@ -1,0 +1,27 @@
+类型: 代码问题  
+
+**根本原因（≤5 条）**  
+1. **NPU 完整图捕获（full graph）导致 OOM**  
+   - 日志中反复出现 “You have enabled the *full graph* feature” 警告，指出该功能为实验阶段，捕获过多 batch size 易引发内存溢出或进程崩溃。  
+2. **张量分配与 NPUCachingAllocator 不匹配**  
+   - 出现 “Tensor not is not allocated by NPUCachingAllocator, skip eraseStream” 警告，说明部分张量未走统一的缓存分配器，释放路径异常，可能触发内存错误。  
+3. **多节点 disaggregated prefill 初始化顺序问题**  
+   - EngineCore 初始化完成（约 71 s）后立即启动 ApiServer，但此时 ACL Graph 模式的资源争用尚未完全解决，导致 ApiServer_0 提前异常退出。  
+4. **PYTORCH_NPU_ALLOC_CONF=expandable_segments:True 在高并发图捕获下产生碎片**  
+   - 可变段分配在大量图捕获时导致内存碎片，后续分配失败引发进程退出。  
+5. **错误处理与容错机制不足**  
+   - 代码对子进程非零退出码只抛 `RuntimeError`，没有捕获更细粒度的 NPU/ACL 错误日志，导致排查困难且没有自动恢复。  
+
+**最可能的修复方案**  
+1. **关闭或限制 full graph 捕获**  
+   - 设置 `enforce_eager=True` 或调低 `gpu_memory_utilization`，避免一次性捕获大量 batch size。  
+2. **统一张量分配路径**  
+   - 确保模型和推理过程所有张量均通过 `torch.npu.caching_allocator_alloc()` 分配，若使用外部张量，手动调用对应清理函数。  
+3. **调整多节点启动顺序**  
+   - 在所有 `EngineCore` 完成图捕获并进入就绪状态后，再启动 `ApiServer`；或在 `RemoteOpenAIServer` 中加入对 engine 初始化完成的检测与重试。  
+4. **优化 NPU 内存分配配置**  
+   - 尝试 `PYTORCH_NPU_ALLOC_CONF=max_split_size_mb:512,expandable_segments:False`，并监控碎片情况，必要时增大 `max_split_size_mb`。  
+5. **增强错误处理与容错**  
+   - 对子进程退出码进行细分判断，捕获 NPU/ACL 详细错误日志；加入 `restart_attempt` 机制，在偶发 OOM 或资源争用时自动重试，提高鲁棒性。  
+
+通过上述改动，可降低因实验性图捕获、NPU 内存管理不匹配以及启动时序问题导致的服务器异常退出风险。

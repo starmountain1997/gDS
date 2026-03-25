@@ -1,0 +1,15 @@
+类型: 设备环境问题
+
+根本原因：
+1. **Full Graph 特性导致 OOM**：警告信息提示 full graph 捕获过多 batch size 可能导致 OOM 或推理挂起，ApiServer 进程因内存不足崩溃（exit code 1）。
+2. **NPU 内存分配策略不当**：尽管设置了 `PYTORCH_NPU_ALLOC_CONF=expandable_segments:True`，但多节点推理的内存需求可能超出可用内存，导致进程被系统终止。
+3. **共享内存泄漏**：日志显示 `resource_tracker` 检测到 2 个泄漏的共享内存对象，可能导致后续进程分配共享内存失败，引发崩溃。
+4. **多节点同步或通信故障**：服务器在 10.0.0.78 意外退出，可能因节点间同步超时或网络问题，导致引擎初始化或运行失败。
+5. **NPU 驱动或库版本不兼容**：vLLM 在 NPU 上的早期实验特性（如 full graph、ACL Graph 模式）与当前驱动版本可能存在冲突，导致进程异常。
+
+修复方案：
+1. **降低内存占用或禁用 full graph**：将 `gpu_memory_utilization` 调整为 0.7–0.8，或在配置中禁用 full graph（设置 `FULL_DECODE_ONLY` 相关参数为 False），并手动指定较小的 batch size 进行 graph 捕获。
+2. **优化 NPU 内存配置**：增大 NPU 内存池，例如在 `PYTORCH_NPU_ALLOC_CONF` 中添加 `max_split_size_mb:512` 或 `rounded_size:4096`，避免内存碎片化。
+3. **清理共享内存**：在测试前手动清理共享内存（`ipcs -m | grep nobody | awk '{print $2}' | xargs -I {} ipcrm -m {}`），并在代码中确保共享内存使用后正确释放。
+4. **检查多节点网络和同步**：确保节点间网络畅通（如检查防火墙、路由），并在测试配置中增加超时时间（如 `max_wait_seconds` 调整为更大值）。
+5. **更新或回滚驱动/库**：将 NPU 驱动升级到与 vLLM 兼容的稳定版本（如 v2.8.x），或回滚 vLLM 到无 full graph 特性的旧版本，确认兼容性。

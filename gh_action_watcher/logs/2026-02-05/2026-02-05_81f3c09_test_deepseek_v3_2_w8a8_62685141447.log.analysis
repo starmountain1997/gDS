@@ -1,0 +1,15 @@
+类型: 代码问题  
+
+根本原因（≤5 条）  
+1. `cudagraph_capture_sizes` 设为 `[3, 6, 9, 12]`，但 `tensor‑parallel‑size` 为 8，导致 VllmConfig 在创建时校验失败。  
+2. 测试脚本硬编码了捕获尺寸，未根据 `tp_size` 动态生成合法的 multiples‑of‑tp 的列表。  
+3. `--speculative‑config` 中使用的 `method: deepseek_mtp` 已弃用，可能在后续版本引发错误。  
+4. 模型与 tokenizer 使用的 `reasoning‑parser` 与模型实际类型不完全匹配（deepseek_v32 与 deepseek_v3），产生兼容性警告。  
+5. 启用了序列并行 (`tensor‑parallel‑size 8`)，但 `cudagraph_capture_sizes` 必须为 `tp_size` 的整数倍，配置冲突导致服务启动直接崩溃。  
+
+最可能的修复方案  
+1. 将 `cudagraph_capture_sizes` 调整为 `tp_size` 的整数倍，例如 `{"cudagraph_capture_sizes":[8, 16, 24]}`，或直接省略该参数使用系统默认值。  
+2. 在测试代码中根据实际 `tp_size` 动态生成合法的捕获尺寸，如 `capture_sizes = [i * tp_size for i in range(1, 4)]`。  
+3. 将 `--speculative‑config` 中的 `"method":"deepseek_mtp"` 改为 `"method":"mtp"`，消除弃用警告并提升兼容性。  
+4. 统一模型与 tokenizer 的标识：确保 `model`、`reasoning‑parser`、`tokenizer_mode` 均使用一致的版本（如 `deepseek_v32`），或在模型加载时关闭不必要的警告。  
+5. 如业务不依赖序列并行，可将 `--tensor‑parallel-size` 设为 1，或在保留并行的情况下保证 `cudagraph_capture_sizes` 为其倍数，从而通过校验并正常启动服务。

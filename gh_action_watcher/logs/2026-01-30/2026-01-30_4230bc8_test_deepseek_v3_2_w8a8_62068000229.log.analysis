@@ -1,0 +1,15 @@
+类型: 性能精度不达标
+
+根本原因：
+1. 数据集配置异常，InputTokens 为 0，导致每次请求处理效率低下。
+2. 投机解码（Speculative Decoding）接受率仅 52.3%，未能有效提升吞吐量。
+3. batch size 和 request_rate 配置不优，实际并发度仅约 4，未能充分利用硬件。
+4. 服务器生成吞吐量（约 13.3 tokens/s）远低于预期，导致整体输出 token 吞吐量仅 108.9 token/s，低于基线 120 token/s。
+5. 性能基线设置过高（120 token/s），与当前测试环境资源或配置不匹配。
+
+修复方案：
+1. 检查并修正数据集配置，确保 InputTokens 正确加载，避免空输入影响推理效率。
+2. 调整 aisbench 配置中的 batch_size 和 request_rate，提高并发度（如将 batch_size 增至 8 或更高）。
+3. 优化投机解码参数（如降低 num_speculative_tokens 或调整 method），或考虑在当前场景下禁用投机解码。
+4. 如硬件资源有限，适当减少 tensor-parallel-size 或 data-parallel-size，以降低通信开销。
+5. 在当前环境下适当降低性能基线（如调整 baseline 至 100 token/s），或在更高配置环境中重新测试以达到预期目标。

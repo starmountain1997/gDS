@@ -1,0 +1,15 @@
+类型: 代码问题
+
+根本原因（≤5 条）：
+1. **配置约束未满足**：测试脚本中 `--compilation-config` 指定的 `cudagraph_capture_sizes` 为 `[3, 6, 9, 12]`，但这些值必须同时是 `tp_size`（8）的倍数。
+2. **Sequence Parallelism 启用**：日志显示 sequence parallelism 被启用（通过 `additional-config` 中的 `layer_sharding` 或其他默认行为），导致 cudagraph capture sizes 必须符合 tp_size 倍数要求。
+3. **验证逻辑严格**：vLLM 在创建引擎配置时进行严格校验，如果 cudagraph_capture_sizes 中没有值是 tp_size 的倍数，会触发断言错误。
+4. **测试配置硬编码**：测试用例中直接硬编码了不符合要求的 cudagraph_capture_sizes，未根据 tp_size 动态调整。
+5. **警告未阻止执行**：虽然有警告信息 `Batch sizes [3, 6, 9, 12] are removed because they are not multiple of tp_size 8`，但实际执行直接失败了。
+
+最可能的修复方案：
+1. **修改测试脚本中的 `--compilation-config`**：将 `cudagraph_capture_sizes` 改为符合 tp_size 倍数的值，例如 `[8, 16, 24]` 或 `[8, 16]`。
+2. **动态计算 cudagraph_capture_sizes**：在测试代码中根据 `tp_size` 动态生成符合要求的列表，如 `cudagraph_capture_sizes = [tp_size * i for i in range(1, 4)]`。
+3. **禁用 Sequence Parallelism**：如果测试不依赖 sequence parallelism，可以移除 `--additional-config` 中的 `layer_sharding` 配置，或在环境变量中禁用 sequence parallelism。
+4. **更新 vLLM 代码容错性**：如果这是 vLLM 的预期行为，需在测试中适配；如果不是预期行为，需向 vLLM 仓库提 issue 或修复验证逻辑。
+5. **协调配置一致性**：确保测试配置与 vLLM 的约束文档一致，避免使用不兼容的参数组合。

@@ -1,0 +1,17 @@
+类型: 代码问题  
+
+**根本原因（≤5 条）**  
+1. **cudagraph_capture_sizes 与 tensor‑parallel‑size 不匹配**：`--compilation-config` 中指定的 `cudagraph_capture_sizes` 为 `[3, 6, 9, 12]`，而 `tensor-parallel-size` 为 8，校验规则要求这些值必须是 `tp_size` 的倍数，导致 `AssertionError` 触发服务器启动失败。  
+2. **序列并行（sequence parallelism）自动启用**：`cudagraph_capture_sizes` 在序列并行开启时必须为 `tp_size` 的倍数，而测试配置未显式关闭序列并行或调整捕获尺寸，导致捕获尺寸被系统过滤并最终触发校验错误。  
+3. **使用了已弃用的 speculative 方法**：`--speculative-config` 中的 `"method":"deepseek_mtp"` 已被标记为 deprecated，应改为 `"mtp"`。虽然不直接导致启动失败，但会产生兼容性问题并可能影响后续测试行为。  
+4. **模型类型不匹配警告**：传入的模型是 `deepseek_v32` 类型，却在代码中实例化为 `deepseek_v3`，产生 “not supported for all configurations” 警告，虽未直接导致错误但增加了不稳定性。  
+5. **Ascend 平台对 CUDA‑graph 参数的兼容性**：在 Ascend 平台上默认的 `cudagraph_capture_sizes` 参数未经过平台特定适配，导致在 TP=8 时出现校验错误。  
+
+**最可能的修复方案**  
+- **调整 cudagraph_capture_sizes**：将其改为符合 `tp_size` 倍数的列表，例如 `"cudagraph_capture_sizes":[8,16,24,32]"`；如果不需要 CUDA‑graph，可直接设为空 `[]` 或使用 `"cudagraph_mode":"NONE"`，避免触发校验。  
+- **更新 speculative 方法**：把 `--speculative-config` 中的 `"method":"deepseek_mtp"` 改为 `"method":"mtp"`，与最新的 API 保持一致。  
+- **显式控制序列并行**：如测试不依赖序列并行，可在启动参数中明确关闭（例如 `VLLM_SEQUENCE_PARALLEL=0`），或在 `tp_size=8` 时使用兼容的捕获尺寸。  
+- **统一模型类型**：确保使用的模型路径、tokenizer 与代码中的模型类匹配（`deepseek_v3`），避免运行时产生不兼容的警告或错误。  
+- **平台专属配置**：在 Ascend 环境下运行前，检查并修改 `--compilation-config` 中的 `cudagraph_capture_sizes` 为平台接受的值，或在 CI 脚本中针对 Ascend 平台添加条件分支，使用专用的配置。  
+
+通过以上任一或组合措施即可消除 `ValidationError`，使服务器成功启动，测试恢复正常。

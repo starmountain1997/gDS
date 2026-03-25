@@ -1,0 +1,15 @@
+类型: 设备环境问题
+
+根本原因（≤5 条）：
+1. **Full Graph 功能导致内存溢出（OOM）**：警告明确指出实验性的 full graph 特性在捕获多个 batch size 时容易引发 OOM 或推理卡死。
+2. **NPU 驱动/库兼容性问题**：日志中出现 "Tensor not allocated by NPUCachingAllocator" 警告，表明张量内存分配异常，可能导致进程崩溃。
+3. **ApiServer_0 进程异常退出**：在初始化阶段（engine init 完成后），API 服务器进程以退出码 1 终止，引发 RuntimeError。
+4. **实验性功能稳定性不足**：日志多次强调 full graph 是早期实验阶段，可能存在未知问题。
+5. **多节点同步/资源竞争**：在 dual-nodes 场景下，NPU 资源分配或通信可能存在问题。
+
+最可能的修复方案：
+1. **降低 gpu_memory_utilization**：在测试配置中减小该参数（如设为 0.8），避免 OOM。
+2. **禁用 full graph 特性**：在启动参数中添加 `--enforce-eager` 或关闭 full graph 捕获，降低内存压力。
+3. **限制 CUDA graph 捕获的 batch sizes**：手动指定较小的 batch size 范围，避免一次性捕获过多变体。
+4. **检查 NPU 驱动版本**：确认 torch_npu、ascend 驱动等与当前 vllm 版本的兼容性，必要时降级或升级相关库。
+5. **增加健康检查超时**：适当延长服务器启动等待时间（如 max_wait_seconds），并添加重试机制，避免因偶发竞争导致的误判。

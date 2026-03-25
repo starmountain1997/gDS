@@ -1,0 +1,17 @@
+类型: 代码问题  
+
+**根本原因**  
+1. **cudagraph_capture_sizes 与 tensor‑parallel size 不匹配**：测试脚本硬编码了 `cudagraph_capture_sizes:[3,6,9,12]`，而 `tp_size=8` 时这些值均不是 8 的倍数，触发 VllmConfig 的断言校验错误。  
+2. **校验逻辑未自动过滤/修正**：代码在发现 batch size 不是 tp 的倍数后仅给出警告并将其移除，却没有进一步检查 `cudagraph_capture_sizes` 是否仍然有效，导致后续断言仍然要求至少有一个 “tp_size 的倍数” 的捕获大小，结果列表为空或仍含非法值。  
+3. **序列并行（sequence parallelism）被默认开启**：在 `tp_size=8` 且启用了 `enable‑expert‑parallel` 与 `layer_sharding` 时，平台强制要求捕获大小必须为 tp 的倍数，而测试配置未考虑这一约束。  
+4. **模型类型与分词器模式不一致**：日志中出现 “You are using a model of type deepseek_v32 to instantiate a model of type deepseek_v3” 的警告，虽不是直接报错，但可能导致初始化过程中的额外校验或异常。  
+5. **测试用例未随代码演进更新**：新的校验规则在 VllmConfig 中加入了更严格的 `cudagraph_capture_sizes` 检查，而测试脚本仍使用旧有的配置，导致不兼容。  
+
+**最可能的修复方案**  
+1. **动态生成符合 tp_size 的捕获大小**：在测试中根据实际的 `tp_size` 计算合法的 `cudagraph_capture_sizes`，例如当 `tp_size=8` 时使用 `[8, 16, 24, 32]`（均为 8 的倍数）。  
+2. **在 VllmConfig 校验前自动过滤非法值**：在代码层面，对于 `cudagraph_capture_sizes` 中不满足 `multiple of tp_size` 的项直接剔除并给出 info 级别日志，而非仅在 batch‑size 移除后仍然保留断言。  
+3. **若捕获大小为空则禁用 cudagraph**：当所有预设的捕获大小均被过滤后，将 `cudagraph_mode` 降级为 `NO_CUDAGRAPH` 或给出更明确的错误提示，方便调试。  
+4. **统一模型类型与分词器模式**：确保测试使用的 `--model` 与 `--tokenizer_mode`、`--reasoning-parser` 均对应同一版本（如统一使用 `deepseek_v3`），避免初始化时的警告与潜在校验错误。  
+5. **更新测试脚本的默认配置**：将硬编码的 `--compilation-config` 改为模板或根据 `tp_size`、`dp_size` 动态生成，确保在不同的并行配置下均能通过校验。  
+
+通过以上调整，测试应能在当前的 `tp_size=8`、`enable‑expert‑parallel` 环境下正常启动 vLLM 服务器并完成后续验证。

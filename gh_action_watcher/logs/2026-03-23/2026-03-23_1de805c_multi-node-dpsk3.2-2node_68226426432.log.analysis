@@ -1,0 +1,41 @@
+类型: 代码问题  
+
+**根本原因（≤5 条）**  
+1. **RoPE 预计算的 cos/sin 与实际 token 数目不匹配**  
+   - `rope_forward_triton_siso` 中断言 `cos.shape[0] == num_tokens`，但 cos、sin 是按最大序列长度或上一次请求长度预先生成的，未在每次前向时对齐到当前 `num_tokens`。  
+2. **TorchDynamo / AOTAutograd 编译缓存导致形状固化**  
+   - 使用 `torch.compile`（`TorchCompileWithNoGuardsWrapper`）后，编译图把 cos、sin 的形状锁定为首次编译时的形状，后续请求若 token 数不同就会触发形状不兼容错误。  
+3. **MLA 前向时 hidden_states 可能包含 padding tokens**  
+   - `mla_forward` 接收的 `hidden_states` 长度包含填充 token，而对应位置编码仍为完整长度，导致 `num_tokens` 与 `cos.shape[0]` 不一致。  
+4. **位置编码生成或索引阶段的实现错误**  
+   - `indexer_select_pre_process`（`sfa_v1.py:875`）在调用 `rope_forward_triton_siso` 前没有根据 `position_ids` 正确切取或对齐 cos、sin。  
+5. **Triton kernel 对动态 shape 支持不足**  
+   - `rope_forward_triton_siso` 使用的是 Triton 实现，未对不同 `num_tokens` 做广播或自动切片，导致在非固定 token 数目场景下断言失败。  
+
+**最可能的修复方案**  
+1. **在进入 RoPE kernel 前对齐 cos / sin 的长度**  
+   ```python
+   # 在 rope_forward_triton_siso 调用前执行
+   if cos.shape[0] != num_tokens:
+       cos = cos[:num_tokens]
+       sin = sin[:num_tokens]
+   # 或者使用 torch.nn.functional.pad 进行填充至 num_tokens
+   ```  
+2. **禁用或动态化 torch.compile 对 RoPE 部分的缓存**  
+   - 将 `rope_forward_triton_siso` 所在模块排除在 `torch.compile` 范围之外，或在相关代码处添加 `@torch._dynamo.config(dynamic=True)` 以支持动态 shape。  
+3. **统一 hidden_states 与 position_ids 的长度**  
+   - 在进入 `mla_forward` 前，确保 `hidden_states` 已经去除 padding（如使用 `model_runner` 中的 `remove_padding`），并让对应的 `position_ids` 与实际 token 数匹配。  
+4. **改进断言逻辑，使其更鲁棒**  
+   ```python
+   # 将 assert 改为可恢复的检查
+   if cos.shape[0] != num_tokens or sin.shape[0] != num_tokens:
+       raise RuntimeError(
+           f"RoPE cos/sin length ({cos.shape[0]}) does not match num_tokens ({num_tokens}). "
+           "Please ensure cos/sin are sliced or recomputed for each forward pass."
+       )
+   ```  
+5. **升级或补丁 Triton kernel，使其兼容动态 token 数**  
+   - 如使用 Ascend 提供的 Triton 版本，确认已包含对动态 shape 的支持；在 kernel 定义中改为使用 `tl.constexpr` 与 `tl.num_tokens` 结合，或在调用前对输入做维度广播（`cos = cos.expand(num_tokens, -1)`）。  
+
+**简要总结**  
+错误根本在于 **RoPE 位置编码的预计算形状与每次前向的实际 token 数不一致**，并且 **torch.compile 的编译缓存将该形状固化**，导致在动态 batch 或变长输入时出现 `AssertionError`。修复思路是 **在调用 Triton RoPE kernel 前把 cos/sin 按实际 token 数目对齐**，并 **确保模型在编译或运行阶段能够处理动态 shape**，必要时关闭对 RoPE 部分的编译缓存或升级 Triton 实现以支持动态 token 维度。

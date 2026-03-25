@@ -1,0 +1,11 @@
+类型: 代码问题
+
+根本原因（≤5 条）：
+1. **cudagraph_capture_sizes 配置错误**：`cudagraph_capture_sizes` 设置为 `[3, 6, 9, 12]`，但这些值不是 `tp_size=8` 的倍数。启用 sequence parallelism 时，capture sizes 必须为 tp_size 的整数倍，导致断言失败。
+2. **deprecated speculative method**：`speculative-config` 中使用 `method: deepseek_mtp`，但该方法已被弃用并替换为 `mtp`。
+3. **模型类型不匹配警告**：使用 `deepseek_v32` tokenizer 实例化 `deepseek_v3` 类型模型，可能导致配置不稳定。
+
+最可能的修复方案：
+1. 修改测试配置，将 `cudagraph_capture_sizes` 改为 `tp_size` 的倍数，如 `[8, 16, 24, 32]`。
+2. 更新 `speculative-config` 中的 `method` 为 `mtp`。
+3. 统一 tokenizer 和模型的版本配置，确保 `tokenizer_mode` 与模型架构类型一致。

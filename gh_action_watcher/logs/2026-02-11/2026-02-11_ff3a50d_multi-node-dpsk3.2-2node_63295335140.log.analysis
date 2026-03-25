@@ -1,0 +1,15 @@
+类型: 设备环境问题  
+
+**根本原因（≤5 条）**  
+1. Worker 进程在初始化时无法获取所需的计算设备（GPU/NPU），导致 `WorkerProc.wait_for_ready` 超时或异常退出。  
+2. 多节点测试的网络通信或分布式启动依赖（如 NCCL、HCCL）未正确配置，导致节点间握手失败。  
+3. 共享内存 (`/dev/shm`) 大小不足或被泄漏，导致进程在分配共享内存时崩溃，留下大量 `shared_memory` 对象。  
+4. Pod 资源（CPU、内存、GPU）调度不匹配，例如测试期望的双节点只有单节点就绪，或 GPU/NPU 数目不足。  
+5. 容器镜像或基础镜像缺少必要的运行时库（如 `libcuda.so`、Ascend Driver），导致进程启动时即报 “EngineCore failed to start”。  
+
+**最可能的修复方案（≤5 条）**  
+1. 确认目标设备的驱动和工具已就绪：在容器内执行 `nvidia-smi` 或 `ascend-npu-smi` 并检查输出，确保 `CUDA_VISIBLE_DEVICES`、`ASCEND_RT_VISIBLE_DEVICES` 等环境变量已正确设置。  
+2. 配置并验证分布式通信库：开启 `NCCL_DEBUG=INFO` 或 `HCCL_INFO=1`，检查节点之间是否能互相 `ping` 并在对应端口完成 TCP/RDMA 握手。  
+3. 增大共享内存大小：在 Pod spec 中使用 `sharedMemorySizeLimit`（如 64 GiB）或在容器启动时加入 `--shm-size=64g`，并确认 `/dev/shm` 可写。  
+4. 调整资源请求/限制，使其与测试拓扑匹配；若测试为双节点，需保证 K8s 能够同时调度两个 `vllm` Pod 并分配所需的 GPU/NPU 与 CPU/内存。  
+5. 如模型或批大小超出设备容量，降低 `--tensor-parallel-size`、`--pipeline-parallel-size` 或减小 `block_size`，确保单卡（或单 NPU）能够成功加载模型。

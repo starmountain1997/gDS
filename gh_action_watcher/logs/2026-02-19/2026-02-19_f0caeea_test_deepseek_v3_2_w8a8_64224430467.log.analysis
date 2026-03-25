@@ -1,0 +1,15 @@
+类型: 代码问题
+
+根本原因：
+1. **参数配置不兼容**：`cudagraph_capture_sizes` 设置为 `[3, 6, 9, 12]`，但 `tensor_parallel_size` 为 8，要求 capture sizes 必须是 8 的倍数，导致验证失败。
+2. **硬编码配置**：测试代码中直接使用了固定的 `cudagraph_capture_sizes`，未根据 `tp_size` 动态调整。
+3. **配置校验缺失**：系统未对 `cudagraph_capture_sizes` 与 `tp_size` 的兼容性进行提前检查，直接触发断言错误。
+4. **模型类型警告**：使用了 `deepseek_v32` 模型实例化 `deepseek_v3` 类型，可能引发潜在错误，但非直接失败原因。
+5. **服务器启动失败**：由于配置错误，vLLM 服务器无法正常初始化，进而导致测试中服务器意外退出。
+
+最可能的修复方案：
+1. **修改捕获大小配置**：将 `cudagraph_capture_sizes` 调整为 8 的倍数，例如 `[8, 16, 24]` 或使用默认值，确保与 `tp_size=8` 兼容。
+2. **动态计算参数**：在测试代码中根据 `tp_size` 自动计算 `cudagraph_capture_sizes`，避免硬编码。
+3. **增加配置验证**：在设置参数时添加校验逻辑，若 `cudagraph_capture_sizes` 不满足倍数要求，则报错或自动修正。
+4. **统一模型类型**：确认使用的模型类型（`deepseek_v3` 或 `deepseek_v32`）与代码实现匹配，避免类型不匹配警告。
+5. **使用默认配置**：如不确定最佳配置，可省略 `cudagraph_capture_sizes` 参数，让系统自动选择合适的值。

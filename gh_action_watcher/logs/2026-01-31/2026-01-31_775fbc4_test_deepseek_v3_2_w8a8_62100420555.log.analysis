@@ -1,0 +1,15 @@
+类型: 性能精度不达标
+
+根本原因：
+1. **Output Token Throughput 严重低于基线**：实际为108.2137 token/s，低于目标116.4 token/s（0.97 * 120），差距约7.6%
+2. **端到端延迟（E2EL）过高**：平均54.5秒，最大67秒，表明每个请求处理时间过长
+3. **Time To First Token（TTFT）波动大**：平均1402ms，但P90已达1269ms，P99高达7981ms，存在严重尾延迟问题
+4. **InputTokens为0异常**：性能测试中所有请求的InputTokens显示为0，可能是数据集加载或prompt处理问题
+5. **批处理效率低**：batch_size=4且concurrency仅3.93，远低于硬件能支持的处理能力
+
+最可能的修复方案：
+1. **增大batch_size**：将batch_size从4提升到8或更高，配合调整max-num-seqs参数以充分利用硬件
+2. **优化request_rate**：当前request_rate=11.2可能导致请求过密，应降低到更合理的值（如5-8）以减少排队等待
+3. **修复InputTokens加载问题**：检查gsm8k_gen_0_shot_cot_str_perf_custom数据集配置，确保prompts正确加载
+4. **调整max_out_len**：如果业务允许，将max_out_len从1500降低到1024或更低，可显著提升throughput
+5. **优化expert parallel配置**：检查--enable-expert-parallel是否正确生效，考虑调整expert并行策略或数据并行配置

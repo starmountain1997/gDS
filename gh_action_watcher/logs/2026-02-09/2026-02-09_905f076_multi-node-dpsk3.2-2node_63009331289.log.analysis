@@ -1,0 +1,16 @@
+类型: 代码问题  
+
+根本原因（≤5 条）  
+1. 启动脚本 `/root/.cache/tests/run.sh` 因缺少或路径错误的模型配置文件（`CONFIG_YAML_PATH` 指向的 `DeepSeek-V3_2-W8A8-A3-dual-nodes.yaml`）而异常退出，导致容器持续进入 **CrashLoopBackOff**。  
+2. 环境变量配置不完整或错误（如 `LWS_LEADER_ADDRESS`、`LWS_GROUP_SIZE`、`LWS_WORKER_INDEX`），导致 Leader/Follower 选举或协同逻辑失败，容器无法进入就绪状态。  
+3. **Readiness Probe** 配置与实际服务端口/路径不匹配（服务监听 8080 端口，但探针未指向正确 endpoint），kubelet 持续认为 Pod 未就绪，从而出现大量 “not Ready yet…” 日志。  
+4. 资源请求与实际节点可用资源不匹配：Pod 请求 16 张 Ascend 设备、512 Gi 内存，但节点设备插件可能未成功分配或驱动未加载，运行时找不到设备导致退出。  
+5. Pod 之间的网络或 DNS 解析故障（无法解析 `vllm-0.vllm.vllm-project`），使得 Leader 与 Follower 无法相互感知，导致等待超时并最终超时 1200 s。  
+
+最可能的修复方案  
+- **配置文件检查**：在 `run.sh` 开头加入文件存在性检查，确保 `DeepSeek-V3_2-W8A8-A3-dual-nodes.yaml` 存在于 `/vllm-workspace` 或挂载的共享卷中，若缺失则提前退出并输出明确错误信息。  
+- **环境变量校验**：打印并校验所有 LWS 相关变量（如 `LWS_LEADER_ADDRESS`、`LWS_GROUP_SIZE`），若检测到异常则终止并报告缺失参数。  
+- **调整 Readiness Probe**：确认服务在 8080 端口提供健康检查 endpoint（如 `/health`），并适当增大 `initialDelaySeconds`（建议 30 s 以上）以等待模型加载完成。  
+- **资源与驱动验证**：在节点层面确认 16 张 Ascend 设备已成功注入且驱动已加载；若资源不足，可临时降低单副本设备请求（如改为 8 卡）或增加节点资源后再重试。  
+- **网络/DNS 连通性**：确保集群内部 DNS (`169.254.20.10`) 能够正确解析 `vllm-0.vllm.vllm-project`，如有必要使用 headless Service 或直接使用 Pod IP 进行通信，排除网络策略阻塞。  
+- **增强日志输出**：在 `run.sh` 中捕获异常并输出到 `/tmp/vllm*_logs.txt`，便于 CI 失败时快速定位错误根因。

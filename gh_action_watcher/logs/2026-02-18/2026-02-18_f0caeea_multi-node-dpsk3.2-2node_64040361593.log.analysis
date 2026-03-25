@@ -1,0 +1,29 @@
+类型: 设备环境问题  
+
+**根本原因（≤5 条）**  
+1. **GPU 显存不足导致 OOM**  
+   - 多节点 DP=2、TP/EP 并行度较大，full‑graph 捕获过程需要一次性占用大量显存，超过了实际可用的显存上限，使 ApiServer_0 进程被 OOM Killer 终止（exit 1）。  
+2. **gpu_memory_utilization 设置过高**  
+   - 当前默认的 `gpu_memory_utilization=0.9` 与 full‑graph 的显存需求冲突，导致显存碎片或溢出，增加 OOM 风险。  
+3. **Full‑graph 功能仍为实验阶段，捕获过多 batch size**  
+   - 警告信息已明确指出 “capturing too many batch sizes can lead to OOM”。当并发请求或预热阶段产生的 batch size 组合过多时，会触发显存耗尽。  
+4. **NPU (Ascend) 显存分配器与 Graph 捕获不兼容**  
+   - 出现 “Tensor not is not allocated by NPUCachingAllocator” 警告，说明部分张量未走统一分配路径，可能导致内部资源泄漏或后续内存分配失败。  
+5. **多节点 IPC/共享内存泄漏**  
+   - `resource_tracker` 报告有 2 个共享内存对象未被回收，说明在进程异常退出时共享内存未被正确释放，可能进一步加剧后续启动时的资源竞争。  
+
+**最可能的修复方案**  
+- **降低显存占用**  
+  - 将 `gpu_memory_utilization` 调至 0.70–0.75，或在启动参数中显式指定 `--gpu-memory-utilization 0.75`。  
+  - 若必须使用 full‑graph，限制捕获的 batch size 组合（`--cuda-graph-max-batch-size`）或直接关闭 full‑graph（`--disable-cuda-graphs`），改为使用普通的 CUDA Graph 捕获。  
+- **减小模型并行度或分配给每个节点的资源**  
+  - 在多节点测试中适当降低 TP/EP 大小，或将 `tensor-parallel-size`、`pipeline-parallel-size` 调整为更保守的值，以分散显存压力。  
+- **优化 NPU 显存分配器使用**  
+  - 确认 `PYTORCH_NPU_ALLOC_CONF=expandable_segments:True` 已在所有 worker 进程中生效；必要时在启动脚本中显式 export 该变量。  
+  - 检查并关闭可能导致张量脱离 NPUCachingAllocator 的操作（例如手动 `torch.cuda.set_device`、显式 `torch.Tensor.cuda()` 等）。  
+- **处理共享内存泄漏**  
+  - 在测试结束后确保所有 `multiprocessing.shared_memory` 实例被显式关闭，或在 `conftest.py` 的清理阶段加入 `resource_tracker.cleanup()`。  
+- **提升容器/节点显存上限**（如果 CI 环境允许）  
+  - 使用更大显存的 GPU 实例（如 80 GB 或双卡）进行 dual‑node 测试，或在 K8s Pod 资源配置中增大 `nvidia.com/gpu` 显存限制。  
+
+以上措施可显著降低因显存不足或资源竞争导致的 ApiServer 崩溃，从而让 multi‑node 测试顺利通过。

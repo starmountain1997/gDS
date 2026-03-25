@@ -1,0 +1,23 @@
+类型: 设备环境问题  
+
+根本原因（≤5 条）  
+1. **配置文件缺失或路径错误**：`CONFIG_YAML_PATH` 指向的 `DeepSeek‑V3_2‑W8A8‑A3‑dual‑nodes.yaml` 在容器内找不到，导致 vLLM 进程启动失败并以退出码 1 结束。  
+2. **Huawei Ascend NPU 资源未就绪**：Pod 申请了 16 张 ascend‑1980 设备，但节点上的 Ascend device‑plugin 可能未正常分配或驱动异常，导致容器在请求 NPU 时出错。  
+3. **就绪探针持续失败**：由于主进程（run.sh）启动即退出，Kubernetes 的 readinessProbe 始终报告 `ready=false`，触发 `CrashLoopBackOff`。  
+4. **镜像缺少运行依赖**：使用的 `nightly‑a3` 镜像可能缺少完整的 Ascend 驱动或 CANN 工具链，导致 vLLM 在初始化算子时崩溃。  
+5. **环境变量与挂载卷不匹配**：配置文件若通过 PersistentVolumeClaim 挂载，需要确保挂载路径与 `CONFIG_YAML_PATH` 一致，否则程序读取不到实际内容。  
+
+最可能的修复方案  
+1. **确保配置文件可访问**  
+   - 将 `DeepSeek‑V3_2‑W8A8‑A3‑dual‑nodes.yaml` 打包进镜像或通过 PVC 正确挂载到容器内的 `/path/to/config/` 目录。  
+   - 在 `run.sh` 开头加入路径检查，如 `if [ ! -f "$CONFIG_YAML_PATH" ]; then echo "Config file missing: $CONFIG_YAML_PATH"; exit 1; fi`，提前捕获错误。  
+2. **校验 NPU 资源分配**  
+   - 确认节点标签 `huawei.com/ascend-1980` 与实际可用的 Ascend 910 设备数量一致。  
+   - 检查 Ascend device‑plugin 是否运行正常，必要时重新部署或升级插件。  
+3. **调整探针与启动策略**  
+   - 将 `readinessProbe` 的 `initialDelaySeconds` 增大（如 60 s）或改为 `exec` 检查端口/健康路径，避免因启动慢导致误判。  
+   - 在 `run.sh` 中加入后台启动、守护进程或 `sleep` 等待，确保服务完全启动后再退出。  
+4. **使用包含完整驱动的正式镜像**  
+   - 替换为官方提供的包含 Ascend Driver + CANN + vLLM‑Ascend 依赖的正式镜像，或在 Dockerfile 中添加缺失的库（如 `libascend_hal.so`、CANN runtime）。  
+5. **统一挂载路径**  
+   - 确认 PVC 挂载的目录结构与 `CONFIG_YAML_PATH` 完全匹配，必要时使用 `subPath` 或 `mountPath` 显式指定文件名。

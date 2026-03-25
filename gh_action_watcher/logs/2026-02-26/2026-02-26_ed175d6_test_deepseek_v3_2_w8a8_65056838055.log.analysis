@@ -1,0 +1,15 @@
+类型: 设备环境问题
+
+根本原因：
+1. 显存资源紧张导致OOM风险：gpu-memory-utilization设置为0.98（98%）且同时捕获多个batch size（[8,16,24,32,40,48]）的CUDA graph，超过了可用显存容量
+2. 多进程同步异常：多个Worker进程初始化时出现NCCL work等待警告，表明进程间通信存在竞争条件
+3. 内存分配器兼容性问题：NPUCachingAllocator的tensor分配警告，提示部分tensor未通过指定的分配器管理
+4. Experimental特性组合不稳定：同时启用FULL_DECODE_ONLY编译、layer_sharding、MLAPO、FLASHCOMM1等多个实验性功能，存在潜在冲突
+5. API Server进程崩溃：主进程捕获到ApiServer_0异常退出（exit code 1），但未捕获到具体错误信息
+
+最可能的修复方案：
+1. 降低gpu-memory-utilization参数至0.85~0.9之间，为CUDA graph capture预留足够的显存空间
+2. 减少cudagraph_capture_sizes至只包含实际使用的batch size（如[8, 16]），或改用"REDUCE"模式而非"FULL_DECODE_ONLY"
+3. 简化配置：暂时关闭layer_sharding、MLAPO、FLASHCOMM1等实验性功能，逐个排查冲突项
+4. 检查NCCL和HCCL通信配置，确保多进程初始化顺序正确，增加调试日志定位具体崩溃点
+5. 如使用speculative decoding，先禁用该功能验证基础运行，再逐步引入高级特性

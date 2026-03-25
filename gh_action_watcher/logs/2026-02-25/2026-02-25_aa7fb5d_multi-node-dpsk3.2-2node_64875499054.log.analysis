@@ -1,0 +1,15 @@
+类型: 设备环境问题  
+
+**根本原因（≤5 条）**  
+1. **硬件资源不可用** – Worker 进程在启动时无法获取可用的 NPU/GPU 设备，导致 `DPEngineCoreProc` 初始化失败。  
+2. **共享内存/大页不足** – 多进程执行器依赖 `/dev/shm`（或 hugepages）进行进程间通信，容量不足时会引起分配错误。  
+3. **后端库版本不兼容** – `torch_npu`（或对应的 GPU/NPU 驱动）与当前 vllm 代码版本不匹配，导致底层调用异常。  
+4. **多节点网络配置错误** – 节点间的 IP、端口或 NCCL/gRPC 通信库未正确配置，导致 EngineCore 启动后无法完成握手并异常退出。  
+5. **异常捕获过于宽泛** – 底层真实错误被上层 `WorkerProc.wait_for_ready` 吞掉，仅抛出笼统的 “background process exception”，缺少定位线索。  
+
+**最可能的修复方案**  
+- **确认硬件可见性**：在容器/ Pod 启动参数中正确分配 GPU/NPU（如 `--device`/`--runtime=nvidia`），并在入口脚本中校验 `torch.cuda.is_available()` / `torch.npu.is_available()`。  
+- **增大共享内存**：在 k8s 容器配置中显式设置 `shm` 大小（如 `emptyDir: medium: Memory size: 64Gi`），或在节点层面启用 `hugepages`，并确保 `/dev/shm` 权限为 0777。  
+- **对齐依赖版本**：检查 `torch`、`torch_npu`、vllm 三者的兼容版本组合，必要时锁定为已验证的 nightly/rc 版本，或在 CI 环境里统一使用相同的镜像。  
+- **检查网络连通性**：在多节点测试前跑通 `ping`、`nc`（或 `gRPC ping`），确认 NCCL/gRPC 能正常发现彼此；若使用自定义网络插件，需要在测试 yaml 中添加 `MASTER_ADDR`、`MASTER_PORT` 环境变量。  
+- **改进异常传播**：在 `multiproc_executor.py`（尤其是 `WorkerProc.wait_for_ready`）加入细粒度的 try/except + 日志，将子进程的原始异常信息打印出来，以便快速定位根因。

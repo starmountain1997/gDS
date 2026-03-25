@@ -1,0 +1,15 @@
+类型: 设备环境问题
+
+**根本原因（≤5 条）**  
+1. **模型或 tokenizer 文件不可访问**：WorkerProc 在初始化时加载模型失败，可能是因为模型路径未在所有节点上共享或路径错误。  
+2. **共享内存泄漏/不足**：资源追踪器报告 18 个泄漏的 `shared_memory` 对象，导致 `/dev/shm` 耗尽，Worker 进程无法分配必要的共享内存进行进程间通信。  
+3. **Disaggregated‑Prefill 配置缺失或错误**：测试使用了 `disagg_cfg`（ disaggregated prefill），若必要的环境变量或资源（如专用的 NPU 分区）未正确配置，会导致 Worker 启动失败。  
+4. **NPU/Ascend 驱动或设备可见性问题**：Worker 进程在后台启动时看不到 NPU 设备（如 `huawei_npu`），导致底层算子加载或量化（W8A8）失败。  
+5. **量化参数（W8A8）文件缺失**：DeepSeek‑V3 的 W8A8 量化需要专门的尺度（scale）或校准文件，若这些文件不存在或路径错误，模型加载会抛异常。  
+
+**最可能的修复方案**  
+1. **确保模型路径全网共享**：在多节点 Job 中把模型目录挂载到每个 Pod 的相同路径（如 `/model`），或使用共享存储（NFS/GlusterFS），并验证 `model` 与 `tokenizer` 在所有节点可读。  
+2. **清理残留共享内存并增大 `/dev/shm`**：在测试脚本开头加入 `rm -rf /dev/shm/*`（或重启容器），并确保容器有足够的 `--shm-size`（建议至少 8 GB），防止共享内存耗尽。  
+3. **检查并补全 disaggregated‑prefill 环境**：确认 `DISAGG_PREILL`, `PREFILL_WORKER_NPU_ID` 等环境变量已在 `yaml` 中定义，且 NPU 分区资源已正确分配给对应的 Worker。  
+4. **验证 NPU 驱动与设备可见性**：在每个节点执行 `npu-smi` 或 `ascend-hdk` 命令确认 NPU 正常；若使用容器，确保 `--device=/dev/davinci0` 等设备已映射，并设置 `CUDA_VISIBLE_DEVICES` 为空（让 vLLM 自行发现 NPU）。  
+5. **提供完整的量化配置**：检查 W8A8 所需的 `weight_scale`/`act_scale` 文件是否随模型一起提供，或在启动参数中明确指定 `--quantization_config` 路径；若缺失，可先用非量化模型跑通，再切换回量化配置。

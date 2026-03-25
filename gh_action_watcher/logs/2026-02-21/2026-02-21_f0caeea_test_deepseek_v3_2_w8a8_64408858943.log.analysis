@@ -1,0 +1,23 @@
+类型: 代码问题  
+
+**根本原因（≤5 条）**  
+1. **cudagraph_capture_sizes 与 tp_size 不匹配**  
+   - 编译配置中指定的 `[3, 6, 9, 12]` 不是 `tensor-parallel-size=8` 的整数倍，导致 Pydantic 验证在创建 `VllmConfig` 时抛出断言错误，进而使 vLLM 服务启动失败。  
+2. **使用了已废弃的 speculative 方法**  
+   - `speculative-config` 中的 `"method":"deepseek_mtp"` 已被标记为废弃，官方推荐使用 `"mtp"`，这可能引起内部解析或初始化不一致。  
+3. **模型类型与 tokenizer_mode 不一致**  
+   - 传入的模型路径和 `--tokenizer_mode deepseek_v32` 与模型的实际架构 `DeepseekV32ForCausalLM` / `DeepSeekMTPModel`（对应 `deepseek_v3`）不匹配，导致多次 “You are using a model of type deepseek_v32 to instantiate a model of type deepseek_v3” 警告，虽未直接致命，但增加了启动风险。  
+4. **代码对 cudagraph_capture_sizes 的校验已加强**  
+   - vLLM 0.15.0+ 在 `create_engine_config` 中新增了对捕获大小的强制检查，要求必须是 `tp_size` 的倍数。测试脚本未同步更新，导致在新版引擎上直接报错。  
+5. **硬编码的编译配置未考虑多卡并行**  
+   - `compilation-config` 中的 `cudagraph_capture_sizes` 被写死为特定值，无法在不同 `tp_size`（尤其是 >1 的情况）下复用，导致在 tp=8 的环境下校验不通过。  
+
+**最可能的修复方案**  
+1. **修正 cudagraph_capture_sizes**：确保每个值都是 `tp_size` 的整数倍，或直接设为空列表禁用捕获。  
+   - 示例：`"cudagraph_capture_sizes": [8, 16, 24]`（若保留捕获）或 `"cudagraph_capture_sizes": []`（关闭捕获）。  
+2. **更新 speculative 方法**：将 `method` 从 `"deepseek_mtp"` 改为 `"mtp"`，或根据实际代码版本删除该参数，让引擎自行选择默认实现。  
+3. **统一模型与 tokenizer 版本**：使用与 `--tokenizer_mode` 相匹配的模型（如 `vllm-ascend/DeepSeek-V3.2-W8A8` 对应 `tokenizer_mode=deepseek_v32`），或确保模型内部配置与传入的 `--reasoning-parser deepseek_v3` 保持一致。  
+4. **在测试中动态生成 compilation-config**：依据 `tp_size` 动态构造 `cudagraph_capture_sizes`，避免硬编码导致的不兼容。  
+5. **若暂不需要 CUDA Graph 捕获**，可在 `compilation-config` 中移除 `cudagraph_capture_sizes` 项或将其设为空，并使用 `cudagraph_mode: "NO_CAPTURE"`（如果引擎支持），从而绕过此校验。  
+
+通过上述调整，使测试配置与当前 vLLM 引擎的验证规则保持一致，服务即可成功启动，测试用例也将恢复正常执行。

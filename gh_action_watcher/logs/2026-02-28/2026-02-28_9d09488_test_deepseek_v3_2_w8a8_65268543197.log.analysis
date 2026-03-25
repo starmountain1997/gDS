@@ -1,0 +1,15 @@
+类型: 设备环境问题
+
+根本原因：
+1. API服务器进程（ApiServer_0）异常退出（exit code 1），导致测试无法完成。日志未显示具体错误信息，可能因资源不足或配置冲突。
+2. 启用了实验性的“full graph”功能（`cudagraph_mode":"FULL_DECODE_ONLY"`），警告提示可能导致OOM或推理挂起，而`gpu_memory_utilization`设置为0.98，进一步增加内存压力。
+3. NCCL警告显示在CUDA图捕获前有未完成的集合操作，可能导致多进程同步失败。
+4. 张量分配警告（未由NPUCachingAllocator分配）表明内存管理配置可能不匹配当前硬件环境。
+5. 测试配置使用高并行度（tp_size=8, dp_size=2）和大模型参数（max-model-len=8192），在资源受限环境下易触发崩溃。
+
+修复方案：
+1. 降低`gpu_memory_utilization`至0.9或更低，以减少OOM风险。
+2. 将`cudagraph_mode`改为`AUTO`或移除`FULL_DECODE_ONLY`，并减少`cudagraph_capture_sizes`中的批处理大小。
+3. 暂时禁用`--enable-expert-parallel`以简化配置，验证基本功能是否正常。
+4. 确保NPU驱动版本与vllm-ascend库兼容，并设置正确的环境变量（如`PYTORCH_NPU_ALLOC_CONF=expandable_segments:True`已在日志中生效）。
+5. 增加启动日志详细程度，捕获API服务器退出的根本原因（检查dmesg或系统日志）。

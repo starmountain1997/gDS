@@ -1,0 +1,15 @@
+类型: 设备环境问题
+
+根本原因：
+1. GPU 内存利用率设置过高（gpu_memory_utilization=0.98），结合 Full Graph 捕获特性导致内存耗尽（OOM），进而使 API Server 进程被系统杀死。
+2. Full Graph 模式在捕获多个 batch size（cudagraph_capture_sizes 包含 8 种尺寸）时，消耗额外显存，超过可用内存上限。
+3. NPU 内存分配器警告：部分张量未通过 NPUCachingAllocator 分配，可能引发内存管理冲突，导致进程异常退出。
+4. torch_npu 的 reduce-overhead 模式与实验性配置（如 enable_view_optimize）不兼容，产生潜在错误但未捕获，最终影响服务稳定性。
+5. 多级并行（Tensor Parallel=8, Data Parallel=2, Expert Parallel）配置复杂，内存压力叠加，加上投机解码（speculative decoding）进一步增加显存占用。
+
+修复方案：
+1. 降低 gpu_memory_utilization 至 0.85~0.9，释放足够显存缓冲，避免 OOM。
+2. 禁用 Full Graph 模式（设置 cudagraph_mode 为 "FLAT" 或默认），或显著减少 cudagraph_capture_sizes（如仅保留 [8, 16]）。
+3. 确保所有张量通过 NPUCachingAllocator 分配：设置环境变量 PYTORCH_NPU_ALLOC_CONF=expandable_segments:True, max_segment_size:..., 并检查自定义内核是否正确使用分配器。
+4. 调整 torch_npu 配置：在 reduce-overhead 模式下移除不兼容的实验性选项（如 enable_view_optimize），或切换到默认模式。
+5. 简化并行配置：若内存紧张，可临时降低 TP 或 DP 大小，关闭专家并行（--enable-expert-parallel=False），或关闭投机解码（移除 speculative-config）。

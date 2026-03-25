@@ -1,0 +1,17 @@
+类型: 代码问题  
+
+**根本原因（≤5 条）**  
+1. **cudagraph_capture_sizes 与 tensor‑parallel 大小不匹配**：测试传入的捕获尺寸 `[3, 6, 9, 12]` 不是 `tp_size=8` 的整数倍，导致引擎在创建 `VllmConfig` 时触发断言错误并抛出 `ValidationError`。  
+2. **测试未对捕获尺寸进行自适应**：测试脚本硬编码了 `--compilation-config` 中的捕获尺寸，未根据当前的 `tp_size` 动态调整。  
+3. **引擎对非法捕获尺寸的处理过于严格**：在检测到不满足 `tp_size` 倍数时直接抛异常，而不是仅给警告并自动过滤非法尺寸，使问题提前暴露。  
+4. **使用已废弃的 speculative‑config 方法**：配置中 `method: "deepseek_mtp"` 已被标记为废弃，改为 `mtp`，虽然不直接导致错误，但会在日志中产生大量无用警告。  
+5. **多余的 `trust_remote_code` 参数**：多次出现的 `trust_remote_code` 对当前启动方式没有作用，产生冗余警告，影响日志可读性。  
+
+**最可能的修复方案**  
+- **修改 `--compilation-config`**：将 `cudagraph_capture_sizes` 改为 `tp_size` 的倍数，例如 `[8, 16, 24]` 或直接省略该字段让引擎使用默认值。  
+- **在测试中动态生成捕获尺寸**：根据 `tp_size` 计算出合法的捕获尺寸列表，避免硬编码导致的冲突。  
+- **增强引擎的容错处理**（可选）：将不满足倍数的捕获尺寸自动剔除并仅输出警告，而不是直接抛出 `ValidationError`，提升用户体验。  
+- **更新 speculative‑config**：将 `"method":"deepseek_mtp"` 替换为 `"method":"mtp"`，消除废弃警告。  
+- **清理无效参数**：移除 `--trust-remote-code`（如果不需要）或在文档中说明其在当前场景下的无意义性，以减少冗余日志。  
+
+通过上述修改，测试即可在 `tp_size=8` 的环境下正常启动 `vllm serve`，避免因配置不兼容导致的启动失败。

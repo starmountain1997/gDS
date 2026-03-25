@@ -1,0 +1,17 @@
+**类型:** 性能精度不达标
+
+**根本原因（≤5 条）:**
+
+1. **输入令牌统计异常：** `InputTokens` 与 `Input Token Throughput` 均为 0，说明模型实际接收的输入长度为 0，但输出固定为 3000 token，导致预填充（Prefill）阶段几乎被跳过或未正确计入性能指标，破坏了性能测试的完整性。
+2. **并发与请求速率配置不匹配：** 测试配置了 `batch_size=512`、`request_rate=11.2`（即 11.2 req/s），但实际 `Concurrency` 均值达到 263.015、`Max Concurrency` 为 512，导致服务端积压严重，处理时间飙升（E2EL 平均约 2725 秒），远超 baseline 预期。
+3. **端口冲突导致多 API Server 争用：** 日志显示 4 个 `ApiServer` 进程（pid=182/183/184/185）全部尝试使用 port 8080，互相检测到冲突并触发 shutdown，造成请求路由混乱和服务不稳定。
+4. **系统资源争用与 worker 进程异常：** 测试涉及 16 个 worker 进程（DP0/DP1 各 8 个 TP/EP 分组），在高并发场景下可能出现 CPU/内存竞争、进程调度延迟或 worker 异常终止（日志显示大量 `Parent process exited, terminating worker`）。
+5. **Baseline 基准值或测试环境不一致：** 当前 `Output Token Throughput` 为 289.52 token/s，仅为 baseline 594.915 token/s 的约 48.7%，差距过大。若测试环境（硬件规格、驱动版本、系统负载）与建立 baseline 时不同，会导致性能回退。
+
+**最可能的修复方案:**
+
+1. **修复数据集加载与指标统计：** 检查 `vllm-ascend/GSM8K-in3500-bs2800` 数据集路径与 `gsm8k/gsm8k_gen_0_shot_cot_str_perf` 配置，确保输入 prompt 正确传入并被计入 `InputTokens`。验证 `aisbench.py` 中指标计算逻辑，排除因输入为空导致的计算错误。
+2. **降低并发压力或优化服务吞吐：** 将 `batch_size` 从 512 降至 256 或更低，或将 `request_rate` 从 11.2 降至 5.0 req/s，避免请求堆积。结合 vLLM 的 `--max-num-batched-token` 与 `--max-num-seqs` 参数调优，确保服务端处理能力与请求速率匹配。
+3. **解决端口冲突：** 检查 `RemoteOpenAIServer` 与 `ProxyLauncher` 的端口分配逻辑，确保每个实例使用独立端口（如 8080/8081/8082/8083），或在启动前清理残留进程（`pkill -f VLLM::APIServer`）。
+4. **优化多节点资源配置：** 检查 worker 进程的 CPU/内存限制是否足够，避免 16 个 worker 同时竞争资源。可通过 `taskset` 或 `cgroup` 隔离 CPU 核心，或减少 worker 数量（如 DP=1, TP=4）。
+5. **重新校准 baseline 或放宽阈值：** 若测试环境确实与 baseline 环境存在差异（如不同型号 GPU、驱动版本），需在新环境下重新跑分生成 baseline；或在 CI 中暂时将阈值从 `0.97 * baseline` 调整为 `0.5 * baseline` 以观察实际性能瓶颈。

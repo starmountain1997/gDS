@@ -1,0 +1,17 @@
+类型: 设备环境问题  
+
+**根本原因（≤5 条）**  
+1. **模型/数据集缓存文件未确认或损坏** – 警告 “We can not confirm the cached file is for revision: master” 表明模型和/或数据集（gsm8k‑lite、GSM8K‑in3500‑bs2800）未正确下载或版本不匹配，导致推理返回空结果（准确率 0%）且所有请求均失败。  
+2. **vLLM Server Pod 频繁重启** – Pod 状态显示 `vllm-0` 与 `vllm-0-1` 各自出现一次重启（RESTARTS 1），说明服务在测试期间因错误退出，致使后续请求无法送达。  
+3. **模型路径映射错误** – 配置中使用模型名 `DeepSeek-V3.2-W8A8`（含点），但实际缓存路径为 `DeepSeek-V3___2-W8A8`（含下划线），导致模型加载失败。  
+4. **运行环境与模型需求不匹配** – 测试在 CPU 上启动（`Launch OpenICLInfer … on CPU`），而模型为 Ascend NPU‑W8A8 量化版本，CPU 无法正确执行，产生零输出。  
+5. **性能测试参数不合理** – `ignore_eos=True` 与较高的 `request_rate=11.2` 可能导致服务器生成无限长度或过载，进而使所有请求超时/失败。  
+
+**最可能的修复方案**  
+1. **清理并重新下载模型/数据集** – 在 CI 前置步骤中删除 `~/.cache/modelscope/hub/models/` 与 `~/.cache/modelscope/hub/datasets/`，并显式指定正确的 revision（如 `master`）进行下载，确保文件完整且匹配。  
+2. **检查并稳定 vLLM Server** – 增大容器资源限制（CPU、内存、NPU），确保 `RemoteOpenAIServer` 启动成功后再发送请求；可在启动后加入健康检查 / 等待（如 `curl http://10.0.0.186:8080/health`），防止因启动未完成导致请求失败。  
+3. **统一模型路径/名称** – 修正配置文件中的 `model` 与 `path` 对应关系，使用统一的命名（如统一使用点号 `DeepSeek-V3.2-W8A8`），或在加载时做路径转换，避免因命名差异导致加载失败。  
+4. **在 NPU 环境下运行推理** – 确认 CI Runner 支持 Ascend NPU，且 `vllm` 服务已正确加载 NPU 驱动；在 Kubernetes Pod 中通过 `npu.com/*` 资源请求确保使用 NPU，而不是回退到 CPU。  
+5. **调整性能测试参数** – 将 `ignore_eos` 设为 `False`，根据服务器实际吞吐降低 `request_rate`（如 5‑8），并适当增加 `max_out_len` 与超时时间，以避免无限生成或过载导致的全部请求失败。  
+
+以上措施可从根本上解决模型/数据集不可用、服务频繁重启以及推理/性能测试全失败的问题。

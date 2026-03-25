@@ -1,0 +1,31 @@
+类型: 设备环境问题  
+
+根本原因（≤5 条）  
+1. **OOM（内存耗尽）导致 API Server 进程被系统杀死**  
+   - 在捕获 CUDA（ACL）Graph 时一次性加载了过多 batch size，导致 NPU 显存/内存不足，进程以 exit code 1 退出。  
+2. **共享内存泄漏**  
+   - 日志中出现 “There appear to be 2 leaked shared_memory objects”，表明子进程在退出后未正确释放共享内存，进一步加剧内存压力。  
+3. **实验性的 “full graph” 功能导致的已知问题**  
+   - 警告提示 “full graph feature is early experimental… may involve OOM or inference hangs”。当前配置开启了 `FULL_DECODE_ONLY` 与完整图捕获，容易触发 OOM。  
+4. **缺少必要的通信后端（FLASHCOMM2 / DSA‑CP）**  
+   - 线性层分片 (`q_b_proj`, `o_proj`) 建议配合 FLASHCOMM2 与 DSA‑CP 使用，未启用时可能导致多节点初始化失败。  
+5. **资源配额或配置不匹配**  
+   - `gpu_memory_utilization` 设定过高、`max_num_batched_tokens`/`max_num_seqs` 等参数未适配当前硬件环境，导致在模型加载或调度时内存不足。  
+
+最可能的修复方案  
+1. **降低显存占用**  
+   - 将 `gpu_memory_utilization` 调小（如 0.70‑0.80），或在启动参数中显式禁用 CUDA Graph (`--use-cuda-graph false`、`--enforce-eager`)。  
+   - 如必须使用 Graph Capture，手动限定捕获的 batch size 列表（`--cuda-graph-batch-sizes`），避免一次性捕获过多尺寸。  
+2. **增大 /dev/shm 并清理共享内存泄漏**  
+   - 在 Pod/容器资源配置中增大 `shm-size`（如 `shm-size=8Gi`），或设置 `PYTORCH_NPU_ALLOC_CONF=expandable_segments:False` 防止碎片化。  
+   - 确保 `multiprocessing` 使用 `spawn` 而非 `fork`，或在测试结束后显式调用 `shared_memory.Unlink()`。  
+3. **关闭实验性的完整图捕获**  
+   - 将 `FULL_DECODE_ONLY` 设为 `False`，或使用 `use_inductor=True`（若平台支持），降低因图捕获导致的 OOM 概率。  
+4. **启用或禁用线性层分片**  
+   - 若集群不支持 FLASHCOMM2/DSA‑CP，可在配置中关闭线性层分片 (`--disable-linear-layer-sharding`)，或确保相应的后端已正确安装并启用。  
+5. **审查并调优多节点网络与资源配额**  
+   - 确认 `master_ip`、`proxy_port` 与防火墙/安全组规则匹配；  
+   - 检查容器资源限制（CPU、内存、ulimit），确保文件描述符、进程数等足够；  
+   - 如可能，降低 `max_wait_seconds` 或在测试脚本中加入更细粒度的健康检查，以便在早期捕获到 OOM 信号。  
+
+通过上述任一或组合措施，可显著降低 API Server 因内存耗尽或资源不足而崩溃的概率，从而让 `test_multi_node` 正常完成。

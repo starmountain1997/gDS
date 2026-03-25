@@ -1,0 +1,42 @@
+类型: 设备环境问题  
+
+根本原因（≤5 条）：
+
+1. **容器入口脚本 (`run.sh`) 启动失败**  
+   - 脚本在执行 `bash /root/.cache/tests/run.sh` 时返回退出码 1，导致容器立即退出并进入 CrashLoopBackOff。  
+   - 可能原因：脚本内部对 Leader/Follower 角色的初始化逻辑有误，或依赖的外部资源（模型文件、配置文件）缺失。
+
+2. **Ascend NPU 设备分配或驱动异常**  
+   - Pod 请求 `huawei.com/ascend-1980: 16`，但节点上可能没有足够的 NPU 设备或驱动未正确加载，导致运行时无法打开设备，从而崩溃。  
+   - 驱动工具路径 (`/usr/local/Ascend/driver/tools`) 已挂载，但如果驱动库版本不匹配，容器仍会报错。
+
+3. **多节点 Leader‑Follower 通信不可达**  
+   - 环境变量 `LWS_LEADER_ADDRESS: vllm-0.vllm.vllm-project` 期望通过集群内部 DNS 解析，但 Pod 的 DNS (`169.254.20.10`) 可能未正常工作或网络插件配置错误，导致 Follower 一直收不到 Leader 的就绪信号，脚本内部轮询超时。
+
+4. **资源配置与实际硬件不匹配**  
+   - 512 Gi 内存、125 CPU、16 NPU 的请求在当前节点上可能无法全部满足，导致 OOM 或资源争用，从而被 kubelet 强制终止并重启。
+
+5. **镜像与运行时环境不一致**  
+   - 使用的是 `swr.cn-southwest-2.myhuaweicloud.com/base_image/ascend-ci/vllm-ascend:nightly-a3`（约 16 GB），如果该镜像对应的 CUDA/NPU 运行时与节点上已安装的驱动版本不兼容，会在加载库时失败。
+
+最可能的修复方案：
+
+1. **检查容器实际退出日志**  
+   - 使用 `kubectl logs vllm-0 --previous`（或 `kubectl describe pod vllm-0`）获取更详细的错误信息，确定是脚本错误、NPU 初始化失败还是资源不足。
+
+2. **验证 NPU 驱动和设备插件状态**  
+   - 在节点上执行 `ascend-toolkit -d` 或 `npu-smi` 确认可用的 NPU 数量与 Pod 请求是否一致。  
+   - 如不匹配，降低 Pod 资源请求（如 `huawei.com/ascend-1980: 8`）或调度到具备足够设备的节点。
+
+3. **确认网络与 DNS 正常**  
+   - 在 Pod 中手动 `nslookup vllm-0.vllm.vllm-project` 检查 DNS 解析。  
+   - 若解析失败，检查集群网络插件（如 Calico、Flannel）以及 localdns 配置是否正确。
+
+4. **修复或简化入口脚本**  
+   - 如果 `run.sh` 中的 Leader/Follower 初始化逻辑对环境变量（如 `LWS_LEADER_ADDRESS`、`WORKER_INDEX`）有强依赖，确保这些变量在 Pod 中被正确注入。  
+   - 可以在本地先运行单节点测试，确认脚本能够成功启动服务后再切换到多节点模式。
+
+5. **对齐镜像与节点驱动版本**  
+   - 确认节点上安装的 Ascend Driver 版本与镜像内部预装的 runtime 版本一致，必要时使用匹配的镜像标签或重新构建包含正确驱动的镜像。
+
+通过上述步骤先定位容器内部的具体错误，然后有针对性地修复资源配置、网络连通性或脚本逻辑，通常即可使 Leader‑Follower 角色正常就绪，CI 任务顺利完成。

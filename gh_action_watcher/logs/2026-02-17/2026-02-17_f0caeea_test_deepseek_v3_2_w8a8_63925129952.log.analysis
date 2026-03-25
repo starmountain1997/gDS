@@ -1,0 +1,13 @@
+类型: 代码问题
+
+根本原因：
+1. **cudagraph_capture_sizes 配置错误**：测试中指定的 `cudagraph_capture_sizes` 为 `[3, 6, 9, 12]`，但当 `tensor-parallel-size=8` 时，该值必须为 `tp_size` 的倍数，导致验证失败。
+2. **Sequence parallelism 限制**：日志显示该参数与 sequence parallelism 冲突，进一步要求 `cudagraph_capture_sizes` 必须为 `tp_size` 的倍数，而当前值不满足。
+3. **测试参数与 vLLM 版本不兼容**：vLLM 0.15.0 对配置验证更严格，而测试用例未同步更新。
+4. **可选的过时参数**：日志提示 `method "deepseek_mtp"` 已弃用，应使用 `"mtp"`，但非致命问题。
+
+修复方案：
+1. 修改测试参数，将 `cudagraph_capture_sizes` 调整为 `tp_size` 的倍数（如 `[8, 16, 24]`）或移除该参数使用默认值。
+2. 将 `--speculative-config` 中的 `method` 从 `"deepseek_mtp"` 改为 `"mtp"`。
+3. 审查测试用例的参数组合（tp_size=8, dp_size=2, sequence parallelism），确保与当前 vLLM 版本兼容。
+4. 如测试环境支持，调整 `cudagraph_mode` 或禁用 sequence parallelism 以匹配现有配置。
