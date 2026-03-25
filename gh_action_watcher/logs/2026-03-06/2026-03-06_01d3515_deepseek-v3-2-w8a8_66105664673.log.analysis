@@ -1,0 +1,15 @@
+类型: 性能精度不达标
+
+根本原因：
+1. 输出 token 吞吐量远低于基准线（实际约 69 token/s，基准 134 token/s），推理速度不足。
+2. 服务器配置启用了投机解码（speculative decoding）和 expert parallel，增加了计算和通信开销。
+3. `max_num_seqs` 设置为 4，限制了批处理并发度，导致并发度低（最大并发 4，请求吞吐量仅 0.0461 req/s）。
+4. `request_rate` 设置为 11.2 req/s 过高，服务器无法及时处理请求，造成排队延迟。
+5. 日志中 `InputTokens` 为 0，可能表示基准测试配置错误或输入处理异常，但不直接影响输出吞吐量计算。
+
+修复方案：
+1. 禁用或调整投机解码配置（如降低 `num_speculative_tokens` 或改用 `disabled` 方法），评估其对吞吐量的影响。
+2. 增加 `max_num_seqs` 参数（如从 4 提升至 16 或更高）以提升批处理能力和并发度。
+3. 若工作负载不需要 expert parallel，可关闭 `--enable-expert-parallel` 以减少开销；同时调整 `gpu_memory_utilization`（如 0.9）以优化资源利用。
+4. 降低 `request_rate`（如 5.0 req/s）或增加服务器硬件资源，确保负载与处理能力匹配。
+5. 检查基准测试配置，确保输入 token 正确传递（如预热模型或修正数据集配置），避免潜在的处理异常。

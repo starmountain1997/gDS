@@ -1,0 +1,15 @@
+类型: 性能精度不达标
+
+根本原因：
+1. **请求速率（request_rate）与并发配置偏低**：设置 request_rate=11.2 req/s，且 batch_size=4、max_num_seqs=4，导致实际并发约 4，未能充分利用 GPU 算力。
+2. **Speculative Decoding（投机解码）引入额外开销**：开启了 `num_speculative_tokens=3` 的投机解码，在小 batch 下会增加延迟并降低吞吐。
+3. **CudaGraph 捕获尺寸不足**：配置的 cudagraph_capture_sizes 最大仅到 48，而实际输出长度达 1500 tokens，导致 CudaGraph 无法覆盖主要解码过程，失去优化效果甚至引发捕获开销。
+4. **Batch Size 与序列数上限受限**：max_num_seqs=4 与 batch_size=4 限制了同时处理的请求数，GPU 利用率低。
+5. **Expert Parallel 与 Layer Sharding 通信开销**：启用了 expert_parallel 且对关键层（q_b_proj、o_proj）做了分片，在 TP=8 的多 GPU 通信中可能引入额外开销，影响吞吐。
+
+修复方案：
+1. **提高请求速率并增大并发**：将 request_rate 提高至 50~100 req/s（或移除速率限制），同时将 batch_size 调至 8~16、max_num_seqs 调至 8~16，以提升并发度。
+2. **关闭 Speculative Decoding**：在基准性能测试中禁用 `speculative-config`（将 num_speculative_tokens 设为 0），直接进行自回归解码，可显著提升吞吐。
+3. **扩展 CudaGraph 捕获尺寸**：将 cudagraph_capture_sizes 调整为覆盖更大范围，如 `[8, 16, 24, 32, 40, 48, 64, 128, 256, 512, 1024, 1500, 2048]`，确保输出长度在捕获范围内。
+4. **放宽显存上限**：将 `gpu-memory-utilization` 从 0.98 降至 0.9，为系统留出余量，减少显存压力导致的性能波动。
+5. **简化并行策略**：暂时移除 `layer_sharding` 配置，并确认 expert_parallel 是否必要；若不需要专家并行，可关闭以减少跨 GPU 通信开销。

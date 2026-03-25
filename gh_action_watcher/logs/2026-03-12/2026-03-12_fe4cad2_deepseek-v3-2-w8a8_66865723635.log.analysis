@@ -1,0 +1,15 @@
+类型: 设备环境问题  
+
+根本原因（≤5 条）：  
+1. **NPU 驱动/固件异常**：多个 Rank 出现 `acl::AclQueryEventRecordedStatus` 错误码 507011、`rtEventQueryStatus execution failed`，表明 NPU 在执行模型流时内部错误，可能导致计算回退或阻塞。  
+2. **HCCL 与 torch_npu 版本或配置不匹配**：`HCCL watchdog thread terminated`、`ERR02005 DIST internal error` 说明集合通信库在 TP8+DP2 场景下出现内部错误，常见于版本不兼容或拓扑配置错误。  
+3. **子进程资源异常**：`TBE Subprocess[task_distribute] raise error[], main process disappeared` 大量出现，且日志中伴随 496 个泄漏的信号量与 7 个共享内存对象，表明子进程在启动/清理时出现异常，导致任务分配不均。  
+4. **资源超负荷**：模型使用了 `tensor‑parallel‑size 8`、`data‑parallel‑size 2`、W8A8 量化、`max‑model‑len 8192`、`max‑num‑batched‑tokens 8192` 等高占用配置，容易导致单卡显存/计算资源耗尽，触发内部错误并降低吞吐。  
+5. **CI 容器资源不足**：容器未为 NPU 预留足够专用设备或 CPU/内存，导致在高并发推理时出现硬件调度冲突或驱动报错。  
+
+最可能的修复方案：  
+1. **升级/对齐 NPU 驱动、固件及 HCCL**：确认当前 `torch_npu`、`Ascend‑CANN` 与 `HCCL` 版本匹配；必要时回滚至已验证的稳定组合，或在环境变量中显式指定 `HCCL` 版本。  
+2. **检查并优化 HCCL 配置**：确保 `RANK_TABLE`/`rank_file` 正确、集合通信超时设置合理；可在启动脚本中加入 `HCCL_INFO=1` 观察拓扑，定位异常节点。  
+3. **降低并行度或 batch size**：将 `tensor‑parallel‑size` 降至 4，或 `data‑parallel‑size` 降至 1，减小 `max‑num‑batched‑tokens` 与 `max‑model‑len`，使每卡资源占用在安全范围。  
+4. **调优内核融合与图捕获参数**：在 `compilation‑config` 中扩大 `cudagraph_capture_sizes`（如 `64,128,256`），或暂时关闭 `deepseek_mtp` 投机解码，以降低调度开销并提升稳定性。  
+5. **完善 CI 资源分配**：为 NPU 预留专属设备（`--device NPU`），确保 CPU/内存配额足够；在启动前加入健康检查（如 `npu-smi info`、`HCCL INFO`），若检测到异常立即终止并报告。

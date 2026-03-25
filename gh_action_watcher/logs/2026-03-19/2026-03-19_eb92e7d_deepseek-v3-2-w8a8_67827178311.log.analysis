@@ -1,0 +1,15 @@
+类型: 设备环境问题
+
+根本原因：
+1. **Ascend NPU内存分配失败**：日志显示"Memory_Allocation_Failure(EL0004): Failed to allocate memory requested by UNKNOWN module"，系统可用内存不足，导致模型无法正常运行。
+2. **MTE内存地址越界**：错误信息"The DDR address of the MTE instruction is out of range"表明昇腾芯片的内存传输引擎在执行时访问了非法的DDR地址，可能是内存配置或对齐问题。
+3. **NPU流同步超时**：c10_npu::acl::AclrtSynchronizeStreamWithTimeout失败（error code 507011），因为前面的内存操作失败导致执行流被阻塞。
+4. **Gloo TCP连接被关闭**：多进程间通信使用Gloo时出现"Connection closed by peer"错误，表明某个worker进程异常退出影响了整体的分布式执行。
+5. **资源竞争与泄露**：日志显示有496个信号量对象和9个共享内存对象在shutdown时未正确清理，说明多进程资源管理存在缺陷。
+
+最可能的修复方案：
+1. **降低并行度或批量大小**：将tensor-parallel-size从8降低到4，或将data-parallel-size从2降低到1，同时减少batch_size和max-num-seqs，以降低内存占用。
+2. **调整内存配置**：减小--gpu-memory-utilization参数（如从0.98降到0.85），或增加HBM内存分配，确保NPU有足够的安全边界。
+3. **升级或修复驱动/固件**：MTE地址越界问题通常与Ascend驱动版本相关，建议检查并更新到兼容的驱动版本，或联系硬件供应商确认固件状态。
+4. **添加内存预分配策略**：在启动vLLM时添加--enable-memory-reuse或相关参数，避免运行时的动态内存分配导致碎片化。
+5. **检查多进程同步机制**：确保Gloo通信使用正确的网络接口和超时配置，或考虑改用NCCL作为通信后端（如果环境支持）。

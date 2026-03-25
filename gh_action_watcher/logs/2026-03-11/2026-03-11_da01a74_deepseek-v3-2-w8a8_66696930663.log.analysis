@@ -1,0 +1,28 @@
+类型: 性能精度不达标
+
+## 根本原因
+
+1. **Output Token Throughput严重不达标**：实际吞吐量为 67.75 token/s，仅为目标值（134 token/s）的 50.5%，远低于 0.97 * baseline (129.98) 的阈值要求
+
+2. **量化方案（Ascend W8A8）与性能预期不匹配**：使用 W8A8 量化可能对 Ascend 硬件的矩阵运算效率产生负面影响，导致吞吐量显著下降
+
+3. **Expert Parallel + Data Parallel 双并行策略导致额外开销**：配置了 `--enable-expert-parallel` 和 `--data-parallel-size 2`，Expert 路由通信与 Data Parallel 的集合通信可能产生冲突，增加同步开销
+
+4. **Speculative Decoding 配置未能有效加速**：启用了 3-token speculative decoding (`deepseek_mtp`)，但从 TPOT (57.99 ms/token) 和 ITL (94.07 ms/token) 来看，推测解码并未带来预期的加速效果，反而可能增加了调度开销
+
+5. **请求并发度不足**：实际并发度仅 3.96 (Max: 4)，远低于硬件能支持的水平；Request Throughput 仅为 0.0452 req/s，未能充分利用硬件资源
+
+## 最可能的修复方案
+
+1. **调整量化策略**：如果业务允许，考虑使用 W4A16 或 FP16 量化方案以提升计算效率，或针对 Ascend 硬件优化量化内核实现
+
+2. **简化并行策略**：移除 `--enable-expert-parallel`，仅保留 Tensor Parallel (TP8) + Data Parallel (DP2)，避免 Expert 级别的额外通信开销
+
+3. **禁用或调优 Speculative Decoding**：尝试禁用 `--speculative-config`，或调整 speculative token 数量（如从 3 降至 1）以减少无效计算
+
+4. **提升批处理和并发能力**：
+   - 增加 `max-num-seqs` 至 16-32
+   - 提高 `batch_size` 至 8-16
+   - 增加 `request_rate` 或改用 burst 模式
+
+5. **优化硬件配置**：调整 `gpu-memory-utilization` 至 0.9，并启用 Ascend 特定的高性能算子（如 `--enforce-eager` 或调整 compilation 配置）

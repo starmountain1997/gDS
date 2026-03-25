@@ -1,0 +1,15 @@
+类型: 设备环境问题
+
+根本原因（≤5 条）：
+1. **NPU 硬件异常**：设备 chipId:4 报告了 MTE 指令 DDR 地址越界错误（error code = 0x800000），导致核心级故障，模型执行中断。
+2. **内存分配失败**：NPU 内存不足（Memory_Allocation_Failure），日志显示 `Failed to allocate memory requested by UNKNOWN module`，可能因硬件故障或资源配置超出设备能力。
+3. **分布式通信中断**：gloo TCP 连接被对端关闭（`Connection closed by peer [10.0.0.137]:25474`），导致多进程 executor 协调失败。
+4. **NPU 同步超时**：核心操作（如 `AclrtSynchronizeStreamWithTimeout`）因设备错误而超时（error code = 507011），进一步加剧任务失败。
+5. **性能严重不达标**：实际吞吐量（33.79 token/s）仅为基线（134 token/s）的约 25%，根本原因是上述硬件和通信问题导致推理效率骤降。
+
+最可能的修复方案：
+1. **硬件排查与隔离**：检查 chipId:4 的 NPU 设备状态（如 `npu-smi`），若确认硬件故障，需更换或修复该 NPU 芯片。
+2. **降低资源负载**：减小 `--max-num-batched-tokens`（如从 8192 降至 4096）和 `--max-num-seqs`，或增加 `--gpu-memory-utilization` 预留空间，避免内存分配失败。
+3. **检查网络配置**：确保节点间网络稳定（如检查安全组、路由），或尝试使用其他通信后端（如 NCCL 而非 gloo）。
+4. **更新驱动与固件**：升级 NPU 驱动、固件及 vLLM-Ascend 相关依赖，修复已知兼容性问题。
+5. **调整并行策略**：尝试降低 TP（如从 8 降至 4）或 DP（如从 2 降至 1），减少硬件依赖，提升系统稳定性。

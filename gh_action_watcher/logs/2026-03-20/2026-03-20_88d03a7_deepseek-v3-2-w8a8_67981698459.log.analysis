@@ -1,0 +1,15 @@
+类型: 设备环境问题
+
+根本原因（≤5 条）：
+1. **NPU 硬件/驱动异常**：日志显示 `c10_npu::acl::AclrtSynchronizeStreamWithTimeout` 超时（错误码 507011），且伴随 MTE 指令 DDR 地址越界错误（`error code = 0x800000`），表明 NPU 在执行模型时出现硬件或驱动层面的故障。
+2. **分布式通信超时或中断**：gloo TCP 连接被对端关闭（`Connection closed by peer [10.0.1.69]:21412`），发生在 `dist.all_reduce` 跨数据并行组同步时，可能是网络抖动或 NPU 故障导致进程无响应。
+3. **CUDA Graph 兼容性问题**：错误信息 `the current capture mode does not support this operation` 表明当前 CUDA Graph 配置（`cudagraph_mode: FULL_DECODE_ONLY`）与模型或 NPU 运行时存在冲突，导致 `rtMemcpy` 失败。
+4. **资源竞争或泄漏**：日志后半段出现大量 `leaked semaphore objects` 和 `leaked shared_memory objects` 警告，可能加剧了进程间同步问题。
+5. **性能基线未达标**：实际 token 吞吐（32.81 token/s）仅为基线（134 token/s）的约 24.5%，未达到 97% 基线要求，结合上述错误，表明系统在高负载下不稳定。
+
+最可能的修复方案：
+1. **检查 NPU 驱动和硬件状态**：确认 NPU 芯片（chipId:4）是否过热或存在硬件故障，清理并重新加载 NPU 驱动，必要时更换硬件环境。
+2. **调整分布式通信配置**：增加 `dist.all_reduce` 的超时时间，或切换到更稳定的通信后端（如 NCCL 而非 gloo），确保跨节点通信可靠。
+3. **禁用或调整 CUDA Graph**：将 `cudagraph_mode` 改为 `NONE` 或 `SELECTIVE`，避免捕获模式下的兼容性问题。
+4. **优化资源清理**：在测试前增加进程清理步骤，或调整 `gpu-memory-utilization` 参数（如从 0.98 降至 0.9）以减少资源竞争。
+5. **验证性能环境稳定性**：在修复硬件/驱动问题后，重新运行基准测试以确认性能达标；若持续不达标，需检查模型量化（ ascend W8A8）或批处理配置是否适合当前硬件。

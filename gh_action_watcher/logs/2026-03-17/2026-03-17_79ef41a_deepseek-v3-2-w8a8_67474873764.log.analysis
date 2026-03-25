@@ -1,0 +1,22 @@
+类型: 设备环境问题
+
+根本原因（≤5 条）  
+1. **NPU 硬件异常**：设备 chipId:4, dieId:0 的核心 17 出现 MTE 指令 DDR 地址越界（错误码 0x800000），导致模型执行时同步流超时（error 507011），使 Worker 进程异常退出。  
+2. **系统/NPU 显存不足**：日志显示 `Memory_Allocation_Failure`，分配请求的物理内存不足，导致 `malloc physical memory failed`（runtime 207001），进一步触发计算失败。  
+3. **多进程通信失败**：gloo TCP 在 `pair.cc:547` 被对端关闭（`Connection closed by peer`），通常是因 Worker 进程因硬件/内存错误崩溃，进而导致分布式训练/推理的聚合失效。  
+4. **资源泄漏**：进程结束后出现 496 个泄漏的信号量对象和 9 个共享内存对象，说明异常退出时未及时回收资源，进一步加剧后续请求的内存压力。  
+5. **配置与资源不匹配**：使用 `--tensor-parallel-size 8`、`--data-parallel-size 2`、`--enable-expert-parallel` 等高并行度设置，同时开启 `cudagraph` 与 `speculative decoding`，在硬件异常和内存不足的情况下导致严重的资源争用和吞吐量暴跌。
+
+最可能的修复方案  
+1. **硬件/驱动检查**：确认 NPU 驱动、Firmware 与当前 vllm‑ascend 版本兼容；使用 `npu-smi` / `ascend-dmi` 检查芯片健康，必要时更换或重新分配受影响的芯片。  
+2. **降低内存占用**：  
+   - 减少 `--max-num-batched-tokens`、`--max-num-seqs`、`--batch-size`；  
+   - 关闭 `cudagraph`（`"cudagraph_mode":"NONE"`）和 `speculative decoding`；  
+   - 如仍不足，适当降低 `--tensor-parallel-size` 或 `--data-parallel-size`。  
+3. **优化进程间通信**：  
+   - 将 `HCCL_OP_EXPANSION_MODE` 改为支持共享内存的方式，或在单节点环境下改用 `NCCL` 而非 gloo；  
+   - 增加 `CUDA_VISIBLE_DEVICES` 或 `ASCEND_VISIBLE_DEVICES` 确保进程绑定到健康的设备。  
+4. **修复资源泄漏**：升级 Python 3.11.14 对应的 `multiprocessing` 或在测试脚本中显式调用 `multiprocessing.resource_tracker._cleanup()`；确保所有子进程在异常退出前执行 `shutdown()` 或 `cleanup()`。  
+5. **基线验证**：在硬件恢复正常且内存充足的情况下，先跑一次最小化的性能基准（如单卡、单进程、无特殊优化），确认吞吐量接近预期（≥ 0.97 × baseline），再逐步开启并行与高级特性。  
+
+通过上述步骤可以定位并消除导致 Worker 失效和性能下降的硬件/环境因素，使测试恢复到预期的 134 tokens/s 以上的吞吐量。

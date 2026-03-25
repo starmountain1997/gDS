@@ -1,0 +1,25 @@
+类型: 性能精度不达标
+
+根本原因（≤5 条）：
+
+1. **输入数据异常**：日志显示 InputTokens 全为 0，Total Input Tokens 为 0，说明请求的输入prompt未被正确加载或统计，可能导致模型需要额外初始化或处理空输入影响性能。
+
+2. **请求速率与模型处理能力不匹配**：配置 request_rate=11.2 req/s，但实际并发只有 ~4（Max Concurrency=4），且 Output Token Throughput 仅为 108.57 token/s（基线要求 134 token/s），模型跟不上请求发送速度导致排队和吞吐量下降。
+
+3. **批处理配置冲突**：`max-num-seqs 4` 与 `batch_size=4` 可能导致请求串行化，加上 `max-num-batched-tokens 8192` 和较长的 `max_out_len 1500`，限制了并行度。
+
+4. **推测解码配置可能不适用**：启用了 `num_speculative_tokens=3` 的 deepseek_mtp 推测解码，在 W8A8 量化场景下可能增加调度开销而非加速。
+
+5. **Ascend W8A8 量化在长输出场景性能回退**：1500 token 的 max_out_len 较长，W8A8 量化可能在长序列生成时带宽受限，导致 TPOT（36ms/token）和 ITL（93ms）偏高。
+
+最可能的修复方案：
+
+1. **验证数据加载**：检查 aisbench 配置中的 dataset_path 和 prompt 加载逻辑，确保 InputTokens > 0，或在模型配置中设置合理的默认输入。
+
+2. **降低请求速率或增加并发**：将 request_rate 从 11.2 降至 5-8 req/s，或增加 max-num-seqs 和调整调度器参数以提升并发处理能力。
+
+3. **调整批处理参数**：尝试增大 `max-num-seqs` 到 16-32，或减小 `max_out_len` 到 512-1024 以提高批处理效率。
+
+4. **禁用或调整推测解码**：在 W8A8 量化场景下，暂时关闭 `--speculative-config`，或减少 `num_speculative_tokens` 到 1，验证是否为推测解码引入的开销。
+
+5. **使用较轻量化方案**：如果性能仍不达标，考虑改用 W8A16 或 FP16 量化验证基线是否正常，以判断是量化问题还是模型/硬件瓶颈。

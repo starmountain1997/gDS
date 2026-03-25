@@ -1,0 +1,17 @@
+类型: 设备环境问题
+
+**根本原因（≤5 条）**  
+1. **分布式通信（gloo TCP）连接被关闭**：`dist.all_reduce` 在 DP 组的 CPU 侧执行时出现 “Connection closed by peer”，导致 Worker 进程异常退出。  
+2. **网络不稳或端口冲突**：gloo 使用的随机高端口（44959、18339 等）在容器/节点之间被防火墙、 安全策略或端口占用规则阻断。  
+3. **资源竞争或不足**：CI 环境中 CPU、内存、网络带宽同时被多个进程占用，导致 gloo 超时、进程被 OOM Killer 终止。  
+4. **共享内存/信号量泄漏**：日志中报告 “465 leaked semaphore objects” 与 “8 leaked shared_memory objects”，导致后续进程启动时资源不足，进一步加剧通信失败。  
+5. **集合通信超时配置不足**：PyTorch 分布式默认的 `GLOO_SOCKET_TIMEOUT_MS` 或 `NCCL_TIMEOUT` 过短，在高负载下容易触发超时并关闭连接。
+
+**最可能的修复方案**  
+1. **检查并打开 gloo 所需端口**：确认防火墙/安全组对所有临时高端口放通，或在测试容器内使用 `--network=host` 避免网络隔离。  
+2. **切换到更稳健的通信后端**：如果硬件支持，改为使用 NCCL（GPU‑to‑GPU）进行 DP 同步；若只能使用 CPU，可改为 `gloo` 的共享内存模式（`GLOO_SOCKET_IFNAME=lo`）并增大 `GLOO_SOCKET_TIMEOUT_MS`（如 300 000 ms）。  
+3. **提升 CI 资源或降低并发**：为测试分配独立的 CPU‑核、内存和网络带宽；或限制并发任务数，避免资源竞争。  
+4. **清理残留信号量/共享内存**：在测试脚本的 `finally` 块中加入 `multiprocessing.resource_tracker.unregister` 手动清理，或在启动前执行 `ipcrm -a` 清理残留 IPC 对象。  
+5. **增加分布式超时容错**：在环境变量中设置 `export GLOO_SOCKET_TIMEOUT_MS=300000` 与 `export NCCL_TIMEOUT=300000`，并在 vLLM 启动参数中加入 `--distributed-executor-backend=gloo`，确保在偶发抖动时不立即终止 Worker。  
+
+实施上述措施后，预计 Worker 进程能够顺利完成 `all_reduce`，请求错误率下降，整体吞吐率将回到基线水平。

@@ -1,0 +1,15 @@
+类型: 设备环境问题
+
+根本原因：
+1. **测试文件路径不存在**：pytest 报告找不到 `tests/e2e/nightly/single_node/models/scripts/test_single_node.py` 文件，导致收集到 0 个测试项
+2. **工作目录配置错误**：测试运行在 `/vllm-workspace/vllm-ascend` 目录下，但文件可能位于其他位置或未正确挂载
+3. **版本兼容性问题**：vLLM (0.16.0) 和 vLLM-Ascend (0.15.0rc2) 版本不一致，可能导致路径或配置不匹配
+4. **配置文件路径问题**：环境变量 `CONFIG_YAML_PATH: DeepSeek-V3.2-W8A8.yaml` 指定了配置文件，但测试脚本可能无法正确定位
+5. **NPU 资源未使用**：所有 8 个 Ascend 910 NPU 均为空闲状态（0% AICore 使用率），表明测试可能未真正启动模型推理
+
+修复方案：
+1. **验证测试文件存在性**：在 CI 环境中添加 `ls -la` 或 `find` 命令确认文件路径，检查是否需要从 vLLM 主仓库同步测试文件
+2. **修正工作目录**：确保测试运行前 `cd` 到正确的目录（通常是 `/vllm-workspace/vllm-ascend`），或使用绝对路径
+3. **统一版本号**：将 vLLM-Ascend 升级到与 vLLM 0.16.0 兼容的版本，或降级 vLLM 以匹配 vLLM-Ascend
+4. **检查配置文件**：验证 `DeepSeek-V3.2-W8A8.yaml` 中的路径设置是否正确，确保与实际文件结构一致
+5. **添加预检查步骤**：在 pytest 运行前，添加文件存在性检查脚本，避免因路径问题导致整个 CI 失败
