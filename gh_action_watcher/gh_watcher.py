@@ -13,7 +13,9 @@ from datetime import datetime
 from pathlib import Path
 
 import click
+from dotenv import load_dotenv
 from loguru import logger
+from openai import OpenAI
 
 REPO = "vllm-project/vllm-ascend"
 WORKFLOW_NAME = "schedule_nightly_test_a3.yaml"
@@ -256,14 +258,19 @@ def export_csv(logs_dir: Path, conn: sqlite3.Connection):
 EMOJI = {"success": "✅", "failure": "❌", "cancelled": "⚪", "skipped": "🚫"}
 
 
-@click.command()
+@click.group()
+def main():
+    pass
+
+
+@main.command()
 @click.option(
     "--runs", "-n", default=4, show_default=True, help="Number of recent runs to check"
 )
 @click.option(
     "--workers", "-w", default=8, show_default=True, help="Concurrent workers"
 )
-def main(runs: int, workers: int):
+def fetch(runs: int, workers: int):
     script_dir = Path(__file__).parent.resolve()
     LOGS_DIR = script_dir / "logs"
 
@@ -374,6 +381,107 @@ def main(runs: int, workers: int):
         return
 
     logger.success("Script finished. Changes committed and pushed.")
+
+
+ANALYZE_PROMPT = """\
+You are a CI failure analyst. Below is a GitHub Actions job log that ended in failure.
+Identify the root cause concisely (≤5 bullet points), then suggest the most likely fix.
+Focus on the actual error, not setup noise.
+
+Log:
+{log}
+"""
+
+
+def _find_log_file(logs_dir: Path, job_id: str) -> Path | None:
+    for log_file in logs_dir.rglob(f"*_{job_id}.log"):
+        return log_file
+    return None
+
+
+def _call_ai(client: OpenAI, model: str, log_tail: str) -> str:
+    response = client.chat.completions.create(
+        model=model,
+        messages=[{"role": "user", "content": ANALYZE_PROMPT.format(log=log_tail)}],
+    )
+    return response.choices[0].message.content or ""
+
+
+@main.command()
+@click.option("--date", "-d", default=None, help="Filter by date (YYYY-MM-DD); defaults to latest available")
+@click.option("--keyword", "-k", default=None, help="Filter by job keyword")
+@click.option("--tail", "-t", default=300, show_default=True, help="Last N log lines sent to AI")
+def analyze(date: str | None, keyword: str | None, tail: int):
+    """Analyze failed CI logs with AI."""
+    script_dir = Path(__file__).parent.resolve()
+    env_path = script_dir.parent / ".env"
+    load_dotenv(env_path)
+
+    import os
+    api_key = os.environ.get("OPENAI_API_KEY")
+    base_url = os.environ.get("OPENAI_BASE_URL")
+    model = os.environ.get("OPENAI_MODEL", "gpt-4o")
+
+    if not api_key:
+        logger.error(f".env not found or OPENAI_API_KEY missing (looked in {env_path})")
+        raise SystemExit(1)
+
+    client = OpenAI(api_key=api_key, base_url=base_url)
+    logs_dir = script_dir / "logs"
+    db_path = logs_dir / "results.db"
+
+    if not db_path.exists():
+        logger.error("results.db not found — run `gh-watcher fetch` first")
+        raise SystemExit(1)
+
+    conn = sqlite3.connect(db_path)
+
+    query = "SELECT keyword, job_id, run_time, commit_sha FROM results WHERE success = '❌'"
+    params: list = []
+    if keyword:
+        query += " AND keyword = ?"
+        params.append(keyword)
+    if date:
+        query += " AND run_time LIKE ?"
+        params.append(f"{date}%")
+    else:
+        # latest date with failures
+        latest = conn.execute(
+            "SELECT substr(run_time,1,10) FROM results WHERE success='❌' ORDER BY run_time DESC LIMIT 1"
+        ).fetchone()
+        if latest:
+            query += " AND run_time LIKE ?"
+            params.append(f"{latest[0]}%")
+
+    query += " ORDER BY run_time DESC"
+    rows = conn.execute(query, params).fetchall()
+    conn.close()
+
+    if not rows:
+        logger.info("No failed jobs found for the given filters.")
+        return
+
+    logger.info(f"Found {len(rows)} failed job(s) to analyze")
+
+    for kw, job_id, run_time, commit_sha in rows:
+        log_file = _find_log_file(logs_dir, job_id)
+        if not log_file:
+            logger.warning(f"Log file not found for job {job_id} — skipping")
+            continue
+
+        log_lines = log_file.read_text(encoding="utf-8", errors="replace").splitlines()
+        log_tail = "\n".join(log_lines[-tail:])
+
+        click.echo(f"\n{'='*70}")
+        click.echo(f"Job:    {kw}")
+        click.echo(f"JobID:  {job_id}")
+        click.echo(f"Date:   {run_time[:10]}  Commit: {commit_sha[:7]}")
+        click.echo(f"Log:    {log_file}")
+        click.echo("─" * 70)
+
+        logger.info(f"Calling AI for job {job_id}...")
+        analysis = _call_ai(client, model, log_tail)
+        click.echo(analysis)
 
 
 if __name__ == "__main__":
