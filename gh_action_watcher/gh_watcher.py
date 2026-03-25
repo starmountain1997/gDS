@@ -543,6 +543,7 @@ def analyze(date: str | None, keyword: str | None, tail: int, workers: int):
             click.echo(analysis)
 
     conn.commit()
+    export_csv(logs_dir, conn)
     conn.close()
 
 
