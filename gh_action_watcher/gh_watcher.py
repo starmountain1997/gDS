@@ -597,7 +597,7 @@ def analyze(date: str | None, keyword: str | None, tail: int, workers: int):
     conn.close()
 
     logger.info("Step 3: Adding changes to git")
-    repo_root = script_dir.parent.parent.resolve()
+    repo_root = script_dir.parent
 
     result = run_command(["git", "add", str(logs_dir)], cwd=repo_root)
     if result.returncode != 0:
