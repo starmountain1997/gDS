@@ -239,7 +239,15 @@ def export_csv(logs_dir: Path, conn: sqlite3.Connection):
                     "错误类型",
                 ]
             )
-            for run_time, success, commit_sha, job_id, throughput, run_id, error_type in rows:
+            for (
+                run_time,
+                success,
+                commit_sha,
+                job_id,
+                throughput,
+                run_id,
+                error_type,
+            ) in rows:
                 job_link = (
                     f"https://github.com/{REPO}/actions/runs/{run_id}/job/{job_id}"
                     if run_id
@@ -309,12 +317,11 @@ def fetch(runs: int, workers: int):
     def _process_job(run: dict, job: dict, _db_path: Path = db_path):
         commit_sha = run.get("headSha", "")
         run_date = run["createdAt"][:10]
-        matched_keyword = next(
-            (k for k in TARGET_JOBS if k in job.get("name", "")), ""
-        )
+        matched_keyword = next((k for k in TARGET_JOBS if k in job.get("name", "")), "")
         short_sha = commit_sha[:7] if commit_sha else str(run["databaseId"])
         expected_log = (
-            LOGS_DIR / run_date
+            LOGS_DIR
+            / run_date
             / f"{run_date}_{short_sha}_{matched_keyword}_{job['databaseId']}.log"
         )
 
@@ -325,12 +332,19 @@ def fetch(runs: int, workers: int):
             log_content = get_job_log(run["databaseId"], job["databaseId"])
             if log_content:
                 log_path = save_log(
-                    LOGS_DIR, run_date, run["databaseId"], job,
-                    log_content, matched_keyword, commit_sha,
+                    LOGS_DIR,
+                    run_date,
+                    run["databaseId"],
+                    job,
+                    log_content,
+                    matched_keyword,
+                    commit_sha,
                 )
                 logger.success(f"  Log saved: {log_path}")
 
-        output_token_throughput = extract_output_token_throughput(log_content) if log_content else None
+        output_token_throughput = (
+            extract_output_token_throughput(log_content) if log_content else None
+        )
         thread_conn = sqlite3.connect(_db_path)
         upsert_result(
             thread_conn,
@@ -346,7 +360,9 @@ def fetch(runs: int, workers: int):
 
     tasks = [(run, job) for run, jobs in run_jobs for job in jobs]
     with ThreadPoolExecutor(max_workers=workers) as pool:
-        futures = {pool.submit(_process_job, run, job): (run, job) for run, job in tasks}
+        futures = {
+            pool.submit(_process_job, run, job): (run, job) for run, job in tasks
+        }
         for fut in as_completed(futures):
             fut.result()
 
@@ -416,19 +432,24 @@ def _find_log_file(logs_dir: Path, job_id: str) -> Path | None:
 
 def _call_ai(client: OpenAI, model: str, log_tail: str) -> str:
     import time
+
     from openai import RateLimitError
 
     for attempt in range(6):
         try:
             response = client.chat.completions.create(
                 model=model,
-                messages=[{"role": "user", "content": ANALYZE_PROMPT.format(log=log_tail)}],
+                messages=[
+                    {"role": "user", "content": ANALYZE_PROMPT.format(log=log_tail)}
+                ],
             )
             content = response.choices[0].message.content or ""
             return re.sub(r"<think>.*?</think>", "", content, flags=re.DOTALL).strip()
         except RateLimitError:
-            wait = 2 ** attempt * 5  # 5, 10, 20, 40, 80, 160s
-            logger.warning(f"Rate limited, retrying in {wait}s (attempt {attempt + 1}/6)...")
+            wait = 2**attempt * 5  # 5, 10, 20, 40, 80, 160s
+            logger.warning(
+                f"Rate limited, retrying in {wait}s (attempt {attempt + 1}/6)..."
+            )
             time.sleep(wait)
     raise RuntimeError("AI call failed after 6 retries due to rate limit")
 
@@ -450,7 +471,13 @@ def _analyze_job(
 
     analysis_file = log_file.with_suffix(log_file.suffix + ".analysis")
     if analysis_file.exists():
-        return kw, job_id, run_time, commit_sha, analysis_file.read_text(encoding="utf-8")
+        return (
+            kw,
+            job_id,
+            run_time,
+            commit_sha,
+            analysis_file.read_text(encoding="utf-8"),
+        )
 
     log_lines = log_file.read_text(encoding="utf-8", errors="replace").splitlines()
     log_tail = "\n".join(log_lines[-tail:])
@@ -460,10 +487,19 @@ def _analyze_job(
 
 
 @main.command()
-@click.option("--date", "-d", default=None, help="Filter by date (YYYY-MM-DD); defaults to latest available")
+@click.option(
+    "--date",
+    "-d",
+    default=None,
+    help="Filter by date (YYYY-MM-DD); defaults to latest available",
+)
 @click.option("--keyword", "-k", default=None, help="Filter by job keyword")
-@click.option("--tail", "-t", default=300, show_default=True, help="Last N log lines sent to AI")
-@click.option("--workers", "-w", default=2, show_default=True, help="Concurrent AI calls")
+@click.option(
+    "--tail", "-t", default=300, show_default=True, help="Last N log lines sent to AI"
+)
+@click.option(
+    "--workers", "-w", default=2, show_default=True, help="Concurrent AI calls"
+)
 def analyze(date: str | None, keyword: str | None, tail: int, workers: int):
     """Analyze failed CI logs with AI."""
     script_dir = Path(__file__).parent.resolve()
@@ -471,6 +507,7 @@ def analyze(date: str | None, keyword: str | None, tail: int, workers: int):
     load_dotenv(env_path)
 
     import os
+
     api_key = os.environ.get("OPENAI_API_KEY")
     base_url = os.environ.get("OPENAI_BASE_URL")
     model = os.environ.get("OPENAI_MODEL", "gpt-4o")
@@ -494,7 +531,9 @@ def analyze(date: str | None, keyword: str | None, tail: int, workers: int):
         conn.execute("ALTER TABLE results ADD COLUMN error_type TEXT")
         conn.commit()
 
-    query = "SELECT keyword, job_id, run_time, commit_sha FROM results WHERE success = '❌'"
+    query = (
+        "SELECT keyword, job_id, run_time, commit_sha FROM results WHERE success = '❌'"
+    )
     params: list = []
     if keyword:
         query += " AND keyword = ?"
@@ -516,7 +555,17 @@ def analyze(date: str | None, keyword: str | None, tail: int, workers: int):
     results: list[tuple[str, str, str, str, str | None]] = []
     with ThreadPoolExecutor(max_workers=workers) as pool:
         futures = {
-            pool.submit(_analyze_job, client, model, logs_dir, kw, job_id, run_time, commit_sha, tail): job_id
+            pool.submit(
+                _analyze_job,
+                client,
+                model,
+                logs_dir,
+                kw,
+                job_id,
+                run_time,
+                commit_sha,
+                tail,
+            ): job_id
             for kw, job_id, run_time, commit_sha in rows
         }
         for fut in as_completed(futures):
@@ -526,7 +575,7 @@ def analyze(date: str | None, keyword: str | None, tail: int, workers: int):
 
     for kw, job_id, run_time, commit_sha, analysis in results:
         log_file = _find_log_file(logs_dir, job_id)
-        click.echo(f"\n{'='*70}")
+        click.echo(f"\n{'=' * 70}")
         click.echo(f"Job:    {kw}")
         click.echo(f"JobID:  {job_id}")
         click.echo(f"Date:   {run_time[:10]}  Commit: {commit_sha[:7]}")
@@ -546,6 +595,34 @@ def analyze(date: str | None, keyword: str | None, tail: int, workers: int):
     conn.commit()
     export_csv(logs_dir, conn)
     conn.close()
+
+    logger.info("Step 3: Adding changes to git")
+    repo_root = script_dir.parent.parent.resolve()
+
+    result = run_command(["git", "add", str(logs_dir)], cwd=repo_root)
+    if result.returncode != 0:
+        logger.error(f"Git add failed with exit code {result.returncode}")
+        return
+
+    logger.info("Step 4: Creating a commit")
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    commit_message = f"prompt(gh-watcher): analyze {timestamp}"
+
+    result = run_command(["git", "commit", "-m", commit_message], cwd=repo_root)
+    if result.returncode != 0:
+        if "nothing to commit" in result.stderr:
+            logger.info("No changes to commit. Skipping commit and push.")
+            return
+        logger.error(f"Git commit failed with exit code {result.returncode}")
+        return
+
+    logger.info("Step 5: Pushing changes to git")
+    result = run_command(["git", "push"], cwd=repo_root)
+    if result.returncode != 0:
+        logger.error(f"Git push failed with exit code {result.returncode}")
+        return
+
+    logger.success("Analyze finished. Changes committed and pushed.")
 
 
 if __name__ == "__main__":
