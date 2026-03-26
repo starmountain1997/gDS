@@ -19,6 +19,7 @@ gen-single-node -o ./test_single_node
 ```
 
 Options:
+
 - `-o, --output`: Output directory (default: `./test_single_node`)
 - `-b, --branch`: Git branch name (default: `main`)
 - `--model-path`: Model path (default: read from config)
@@ -34,6 +35,7 @@ gen-dual-nodes -o ./dual_ds32_w8a8
 ```
 
 Options:
+
 - `-o, --output`: Output directory (default: `./dual_ds32_w8a8`)
 - `-b, --branch`: Git branch name (default: `main`)
 - `-m, --model`: Model path (default: read from config)

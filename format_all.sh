@@ -19,7 +19,7 @@ if ! command -v parallel &> /dev/null; then
 else
     # Process files in parallel
     echo "Processing ${#FILES[@]} files in parallel..."
-    
+
     # Create a temporary script for processing
     TEMP_SCRIPT=$(mktemp)
     cat > "$TEMP_SCRIPT" << 'EOF'
@@ -31,10 +31,10 @@ ruff format "$FILE"
 isort "$FILE"
 EOF
     chmod +x "$TEMP_SCRIPT"
-    
+
     # Run in parallel
     printf "%s\n" "${FILES[@]}" | parallel "$TEMP_SCRIPT"
-    
+
     # Clean up
     rm "$TEMP_SCRIPT"
 fi
