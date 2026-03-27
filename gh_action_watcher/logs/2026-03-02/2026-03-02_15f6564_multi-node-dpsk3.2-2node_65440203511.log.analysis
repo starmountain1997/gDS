@@ -1,15 +1,15 @@
-类型: 设备环境问题  
+类型: 设备环境问题
 
-根本原因（≤5 条）  
-1. **调度资源不足**：Follower Pod（vllm‑0‑1）长期处于 `Pending`，原因在于集群中可调度的节点缺少足够的 `huawei.com/ascend‑1980`（Ascend NPU）资源。  
-2. **多任务竞争**：当前有多个测试任务同时占用大量 Ascend 910、CPU 与内存，导致 12 个节点出现 “Insufficient huawei.com/ascend‑1980”，4 个节点出现 “Insufficient memory”，7 个节点出现 “Insufficient cpu”。  
-3. **Leader 与 Follower 部署不对称**：Leader Pod 成功调度到节点 `172.22.5.112`，而 Follower 必须调度到其它节点，这些节点的 NPU 余量不足。  
-4. **超时设置过短**：测试脚本设置了 1200 s 的超时，超时后直接判定失败，未进行重试或回退。  
-5. **资源配置未预留**：LeaderWorkerSet 的资源请求未考虑多节点部署时的总体资源需求，导致在资源紧张时只能调度 Leader。  
+根本原因（≤5 条）
+1. **调度资源不足**：Follower Pod（vllm‑0‑1）长期处于 `Pending`，原因在于集群中可调度的节点缺少足够的 `huawei.com/ascend‑1980`（Ascend NPU）资源。
+2. **多任务竞争**：当前有多个测试任务同时占用大量 Ascend 910、CPU 与内存，导致 12 个节点出现 “Insufficient huawei.com/ascend‑1980”，4 个节点出现 “Insufficient memory”，7 个节点出现 “Insufficient cpu”。
+3. **Leader 与 Follower 部署不对称**：Leader Pod 成功调度到节点 `172.22.5.112`，而 Follower 必须调度到其它节点，这些节点的 NPU 余量不足。
+4. **超时设置过短**：测试脚本设置了 1200 s 的超时，超时后直接判定失败，未进行重试或回退。
+5. **资源配置未预留**：LeaderWorkerSet 的资源请求未考虑多节点部署时的总体资源需求，导致在资源紧张时只能调度 Leader。
 
-最可能的修复方案  
-1. **降低资源请求**：调小 Follower Pod 的 CPU、内存、NPU 请求，或使用更轻量的模型/配置，使现有节点能够满足。  
-2. **扩容或释放 NPU 资源**：在测试前扩容具备 Ascend 910 的节点，或清理不再使用的 Pod/测试任务，以释放 NPU、CPU、内存。  
-3. **使用节点亲和性/选择器**：通过 `nodeSelector`、`nodeAffinity` 或 `podAffinity` 将 Follower Pod 调度到与 Leader 同一节点或具备足够 NPU 的节点。  
-4. **优化调度策略**：启用 Pod 优先级、抢占或资源预留，确保关键测试 Pod 能优先获取所需资源。  
+最可能的修复方案
+1. **降低资源请求**：调小 Follower Pod 的 CPU、内存、NPU 请求，或使用更轻量的模型/配置，使现有节点能够满足。
+2. **扩容或释放 NPU 资源**：在测试前扩容具备 Ascend 910 的节点，或清理不再使用的 Pod/测试任务，以释放 NPU、CPU、内存。
+3. **使用节点亲和性/选择器**：通过 `nodeSelector`、`nodeAffinity` 或 `podAffinity` 将 Follower Pod 调度到与 Leader 同一节点或具备足够 NPU 的节点。
+4. **优化调度策略**：启用 Pod 优先级、抢占或资源预留，确保关键测试 Pod 能优先获取所需资源。
 5. **延长超时并加入重试**：将超时时间适当延长（如 1800 s），并在调度失败时自动重试，降低瞬时资源不足导致的整体失败概率。

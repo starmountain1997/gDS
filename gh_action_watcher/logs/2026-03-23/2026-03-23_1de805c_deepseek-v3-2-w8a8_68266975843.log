@@ -23,7 +23,7 @@
 2026-03-23T22:04:53.2084774Z ##[group] Inputs
 2026-03-23T22:04:53.2085358Z   runner: linux-aarch64-a3-16
 2026-03-23T22:04:53.2085955Z   image: swr.cn-southwest-2.myhuaweicloud.com/base_image/ascend-ci/vllm-ascend:nightly-a3
-2026-03-23T22:04:53.2086570Z   tests: 
+2026-03-23T22:04:53.2086570Z   tests:
 2026-03-23T22:04:53.2086926Z   config_file_path: DeepSeek-V3.2-W8A8.yaml
 2026-03-23T22:04:53.2087335Z   name: deepseek-v3-2-w8a8
 2026-03-23T22:04:53.2087735Z   vllm_version: v0.18.0
@@ -204,7 +204,7 @@
 2026-03-23T22:06:01.8907007Z ais_bench_benchmark                      3.0.20250930               /vllm-workspace/vllm-ascend/benchmark
 2026-03-23T22:06:01.8907641Z vllm                                     0.18.0+empty               /vllm-workspace/vllm
 2026-03-23T22:06:01.8908157Z vllm_ascend                              0.17.0rc2.dev93+g8e0789bb3 /vllm-workspace/vllm-ascend
-2026-03-23T22:06:01.8908567Z 
+2026-03-23T22:06:01.8908567Z
 2026-03-23T22:06:01.8908652Z ============================
 2026-03-23T22:06:01.8908887Z vLLM Git information
 2026-03-23T22:06:01.8909085Z ============================
@@ -215,8 +215,8 @@
 2026-03-23T22:06:01.9328829Z Message:     [cherry-pick][Bugfix] Disable monolithic TRTLLM MoE for Renormalize routing (#37591)#37605
 2026-03-23T22:06:01.9353469Z Tags:        v0.18.0
 2026-03-23T22:06:01.9385342Z Remote:      origin	https://gh-proxy.test.osinfra.cn/https://github.com/vllm-project/vllm.git (fetch)
-2026-03-23T22:06:01.9385770Z 
-2026-03-23T22:06:01.9385786Z 
+2026-03-23T22:06:01.9385770Z
+2026-03-23T22:06:01.9385786Z
 2026-03-23T22:06:01.9385860Z ============================
 2026-03-23T22:06:01.9386098Z vLLM-Ascend Git information
 2026-03-23T22:06:01.9386319Z ============================
@@ -225,9 +225,9 @@
 2026-03-23T22:06:01.9588938Z Author:      Nengjun Ma <nengjunma@outlook.com>
 2026-03-23T22:06:01.9615695Z Date:        2026-03-23 21:41:28 +0800
 2026-03-23T22:06:01.9639450Z Message:     [CI] Recover pd disaggregated encoder test case that been incorrectly skipped (#7505)
-2026-03-23T22:06:01.9977718Z Tags:        
+2026-03-23T22:06:01.9977718Z Tags:
 2026-03-23T22:06:02.0004656Z Remote:      origin	https://gh-proxy.test.osinfra.cn/https://github.com/vllm-project/vllm-ascend (fetch)
-2026-03-23T22:06:02.0005100Z 
+2026-03-23T22:06:02.0005100Z
 2026-03-23T22:06:02.6456031Z ##[group]Run apt-get update && apt-get -y install clang-15
 2026-03-23T22:06:02.6456469Z [36;1mapt-get update && apt-get -y install clang-15[0m
 2026-03-23T22:06:02.6456941Z [36;1mupdate-alternatives --install /usr/bin/clang clang /usr/bin/clang-15 20[0m
@@ -372,7 +372,7 @@
 2026-03-23T22:07:08.6658301Z asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
 2026-03-23T22:07:09.8206743Z [2026-03-23 22:07:09] [INFO] Loading config yaml: tests/e2e/nightly/single_node/models/configs/DeepSeek-V3.2-W8A8.yaml
 2026-03-23T22:07:09.8270886Z collecting ... collected 1 item
-2026-03-23T22:07:09.8271072Z 
+2026-03-23T22:07:09.8271072Z
 2026-03-23T22:07:09.8285523Z [2026-03-23 22:07:09] [INFO] Starting server with command: vllm serve vllm-ascend/DeepSeek-V3.2-W8A8 --enable-expert-parallel --tensor-parallel-size 8 --data-parallel-size 2 --port 56059 --max-model-len 8192 --max-num-batched-tokens 8192 --max-num-seqs 4 --trust-remote-code --quantization ascend --gpu-memory-utilization 0.98 --compilation-config {"cudagraph_capture_sizes":[8, 16, 24, 32, 40, 48], "cudagraph_mode":"FULL_DECODE_ONLY"} --speculative-config {"num_speculative_tokens": 3, "method":"deepseek_mtp"} --additional-config {"layer_sharding": ["q_b_proj", "o_proj"]} --reasoning-parser deepseek_v3 --tokenizer_mode deepseek_v32
 2026-03-23T22:07:14.1390441Z tests/e2e/nightly/single_node/models/scripts/test_single_node.py::test_single_node[DeepSeek-V3.2-W8A8-TP8-DP2] INFO 03-23 22:07:14 [__init__.py:44] Available plugins for group vllm.platform_plugins:
 2026-03-23T22:07:14.1391347Z INFO 03-23 22:07:14 [__init__.py:46] - ascend -> vllm_ascend:register
@@ -420,7 +420,7 @@
 2026-03-23T22:07:21.8019130Z WARNING 03-23 22:07:21 [platform.py:341]             * For more details, please refer to:
 2026-03-23T22:07:21.8019921Z WARNING 03-23 22:07:21 [platform.py:341]             * https://docs.vllm.ai/en/stable/configuration/conserving_memory.html#reduce-cuda-graphs
 2026-03-23T22:07:21.8020871Z WARNING 03-23 22:07:21 [platform.py:341]             **********************************************************************************[0m
-2026-03-23T22:07:21.8021343Z WARNING 03-23 22:07:21 [platform.py:341]             
+2026-03-23T22:07:21.8021343Z WARNING 03-23 22:07:21 [platform.py:341]
 2026-03-23T22:07:21.8021818Z INFO 03-23 22:07:21 [utils.py:1102] Block size is set to 128 if prefix cache or chunked prefill is enabled.
 2026-03-23T22:07:21.8022388Z INFO 03-23 22:07:21 [platform.py:448] Set PYTORCH_NPU_ALLOC_CONF=expandable_segments:True
 2026-03-23T22:07:21.8023051Z [2026-03-23 22:07:21.800581][UC][I] Enabled custom fusions: norm_quant, act_quant [1464,1464][compilation.py:289,log_enabled_passes]
@@ -521,12 +521,12 @@
 2026-03-23T22:07:54.4336984Z (ApiServer_0 pid=1515) WARNING 03-23 22:07:54 [platform.py:341]             * For more details, please refer to:
 2026-03-23T22:07:54.4337820Z (ApiServer_0 pid=1515) WARNING 03-23 22:07:54 [platform.py:341]             * https://docs.vllm.ai/en/stable/configuration/conserving_memory.html#reduce-cuda-graphs
 2026-03-23T22:07:54.4338811Z (ApiServer_0 pid=1515) WARNING 03-23 22:07:54 [platform.py:341]             **********************************************************************************[0m
-2026-03-23T22:07:54.4339411Z (ApiServer_0 pid=1515) WARNING 03-23 22:07:54 [platform.py:341]             
+2026-03-23T22:07:54.4339411Z (ApiServer_0 pid=1515) WARNING 03-23 22:07:54 [platform.py:341]
 2026-03-23T22:07:54.4340160Z (ApiServer_0 pid=1515) INFO 03-23 22:07:54 [utils.py:1102] Block size is set to 128 if prefix cache or chunked prefill is enabled.
 2026-03-23T22:07:54.4340862Z (ApiServer_0 pid=1515) INFO 03-23 22:07:54 [platform.py:448] Set PYTORCH_NPU_ALLOC_CONF=expandable_segments:True
 2026-03-23T22:07:54.4341640Z [2026-03-23 22:07:54.432301][UC][I] Enabled custom fusions: norm_quant, act_quant [1515,1515][compilation.py:289,log_enabled_passes]
-2026-03-23T22:07:54.4817286Z (ApiServer_0 pid=1515) The tokenizer class you load from this checkpoint is not the same type as the class this function is called from. It may result in unexpected tokenization. 
-2026-03-23T22:07:54.4818212Z (ApiServer_0 pid=1515) The tokenizer class you load from this checkpoint is 'LlamaTokenizerFast'. 
+2026-03-23T22:07:54.4817286Z (ApiServer_0 pid=1515) The tokenizer class you load from this checkpoint is not the same type as the class this function is called from. It may result in unexpected tokenization.
+2026-03-23T22:07:54.4818212Z (ApiServer_0 pid=1515) The tokenizer class you load from this checkpoint is 'LlamaTokenizerFast'.
 2026-03-23T22:07:54.4818828Z (ApiServer_0 pid=1515) The class this function is called from is 'PreTrainedTokenizerFast'.
 2026-03-23T22:07:54.4848113Z [2026-03-23 22:07:54.484051][UC][I] Asynchronous scheduling is enabled. [1516,1516][vllm.py:754,__post_init__]
 2026-03-23T22:07:54.4849328Z [2026-03-23 22:07:54.484214][UC][I] Disabling NCCL for DP synchronization when using async scheduling. [1516,1516][vllm.py:764,__post_init__]
@@ -548,12 +548,12 @@
 2026-03-23T22:07:54.4887346Z (ApiServer_1 pid=1516) WARNING 03-23 22:07:54 [platform.py:341]             * For more details, please refer to:
 2026-03-23T22:07:54.4888177Z (ApiServer_1 pid=1516) WARNING 03-23 22:07:54 [platform.py:341]             * https://docs.vllm.ai/en/stable/configuration/conserving_memory.html#reduce-cuda-graphs
 2026-03-23T22:07:54.4889165Z (ApiServer_1 pid=1516) WARNING 03-23 22:07:54 [platform.py:341]             **********************************************************************************[0m
-2026-03-23T22:07:54.4889752Z (ApiServer_1 pid=1516) WARNING 03-23 22:07:54 [platform.py:341]             
+2026-03-23T22:07:54.4889752Z (ApiServer_1 pid=1516) WARNING 03-23 22:07:54 [platform.py:341]
 2026-03-23T22:07:54.4890516Z (ApiServer_1 pid=1516) INFO 03-23 22:07:54 [utils.py:1102] Block size is set to 128 if prefix cache or chunked prefill is enabled.
 2026-03-23T22:07:54.4891409Z (ApiServer_1 pid=1516) INFO 03-23 22:07:54 [platform.py:448] Set PYTORCH_NPU_ALLOC_CONF=expandable_segments:True
 2026-03-23T22:07:54.4892194Z [2026-03-23 22:07:54.488093][UC][I] Enabled custom fusions: norm_quant, act_quant [1516,1516][compilation.py:289,log_enabled_passes]
-2026-03-23T22:07:54.5314859Z (ApiServer_1 pid=1516) The tokenizer class you load from this checkpoint is not the same type as the class this function is called from. It may result in unexpected tokenization. 
-2026-03-23T22:07:54.5315833Z (ApiServer_1 pid=1516) The tokenizer class you load from this checkpoint is 'LlamaTokenizerFast'. 
+2026-03-23T22:07:54.5314859Z (ApiServer_1 pid=1516) The tokenizer class you load from this checkpoint is not the same type as the class this function is called from. It may result in unexpected tokenization.
+2026-03-23T22:07:54.5315833Z (ApiServer_1 pid=1516) The tokenizer class you load from this checkpoint is 'LlamaTokenizerFast'.
 2026-03-23T22:07:54.5316437Z (ApiServer_1 pid=1516) The class this function is called from is 'PreTrainedTokenizerFast'.
 2026-03-23T22:07:56.2246217Z INFO 03-23 22:07:56 [ascend_config.py:424] Dynamic EPLB is False
 2026-03-23T22:07:56.2246739Z INFO 03-23 22:07:56 [ascend_config.py:425] The number of redundant experts is 0
@@ -1049,7 +1049,7 @@
 2026-03-23T22:09:34.7967484Z [2026-03-23 22:09:34.795797][UC][I] Using OOT custom backend for compilation. [1676,1676][compilation.py:942,init_backend]
 2026-03-23T22:09:34.8562723Z [2026-03-23 22:09:34.855272][UC][I] Using OOT custom backend for compilation. [2160,2160][compilation.py:942,init_backend]
 2026-03-23T22:09:34.8702921Z [2026-03-23 22:09:34.868338][UC][I] Using OOT custom backend for compilation. [1570,1570][compilation.py:942,init_backend]
-2026-03-23T22:09:34.9194977Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:09:34.9194977Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:09:34.9195465Z Loading safetensors checkpoint shards:   0% Completed | 0/163 [00:00<?, ?it/s]
 2026-03-23T22:09:34.9739414Z [2026-03-23 22:09:34.972988][UC][I] Using OOT custom backend for compilation. [1968,1968][compilation.py:942,init_backend]
 2026-03-23T22:09:35.0801277Z [2026-03-23 22:09:35.079033][UC][I] Using OOT custom backend for compilation. [1964,1964][compilation.py:942,init_backend]
@@ -1057,327 +1057,327 @@
 2026-03-23T22:09:35.1741761Z [2026-03-23 22:09:35.173123][UC][I] Using OOT custom backend for compilation. [1868,1868][compilation.py:942,init_backend]
 2026-03-23T22:09:35.1953923Z [2026-03-23 22:09:35.194267][UC][I] Using OOT custom backend for compilation. [1679,1679][compilation.py:942,init_backend]
 2026-03-23T22:09:35.2619052Z [2026-03-23 22:09:35.260967][UC][I] Using OOT custom backend for compilation. [1872,1872][compilation.py:942,init_backend]
-2026-03-23T22:09:40.7042477Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:09:40.7042477Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:09:40.7042985Z Loading safetensors checkpoint shards:   1% Completed | 1/163 [00:05<15:37,  5.78s/it]
-2026-03-23T22:09:41.8968924Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:09:41.8968924Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:09:41.8969428Z Loading safetensors checkpoint shards:   1% Completed | 2/163 [00:06<08:16,  3.08s/it]
-2026-03-23T22:09:43.8449345Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:09:43.8449345Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:09:43.8449975Z Loading safetensors checkpoint shards:   2% Completed | 3/163 [00:08<06:50,  2.56s/it]
-2026-03-23T22:09:48.3077485Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:09:48.3077485Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:09:48.3077976Z Loading safetensors checkpoint shards:   2% Completed | 4/163 [00:13<08:46,  3.31s/it]
-2026-03-23T22:09:49.8726113Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:09:49.8726113Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:09:49.8726605Z Loading safetensors checkpoint shards:   3% Completed | 5/163 [00:14<07:03,  2.68s/it]
-2026-03-23T22:09:53.7871288Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:09:53.7871288Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:09:53.7871787Z Loading safetensors checkpoint shards:   4% Completed | 6/163 [00:18<08:07,  3.10s/it]
-2026-03-23T22:09:55.4750727Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:09:55.4750727Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:09:55.4751214Z Loading safetensors checkpoint shards:   4% Completed | 7/163 [00:20<06:51,  2.64s/it]
-2026-03-23T22:09:57.2702006Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:09:57.2702006Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:09:57.2702506Z Loading safetensors checkpoint shards:   5% Completed | 8/163 [00:22<06:07,  2.37s/it]
-2026-03-23T22:10:01.7583998Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:10:01.7583998Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:10:01.7584853Z Loading safetensors checkpoint shards:   6% Completed | 9/163 [00:26<07:47,  3.03s/it]
-2026-03-23T22:10:03.2602287Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:10:03.2602287Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:10:03.2602749Z Loading safetensors checkpoint shards:   6% Completed | 10/163 [00:28<06:31,  2.56s/it]
-2026-03-23T22:10:05.1778267Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:10:05.1778267Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:10:05.1778774Z Loading safetensors checkpoint shards:   7% Completed | 11/163 [00:30<05:59,  2.36s/it]
-2026-03-23T22:10:09.2125538Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:10:09.2125538Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:10:09.2126041Z Loading safetensors checkpoint shards:   7% Completed | 12/163 [00:34<07:13,  2.87s/it]
-2026-03-23T22:10:10.8531377Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:10:10.8531377Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:10:10.8531869Z Loading safetensors checkpoint shards:   8% Completed | 13/163 [00:35<06:14,  2.50s/it]
-2026-03-23T22:10:13.7215134Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:10:13.7215134Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:10:13.7215637Z Loading safetensors checkpoint shards:   9% Completed | 14/163 [00:38<06:28,  2.61s/it]
-2026-03-23T22:10:17.0174031Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:10:17.0174031Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:10:17.0174548Z Loading safetensors checkpoint shards:   9% Completed | 15/163 [00:42<06:56,  2.82s/it]
-2026-03-23T22:10:18.0540881Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:10:18.0540881Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:10:18.0541380Z Loading safetensors checkpoint shards:  10% Completed | 16/163 [00:43<05:35,  2.28s/it]
-2026-03-23T22:10:22.3597310Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:10:22.3597310Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:10:22.3597801Z Loading safetensors checkpoint shards:  10% Completed | 17/163 [00:47<07:01,  2.89s/it]
-2026-03-23T22:10:23.8373038Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:10:23.8373038Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:10:23.8373551Z Loading safetensors checkpoint shards:  11% Completed | 18/163 [00:48<05:57,  2.47s/it]
-2026-03-23T22:10:25.7118615Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:10:25.7118615Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:10:25.7119119Z Loading safetensors checkpoint shards:  12% Completed | 19/163 [00:50<05:29,  2.29s/it]
-2026-03-23T22:10:29.5887694Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:10:29.5887694Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:10:29.5888187Z Loading safetensors checkpoint shards:  12% Completed | 20/163 [00:54<06:35,  2.77s/it]
-2026-03-23T22:10:31.4291840Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:10:31.4291840Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:10:31.4292347Z Loading safetensors checkpoint shards:  13% Completed | 21/163 [00:56<05:53,  2.49s/it]
-2026-03-23T22:10:33.5184989Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:10:33.5184989Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:10:33.5185842Z Loading safetensors checkpoint shards:  13% Completed | 22/163 [00:58<05:33,  2.37s/it]
-2026-03-23T22:10:37.7481145Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:10:37.7481145Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:10:37.7481630Z Loading safetensors checkpoint shards:  14% Completed | 23/163 [01:02<06:49,  2.93s/it]
-2026-03-23T22:10:39.3743311Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:10:39.3743311Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:10:39.3743818Z Loading safetensors checkpoint shards:  15% Completed | 24/163 [01:04<05:52,  2.54s/it]
-2026-03-23T22:10:43.5396209Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:10:43.5396209Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:10:43.5396708Z Loading safetensors checkpoint shards:  15% Completed | 25/163 [01:08<06:57,  3.03s/it]
-2026-03-23T22:10:45.1870113Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:10:45.1870113Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:10:45.1870662Z Loading safetensors checkpoint shards:  16% Completed | 26/163 [01:10<05:57,  2.61s/it]
-2026-03-23T22:10:46.9854332Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:10:46.9854332Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:10:46.9854833Z Loading safetensors checkpoint shards:  17% Completed | 27/163 [01:12<05:22,  2.37s/it]
-2026-03-23T22:10:51.3104081Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:10:51.3104081Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:10:51.3104594Z Loading safetensors checkpoint shards:  17% Completed | 28/163 [01:16<06:38,  2.95s/it]
-2026-03-23T22:10:52.5153615Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:10:52.5153615Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:10:52.5154057Z Loading safetensors checkpoint shards:  18% Completed | 29/163 [01:17<05:25,  2.43s/it]
-2026-03-23T22:10:54.2662946Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:10:54.2662946Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:10:54.2663455Z Loading safetensors checkpoint shards:  18% Completed | 30/163 [01:19<04:56,  2.23s/it]
-2026-03-23T22:10:58.6973446Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:10:58.6973446Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:10:58.6973952Z Loading safetensors checkpoint shards:  19% Completed | 31/163 [01:23<06:21,  2.89s/it]
-2026-03-23T22:10:59.8243819Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:10:59.8243819Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:10:59.8244668Z Loading safetensors checkpoint shards:  20% Completed | 32/163 [01:24<05:09,  2.36s/it]
-2026-03-23T22:11:03.4933645Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:11:03.4933645Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:11:05.8166708Z Loading safetensors checkpoint shards:  20% Completed | 33/163 [01:28<05:57,  2.75s/it]
-2026-03-23T22:11:05.8167271Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:11:05.8167271Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:11:07.2724787Z Loading safetensors checkpoint shards:  21% Completed | 34/163 [01:30<05:38,  2.62s/it]
-2026-03-23T22:11:07.2725309Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:11:07.2725309Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:11:11.6682496Z Loading safetensors checkpoint shards:  21% Completed | 35/163 [01:32<04:50,  2.27s/it]
-2026-03-23T22:11:11.6683020Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:11:11.6683020Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:11:11.6683455Z Loading safetensors checkpoint shards:  22% Completed | 36/163 [01:36<06:09,  2.91s/it]
-2026-03-23T22:11:13.2299621Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:11:13.2299621Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:11:13.2300210Z Loading safetensors checkpoint shards:  23% Completed | 37/163 [01:38<05:15,  2.51s/it]
-2026-03-23T22:11:15.1120533Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:11:15.1120533Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:11:15.1121077Z Loading safetensors checkpoint shards:  23% Completed | 38/163 [01:40<04:49,  2.32s/it]
-2026-03-23T22:11:19.3941726Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:11:19.3941726Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:11:19.3942231Z Loading safetensors checkpoint shards:  24% Completed | 39/163 [01:44<06:00,  2.91s/it]
-2026-03-23T22:11:21.0785399Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:11:21.0785399Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:11:21.0785915Z Loading safetensors checkpoint shards:  25% Completed | 40/163 [01:46<05:12,  2.54s/it]
-2026-03-23T22:11:23.0034509Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:11:23.0034509Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:11:23.0035006Z Loading safetensors checkpoint shards:  25% Completed | 41/163 [01:48<04:47,  2.36s/it]
-2026-03-23T22:11:27.1101571Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:11:27.1101571Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:11:27.1102068Z Loading safetensors checkpoint shards:  26% Completed | 42/163 [01:52<05:48,  2.88s/it]
-2026-03-23T22:11:28.7443220Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:11:28.7443220Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:11:28.7443723Z Loading safetensors checkpoint shards:  26% Completed | 43/163 [01:53<05:00,  2.51s/it]
-2026-03-23T22:11:32.8938803Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:11:32.8938803Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:11:32.8939301Z Loading safetensors checkpoint shards:  27% Completed | 44/163 [01:57<05:56,  3.00s/it]
-2026-03-23T22:11:34.1892806Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:11:34.1892806Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:11:34.1893749Z Loading safetensors checkpoint shards:  28% Completed | 45/163 [01:59<04:53,  2.49s/it]
-2026-03-23T22:11:36.0322594Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:11:36.0322594Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:11:36.0323103Z Loading safetensors checkpoint shards:  28% Completed | 46/163 [02:01<04:28,  2.29s/it]
-2026-03-23T22:11:40.2687041Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:11:40.2687041Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:11:40.2687553Z Loading safetensors checkpoint shards:  29% Completed | 47/163 [02:05<05:33,  2.88s/it]
-2026-03-23T22:11:41.6784803Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:11:41.6784803Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:11:41.6785245Z Loading safetensors checkpoint shards:  29% Completed | 48/163 [02:06<04:40,  2.44s/it]
-2026-03-23T22:11:43.4884768Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:11:43.4884768Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:11:43.4885303Z Loading safetensors checkpoint shards:  30% Completed | 49/163 [02:08<04:16,  2.25s/it]
-2026-03-23T22:11:47.7253453Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:11:47.7253453Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:11:47.7253958Z Loading safetensors checkpoint shards:  31% Completed | 50/163 [02:12<05:21,  2.85s/it]
-2026-03-23T22:11:49.4402393Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:11:49.4402393Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:11:49.4402936Z Loading safetensors checkpoint shards:  31% Completed | 51/163 [02:14<04:40,  2.51s/it]
-2026-03-23T22:11:53.0484857Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:11:53.0484857Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:11:53.0485312Z Loading safetensors checkpoint shards:  32% Completed | 52/163 [02:18<05:14,  2.84s/it]
-2026-03-23T22:11:54.6911490Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:11:54.6911490Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:11:54.6912004Z Loading safetensors checkpoint shards:  33% Completed | 53/163 [02:19<04:32,  2.48s/it]
-2026-03-23T22:11:56.4010457Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:11:56.4010457Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:11:56.4010975Z Loading safetensors checkpoint shards:  33% Completed | 54/163 [02:21<04:05,  2.25s/it]
-2026-03-23T22:12:00.8140426Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:12:00.8140426Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:12:00.8141302Z Loading safetensors checkpoint shards:  34% Completed | 55/163 [02:25<05:12,  2.90s/it]
-2026-03-23T22:12:01.9758752Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:12:01.9758752Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:12:01.9759254Z Loading safetensors checkpoint shards:  34% Completed | 56/163 [02:27<04:14,  2.38s/it]
-2026-03-23T22:12:03.7701767Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:12:03.7701767Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:12:03.7702274Z Loading safetensors checkpoint shards:  35% Completed | 57/163 [02:28<03:53,  2.20s/it]
-2026-03-23T22:12:08.0057849Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:12:08.0057849Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:12:08.0058363Z Loading safetensors checkpoint shards:  36% Completed | 58/163 [02:33<04:55,  2.81s/it]
-2026-03-23T22:12:09.5963464Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:12:09.5963464Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:12:09.5963976Z Loading safetensors checkpoint shards:  36% Completed | 59/163 [02:34<04:14,  2.45s/it]
-2026-03-23T22:12:13.0184982Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:12:13.0184982Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:12:13.0185472Z Loading safetensors checkpoint shards:  37% Completed | 60/163 [02:38<04:42,  2.74s/it]
-2026-03-23T22:12:16.2994029Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:12:16.2994029Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:12:16.2994571Z Loading safetensors checkpoint shards:  37% Completed | 61/163 [02:41<04:55,  2.90s/it]
-2026-03-23T22:12:16.6732903Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:12:16.6732903Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:12:16.6733400Z Loading safetensors checkpoint shards:  38% Completed | 62/163 [02:41<03:36,  2.14s/it]
-2026-03-23T22:12:20.9250394Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:12:20.9250394Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:12:20.9250895Z Loading safetensors checkpoint shards:  39% Completed | 63/163 [02:46<04:37,  2.78s/it]
-2026-03-23T22:12:22.3809170Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:12:22.3809170Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:12:22.3809662Z Loading safetensors checkpoint shards:  39% Completed | 64/163 [02:47<03:55,  2.38s/it]
-2026-03-23T22:12:24.3238965Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:12:24.3238965Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:12:24.3239467Z Loading safetensors checkpoint shards:  40% Completed | 65/163 [02:49<03:40,  2.25s/it]
-2026-03-23T22:12:28.4114109Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:12:28.4114109Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:12:28.4114602Z Loading safetensors checkpoint shards:  40% Completed | 66/163 [02:53<04:31,  2.80s/it]
-2026-03-23T22:12:29.9627833Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:12:29.9627833Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:12:29.9628345Z Loading safetensors checkpoint shards:  41% Completed | 67/163 [02:55<03:52,  2.43s/it]
-2026-03-23T22:12:31.6303681Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:12:31.6303681Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:12:31.6304205Z Loading safetensors checkpoint shards:  42% Completed | 68/163 [02:56<03:28,  2.20s/it]
-2026-03-23T22:12:35.8608358Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:12:35.8608358Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:12:35.8608856Z Loading safetensors checkpoint shards:  42% Completed | 69/163 [03:00<04:23,  2.81s/it]
-2026-03-23T22:12:37.4589818Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:12:37.4589818Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:12:37.4590437Z Loading safetensors checkpoint shards:  43% Completed | 70/163 [03:02<03:47,  2.45s/it]
-2026-03-23T22:12:41.7338390Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:12:41.7338390Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:12:41.7338905Z Loading safetensors checkpoint shards:  44% Completed | 71/163 [03:06<04:35,  2.99s/it]
-2026-03-23T22:12:42.8631008Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:12:42.8631008Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:12:42.8631507Z Loading safetensors checkpoint shards:  44% Completed | 72/163 [03:07<03:41,  2.43s/it]
-2026-03-23T22:12:44.5858747Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:12:44.5858747Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:12:44.5859249Z Loading safetensors checkpoint shards:  45% Completed | 73/163 [03:09<03:19,  2.22s/it]
-2026-03-23T22:12:49.0548841Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:12:49.0548841Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:12:49.0549394Z Loading safetensors checkpoint shards:  45% Completed | 74/163 [03:14<04:17,  2.90s/it]
-2026-03-23T22:12:50.2410780Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:12:50.2410780Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:12:50.2411279Z Loading safetensors checkpoint shards:  46% Completed | 75/163 [03:15<03:29,  2.38s/it]
-2026-03-23T22:12:51.9365261Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:12:51.9365261Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:12:51.9365758Z Loading safetensors checkpoint shards:  47% Completed | 76/163 [03:17<03:09,  2.18s/it]
-2026-03-23T22:12:56.3335024Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:12:56.3335024Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:12:56.3335520Z Loading safetensors checkpoint shards:  47% Completed | 77/163 [03:21<04:04,  2.84s/it]
-2026-03-23T22:12:57.3600915Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:12:57.3600915Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:12:57.3601730Z Loading safetensors checkpoint shards:  48% Completed | 78/163 [03:22<03:15,  2.30s/it]
-2026-03-23T22:13:01.2446408Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:13:01.2446408Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:13:01.2446912Z Loading safetensors checkpoint shards:  48% Completed | 79/163 [03:26<03:53,  2.77s/it]
-2026-03-23T22:13:03.9534995Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:13:03.9534995Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:13:03.9535527Z Loading safetensors checkpoint shards:  49% Completed | 80/163 [03:29<03:48,  2.75s/it]
-2026-03-23T22:13:04.7311652Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:13:04.7311652Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:13:04.7312157Z Loading safetensors checkpoint shards:  50% Completed | 81/163 [03:29<02:57,  2.16s/it]
-2026-03-23T22:13:09.2023504Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:13:09.2023504Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:13:09.2023995Z Loading safetensors checkpoint shards:  50% Completed | 82/163 [03:34<03:51,  2.85s/it]
-2026-03-23T22:13:10.3313127Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:13:10.3313127Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:13:10.3313632Z Loading safetensors checkpoint shards:  51% Completed | 83/163 [03:35<03:06,  2.34s/it]
-2026-03-23T22:13:12.0758935Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:13:12.0758935Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:13:12.0759466Z Loading safetensors checkpoint shards:  52% Completed | 84/163 [03:37<02:50,  2.16s/it]
-2026-03-23T22:13:16.4169524Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:13:16.4169524Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:13:16.4170087Z Loading safetensors checkpoint shards:  52% Completed | 85/163 [03:41<03:39,  2.81s/it]
-2026-03-23T22:13:17.8463929Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:13:17.8463929Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:13:17.8464509Z Loading safetensors checkpoint shards:  53% Completed | 86/163 [03:42<03:04,  2.40s/it]
-2026-03-23T22:13:20.0115883Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:13:20.0115883Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:13:20.0116396Z Loading safetensors checkpoint shards:  53% Completed | 87/163 [03:45<02:56,  2.33s/it]
-2026-03-23T22:13:23.7606819Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:13:23.7606819Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:13:23.7607326Z Loading safetensors checkpoint shards:  54% Completed | 88/163 [03:48<03:26,  2.75s/it]
-2026-03-23T22:13:25.1899309Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:13:25.1899309Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:13:25.1899811Z Loading safetensors checkpoint shards:  55% Completed | 89/163 [03:50<02:54,  2.36s/it]
-2026-03-23T22:13:29.4565490Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:13:29.4565490Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:13:29.4566030Z Loading safetensors checkpoint shards:  55% Completed | 90/163 [03:54<03:33,  2.93s/it]
-2026-03-23T22:13:30.5184137Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:13:30.5184137Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:13:30.5184643Z Loading safetensors checkpoint shards:  56% Completed | 91/163 [03:55<02:50,  2.37s/it]
-2026-03-23T22:13:32.3545341Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:13:32.3545341Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:13:32.3545845Z Loading safetensors checkpoint shards:  56% Completed | 92/163 [03:57<02:36,  2.21s/it]
-2026-03-23T22:13:36.6707616Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:13:36.6707616Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:13:36.6708125Z Loading safetensors checkpoint shards:  57% Completed | 93/163 [04:01<03:18,  2.84s/it]
-2026-03-23T22:13:37.9652520Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:13:37.9652520Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:13:37.9653022Z Loading safetensors checkpoint shards:  58% Completed | 94/163 [04:03<02:44,  2.38s/it]
-2026-03-23T22:13:39.5914551Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:13:39.5914551Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:13:39.5915047Z Loading safetensors checkpoint shards:  58% Completed | 95/163 [04:04<02:26,  2.15s/it]
-2026-03-23T22:13:43.6573018Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:13:43.6573018Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:13:43.6573512Z Loading safetensors checkpoint shards:  59% Completed | 96/163 [04:08<03:02,  2.73s/it]
-2026-03-23T22:13:45.0042473Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:13:45.0042473Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:13:45.0042971Z Loading safetensors checkpoint shards:  60% Completed | 97/163 [04:10<02:32,  2.31s/it]
-2026-03-23T22:13:48.8522076Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:13:48.8522076Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:13:48.8522526Z Loading safetensors checkpoint shards:  60% Completed | 98/163 [04:13<03:00,  2.77s/it]
-2026-03-23T22:13:50.5108385Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:13:50.5108385Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:13:50.5108888Z Loading safetensors checkpoint shards:  61% Completed | 99/163 [04:15<02:36,  2.44s/it]
-2026-03-23T22:13:52.2490343Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:13:52.2490343Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:13:52.2490848Z Loading safetensors checkpoint shards:  61% Completed | 100/163 [04:17<02:20,  2.23s/it]
-2026-03-23T22:13:57.0693258Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:13:57.0693258Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:13:57.0693775Z Loading safetensors checkpoint shards:  62% Completed | 101/163 [04:22<03:06,  3.01s/it]
-2026-03-23T22:13:57.8615484Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:13:57.8615484Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:13:57.8615991Z Loading safetensors checkpoint shards:  63% Completed | 102/163 [04:22<02:22,  2.34s/it]
-2026-03-23T22:13:59.5001844Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:13:59.5001844Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:13:59.5002391Z Loading safetensors checkpoint shards:  63% Completed | 103/163 [04:24<02:07,  2.13s/it]
-2026-03-23T22:14:04.5278655Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:14:04.5278655Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:14:04.5279168Z Loading safetensors checkpoint shards:  64% Completed | 104/163 [04:29<02:56,  3.00s/it]
-2026-03-23T22:14:05.8205531Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:14:05.8205531Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:14:05.8206039Z Loading safetensors checkpoint shards:  64% Completed | 105/163 [04:30<02:24,  2.49s/it]
-2026-03-23T22:14:09.7654909Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:14:09.7654909Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:14:09.7655490Z Loading safetensors checkpoint shards:  65% Completed | 106/163 [04:34<02:46,  2.92s/it]
-2026-03-23T22:14:13.3488336Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:14:13.3488336Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:14:13.3488834Z Loading safetensors checkpoint shards:  66% Completed | 107/163 [04:38<02:54,  3.12s/it]
-2026-03-23T22:14:13.5292948Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:14:13.5292948Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:14:13.5293465Z Loading safetensors checkpoint shards:  66% Completed | 108/163 [04:38<02:03,  2.24s/it]
-2026-03-23T22:14:18.0390450Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:14:18.0390450Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:14:18.0390960Z Loading safetensors checkpoint shards:  67% Completed | 109/163 [04:43<02:37,  2.92s/it]
-2026-03-23T22:14:19.0211274Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:14:19.0211274Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:14:19.0211797Z Loading safetensors checkpoint shards:  67% Completed | 110/163 [04:44<02:03,  2.34s/it]
-2026-03-23T22:14:20.5665114Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:14:20.5665114Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:14:20.5665682Z Loading safetensors checkpoint shards:  68% Completed | 111/163 [04:45<01:49,  2.10s/it]
-2026-03-23T22:14:25.7740756Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:14:25.7740756Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:14:25.7741278Z Loading safetensors checkpoint shards:  69% Completed | 112/163 [04:50<02:34,  3.03s/it]
-2026-03-23T22:14:26.5372779Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:14:26.5372779Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:14:26.5373327Z Loading safetensors checkpoint shards:  69% Completed | 113/163 [04:51<01:57,  2.35s/it]
-2026-03-23T22:14:28.1395864Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:14:28.1395864Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:14:28.1396386Z Loading safetensors checkpoint shards:  70% Completed | 114/163 [04:53<01:44,  2.13s/it]
-2026-03-23T22:14:32.9718673Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:14:32.9718673Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:14:32.9719191Z Loading safetensors checkpoint shards:  71% Completed | 115/163 [04:58<02:21,  2.94s/it]
-2026-03-23T22:14:34.1288499Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:14:34.1288499Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:14:34.1288949Z Loading safetensors checkpoint shards:  71% Completed | 116/163 [04:59<01:53,  2.40s/it]
-2026-03-23T22:14:39.1471870Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:14:39.1471870Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:14:39.1472382Z Loading safetensors checkpoint shards:  72% Completed | 117/163 [05:04<02:26,  3.19s/it]
-2026-03-23T22:14:39.7682059Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:14:39.7682059Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:14:39.7682566Z Loading safetensors checkpoint shards:  72% Completed | 118/163 [05:04<01:48,  2.42s/it]
-2026-03-23T22:14:41.3785978Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:14:41.3785978Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:14:41.3786527Z Loading safetensors checkpoint shards:  73% Completed | 119/163 [05:06<01:35,  2.18s/it]
-2026-03-23T22:14:46.4781245Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:14:46.4781245Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:14:46.4781745Z Loading safetensors checkpoint shards:  74% Completed | 120/163 [05:11<02:11,  3.05s/it]
-2026-03-23T22:14:47.1276158Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:14:47.1276158Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:14:47.1276738Z Loading safetensors checkpoint shards:  74% Completed | 121/163 [05:12<01:37,  2.33s/it]
-2026-03-23T22:14:48.7936504Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:14:48.7936504Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:14:48.7937009Z Loading safetensors checkpoint shards:  75% Completed | 122/163 [05:13<01:27,  2.13s/it]
-2026-03-23T22:14:53.6208512Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:14:53.6208512Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:14:53.6209021Z Loading safetensors checkpoint shards:  75% Completed | 123/163 [05:18<01:57,  2.94s/it]
-2026-03-23T22:14:54.5419380Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:14:54.5419380Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:14:54.5419944Z Loading safetensors checkpoint shards:  76% Completed | 124/163 [05:19<01:31,  2.33s/it]
-2026-03-23T22:14:58.7011676Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:14:58.7011676Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:14:58.7012195Z Loading safetensors checkpoint shards:  77% Completed | 125/163 [05:23<01:49,  2.88s/it]
-2026-03-23T22:15:00.5516962Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:15:00.5516962Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:15:00.5517508Z Loading safetensors checkpoint shards:  77% Completed | 126/163 [05:25<01:35,  2.57s/it]
-2026-03-23T22:15:02.3099891Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:15:02.3099891Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:15:02.3100443Z Loading safetensors checkpoint shards:  78% Completed | 127/163 [05:27<01:23,  2.33s/it]
-2026-03-23T22:15:07.7056913Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:15:07.7056913Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:15:07.7057468Z Loading safetensors checkpoint shards:  79% Completed | 128/163 [05:32<01:53,  3.25s/it]
-2026-03-23T22:15:08.7060559Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:15:08.7060559Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:15:08.7061072Z Loading safetensors checkpoint shards:  79% Completed | 129/163 [05:33<01:27,  2.57s/it]
-2026-03-23T22:15:10.5676113Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:15:10.5676113Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:15:10.5676682Z Loading safetensors checkpoint shards:  80% Completed | 130/163 [05:35<01:17,  2.36s/it]
-2026-03-23T22:15:15.4437110Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:15:15.4437110Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:15:15.4437653Z Loading safetensors checkpoint shards:  80% Completed | 131/163 [05:40<01:39,  3.12s/it]
-2026-03-23T22:15:16.9165637Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:15:16.9165637Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:15:16.9166162Z Loading safetensors checkpoint shards:  81% Completed | 132/163 [05:41<01:21,  2.62s/it]
-2026-03-23T22:15:19.7571006Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:15:19.7571006Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:15:19.7571520Z Loading safetensors checkpoint shards:  82% Completed | 133/163 [05:44<01:20,  2.69s/it]
-2026-03-23T22:15:23.4969386Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:15:23.4969386Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:15:23.4969964Z Loading safetensors checkpoint shards:  82% Completed | 134/163 [05:48<01:27,  3.00s/it]
-2026-03-23T22:15:24.6743548Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:15:24.6743548Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:15:24.6744047Z Loading safetensors checkpoint shards:  83% Completed | 135/163 [05:49<01:08,  2.46s/it]
-2026-03-23T22:15:29.2042289Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:15:29.2042289Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:15:29.2042838Z Loading safetensors checkpoint shards:  83% Completed | 136/163 [05:54<01:23,  3.08s/it]
-2026-03-23T22:15:30.3165816Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:15:30.3165816Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:15:30.3166325Z Loading safetensors checkpoint shards:  84% Completed | 137/163 [05:55<01:04,  2.49s/it]
-2026-03-23T22:15:32.0186293Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:15:32.0186293Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:15:32.0186811Z Loading safetensors checkpoint shards:  85% Completed | 138/163 [05:57<00:56,  2.25s/it]
-2026-03-23T22:15:37.2171027Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:15:37.2171027Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:15:37.2171528Z Loading safetensors checkpoint shards:  85% Completed | 139/163 [06:02<01:15,  3.14s/it]
-2026-03-23T22:15:38.3522225Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:15:38.3522225Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:15:38.3522724Z Loading safetensors checkpoint shards:  86% Completed | 140/163 [06:03<00:58,  2.54s/it]
-2026-03-23T22:15:40.0087766Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:15:40.0087766Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:15:40.0088323Z Loading safetensors checkpoint shards:  87% Completed | 141/163 [06:05<00:49,  2.27s/it]
-2026-03-23T22:15:44.6018952Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:15:44.6018952Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:15:44.6019466Z Loading safetensors checkpoint shards:  87% Completed | 142/163 [06:09<01:02,  2.97s/it]
-2026-03-23T22:15:46.1441589Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:15:46.1441589Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:15:46.1442099Z Loading safetensors checkpoint shards:  88% Completed | 143/163 [06:11<00:50,  2.54s/it]
-2026-03-23T22:15:50.6271073Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:15:50.6271073Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:15:50.6271589Z Loading safetensors checkpoint shards:  88% Completed | 144/163 [06:15<00:59,  3.12s/it]
-2026-03-23T22:15:51.8815212Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:15:51.8815212Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:15:51.8815718Z Loading safetensors checkpoint shards:  89% Completed | 145/163 [06:16<00:46,  2.56s/it]
-2026-03-23T22:15:53.5674051Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:15:53.5674051Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:15:53.5674552Z Loading safetensors checkpoint shards:  90% Completed | 146/163 [06:18<00:39,  2.30s/it]
-2026-03-23T22:15:59.0262364Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:15:59.0262364Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:15:59.0262869Z Loading safetensors checkpoint shards:  90% Completed | 147/163 [06:24<00:51,  3.25s/it]
-2026-03-23T22:15:59.4388387Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:15:59.4388387Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:15:59.4388898Z Loading safetensors checkpoint shards:  91% Completed | 148/163 [06:24<00:35,  2.40s/it]
-2026-03-23T22:16:01.1522502Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:16:01.1522502Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:16:01.1523037Z Loading safetensors checkpoint shards:  91% Completed | 149/163 [06:26<00:30,  2.19s/it]
-2026-03-23T22:16:06.1943477Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:16:06.1943477Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:16:06.1943987Z Loading safetensors checkpoint shards:  92% Completed | 150/163 [06:31<00:39,  3.05s/it]
-2026-03-23T22:16:07.0165494Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:16:07.0165494Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:16:07.0165985Z Loading safetensors checkpoint shards:  93% Completed | 151/163 [06:32<00:28,  2.38s/it]
-2026-03-23T22:16:11.1496166Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:16:11.1496166Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:16:11.1496676Z Loading safetensors checkpoint shards:  93% Completed | 152/163 [06:36<00:31,  2.91s/it]
-2026-03-23T22:16:13.9372208Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:16:13.9372208Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:16:13.9372765Z Loading safetensors checkpoint shards:  94% Completed | 153/163 [06:39<00:28,  2.87s/it]
-2026-03-23T22:16:14.4252232Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:16:14.4252232Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:16:14.4252762Z Loading safetensors checkpoint shards:  94% Completed | 154/163 [06:39<00:19,  2.16s/it]
-2026-03-23T22:16:19.1695422Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:16:19.1695422Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:16:19.1695926Z Loading safetensors checkpoint shards:  95% Completed | 155/163 [06:44<00:23,  2.93s/it]
-2026-03-23T22:16:20.3358820Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:16:20.3358820Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:16:20.3359319Z Loading safetensors checkpoint shards:  96% Completed | 156/163 [06:45<00:16,  2.40s/it]
-2026-03-23T22:16:22.2011914Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:16:22.2011914Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:16:22.2012432Z Loading safetensors checkpoint shards:  96% Completed | 157/163 [06:47<00:13,  2.24s/it]
-2026-03-23T22:16:24.1483061Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:16:24.1483061Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:16:24.1483563Z Loading safetensors checkpoint shards:  97% Completed | 158/163 [06:49<00:10,  2.15s/it]
-2026-03-23T22:16:25.5335662Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:16:25.5335662Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:16:25.5336186Z Loading safetensors checkpoint shards:  98% Completed | 159/163 [06:50<00:07,  1.92s/it]
-2026-03-23T22:16:26.7742479Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:16:26.7742479Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:16:26.7742976Z Loading safetensors checkpoint shards:  98% Completed | 160/163 [06:51<00:05,  1.72s/it]
-2026-03-23T22:16:28.1384862Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:16:28.1384862Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:16:28.1385369Z Loading safetensors checkpoint shards:  99% Completed | 162/163 [06:53<00:01,  1.24s/it]
 2026-03-23T22:16:30.5035994Z [2026-03-23 22:16:30.501627][UC][I] Loading weights took 415.46 seconds [1570,1570][default_loader.py:384,load_weights]
 2026-03-23T22:16:30.5476699Z [2026-03-23 22:16:30.543286][UC][I] Loading weights took 415.99 seconds [1571,1571][default_loader.py:384,load_weights]
@@ -1386,11 +1386,11 @@
 2026-03-23T22:16:30.7671811Z [2026-03-23 22:16:30.765968][UC][I] Loading weights took 416.21 seconds [2156,2156][default_loader.py:384,load_weights]
 2026-03-23T22:16:30.7891804Z [2026-03-23 22:16:30.788236][UC][I] Loading weights took 415.42 seconds [1679,1679][default_loader.py:384,load_weights]
 2026-03-23T22:16:30.8288908Z [2026-03-23 22:16:30.827934][UC][I] Loading weights took 415.81 seconds [2160,2160][default_loader.py:384,load_weights]
-2026-03-23T22:16:30.8392011Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:16:30.8392011Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:16:30.8392462Z Loading safetensors checkpoint shards: 100% Completed | 163/163 [06:55<00:00,  1.60s/it]
-2026-03-23T22:16:30.8392949Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:16:30.8392949Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:16:30.8393367Z Loading safetensors checkpoint shards: 100% Completed | 163/163 [06:55<00:00,  2.55s/it]
-2026-03-23T22:16:30.8393789Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:16:30.8393789Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:16:30.8547424Z [2026-03-23 22:16:30.853938][UC][I] Loading weights took 416.19 seconds [1532,1532][default_loader.py:384,load_weights]
 2026-03-23T22:16:30.8587000Z [2026-03-23 22:16:30.857902][UC][I] Loading weights took 415.90 seconds [1676,1676][default_loader.py:384,load_weights]
 2026-03-23T22:16:30.8615172Z [2026-03-23 22:16:30.860730][UC][I] Loading weights took 415.97 seconds [2064,2064][default_loader.py:384,load_weights]
@@ -1496,333 +1496,333 @@
 2026-03-23T22:17:04.4314232Z (Worker_DP1_TP7_EP15 pid=2160) INFO 03-23 22:17:04 [model_runner_v1.py:2564] Loading drafter model...
 2026-03-23T22:17:04.4542565Z (Worker_DP1_TP3_EP11 pid=1775) WARNING 03-23 22:17:04 [sfa_v1.py:521] Currently mlapo does not support SFA with CP,thus mlapo is disabled for these layers.
 2026-03-23T22:17:04.6661709Z (Worker_DP1_TP3_EP11 pid=1775) INFO 03-23 22:17:04 [model_runner_v1.py:2564] Loading drafter model...
-2026-03-23T22:17:12.4303126Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:17:12.4303126Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:17:12.4303599Z Loading safetensors checkpoint shards:   0% Completed | 0/163 [00:00<?, ?it/s]
-2026-03-23T22:17:13.2554119Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:17:13.2554119Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:17:13.2554597Z Loading safetensors checkpoint shards:   1% Completed | 1/163 [00:00<02:13,  1.21it/s]
-2026-03-23T22:17:14.5213686Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:17:14.5213686Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:17:14.5214223Z Loading safetensors checkpoint shards:   1% Completed | 2/163 [00:02<02:54,  1.08s/it]
-2026-03-23T22:17:15.8425193Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:17:15.8425193Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:17:15.8425701Z Loading safetensors checkpoint shards:   2% Completed | 3/163 [00:03<03:10,  1.19s/it]
-2026-03-23T22:17:17.0134251Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:17:17.0134251Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:17:17.0134755Z Loading safetensors checkpoint shards:   2% Completed | 4/163 [00:04<03:08,  1.18s/it]
-2026-03-23T22:17:18.2689272Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:17:18.2689272Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:17:18.2689772Z Loading safetensors checkpoint shards:   3% Completed | 5/163 [00:05<03:11,  1.21s/it]
-2026-03-23T22:17:19.4774783Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:17:19.4774783Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:17:19.4775273Z Loading safetensors checkpoint shards:   4% Completed | 6/163 [00:07<03:09,  1.21s/it]
-2026-03-23T22:17:20.7290122Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:17:20.7290122Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:17:21.9250450Z Loading safetensors checkpoint shards:   4% Completed | 7/163 [00:08<03:10,  1.22s/it]
-2026-03-23T22:17:21.9251010Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:17:21.9251010Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:17:21.9251439Z Loading safetensors checkpoint shards:   5% Completed | 8/163 [00:09<03:08,  1.21s/it]
-2026-03-23T22:17:23.1547269Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:17:23.1547269Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:17:23.1547724Z Loading safetensors checkpoint shards:   6% Completed | 9/163 [00:10<03:07,  1.22s/it]
-2026-03-23T22:17:24.4110199Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:17:24.4110199Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:17:24.4110728Z Loading safetensors checkpoint shards:   6% Completed | 10/163 [00:11<03:08,  1.23s/it]
-2026-03-23T22:17:25.6867573Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:17:25.6867573Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:17:25.6868081Z Loading safetensors checkpoint shards:   7% Completed | 11/163 [00:13<03:09,  1.24s/it]
-2026-03-23T22:17:26.9249293Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:17:26.9249293Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:17:26.9249801Z Loading safetensors checkpoint shards:   7% Completed | 12/163 [00:14<03:07,  1.24s/it]
-2026-03-23T22:17:28.1939610Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:17:28.1939610Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:17:28.1940238Z Loading safetensors checkpoint shards:   8% Completed | 13/163 [00:15<03:07,  1.25s/it]
-2026-03-23T22:17:29.4111649Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:17:29.4111649Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:17:29.4112222Z Loading safetensors checkpoint shards:   9% Completed | 14/163 [00:16<03:04,  1.24s/it]
-2026-03-23T22:17:30.6027567Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:17:30.6027567Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:17:30.6028109Z Loading safetensors checkpoint shards:   9% Completed | 15/163 [00:18<03:01,  1.23s/it]
-2026-03-23T22:17:31.8123265Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:17:31.8123265Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:17:31.8123770Z Loading safetensors checkpoint shards:  10% Completed | 16/163 [00:19<02:59,  1.22s/it]
-2026-03-23T22:17:32.9963505Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:17:32.9963505Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:17:32.9964004Z Loading safetensors checkpoint shards:  10% Completed | 17/163 [00:20<02:56,  1.21s/it]
-2026-03-23T22:17:34.1962971Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:17:34.1962971Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:17:34.1963476Z Loading safetensors checkpoint shards:  11% Completed | 18/163 [00:21<02:54,  1.21s/it]
-2026-03-23T22:17:35.3948649Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:17:35.3948649Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:17:35.3949184Z Loading safetensors checkpoint shards:  12% Completed | 19/163 [00:22<02:53,  1.20s/it]
-2026-03-23T22:17:36.6601993Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:17:36.6601993Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:17:36.6602549Z Loading safetensors checkpoint shards:  12% Completed | 20/163 [00:24<02:54,  1.22s/it]
-2026-03-23T22:17:38.0089133Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:17:38.0089133Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:17:38.0089695Z Loading safetensors checkpoint shards:  13% Completed | 21/163 [00:25<02:58,  1.26s/it]
-2026-03-23T22:17:39.3332768Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:17:39.3332768Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:17:39.3333267Z Loading safetensors checkpoint shards:  13% Completed | 22/163 [00:26<03:00,  1.28s/it]
-2026-03-23T22:17:40.6230457Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:17:40.6230457Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:17:40.6230961Z Loading safetensors checkpoint shards:  14% Completed | 23/163 [00:28<02:59,  1.28s/it]
-2026-03-23T22:17:41.9628385Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:17:41.9628385Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:17:41.9628895Z Loading safetensors checkpoint shards:  15% Completed | 24/163 [00:29<03:00,  1.30s/it]
-2026-03-23T22:17:43.2395017Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:17:43.2395017Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:17:43.2395558Z Loading safetensors checkpoint shards:  15% Completed | 25/163 [00:30<02:58,  1.29s/it]
-2026-03-23T22:17:44.6000766Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:17:44.6000766Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:17:44.6001271Z Loading safetensors checkpoint shards:  16% Completed | 26/163 [00:32<02:59,  1.31s/it]
-2026-03-23T22:17:45.9352710Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:17:45.9352710Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:17:45.9353249Z Loading safetensors checkpoint shards:  17% Completed | 27/163 [00:33<02:59,  1.32s/it]
-2026-03-23T22:17:47.1812086Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:17:47.1812086Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:17:47.1812588Z Loading safetensors checkpoint shards:  17% Completed | 28/163 [00:34<02:55,  1.30s/it]
-2026-03-23T22:17:48.5165881Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:17:48.5165881Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:17:48.5166392Z Loading safetensors checkpoint shards:  18% Completed | 29/163 [00:36<02:55,  1.31s/it]
-2026-03-23T22:17:49.8605825Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:17:49.8605825Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:17:49.8606321Z Loading safetensors checkpoint shards:  18% Completed | 30/163 [00:37<02:55,  1.32s/it]
-2026-03-23T22:17:51.1924470Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:17:51.1924470Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:17:51.1925004Z Loading safetensors checkpoint shards:  19% Completed | 31/163 [00:38<02:54,  1.32s/it]
-2026-03-23T22:17:52.5061359Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:17:52.5061359Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:17:52.5061870Z Loading safetensors checkpoint shards:  20% Completed | 32/163 [00:40<02:52,  1.32s/it]
-2026-03-23T22:17:53.9940890Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:17:53.9940890Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:17:53.9941389Z Loading safetensors checkpoint shards:  20% Completed | 33/163 [00:41<02:58,  1.37s/it]
-2026-03-23T22:17:55.2914632Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:17:55.2914632Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:17:55.2915130Z Loading safetensors checkpoint shards:  21% Completed | 34/163 [00:42<02:53,  1.35s/it]
-2026-03-23T22:17:56.6108089Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:17:56.6108089Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:17:56.6108601Z Loading safetensors checkpoint shards:  21% Completed | 35/163 [00:44<02:51,  1.34s/it]
-2026-03-23T22:17:57.8375401Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:17:57.8375401Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:17:57.8375919Z Loading safetensors checkpoint shards:  22% Completed | 36/163 [00:45<02:45,  1.31s/it]
-2026-03-23T22:17:59.1723098Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:17:59.1723098Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:18:00.4824338Z Loading safetensors checkpoint shards:  23% Completed | 37/163 [00:46<02:45,  1.31s/it]
-2026-03-23T22:18:00.4824856Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:18:00.4824856Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:18:00.4825264Z Loading safetensors checkpoint shards:  23% Completed | 38/163 [00:48<02:44,  1.31s/it]
-2026-03-23T22:18:01.7094889Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:18:01.7094889Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:18:01.7095388Z Loading safetensors checkpoint shards:  24% Completed | 39/163 [00:49<02:39,  1.29s/it]
-2026-03-23T22:18:02.9905036Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:18:02.9905036Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:18:02.9905532Z Loading safetensors checkpoint shards:  25% Completed | 40/163 [00:50<02:38,  1.29s/it]
-2026-03-23T22:18:04.5184583Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:18:04.5184583Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:18:04.5185078Z Loading safetensors checkpoint shards:  25% Completed | 41/163 [00:52<02:45,  1.36s/it]
-2026-03-23T22:18:05.7765428Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:18:05.7765428Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:18:05.7765925Z Loading safetensors checkpoint shards:  26% Completed | 42/163 [00:53<02:40,  1.33s/it]
-2026-03-23T22:18:07.0730863Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:18:07.0730863Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:18:07.0731380Z Loading safetensors checkpoint shards:  26% Completed | 43/163 [00:54<02:38,  1.32s/it]
-2026-03-23T22:18:08.2955642Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:18:08.2955642Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:18:08.2956181Z Loading safetensors checkpoint shards:  27% Completed | 44/163 [00:55<02:33,  1.29s/it]
-2026-03-23T22:18:09.5728645Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:18:09.5728645Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:18:09.5729169Z Loading safetensors checkpoint shards:  28% Completed | 45/163 [00:57<02:31,  1.29s/it]
-2026-03-23T22:18:10.9381057Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:18:10.9381057Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:18:10.9381564Z Loading safetensors checkpoint shards:  28% Completed | 46/163 [00:58<02:33,  1.31s/it]
-2026-03-23T22:18:12.1482034Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:18:12.1482034Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:18:12.1482529Z Loading safetensors checkpoint shards:  29% Completed | 47/163 [00:59<02:28,  1.28s/it]
-2026-03-23T22:18:13.6896103Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:18:13.6896103Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:18:13.6896639Z Loading safetensors checkpoint shards:  29% Completed | 48/163 [01:01<02:36,  1.36s/it]
-2026-03-23T22:18:15.0180784Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:18:15.0180784Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:18:15.0181298Z Loading safetensors checkpoint shards:  30% Completed | 49/163 [01:02<02:33,  1.35s/it]
-2026-03-23T22:18:16.2138487Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:18:16.2138487Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:18:16.2139007Z Loading safetensors checkpoint shards:  31% Completed | 50/163 [01:03<02:27,  1.30s/it]
-2026-03-23T22:18:17.4940184Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:18:17.4940184Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:18:17.4940684Z Loading safetensors checkpoint shards:  31% Completed | 51/163 [01:05<02:25,  1.30s/it]
-2026-03-23T22:18:18.6609914Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:18:18.6609914Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:18:18.6610470Z Loading safetensors checkpoint shards:  32% Completed | 52/163 [01:06<02:19,  1.26s/it]
-2026-03-23T22:18:19.9750920Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:18:19.9750920Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:18:19.9751443Z Loading safetensors checkpoint shards:  33% Completed | 53/163 [01:07<02:20,  1.27s/it]
-2026-03-23T22:18:21.3092017Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:18:21.3092017Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:18:21.3092553Z Loading safetensors checkpoint shards:  33% Completed | 54/163 [01:08<02:20,  1.29s/it]
-2026-03-23T22:18:22.5745713Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:18:22.5745713Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:18:22.5746214Z Loading safetensors checkpoint shards:  34% Completed | 55/163 [01:10<02:18,  1.28s/it]
-2026-03-23T22:18:23.8583219Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:18:23.8583219Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:18:23.8583717Z Loading safetensors checkpoint shards:  34% Completed | 56/163 [01:11<02:17,  1.28s/it]
-2026-03-23T22:18:25.2027862Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:18:25.2027862Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:18:25.2028373Z Loading safetensors checkpoint shards:  35% Completed | 57/163 [01:12<02:18,  1.30s/it]
-2026-03-23T22:18:26.4516802Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:18:26.4516802Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:18:26.4517310Z Loading safetensors checkpoint shards:  36% Completed | 58/163 [01:14<02:15,  1.29s/it]
-2026-03-23T22:18:27.7407474Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:18:27.7407474Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:18:27.7407982Z Loading safetensors checkpoint shards:  36% Completed | 59/163 [01:15<02:13,  1.29s/it]
-2026-03-23T22:18:28.9990499Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:18:28.9990499Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:18:28.9991327Z Loading safetensors checkpoint shards:  37% Completed | 60/163 [01:16<02:11,  1.28s/it]
-2026-03-23T22:18:30.3504242Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:18:30.3504242Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:18:30.3505031Z Loading safetensors checkpoint shards:  37% Completed | 61/163 [01:17<02:12,  1.30s/it]
-2026-03-23T22:18:31.7429459Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:18:31.7429459Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:18:31.7430220Z Loading safetensors checkpoint shards:  38% Completed | 62/163 [01:19<02:14,  1.33s/it]
-2026-03-23T22:18:33.1342016Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:18:33.1342016Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:18:33.1342523Z Loading safetensors checkpoint shards:  39% Completed | 63/163 [01:20<02:14,  1.35s/it]
-2026-03-23T22:18:34.5585973Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:18:34.5585973Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:18:34.5586484Z Loading safetensors checkpoint shards:  39% Completed | 64/163 [01:22<02:15,  1.37s/it]
-2026-03-23T22:18:36.2776343Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:18:36.2776343Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:18:36.2776843Z Loading safetensors checkpoint shards:  40% Completed | 65/163 [01:23<02:24,  1.47s/it]
-2026-03-23T22:18:37.5982267Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:18:37.5982267Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:18:37.5982771Z Loading safetensors checkpoint shards:  40% Completed | 66/163 [01:25<02:18,  1.43s/it]
-2026-03-23T22:18:38.9962421Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:18:38.9962421Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:18:38.9962953Z Loading safetensors checkpoint shards:  41% Completed | 67/163 [01:26<02:16,  1.42s/it]
-2026-03-23T22:18:40.3432123Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:18:40.3432123Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:18:40.3432631Z Loading safetensors checkpoint shards:  42% Completed | 68/163 [01:27<02:12,  1.40s/it]
-2026-03-23T22:18:41.6858224Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:18:41.6858224Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:18:41.6858730Z Loading safetensors checkpoint shards:  42% Completed | 69/163 [01:29<02:09,  1.38s/it]
-2026-03-23T22:18:42.9932660Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:18:42.9932660Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:18:42.9933170Z Loading safetensors checkpoint shards:  43% Completed | 70/163 [01:30<02:06,  1.36s/it]
-2026-03-23T22:18:44.2646657Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:18:44.2646657Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:18:44.2647207Z Loading safetensors checkpoint shards:  44% Completed | 71/163 [01:31<02:02,  1.33s/it]
-2026-03-23T22:18:45.7978874Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:18:45.7978874Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:18:45.7979378Z Loading safetensors checkpoint shards:  44% Completed | 72/163 [01:33<02:06,  1.39s/it]
-2026-03-23T22:18:47.1888330Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:18:47.1888330Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:18:47.1889241Z Loading safetensors checkpoint shards:  45% Completed | 73/163 [01:34<02:05,  1.39s/it]
-2026-03-23T22:18:48.4774777Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:18:48.4774777Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:18:48.4775352Z Loading safetensors checkpoint shards:  45% Completed | 74/163 [01:36<02:01,  1.36s/it]
-2026-03-23T22:18:49.8487859Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:18:49.8487859Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:18:49.8488378Z Loading safetensors checkpoint shards:  46% Completed | 75/163 [01:37<02:00,  1.36s/it]
-2026-03-23T22:18:51.2337279Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:18:51.2337279Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:18:51.2337775Z Loading safetensors checkpoint shards:  47% Completed | 76/163 [01:38<01:59,  1.37s/it]
-2026-03-23T22:18:52.5009067Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:18:52.5009067Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:18:52.5009590Z Loading safetensors checkpoint shards:  47% Completed | 77/163 [01:40<01:55,  1.34s/it]
-2026-03-23T22:18:53.8739323Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:18:53.8739323Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:18:53.8739823Z Loading safetensors checkpoint shards:  48% Completed | 78/163 [01:41<01:54,  1.35s/it]
-2026-03-23T22:18:55.2095443Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:18:55.2095443Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:18:55.2095947Z Loading safetensors checkpoint shards:  48% Completed | 79/163 [01:42<01:53,  1.35s/it]
-2026-03-23T22:18:56.5099819Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:18:56.5099819Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:18:56.5100426Z Loading safetensors checkpoint shards:  49% Completed | 80/163 [01:44<01:49,  1.32s/it]
-2026-03-23T22:18:57.8980525Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:18:57.8980525Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:18:57.8981045Z Loading safetensors checkpoint shards:  50% Completed | 81/163 [01:45<01:50,  1.35s/it]
-2026-03-23T22:18:59.1735490Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:18:59.1735490Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:18:59.1735931Z Loading safetensors checkpoint shards:  50% Completed | 82/163 [01:46<01:47,  1.33s/it]
-2026-03-23T22:19:00.5511912Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:19:00.5511912Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:19:00.5512728Z Loading safetensors checkpoint shards:  51% Completed | 83/163 [01:48<01:47,  1.34s/it]
-2026-03-23T22:19:01.9491497Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:19:01.9491497Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:19:01.9492002Z Loading safetensors checkpoint shards:  52% Completed | 84/163 [01:49<01:47,  1.36s/it]
-2026-03-23T22:19:03.3817667Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:19:03.3817667Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:19:03.3818147Z Loading safetensors checkpoint shards:  52% Completed | 85/163 [01:50<01:47,  1.38s/it]
-2026-03-23T22:19:04.7804064Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:19:04.7804064Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:19:04.7804566Z Loading safetensors checkpoint shards:  53% Completed | 86/163 [01:52<01:46,  1.39s/it]
-2026-03-23T22:19:06.1923869Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:19:06.1923869Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:19:06.1924373Z Loading safetensors checkpoint shards:  53% Completed | 87/163 [01:53<01:45,  1.39s/it]
-2026-03-23T22:19:07.5438016Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:19:07.5438016Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:19:07.5438539Z Loading safetensors checkpoint shards:  54% Completed | 88/163 [01:55<01:43,  1.38s/it]
-2026-03-23T22:19:08.9995650Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:19:08.9995650Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:19:08.9996246Z Loading safetensors checkpoint shards:  55% Completed | 89/163 [01:56<01:43,  1.40s/it]
-2026-03-23T22:19:10.3067024Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:19:10.3067024Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:19:10.3067540Z Loading safetensors checkpoint shards:  55% Completed | 90/163 [01:57<01:40,  1.37s/it]
-2026-03-23T22:19:11.9509156Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:19:11.9509156Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:19:11.9509663Z Loading safetensors checkpoint shards:  56% Completed | 91/163 [01:59<01:44,  1.46s/it]
-2026-03-23T22:19:13.4167938Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:19:13.4167938Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:19:13.4168437Z Loading safetensors checkpoint shards:  56% Completed | 92/163 [02:00<01:43,  1.46s/it]
-2026-03-23T22:19:14.7764707Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:19:14.7764707Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:19:14.7765201Z Loading safetensors checkpoint shards:  57% Completed | 93/163 [02:02<01:40,  1.43s/it]
-2026-03-23T22:19:16.1823647Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:19:16.1823647Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:19:16.1824149Z Loading safetensors checkpoint shards:  58% Completed | 94/163 [02:03<01:38,  1.42s/it]
-2026-03-23T22:19:17.9682652Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:19:17.9682652Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:19:17.9683160Z Loading safetensors checkpoint shards:  58% Completed | 95/163 [02:05<01:44,  1.53s/it]
-2026-03-23T22:19:19.3066933Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:19:19.3066933Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:19:19.3067840Z Loading safetensors checkpoint shards:  59% Completed | 96/163 [02:06<01:38,  1.47s/it]
-2026-03-23T22:19:20.7726450Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:19:20.7726450Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:19:20.7726949Z Loading safetensors checkpoint shards:  60% Completed | 97/163 [02:08<01:37,  1.47s/it]
-2026-03-23T22:19:22.0648458Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:19:22.0648458Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:19:22.0648967Z Loading safetensors checkpoint shards:  60% Completed | 98/163 [02:09<01:32,  1.42s/it]
-2026-03-23T22:19:23.4469478Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:19:23.4469478Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:19:23.4470054Z Loading safetensors checkpoint shards:  61% Completed | 99/163 [02:11<01:30,  1.41s/it]
-2026-03-23T22:19:24.8585522Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:19:24.8585522Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:19:24.8586052Z Loading safetensors checkpoint shards:  61% Completed | 100/163 [02:12<01:28,  1.41s/it]
-2026-03-23T22:19:26.2494119Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:19:26.2494119Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:19:26.2494632Z Loading safetensors checkpoint shards:  62% Completed | 101/163 [02:13<01:26,  1.40s/it]
-2026-03-23T22:19:27.5602428Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:19:27.5602428Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:19:27.5602979Z Loading safetensors checkpoint shards:  63% Completed | 102/163 [02:15<01:23,  1.38s/it]
-2026-03-23T22:19:28.9170252Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:19:28.9170252Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:19:28.9170762Z Loading safetensors checkpoint shards:  63% Completed | 103/163 [02:16<01:22,  1.37s/it]
-2026-03-23T22:19:30.2528368Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:19:30.2528368Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:19:30.2528892Z Loading safetensors checkpoint shards:  64% Completed | 104/163 [02:17<01:20,  1.36s/it]
-2026-03-23T22:19:31.5809671Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:19:31.5809671Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:19:31.5810310Z Loading safetensors checkpoint shards:  64% Completed | 105/163 [02:19<01:18,  1.35s/it]
-2026-03-23T22:19:32.8764926Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:19:32.8764926Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:19:32.8765752Z Loading safetensors checkpoint shards:  65% Completed | 106/163 [02:20<01:16,  1.33s/it]
-2026-03-23T22:19:34.2209254Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:19:34.2209254Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:19:34.2209753Z Loading safetensors checkpoint shards:  66% Completed | 107/163 [02:21<01:14,  1.34s/it]
-2026-03-23T22:19:35.5929122Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:19:35.5929122Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:19:35.5929625Z Loading safetensors checkpoint shards:  66% Completed | 108/163 [02:23<01:14,  1.35s/it]
-2026-03-23T22:19:36.8874824Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:19:36.8874824Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:19:36.8875321Z Loading safetensors checkpoint shards:  67% Completed | 109/163 [02:24<01:11,  1.33s/it]
-2026-03-23T22:19:38.2832160Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:19:38.2832160Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:19:38.2832670Z Loading safetensors checkpoint shards:  67% Completed | 110/163 [02:25<01:11,  1.35s/it]
-2026-03-23T22:19:39.5978573Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:19:39.5978573Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:19:39.5979075Z Loading safetensors checkpoint shards:  68% Completed | 111/163 [02:27<01:09,  1.34s/it]
-2026-03-23T22:19:40.8476012Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:19:40.8476012Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:19:40.8476546Z Loading safetensors checkpoint shards:  69% Completed | 112/163 [02:28<01:06,  1.31s/it]
-2026-03-23T22:19:42.2095673Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:19:42.2095673Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:19:42.2096187Z Loading safetensors checkpoint shards:  69% Completed | 113/163 [02:29<01:06,  1.33s/it]
-2026-03-23T22:19:43.5377241Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:19:43.5377241Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:19:43.5377749Z Loading safetensors checkpoint shards:  70% Completed | 114/163 [02:31<01:05,  1.33s/it]
-2026-03-23T22:19:44.8608037Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:19:44.8608037Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:19:44.8608533Z Loading safetensors checkpoint shards:  71% Completed | 115/163 [02:32<01:03,  1.33s/it]
-2026-03-23T22:19:46.1283144Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:19:46.1283144Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:19:46.1283638Z Loading safetensors checkpoint shards:  71% Completed | 116/163 [02:33<01:01,  1.31s/it]
-2026-03-23T22:19:47.4106744Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:19:47.4106744Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:19:47.4107280Z Loading safetensors checkpoint shards:  72% Completed | 117/163 [02:34<00:59,  1.30s/it]
-2026-03-23T22:19:48.7404557Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:19:48.7404557Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:19:48.7405063Z Loading safetensors checkpoint shards:  72% Completed | 118/163 [02:36<00:58,  1.31s/it]
-2026-03-23T22:19:50.0366027Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:19:50.0366027Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:19:50.0366888Z Loading safetensors checkpoint shards:  73% Completed | 119/163 [02:37<00:57,  1.31s/it]
-2026-03-23T22:19:51.2949087Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:19:51.2949087Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:19:51.2949611Z Loading safetensors checkpoint shards:  74% Completed | 120/163 [02:38<00:55,  1.29s/it]
-2026-03-23T22:19:52.6207243Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:19:52.6207243Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:19:52.6207809Z Loading safetensors checkpoint shards:  74% Completed | 121/163 [02:40<00:54,  1.30s/it]
-2026-03-23T22:19:54.0028930Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:19:54.0028930Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:19:54.0029381Z Loading safetensors checkpoint shards:  75% Completed | 122/163 [02:41<00:54,  1.33s/it]
-2026-03-23T22:19:55.3187852Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:19:55.3187852Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:19:56.6404880Z Loading safetensors checkpoint shards:  75% Completed | 123/163 [02:42<00:52,  1.32s/it]
-2026-03-23T22:19:56.6405403Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:19:56.6405403Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:19:56.6405825Z Loading safetensors checkpoint shards:  76% Completed | 124/163 [02:44<00:51,  1.32s/it]
-2026-03-23T22:19:57.9643110Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:19:57.9643110Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:19:57.9643594Z Loading safetensors checkpoint shards:  77% Completed | 125/163 [02:45<00:50,  1.32s/it]
-2026-03-23T22:19:59.2385101Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:19:59.2385101Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:19:59.2385598Z Loading safetensors checkpoint shards:  77% Completed | 126/163 [02:46<00:48,  1.31s/it]
-2026-03-23T22:20:00.5256979Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:20:00.5256979Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:20:00.5257470Z Loading safetensors checkpoint shards:  78% Completed | 127/163 [02:48<00:46,  1.30s/it]
-2026-03-23T22:20:01.8229069Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:20:01.8229069Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:20:01.8229618Z Loading safetensors checkpoint shards:  79% Completed | 128/163 [02:49<00:45,  1.30s/it]
-2026-03-23T22:20:03.1325734Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:20:03.1325734Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:20:03.1326587Z Loading safetensors checkpoint shards:  79% Completed | 129/163 [02:50<00:44,  1.30s/it]
-2026-03-23T22:20:04.4973130Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:20:04.4973130Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:20:04.4973638Z Loading safetensors checkpoint shards:  80% Completed | 130/163 [02:52<00:43,  1.32s/it]
-2026-03-23T22:20:05.8286982Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:20:05.8286982Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:20:05.8287494Z Loading safetensors checkpoint shards:  80% Completed | 131/163 [02:53<00:42,  1.32s/it]
-2026-03-23T22:20:07.2303488Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:20:07.2303488Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:20:07.2303938Z Loading safetensors checkpoint shards:  82% Completed | 133/163 [02:54<00:31,  1.04s/it]
-2026-03-23T22:20:08.5381124Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:20:08.5381124Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:20:08.5381621Z Loading safetensors checkpoint shards:  82% Completed | 134/163 [02:56<00:32,  1.10s/it]
-2026-03-23T22:20:09.8991402Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:20:09.8991402Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:20:09.8991910Z Loading safetensors checkpoint shards:  83% Completed | 135/163 [02:57<00:32,  1.17s/it]
-2026-03-23T22:20:11.1758532Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:20:11.1758532Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:20:11.1759069Z Loading safetensors checkpoint shards:  83% Completed | 136/163 [02:58<00:32,  1.20s/it]
-2026-03-23T22:20:12.5700390Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:20:12.5700390Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:20:12.5700897Z Loading safetensors checkpoint shards:  84% Completed | 137/163 [03:00<00:32,  1.25s/it]
-2026-03-23T22:20:13.9300794Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:20:13.9300794Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:20:13.9301298Z Loading safetensors checkpoint shards:  85% Completed | 138/163 [03:01<00:32,  1.28s/it]
-2026-03-23T22:20:15.2377547Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:20:15.2377547Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:20:15.2378064Z Loading safetensors checkpoint shards:  85% Completed | 139/163 [03:02<00:30,  1.29s/it]
-2026-03-23T22:20:16.6277929Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:20:16.6277929Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:20:16.6278506Z Loading safetensors checkpoint shards:  86% Completed | 140/163 [03:04<00:30,  1.32s/it]
-2026-03-23T22:20:18.0013006Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:20:18.0013006Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:20:18.0013462Z Loading safetensors checkpoint shards:  87% Completed | 141/163 [03:05<00:29,  1.34s/it]
-2026-03-23T22:20:19.2968502Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:20:19.2968502Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:20:19.2969014Z Loading safetensors checkpoint shards:  87% Completed | 142/163 [03:06<00:27,  1.32s/it]
-2026-03-23T22:20:20.5837443Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:20:20.5837443Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:20:22.1440261Z Loading safetensors checkpoint shards:  88% Completed | 143/163 [03:08<00:26,  1.31s/it]
-2026-03-23T22:20:22.1440789Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:20:22.1440789Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:20:22.1441229Z Loading safetensors checkpoint shards:  88% Completed | 144/163 [03:09<00:26,  1.39s/it]
-2026-03-23T22:20:23.4705034Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:20:23.4705034Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:20:23.4705546Z Loading safetensors checkpoint shards:  89% Completed | 145/163 [03:11<00:24,  1.37s/it]
-2026-03-23T22:20:24.8468764Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:20:24.8468764Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:20:24.8469269Z Loading safetensors checkpoint shards:  90% Completed | 146/163 [03:12<00:23,  1.37s/it]
-2026-03-23T22:20:26.1282842Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:20:26.1282842Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:20:26.1283381Z Loading safetensors checkpoint shards:  90% Completed | 147/163 [03:13<00:21,  1.34s/it]
-2026-03-23T22:20:27.4130410Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:20:27.4130410Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:20:27.4130934Z Loading safetensors checkpoint shards:  91% Completed | 148/163 [03:14<00:19,  1.33s/it]
-2026-03-23T22:20:28.7662895Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:20:28.7662895Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:20:28.7663435Z Loading safetensors checkpoint shards:  91% Completed | 149/163 [03:16<00:18,  1.33s/it]
-2026-03-23T22:20:30.1016783Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:20:30.1016783Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:20:30.1017309Z Loading safetensors checkpoint shards:  92% Completed | 150/163 [03:17<00:17,  1.33s/it]
-2026-03-23T22:20:31.4230668Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:20:31.4230668Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:20:31.4231164Z Loading safetensors checkpoint shards:  93% Completed | 151/163 [03:18<00:15,  1.33s/it]
-2026-03-23T22:20:32.6898964Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:20:32.6898964Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:20:32.6899478Z Loading safetensors checkpoint shards:  93% Completed | 152/163 [03:20<00:14,  1.31s/it]
-2026-03-23T22:20:33.9827789Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:20:33.9827789Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:20:33.9828638Z Loading safetensors checkpoint shards:  94% Completed | 153/163 [03:21<00:13,  1.31s/it]
-2026-03-23T22:20:35.3550937Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:20:35.3550937Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:20:35.3551450Z Loading safetensors checkpoint shards:  94% Completed | 154/163 [03:22<00:11,  1.33s/it]
-2026-03-23T22:20:36.6370688Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:20:36.6370688Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:20:36.6371205Z Loading safetensors checkpoint shards:  95% Completed | 155/163 [03:24<00:10,  1.31s/it]
-2026-03-23T22:20:38.0511155Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:20:38.0511155Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:20:38.0511656Z Loading safetensors checkpoint shards:  96% Completed | 156/163 [03:25<00:09,  1.34s/it]
-2026-03-23T22:20:39.4021746Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:20:39.4021746Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:20:39.4022246Z Loading safetensors checkpoint shards:  96% Completed | 157/163 [03:26<00:08,  1.35s/it]
-2026-03-23T22:20:41.9867182Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:20:41.9867182Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:20:41.9867690Z Loading safetensors checkpoint shards:  97% Completed | 158/163 [03:29<00:08,  1.72s/it]
-2026-03-23T22:20:43.4651584Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:20:43.4651584Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:20:43.4652121Z Loading safetensors checkpoint shards:  98% Completed | 159/163 [03:31<00:06,  1.65s/it]
-2026-03-23T22:20:45.0815062Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:20:45.0815062Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:20:45.0815578Z Loading safetensors checkpoint shards:  98% Completed | 160/163 [03:32<00:04,  1.64s/it]
 2026-03-23T22:20:49.8571178Z [2026-03-23 22:20:49.856001][UC][I] Loading weights took 217.37 seconds [1679,1679][default_loader.py:384,load_weights]
 2026-03-23T22:20:49.8638697Z (Worker_DP0_TP2_EP2 pid=1679) INFO 03-23 22:20:49 [eagle_proposer.py:290] Detected MTP model. Sharing target model embedding weights with the draft model.
-2026-03-23T22:20:49.8935367Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:20:49.8935367Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:20:49.8935821Z Loading safetensors checkpoint shards:  99% Completed | 161/163 [03:37<00:05,  2.59s/it]
-2026-03-23T22:20:49.8965533Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:20:49.8965533Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:20:49.8965957Z Loading safetensors checkpoint shards: 100% Completed | 163/163 [03:37<00:00,  1.33s/it]
-2026-03-23T22:20:49.8966450Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:20:49.8966450Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:20:49.9251128Z [2026-03-23 22:20:49.924292][UC][I] Loading weights took 217.48 seconds [2060,2060][default_loader.py:384,load_weights]
 2026-03-23T22:20:49.9251883Z [2026-03-23 22:20:49.924292][UC][I] Loading weights took 217.48 seconds [2156,2156][default_loader.py:384,load_weights]
 2026-03-23T22:20:49.9253455Z [2026-03-23 22:20:49.924632][UC][I] Loading weights took 217.49 seconds [1964,1964][default_loader.py:384,load_weights]
@@ -1987,7 +1987,7 @@
 2026-03-23T22:21:37.9020822Z [2026-03-23 22:21:37.900914][UC][I] Maximum concurrency for 8,192 tokens per request: 9.14x [1482,1482][kv_cache_utils.py:1321,_report_kv_cache_config]
 2026-03-23T22:21:37.9984308Z [2026-03-23 22:21:37.997459][UC][I] GPU KV cache size: 74,880 tokens [1502,1502][kv_cache_utils.py:1316,_report_kv_cache_config]
 2026-03-23T22:21:37.9985218Z [2026-03-23 22:21:37.997519][UC][I] Maximum concurrency for 8,192 tokens per request: 9.14x [1502,1502][kv_cache_utils.py:1321,_report_kv_cache_config]
-2026-03-23T22:21:38.4591233Z (Worker_DP0_TP0_EP0 pid=1531) 
+2026-03-23T22:21:38.4591233Z (Worker_DP0_TP0_EP0 pid=1531)
 2026-03-23T22:21:43.7340598Z Capturing CUDA graphs (decode, FULL):   0%|          | 0/2 [00:00<?, ?it/s][rank3]:[W323 22:21:43.673785518 compiler_depend.ts:207] Warning: Waiting for pending NCCL work to finish before starting graph capture. (function operator())
 2026-03-23T22:21:43.7342269Z [rank5]:[W323 22:21:43.673800758 compiler_depend.ts:207] Warning: Waiting for pending NCCL work to finish before starting graph capture. (function operator())
 2026-03-23T22:21:43.7343258Z [rank9]:[W323 22:21:43.673809958 compiler_depend.ts:207] Warning: Waiting for pending NCCL work to finish before starting graph capture. (function operator())
@@ -2020,7 +2020,7 @@
 2026-03-23T22:21:46.4723962Z [rank2]:[W323 22:21:46.412583528 compiler_depend.ts:3667] Warning: Tensor not is not allocated by NPUCachingAllocator, skip eraseStream. (function operator())
 2026-03-23T22:21:46.4726467Z [rank7]:[W323 22:21:46.412883251 compiler_depend.ts:3667] Warning: Tensor not is not allocated by NPUCachingAllocator, skip eraseStream. (function operator())
 2026-03-23T22:21:46.4733091Z [rank0]:[W323 22:21:46.413584286 compiler_depend.ts:3667] Warning: Tensor not is not allocated by NPUCachingAllocator, skip eraseStream. (function operator())
-2026-03-23T22:21:46.4874400Z 
+2026-03-23T22:21:46.4874400Z
 2026-03-23T22:21:53.5386065Z Capturing CUDA graphs (decode, FULL):  50%|█████     | 1/2 [00:08<00:08,  8.03s/it]
 2026-03-23T22:21:53.5386751Z Capturing CUDA graphs (decode, FULL): 100%|██████████| 2/2 [00:15<00:00,  7.45s/it]
 2026-03-23T22:21:53.5387343Z Capturing CUDA graphs (decode, FULL): 100%|██████████| 2/2 [00:15<00:00,  7.54s/it]
@@ -2040,13 +2040,13 @@
 2026-03-23T22:21:54.3565440Z [2026-03-23 22:21:54.355713][UC][I] Graph capturing finished in 16 secs, took 0.35 GiB [2156,2156][gpu_model_runner.py:5746,capture_model]
 2026-03-23T22:21:54.4148086Z [2026-03-23 22:21:54.414002][UC][I] Graph capturing finished in 16 secs, took 0.33 GiB [2160,2160][gpu_model_runner.py:5746,capture_model]
 2026-03-23T22:21:54.4169289Z [2026-03-23 22:21:54.416240][UC][I] init engine (profile, create kv cache, warmup model) took 61.54 seconds [1502,1502][core.py:281,_initialize_kv_caches]
-2026-03-23T22:21:54.4443950Z (EngineCore_DP1 pid=1502) The tokenizer class you load from this checkpoint is not the same type as the class this function is called from. It may result in unexpected tokenization. 
-2026-03-23T22:21:54.4444932Z (EngineCore_DP1 pid=1502) The tokenizer class you load from this checkpoint is 'LlamaTokenizerFast'. 
+2026-03-23T22:21:54.4443950Z (EngineCore_DP1 pid=1502) The tokenizer class you load from this checkpoint is not the same type as the class this function is called from. It may result in unexpected tokenization.
+2026-03-23T22:21:54.4444932Z (EngineCore_DP1 pid=1502) The tokenizer class you load from this checkpoint is 'LlamaTokenizerFast'.
 2026-03-23T22:21:54.4445579Z (EngineCore_DP1 pid=1502) The class this function is called from is 'PreTrainedTokenizerFast'.
 2026-03-23T22:21:54.4468704Z [2026-03-23 22:21:54.446156][UC][I] Graph capturing finished in 16 secs, took 0.35 GiB [2060,2060][gpu_model_runner.py:5746,capture_model]
 2026-03-23T22:21:54.4490457Z [2026-03-23 22:21:54.448355][UC][I] init engine (profile, create kv cache, warmup model) took 61.54 seconds [1482,1482][core.py:281,_initialize_kv_caches]
-2026-03-23T22:21:54.4546623Z (EngineCore_DP0 pid=1482) The tokenizer class you load from this checkpoint is not the same type as the class this function is called from. It may result in unexpected tokenization. 
-2026-03-23T22:21:54.4547607Z (EngineCore_DP0 pid=1482) The tokenizer class you load from this checkpoint is 'LlamaTokenizerFast'. 
+2026-03-23T22:21:54.4546623Z (EngineCore_DP0 pid=1482) The tokenizer class you load from this checkpoint is not the same type as the class this function is called from. It may result in unexpected tokenization.
+2026-03-23T22:21:54.4547607Z (EngineCore_DP0 pid=1482) The tokenizer class you load from this checkpoint is 'LlamaTokenizerFast'.
 2026-03-23T22:21:54.4548289Z (EngineCore_DP0 pid=1482) The class this function is called from is 'PreTrainedTokenizerFast'.
 2026-03-23T22:21:55.2894220Z [2026-03-23 22:21:55.288339][UC][I] All engine subscriptions received by DP coordinator [1479,1479][coordinator.py:205,process_input_socket]
 2026-03-23T22:21:55.2895394Z [2026-03-23 22:21:55.288760][UC][W] AsyncLLM created with api_server_count more than 1; disabling stats logging to avoid incomplete stats. [1515,1515][loggers.py:1271,__init__]
@@ -2072,7 +2072,7 @@
 2026-03-23T22:21:55.2925473Z (EngineCore_DP1 pid=1502) WARNING 03-23 22:21:55 [platform.py:341]             * For more details, please refer to:
 2026-03-23T22:21:55.2926334Z (EngineCore_DP1 pid=1502) WARNING 03-23 22:21:55 [platform.py:341]             * https://docs.vllm.ai/en/stable/configuration/conserving_memory.html#reduce-cuda-graphs
 2026-03-23T22:21:55.2927369Z (EngineCore_DP1 pid=1502) WARNING 03-23 22:21:55 [platform.py:341]             **********************************************************************************[0m
-2026-03-23T22:21:55.2927988Z (EngineCore_DP1 pid=1502) WARNING 03-23 22:21:55 [platform.py:341]             
+2026-03-23T22:21:55.2927988Z (EngineCore_DP1 pid=1502) WARNING 03-23 22:21:55 [platform.py:341]
 2026-03-23T22:21:55.2928721Z (EngineCore_DP0 pid=1482) INFO 03-23 22:21:55 [platform.py:324] FULL_DECODE_ONLY compilation enabled on NPU. use_inductor not supported - using only ACL Graph mode
 2026-03-23T22:21:55.2929632Z (EngineCore_DP0 pid=1482) WARNING 03-23 22:21:55 [platform.py:341] [91m
 2026-03-23T22:21:55.2930372Z (EngineCore_DP0 pid=1482) WARNING 03-23 22:21:55 [platform.py:341]             **********************************************************************************
@@ -2085,7 +2085,7 @@
 2026-03-23T22:21:55.2936051Z (EngineCore_DP0 pid=1482) WARNING 03-23 22:21:55 [platform.py:341]             * For more details, please refer to:
 2026-03-23T22:21:55.2936890Z (EngineCore_DP0 pid=1482) WARNING 03-23 22:21:55 [platform.py:341]             * https://docs.vllm.ai/en/stable/configuration/conserving_memory.html#reduce-cuda-graphs
 2026-03-23T22:21:55.2937986Z (EngineCore_DP0 pid=1482) WARNING 03-23 22:21:55 [platform.py:341]             **********************************************************************************[0m
-2026-03-23T22:21:55.2938607Z (EngineCore_DP0 pid=1482) WARNING 03-23 22:21:55 [platform.py:341]             
+2026-03-23T22:21:55.2938607Z (EngineCore_DP0 pid=1482) WARNING 03-23 22:21:55 [platform.py:341]
 2026-03-23T22:21:55.2939180Z (EngineCore_DP1 pid=1502) INFO 03-23 22:21:55 [platform.py:448] Set PYTORCH_NPU_ALLOC_CONF=expandable_segments:True
 2026-03-23T22:21:55.2939958Z (EngineCore_DP0 pid=1482) INFO 03-23 22:21:55 [platform.py:448] Set PYTORCH_NPU_ALLOC_CONF=expandable_segments:True
 2026-03-23T22:21:55.2940725Z [2026-03-23 22:21:55.290919][UC][I] Enabled custom fusions: norm_quant, act_quant [1502,1502][compilation.py:289,log_enabled_passes]

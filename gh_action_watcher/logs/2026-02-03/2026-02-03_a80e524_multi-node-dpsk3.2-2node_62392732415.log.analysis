@@ -1,18 +1,18 @@
-类型: 设备环境问题  
+类型: 设备环境问题
 
-**根本原因**  
-1. **NPU 显存耗尽导致 API Server 进程崩溃**：全图捕获（FULL_DECODE_ONLY）在默认的 `gpu_memory_utilization` 下为每个 rank 分配了大量显存，超出单卡可用显存后触发 OOM，进程以 exit code 1 退出。  
-2. **实验性全图特性缺乏稳健的内存配置**：官方警告“capturing too many batch sizes can lead to OOM or inference hangs”，但当前配置未显式限制捕获的 batch size，导致显存需求激增。  
-3. **线性层分片（Linear layer sharding）在缺少必要通信后端时性能/稳定性受损**：启用 `q_b_proj/o_proj` 分片时缺少 `FLASHCOMM2` 与 `DSA‑CP`，可能出现内部通信错误或显存分配异常。  
-4. **部分张量未使用 NPUCachingAllocator**，导致显存碎片化并被跳过 `eraseStream`，在多 rank 并行环境下加剧显存压力。  
-5. **多节点、多 rank（16 个 rank）并行导致显存竞争**：每个 rank 均尝试分配相同规模的 KV‑Cache 与图捕获缓冲，单卡显存不足以支撑全部并行实例。  
+**根本原因**
+1. **NPU 显存耗尽导致 API Server 进程崩溃**：全图捕获（FULL_DECODE_ONLY）在默认的 `gpu_memory_utilization` 下为每个 rank 分配了大量显存，超出单卡可用显存后触发 OOM，进程以 exit code 1 退出。
+2. **实验性全图特性缺乏稳健的内存配置**：官方警告“capturing too many batch sizes can lead to OOM or inference hangs”，但当前配置未显式限制捕获的 batch size，导致显存需求激增。
+3. **线性层分片（Linear layer sharding）在缺少必要通信后端时性能/稳定性受损**：启用 `q_b_proj/o_proj` 分片时缺少 `FLASHCOMM2` 与 `DSA‑CP`，可能出现内部通信错误或显存分配异常。
+4. **部分张量未使用 NPUCachingAllocator**，导致显存碎片化并被跳过 `eraseStream`，在多 rank 并行环境下加剧显存压力。
+5. **多节点、多 rank（16 个 rank）并行导致显存竞争**：每个 rank 均尝试分配相同规模的 KV‑Cache 与图捕获缓冲，单卡显存不足以支撑全部并行实例。
 
-**最可能的修复方案**  
-- **降低显存占用**：将 `gpu_memory_utilization` 调低（如 0.8→0.6），或在启动参数中手动指定较小的 `batch_size` 用于图捕获。  
-- **关闭或限制全图捕获**：若实验特性非必需，可在配置中关闭 `FULL_DECODE_ONLY`，或仅对关键 batch size 进行捕获，避免一次性捕获过多变体。  
-- **启用所需通信后端**：在使用 `q_b_proj/o_proj` 分片时确保集群已开启 `FLASHCOMM2` 与 `DSA‑CP`，或在暂时关闭分片功能以排除干扰。  
-- **统一使用 NPUCachingAllocator**：检查所有张量创建路径，确保均在 NPU 上分配；避免在模型外手动创建 CPU Tensor。对已有非托管张量，可通过 `torch.npu.synchronize()` 与显式 `empty_cache` 释放。  
-- **优化多节点资源分配**：减少每节点的并行 rank 数（如 TP × DP 减小），或为每个 rank 配置更小的 `max_num_seqs` / `block_size`，以降低总体显存需求。  
-- **升级驱动与 vLLM 版本**：最新版的 vLLM 与 NPU 驱动对全图捕获的内存管理已有改进，若当前版本为早期实验版建议升级。  
+**最可能的修复方案**
+- **降低显存占用**：将 `gpu_memory_utilization` 调低（如 0.8→0.6），或在启动参数中手动指定较小的 `batch_size` 用于图捕获。
+- **关闭或限制全图捕获**：若实验特性非必需，可在配置中关闭 `FULL_DECODE_ONLY`，或仅对关键 batch size 进行捕获，避免一次性捕获过多变体。
+- **启用所需通信后端**：在使用 `q_b_proj/o_proj` 分片时确保集群已开启 `FLASHCOMM2` 与 `DSA‑CP`，或在暂时关闭分片功能以排除干扰。
+- **统一使用 NPUCachingAllocator**：检查所有张量创建路径，确保均在 NPU 上分配；避免在模型外手动创建 CPU Tensor。对已有非托管张量，可通过 `torch.npu.synchronize()` 与显式 `empty_cache` 释放。
+- **优化多节点资源分配**：减少每节点的并行 rank 数（如 TP × DP 减小），或为每个 rank 配置更小的 `max_num_seqs` / `block_size`，以降低总体显存需求。
+- **升级驱动与 vLLM 版本**：最新版的 vLLM 与 NPU 驱动对全图捕获的内存管理已有改进，若当前版本为早期实验版建议升级。
 
 实施上述任一或组合措施后，预期可避免 OOM、进程异常退出，从而让 multi‑node 测试顺利通过。

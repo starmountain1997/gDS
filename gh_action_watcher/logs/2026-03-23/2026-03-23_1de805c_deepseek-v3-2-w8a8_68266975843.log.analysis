@@ -1,38 +1,38 @@
-类型: 代码问题  
+类型: 代码问题
 
-**根本原因（≤5 条）**  
-1. **RoPE 表长度与实际 token 数不匹配**：`rope_forward_triton_siso` 内部断言 `cos.shape[0] == num_tokens`，但调用者传入的 `cos`、`sin` 仍然是按照全局 `max_position_embeddings` 预计算的完整表，未被裁剪到当前 forward 的 token 数。  
-2. **MLA 前处理未对 `cos/sin` 进行切片**：`indexer_select_pre_process`（`vllm_ascend/attention/sfa_v1.py:875`）直接把完整的 `cos`、`sin` 送入 `rope_forward_triton_siso`，导致形状不一致。  
-3. **配置或生成逻辑错误**：在 DeepSeek‑V2（MLA）模型中，`cos`、`sin` 可能依据 `max_position_embeddings` 或 `rope_theta` 预先计算，却未根据实际运行时的序列长度（`hidden_states.shape[0]`）重新切片或重新生成。  
-4. **多卡/流水线并行时的切片不一致**：若模型并行切分了 `cos`、`sin`，各 rank 可能收到不匹配的子张量，导致在某些 rank 上 `cos.shape[0]` 与本层 `num_tokens` 不一致。  
-5. **断言缺乏容错**：使用 `assert` 检查形状会在生产或 CI 环境中直接抛异常，导致错误信息不明确，掩盖了真正的形状不匹配根源。  
+**根本原因（≤5 条）**
+1. **RoPE 表长度与实际 token 数不匹配**：`rope_forward_triton_siso` 内部断言 `cos.shape[0] == num_tokens`，但调用者传入的 `cos`、`sin` 仍然是按照全局 `max_position_embeddings` 预计算的完整表，未被裁剪到当前 forward 的 token 数。
+2. **MLA 前处理未对 `cos/sin` 进行切片**：`indexer_select_pre_process`（`vllm_ascend/attention/sfa_v1.py:875`）直接把完整的 `cos`、`sin` 送入 `rope_forward_triton_siso`，导致形状不一致。
+3. **配置或生成逻辑错误**：在 DeepSeek‑V2（MLA）模型中，`cos`、`sin` 可能依据 `max_position_embeddings` 或 `rope_theta` 预先计算，却未根据实际运行时的序列长度（`hidden_states.shape[0]`）重新切片或重新生成。
+4. **多卡/流水线并行时的切片不一致**：若模型并行切分了 `cos`、`sin`，各 rank 可能收到不匹配的子张量，导致在某些 rank 上 `cos.shape[0]` 与本层 `num_tokens` 不一致。
+5. **断言缺乏容错**：使用 `assert` 检查形状会在生产或 CI 环境中直接抛异常，导致错误信息不明确，掩盖了真正的形状不匹配根源。
 
-**最可能的修复方案**  
-1. **在 `indexer_select_pre_process` 中裁剪 `cos/sin`**  
+**最可能的修复方案**
+1. **在 `indexer_select_pre_process` 中裁剪 `cos/sin`**
    ```python
    # sfa_v1.py (≈ line 875)
    num_tokens = hidden_states.shape[0]
    cos = cos[:num_tokens]
    sin = sin[:num_tokens]
    k_li = rope_forward_triton_siso(..., cos, sin, ...)
-   ```  
-   这样保证进入 triton kernel 的张量第一维等于实际 token 数。  
+   ```
+   这样保证进入 triton kernel 的张量第一维等于实际 token 数。
 
-2. **改进 `rope_forward_triton_siso` 的形状校验**  
-   将硬断言改为可定位的错误：  
+2. **改进 `rope_forward_triton_siso` 的形状校验**
+   将硬断言改为可定位的错误：
    ```python
    if cos.shape[0] != num_tokens or sin.shape[0] != num_tokens:
        raise RuntimeError(
            f"RoPE cos/sin shape mismatch: cos.shape[0]={cos.shape[0]}, "
            f"sin.shape[0]={sin.shape[0]}, expected num_tokens={num_tokens}"
        )
-   ```  
-   这样可以在 CI 日志中直接看到不匹配的具体数值。  
+   ```
+   这样可以在 CI 日志中直接看到不匹配的具体数值。
 
-3. **动态生成或重新切片 `cos/sin`**，确保它们基于当前 `max_seq_len`（即本次 forward 的实际序列长度）而不是全局的 `max_position_embeddings`。可以在模型前向入口处根据 `hidden_states.size(0)` 调用 `rotary_emb`（或等效的 `get_rope`) 来生成匹配的 `cos/sin`。  
+3. **动态生成或重新切片 `cos/sin`**，确保它们基于当前 `max_seq_len`（即本次 forward 的实际序列长度）而不是全局的 `max_position_embeddings`。可以在模型前向入口处根据 `hidden_states.size(0)` 调用 `rotary_emb`（或等效的 `get_rope`) 来生成匹配的 `cos/sin`。
 
-4. **并行环境下的切片一致性检查**：在多卡或流水线并行时，确保 `cos`、`sin` 在每个 rank 上都按照该 rank 负责的 token 区间进行切片，或者在模型并行初始化阶段将 `cos/sin` 广播到各 rank，保持形状一致。  
+4. **并行环境下的切片一致性检查**：在多卡或流水线并行时，确保 `cos`、`sin` 在每个 rank 上都按照该 rank 负责的 token 区间进行切片，或者在模型并行初始化阶段将 `cos/sin` 广播到各 rank，保持形状一致。
 
-5. **添加单元/集成测试**，验证在不同的 batch size、不同的序列长度（包括极端的单 token）以及不同的 `max_position_embeddings` 配置下，`cos`、`sin` 的形状始终匹配 `hidden_states`。测试可以使用 pytest 参数化，捕获 `AssertionError` 并在 CI 中强制暴露形状不匹配。  
+5. **添加单元/集成测试**，验证在不同的 batch size、不同的序列长度（包括极端的单 token）以及不同的 `max_position_embeddings` 配置下，`cos`、`sin` 的形状始终匹配 `hidden_states`。测试可以使用 pytest 参数化，捕获 `AssertionError` 并在 CI 中强制暴露形状不匹配。
 
 通过上述修改，RoPE 的 `cos/sin` 将始终与当前 forward 的 token 数量对齐，断言错误将消除，CI 也能在出现形状不匹配时快速定位并提供明确的错误信息。

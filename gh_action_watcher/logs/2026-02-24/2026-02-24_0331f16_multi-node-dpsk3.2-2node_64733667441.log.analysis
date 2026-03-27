@@ -1,27 +1,27 @@
 类型: 设备环境问题
 
-根本原因（≤5 条）  
-1. **硬件/驱动不可用或版本不匹配** – Worker 进程在后台启动时检测不到 NPU（或 GPU），或驱动/固件与 `torch_npu`、CUDA 版本不兼容，导致初始化异常。  
-2. **共享内存泄漏或配额不足** – 系统中有 18 个泄漏的 `shared_memory` 段且未及时清理，导致多进程 `WorkerProc` 无法分配共享内存而失败。  
-3. **多节点网络配置错误** – Master IP、端口或 NCCL 通信参数（环境变量）配置不当，导致分布式初始化时节点之间无法建立联系。  
-4. **依赖库版本冲突或缺失** – `vllm`、`torch`、`torch_npu` 等关键库的版本不统一，或者缺少必要的系统库（如 NCCL、OpenMPI），导致运行时找不到符号或链接错误。  
-5. **不支持的量化/特性** – 测试使用的 W8A8 量化（配合 disaggregated prefill）在当前 NPU 平台上不被支持，模型加载阶段直接抛异常。  
+根本原因（≤5 条）
+1. **硬件/驱动不可用或版本不匹配** – Worker 进程在后台启动时检测不到 NPU（或 GPU），或驱动/固件与 `torch_npu`、CUDA 版本不兼容，导致初始化异常。
+2. **共享内存泄漏或配额不足** – 系统中有 18 个泄漏的 `shared_memory` 段且未及时清理，导致多进程 `WorkerProc` 无法分配共享内存而失败。
+3. **多节点网络配置错误** – Master IP、端口或 NCCL 通信参数（环境变量）配置不当，导致分布式初始化时节点之间无法建立联系。
+4. **依赖库版本冲突或缺失** – `vllm`、`torch`、`torch_npu` 等关键库的版本不统一，或者缺少必要的系统库（如 NCCL、OpenMPI），导致运行时找不到符号或链接错误。
+5. **不支持的量化/特性** – 测试使用的 W8A8 量化（配合 disaggregated prefill）在当前 NPU 平台上不被支持，模型加载阶段直接抛异常。
 
-最可能的修复方案  
-1. **检查并确保 NPU 可用**  
-   - 在容器启动后执行 `npu-smi`（或 `torch_npu.utils.check_device()`）确认设备状态。  
-   - 如有驱动/固件升级需求，先在 CI 环境中统一镜像版本。  
-2. **清理共享内存 & 调整配额**  
-   - 在测试前加入 `ipcs -m | grep nobody` 并删除残留段，或使用 `sudo shmctl -a all` 清理。  
-   - 增大容器的 `--shm-size`（如 `--shm-size=8g`）以满足多进程需求。  
-3. **校验多节点网络连通性**  
-   - 使用 `ping`、`nc` 检查 master IP 的 8080 端口是否可达。  
-   - 确保环境变量 `NCCL_DEBUG=INFO`、`NCCL_IB_DISABLE=0`（或按需）已正确注入。  
-4. **统一依赖版本**  
-   - 在 CI Dockerfile 中锁定 `torch==x.x.x`、`torch_npu==y.y.y`、`vllm==z.z.z` 等关键版本。  
-   - 如使用私有 pypi 源或本地 wheel，确保所有节点同步安装。  
-5. **调整或禁用不支持的量化**  
-   - 若平台不支持 W8A8，可在配置中改用 W8A16 或关闭 `disaggregated_prefill`。  
-   - 在测试脚本中加入特性检测（如检测 `torch_npu.npu.is_available()`），若不支持则跳过该测试用例。  
+最可能的修复方案
+1. **检查并确保 NPU 可用**
+   - 在容器启动后执行 `npu-smi`（或 `torch_npu.utils.check_device()`）确认设备状态。
+   - 如有驱动/固件升级需求，先在 CI 环境中统一镜像版本。
+2. **清理共享内存 & 调整配额**
+   - 在测试前加入 `ipcs -m | grep nobody` 并删除残留段，或使用 `sudo shmctl -a all` 清理。
+   - 增大容器的 `--shm-size`（如 `--shm-size=8g`）以满足多进程需求。
+3. **校验多节点网络连通性**
+   - 使用 `ping`、`nc` 检查 master IP 的 8080 端口是否可达。
+   - 确保环境变量 `NCCL_DEBUG=INFO`、`NCCL_IB_DISABLE=0`（或按需）已正确注入。
+4. **统一依赖版本**
+   - 在 CI Dockerfile 中锁定 `torch==x.x.x`、`torch_npu==y.y.y`、`vllm==z.z.z` 等关键版本。
+   - 如使用私有 pypi 源或本地 wheel，确保所有节点同步安装。
+5. **调整或禁用不支持的量化**
+   - 若平台不支持 W8A8，可在配置中改用 W8A16 或关闭 `disaggregated_prefill`。
+   - 在测试脚本中加入特性检测（如检测 `torch_npu.npu.is_available()`），若不支持则跳过该测试用例。
 
 通过以上步骤排查并修复环境与资源配置问题后，EngineCore 应能正常启动，测试 `test_multi_node` 将不再因 “Server exited unexpectedly” 而失败。

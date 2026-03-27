@@ -1,26 +1,26 @@
-类型: 设备环境问题  
+类型: 设备环境问题
 
-**根本原因（≤5 条）**  
-1. **Ascend NPU 硬件异常**：设备（chipId:4, core id:2）报 DDR 地址越界错误（`The DDR address of the MTE instruction is out of range`），导致 `rtMemcpy` 失败，模型推理中断。  
-2. **CUDA Graph 捕获模式不兼容**：使用了 `FULL_DECODE_ONLY` 的 cudagraph 配置，在 NPU 上出现 “the current capture mode does not support this operation” 错误，进而触发同步流超时（`AclrtSynchronizeStreamWithTimeout`）。  
-3. **分布式通信（gloo）连接被关闭**：NPU 错误导致工作进程异常退出，TCP 连接被对端关闭（`Connection closed by peer`），多进程协同的 all‑reduce 操作失败。  
-4. **缺乏硬件异常的容错机制**：vllm‑ascend 在检测到 NPU 错误后直接抛异常并关闭 Worker，未实现重试或回退，导致整个推理任务崩溃。  
-5. **并行度与量化配置导致资源压力**：开启 `--enable‑expert‑parallel`、`--tensor‑parallel‑size 8`、`--data‑parallel‑size 2` 与 `ascend` 量化组合，使 NPU 显存/内存压力过大，触发上述硬件错误。  
+**根本原因（≤5 条）**
+1. **Ascend NPU 硬件异常**：设备（chipId:4, core id:2）报 DDR 地址越界错误（`The DDR address of the MTE instruction is out of range`），导致 `rtMemcpy` 失败，模型推理中断。
+2. **CUDA Graph 捕获模式不兼容**：使用了 `FULL_DECODE_ONLY` 的 cudagraph 配置，在 NPU 上出现 “the current capture mode does not support this operation” 错误，进而触发同步流超时（`AclrtSynchronizeStreamWithTimeout`）。
+3. **分布式通信（gloo）连接被关闭**：NPU 错误导致工作进程异常退出，TCP 连接被对端关闭（`Connection closed by peer`），多进程协同的 all‑reduce 操作失败。
+4. **缺乏硬件异常的容错机制**：vllm‑ascend 在检测到 NPU 错误后直接抛异常并关闭 Worker，未实现重试或回退，导致整个推理任务崩溃。
+5. **并行度与量化配置导致资源压力**：开启 `--enable‑expert‑parallel`、`--tensor‑parallel‑size 8`、`--data‑parallel‑size 2` 与 `ascend` 量化组合，使 NPU 显存/内存压力过大，触发上述硬件错误。
 
-**最可能的修复方案**  
-1. **硬件检查与恢复**  
-   - 运行 Ascend NPU 诊断工具（如 `npu-smi`、`hccn_tool`）确认 chipId:4 是否故障，必要时更换或重新分配设备。  
-   - 更新 NPU 驱动/固件至官方推荐版本，确保 DDR 访问正常。  
-2. **关闭或适配 CUDA Graph**  
-   - 将 `--compilation-config` 中的 `cudagraph_mode` 改为 `EDGE_DECODE_ONLY` 或直接去掉 `cudagraph_capture_sizes`，避免捕获不支持的操作。  
-3. **加强网络超时与容错**  
-   - 为 gloo/NCCL 设置更大的超时（如 `HCCL_TIMEOUT=300`），并实现 Worker 进程在检测到 `Connection closed` 时的自动重连或降级策略。  
-4. **加入硬件异常捕获与恢复**  
-   - 在 `model_runner_v1.py` / `worker.py` 中捕获 NPU 错误（`error code 507011`、`rtMemcpy failed`），记录日志后尝试重新初始化设备或回退到 CPU 推理。  
-5. **降低并行度或调整量化**  
-   - 暂时关闭 `--enable‑expert‑parallel`，将 TP 降至 4，或将 `--gpu-memory-utilization` 从 0.98 调至 0.85~0.90，以减轻显存压力。  
-   - 若业务允许，禁用 `--quantization ascend`，使用默认的量化方式，避免因 ascend 量化导致的内存拷贝错误。  
-6. **验证修复**  
-   - 在单机单卡环境下先跑通基准测试，确认 NPU 与 cudagraph 配置兼容后再恢复多卡并行。  
+**最可能的修复方案**
+1. **硬件检查与恢复**
+   - 运行 Ascend NPU 诊断工具（如 `npu-smi`、`hccn_tool`）确认 chipId:4 是否故障，必要时更换或重新分配设备。
+   - 更新 NPU 驱动/固件至官方推荐版本，确保 DDR 访问正常。
+2. **关闭或适配 CUDA Graph**
+   - 将 `--compilation-config` 中的 `cudagraph_mode` 改为 `EDGE_DECODE_ONLY` 或直接去掉 `cudagraph_capture_sizes`，避免捕获不支持的操作。
+3. **加强网络超时与容错**
+   - 为 gloo/NCCL 设置更大的超时（如 `HCCL_TIMEOUT=300`），并实现 Worker 进程在检测到 `Connection closed` 时的自动重连或降级策略。
+4. **加入硬件异常捕获与恢复**
+   - 在 `model_runner_v1.py` / `worker.py` 中捕获 NPU 错误（`error code 507011`、`rtMemcpy failed`），记录日志后尝试重新初始化设备或回退到 CPU 推理。
+5. **降低并行度或调整量化**
+   - 暂时关闭 `--enable‑expert‑parallel`，将 TP 降至 4，或将 `--gpu-memory-utilization` 从 0.98 调至 0.85~0.90，以减轻显存压力。
+   - 若业务允许，禁用 `--quantization ascend`，使用默认的量化方式，避免因 ascend 量化导致的内存拷贝错误。
+6. **验证修复**
+   - 在单机单卡环境下先跑通基准测试，确认 NPU 与 cudagraph 配置兼容后再恢复多卡并行。
 
 通过以上步骤可以定位并消除导致推理失败和性能不达标的硬件/环境因素，随后重新跑通性能基准测试即可。

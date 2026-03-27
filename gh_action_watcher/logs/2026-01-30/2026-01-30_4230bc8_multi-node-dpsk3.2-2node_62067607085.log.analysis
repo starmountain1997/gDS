@@ -1,27 +1,27 @@
-类型: 设备环境问题  
+类型: 设备环境问题
 
-**根本原因（≤5 条）**  
-1. **NCCL 通信未就绪或配置错误** – 日志中出现 “Waiting for pending NCCL work to finish before starting graph capture”，说明在捕获 CUDA 图之前有未完成的 NCCL 集体操作，可能导致进程异常退出。  
-2. **共享内存（/dev/shm）不足** – 多节点推理依赖 NCCL 使用共享内存进行缓冲区交换，若 /dev/shm 过小会被 OOM Killer 杀掉，表现为 Exit 1。  
-3. **缺少或未启用 Ascend 特定特性（FLASHCOMM2、DSA‑CP）** – 系统提示 “Linear layer sharding works optimally with FLASHCOMM2 and DSA‑CP enabled”，缺少这些特性可能使前向计算路径出现未处理的错误从而崩溃。  
-4. **内存超限或 OOM** – 引擎在捕获图阶段占用约 0.14 GiB/worker，累加后可能逼近节点可用内存上限，导致进程被系统杀死。  
-5. **端口或资源占用冲突** – API Server 在启动时未能成功绑定 8080 端口（可能已被占用），导致进程直接退出并返回码 1。  
+**根本原因（≤5 条）**
+1. **NCCL 通信未就绪或配置错误** – 日志中出现 “Waiting for pending NCCL work to finish before starting graph capture”，说明在捕获 CUDA 图之前有未完成的 NCCL 集体操作，可能导致进程异常退出。
+2. **共享内存（/dev/shm）不足** – 多节点推理依赖 NCCL 使用共享内存进行缓冲区交换，若 /dev/shm 过小会被 OOM Killer 杀掉，表现为 Exit 1。
+3. **缺少或未启用 Ascend 特定特性（FLASHCOMM2、DSA‑CP）** – 系统提示 “Linear layer sharding works optimally with FLASHCOMM2 and DSA‑CP enabled”，缺少这些特性可能使前向计算路径出现未处理的错误从而崩溃。
+4. **内存超限或 OOM** – 引擎在捕获图阶段占用约 0.14 GiB/worker，累加后可能逼近节点可用内存上限，导致进程被系统杀死。
+5. **端口或资源占用冲突** – API Server 在启动时未能成功绑定 8080 端口（可能已被占用），导致进程直接退出并返回码 1。
 
-**最可能的修复方案**  
-1. **检查并正确配置 NCCL**  
-   - 确保 `NCCL_NET` 或 `NCCL_SOCKET_IFNAME` 指向节点间可达的网络接口（如 eth0、mlx5_0）。  
-   - 在启动脚本中加入 `NCCL_DEBUG=WARN`，捕获更多调试信息并验证 NCCL 初始化是否成功。  
-2. **扩大共享内存**  
-   - 挂载 `tmpfs` 并设置足够大小，例如 `mount -t tmpfs -o size=64g tmpfs /dev/shm`（根据节点内存适当调整）。  
-   - 确认容器或 Pod 的 `shm` 配置与 `docker run --shm-size` 一致。  
-3. **启用 Ascend 加速特性**  
-   - 检查固件/驱动是否支持 FLASHCOMM2 与 DSA‑CP，必要时在环境变量中显式开启（如 `ASCEND_FLASHCOMM2_ENABLE=1`、`ASCEND_DSA_CP_ENABLE=1`）。  
-   - 如硬件不支持，关闭线性层分片（`--linear-layer-sharding none`）以避免触发不可用的代码路径。  
-4. **降低内存占用或提升可用内存**  
-   - 调整 `--max-num-batched-tokens`、`--gpu-memory-utilization` 等参数，防止一次性申请大量 KV‑cache。  
-   - 若节点内存不足，可适当增加 swap 或在测试资源配置中增大内存限制。  
-5. **确保端口可用**  
-   - 在启动前 `lsof -i :8080`（或对应端口）确认未被占用。  
-   - 若端口冲突，可将 `server_port` 设为 `0` 让系统自动分配可用端口，或在测试配置中使用随机端口。  
+**最可能的修复方案**
+1. **检查并正确配置 NCCL**
+   - 确保 `NCCL_NET` 或 `NCCL_SOCKET_IFNAME` 指向节点间可达的网络接口（如 eth0、mlx5_0）。
+   - 在启动脚本中加入 `NCCL_DEBUG=WARN`，捕获更多调试信息并验证 NCCL 初始化是否成功。
+2. **扩大共享内存**
+   - 挂载 `tmpfs` 并设置足够大小，例如 `mount -t tmpfs -o size=64g tmpfs /dev/shm`（根据节点内存适当调整）。
+   - 确认容器或 Pod 的 `shm` 配置与 `docker run --shm-size` 一致。
+3. **启用 Ascend 加速特性**
+   - 检查固件/驱动是否支持 FLASHCOMM2 与 DSA‑CP，必要时在环境变量中显式开启（如 `ASCEND_FLASHCOMM2_ENABLE=1`、`ASCEND_DSA_CP_ENABLE=1`）。
+   - 如硬件不支持，关闭线性层分片（`--linear-layer-sharding none`）以避免触发不可用的代码路径。
+4. **降低内存占用或提升可用内存**
+   - 调整 `--max-num-batched-tokens`、`--gpu-memory-utilization` 等参数，防止一次性申请大量 KV‑cache。
+   - 若节点内存不足，可适当增加 swap 或在测试资源配置中增大内存限制。
+5. **确保端口可用**
+   - 在启动前 `lsof -i :8080`（或对应端口）确认未被占用。
+   - 若端口冲突，可将 `server_port` 设为 `0` 让系统自动分配可用端口，或在测试配置中使用随机端口。
 
 通过上述环境检查与配置修正，可消除导致 ApiServer_0 进程异常退出的根本因素，提升多节点推理测试的启动成功率。

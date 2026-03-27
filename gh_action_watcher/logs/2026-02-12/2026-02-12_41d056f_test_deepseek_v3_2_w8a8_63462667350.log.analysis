@@ -1,27 +1,27 @@
-类型: 代码问题  
+类型: 代码问题
 
-**根本原因（≤5 条）**  
-1. **cudagraph_capture_sizes 与 tensor_parallel_size 不兼容**  
-   - 配置中指定的 `cudagraph_capture_sizes` 为 `[3, 6, 9, 12]`，而 `tensor_parallel_size` 为 `8`。框架在验证时要求这些捕获大小必须是 `tp_size` 的整数倍，导致断言 `Assertion failed` 并直接终止服务器启动。  
-2. **编译配置硬编码导致跨平台失效**  
-   - 测试脚本把 `cudagraph_capture_sizes` 写死为 `[3, 6, 9, 12]`，未根据当前 `tp_size` 动态生成或校验，使相同的配置在 `tp_size=8` 环境下直接报错。  
-3. **缺少对 Ascend 平台特定约束的检查**  
-   - Ascend 后端在启用 `layer_sharding`、`cudagraph` 时会提示 “需要 FLASHCOMM2/DSA‑CP 支持”，但并未在参数校验阶段阻止不满足条件的 `cudagraph_capture_sizes`，导致后续断言失败。  
-4. **弃用的 speculative method 被重置**  
-   - `speculative_config` 中的 `method: deepseek_mtp` 已标记为 `deprecated`，被强制改为 `mtp`，这可能引入内部状态不一致，虽然不是直接错误，但与整体配置错误共同导致启动失败。  
-5. **服务器进程异常退出未被捕获**  
-   - 由于验证阶段抛出 `ValidationError`（`AssertionError`），进程立即退出，测试框架误判为 “Server at 0.0.0.0 exited unexpectedly”，掩盖了真正的参数错误。  
+**根本原因（≤5 条）**
+1. **cudagraph_capture_sizes 与 tensor_parallel_size 不兼容**
+   - 配置中指定的 `cudagraph_capture_sizes` 为 `[3, 6, 9, 12]`，而 `tensor_parallel_size` 为 `8`。框架在验证时要求这些捕获大小必须是 `tp_size` 的整数倍，导致断言 `Assertion failed` 并直接终止服务器启动。
+2. **编译配置硬编码导致跨平台失效**
+   - 测试脚本把 `cudagraph_capture_sizes` 写死为 `[3, 6, 9, 12]`，未根据当前 `tp_size` 动态生成或校验，使相同的配置在 `tp_size=8` 环境下直接报错。
+3. **缺少对 Ascend 平台特定约束的检查**
+   - Ascend 后端在启用 `layer_sharding`、`cudagraph` 时会提示 “需要 FLASHCOMM2/DSA‑CP 支持”，但并未在参数校验阶段阻止不满足条件的 `cudagraph_capture_sizes`，导致后续断言失败。
+4. **弃用的 speculative method 被重置**
+   - `speculative_config` 中的 `method: deepseek_mtp` 已标记为 `deprecated`，被强制改为 `mtp`，这可能引入内部状态不一致，虽然不是直接错误，但与整体配置错误共同导致启动失败。
+5. **服务器进程异常退出未被捕获**
+   - 由于验证阶段抛出 `ValidationError`（`AssertionError`），进程立即退出，测试框架误判为 “Server at 0.0.0.0 exited unexpectedly”，掩盖了真正的参数错误。
 
-**最可能的修复方案**  
-1. **调整 cudagraph_capture_sizes 为 tp_size 的倍数**  
-   - 将 `cudagraph_capture_sizes` 改为能被 `8` 整除的值，如 `[8, 16, 24]` 或直接使用框架默认（空列表），确保满足 `cudagraph_capture_sizes` 中所有值均为 `tp_size` 的整数倍。  
-2. **在测试配置中动态生成或校验 cudagraph 参数**  
-   - 在测试代码里加入 `if tp_size > 1 and enable_cudagraph: adjust capture_sizes to multiples of tp_size` 的逻辑，或在参数校验阶段抛出更友好的错误提示。  
-3. **若必须使用 tp_size=8，建议禁用 cudagraph 或改为 “FULL_DECODE_ONLY” 并使用合适的捕获大小**  
-   - 例如 `{"cudagraph_mode":"FULL_DECODE_ONLY","cudagraph_capture_sizes":[8,16]}`，或直接设置 `cudagraph_capture_sizes:[]` 让框架自行选择安全值。  
-4. **升级或回退 vLLM 版本，使其能够容忍非倍数的 capture sizes**（长期方案）  
-   - 在后续版本中可以让框架在 `tp_size>1` 时自动过滤或报错前提供更明确的提示，而不是在断言处崩溃。  
-5. **统一 speculative config，使用最新支持的 method**  
-   - 将 `method: deepseek_mtp` 改为 `method: mtp`，避免因弃用导致的内部重置，进一步减少潜在的状态不一致风险。  
+**最可能的修复方案**
+1. **调整 cudagraph_capture_sizes 为 tp_size 的倍数**
+   - 将 `cudagraph_capture_sizes` 改为能被 `8` 整除的值，如 `[8, 16, 24]` 或直接使用框架默认（空列表），确保满足 `cudagraph_capture_sizes` 中所有值均为 `tp_size` 的整数倍。
+2. **在测试配置中动态生成或校验 cudagraph 参数**
+   - 在测试代码里加入 `if tp_size > 1 and enable_cudagraph: adjust capture_sizes to multiples of tp_size` 的逻辑，或在参数校验阶段抛出更友好的错误提示。
+3. **若必须使用 tp_size=8，建议禁用 cudagraph 或改为 “FULL_DECODE_ONLY” 并使用合适的捕获大小**
+   - 例如 `{"cudagraph_mode":"FULL_DECODE_ONLY","cudagraph_capture_sizes":[8,16]}`，或直接设置 `cudagraph_capture_sizes:[]` 让框架自行选择安全值。
+4. **升级或回退 vLLM 版本，使其能够容忍非倍数的 capture sizes**（长期方案）
+   - 在后续版本中可以让框架在 `tp_size>1` 时自动过滤或报错前提供更明确的提示，而不是在断言处崩溃。
+5. **统一 speculative config，使用最新支持的 method**
+   - 将 `method: deepseek_mtp` 改为 `method: mtp`，避免因弃用导致的内部重置，进一步减少潜在的状态不一致风险。
 
 通过上述调整，可消除 **cudagraph_capture_sizes 与 tensor_parallel_size 不匹配** 的核心错误，使服务器正常启动，测试得以通过。

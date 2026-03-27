@@ -1,21 +1,21 @@
-类型: 代码问题  
+类型: 代码问题
 
-根本原因：  
-1. 测试配置中硬编码的 `cudagraph_capture_sizes` 为 `[3, 6, 9, 12]`，而 `tensor‑parallel‑size` 为 8，触发“必须为 tp_size 倍数”的校验错误。  
-2. 引擎在创建 `VllmConfig` 时会检查 `cudagraph_capture_sizes` 的每个值是否为 `tp_size` 的整数倍，不符则抛出 `AssertionError` 并导致服务器启动失败。  
-3. 启用序列并行（sequence parallelism）时系统已警告这些批次大小被移除，但后续仍执行了校验逻辑，未能自动过滤或容错。  
-4. 测试代码未根据当前的 `tp_size` 动态生成合法的 capture sizes，导致配置始终不兼容。  
-5. 缺少对 `cudagraph_capture_sizes` 参数的合法性校验或自动修正机制，全部交由底层校验并直接报错。  
+根本原因：
+1. 测试配置中硬编码的 `cudagraph_capture_sizes` 为 `[3, 6, 9, 12]`，而 `tensor‑parallel‑size` 为 8，触发“必须为 tp_size 倍数”的校验错误。
+2. 引擎在创建 `VllmConfig` 时会检查 `cudagraph_capture_sizes` 的每个值是否为 `tp_size` 的整数倍，不符则抛出 `AssertionError` 并导致服务器启动失败。
+3. 启用序列并行（sequence parallelism）时系统已警告这些批次大小被移除，但后续仍执行了校验逻辑，未能自动过滤或容错。
+4. 测试代码未根据当前的 `tp_size` 动态生成合法的 capture sizes，导致配置始终不兼容。
+5. 缺少对 `cudagraph_capture_sizes` 参数的合法性校验或自动修正机制，全部交由底层校验并直接报错。
 
-最可能的修复方案：  
-1. **使用符合 tp_size 的捕获大小**：将 `cudagraph_capture_sizes` 改为 `tp_size` 的倍数，例如 `[8, 16, 24]`。  
-2. **参数化生成合法值**：在测试中依据 `tp_size` 动态构建捕获大小，如  
+最可能的修复方案：
+1. **使用符合 tp_size 的捕获大小**：将 `cudagraph_capture_sizes` 改为 `tp_size` 的倍数，例如 `[8, 16, 24]`。
+2. **参数化生成合法值**：在测试中依据 `tp_size` 动态构建捕获大小，如
    ```python
    capture_sizes = [tp_size * i for i in range(1, 4)]
-   ```  
-   并将其写入 `--compilation-config`。  
-3. **禁用或留空捕获列表**：如果不需要 CUDA Graph 捕获，可将 `cudagraph_capture_sizes` 设为空列表 `[]` 或直接省略该字段，让引擎自动决定。  
-4. **在测试框架中校验配置**：在 `conftest.py` 或测试用例的 `server_args` 生成逻辑里加入检查，确保所有 `cudagraph_capture_sizes` 均为 `tp_size` 的倍数，必要时过滤或报错。  
-5. **保持向后兼容（可选）**：在底层校验逻辑中加入容错，当捕获大小不满足倍数要求时自动提升至最近的倍数并记录警告，而非直接抛异常。  
+   ```
+   并将其写入 `--compilation-config`。
+3. **禁用或留空捕获列表**：如果不需要 CUDA Graph 捕获，可将 `cudagraph_capture_sizes` 设为空列表 `[]` 或直接省略该字段，让引擎自动决定。
+4. **在测试框架中校验配置**：在 `conftest.py` 或测试用例的 `server_args` 生成逻辑里加入检查，确保所有 `cudagraph_capture_sizes` 均为 `tp_size` 的倍数，必要时过滤或报错。
+5. **保持向后兼容（可选）**：在底层校验逻辑中加入容错，当捕获大小不满足倍数要求时自动提升至最近的倍数并记录警告，而非直接抛异常。
 
 通过上述修改，测试配置将与 `tensor‑parallel‑size=8` 兼容，服务器能够正常启动并完成模型加载，从而消除该 CI 失败。

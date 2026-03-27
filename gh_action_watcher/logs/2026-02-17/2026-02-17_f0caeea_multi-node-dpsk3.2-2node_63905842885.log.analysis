@@ -1,26 +1,26 @@
-类型: 设备环境问题  
+类型: 设备环境问题
 
 根本原因（≤5 条）：
 
-1. **共享内存不足或未正确挂载**  
+1. **共享内存不足或未正确挂载**
    - `resource_tracker` 报告 18 个泄漏的 `shared_memory` 对象，说明多进程初始化时在 `/dev/shm` 分配共享内存失败，导致 `WorkerProc` 抛出未捕获异常。
 
-2. **容器/Pod 资源限制导致工作进程无法启动**  
-   - 工作进程（EngineCore_DP0、EngineCore_DP1）在启动时被 OOM Killer 或 ulimit 限制杀死，进程退出码非零，进而触发 “Server at … exited unexpectedly”。  
+2. **容器/Pod 资源限制导致工作进程无法启动**
+   - 工作进程（EngineCore_DP0、EngineCore_DP1）在启动时被 OOM Killer 或 ulimit 限制杀死，进程退出码非零，进而触发 “Server at … exited unexpectedly”。
 
-3. **多节点通信（NCCL）配置错误**  
+3. **多节点通信（NCCL）配置错误**
    - 多节点测试依赖 NCCL 进行跨节点集合通信，若 `NCCL_SOCKET_IFNAME`、`NCCL_DEBUG` 等环境变量未设置或网络不可达，worker 进程会在初始化阶段卡住或异常退出。
 
-4. **Ascend NPU 驱动 / `torch_npu` 版本不匹配**  
-   - 日志中出现 `torch_npu`、`torchair` 等包，且报错发生在模型执行器 (`model_executor`) 初始化阶段，暗示 NPU 驱动或对应插件未正确加载导致后台进程异常。  
+4. **Ascend NPU 驱动 / `torch_npu` 版本不匹配**
+   - 日志中出现 `torch_npu`、`torchair` 等包，且报错发生在模型执行器 (`model_executor`) 初始化阶段，暗示 NPU 驱动或对应插件未正确加载导致后台进程异常。
 
-5. **测试参数与环境不兼容导致未捕获异常**  
-   - `disaggregated_prefill`、`max_wait_seconds` 等高级特性需要额外的资源配置或网络配置，当前环境可能未满足这些前置条件，使子进程抛出异常后未向上层报告根本原因。  
+5. **测试参数与环境不兼容导致未捕获异常**
+   - `disaggregated_prefill`、`max_wait_seconds` 等高级特性需要额外的资源配置或网络配置，当前环境可能未满足这些前置条件，使子进程抛出异常后未向上层报告根本原因。
 
 最可能的修复方案：
 
-1. **增大并正确挂载 `/dev/shm`**  
-   - 在 Pod spec 中添加 `emptyDir` 卷并挂载为 `/dev/shm`，示例：  
+1. **增大并正确挂载 `/dev/shm`**
+   - 在 Pod spec 中添加 `emptyDir` 卷并挂载为 `/dev/shm`，示例：
      ```yaml
      volumes:
        - name: shm
@@ -30,28 +30,28 @@
      volumeMounts:
        - name: shm
          mountPath: /dev/shm
-     ```  
+     ```
    - 确保容器启动时共享内存足够供所有 worker 进程使用。
 
-2. **提升容器资源请求/限制**  
-   - 适当提高 `resources.limits.memory` 与 `resources.limits.cpu`，或直接移除不必要的上限，以避免 OOM。  
+2. **提升容器资源请求/限制**
+   - 适当提高 `resources.limits.memory` 与 `resources.limits.cpu`，或直接移除不必要的上限，以避免 OOM。
    - 检查 `ulimit -a` 是否对 `max open files`、`max processes` 做了限制，必要时提升。
 
-3. **完善 NCCL 多节点网络配置**  
-   - 在测试脚本或 CI 环境变量中显式设置 NCCL 变量，例如：  
+3. **完善 NCCL 多节点网络配置**
+   - 在测试脚本或 CI 环境变量中显式设置 NCCL 变量，例如：
      ```bash
      export NCCL_SOCKET_IFNAME=eth0
      export NCCL_DEBUG=INFO
      export NCCL_NET_GDR_LEVEL=PHB
-     ```  
+     ```
    - 确认节点间网络互通（ping、ssh）以及端口未被防火墙阻断。
 
-4. **校验并匹配 Ascend NPU 驱动与 `torch_npu` 版本**  
-   - 使用官方提供的匹配矩阵（vLLM 版本 ↔ torch_npu ↔ 驱动）选取镜像。  
+4. **校验并匹配 Ascend NPU 驱动与 `torch_npu` 版本**
+   - 使用官方提供的匹配矩阵（vLLM 版本 ↔ torch_npu ↔ 驱动）选取镜像。
    - 若环境已有驱动，升级 `torch_npu` 到与驱动兼容的版本，或在 CI 中回滚到已验证的组合。
 
-5. **改进异常传播或在测试中添加更细致的错误捕获**  
-   - 在 `WorkerProc.wait_for_ready`（`multiproc_executor.py`）中加入对底层异常的打印或日志记录，使 “WorkerProc initialization failed due to an exception in a background process” 的根本原因能够直接暴露在日志中。  
-   - 临时在测试脚本中加入 `-vv`（verbose）或设置 `VLLM_LOGGING_LEVEL=DEBUG`，帮助定位具体是哪一步骤抛出异常。  
+5. **改进异常传播或在测试中添加更细致的错误捕获**
+   - 在 `WorkerProc.wait_for_ready`（`multiproc_executor.py`）中加入对底层异常的打印或日志记录，使 “WorkerProc initialization failed due to an exception in a background process” 的根本原因能够直接暴露在日志中。
+   - 临时在测试脚本中加入 `-vv`（verbose）或设置 `VLLM_LOGGING_LEVEL=DEBUG`，帮助定位具体是哪一步骤抛出异常。
 
 > **推荐步骤**：先在 Pod 描述中加入足够大的共享内存卷并确认挂载，然后重新运行 `test_multi_node`，若仍失败再检查 NCCL 配置与 NPU 驱动兼容性，最后提升容器资源或捕获更详细的异常信息以定位代码层面的潜在缺陷。

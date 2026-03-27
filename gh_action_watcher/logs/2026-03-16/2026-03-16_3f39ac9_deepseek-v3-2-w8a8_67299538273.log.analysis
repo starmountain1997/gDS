@@ -1,17 +1,17 @@
 类型: 设备环境问题
 
-根本原因（≤5 条）  
-1. **分布式通信（GLOO TCP）连接被对端关闭**：在 `_sync_batch_across_dp` 中执行 `dist.all_reduce` 时，多个 Worker 的 TCP 连接被异常关闭（`Connection closed by peer`），导致 `RuntimeError` 并使 Worker 进程异常退出。  
-2. **主进程（task_distribute）异常退出**：日志中大量 “main process disappeared!” 错误，表明负责调度的主进程在某个时刻崩溃，进而触发所有子进程被强制终止。  
-3. **资源泄漏**：进程异常退出后留下大量未释放的信号量（372 个）和共享内存对象（4 个），导致后续启动的进程可能因资源不足而频繁失败。  
-4. **性能回退至极低水平**：由于大量 Worker 被终止，系统只能以极少的并行度运行，实测吞吐量仅为 **35.6 token/s**，远低于基线 **134 token/s**（0.97×baseline），直接导致性能测试失败。  
+根本原因（≤5 条）
+1. **分布式通信（GLOO TCP）连接被对端关闭**：在 `_sync_batch_across_dp` 中执行 `dist.all_reduce` 时，多个 Worker 的 TCP 连接被异常关闭（`Connection closed by peer`），导致 `RuntimeError` 并使 Worker 进程异常退出。
+2. **主进程（task_distribute）异常退出**：日志中大量 “main process disappeared!” 错误，表明负责调度的主进程在某个时刻崩溃，进而触发所有子进程被强制终止。
+3. **资源泄漏**：进程异常退出后留下大量未释放的信号量（372 个）和共享内存对象（4 个），导致后续启动的进程可能因资源不足而频繁失败。
+4. **性能回退至极低水平**：由于大量 Worker 被终止，系统只能以极少的并行度运行，实测吞吐量仅为 **35.6 token/s**，远低于基线 **134 token/s**（0.97×baseline），直接导致性能测试失败。
 5. **并行度配置超出环境承载能力**：TP=8、DP=2、expert‑parallel、speculative‑decoding 等多层次并行组合产生的进程/线程数过高，结合上述资源泄漏和网络不稳，导致系统不堪重负。
 
-最可能的修复方案  
-1. **使用更可靠的通信后端**：将 GPU 间通信从 GLOO（TCP）切换为 NCCL（或针对 Ascend 的 HCCL），并确保节点间网络（InfiniBand/RoCE）配置正确、端口未被占用。  
-2. **提升系统资源上限**：在启动脚本中增大 `ulimit -n`（文件描述符）、`ulimit -s`（栈大小）以及共享内存限制；或在 `/etc/security/limits.conf` 中为 runner 用户添加永久配置。  
-3. **修复资源泄漏**：在多进程 `multiproc_executor` 的 `shutdown` 路径显式调用 `multiprocessing.resource_tracker.unregister` 并清理残留的信号量和共享内存；或在测试结束后加入 `cleanup` 脚本强制释放。  
-4. **降低并行度或逐步开启特性**：若硬件不支持当前组合，可先使用 TP=4、DP=1，关闭 `expert‑parallel` 或 `speculative‑decoding`，待系统稳定后再逐步开启并验证性能。  
-5. **添加容错与重试机制**：在 `_sync_batch_across_dp` 的 `all_reduce` 调用外层捕获 `RuntimeError`，实现指数退避重试；若检测到 Worker 进程失效，自动重启或回退到单机模式以保证基准测试可完成。  
+最可能的修复方案
+1. **使用更可靠的通信后端**：将 GPU 间通信从 GLOO（TCP）切换为 NCCL（或针对 Ascend 的 HCCL），并确保节点间网络（InfiniBand/RoCE）配置正确、端口未被占用。
+2. **提升系统资源上限**：在启动脚本中增大 `ulimit -n`（文件描述符）、`ulimit -s`（栈大小）以及共享内存限制；或在 `/etc/security/limits.conf` 中为 runner 用户添加永久配置。
+3. **修复资源泄漏**：在多进程 `multiproc_executor` 的 `shutdown` 路径显式调用 `multiprocessing.resource_tracker.unregister` 并清理残留的信号量和共享内存；或在测试结束后加入 `cleanup` 脚本强制释放。
+4. **降低并行度或逐步开启特性**：若硬件不支持当前组合，可先使用 TP=4、DP=1，关闭 `expert‑parallel` 或 `speculative‑decoding`，待系统稳定后再逐步开启并验证性能。
+5. **添加容错与重试机制**：在 `_sync_batch_across_dp` 的 `all_reduce` 调用外层捕获 `RuntimeError`，实现指数退避重试；若检测到 Worker 进程失效，自动重启或回退到单机模式以保证基准测试可完成。
 
 通过上述改进，可消除因网络/资源问题导致的 Worker 崩溃，恢复正常的分布式同步，从而让实际吞吐量回升至基线水平。

@@ -190,7 +190,7 @@
 2026-03-01T21:41:44.0145356Z ais_bench_benchmark               3.0.20250930               /vllm-workspace/vllm-ascend/benchmark
 2026-03-01T21:41:44.0145913Z vllm                              0.16.0+empty               /vllm-workspace/vllm
 2026-03-01T21:41:44.0146655Z vllm_ascend                       0.15.0rc2.dev15+g883523618 /vllm-workspace/vllm-ascend
-2026-03-01T21:41:44.0147000Z 
+2026-03-01T21:41:44.0147000Z
 2026-03-01T21:41:44.0147078Z ============================
 2026-03-01T21:41:44.0147361Z vLLM Git information
 2026-03-01T21:41:44.0147577Z ============================
@@ -201,8 +201,8 @@
 2026-03-01T21:41:44.0500049Z Message:     [ROCm][CI] Pin TorchCodec to v0.10.0 for ROCm compatibility (#34447)
 2026-03-01T21:41:44.0524741Z Tags:        v0.16.0
 2026-03-01T21:41:44.0552993Z Remote:      origin	https://gh-proxy.test.osinfra.cn/https://github.com/vllm-project/vllm.git (fetch)
-2026-03-01T21:41:44.0553538Z 
-2026-03-01T21:41:44.0553544Z 
+2026-03-01T21:41:44.0553538Z
+2026-03-01T21:41:44.0553544Z
 2026-03-01T21:41:44.0553659Z ============================
 2026-03-01T21:41:44.0554056Z vLLM-Ascend Git information
 2026-03-01T21:41:44.0554351Z ============================
@@ -211,9 +211,9 @@
 2026-03-01T21:41:44.0712500Z Author:      wjunLu <135617475+wjunLu@users.noreply.github.com>
 2026-03-01T21:41:44.0735146Z Date:        2026-03-01 12:20:57 +0800
 2026-03-01T21:41:44.0758558Z Message:     [Image] Fix docker image merge tag settings (#6884)
-2026-03-01T21:41:44.1047842Z Tags:        
+2026-03-01T21:41:44.1047842Z Tags:
 2026-03-01T21:41:44.1075908Z Remote:      origin	https://gh-proxy.test.osinfra.cn/https://github.com/vllm-project/vllm-ascend (fetch)
-2026-03-01T21:41:44.1076263Z 
+2026-03-01T21:41:44.1076263Z
 2026-03-01T21:41:44.4950032Z ##[group]Run apt-get update && apt-get -y install clang-15
 2026-03-01T21:41:44.4950487Z [36;1mapt-get update && apt-get -y install clang-15[0m
 2026-03-01T21:41:44.4950903Z [36;1mupdate-alternatives --install /usr/bin/clang clang /usr/bin/clang-15 20[0m
@@ -322,7 +322,7 @@
 2026-03-01T21:42:15.7069054Z plugins: cov-7.0.0, mock-3.15.1, asyncio-1.3.0, anyio-4.12.1
 2026-03-01T21:42:15.7069543Z asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
 2026-03-01T21:42:16.0342640Z collecting ... collected 1 item
-2026-03-01T21:42:16.0342891Z 
+2026-03-01T21:42:16.0342891Z
 2026-03-01T21:42:16.0360540Z [2026-03-01 21:42:16] INFO conftest.py:241: Starting server with command: vllm serve vllm-ascend/DeepSeek-V3.2-W8A8 --enable-expert-parallel --tensor-parallel-size 8 --data-parallel-size 2 --port 36471 --max-model-len 8192 --max-num-batched-tokens 8192 --max-num-seqs 4 --trust-remote-code --quantization ascend --gpu-memory-utilization 0.98 --compilation-config {"cudagraph_capture_sizes":[8, 16, 24, 32, 40, 48], "cudagraph_mode":"FULL_DECODE_ONLY"} --speculative-config {"num_speculative_tokens": 3, "method":"deepseek_mtp"} --additional-config {"layer_sharding": ["q_b_proj", "o_proj"]} --reasoning-parser deepseek_v3 --tokenizer_mode deepseek_v32
 2026-03-01T21:42:20.3466789Z tests/e2e/nightly/single_node/models/test_deepseek_v3_2_w8a8.py::test_models[2-8-vllm-ascend/DeepSeek-V3.2-W8A8] INFO 03-01 21:42:20 [__init__.py:43] Available plugins for group vllm.platform_plugins:
 2026-03-01T21:42:20.3467726Z INFO 03-01 21:42:20 [__init__.py:45] - ascend -> vllm_ascend:register
@@ -331,12 +331,12 @@
 2026-03-01T21:42:26.1746692Z 2026-03-01 21:42:26,173 - 985 - vllmProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.16.0+empty: default 1
 2026-03-01T21:42:26.2213137Z INFO 03-01 21:42:26 [__init__.py:108] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
 2026-03-01T21:42:26.4173589Z INFO 03-01 21:42:26 [serve.py:100] Defaulting api_server_count to data_parallel_size (2).
-2026-03-01T21:42:26.4174064Z INFO 03-01 21:42:26 [utils.py:287] 
+2026-03-01T21:42:26.4174064Z INFO 03-01 21:42:26 [utils.py:287]
 2026-03-01T21:42:26.4246456Z INFO 03-01 21:42:26 [utils.py:287]        █     █     █▄   ▄█
 2026-03-01T21:42:26.4247113Z INFO 03-01 21:42:26 [utils.py:287]  ▄▄ ▄█ █     █     █ ▀▄▀ █  version 0.16.0
 2026-03-01T21:42:26.4247625Z INFO 03-01 21:42:26 [utils.py:287]   █▄█▀ █     █     █     █  model   vllm-ascend/DeepSeek-V3.2-W8A8
 2026-03-01T21:42:26.4248094Z INFO 03-01 21:42:26 [utils.py:287]    ▀▀  ▀▀▀▀▀ ▀▀▀▀▀ ▀     ▀
-2026-03-01T21:42:26.4248416Z INFO 03-01 21:42:26 [utils.py:287] 
+2026-03-01T21:42:26.4248416Z INFO 03-01 21:42:26 [utils.py:287]
 2026-03-01T21:42:26.4252360Z INFO 03-01 21:42:26 [utils.py:223] non-default args: {'model_tag': 'vllm-ascend/DeepSeek-V3.2-W8A8', 'api_server_count': 2, 'port': 36471, 'model': 'vllm-ascend/DeepSeek-V3.2-W8A8', 'tokenizer_mode': 'deepseek_v32', 'trust_remote_code': True, 'max_model_len': 8192, 'quantization': 'ascend', 'reasoning_parser': 'deepseek_v3', 'tensor_parallel_size': 8, 'data_parallel_size': 2, 'enable_expert_parallel': True, 'gpu_memory_utilization': 0.98, 'max_num_batched_tokens': 8192, 'max_num_seqs': 4, 'speculative_config': {'num_speculative_tokens': 3, 'method': 'deepseek_mtp'}, 'compilation_config': {'level': None, 'mode': None, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'vllm_ascend.compilation.compiler_interface.AscendCompiler', 'custom_ops': [], 'splitting_ops': None, 'compile_mm_encoder': False, 'compile_sizes': None, 'compile_ranges_split_points': None, 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.FULL_DECODE_ONLY: (2, 0)>, 'cudagraph_num_of_warmups': 0, 'cudagraph_capture_sizes': [8, 16, 24, 32, 40, 48], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': None, 'pass_config': {}, 'max_cudagraph_capture_size': None, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': None, 'static_all_moe_layers': []}, 'additional_config': {'layer_sharding': ['q_b_proj', 'o_proj']}}
 2026-03-01T21:42:26.4836828Z 2026-03-01 21:42:26,482 - modelscope - WARNING - We can not confirm the cached file is for revision: master
 2026-03-01T21:42:26.4927586Z INFO 03-01 21:42:26 [arg_utils.py:620] HF_HUB_OFFLINE is True, replace model_id [vllm-ascend/DeepSeek-V3.2-W8A8] to model_path [/root/.cache/modelscope/hub/models/vllm-ascend/DeepSeek-V3___2-W8A8]
@@ -380,7 +380,7 @@
 2026-03-01T21:42:27.3294690Z WARNING 03-01 21:42:27 [platform.py:325]             * For more details, please refer to:
 2026-03-01T21:42:27.3295523Z WARNING 03-01 21:42:27 [platform.py:325]             * https://docs.vllm.ai/en/stable/configuration/conserving_memory.html#reduce-cuda-graphs
 2026-03-01T21:42:27.3296230Z WARNING 03-01 21:42:27 [platform.py:325]             **********************************************************************************[0m
-2026-03-01T21:42:27.3296657Z WARNING 03-01 21:42:27 [platform.py:325]             
+2026-03-01T21:42:27.3296657Z WARNING 03-01 21:42:27 [platform.py:325]
 2026-03-01T21:42:27.3297017Z INFO 03-01 21:42:27 [platform.py:437] Set PYTORCH_NPU_ALLOC_CONF=expandable_segments:True
 2026-03-01T21:42:27.3304561Z INFO 03-01 21:42:27 [utils.py:843] Started DP Coordinator process (PID: 998)
 2026-03-01T21:42:32.0823566Z INFO 03-01 21:42:32 [__init__.py:43] Available plugins for group vllm.platform_plugins:
@@ -490,7 +490,7 @@
 2026-03-01T21:42:58.7244733Z (ApiServer_1 pid=1032) WARNING 03-01 21:42:58 [platform.py:325]             * For more details, please refer to:
 2026-03-01T21:42:58.7245491Z (ApiServer_1 pid=1032) WARNING 03-01 21:42:58 [platform.py:325]             * https://docs.vllm.ai/en/stable/configuration/conserving_memory.html#reduce-cuda-graphs
 2026-03-01T21:42:58.7246322Z (ApiServer_1 pid=1032) WARNING 03-01 21:42:58 [platform.py:325]             **********************************************************************************[0m
-2026-03-01T21:42:58.7246821Z (ApiServer_1 pid=1032) WARNING 03-01 21:42:58 [platform.py:325]             
+2026-03-01T21:42:58.7246821Z (ApiServer_1 pid=1032) WARNING 03-01 21:42:58 [platform.py:325]
 2026-03-01T21:42:58.7247328Z (ApiServer_1 pid=1032) INFO 03-01 21:42:58 [platform.py:437] Set PYTORCH_NPU_ALLOC_CONF=expandable_segments:True
 2026-03-01T21:42:58.7316834Z (ApiServer_0 pid=1031) INFO 03-01 21:42:58 [vllm.py:689] Asynchronous scheduling is enabled.
 2026-03-01T21:42:58.7317396Z (ApiServer_0 pid=1031) INFO 03-01 21:42:58 [vllm.py:699] Disabling NCCL for DP synchronization when using async scheduling.
@@ -511,7 +511,7 @@
 2026-03-01T21:42:58.7335138Z (ApiServer_0 pid=1031) WARNING 03-01 21:42:58 [platform.py:325]             * For more details, please refer to:
 2026-03-01T21:42:58.7335808Z (ApiServer_0 pid=1031) WARNING 03-01 21:42:58 [platform.py:325]             * https://docs.vllm.ai/en/stable/configuration/conserving_memory.html#reduce-cuda-graphs
 2026-03-01T21:42:58.7336538Z (ApiServer_0 pid=1031) WARNING 03-01 21:42:58 [platform.py:325]             **********************************************************************************[0m
-2026-03-01T21:42:58.7337129Z (ApiServer_0 pid=1031) WARNING 03-01 21:42:58 [platform.py:325]             
+2026-03-01T21:42:58.7337129Z (ApiServer_0 pid=1031) WARNING 03-01 21:42:58 [platform.py:325]
 2026-03-01T21:42:58.7337580Z (ApiServer_0 pid=1031) INFO 03-01 21:42:58 [platform.py:437] Set PYTORCH_NPU_ALLOC_CONF=expandable_segments:True
 2026-03-01T21:43:00.0593407Z /usr/local/python3.11.14/lib/python3.11/site-packages/transformers/models/auto/image_processing_auto.py:647: FutureWarning: The image_processor_class argument is deprecated and will be removed in v4.42. Please use `slow_image_processor_class`, or `fast_image_processor_class` instead
 2026-03-01T21:43:00.0594590Z   warnings.warn(
@@ -1060,7 +1060,7 @@
 2026-03-01T21:44:21.6229844Z (Worker_DP1_TP4_EP12 pid=1397) ERROR 03-01 21:44:21 [multiproc_executor.py:783]                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 2026-03-01T21:44:21.6230859Z (Worker_DP1_TP4_EP12 pid=1397) ERROR 03-01 21:44:21 [multiproc_executor.py:783] RuntimeError: create_config:build/CMakeFiles/torch_npu.dir/compiler_depend.ts:130 HCCL function error: hcclCommInitRootInfoConfig(numRanks, &rootInfo, rank, config, &(comm->hcclComm_)), error code is 7
 2026-03-01T21:44:21.6232264Z (Worker_DP1_TP4_EP12 pid=1397) ERROR 03-01 21:44:21 [multiproc_executor.py:783] [ERROR] 2026-03-01-21:44:20 (PID:1397, Device:4, RankID:-1) ERR02200 DIST call hccl api failed.
-2026-03-01T21:44:21.6232886Z (Worker_DP1_TP4_EP12 pid=1397) ERROR 03-01 21:44:21 [multiproc_executor.py:783] 
+2026-03-01T21:44:21.6232886Z (Worker_DP1_TP4_EP12 pid=1397) ERROR 03-01 21:44:21 [multiproc_executor.py:783]
 2026-03-01T21:44:21.6233399Z (Worker_DP1_TP4_EP12 pid=1397) INFO 03-01 21:44:21 [multiproc_executor.py:732] Parent process exited, terminating worker
 2026-03-01T21:44:21.6588914Z (Worker_DP0_TP5_EP5 pid=1498) ERROR 03-01 21:44:21 [multiproc_executor.py:783] WorkerProc failed to start.
 2026-03-01T21:44:21.6589857Z (Worker_DP0_TP5_EP5 pid=1498) ERROR 03-01 21:44:21 [multiproc_executor.py:783] Traceback (most recent call last):
@@ -1127,7 +1127,7 @@
 2026-03-01T21:44:21.6631905Z (Worker_DP0_TP5_EP5 pid=1498) ERROR 03-01 21:44:21 [multiproc_executor.py:783]                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 2026-03-01T21:44:21.6633020Z (Worker_DP0_TP5_EP5 pid=1498) ERROR 03-01 21:44:21 [multiproc_executor.py:783] RuntimeError: create_config:build/CMakeFiles/torch_npu.dir/compiler_depend.ts:130 HCCL function error: hcclCommInitRootInfoConfig(numRanks, &rootInfo, rank, config, &(comm->hcclComm_)), error code is 7
 2026-03-01T21:44:21.6634138Z (Worker_DP0_TP5_EP5 pid=1498) ERROR 03-01 21:44:21 [multiproc_executor.py:783] [ERROR] 2026-03-01-21:44:20 (PID:1498, Device:5, RankID:-1) ERR02200 DIST call hccl api failed.
-2026-03-01T21:44:21.6634713Z (Worker_DP0_TP5_EP5 pid=1498) ERROR 03-01 21:44:21 [multiproc_executor.py:783] 
+2026-03-01T21:44:21.6634713Z (Worker_DP0_TP5_EP5 pid=1498) ERROR 03-01 21:44:21 [multiproc_executor.py:783]
 2026-03-01T21:44:21.6635220Z (Worker_DP0_TP5_EP5 pid=1498) INFO 03-01 21:44:21 [multiproc_executor.py:732] Parent process exited, terminating worker
 2026-03-01T21:44:21.9263364Z (Worker_DP1_TP5_EP13 pid=1501) INFO 03-01 21:44:21 [multiproc_executor.py:732] Parent process exited, terminating worker
 2026-03-01T21:44:21.9303940Z (Worker_DP1_TP5_EP13 pid=1501) ERROR 03-01 21:44:21 [multiproc_executor.py:783] WorkerProc failed to start.
@@ -1195,7 +1195,7 @@
 2026-03-01T21:44:21.9346994Z (Worker_DP1_TP5_EP13 pid=1501) ERROR 03-01 21:44:21 [multiproc_executor.py:783]                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 2026-03-01T21:44:21.9348042Z (Worker_DP1_TP5_EP13 pid=1501) ERROR 03-01 21:44:21 [multiproc_executor.py:783] RuntimeError: create_config:build/CMakeFiles/torch_npu.dir/compiler_depend.ts:130 HCCL function error: hcclCommInitRootInfoConfig(numRanks, &rootInfo, rank, config, &(comm->hcclComm_)), error code is 7
 2026-03-01T21:44:21.9349185Z (Worker_DP1_TP5_EP13 pid=1501) ERROR 03-01 21:44:21 [multiproc_executor.py:783] [ERROR] 2026-03-01-21:44:20 (PID:1501, Device:5, RankID:-1) ERR02200 DIST call hccl api failed.
-2026-03-01T21:44:21.9349832Z (Worker_DP1_TP5_EP13 pid=1501) ERROR 03-01 21:44:21 [multiproc_executor.py:783] 
+2026-03-01T21:44:21.9349832Z (Worker_DP1_TP5_EP13 pid=1501) ERROR 03-01 21:44:21 [multiproc_executor.py:783]
 2026-03-01T21:44:22.0837722Z (Worker_DP1_TP6_EP14 pid=1605) INFO 03-01 21:44:22 [multiproc_executor.py:732] Parent process exited, terminating worker
 2026-03-01T21:44:22.0883623Z (Worker_DP1_TP6_EP14 pid=1605) ERROR 03-01 21:44:22 [multiproc_executor.py:783] WorkerProc failed to start.
 2026-03-01T21:44:22.0884245Z (Worker_DP1_TP6_EP14 pid=1605) ERROR 03-01 21:44:22 [multiproc_executor.py:783] Traceback (most recent call last):
@@ -1262,7 +1262,7 @@
 2026-03-01T21:44:22.0926797Z (Worker_DP1_TP6_EP14 pid=1605) ERROR 03-01 21:44:22 [multiproc_executor.py:783]                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 2026-03-01T21:44:22.0927790Z (Worker_DP1_TP6_EP14 pid=1605) ERROR 03-01 21:44:22 [multiproc_executor.py:783] RuntimeError: create_config:build/CMakeFiles/torch_npu.dir/compiler_depend.ts:130 HCCL function error: hcclCommInitRootInfoConfig(numRanks, &rootInfo, rank, config, &(comm->hcclComm_)), error code is 7
 2026-03-01T21:44:22.0928879Z (Worker_DP1_TP6_EP14 pid=1605) ERROR 03-01 21:44:22 [multiproc_executor.py:783] [ERROR] 2026-03-01-21:44:20 (PID:1605, Device:6, RankID:-1) ERR02200 DIST call hccl api failed.
-2026-03-01T21:44:22.0929493Z (Worker_DP1_TP6_EP14 pid=1605) ERROR 03-01 21:44:22 [multiproc_executor.py:783] 
+2026-03-01T21:44:22.0929493Z (Worker_DP1_TP6_EP14 pid=1605) ERROR 03-01 21:44:22 [multiproc_executor.py:783]
 2026-03-01T21:44:22.1273632Z (Worker_DP0_TP4_EP4 pid=1394) INFO 03-01 21:44:22 [multiproc_executor.py:732] Parent process exited, terminating worker
 2026-03-01T21:44:22.1314228Z (Worker_DP0_TP4_EP4 pid=1394) ERROR 03-01 21:44:22 [multiproc_executor.py:783] WorkerProc failed to start.
 2026-03-01T21:44:22.1314817Z (Worker_DP0_TP4_EP4 pid=1394) ERROR 03-01 21:44:22 [multiproc_executor.py:783] Traceback (most recent call last):
@@ -1329,7 +1329,7 @@
 2026-03-01T21:44:22.1358279Z (Worker_DP0_TP4_EP4 pid=1394) ERROR 03-01 21:44:22 [multiproc_executor.py:783]                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 2026-03-01T21:44:22.1359278Z (Worker_DP0_TP4_EP4 pid=1394) ERROR 03-01 21:44:22 [multiproc_executor.py:783] RuntimeError: create_config:build/CMakeFiles/torch_npu.dir/compiler_depend.ts:130 HCCL function error: hcclCommInitRootInfoConfig(numRanks, &rootInfo, rank, config, &(comm->hcclComm_)), error code is 7
 2026-03-01T21:44:22.1360343Z (Worker_DP0_TP4_EP4 pid=1394) ERROR 03-01 21:44:22 [multiproc_executor.py:783] [ERROR] 2026-03-01-21:44:20 (PID:1394, Device:4, RankID:-1) ERR02200 DIST call hccl api failed.
-2026-03-01T21:44:22.1360965Z (Worker_DP0_TP4_EP4 pid=1394) ERROR 03-01 21:44:22 [multiproc_executor.py:783] 
+2026-03-01T21:44:22.1360965Z (Worker_DP0_TP4_EP4 pid=1394) ERROR 03-01 21:44:22 [multiproc_executor.py:783]
 2026-03-01T21:44:22.2060171Z (Worker_DP0_TP0_EP0 pid=1047) INFO 03-01 21:44:22 [multiproc_executor.py:732] Parent process exited, terminating worker
 2026-03-01T21:44:22.2123496Z (Worker_DP0_TP0_EP0 pid=1047) ERROR 03-01 21:44:22 [multiproc_executor.py:783] WorkerProc failed to start.
 2026-03-01T21:44:22.2124104Z (Worker_DP0_TP0_EP0 pid=1047) ERROR 03-01 21:44:22 [multiproc_executor.py:783] Traceback (most recent call last):
@@ -1396,7 +1396,7 @@
 2026-03-01T21:44:22.2166130Z (Worker_DP0_TP0_EP0 pid=1047) ERROR 03-01 21:44:22 [multiproc_executor.py:783]                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 2026-03-01T21:44:22.2167163Z (Worker_DP0_TP0_EP0 pid=1047) ERROR 03-01 21:44:22 [multiproc_executor.py:783] RuntimeError: create_config:build/CMakeFiles/torch_npu.dir/compiler_depend.ts:130 HCCL function error: hcclCommInitRootInfoConfig(numRanks, &rootInfo, rank, config, &(comm->hcclComm_)), error code is 7
 2026-03-01T21:44:22.2168345Z (Worker_DP0_TP0_EP0 pid=1047) ERROR 03-01 21:44:22 [multiproc_executor.py:783] [ERROR] 2026-03-01-21:44:20 (PID:1047, Device:0, RankID:-1) ERR02200 DIST call hccl api failed.
-2026-03-01T21:44:22.2168976Z (Worker_DP0_TP0_EP0 pid=1047) ERROR 03-01 21:44:22 [multiproc_executor.py:783] 
+2026-03-01T21:44:22.2168976Z (Worker_DP0_TP0_EP0 pid=1047) ERROR 03-01 21:44:22 [multiproc_executor.py:783]
 2026-03-01T21:44:22.2289874Z (Worker_DP0_TP6_EP6 pid=1602) INFO 03-01 21:44:22 [multiproc_executor.py:732] Parent process exited, terminating worker
 2026-03-01T21:44:22.2292331Z (Worker_DP0_TP3_EP3 pid=1290) INFO 03-01 21:44:22 [multiproc_executor.py:732] Parent process exited, terminating worker
 2026-03-01T21:44:22.2332155Z (Worker_DP0_TP6_EP6 pid=1602) ERROR 03-01 21:44:22 [multiproc_executor.py:783] WorkerProc failed to start.
@@ -1464,7 +1464,7 @@
 2026-03-01T21:44:22.2375564Z (Worker_DP0_TP6_EP6 pid=1602) ERROR 03-01 21:44:22 [multiproc_executor.py:783]                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 2026-03-01T21:44:22.2376558Z (Worker_DP0_TP6_EP6 pid=1602) ERROR 03-01 21:44:22 [multiproc_executor.py:783] RuntimeError: create_config:build/CMakeFiles/torch_npu.dir/compiler_depend.ts:130 HCCL function error: hcclCommInitRootInfoConfig(numRanks, &rootInfo, rank, config, &(comm->hcclComm_)), error code is 7
 2026-03-01T21:44:22.2377710Z (Worker_DP0_TP6_EP6 pid=1602) ERROR 03-01 21:44:22 [multiproc_executor.py:783] [ERROR] 2026-03-01-21:44:20 (PID:1602, Device:6, RankID:-1) ERR02200 DIST call hccl api failed.
-2026-03-01T21:44:22.2378319Z (Worker_DP0_TP6_EP6 pid=1602) ERROR 03-01 21:44:22 [multiproc_executor.py:783] 
+2026-03-01T21:44:22.2378319Z (Worker_DP0_TP6_EP6 pid=1602) ERROR 03-01 21:44:22 [multiproc_executor.py:783]
 2026-03-01T21:44:22.2378817Z (Worker_DP0_TP3_EP3 pid=1290) ERROR 03-01 21:44:22 [multiproc_executor.py:783] WorkerProc failed to start.
 2026-03-01T21:44:22.2379327Z (Worker_DP0_TP3_EP3 pid=1290) ERROR 03-01 21:44:22 [multiproc_executor.py:783] Traceback (most recent call last):
 2026-03-01T21:44:22.2380012Z (Worker_DP0_TP3_EP3 pid=1290) ERROR 03-01 21:44:22 [multiproc_executor.py:783]   File "/vllm-workspace/vllm/vllm/v1/executor/multiproc_executor.py", line 754, in worker_main
@@ -1530,7 +1530,7 @@
 2026-03-01T21:44:22.2420973Z (Worker_DP0_TP3_EP3 pid=1290) ERROR 03-01 21:44:22 [multiproc_executor.py:783]                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 2026-03-01T21:44:22.2422136Z (Worker_DP0_TP3_EP3 pid=1290) ERROR 03-01 21:44:22 [multiproc_executor.py:783] RuntimeError: create_config:build/CMakeFiles/torch_npu.dir/compiler_depend.ts:130 HCCL function error: hcclCommInitRootInfoConfig(numRanks, &rootInfo, rank, config, &(comm->hcclComm_)), error code is 7
 2026-03-01T21:44:22.2423271Z (Worker_DP0_TP3_EP3 pid=1290) ERROR 03-01 21:44:22 [multiproc_executor.py:783] [ERROR] 2026-03-01-21:44:20 (PID:1290, Device:3, RankID:-1) ERR02200 DIST call hccl api failed.
-2026-03-01T21:44:22.2423861Z (Worker_DP0_TP3_EP3 pid=1290) ERROR 03-01 21:44:22 [multiproc_executor.py:783] 
+2026-03-01T21:44:22.2423861Z (Worker_DP0_TP3_EP3 pid=1290) ERROR 03-01 21:44:22 [multiproc_executor.py:783]
 2026-03-01T21:44:22.2439886Z (Worker_DP0_TP7_EP7 pid=1706) INFO 03-01 21:44:22 [multiproc_executor.py:732] Parent process exited, terminating worker
 2026-03-01T21:44:22.2440483Z (Worker_DP1_TP0_EP8 pid=1046) INFO 03-01 21:44:22 [multiproc_executor.py:732] Parent process exited, terminating worker
 2026-03-01T21:44:22.2484848Z (Worker_DP0_TP7_EP7 pid=1706) ERROR 03-01 21:44:22 [multiproc_executor.py:783] WorkerProc failed to start.
@@ -1598,7 +1598,7 @@
 2026-03-01T21:44:22.2527445Z (Worker_DP0_TP7_EP7 pid=1706) ERROR 03-01 21:44:22 [multiproc_executor.py:783]                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 2026-03-01T21:44:22.2528452Z (Worker_DP0_TP7_EP7 pid=1706) ERROR 03-01 21:44:22 [multiproc_executor.py:783] RuntimeError: create_config:build/CMakeFiles/torch_npu.dir/compiler_depend.ts:130 HCCL function error: hcclCommInitRootInfoConfig(numRanks, &rootInfo, rank, config, &(comm->hcclComm_)), error code is 7
 2026-03-01T21:44:22.2529524Z (Worker_DP0_TP7_EP7 pid=1706) ERROR 03-01 21:44:22 [multiproc_executor.py:783] [ERROR] 2026-03-01-21:44:20 (PID:1706, Device:7, RankID:-1) ERR02200 DIST call hccl api failed.
-2026-03-01T21:44:22.2530152Z (Worker_DP0_TP7_EP7 pid=1706) ERROR 03-01 21:44:22 [multiproc_executor.py:783] 
+2026-03-01T21:44:22.2530152Z (Worker_DP0_TP7_EP7 pid=1706) ERROR 03-01 21:44:22 [multiproc_executor.py:783]
 2026-03-01T21:44:22.2530662Z (Worker_DP1_TP0_EP8 pid=1046) ERROR 03-01 21:44:22 [multiproc_executor.py:783] WorkerProc failed to start.
 2026-03-01T21:44:22.2531192Z (Worker_DP1_TP0_EP8 pid=1046) ERROR 03-01 21:44:22 [multiproc_executor.py:783] Traceback (most recent call last):
 2026-03-01T21:44:22.2531944Z (Worker_DP1_TP0_EP8 pid=1046) ERROR 03-01 21:44:22 [multiproc_executor.py:783]   File "/vllm-workspace/vllm/vllm/v1/executor/multiproc_executor.py", line 754, in worker_main
@@ -1664,7 +1664,7 @@
 2026-03-01T21:44:22.2572998Z (Worker_DP1_TP0_EP8 pid=1046) ERROR 03-01 21:44:22 [multiproc_executor.py:783]                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 2026-03-01T21:44:22.2574061Z (Worker_DP1_TP0_EP8 pid=1046) ERROR 03-01 21:44:22 [multiproc_executor.py:783] RuntimeError: create_config:build/CMakeFiles/torch_npu.dir/compiler_depend.ts:130 HCCL function error: hcclCommInitRootInfoConfig(numRanks, &rootInfo, rank, config, &(comm->hcclComm_)), error code is 7
 2026-03-01T21:44:22.2575191Z (Worker_DP1_TP0_EP8 pid=1046) ERROR 03-01 21:44:22 [multiproc_executor.py:783] [ERROR] 2026-03-01-21:44:20 (PID:1046, Device:0, RankID:-1) ERR02200 DIST call hccl api failed.
-2026-03-01T21:44:22.2575802Z (Worker_DP1_TP0_EP8 pid=1046) ERROR 03-01 21:44:22 [multiproc_executor.py:783] 
+2026-03-01T21:44:22.2575802Z (Worker_DP1_TP0_EP8 pid=1046) ERROR 03-01 21:44:22 [multiproc_executor.py:783]
 2026-03-01T21:44:22.2576329Z (Worker_DP1_TP3_EP11 pid=1293) INFO 03-01 21:44:22 [multiproc_executor.py:732] Parent process exited, terminating worker
 2026-03-01T21:44:22.2576882Z (Worker_DP0_TP2_EP2 pid=1186) INFO 03-01 21:44:22 [multiproc_executor.py:732] Parent process exited, terminating worker
 2026-03-01T21:44:22.2596631Z (Worker_DP1_TP3_EP11 pid=1293) ERROR 03-01 21:44:22 [multiproc_executor.py:783] WorkerProc failed to start.
@@ -1732,7 +1732,7 @@
 2026-03-01T21:44:22.2639324Z (Worker_DP1_TP3_EP11 pid=1293) ERROR 03-01 21:44:22 [multiproc_executor.py:783]                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 2026-03-01T21:44:22.2640383Z (Worker_DP1_TP3_EP11 pid=1293) ERROR 03-01 21:44:22 [multiproc_executor.py:783] RuntimeError: create_config:build/CMakeFiles/torch_npu.dir/compiler_depend.ts:130 HCCL function error: hcclCommInitRootInfoConfig(numRanks, &rootInfo, rank, config, &(comm->hcclComm_)), error code is 7
 2026-03-01T21:44:22.2641573Z (Worker_DP1_TP3_EP11 pid=1293) ERROR 03-01 21:44:22 [multiproc_executor.py:783] [ERROR] 2026-03-01-21:44:20 (PID:1293, Device:3, RankID:-1) ERR02200 DIST call hccl api failed.
-2026-03-01T21:44:22.2642295Z (Worker_DP1_TP3_EP11 pid=1293) ERROR 03-01 21:44:22 [multiproc_executor.py:783] 
+2026-03-01T21:44:22.2642295Z (Worker_DP1_TP3_EP11 pid=1293) ERROR 03-01 21:44:22 [multiproc_executor.py:783]
 2026-03-01T21:44:22.2642833Z (Worker_DP0_TP2_EP2 pid=1186) ERROR 03-01 21:44:22 [multiproc_executor.py:783] WorkerProc failed to start.
 2026-03-01T21:44:22.2643328Z (Worker_DP0_TP2_EP2 pid=1186) ERROR 03-01 21:44:22 [multiproc_executor.py:783] Traceback (most recent call last):
 2026-03-01T21:44:22.2644026Z (Worker_DP0_TP2_EP2 pid=1186) ERROR 03-01 21:44:22 [multiproc_executor.py:783]   File "/vllm-workspace/vllm/vllm/v1/executor/multiproc_executor.py", line 754, in worker_main
@@ -1798,7 +1798,7 @@
 2026-03-01T21:44:22.2685290Z (Worker_DP0_TP2_EP2 pid=1186) ERROR 03-01 21:44:22 [multiproc_executor.py:783]                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 2026-03-01T21:44:22.2686358Z (Worker_DP0_TP2_EP2 pid=1186) ERROR 03-01 21:44:22 [multiproc_executor.py:783] RuntimeError: create_config:build/CMakeFiles/torch_npu.dir/compiler_depend.ts:130 HCCL function error: hcclCommInitRootInfoConfig(numRanks, &rootInfo, rank, config, &(comm->hcclComm_)), error code is 7
 2026-03-01T21:44:22.2687426Z (Worker_DP0_TP2_EP2 pid=1186) ERROR 03-01 21:44:22 [multiproc_executor.py:783] [ERROR] 2026-03-01-21:44:20 (PID:1186, Device:2, RankID:-1) ERR02200 DIST call hccl api failed.
-2026-03-01T21:44:22.2688031Z (Worker_DP0_TP2_EP2 pid=1186) ERROR 03-01 21:44:22 [multiproc_executor.py:783] 
+2026-03-01T21:44:22.2688031Z (Worker_DP0_TP2_EP2 pid=1186) ERROR 03-01 21:44:22 [multiproc_executor.py:783]
 2026-03-01T21:44:22.2911664Z (Worker_DP1_TP2_EP10 pid=1187) INFO 03-01 21:44:22 [multiproc_executor.py:732] Parent process exited, terminating worker
 2026-03-01T21:44:22.2952421Z (Worker_DP1_TP2_EP10 pid=1187) ERROR 03-01 21:44:22 [multiproc_executor.py:783] WorkerProc failed to start.
 2026-03-01T21:44:22.2952998Z (Worker_DP1_TP2_EP10 pid=1187) ERROR 03-01 21:44:22 [multiproc_executor.py:783] Traceback (most recent call last):
@@ -1865,7 +1865,7 @@
 2026-03-01T21:44:22.2995180Z (Worker_DP1_TP2_EP10 pid=1187) ERROR 03-01 21:44:22 [multiproc_executor.py:783]                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 2026-03-01T21:44:22.2996252Z (Worker_DP1_TP2_EP10 pid=1187) ERROR 03-01 21:44:22 [multiproc_executor.py:783] RuntimeError: create_config:build/CMakeFiles/torch_npu.dir/compiler_depend.ts:130 HCCL function error: hcclCommInitRootInfoConfig(numRanks, &rootInfo, rank, config, &(comm->hcclComm_)), error code is 7
 2026-03-01T21:44:22.2997384Z (Worker_DP1_TP2_EP10 pid=1187) ERROR 03-01 21:44:22 [multiproc_executor.py:783] [ERROR] 2026-03-01-21:44:20 (PID:1187, Device:2, RankID:-1) ERR02200 DIST call hccl api failed.
-2026-03-01T21:44:22.2997985Z (Worker_DP1_TP2_EP10 pid=1187) ERROR 03-01 21:44:22 [multiproc_executor.py:783] 
+2026-03-01T21:44:22.2997985Z (Worker_DP1_TP2_EP10 pid=1187) ERROR 03-01 21:44:22 [multiproc_executor.py:783]
 2026-03-01T21:44:22.3184612Z (Worker_DP1_TP1_EP9 pid=1083) INFO 03-01 21:44:22 [multiproc_executor.py:732] Parent process exited, terminating worker
 2026-03-01T21:44:22.3230103Z (Worker_DP1_TP1_EP9 pid=1083) ERROR 03-01 21:44:22 [multiproc_executor.py:783] WorkerProc failed to start.
 2026-03-01T21:44:22.3230692Z (Worker_DP1_TP1_EP9 pid=1083) ERROR 03-01 21:44:22 [multiproc_executor.py:783] Traceback (most recent call last):
@@ -1932,7 +1932,7 @@
 2026-03-01T21:44:22.3272587Z (Worker_DP1_TP1_EP9 pid=1083) ERROR 03-01 21:44:22 [multiproc_executor.py:783]                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 2026-03-01T21:44:22.3273600Z (Worker_DP1_TP1_EP9 pid=1083) ERROR 03-01 21:44:22 [multiproc_executor.py:783] RuntimeError: create_config:build/CMakeFiles/torch_npu.dir/compiler_depend.ts:130 HCCL function error: hcclCommInitRootInfoConfig(numRanks, &rootInfo, rank, config, &(comm->hcclComm_)), error code is 7
 2026-03-01T21:44:22.3274686Z (Worker_DP1_TP1_EP9 pid=1083) ERROR 03-01 21:44:22 [multiproc_executor.py:783] [ERROR] 2026-03-01-21:44:20 (PID:1083, Device:1, RankID:-1) ERR02200 DIST call hccl api failed.
-2026-03-01T21:44:22.3275320Z (Worker_DP1_TP1_EP9 pid=1083) ERROR 03-01 21:44:22 [multiproc_executor.py:783] 
+2026-03-01T21:44:22.3275320Z (Worker_DP1_TP1_EP9 pid=1083) ERROR 03-01 21:44:22 [multiproc_executor.py:783]
 2026-03-01T21:44:22.3275848Z (Worker_DP0_TP1_EP1 pid=1080) INFO 03-01 21:44:22 [multiproc_executor.py:732] Parent process exited, terminating worker
 2026-03-01T21:44:22.3281212Z (Worker_DP0_TP1_EP1 pid=1080) ERROR 03-01 21:44:22 [multiproc_executor.py:783] WorkerProc failed to start.
 2026-03-01T21:44:22.3281841Z (Worker_DP0_TP1_EP1 pid=1080) ERROR 03-01 21:44:22 [multiproc_executor.py:783] Traceback (most recent call last):
@@ -1999,7 +1999,7 @@
 2026-03-01T21:44:22.3323562Z (Worker_DP0_TP1_EP1 pid=1080) ERROR 03-01 21:44:22 [multiproc_executor.py:783]                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 2026-03-01T21:44:22.3324562Z (Worker_DP0_TP1_EP1 pid=1080) ERROR 03-01 21:44:22 [multiproc_executor.py:783] RuntimeError: create_config:build/CMakeFiles/torch_npu.dir/compiler_depend.ts:130 HCCL function error: hcclCommInitRootInfoConfig(numRanks, &rootInfo, rank, config, &(comm->hcclComm_)), error code is 7
 2026-03-01T21:44:22.3325717Z (Worker_DP0_TP1_EP1 pid=1080) ERROR 03-01 21:44:22 [multiproc_executor.py:783] [ERROR] 2026-03-01-21:44:20 (PID:1080, Device:1, RankID:-1) ERR02200 DIST call hccl api failed.
-2026-03-01T21:44:22.3326307Z (Worker_DP0_TP1_EP1 pid=1080) ERROR 03-01 21:44:22 [multiproc_executor.py:783] 
+2026-03-01T21:44:22.3326307Z (Worker_DP0_TP1_EP1 pid=1080) ERROR 03-01 21:44:22 [multiproc_executor.py:783]
 2026-03-01T21:44:22.3326843Z (Worker_DP1_TP7_EP15 pid=1709) INFO 03-01 21:44:22 [multiproc_executor.py:732] Parent process exited, terminating worker
 2026-03-01T21:44:22.3341784Z (Worker_DP1_TP7_EP15 pid=1709) ERROR 03-01 21:44:22 [multiproc_executor.py:783] WorkerProc failed to start.
 2026-03-01T21:44:22.3342475Z (Worker_DP1_TP7_EP15 pid=1709) ERROR 03-01 21:44:22 [multiproc_executor.py:783] Traceback (most recent call last):
@@ -2066,7 +2066,7 @@
 2026-03-01T21:44:22.3385086Z (Worker_DP1_TP7_EP15 pid=1709) ERROR 03-01 21:44:22 [multiproc_executor.py:783]                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 2026-03-01T21:44:22.3386082Z (Worker_DP1_TP7_EP15 pid=1709) ERROR 03-01 21:44:22 [multiproc_executor.py:783] RuntimeError: create_config:build/CMakeFiles/torch_npu.dir/compiler_depend.ts:130 HCCL function error: hcclCommInitRootInfoConfig(numRanks, &rootInfo, rank, config, &(comm->hcclComm_)), error code is 7
 2026-03-01T21:44:22.3387198Z (Worker_DP1_TP7_EP15 pid=1709) ERROR 03-01 21:44:22 [multiproc_executor.py:783] [ERROR] 2026-03-01-21:44:20 (PID:1709, Device:7, RankID:-1) ERR02200 DIST call hccl api failed.
-2026-03-01T21:44:22.3387815Z (Worker_DP1_TP7_EP15 pid=1709) ERROR 03-01 21:44:22 [multiproc_executor.py:783] 
+2026-03-01T21:44:22.3387815Z (Worker_DP1_TP7_EP15 pid=1709) ERROR 03-01 21:44:22 [multiproc_executor.py:783]
 2026-03-01T21:44:26.6296886Z (EngineCore_DP1 pid=1020) Process EngineCore_DP1:
 2026-03-01T21:44:26.6297644Z (EngineCore_DP1 pid=1020) ERROR 03-01 21:44:26 [core.py:1006] EngineCore failed to start.
 2026-03-01T21:44:26.6298245Z (EngineCore_DP1 pid=1020) ERROR 03-01 21:44:26 [core.py:1006] Traceback (most recent call last):
@@ -2189,12 +2189,12 @@
 2026-03-01T21:44:30.7507622Z /usr/local/python3.11.14/lib/python3.11/multiprocessing/resource_tracker.py:254: UserWarning: resource_tracker: There appear to be 18 leaked shared_memory objects to clean up at shutdown
 2026-03-01T21:44:30.7508477Z   warnings.warn('resource_tracker: There appear to be %d '
 2026-03-01T21:44:32.5381143Z FAILED
-2026-03-01T21:44:32.5381353Z 
+2026-03-01T21:44:32.5381353Z
 2026-03-01T21:44:32.5381565Z =================================== FAILURES ===================================
 2026-03-01T21:44:32.5381954Z _______________ test_models[2-8-vllm-ascend/DeepSeek-V3.2-W8A8] ________________
-2026-03-01T21:44:32.5382308Z 
+2026-03-01T21:44:32.5382308Z
 2026-03-01T21:44:32.5382532Z model = 'vllm-ascend/DeepSeek-V3.2-W8A8', tp_size = 8, dp_size = 2
-2026-03-01T21:44:32.5382784Z 
+2026-03-01T21:44:32.5382784Z
 2026-03-01T21:44:32.5382883Z     @pytest.mark.asyncio
 2026-03-01T21:44:32.5383427Z     @pytest.mark.parametrize("model", MODELS)
 2026-03-01T21:44:32.5383842Z     @pytest.mark.parametrize("tp_size", TENSOR_PARALLELS)
@@ -2210,7 +2210,7 @@
 2026-03-01T21:44:32.5386873Z             "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:True",
 2026-03-01T21:44:32.5387211Z             "VLLM_ASCEND_ENABLE_FLASHCOMM1": "1",
 2026-03-01T21:44:32.5387492Z         }
-2026-03-01T21:44:32.5387663Z     
+2026-03-01T21:44:32.5387663Z
 2026-03-01T21:44:32.5387887Z         server_args = [
 2026-03-01T21:44:32.5388150Z             "--enable-expert-parallel", "--tensor-parallel-size",
 2026-03-01T21:44:32.5388493Z             str(tp_size), "--data-parallel-size",
@@ -2233,17 +2233,17 @@
 2026-03-01T21:44:32.5394018Z                                 server_port=port,
 2026-03-01T21:44:32.5394435Z                                 env_dict=env_dict,
 2026-03-01T21:44:32.5394740Z                                 auto_port=False) as server:
-2026-03-01T21:44:32.5394915Z 
-2026-03-01T21:44:32.5395082Z tests/e2e/nightly/single_node/models/test_deepseek_v3_2_w8a8.py:107: 
-2026-03-01T21:44:32.5395479Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-03-01T21:44:32.5394915Z
+2026-03-01T21:44:32.5395082Z tests/e2e/nightly/single_node/models/test_deepseek_v3_2_w8a8.py:107:
+2026-03-01T21:44:32.5395479Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 2026-03-01T21:44:32.5395768Z tests/e2e/conftest.py:306: in __init__
 2026-03-01T21:44:32.5396050Z     self._wait_for_multiple_servers(
-2026-03-01T21:44:32.5396362Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
-2026-03-01T21:44:32.5396552Z 
+2026-03-01T21:44:32.5396362Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+2026-03-01T21:44:32.5396552Z
 2026-03-01T21:44:32.5396724Z self = <tests.e2e.conftest.RemoteOpenAIServer object at 0xffff150e1c90>
 2026-03-01T21:44:32.5397162Z targets = [('0.0.0.0', 'http://0.0.0.0:36471/health')], timeout = 2800
 2026-03-01T21:44:32.5397454Z log_interval = 30.0
-2026-03-01T21:44:32.5397616Z 
+2026-03-01T21:44:32.5397616Z
 2026-03-01T21:44:32.5397713Z     def _wait_for_multiple_servers(self,
 2026-03-01T21:44:32.5397951Z                                    targets,
 2026-03-01T21:44:32.5398217Z                                    timeout: float,
@@ -2254,20 +2254,20 @@
 2026-03-01T21:44:32.5399474Z         """
 2026-03-01T21:44:32.5399736Z         start = time.time()
 2026-03-01T21:44:32.5400005Z         client = requests
-2026-03-01T21:44:32.5400293Z     
+2026-03-01T21:44:32.5400293Z
 2026-03-01T21:44:32.5400521Z         ready = {node_ip: False for node_ip, _ in targets}
-2026-03-01T21:44:32.5400809Z     
+2026-03-01T21:44:32.5400809Z
 2026-03-01T21:44:32.5400991Z         last_log_time = 0.0
-2026-03-01T21:44:32.5401204Z     
+2026-03-01T21:44:32.5401204Z
 2026-03-01T21:44:32.5401387Z         while True:
 2026-03-01T21:44:32.5401613Z             now = time.time()
 2026-03-01T21:44:32.5401829Z             all_ready = True
 2026-03-01T21:44:32.5402211Z             should_log = (now - last_log_time) >= log_interval
-2026-03-01T21:44:32.5402477Z     
+2026-03-01T21:44:32.5402477Z
 2026-03-01T21:44:32.5402687Z             for node_ip, url in targets:
 2026-03-01T21:44:32.5402956Z                 if ready[node_ip]:
 2026-03-01T21:44:32.5403178Z                     continue
-2026-03-01T21:44:32.5403484Z     
+2026-03-01T21:44:32.5403484Z
 2026-03-01T21:44:32.5403648Z                 try:
 2026-03-01T21:44:32.5403897Z                     resp = client.get(url)
 2026-03-01T21:44:32.5404210Z                     if resp.status_code == 200:
@@ -2277,7 +2277,7 @@
 2026-03-01T21:44:32.5405348Z                     all_ready = False
 2026-03-01T21:44:32.5405592Z                     if should_log:
 2026-03-01T21:44:32.5405884Z                         logger.debug(f"[WAIT] {url}: connection failed")
-2026-03-01T21:44:32.5406130Z     
+2026-03-01T21:44:32.5406130Z
 2026-03-01T21:44:32.5406365Z                     # check unexpected exit
 2026-03-01T21:44:32.5406684Z                     result = self._poll()
 2026-03-01T21:44:32.5406957Z                     if result is not None and result != 0:
@@ -2285,25 +2285,25 @@
 2026-03-01T21:44:32.5407625Z                             f"Server at {node_ip} exited unexpectedly."
 2026-03-01T21:44:32.5407921Z                         ) from None
 2026-03-01T21:44:32.5408214Z E                       RuntimeError: Server at 0.0.0.0 exited unexpectedly.
-2026-03-01T21:44:32.5408446Z 
+2026-03-01T21:44:32.5408446Z
 2026-03-01T21:44:32.5408545Z tests/e2e/conftest.py:399: RuntimeError
 2026-03-01T21:44:32.5408857Z ------------------------------ Captured log call -------------------------------
 2026-03-01T21:44:32.5410757Z INFO     tests.e2e.conftest:conftest.py:241 Starting server with command: vllm serve vllm-ascend/DeepSeek-V3.2-W8A8 --enable-expert-parallel --tensor-parallel-size 8 --data-parallel-size 2 --port 36471 --max-model-len 8192 --max-num-batched-tokens 8192 --max-num-seqs 4 --trust-remote-code --quantization ascend --gpu-memory-utilization 0.98 --compilation-config {"cudagraph_capture_sizes":[8, 16, 24, 32, 40, 48], "cudagraph_mode":"FULL_DECODE_ONLY"} --speculative-config {"num_speculative_tokens": 3, "method":"deepseek_mtp"} --additional-config {"layer_sharding": ["q_b_proj", "o_proj"]} --reasoning-parser deepseek_v3 --tokenizer_mode deepseek_v32
 2026-03-01T21:44:32.5412667Z =============================== warnings summary ===============================
 2026-03-01T21:44:32.5412973Z <frozen importlib._bootstrap>:241
 2026-03-01T21:44:32.5413399Z   <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute
-2026-03-01T21:44:32.5413831Z 
+2026-03-01T21:44:32.5413831Z
 2026-03-01T21:44:32.5413930Z <frozen importlib._bootstrap>:241
 2026-03-01T21:44:32.5414403Z   <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute
-2026-03-01T21:44:32.5414725Z 
+2026-03-01T21:44:32.5414725Z
 2026-03-01T21:44:32.5414992Z ../../usr/local/python3.11.14/lib/python3.11/site-packages/transformers/models/auto/image_processing_auto.py:647
 2026-03-01T21:44:32.5416017Z   /usr/local/python3.11.14/lib/python3.11/site-packages/transformers/models/auto/image_processing_auto.py:647: FutureWarning: The image_processor_class argument is deprecated and will be removed in v4.42. Please use `slow_image_processor_class`, or `fast_image_processor_class` instead
 2026-03-01T21:44:32.5416929Z     warnings.warn(
-2026-03-01T21:44:32.5417055Z 
+2026-03-01T21:44:32.5417055Z
 2026-03-01T21:44:32.5417287Z ../../usr/local/python3.11.14/lib/python3.11/site-packages/torch_npu/dynamo/torchair/__init__.py:8
 2026-03-01T21:44:32.5418139Z   /usr/local/python3.11.14/lib/python3.11/site-packages/torch_npu/dynamo/torchair/__init__.py:8: DeprecationWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html
 2026-03-01T21:44:32.5418825Z     import pkg_resources
-2026-03-01T21:44:32.5418963Z 
+2026-03-01T21:44:32.5418963Z
 2026-03-01T21:44:32.5419140Z -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
 2026-03-01T21:44:32.5419532Z =========================== short test summary info ============================
 2026-03-01T21:44:32.5420204Z FAILED tests/e2e/nightly/single_node/models/test_deepseek_v3_2_w8a8.py::test_models[2-8-vllm-ascend/DeepSeek-V3.2-W8A8] - RuntimeError: Server at 0.0.0.0 exited unexpectedly.

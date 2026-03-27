@@ -1,28 +1,28 @@
-类型: 设备环境问题  
+类型: 设备环境问题
 
-**根本原因（≤5 条）**  
-1. **容器启动即异常退出（ExitCode 1）** – `bash /root/.cache/tests/run.sh` 在执行过程中立即失败，触发 CrashLoopBackOff。常见原因包括脚本依赖的模型文件、配置文件或二进制缺失、路径错误或权限不足。  
-2. **Ascend 驱动或 runtime 未正确加载** – 容器虽挂载了宿主机的 `/usr/local/Ascend/driver/tools`，但容器内部的 Ascend 库（`lib*`、`runtime` 等）未在 `LD_LIBRARY_PATH` 中或与镜像内置的驱动版本不匹配，导致硬件初始化失败。  
-3. **资源配额与实际硬件不匹配** – Pod 请求 125 CPU、512 Gi Memory、16 个 Ascend 设备（`huawei.com/ascend-1980: 16`），但所在节点可能只提供不足或不支持该数量的 Ascend 设备，导致驱动初始化报错并退出。  
-4. **Leader‑Worker 通信配置异常** – `LWS_LEADER_ADDRESS=vllm-0.vllm.vllm-project` 的 DNS 解析或网络策略可能受阻，使 Follower（vllm‑0‑1）无法成功连接到 Leader，进而 Leader 持续认为 Worker 未就绪，导致全部 Pod 一直处于 `ready=false` 循环。  
-5. **就绪探针（readinessProbe）设计不合理** – 默认的 HTTP/TCP 探针在容器还未完成初始化（驱动加载、模型加载）时即返回失败，kubelet 将其视为 NotReady 并重启容器，形成无限重启的死循环。  
+**根本原因（≤5 条）**
+1. **容器启动即异常退出（ExitCode 1）** – `bash /root/.cache/tests/run.sh` 在执行过程中立即失败，触发 CrashLoopBackOff。常见原因包括脚本依赖的模型文件、配置文件或二进制缺失、路径错误或权限不足。
+2. **Ascend 驱动或 runtime 未正确加载** – 容器虽挂载了宿主机的 `/usr/local/Ascend/driver/tools`，但容器内部的 Ascend 库（`lib*`、`runtime` 等）未在 `LD_LIBRARY_PATH` 中或与镜像内置的驱动版本不匹配，导致硬件初始化失败。
+3. **资源配额与实际硬件不匹配** – Pod 请求 125 CPU、512 Gi Memory、16 个 Ascend 设备（`huawei.com/ascend-1980: 16`），但所在节点可能只提供不足或不支持该数量的 Ascend 设备，导致驱动初始化报错并退出。
+4. **Leader‑Worker 通信配置异常** – `LWS_LEADER_ADDRESS=vllm-0.vllm.vllm-project` 的 DNS 解析或网络策略可能受阻，使 Follower（vllm‑0‑1）无法成功连接到 Leader，进而 Leader 持续认为 Worker 未就绪，导致全部 Pod 一直处于 `ready=false` 循环。
+5. **就绪探针（readinessProbe）设计不合理** – 默认的 HTTP/TCP 探针在容器还未完成初始化（驱动加载、模型加载）时即返回失败，kubelet 将其视为 NotReady 并重启容器，形成无限重启的死循环。
 
-**最可能的修复方案**  
-1. **捕获并定位脚本错误**  
-   - 在 Pod 中手动执行 `kubectl exec -n vllm-project vllm-0 -- bash -x /root/.cache/tests/run.sh`（或使用 `kubectl logs` 并加上 `-p` 查看上一次失败日志），获取实际的错误堆栈或退出原因。  
-2. **统一 Ascend 驱动版本**  
-   - 确认节点上驱动的版本（如 `ascend-driver-23.0.x`）与容器镜像 `ascend-ci/vllm-ascend:nightly-a3` 兼容。  
-   - 在 Pod spec 中显式加入 `env: LD_LIBRARY_PATH=/usr/local/Ascend/driver/lib64:/usr/local/Ascend/driver/tools/lib`，确保库文件被找到。  
-3. **检查并匹配硬件资源**  
-   - 使用 `kubectl describe node <node-name>` 确认节点实际可用的 Ascend 设备数量。  
-   - 若节点设备不足，可通过 `nodeSelector` 或 `tolerations` 将 Pod 调度到具备 16 张 Ascend 卡的节点，或在测试配置中降低设备数量（如改为 `8`）。  
-4. **确保 Leader‑Worker 网络可达**  
-   - 在同 namespace 用临时 Pod（`kubectl run -it debug --image=busybox --restart=Never -- nslookup vllm-0.vllm`）验证 DNS 解析。  
-   - 检查是否存在 NetworkPolicy 阻断了 vllm‑0 与 vllm‑0‑1 的 8080 端口通信，必要时放行。  
-5. **优化就绪探针**  
-   - 将 `readinessProbe` 改为 `exec` 方式，直接运行检测脚本（如 `bash /root/.cache/tests/health_check.sh`），并把 `initialDelaySeconds` 调大（如 60 s），`failureThreshold` 设为 3，避免在初始化期间被误判为不健康。  
-   - 或者在脚本内部自行完成所有初始化后再返回 0，探针仅做一次轻量检查（如 `cat /tmp/ready`），确保容器已真正就绪。  
+**最可能的修复方案**
+1. **捕获并定位脚本错误**
+   - 在 Pod 中手动执行 `kubectl exec -n vllm-project vllm-0 -- bash -x /root/.cache/tests/run.sh`（或使用 `kubectl logs` 并加上 `-p` 查看上一次失败日志），获取实际的错误堆栈或退出原因。
+2. **统一 Ascend 驱动版本**
+   - 确认节点上驱动的版本（如 `ascend-driver-23.0.x`）与容器镜像 `ascend-ci/vllm-ascend:nightly-a3` 兼容。
+   - 在 Pod spec 中显式加入 `env: LD_LIBRARY_PATH=/usr/local/Ascend/driver/lib64:/usr/local/Ascend/driver/tools/lib`，确保库文件被找到。
+3. **检查并匹配硬件资源**
+   - 使用 `kubectl describe node <node-name>` 确认节点实际可用的 Ascend 设备数量。
+   - 若节点设备不足，可通过 `nodeSelector` 或 `tolerations` 将 Pod 调度到具备 16 张 Ascend 卡的节点，或在测试配置中降低设备数量（如改为 `8`）。
+4. **确保 Leader‑Worker 网络可达**
+   - 在同 namespace 用临时 Pod（`kubectl run -it debug --image=busybox --restart=Never -- nslookup vllm-0.vllm`）验证 DNS 解析。
+   - 检查是否存在 NetworkPolicy 阻断了 vllm‑0 与 vllm‑0‑1 的 8080 端口通信，必要时放行。
+5. **优化就绪探针**
+   - 将 `readinessProbe` 改为 `exec` 方式，直接运行检测脚本（如 `bash /root/.cache/tests/health_check.sh`），并把 `initialDelaySeconds` 调大（如 60 s），`failureThreshold` 设为 3，避免在初始化期间被误判为不健康。
+   - 或者在脚本内部自行完成所有初始化后再返回 0，探针仅做一次轻量检查（如 `cat /tmp/ready`），确保容器已真正就绪。
 
-**后续验证**  
-- 修复上述任一问题后，重新部署 `LeaderWorkerSet`，观察 `vllm-0` 与 `vllm-0-1` 是否在 2‑3 分钟内转为 `Ready=True`。  
+**后续验证**
+- 修复上述任一问题后，重新部署 `LeaderWorkerSet`，观察 `vllm-0` 与 `vllm-0-1` 是否在 2‑3 分钟内转为 `Ready=True`。
 - 如仍失败，结合上一步捕获的脚本错误日志，针对具体缺失文件或驱动报错进一步定位。

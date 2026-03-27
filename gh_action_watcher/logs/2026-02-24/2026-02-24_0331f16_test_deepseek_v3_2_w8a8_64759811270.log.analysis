@@ -1,17 +1,17 @@
-类型: 代码问题  
+类型: 代码问题
 
-根本原因（≤5 条）：  
-1. **cudagraph_capture_sizes 配置值不满足张量并行要求**：列表 `[3, 6, 9, 12]` 中的每个值都不是 `tp_size=8` 的倍数，导致 VllmConfig 在创建时校验失败并抛出 `AssertionError`。  
-2. **测试脚本硬编码了捕获尺寸**：在 `test_deepseek_v3_2_w8a8.py` 中写死了 `"cudagraph_capture_sizes":[3, 6, 9, 12]`，没有根据实际的 `tensor-parallel-size` 动态计算或调整。  
-3. **VllmConfig 的校验逻辑过于严格**：在 `create_engine_config` 中直接对 `cudagraph_capture_sizes` 进行整除检查，未提供友好的错误提示或自动修正机制。  
-4. **错误未被测试框架捕获并处理**：当 server 启动因校验错误而崩溃时，测试的 `RemoteOpenAIServer` 只检测到进程异常退出，未能回溯到根本的配置错误。  
-5. **Ascend NPU 环境对 CUDA Graph 的支持有限**：即使通过校验，实际运行时的 cudagraph 捕获/回放也会因平台差异出现潜在问题，进一步加剧失败。  
+根本原因（≤5 条）：
+1. **cudagraph_capture_sizes 配置值不满足张量并行要求**：列表 `[3, 6, 9, 12]` 中的每个值都不是 `tp_size=8` 的倍数，导致 VllmConfig 在创建时校验失败并抛出 `AssertionError`。
+2. **测试脚本硬编码了捕获尺寸**：在 `test_deepseek_v3_2_w8a8.py` 中写死了 `"cudagraph_capture_sizes":[3, 6, 9, 12]`，没有根据实际的 `tensor-parallel-size` 动态计算或调整。
+3. **VllmConfig 的校验逻辑过于严格**：在 `create_engine_config` 中直接对 `cudagraph_capture_sizes` 进行整除检查，未提供友好的错误提示或自动修正机制。
+4. **错误未被测试框架捕获并处理**：当 server 启动因校验错误而崩溃时，测试的 `RemoteOpenAIServer` 只检测到进程异常退出，未能回溯到根本的配置错误。
+5. **Ascend NPU 环境对 CUDA Graph 的支持有限**：即使通过校验，实际运行时的 cudagraph 捕获/回放也会因平台差异出现潜在问题，进一步加剧失败。
 
-最可能的修复方案（≤5 条）：  
-1. **修改测试配置或默认参数**：将 `cudagraph_capture_sizes` 改为满足 `tp_size` 倍数的值，例如 `[8, 16, 24]`；若不需要 cudagraph，可在 `compilation-config` 中省略 `cudagraph_capture_sizes` 或直接关闭 `cudagraph_mode`。  
-2. **动态生成捕获尺寸**：在测试代码中根据 `tp_size` 计算 `capture_sizes`，如 `capture_sizes = [tp_size * i for i in range(1, 5)]`，避免硬编码。  
-3. **增强校验错误信息**：在 VllmConfig 校验时捕获不符合倍数的值并给出明确提示（如 “cudagraph_capture_sizes 中的值必须是 tp_size 的整数倍”），便于快速定位问题。  
-4. **在测试框架中加入容错处理**：捕获 server 启动失败的异常，尝试使用 “安全默认” 配置重新启动或将错误信息回写到测试报告，帮助定位根本原因。  
-5. **针对 Ascend 平台禁用或条件化 cudagraph**：在 `compilation_config` 中判断平台（`vllm_ascend`），若不支持 cudagraph，则自动将 `cudagraph_mode` 设为 `None` 或跳过相关检查。  
+最可能的修复方案（≤5 条）：
+1. **修改测试配置或默认参数**：将 `cudagraph_capture_sizes` 改为满足 `tp_size` 倍数的值，例如 `[8, 16, 24]`；若不需要 cudagraph，可在 `compilation-config` 中省略 `cudagraph_capture_sizes` 或直接关闭 `cudagraph_mode`。
+2. **动态生成捕获尺寸**：在测试代码中根据 `tp_size` 计算 `capture_sizes`，如 `capture_sizes = [tp_size * i for i in range(1, 5)]`，避免硬编码。
+3. **增强校验错误信息**：在 VllmConfig 校验时捕获不符合倍数的值并给出明确提示（如 “cudagraph_capture_sizes 中的值必须是 tp_size 的整数倍”），便于快速定位问题。
+4. **在测试框架中加入容错处理**：捕获 server 启动失败的异常，尝试使用 “安全默认” 配置重新启动或将错误信息回写到测试报告，帮助定位根本原因。
+5. **针对 Ascend 平台禁用或条件化 cudagraph**：在 `compilation_config` 中判断平台（`vllm_ascend`），若不支持 cudagraph，则自动将 `cudagraph_mode` 设为 `None` 或跳过相关检查。
 
 通过上述修改，测试应能够在 `tp_size=8` 的环境下正常启动 server 并完成后续验证。

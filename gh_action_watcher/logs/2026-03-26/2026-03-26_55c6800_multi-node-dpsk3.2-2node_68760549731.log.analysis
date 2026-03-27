@@ -1,0 +1,128 @@
+) and not producing the final answer, causing the extraction to be empty.
+
+3. Quantized model (W8A8) may be incorrectly loaded or corrupted, causing model to output random or zero, leading to no correct answers.
+
+4. Inference environment: The test is running on CPU instead of GPU, causing the model to run incorrectly or slowly, leading to no meaningful output.
+
+5. Server configuration: The server may not be serving the model correctly; maybe it's not loaded or the API endpoint is misconfigured, causing no response.
+
+Given the log shows inference tasks completed, but the accuracy is zero. So the inference did produce some output, but not correct.
+
+We need to see if there are any error messages in the log that indicate what went wrong. The log does not show any Python stack traces (except the final assertion). It shows only the aisbench run.
+
+Thus we need to hypothesize.
+
+Given that the test expects a baseline of 95% accuracy, it's a high accuracy target. The model is a large language model quantized to W8A8. Usually quantization may degrade accuracy, but not to zero. So maybe the model is not loaded correctly.
+
+The host_ip is 10.0.0.75, host_port 8080. The test is connecting to that. The server is presumably started elsewhere. The test may be a multi-node test that starts a server on the pod.
+
+The test uses RemoteOpenAIServer and ProxyLauncher. The server is started with "vllm_serve_args=config.server_cmd". The server command may include options for the model.
+
+The test runs aisbench with the model and dataset.
+
+The test expects accuracy within 5 relative to baseline 95. That is, the accuracy must be >= 90? Or within 5 relative, i.e., relative difference <=5%? The baseline is 95, relative tolerance 5, so maybe it expects accuracy >= 90 (i.e., 95 - 5). But the actual is 0, far off.
+
+Thus the test fails.
+
+Thus we need to find root causes.
+
+Given the logs are limited, we need to infer.
+
+Potential root causes:
+
+- The model is not loaded correctly; maybe the model path is wrong, or the weights are not loaded, causing the model to output random predictions.
+
+- The dataset is not loaded correctly; maybe the dataset path is wrong, causing the evaluation to compare against empty or wrong labels.
+
+- The postprocessor is incorrectly extracting predictions; maybe the model's output is not in the expected format, causing the extraction to return empty strings.
+
+- The generation parameters are not suitable for the model; maybe the model expects a different temperature or top_p, causing it to not generate the answer.
+
+- The inference is running on CPU, which cannot handle the model, causing it to fail silently.
+
+Thus the fixes:
+
+- Verify the model path and weights are correct; ensure the model is loaded properly.
+
+- Verify the dataset path and that the data is correctly loaded; ensure the evaluation script uses the correct ground truth.
+
+- Adjust the postprocessor to correctly extract the answer from the model's output; maybe use a different extraction method or adjust the prompt to ensure the answer is in a parseable format.
+
+- Adjust generation parameters to ensure the model produces the answer; e.g., set temperature to 0, increase max_out_len, ensure ignore_eos is False.
+
+- Ensure the test runs on GPU; check the environment for GPU availability; if not, either provide GPU or adjust the test to skip or mock.
+
+Given the test is a multi-node test, maybe the server is supposed to be started on GPU nodes, but due to some misconfiguration, it's started on CPU. The fix would be to ensure the server starts on the correct node with GPU.
+
+Thus we can propose fixes:
+
+- Check the model configuration and ensure the quantized weights are correct; if needed, use a different quantization scheme or full precision.
+
+- Ensure the server is started with the correct GPU device assignments; set CUDA_VISIBLE_DEVICES appropriately.
+
+- Verify the dataset and evaluation pipeline; maybe the dataset is not loaded, causing the evaluation to compare against empty.
+
+- Adjust the postprocessor to handle the model's output format; maybe the model outputs only reasoning and no final answer; modify the prompt to include a format like "Answer: ..." or adjust the extraction regex.
+
+- Add debug logging to capture the model's raw output to diagnose the issue.
+
+Given the limited info, we need to provide a concise analysis.
+
+The user wants the first line to be one of the three types, then root causes (≤5) and the most likely fix.
+
+Thus we can write:
+
+类型: 性能精度不达标
+
+根本原因（≤5条）：
+
+1. 模型输出格式与后处理不匹配，导致答案提取失败，模型预测为空。
+
+2. 量化模型（W8A8）权重加载异常或损坏，使模型输出随机或全零。
+
+3. 推理环境使用 CPU 而非 GPU，导致模型无法正常执行推理，输出无效。
+
+4. 服务器启动配置错误（如 port、host_ip 不匹配），客户端无法正确连接，推理请求未送达。
+
+5. 数据集加载路径错误或评估脚本未匹配正确标签，导致评测比较错误。
+
+最可能的修复方案：
+
+- 检查并修正模型加载流程，确保量化权重完整且正确；若权重异常，考虑回退到 FP16 或重新生成量化模型。
+
+- 确认推理任务在 GPU 上执行，设置 `CUDA_VISIBLE_DEVICES` 并在 k8s Pod 中分配 GPU 资源；如无 GPU，修改测试以跳过或使用 CPU fallback。
+
+- 调整 `pred_postprocessor`，使用更鲁棒的答案提取逻辑（如正则提取 "Answer: ..."），并验证模型输出的格式是否符合预期；必要时在 prompt 中加入明确的答案格式指引。
+
+- 验证数据集路径和评估脚本是否正确加载标签；可在本地运行一次推理并打印输出，确认评测输入与预期一致。
+
+- 检查服务器启动命令中的 `host_ip`、`port` 与 aisbench 配置是否匹配，确保网络连通；必要时在测试中加入连接重试或健康检查。
+
+Given the user wants Chinese output, we will provide the answer in Chinese.
+
+Thus the final answer will be:
+
+类型: 性能精度不达标
+
+根本原因 ... etc.
+
+We need to keep it concise.
+
+Now we need to produce the answer.
+</think>
+
+类型: 性能精度不达标
+
+**根本原因（≤5 条）**
+1. **答案提取逻辑与模型输出不匹配**：`pred_postprocessor`（`extract_non_reasoning_content`）可能无法从模型的回复中正确提取最终答案，导致预测为空，评测得到 0% 准确率。
+2. **量化模型（ W8A8 ）权重加载异常或损坏**：模型权重量化后若未正确加载或文件损坏，模型可能输出全零或随机内容，从而无法得到正确答案。
+3. **推理环境使用 CPU 而非 GPU**：日志显示 “Launch OpenICLInfer … on CPU”，CPU 无法有效执行大规模 LLM 推理，导致推理结果无效。
+4. **服务器与客户端配置不一致**：服务器监听的 `host_ip` / `port` 与 aisbench 请求的地址不匹配，推理请求未送达或返回错误。
+5. **数据集路径或评估脚本错误**：评测时使用的标签文件路径错误或未加载正确标签，导致评测比较错误。
+
+**最可能的修复方案**
+- **调整后处理**：改用更鲁棒的答案提取方法（如正则 `Answer:\s*(.+)`），并在 prompt 中明确要求模型以 “Answer: …” 形式输出，确保后处理能拿到有效内容。
+- **校验量化模型**：在启动服务器前加入权重校验（如 SHA256/校验和），若发现异常则回退到 FP16 或重新量化。
+- **确保 GPU 执行**：在 k8s Pod 模板中为推理容器分配 GPU，设置 `CUDA_VISIBLE_DEVICES`，并把 OpenICLInfer 任务调度到 GPU worker；如无 GPU 则跳过该测试或使用 mock。
+- **统一网络配置**：检查服务器启动参数中的 `host_ip`、`port` 与 aisbench 配置是否一致；可在测试脚本中加入端口探测与重试逻辑，确保连接成功后再进行评测。
+- **验证数据集**：在本地先单独跑一次推理并打印输入/输出，确认数据路径、标签加载和评测逻辑无误；必要时在 CI 中添加数据完整性检查步骤。

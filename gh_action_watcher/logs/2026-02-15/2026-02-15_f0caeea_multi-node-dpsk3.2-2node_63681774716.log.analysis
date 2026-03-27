@@ -1,15 +1,15 @@
-类型: 设备环境问题  
+类型: 设备环境问题
 
-根本原因（≤5 条）：  
-1. **全图捕获（Full Graph）导致显存耗尽** – 实验性的完整图捕获在 NPU 上尝试捕获多个 batch size，消耗约 0.27 GiB 显存并触发 OOM，使 ApiServer_0 进程异常退出。  
-2. **部分张量未使用 NPU CachingAllocator** – 某些算子产生的张量位于主机内存或未走 NPU 缓存分配器，导致图捕获阶段出现不兼容，增加显存压力。  
-3. **线性层分片（Linear layer sharding）在未启用配套特性** – 配置开启了 `q_b_proj/o_proj` 分片，但未启用 FLASHCOMM2 与 DSA‑CP，文档已警告可能出现性能下降与不稳定。  
-4. **FULL_DECODE_ONLY 编译模式为实验阶段** – 该模式仅使用 ACL Graph，缺少inductor 支持，在多 worker 初始化时更容易因资源不足而崩溃。  
-5. **多节点测试资源协调不足** – 10.0.0.51 节点上的服务因上述显存/配置问题提前退出，导致健康检查超时，测试判定为“服务器意外退出”。  
+根本原因（≤5 条）：
+1. **全图捕获（Full Graph）导致显存耗尽** – 实验性的完整图捕获在 NPU 上尝试捕获多个 batch size，消耗约 0.27 GiB 显存并触发 OOM，使 ApiServer_0 进程异常退出。
+2. **部分张量未使用 NPU CachingAllocator** – 某些算子产生的张量位于主机内存或未走 NPU 缓存分配器，导致图捕获阶段出现不兼容，增加显存压力。
+3. **线性层分片（Linear layer sharding）在未启用配套特性** – 配置开启了 `q_b_proj/o_proj` 分片，但未启用 FLASHCOMM2 与 DSA‑CP，文档已警告可能出现性能下降与不稳定。
+4. **FULL_DECODE_ONLY 编译模式为实验阶段** – 该模式仅使用 ACL Graph，缺少inductor 支持，在多 worker 初始化时更容易因资源不足而崩溃。
+5. **多节点测试资源协调不足** – 10.0.0.51 节点上的服务因上述显存/配置问题提前退出，导致健康检查超时，测试判定为“服务器意外退出”。
 
-修复方案（≤5 条）：  
-1. **降低显存占用**：调小 `gpu_memory_utilization`（如 0.75）或手动限制捕获的 batch size，以避免 OOM。  
-2. **关闭或简化图捕获**：将 `FULL_DECODE_ONLY` 设为 `False`，或使用 eager 模式进行推理，禁用实验性全图捕获。  
-3. **禁用线性层分片**：在未启用 FLASHCOMM2/DSA‑CP 前关闭 `linear_layer_sharding`，或在确保配套特性已打开后再开启。  
-4. **优化 NPU 内存分配**：在环境变量 `PYTORCH_NPU_ALLOC_CONF` 中增加 `max_split_size`、`garbage_collection` 等参数，确保所有张量走 NPU CachingAllocator。  
+修复方案（≤5 条）：
+1. **降低显存占用**：调小 `gpu_memory_utilization`（如 0.75）或手动限制捕获的 batch size，以避免 OOM。
+2. **关闭或简化图捕获**：将 `FULL_DECODE_ONLY` 设为 `False`，或使用 eager 模式进行推理，禁用实验性全图捕获。
+3. **禁用线性层分片**：在未启用 FLASHCOMM2/DSA‑CP 前关闭 `linear_layer_sharding`，或在确保配套特性已打开后再开启。
+4. **优化 NPU 内存分配**：在环境变量 `PYTORCH_NPU_ALLOC_CONF` 中增加 `max_split_size`、`garbage_collection` 等参数，确保所有张量走 NPU CachingAllocator。
 5. **增加资源或调整超时**：若必须使用多节点+全图捕获，请为每个节点配备更大显存或增加 NPU 卡数，并适当延长健康检查超时时间（`max_wait_seconds`）。

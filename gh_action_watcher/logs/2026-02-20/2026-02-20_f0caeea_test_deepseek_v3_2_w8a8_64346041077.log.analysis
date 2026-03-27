@@ -1,15 +1,15 @@
-类型: 代码问题  
+类型: 代码问题
 
-**根本原因（≤5 条）**  
-1. `cudagraph_capture_sizes` 设为 `[3, 6, 9, 12]`，而 `tensor_parallel_size` 为 8，导致校验断言失败（必须是 8 的整数倍）。  
-2. `speculative‑config` 中使用了已废弃的 `method: "deepseek_mtp"`，应改为 `mtp`。  
-3. 模型类型为 `deepseek_v32`，却指定了 `reasoning_parser: deepseek_v3`，两者不兼容，产生警告并可能在后续阶段出错。  
-4. 测试脚本硬编码了 `cudagraph_capture_sizes`，未根据当前的 `tp_size`（8）动态生成，使配置在不同并行度下失效。  
-5. 启用了序列并行（sequence parallelism）后，cudagraph 对批次大小有额外约束，测试未考虑该交互，导致捕获大小被移除并进一步触发校验错误。  
+**根本原因（≤5 条）**
+1. `cudagraph_capture_sizes` 设为 `[3, 6, 9, 12]`，而 `tensor_parallel_size` 为 8，导致校验断言失败（必须是 8 的整数倍）。
+2. `speculative‑config` 中使用了已废弃的 `method: "deepseek_mtp"`，应改为 `mtp`。
+3. 模型类型为 `deepseek_v32`，却指定了 `reasoning_parser: deepseek_v3`，两者不兼容，产生警告并可能在后续阶段出错。
+4. 测试脚本硬编码了 `cudagraph_capture_sizes`，未根据当前的 `tp_size`（8）动态生成，使配置在不同并行度下失效。
+5. 启用了序列并行（sequence parallelism）后，cudagraph 对批次大小有额外约束，测试未考虑该交互，导致捕获大小被移除并进一步触发校验错误。
 
-**最可能的修复方案**  
-- 将 `cudagraph_capture_sizes` 调整为 `tp_size` 的倍数，例如 `[8, 16, 24]`（或直接设为空列表 `[]` 以使用默认行为）。  
-- 把 `method` 从 `"deepseek_mtp"` 改为 `"mtp"`（或根据业务需求删除该参数）。  
-- 确保模型类型与 `reasoning_parser` 匹配：若使用 `deepseek_v32` 模型，则 `reasoning_parser` 应为 `deepseek_v32` 或在不需要时省略该参数。  
-- 在测试代码中动态生成 `--compilation‑config`，依据 `tensor_parallel_size`、`data_parallel_size` 以及是否启用序列并行来构造合适的 `cudagraph_capture_sizes`。  
+**最可能的修复方案**
+- 将 `cudagraph_capture_sizes` 调整为 `tp_size` 的倍数，例如 `[8, 16, 24]`（或直接设为空列表 `[]` 以使用默认行为）。
+- 把 `method` 从 `"deepseek_mtp"` 改为 `"mtp"`（或根据业务需求删除该参数）。
+- 确保模型类型与 `reasoning_parser` 匹配：若使用 `deepseek_v32` 模型，则 `reasoning_parser` 应为 `deepseek_v32` 或在不需要时省略该参数。
+- 在测试代码中动态生成 `--compilation‑config`，依据 `tensor_parallel_size`、`data_parallel_size` 以及是否启用序列并行来构造合适的 `cudagraph_capture_sizes`。
 - 若必须使用序列并行，请参考官方文档在序列并行开启时关闭 cudagraph，或仅在批次大小为 `tp_size` 倍数时启用 cudagraph，以避免冲突。

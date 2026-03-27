@@ -1,16 +1,16 @@
-类型: 性能精度不达标  
+类型: 性能精度不达标
 
-根本原因（≤5 条）  
-1. **模型权重未成功加载或缺失** – vLLM Server 启动时未找到 `vllm-ascend/DeepSeek‑V3.2‑W8A8` 的实际权重文件，导致推理返回空响应或全零输出，评测结果自然为 0。  
-2. **硬件环境未使用 NPU，回退到 CPU** – 测试节点虽标注 `on CPU`，但 `DeepSeek‑V3.2‑W8A8` 为 W8A8 量化模型，专为 Ascend NPU 设计，CPU 无法正确运行量化 kernel，产出全零。  
-3. **Server 启动参数不完整** – `config.server_cmd` 为空字符串，缺少 `--device npu`、`--dtype half`、模型路径等关键选项，使 vLLM 使用默认（CPU）配置。  
-4. **gsm8k‑lite 数据集损坏或答案格式异常** – 本地缓存的 `/root/.cache/modelscope/hub/datasets/vllm-ascend/gsm8k-lite` 可能被截断或缺少 `answer` 字段，导致评测脚本判定所有预测为错误。  
-5. **多节点网络配置错误导致客户端未能连接** – `config.benchmark_endpoint`（如 `10.0.0.73:8080`）与实际 Server 监听地址不匹配，请求全部超时或被路由到空服务，返回空结果。  
+根本原因（≤5 条）
+1. **模型权重未成功加载或缺失** – vLLM Server 启动时未找到 `vllm-ascend/DeepSeek‑V3.2‑W8A8` 的实际权重文件，导致推理返回空响应或全零输出，评测结果自然为 0。
+2. **硬件环境未使用 NPU，回退到 CPU** – 测试节点虽标注 `on CPU`，但 `DeepSeek‑V3.2‑W8A8` 为 W8A8 量化模型，专为 Ascend NPU 设计，CPU 无法正确运行量化 kernel，产出全零。
+3. **Server 启动参数不完整** – `config.server_cmd` 为空字符串，缺少 `--device npu`、`--dtype half`、模型路径等关键选项，使 vLLM 使用默认（CPU）配置。
+4. **gsm8k‑lite 数据集损坏或答案格式异常** – 本地缓存的 `/root/.cache/modelscope/hub/datasets/vllm-ascend/gsm8k-lite` 可能被截断或缺少 `answer` 字段，导致评测脚本判定所有预测为错误。
+5. **多节点网络配置错误导致客户端未能连接** – `config.benchmark_endpoint`（如 `10.0.0.73:8080`）与实际 Server 监听地址不匹配，请求全部超时或被路由到空服务，返回空结果。
 
-最可能的修复方案  
-- **检查并确保模型已下载**：在 Job 的前置脚本中加入 `ls -lh <model_path>` 或使用 `python -c "from vllm import model; model.load_weights()"` 进行健康检查，若缺失则执行 `huggingface-cli download …` 或从 ModelScope 重新拉取。  
-- **配置并验证 NPU 环境**：在 workflow YAML 中明确设置 `env: ASCEND_RT_VISIBLE_DEVICES: "0"`、`NPU_VISIBLE_DEVICES: "0"`；使用 `nodeSelector`/`tolerations` 将 Pod 调度到带有 Ascend NPU 的节点；运行 `npu-smi` 确认驱动正常。  
-- **补全 vLLM Server 启动命令**：在 `config.server_cmd` 中显式拼接必要参数，例如  
+最可能的修复方案
+- **检查并确保模型已下载**：在 Job 的前置脚本中加入 `ls -lh <model_path>` 或使用 `python -c "from vllm import model; model.load_weights()"` 进行健康检查，若缺失则执行 `huggingface-cli download …` 或从 ModelScope 重新拉取。
+- **配置并验证 NPU 环境**：在 workflow YAML 中明确设置 `env: ASCEND_RT_VISIBLE_DEVICES: "0"`、`NPU_VISIBLE_DEVICES: "0"`；使用 `nodeSelector`/`tolerations` 将 Pod 调度到带有 Ascend NPU 的节点；运行 `npu-smi` 确认驱动正常。
+- **补全 vLLM Server 启动命令**：在 `config.server_cmd` 中显式拼接必要参数，例如
   ```bash
   vllm serve <model_path> \
       --device npu \
@@ -18,13 +18,13 @@
       --max_model_len 4096 \
       --host 0.0.0.0 \
       --port 8080
-  ```  
-  并将完整命令写入 `config.server_cmd`，避免空字符串导致默认 CPU 启动。  
-- **重新拉取/校验数据集**：在测试前执行  
+  ```
+  并将完整命令写入 `config.server_cmd`，避免空字符串导致默认 CPU 启动。
+- **重新拉取/校验数据集**：在测试前执行
   ```bash
   python -c "from datasets import load_dataset; ds = load_dataset('gsm8k', 'main'); print(ds['test'][0])"
-  ```  
-  确认 `answer` 字段完整；如缓存损坏，删除 `/root/.cache/modelscope/hub/datasets/vllm-ascend/gsm8k-lite` 重新下载。  
-- **添加服务就绪等待与重连机制**：在 `RemoteOpenAIServer` 启动后轮询 `http://<host>:<port>/v1/models` 直到返回 200，或在 `run_aisbench_cases` 中加入重试与超时控制，防止因网络不一致导致的空响应。  
+  ```
+  确认 `answer` 字段完整；如缓存损坏，删除 `/root/.cache/modelscope/hub/datasets/vllm-ascend/gsm8k-lite` 重新下载。
+- **添加服务就绪等待与重连机制**：在 `RemoteOpenAIServer` 启动后轮询 `http://<host>:<port>/v1/models` 直到返回 200，或在 `run_aisbench_cases` 中加入重试与超时控制，防止因网络不一致导致的空响应。
 
 实施上述检查与修复后，模型应能在正确的 NPU 环境下加载并产生有效推理，gsm8k 评测准确率有望回升至基线 95% 附近，CI 故障即可消除。

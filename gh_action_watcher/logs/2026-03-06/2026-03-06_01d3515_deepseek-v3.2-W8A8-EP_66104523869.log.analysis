@@ -1,15 +1,15 @@
-类型: 设备环境问题  
+类型: 设备环境问题
 
-**根本原因（≤5 条）**  
-1. **端口冲突**：目标节点 `10.0.0.189` 的 TCP 端口 `42377` 已被占用，导致 ZMQ `bind` 失败。可能是前一次运行的 vLLM 或 Mooncake Scheduler 未及时释放该端口。  
-2. **Mo­on­cake Scheduler 异常退出**：Scheduler 在初始化或运行时崩溃，导致其创建的 ZMQ 端点未被正确清理，后续 API Server 仍尝试绑定同一地址。  
-3. **Worker 进程批量终止**：所有 TP/EP Worker 同时收到 “WorkerProc was terminated” 警告，可能是 OOM、显存不足或底层驱动错误，使 EngineCore 的资源（包括 ZMQ socket）未能正常释放。  
-4. **未启用端口复用**：代码中未显式设置 `ZMQ_REUSE_ADDR`（或 `SO_REUSEADDR`），在端口仍处于 TIME_WAIT 时无法重新绑定。  
-5. **多节点测试端口硬编码**：两个节点可能使用了相同的固定端口进行内部通信，导致竞争。  
+**根本原因（≤5 条）**
+1. **端口冲突**：目标节点 `10.0.0.189` 的 TCP 端口 `42377` 已被占用，导致 ZMQ `bind` 失败。可能是前一次运行的 vLLM 或 Mooncake Scheduler 未及时释放该端口。
+2. **Mo­on­cake Scheduler 异常退出**：Scheduler 在初始化或运行时崩溃，导致其创建的 ZMQ 端点未被正确清理，后续 API Server 仍尝试绑定同一地址。
+3. **Worker 进程批量终止**：所有 TP/EP Worker 同时收到 “WorkerProc was terminated” 警告，可能是 OOM、显存不足或底层驱动错误，使 EngineCore 的资源（包括 ZMQ socket）未能正常释放。
+4. **未启用端口复用**：代码中未显式设置 `ZMQ_REUSE_ADDR`（或 `SO_REUSEADDR`），在端口仍处于 TIME_WAIT 时无法重新绑定。
+5. **多节点测试端口硬编码**：两个节点可能使用了相同的固定端口进行内部通信，导致竞争。
 
-**最可能的修复方案**  
-1. **端口可用性检查**：在启动 vLLM / Scheduler 前先检查目标端口（如 `ss -tuln | grep 42377`），如已被占用则等待或自动选择其他空闲端口。  
-2. **启用端口复用**：在创建 ZMQ socket 后调用 `socket.set(zmq.ZMQ_REUSE_ADDR, 1)`，或在绑定时使用 `tcp://*:0` 让系统自动分配空闲端口。  
-3. **完善资源清理**：在 EngineCore、Scheduler 以及 Worker 进程退出路径中加入显式的 `socket.close()`、`context.term()` 并使用 try/finally 确保清理；捕获异常并记录详细错误以便定位崩溃根因。  
-4. **防止 Worker 异常终止**：为 Worker 进程添加健康检查（内存、显存使用率监控），设置合理的资源配额（memory limit、cuda memory limit），避免因 OOM 或驱动错误导致批量终止。  
+**最可能的修复方案**
+1. **端口可用性检查**：在启动 vLLM / Scheduler 前先检查目标端口（如 `ss -tuln | grep 42377`），如已被占用则等待或自动选择其他空闲端口。
+2. **启用端口复用**：在创建 ZMQ socket 后调用 `socket.set(zmq.ZMQ_REUSE_ADDR, 1)`，或在绑定时使用 `tcp://*:0` 让系统自动分配空闲端口。
+3. **完善资源清理**：在 EngineCore、Scheduler 以及 Worker 进程退出路径中加入显式的 `socket.close()`、`context.term()` 并使用 try/finally 确保清理；捕获异常并记录详细错误以便定位崩溃根因。
+4. **防止 Worker 异常终止**：为 Worker 进程添加健康检查（内存、显存使用率监控），设置合理的资源配额（memory limit、cuda memory limit），避免因 OOM 或驱动错误导致批量终止。
 5. **使用动态端口或统一调度**：多节点测试中采用 `tcp://0.0.0.0:0` 或基于服务发现（etcd/consul）公布实际地址，避免硬编码端口；若必须使用固定端口，请在 K8s Pod 模板中为每个 Pod 分配唯一端口范围或使用 `hostPort` + `hostNetwork` 时确保调度唯一。

@@ -2,46 +2,46 @@
 
 根本原因（≤5 条）：
 
-1. **输出 Token 吞吐量仅为基线的 50% 左右**  
-   - 实测 68.7 token/s vs 基线 134 token/s（需达到 0.97×134 ≈ 130 token/s）  
+1. **输出 Token 吞吐量仅为基线的 50% 左右**
+   - 实测 68.7 token/s vs 基线 134 token/s（需达到 0.97×134 ≈ 130 token/s）
    - 单请求时更低（22.7 token/s），说明批处理效率未充分发挥
 
-2. **批处理能力受限**  
-   - `max_num_seqs=4` 限制了并发处理序列数  
-   - `batch_size=4` 在 100 并发请求下平均并发仅 3.96，远低于配置值  
+2. **批处理能力受限**
+   - `max_num_seqs=4` 限制了并发处理序列数
+   - `batch_size=4` 在 100 并发请求下平均并发仅 3.96，远低于配置值
    - 可能因 `max_out_len=1500`（固定输出长度）导致请求排队等待
 
-3. **专家并行（EP）与投机解码（MTP）开销**  
-   - 启用 `--enable-expert-parallel --speculative-config {"num_speculative_tokens": 3}`  
-   - EP 引入额外通信开销，MTP 投机失败会降低有效吞吐量  
+3. **专家并行（EP）与投机解码（MTP）开销**
+   - 启用 `--enable-expert-parallel --speculative-config {"num_speculative_tokens": 3}`
+   - EP 引入额外通信开销，MTP 投机失败会降低有效吞吐量
    - 需确认投机命中率是否足够补偿解码延迟
 
-4. **张量并行（TP8）通信瓶颈**  
-   - TP8 跨卡 all-reduce 通信可能成为瓶颈，尤其在高并发下  
+4. **张量并行（TP8）通信瓶颈**
+   - TP8 跨卡 all-reduce 通信可能成为瓶颈，尤其在高并发下
    - 需检查 NCCL 带宽利用率
 
-5. **GPU 利用率未饱和**  
-   - `gpu-memory-utilization=0.98` 设置较高但实际计算密度可能不足  
+5. **GPU 利用率未饱和**
+   - `gpu-memory-utilization=0.98` 设置较高但实际计算密度可能不足
    - InputTokens 为 0 的异常（`Input Token Throughput = 0.0 token/s`）表明数据加载或预处理可能存在问题
 
 最可能的修复方案：
 
-1. **调整批处理参数**  
-   - 将 `max_num_seqs` 提升至 16-32，在不过度增加延迟的前提下提高并发度  
+1. **调整批处理参数**
+   - 将 `max_num_seqs` 提升至 16-32，在不过度增加延迟的前提下提高并发度
    - 启用连续批处理（Continuous Batching）并增大 `max-num-batched-tokens`
 
-2. **优化投机解码配置**  
-   - 若 MTP 命中率低（可通过日志验证），考虑关闭 `--speculative-config` 或降低 `num_speculative_tokens`  
+2. **优化投机解码配置**
+   - 若 MTP 命中率低（可通过日志验证），考虑关闭 `--speculative-config` 或降低 `num_speculative_tokens`
    - 评估 EP 开销对吞吐量的影响，若无明显收益可禁用
 
-3. **验证 InputTokens 统计异常**  
-   - 检查 `VLLMCustomAPIChatStream` 实现，确认是否正确上报了输入 token 数量  
+3. **验证 InputTokens 统计异常**
+   - 检查 `VLLMCustomAPIChatStream` 实现，确认是否正确上报了输入 token 数量
    - 这可能影响端到端性能计算的准确性
 
-4. **调优 TP 通信**  
-   - 检查 NCCL 配置（网络带宽、拓扑）  
+4. **调优 TP 通信**
+   - 检查 NCCL 配置（网络带宽、拓扑）
    - 尝试降低 TP size（如 TP4+DP4）以减少单卡通信频率
 
-5. **重新评估基线或测试场景**  
-   - 确认基线 134 token/s 的测试条件（是否使用相同量化、并行配置）  
+5. **重新评估基线或测试场景**
+   - 确认基线 134 token/s 的测试条件（是否使用相同量化、并行配置）
    - 若基线基于更优硬件或宽松配置，需调整预期或优化测试环境

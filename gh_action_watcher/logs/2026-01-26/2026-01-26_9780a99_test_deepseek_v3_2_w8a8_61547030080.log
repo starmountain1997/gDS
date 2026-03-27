@@ -191,7 +191,7 @@
 2026-01-27T02:29:05.4553460Z ais_bench_benchmark               3.0.20250930               /vllm-workspace/vllm-ascend/benchmark
 2026-01-27T02:29:05.4554346Z vllm                              0.14.1+empty               /vllm-workspace/vllm
 2026-01-27T02:29:05.4555288Z vllm_ascend                       0.14.0rc2.dev14+g9780a995e /vllm-workspace/vllm-ascend
-2026-01-27T02:29:05.4555580Z 
+2026-01-27T02:29:05.4555580Z
 2026-01-27T02:29:05.4555708Z ============================
 2026-01-27T02:29:05.4555931Z vLLM Git information
 2026-01-27T02:29:05.4556182Z ============================
@@ -202,8 +202,8 @@
 2026-01-27T02:29:05.4999241Z Message:     [CI] fix version comparsion and exclusion patterns in upload-release-wheels.sh (#32971)
 2026-01-27T02:29:05.5021887Z Tags:        v0.14.1
 2026-01-27T02:29:05.5048772Z Remote:      origin	https://gh-proxy.test.osinfra.cn/https://github.com/vllm-project/vllm.git (fetch)
-2026-01-27T02:29:05.5049170Z 
-2026-01-27T02:29:05.5049191Z 
+2026-01-27T02:29:05.5049170Z
+2026-01-27T02:29:05.5049191Z
 2026-01-27T02:29:05.5049420Z ============================
 2026-01-27T02:29:05.5050343Z vLLM-Ascend Git information
 2026-01-27T02:29:05.5050657Z ============================
@@ -212,9 +212,9 @@
 2026-01-27T02:29:05.5236212Z Author:      Icey <1790571317@qq.com>
 2026-01-27T02:29:05.5262209Z Date:        2026-01-26 20:42:17 +0800
 2026-01-27T02:29:05.5282496Z Message:     [BugFix] Fix wheel package build workflow (#6276)
-2026-01-27T02:29:05.5582948Z Tags:        
+2026-01-27T02:29:05.5582948Z Tags:
 2026-01-27T02:29:05.5619609Z Remote:      origin	https://gh-proxy.test.osinfra.cn/https://github.com/vllm-project/vllm-ascend (fetch)
-2026-01-27T02:29:05.5619995Z 
+2026-01-27T02:29:05.5619995Z
 2026-01-27T02:29:23.7075137Z ##[group]Run apt-get update && apt-get -y install clang-15
 2026-01-27T02:29:23.7075546Z [36;1mapt-get update && apt-get -y install clang-15[0m
 2026-01-27T02:29:23.7075972Z [36;1mupdate-alternatives --install /usr/bin/clang clang /usr/bin/clang-15 20[0m
@@ -324,7 +324,7 @@
 2026-01-27T02:30:51.1861244Z asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
 2026-01-27T02:30:52.0066824Z collecting ... collected 1 item
 2026-01-27T02:30:52.0080727Z [2026-01-27 02:30:52] INFO conftest.py:231: Starting server with command: vllm serve vllm-ascend/DeepSeek-V3.2-W8A8 --enable-expert-parallel --tensor-parallel-size 8 --data-parallel-size 2 --port 41571 --max-model-len 8192 --max-num-batched-tokens 8192 --max-num-seqs 4 --trust-remote-code --quantization ascend --gpu-memory-utilization 0.92 --compilation-config {"cudagraph_capture_sizes":[3, 6, 9, 12], "cudagraph_mode":"FULL_DECODE_ONLY"} --speculative-config {"num_speculative_tokens": 2, "method":"deepseek_mtp"} --additional-config {"layer_sharding": ["q_b_proj", "o_proj"]} --reasoning-parser deepseek_v3 --tokenizer_mode deepseek_v32
-2026-01-27T02:30:52.0082396Z 
+2026-01-27T02:30:52.0082396Z
 2026-01-27T02:30:56.3181230Z tests/e2e/nightly/single_node/models/test_deepseek_v3_2_w8a8.py::test_models[2-8-vllm-ascend/DeepSeek-V3.2-W8A8] INFO 01-27 02:30:56 [__init__.py:43] Available plugins for group vllm.platform_plugins:
 2026-01-27T02:30:56.3181974Z INFO 01-27 02:30:56 [__init__.py:45] - ascend -> vllm_ascend:register
 2026-01-27T02:30:56.3182622Z INFO 01-27 02:30:56 [__init__.py:48] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
@@ -405,12 +405,12 @@
 2026-01-27T02:31:03.6415381Z [0;36m(APIServer pid=3875)[0;0m [ERROR] 2026-01-27-02:31:03 (PID:3875, Device:-1, RankID:-1) ERR99999 UNKNOWN applicaiton exception
 2026-01-27T02:31:03.8942302Z [0;36m(APIServer pid=3875)[0;0m sys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute
 2026-01-27T02:31:08.2884630Z FAILED
-2026-01-27T02:31:08.2884884Z 
+2026-01-27T02:31:08.2884884Z
 2026-01-27T02:31:08.2885071Z =================================== FAILURES ===================================
 2026-01-27T02:31:08.2885751Z _______________ test_models[2-8-vllm-ascend/DeepSeek-V3.2-W8A8] ________________
-2026-01-27T02:31:08.2886002Z 
+2026-01-27T02:31:08.2886002Z
 2026-01-27T02:31:08.2886160Z model = 'vllm-ascend/DeepSeek-V3.2-W8A8', tp_size = 8, dp_size = 2
-2026-01-27T02:31:08.2886413Z 
+2026-01-27T02:31:08.2886413Z
 2026-01-27T02:31:08.2886559Z     @pytest.mark.asyncio
 2026-01-27T02:31:08.2886806Z     @pytest.mark.parametrize("model", MODELS)
 2026-01-27T02:31:08.2887158Z     @pytest.mark.parametrize("tp_size", TENSOR_PARALLELS)
@@ -426,7 +426,7 @@
 2026-01-27T02:31:08.2892338Z             "PYTORCH_NPU_ALLOC_CONF": "expandable_segments:True",
 2026-01-27T02:31:08.2892664Z             "VLLM_ASCEND_ENABLE_FLASHCOMM1": "1",
 2026-01-27T02:31:08.2892955Z         }
-2026-01-27T02:31:08.2893132Z     
+2026-01-27T02:31:08.2893132Z
 2026-01-27T02:31:08.2893348Z         server_args = [
 2026-01-27T02:31:08.2893618Z             "--enable-expert-parallel", "--tensor-parallel-size",
 2026-01-27T02:31:08.2894094Z             str(tp_size), "--data-parallel-size",
@@ -449,17 +449,17 @@
 2026-01-27T02:31:08.2899664Z                                 server_port=port,
 2026-01-27T02:31:08.2899945Z                                 env_dict=env_dict,
 2026-01-27T02:31:08.2900298Z                                 auto_port=False) as server:
-2026-01-27T02:31:08.2900515Z 
-2026-01-27T02:31:08.2900685Z tests/e2e/nightly/single_node/models/test_deepseek_v3_2_w8a8.py:95: 
-2026-01-27T02:31:08.2901016Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-01-27T02:31:08.2900515Z
+2026-01-27T02:31:08.2900685Z tests/e2e/nightly/single_node/models/test_deepseek_v3_2_w8a8.py:95:
+2026-01-27T02:31:08.2901016Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 2026-01-27T02:31:08.2901306Z tests/e2e/conftest.py:296: in __init__
 2026-01-27T02:31:08.2901593Z     self._wait_for_multiple_servers(
-2026-01-27T02:31:08.2901931Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
-2026-01-27T02:31:08.2902275Z 
+2026-01-27T02:31:08.2901931Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+2026-01-27T02:31:08.2902275Z
 2026-01-27T02:31:08.2902461Z self = <tests.e2e.conftest.RemoteOpenAIServer object at 0xffff24eea890>
 2026-01-27T02:31:08.2902921Z targets = [('0.0.0.0', 'http://0.0.0.0:41571/health')], timeout = 2800
 2026-01-27T02:31:08.2903227Z log_interval = 30.0
-2026-01-27T02:31:08.2903344Z 
+2026-01-27T02:31:08.2903344Z
 2026-01-27T02:31:08.2903436Z     def _wait_for_multiple_servers(self,
 2026-01-27T02:31:08.2903703Z                                    targets,
 2026-01-27T02:31:08.2904078Z                                    timeout: float,
@@ -470,20 +470,20 @@
 2026-01-27T02:31:08.2905232Z         """
 2026-01-27T02:31:08.2905519Z         start = time.time()
 2026-01-27T02:31:08.2905721Z         client = requests
-2026-01-27T02:31:08.2905934Z     
+2026-01-27T02:31:08.2905934Z
 2026-01-27T02:31:08.2906177Z         ready = {node_ip: False for node_ip, _ in targets}
-2026-01-27T02:31:08.2906420Z     
+2026-01-27T02:31:08.2906420Z
 2026-01-27T02:31:08.2906616Z         last_log_time = 0.0
-2026-01-27T02:31:08.2906815Z     
+2026-01-27T02:31:08.2906815Z
 2026-01-27T02:31:08.2907036Z         while True:
 2026-01-27T02:31:08.2907361Z             now = time.time()
 2026-01-27T02:31:08.2907718Z             all_ready = True
 2026-01-27T02:31:08.2908011Z             should_log = (now - last_log_time) >= log_interval
-2026-01-27T02:31:08.2908243Z     
+2026-01-27T02:31:08.2908243Z
 2026-01-27T02:31:08.2908543Z             for node_ip, url in targets:
 2026-01-27T02:31:08.2908778Z                 if ready[node_ip]:
 2026-01-27T02:31:08.2909007Z                     continue
-2026-01-27T02:31:08.2909237Z     
+2026-01-27T02:31:08.2909237Z
 2026-01-27T02:31:08.2909402Z                 try:
 2026-01-27T02:31:08.2909617Z                     resp = client.get(url)
 2026-01-27T02:31:08.2909877Z                     if resp.status_code == 200:
@@ -493,7 +493,7 @@
 2026-01-27T02:31:08.2910974Z                     all_ready = False
 2026-01-27T02:31:08.2911222Z                     if should_log:
 2026-01-27T02:31:08.2911584Z                         logger.debug(f"[WAIT] {url}: connection failed")
-2026-01-27T02:31:08.2911844Z     
+2026-01-27T02:31:08.2911844Z
 2026-01-27T02:31:08.2912152Z                     # check unexpected exit
 2026-01-27T02:31:08.2912399Z                     result = self._poll()
 2026-01-27T02:31:08.2912698Z                     if result is not None and result != 0:
@@ -501,17 +501,17 @@
 2026-01-27T02:31:08.2913342Z                             f"Server at {node_ip} exited unexpectedly."
 2026-01-27T02:31:08.2913645Z                         ) from None
 2026-01-27T02:31:08.2914032Z E                       RuntimeError: Server at 0.0.0.0 exited unexpectedly.
-2026-01-27T02:31:08.2914238Z 
+2026-01-27T02:31:08.2914238Z
 2026-01-27T02:31:08.2914360Z tests/e2e/conftest.py:389: RuntimeError
 2026-01-27T02:31:08.2914682Z ------------------------------ Captured log call -------------------------------
 2026-01-27T02:31:08.2916502Z INFO     tests.e2e.conftest:conftest.py:231 Starting server with command: vllm serve vllm-ascend/DeepSeek-V3.2-W8A8 --enable-expert-parallel --tensor-parallel-size 8 --data-parallel-size 2 --port 41571 --max-model-len 8192 --max-num-batched-tokens 8192 --max-num-seqs 4 --trust-remote-code --quantization ascend --gpu-memory-utilization 0.92 --compilation-config {"cudagraph_capture_sizes":[3, 6, 9, 12], "cudagraph_mode":"FULL_DECODE_ONLY"} --speculative-config {"num_speculative_tokens": 2, "method":"deepseek_mtp"} --additional-config {"layer_sharding": ["q_b_proj", "o_proj"]} --reasoning-parser deepseek_v3 --tokenizer_mode deepseek_v32
 2026-01-27T02:31:08.2918515Z =============================== warnings summary ===============================
 2026-01-27T02:31:08.2918828Z <frozen importlib._bootstrap>:241
 2026-01-27T02:31:08.2919268Z   <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute
-2026-01-27T02:31:08.2919575Z 
+2026-01-27T02:31:08.2919575Z
 2026-01-27T02:31:08.2919672Z <frozen importlib._bootstrap>:241
 2026-01-27T02:31:08.2920091Z   <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute
-2026-01-27T02:31:08.2920400Z 
+2026-01-27T02:31:08.2920400Z
 2026-01-27T02:31:08.2920580Z -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
 2026-01-27T02:31:08.2920957Z =========================== short test summary info ============================
 2026-01-27T02:31:08.2921641Z FAILED tests/e2e/nightly/single_node/models/test_deepseek_v3_2_w8a8.py::test_models[2-8-vllm-ascend/DeepSeek-V3.2-W8A8] - RuntimeError: Server at 0.0.0.0 exited unexpectedly.

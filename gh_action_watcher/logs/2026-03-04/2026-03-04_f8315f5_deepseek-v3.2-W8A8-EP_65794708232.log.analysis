@@ -2,43 +2,43 @@
 
 根本原因（≤5 条）：
 
-1. **Worker 进程全部异常终止**  
+1. **Worker 进程全部异常终止**
    - 日志中所有 `WorkerProc was terminated` 警告在同一时刻出现，说明在模型初始化阶段（EngineCore 初始化完成后）所有子进程被强制结束，可能是因为资源（内存、CPU）不足或 OOM 导致被系统杀掉。
 
-2. **APIServer 启动时端口冲突**  
+2. **APIServer 启动时端口冲突**
    - 在 Worker 进程终止后，APIServer 尝试绑定 `tcp://10.0.0.199:40793`，报错 `Address already in use`。说明该端口已被其他进程占用（很可能是前一次运行未清理干净的残留进程），导致 vLLM 主服务无法启动。
 
-3. **健康检查超时导致测试失败**  
+3. **健康检查超时导致测试失败**
    - 由于 APIServer 启动失败，`/health` 端点始终不可达，测试框架在 2800 秒等待后抛出 `RuntimeError: Server at 10.0.0.199 exited unexpectedly.`。
 
-4. **资源配置不足或竞争**  
+4. **资源配置不足或竞争**
    - 多节点、多 worker（TP0‑TP15）在同一台机器上启动，可能出现内存/文件描述符竞争，导致进程被 OOM Killer 或其他系统限制终止。
 
-5. **缺乏进程清理机制**  
+5. **缺乏进程清理机制**
    - 测试框架未在启动前确保旧进程已完全退出，导致残留进程占用端口和资源。
 
 ---
 
 最可能的修复方案：
 
-1. **确保端口未被占用**  
-   - 在启动 vLLM 服务前执行 `fuser -k <port>/tcp` 或 `lsof -ti:<port> | xargs kill -9`，确保清理残留进程。  
+1. **确保端口未被占用**
+   - 在启动 vLLM 服务前执行 `fuser -k <port>/tcp` 或 `lsof -ti:<port> | xargs kill -9`，确保清理残留进程。
    - 或在测试配置中使用 `--port 0` 让系统自动分配空闲端口，并在启动后动态获取端口信息。
 
-2. **提升资源配额**  
-   - 检查 Pod/容器的内存限制，确保足够容纳所有 worker（例如 `memory: 64Gi` 或更高）。  
-   - 调整 `ulimit`（文件描述符、进程数）以避免资源耗尽。  
+2. **提升资源配额**
+   - 检查 Pod/容器的内存限制，确保足够容纳所有 worker（例如 `memory: 64Gi` 或更高）。
+   - 调整 `ulimit`（文件描述符、进程数）以避免资源耗尽。
    - 如可能，增加 `VLLM_WORKER_MULTIPROC_METHOD=spawn` 或降低 `--tensor-parallel-size` 以减轻单节点压力。
 
-3. **优化 worker 启动超时**  
+3. **优化 worker 启动超时**
    - 在测试脚本中加入对 worker 进程的启动监控，若检测到 `WorkerProc was terminated`，立即捕获并输出更详细的错误日志（dmesg、syslog）帮助定位 OOM 或 cgroup 限制。
 
-4. **增强测试框架的前置清理**  
-   - 在 `RemoteOpenAIServer.__init__` 中加入对同名进程（如 `vllm`）的检测与强制终止，确保每次运行前系统干净。  
+4. **增强测试框架的前置清理**
+   - 在 `RemoteOpenAIServer.__init__` 中加入对同名进程（如 `vllm`）的检测与强制终止，确保每次运行前系统干净。
    - 使用 `psutil` 或 `subprocess` 查找并 kill 任何残留的 `python -m vllm` 进程。
 
-5. **升级或回退 vLLM/Ascend 驱动版本**  
-   - 若问题与特定 Ascend 驱动或 Mooncake 版本相关，尝试使用经过验证的稳定版本，或在 CI 中显式指定兼容的驱动/库版本。  
+5. **升级或回退 vLLM/Ascend 驱动版本**
+   - 若问题与特定 Ascend 驱动或 Mooncake 版本相关，尝试使用经过验证的稳定版本，或在 CI 中显式指定兼容的驱动/库版本。
    - 检查 `ascend_direct_transport.cpp` 的内存映射日志，若出现异常大的 `length`，确认是否为固件或库的 bug，必要时回退到较早的二进制版本。
 
 通过以上措施，可降低因资源竞争、残留进程及端口冲突导致的 CI 失败概率。

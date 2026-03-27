@@ -2,49 +2,49 @@
 
 ## 根本原因（≤5 条）
 
-1. **Output Token Throughput 严重低于基线**  
-   - 基线要求：134 token/s（阈值为 0.97 * 134 ≈ 130 token/s）  
-   - 实际结果：67.7475 token/s（100 prompts 场景）和 22.7481 token/s（1 prompt 场景）  
+1. **Output Token Throughput 严重低于基线**
+   - 基线要求：134 token/s（阈值为 0.97 * 134 ≈ 130 token/s）
+   - 实际结果：67.7475 token/s（100 prompts 场景）和 22.7481 token/s（1 prompt 场景）
    - 吞吐量仅为基线的 50% 左右，未达到性能阈值
 
-2. **端到端延迟（E2EL）异常高**  
-   - 平均 E2EL：87219 ms（约 87 秒）  
-   - P99 E2EL：141143 ms（约 141 秒）  
+2. **端到端延迟（E2EL）异常高**
+   - 平均 E2EL：87219 ms（约 87 秒）
+   - P99 E2EL：141143 ms（约 141 秒）
    - 表明每次请求的处理时间过长，影响整体吞吐量
 
-3. **InputTokens 显示为 0**  
-   - 日志显示 `InputTokens: 0.0`，这可能是数据准备、后处理或日志记录问题  
+3. **InputTokens 显示为 0**
+   - 日志显示 `InputTokens: 0.0`，这可能是数据准备、后处理或日志记录问题
    - 需要确认输入数据是否正确传递给模型
 
-4. **量化配置可能不匹配**  
-   - 模型使用 W8A8 量化（`--quantization ascend`）  
+4. **量化配置可能不匹配**
+   - 模型使用 W8A8 量化（`--quantization ascend`）
    - 但吞吐量只有预期的一半，可能量化实现或校准存在问题
 
-5. **资源竞争或硬件限制**  
-   - 测试配置：TP8-DP2（8 卡 tensor parallel + 2 路 data parallel）  
+5. **资源竞争或硬件限制**
+   - 测试配置：TP8-DP2（8 卡 tensor parallel + 2 路 data parallel）
    - 需要确认多卡通信是否正常、GPU 利用率是否达标
 
 ## 最可能的修复方案
 
-1. **调整请求速率或批处理参数**  
-   - 当前 `request_rate = 11.2` 可能过高，导致请求排队  
+1. **调整请求速率或批处理参数**
+   - 当前 `request_rate = 11.2` 可能过高，导致请求排队
    - 尝试降低 `request_rate` 或增加 `batch_size` 以提高并发效率
 
-2. **检查并修复数据管道**  
-   - 确认 InputTokens 为 0 的根本原因  
+2. **检查并修复数据管道**
+   - 确认 InputTokens 为 0 的根本原因
    - 检查 `extract_non_reasoning_content` 后处理器是否影响数据统计
 
-3. **优化模型服务配置**  
-   - 调整 `--max-num-batched-tokens` 和 `--max-num-seqs`  
-   - 当前 `max-num-seqs 4` 可能限制了并发处理能力  
+3. **优化模型服务配置**
+   - 调整 `--max-num-batched-tokens` 和 `--max-num-seqs`
+   - 当前 `max-num-seqs 4` 可能限制了并发处理能力
    - 考虑启用 `enforce_eager=False` 以使用 CUDA graph 加速
 
-4. **验证量化模型性能**  
-   - 如果 W8A8 量化导致性能下降，考虑使用更高效的量化方法（如 W8A16）  
+4. **验证量化模型性能**
+   - 如果 W8A8 量化导致性能下降，考虑使用更高效的量化方法（如 W8A16）
    - 或检查 ascend 量化库是否有已知问题
 
-5. **监控硬件资源使用**  
-   - 检查 GPU 利用率、NCCL 通信效率  
+5. **监控硬件资源使用**
+   - 检查 GPU 利用率、NCCL 通信效率
    - 确认 tensor parallel 和 data parallel 配置是否适合当前硬件环境
 
 ## 参考数据

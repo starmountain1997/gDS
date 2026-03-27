@@ -1,24 +1,24 @@
 类型: 代码问题
 
-**根本原因（≤5 条）**  
-1. 测试传入的 `--compilation-config` 中 `cudagraph_capture_sizes` 固定为 `[3, 6, 9, 12]`，而实际运行的 `tensor‑parallel‑size` 为 8，数值不是 8 的倍数，导致 `VllmConfig` 校验时断言失败。  
-2. 测试脚本使用硬编码的编译配置，没有根据 `tp_size` 动态生成合法的捕获尺寸，使得在不同 `tp_size` 下均会触发同样的校验错误。  
-3. 平台代码已在 `vllm.py:1062` 发出警告并尝试剔除不符合倍数的批次大小，但校验逻辑仍要求 **所有** 给出的尺寸必须为 `tp_size` 的倍数，产生冲突。  
-4. `speculative‑config` 中使用的 `"method":"deepseek_mtp"` 已被废弃（应使用 `"mtp"`），虽不直接导致本次错误，但会产生废弃警告并在后续升级时可能引发兼容性问题。  
+**根本原因（≤5 条）**
+1. 测试传入的 `--compilation-config` 中 `cudagraph_capture_sizes` 固定为 `[3, 6, 9, 12]`，而实际运行的 `tensor‑parallel‑size` 为 8，数值不是 8 的倍数，导致 `VllmConfig` 校验时断言失败。
+2. 测试脚本使用硬编码的编译配置，没有根据 `tp_size` 动态生成合法的捕获尺寸，使得在不同 `tp_size` 下均会触发同样的校验错误。
+3. 平台代码已在 `vllm.py:1062` 发出警告并尝试剔除不符合倍数的批次大小，但校验逻辑仍要求 **所有** 给出的尺寸必须为 `tp_size` 的倍数，产生冲突。
+4. `speculative‑config` 中使用的 `"method":"deepseek_mtp"` 已被废弃（应使用 `"mtp"`），虽不直接导致本次错误，但会产生废弃警告并在后续升级时可能引发兼容性问题。
 5. 模型类型出现不匹配警告：`deepseek_v32` 与 `deepseek_v3`，虽然当前未导致致命异常，但在其他配置或更高版本库中可能触发加载失败。
 
-**最可能的修复方案**  
-- **修改 `cudagraph_capture_sizes`**：要么使用符合 `tp_size` 倍数的值（如 `[8, 16, 24]`），要么直接省略该参数让系统使用默认合法值。例如，将 `--compilation-config` 改为  
+**最可能的修复方案**
+- **修改 `cudagraph_capture_sizes`**：要么使用符合 `tp_size` 倍数的值（如 `[8, 16, 24]`），要么直接省略该参数让系统使用默认合法值。例如，将 `--compilation-config` 改为
   ```json
   {"cudagraph_capture_sizes":[8,16,24], "cudagraph_mode":"FULL_DECODE_ONLY"}
-  ```  
-- **动态生成编译配置**：在构造 `server_args` 时，根据 `tp_size` 自动生成合法列表，例如  
+  ```
+- **动态生成编译配置**：在构造 `server_args` 时，根据 `tp_size` 自动生成合法列表，例如
   ```python
   capture_sizes = [tp_size * k for k in range(1, 4)]  # [8, 16, 24] for tp_size=8
   comp_config = {"cudagraph_capture_sizes": capture_sizes, "cudagraph_mode":"FULL_DECODE_ONLY"}
-  ```  
-- **更新废弃的 speculative 方法**：将 `"method":"deepseek_mtp"` 改为 `"method":"mtp"`，保持与新版本 API 一致。  
-- **确保模型已完整缓存**：在使用 `HF_HUB_OFFLINE=1` 前确认模型文件已在本地缓存，避免加载失败（次要，但可提升鲁棒性）。  
-- **后续可考虑改进框架校验**：在 `VllmConfig` 的校验逻辑中，对已被过滤的 `cudagraph_capture_sizes` 放宽约束，或在过滤后重新生成合法的列表，以避免冲突。  
+  ```
+- **更新废弃的 speculative 方法**：将 `"method":"deepseek_mtp"` 改为 `"method":"mtp"`，保持与新版本 API 一致。
+- **确保模型已完整缓存**：在使用 `HF_HUB_OFFLINE=1` 前确认模型文件已在本地缓存，避免加载失败（次要，但可提升鲁棒性）。
+- **后续可考虑改进框架校验**：在 `VllmConfig` 的校验逻辑中，对已被过滤的 `cudagraph_capture_sizes` 放宽约束，或在过滤后重新生成合法的列表，以避免冲突。
 
 通过上述修改，测试的编译配置将与 `tensor‑parallel‑size=8` 匹配，从而消除校验错误并顺利完成推理任务。

@@ -1,27 +1,27 @@
-类型: 设备环境问题  
+类型: 设备环境问题
 
-**根本原因（≤5 条）**  
-1. **服务器 Pod 内存/显存不足导致 OOM**  
-   - 在加载 `DeepSeek‑V3.2‑W8A8`（W8A8 量化）模型时，Pod 多次重启，容器日志出现 “RESTARTS 1”。  
-2. **服务器绑定端口或监听地址不正确**  
-   - `RemoteOpenAIServer` 使用 `auto_port=False`，若服务器内部实际绑定了另一个端口或 `0.0.0.0` 与客户端使用的 `host_ip`（10.0.0.141）不匹配，aisbench 会全部请求失败。  
-3. **多节点 NCCL/HCCL 通信配置缺失**  
-   - 启用 `disaggregated_prefill` 与 `nodes_info` 时，需要正确的 NCCL/HCCL 环境变量和网络互通；缺失或错误会导致 Worker 节点之间同步失败，从而返回错误。  
-4. **Ascend NPU 驱动或库版本不兼容**  
-   - W8A8 量化在当前容器镜像的 Ascend 驱动/CANN 版本下可能不被支持，导致模型加载或推理时异常。  
-5. **aisbench 客户端与服务端网络不可达**  
-   - aisbench 使用 `host_ip=10.0.0.141` 访问，而实际的 Pod Service IP 或端口映射可能不同，导致所有请求超时或被拒绝。  
+**根本原因（≤5 条）**
+1. **服务器 Pod 内存/显存不足导致 OOM**
+   - 在加载 `DeepSeek‑V3.2‑W8A8`（W8A8 量化）模型时，Pod 多次重启，容器日志出现 “RESTARTS 1”。
+2. **服务器绑定端口或监听地址不正确**
+   - `RemoteOpenAIServer` 使用 `auto_port=False`，若服务器内部实际绑定了另一个端口或 `0.0.0.0` 与客户端使用的 `host_ip`（10.0.0.141）不匹配，aisbench 会全部请求失败。
+3. **多节点 NCCL/HCCL 通信配置缺失**
+   - 启用 `disaggregated_prefill` 与 `nodes_info` 时，需要正确的 NCCL/HCCL 环境变量和网络互通；缺失或错误会导致 Worker 节点之间同步失败，从而返回错误。
+4. **Ascend NPU 驱动或库版本不兼容**
+   - W8A8 量化在当前容器镜像的 Ascend 驱动/CANN 版本下可能不被支持，导致模型加载或推理时异常。
+5. **aisbench 客户端与服务端网络不可达**
+   - aisbench 使用 `host_ip=10.0.0.141` 访问，而实际的 Pod Service IP 或端口映射可能不同，导致所有请求超时或被拒绝。
 
-**最可能的修复方案**  
-1. **增加资源配额**  
-   - 将 vLLM‑Ascend Pod 的 `resources.limits.memory`/`resources.limits.hbm` 调高，确保模型加载时不会 OOM；如仍不足，可降低 `batch_size` 或改为 W8A4 量化。  
-2. **确认端口/地址绑定**  
-   - 在 `RemoteOpenAIServer` 中启用 `auto_port=True`，让系统自动分配端口，并在 aisbench 配置中使用实际分配的端口；或显式设置 `server_host` 为 Pod 的真实 IP。  
-3. **完善多节点通信配置**  
-   - 在 Pod 的启动命令中加入 `NCCL_DEBUG=INFO`、`HCCL_ROOT` 等环境变量，确保 NCCL/HCCL 能正确发现和通信；检查 CNI/网络策略，保证节点之间 9090/6000 等端口互通。  
-4. **校验 Ascend 驱动/CANN 版本**  
-   - 确认容器镜像中的 Ascend 驱动、CANN 与 vLLM‑Ascend 所需版本匹配，如不匹配则在 Dockerfile 中升级或回退到 CPU-only 模式进行调试。  
-5. **增强 aisbench 错误诊断**  
-   - 在 `aisbench` 的异常捕获块里打印出完整的 HTTP 响应状态码、响应体和服务器日志路径；这样在后续失败时能快速定位是网络、认证还是模型加载错误。  
+**最可能的修复方案**
+1. **增加资源配额**
+   - 将 vLLM‑Ascend Pod 的 `resources.limits.memory`/`resources.limits.hbm` 调高，确保模型加载时不会 OOM；如仍不足，可降低 `batch_size` 或改为 W8A4 量化。
+2. **确认端口/地址绑定**
+   - 在 `RemoteOpenAIServer` 中启用 `auto_port=True`，让系统自动分配端口，并在 aisbench 配置中使用实际分配的端口；或显式设置 `server_host` 为 Pod 的真实 IP。
+3. **完善多节点通信配置**
+   - 在 Pod 的启动命令中加入 `NCCL_DEBUG=INFO`、`HCCL_ROOT` 等环境变量，确保 NCCL/HCCL 能正确发现和通信；检查 CNI/网络策略，保证节点之间 9090/6000 等端口互通。
+4. **校验 Ascend 驱动/CANN 版本**
+   - 确认容器镜像中的 Ascend 驱动、CANN 与 vLLM‑Ascend 所需版本匹配，如不匹配则在 Dockerfile 中升级或回退到 CPU-only 模式进行调试。
+5. **增强 aisbench 错误诊断**
+   - 在 `aisbench` 的异常捕获块里打印出完整的 HTTP 响应状态码、响应体和服务器日志路径；这样在后续失败时能快速定位是网络、认证还是模型加载错误。
 
 通过以上步骤可以定位并解决 “All requests failed” 的根本问题，使 aisbench 性能/精度评估能够顺利完成。

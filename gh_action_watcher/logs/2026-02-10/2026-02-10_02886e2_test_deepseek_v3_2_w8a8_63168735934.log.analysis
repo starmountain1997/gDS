@@ -1,13 +1,13 @@
-类型: 代码问题  
+类型: 代码问题
 
-根本原因：  
-1. 测试配置中 `cudagraph_capture_sizes` 设置为 `[3, 6, 9, 12]`，与 `tensor-parallel-size` 为 8 不兼容。  
-2. 代码在创建 `VllmConfig` 时对 `cudagraph_capture_sizes` 进行了严格校验，要求必须包含 `tp_size` 的倍数。  
-3. 当 `tp_size=8` 且启用序列并行（sequence parallelism）时，只有 8 的倍数才被接受。  
-4. 测试脚本未根据 `tp_size` 动态调整 `cudagraph_capture_sizes`，导致断言失败。  
+根本原因：
+1. 测试配置中 `cudagraph_capture_sizes` 设置为 `[3, 6, 9, 12]`，与 `tensor-parallel-size` 为 8 不兼容。
+2. 代码在创建 `VllmConfig` 时对 `cudagraph_capture_sizes` 进行了严格校验，要求必须包含 `tp_size` 的倍数。
+3. 当 `tp_size=8` 且启用序列并行（sequence parallelism）时，只有 8 的倍数才被接受。
+4. 测试脚本未根据 `tp_size` 动态调整 `cudagraph_capture_sizes`，导致断言失败。
 
-修复方案：  
-1. 修改测试配置，使 `cudagraph_capture_sizes` 包含 `tp_size` 的倍数，例如改为 `[8, 16, 24]` 或 `[8, 16]`。  
-2. 或者在测试中根据 `tp_size` 动态生成合适的 `cudagraph_capture_sizes` 值。  
-3. 如不需要序列并行，可关闭该特性以避免此校验。  
+修复方案：
+1. 修改测试配置，使 `cudagraph_capture_sizes` 包含 `tp_size` 的倍数，例如改为 `[8, 16, 24]` 或 `[8, 16]`。
+2. 或者在测试中根据 `tp_size` 动态生成合适的 `cudagraph_capture_sizes` 值。
+3. 如不需要序列并行，可关闭该特性以避免此校验。
 4. 若未来代码有意放宽校验，应在代码中添加对非倍数值的支持或警告。

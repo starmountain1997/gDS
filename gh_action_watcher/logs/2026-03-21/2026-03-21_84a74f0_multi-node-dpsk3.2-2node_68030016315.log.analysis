@@ -1,27 +1,27 @@
-类型: 设备环境问题  
+类型: 设备环境问题
 
-根本原因（≤5 条）  
-1. **工作进程无法识别/分配 Ascend NPU 设备** – `Device:-1`、`RankID:-1` 表明引擎在启动时未检测到可用设备，导致 EngineCore 初始化失败。  
-2. **共享内存资源不足或残留泄漏** – `resource_tracker: There appear to be 18 leaked shared_memory objects` 说明共享内存段未被正确释放，工作进程因缺少共享内存而崩溃。  
-3. **环境变量配置缺失或错误** – `ASCEND_RT_VISIBLE_DEVICES`、`CUDA_VISIBLE_DEVICES` 等未正确设置，工作进程可能回退到不支持的执行模式。  
-4. **多节点网络通信未就绪** – master IP `10.0.0.169` 在启动健康检查时已经退出，可能是 NCCL/TCP 初始化超时或网络不可达。  
-5. **容器/Pod 资源限制不满足多进程模型加载** – shm、内存等限制导致工作进程在模型加载阶段被 OOM Killer 或资源不足杀死。  
+根本原因（≤5 条）
+1. **工作进程无法识别/分配 Ascend NPU 设备** – `Device:-1`、`RankID:-1` 表明引擎在启动时未检测到可用设备，导致 EngineCore 初始化失败。
+2. **共享内存资源不足或残留泄漏** – `resource_tracker: There appear to be 18 leaked shared_memory objects` 说明共享内存段未被正确释放，工作进程因缺少共享内存而崩溃。
+3. **环境变量配置缺失或错误** – `ASCEND_RT_VISIBLE_DEVICES`、`CUDA_VISIBLE_DEVICES` 等未正确设置，工作进程可能回退到不支持的执行模式。
+4. **多节点网络通信未就绪** – master IP `10.0.0.169` 在启动健康检查时已经退出，可能是 NCCL/TCP 初始化超时或网络不可达。
+5. **容器/Pod 资源限制不满足多进程模型加载** – shm、内存等限制导致工作进程在模型加载阶段被 OOM Killer 或资源不足杀死。
 
-最可能的修复方案  
-1. **扩大并清理共享内存**  
-   - 在 Pod spec 中显式挂载足够大的 tmpfs（如 `shmSize: 64Gi`）。  
-   - 启动脚本前执行 `rm -rf /dev/shm/*` 或 `find /dev/shm -type f -name 'sm_*' -delete` 清除残留共享内存。  
-2. **确保 Ascend NPU 驱动可见**  
-   - 设置 `ASCEND_RT_VISIBLE_DEVICES=0`（或对应的设备号），并确认 `LD_LIBRARY_PATH` 包含 CANN 库路径。  
-   - 在 CI 环境变量中统一加入 `export ASCEND_RT_VISIBLE_DEVICES=0`。  
-3. **统一设备可见性环境变量**  
-   - 如使用 GPU，加入 `CUDA_VISIBLE_DEVICES`、`NVIDIA_VISIBLE_DEVICES`；如使用 Ascend，则加入 `ASCEND_RT_VISIBLE_DEVICES`。  
-   - 确保所有 Worker 进程都能继承这些变量。  
-4. **验证多节点网络连通性**  
-   - 在测试前使用 `ping` 或 `nc -zv 10.0.0.169 8080` 检查 master 是否可达。  
-   - 确认 NCCL/TCP 配置（可在 `vllm_serve_args` 中加入 `--nproc_per_node`、`--nnodes` 参数），并确保防火墙放行了相应端口。  
-5. **增加资源配额或优化启动超时**  
-   - 如 Pod 资源限制不足，提高 memory、shm、CPU 配额。  
-   - 若模型加载较慢，可在测试脚本中适当调大 `max_wait_seconds`（当前已 2800s），或在 vLLM 的 `multiproc_executor.py` 中加入 worker 初始化重试逻辑。  
+最可能的修复方案
+1. **扩大并清理共享内存**
+   - 在 Pod spec 中显式挂载足够大的 tmpfs（如 `shmSize: 64Gi`）。
+   - 启动脚本前执行 `rm -rf /dev/shm/*` 或 `find /dev/shm -type f -name 'sm_*' -delete` 清除残留共享内存。
+2. **确保 Ascend NPU 驱动可见**
+   - 设置 `ASCEND_RT_VISIBLE_DEVICES=0`（或对应的设备号），并确认 `LD_LIBRARY_PATH` 包含 CANN 库路径。
+   - 在 CI 环境变量中统一加入 `export ASCEND_RT_VISIBLE_DEVICES=0`。
+3. **统一设备可见性环境变量**
+   - 如使用 GPU，加入 `CUDA_VISIBLE_DEVICES`、`NVIDIA_VISIBLE_DEVICES`；如使用 Ascend，则加入 `ASCEND_RT_VISIBLE_DEVICES`。
+   - 确保所有 Worker 进程都能继承这些变量。
+4. **验证多节点网络连通性**
+   - 在测试前使用 `ping` 或 `nc -zv 10.0.0.169 8080` 检查 master 是否可达。
+   - 确认 NCCL/TCP 配置（可在 `vllm_serve_args` 中加入 `--nproc_per_node`、`--nnodes` 参数），并确保防火墙放行了相应端口。
+5. **增加资源配额或优化启动超时**
+   - 如 Pod 资源限制不足，提高 memory、shm、CPU 配额。
+   - 若模型加载较慢，可在测试脚本中适当调大 `max_wait_seconds`（当前已 2800s），或在 vLLM 的 `multiproc_executor.py` 中加入 worker 初始化重试逻辑。
 
 以上措施可优先解决共享内存泄漏与设备不可见两大根本问题，从而避免 WorkerProc 初始化异常导致的多节点测试失败。

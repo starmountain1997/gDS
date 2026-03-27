@@ -1,32 +1,32 @@
-类型: 设备环境问题  
+类型: 设备环境问题
 
-**根本原因（≤5 条）**  
-1. **HCCL 通讯初始化失败** – 在 `AscendFusedMoE` 初始化时调用 `backend.get_hccl_comm_name(local_rank)`，返回错误码 7（`hcclCommInitRootInfoConfig`），说明 `local_rank` 与实际设备的映射错误或 rank 配置不完整。  
-2. **环境变量配置不足或冲突** – 当前仅设置了 `HCCL_OP_EXPANSION_MODE、AIV、HCCL_BUFFSIZE=1024` 等，而缺少 `HCCL_SOCKET_IFNAME`、`RANK`、`LOCAL_RANK`、`WORLD_SIZE` 等分布式训练必备变量的正确传递，导致 HCCL/NCCL 无法发现对等进程。  
-3. **驱动或 HCCL 版本不兼容** – Ascend NPU 驱动/HCCL 库与 vLLM‑ascend 中 MoE‑all‑to‑all（`fused_moe`）的实现之间的版本不匹配，尤其在多 TP × DP 场景下触发内部 CMake 编译的依赖错误。  
-4. **进程数与可用硬件不匹配** – 测试使用 `TP=8、DP=2` 共 16 个进程，如果节点上实际 NPU 数量不足或未被全部映射，部分 rank 会分配到无效设备（`RankID:-1`），导致 HCCL 初始化异常。  
-5. **容器/节点网络接口配置错误** – HCCL 需要通过可用的网卡进行跨进程通信，若 `HCCL_SOCKET_IFNAME` 未指定或指定了不存在的接口，通讯层会报出 `hcclCommInitRootInfoConfig` 错误。  
+**根本原因（≤5 条）**
+1. **HCCL 通讯初始化失败** – 在 `AscendFusedMoE` 初始化时调用 `backend.get_hccl_comm_name(local_rank)`，返回错误码 7（`hcclCommInitRootInfoConfig`），说明 `local_rank` 与实际设备的映射错误或 rank 配置不完整。
+2. **环境变量配置不足或冲突** – 当前仅设置了 `HCCL_OP_EXPANSION_MODE、AIV、HCCL_BUFFSIZE=1024` 等，而缺少 `HCCL_SOCKET_IFNAME`、`RANK`、`LOCAL_RANK`、`WORLD_SIZE` 等分布式训练必备变量的正确传递，导致 HCCL/NCCL 无法发现对等进程。
+3. **驱动或 HCCL 版本不兼容** – Ascend NPU 驱动/HCCL 库与 vLLM‑ascend 中 MoE‑all‑to‑all（`fused_moe`）的实现之间的版本不匹配，尤其在多 TP × DP 场景下触发内部 CMake 编译的依赖错误。
+4. **进程数与可用硬件不匹配** – 测试使用 `TP=8、DP=2` 共 16 个进程，如果节点上实际 NPU 数量不足或未被全部映射，部分 rank 会分配到无效设备（`RankID:-1`），导致 HCCL 初始化异常。
+5. **容器/节点网络接口配置错误** – HCCL 需要通过可用的网卡进行跨进程通信，若 `HCCL_SOCKET_IFNAME` 未指定或指定了不存在的接口，通讯层会报出 `hcclCommInitRootInfoConfig` 错误。
 
-**最可能的修复方案**  
-1. **确保分布式环境变量正确传递**  
-   - 在启动脚本中显式设置 `RANK`、`LOCAL_RANK`、`WORLD_SIZE`（如 `RANK=$SLURM_PROCID`、`LOCAL_RANK=$SLURM_LOCALID`），并使用 `torch.distributed.init_process_group(backend='hccl', init_method='env://')`。  
-   - 验证每个进程能够读取到正确的 `local_rank`，并对应到唯一的 NPU（`torch.npu.device(local_rank)`）。  
+**最可能的修复方案**
+1. **确保分布式环境变量正确传递**
+   - 在启动脚本中显式设置 `RANK`、`LOCAL_RANK`、`WORLD_SIZE`（如 `RANK=$SLURM_PROCID`、`LOCAL_RANK=$SLURM_LOCALID`），并使用 `torch.distributed.init_process_group(backend='hccl', init_method='env://')`。
+   - 验证每个进程能够读取到正确的 `local_rank`，并对应到唯一的 NPU（`torch.npu.device(local_rank)`）。
 
-2. **补充并调优 HCCL 环境变量**  
-   - 添加 `HCCL_SOCKET_IFNAME=<actual-net-interface>`（如 `eth0`、`mlx5_0`），让 HCCL 绑定到可用的网卡。  
-   - 将 `HCCL_BUFFSIZE` 调大（如 `4096`）以避免在大型 MoE 层中出现缓冲区不足。  
-   - 可选打开 `HCCL_DEBUG=INFO`（或 `NCCL_DEBUG=INFO`）获取更详细的初始化日志，帮助定位对等发现失败的环节。  
+2. **补充并调优 HCCL 环境变量**
+   - 添加 `HCCL_SOCKET_IFNAME=<actual-net-interface>`（如 `eth0`、`mlx5_0`），让 HCCL 绑定到可用的网卡。
+   - 将 `HCCL_BUFFSIZE` 调大（如 `4096`）以避免在大型 MoE 层中出现缓冲区不足。
+   - 可选打开 `HCCL_DEBUG=INFO`（或 `NCCL_DEBUG=INFO`）获取更详细的初始化日志，帮助定位对等发现失败的环节。
 
-3. **检查并升级 Ascend 驱动 / HCCL 版本**  
-   - 确认节点上安装的驱动、HCCL 库与 `vllm-ascend` 要求的版本一致。  
-   - 若驱动过旧，升级到官方推荐的版本；若 HCCL 库缺失对应的 MoE‑all‑to‑all 支持，考虑回退到不使用 `ascend` 量化或禁用 `--enable-expert-parallel`。  
+3. **检查并升级 Ascend 驱动 / HCCL 版本**
+   - 确认节点上安装的驱动、HCCL 库与 `vllm-ascend` 要求的版本一致。
+   - 若驱动过旧，升级到官方推荐的版本；若 HCCL 库缺失对应的 MoE‑all‑to‑all 支持，考虑回退到不使用 `ascend` 量化或禁用 `--enable-expert-parallel`。
 
-4. **调整并行度以匹配可用硬件**  
-   - 确认节点实际可用的 NPU 数量（假设为 8），若仅 8 卡，则将 `tensor-parallel-size` 与 `data-parallel-size` 调整为满足 `TP*DP ≤ NPU`（例如 `--tensor-parallel-size 8 --data-parallel-size 1`），或使用 `CUDA_VISIBLE_DEVICES` 限制可见设备。  
-   - 在确认硬件足够后，再恢复 `TP=8、DP=2` 配置进行完整测试。  
+4. **调整并行度以匹配可用硬件**
+   - 确认节点实际可用的 NPU 数量（假设为 8），若仅 8 卡，则将 `tensor-parallel-size` 与 `data-parallel-size` 调整为满足 `TP*DP ≤ NPU`（例如 `--tensor-parallel-size 8 --data-parallel-size 1`），或使用 `CUDA_VISIBLE_DEVICES` 限制可见设备。
+   - 在确认硬件足够后，再恢复 `TP=8、DP=2` 配置进行完整测试。
 
-5. **如环境仍不支持 MoE‑expert‑parallel，可临时关闭**  
-   - 将 `--enable-expert-parallel` 去掉，或在 `--additional-config` 中禁用 MoE 层的 all‑to‑all（如果有对应选项），先验证模型能够在单卡/TP 场景下正常加载。  
-   - 确认 `ascend` 量化本身是否必需；若仅用于测试，可先尝试 `--quantization none` 通过后，再逐步打开量化与 expert‑parallel。  
+5. **如环境仍不支持 MoE‑expert‑parallel，可临时关闭**
+   - 将 `--enable-expert-parallel` 去掉，或在 `--additional-config` 中禁用 MoE 层的 all‑to‑all（如果有对应选项），先验证模型能够在单卡/TP 场景下正常加载。
+   - 确认 `ascend` 量化本身是否必需；若仅用于测试，可先尝试 `--quantization none` 通过后，再逐步打开量化与 expert‑parallel。
 
 > **总结**：错误根源在于 HCCL 初始化阶段因 rank/local_rank 映射错误或环境变量缺失/冲突导致 `hcclCommInitRootInfoConfig` 返回码 7。通过补全分布式环境变量、指定正确的网络接口、调大 HCCL 缓冲区并确认驱动/HCCL 版本兼容性，通常可以解决该问题。若硬件资源不足，则需相应降低并行度或暂时禁用 MoE‑expert‑parallel。

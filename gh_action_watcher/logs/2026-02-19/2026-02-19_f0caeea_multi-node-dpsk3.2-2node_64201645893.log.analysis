@@ -1,17 +1,17 @@
 类型: 设备环境问题
 
-**根本原因（≤5 条）**  
-1. **共享内存（/dev/shm）不足**——日志中出现 “resource_tracker: There appear to be 18 leaked shared_memory objects”，WorkerProc 在多进程初始化时因无法分配足够的共享内存而异常。  
-2. **多节点通信配置缺失或错误**—— disaggregated‑prefill 模式下，Prefill 与 Decode 进程需要通过 RDMA/TCP 进行协同，未正确设置 NCCL、GDR 等环境变量导致握手失败。  
-3. **容器资源限制（ulimit、sysctl）不满足多进程需求**——默认的 `shmmax`、`shmall` 等内核参数可能不足以支撑 vLLM 的大量共享内存申请。  
-4. **硬件驱动或运行时版本不匹配**——ERR99999（未知异常）出现于 NPU/Ascend 驱动层，可能因驱动、CUDA、PyTorch 版本不兼容导致后台进程崩溃。  
+**根本原因（≤5 条）**
+1. **共享内存（/dev/shm）不足**——日志中出现 “resource_tracker: There appear to be 18 leaked shared_memory objects”，WorkerProc 在多进程初始化时因无法分配足够的共享内存而异常。
+2. **多节点通信配置缺失或错误**—— disaggregated‑prefill 模式下，Prefill 与 Decode 进程需要通过 RDMA/TCP 进行协同，未正确设置 NCCL、GDR 等环境变量导致握手失败。
+3. **容器资源限制（ulimit、sysctl）不满足多进程需求**——默认的 `shmmax`、`shmall` 等内核参数可能不足以支撑 vLLM 的大量共享内存申请。
+4. **硬件驱动或运行时版本不匹配**——ERR99999（未知异常）出现于 NPU/Ascend 驱动层，可能因驱动、CUDA、PyTorch 版本不兼容导致后台进程崩溃。
 5. **测试配置与代码实现不兼容**——`disagg_cfg`、`nodes_info` 等参数在当前代码库中可能未被完整支持，导致 WorkerProc 初始化提前退出。
 
-**最可能的修复方案**  
-1. **扩大 /dev/shm**：在 Pod 的 `volumes` 中加入 `tmpfs` 并设置 `sizeLimit: 2Gi`（或更大），或在 Kubernetes `securityContext.sysctls` 中调高 `kernel.shmmax`、`kernel.shmall`。  
-2. **确保 NCCL/通信层环境变量**：显式注入 `NCCL_DEBUG=INFO`、`NCCL_IB_DISABLE=0`、`NCCL_NET_GDR_LEVEL=4` 等变量，并检查节点之间是否能通过 `nccl-test` 互通。  
-3. **提升容器资源上限**：在 Pod spec 中加入 `resources.limits.memory` 与 `shmSize`，或使用 `initContainers` 在启动前执行 `ulimit -l unlimited` 与 `sysctl -w kernel.shmmax=16777216`。  
-4. **校验驱动与框架版本**：确认 NPU（Ascend）/CUDA/PyTorch 的版本组合符合当前 vLLM 源码的 `requirements.txt` 或 `setup.py`，必要时在 CI 中锁定镜像版本。  
-5. **简化或禁用多节点/预分片特性进行验证**：在 CI 中先使用单节点、非 disaggregated 模式跑通 `test_multi_node`，确认基础环境无问题后再逐步开启多节点、预分片等高级特性。  
+**最可能的修复方案**
+1. **扩大 /dev/shm**：在 Pod 的 `volumes` 中加入 `tmpfs` 并设置 `sizeLimit: 2Gi`（或更大），或在 Kubernetes `securityContext.sysctls` 中调高 `kernel.shmmax`、`kernel.shmall`。
+2. **确保 NCCL/通信层环境变量**：显式注入 `NCCL_DEBUG=INFO`、`NCCL_IB_DISABLE=0`、`NCCL_NET_GDR_LEVEL=4` 等变量，并检查节点之间是否能通过 `nccl-test` 互通。
+3. **提升容器资源上限**：在 Pod spec 中加入 `resources.limits.memory` 与 `shmSize`，或使用 `initContainers` 在启动前执行 `ulimit -l unlimited` 与 `sysctl -w kernel.shmmax=16777216`。
+4. **校验驱动与框架版本**：确认 NPU（Ascend）/CUDA/PyTorch 的版本组合符合当前 vLLM 源码的 `requirements.txt` 或 `setup.py`，必要时在 CI 中锁定镜像版本。
+5. **简化或禁用多节点/预分片特性进行验证**：在 CI 中先使用单节点、非 disaggregated 模式跑通 `test_multi_node`，确认基础环境无问题后再逐步开启多节点、预分片等高级特性。
 
 通过以上步骤可定位并消除因共享内存不足、网络/驱动不匹配或资源配置不当导致的 `WorkerProc initialization failed`，进而让 vLLM 多节点测试恢复正常。
