@@ -1,0 +1,24 @@
+类型: 设备环境问题  
+
+**根本原因（≤5 条）**  
+1. **Ascend 1980 资源不足**：调度时 11 个节点均报 `Insufficient huawei.com/ascend-1980`，导致 Pod 只能在资源勉强够的节点上运行，容易出现抢占或设备争用。  
+2. **节点污点未容忍**：部分节点带有 `dedicated: nightly` 污点，Pod 未配置对应的 Toleration，导致调度受限，只能使用少数几台节点。  
+3. **容器启动后异常退出**：vllm‑leader 容器在 8 分钟内出现 `Back-off restarting failed container`，退出码为 1，说明容器内部的进程（或启动脚本）出错，可能是缺少必要的模型文件、驱动库或环境变量。  
+4. **缺少 benchmark 结果**：由于容器在生成结果前已经崩溃，PVC 中的结果目录 `/root/.cache/benchmark_results/multi-node-deepseek-v3.2-W8A8-EP-aime2025` 根本不存在，导致后续脚本 `cp` 失败并返回非零退出码。  
+5. **局部资源（CPU/内存/临时存储）不足**：调度警告中还有 `Insufficient cpu`、`Insufficient memory`、`Insufficient ephemeral‑storage`，即使 Pod 成功调度，运行期间也可能因资源耗尽导致 OOM 或磁盘满，进而触发容器重启。  
+
+**最可能的修复方案**  
+1. **扩充 Ascend 1980 资源池**：在集群中增加带有 `huawei.com/ascend-1980` 标签的节点，或调低 Pod 的资源请求（如使用 `nvidia.com/gpu: 0` 只在 CPU 模式下跑），确保调度时不会因设备不足而被抢占。  
+2. **添加污点容忍**：在 Pod（或 LeaderWorkerSet）模板中加入 `tolerations`，容忍 `dedicated: nightly`，或请求使用不含该污点的节点组。  
+3. **修复容器启动脚本**：  
+   - 确认镜像 `vllm-ascend:nightly-ci-releases-v0.18.0-a3` 中已包含所需的 Ascend 驱动、模型文件及 Python 依赖。  
+   - 在容器启动前打印并检查关键环境变量（如 `ASCEND_DRIVER_PATH`、`LD_LIBRARY_PATH`）是否已正确挂载。  
+   - 若容器内部出现错误，增加 `kubectl logs` 或写入本地文件以便事后分析。  
+4. **确保 benchmark 能生成结果**：  
+   - 在 Pod 启动后先执行一次“dry‑run”或写入占位文件，以验证写入路径可访问。  
+   - 将结果写入路径的创建（`mkdir -p`）与写入操作放入同一脚本块，防止因目录不存在导致复制失败。  
+5. **优化资源请求/限制**：  
+   - 根据实际运行日志（CPU、内存、磁盘使用）适当调低 `requests` 或提升 `limits`，避免因局部资源不足导致 OOM。  
+   - 对 `ephemeral‑storage` 设置合理的 `requests` 与 `limits`，并监控节点磁盘使用情况。  
+
+通过上述措施可解决因硬件资源不足、污点限制以及容器内部错误导致的 CI 失败。若容器仍异常退出，建议在本次失败后保留完整的 `kubectl logs` 与 Ascend 驱动日志，以进一步定位代码层面的具体错误。

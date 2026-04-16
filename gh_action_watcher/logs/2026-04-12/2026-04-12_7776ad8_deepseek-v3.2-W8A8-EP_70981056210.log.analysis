@@ -1,0 +1,15 @@
+类型: 代码问题
+
+根本原因：
+1. **配置文件缺失**：指定的 YAML 配置文件 `DeepSeek-V3_2-W8A8-EP-aime2025.yaml` 在路径 `tests/e2e/nightly/multi_node/config/` 下不存在。
+2. **路径引用错误**：测试脚本 `multi_node_config.py` 使用相对路径加载配置，可能导致在不同工作目录（如 CI 环境）下无法找到文件。
+3. **环境配置不一致**：CI 环境可能未正确设置 `CONFIG_BASE_PATH` 或相关环境变量，导致路径解析失败。
+4. **文件未提交或生成**：该配置文件可能未包含在版本控制中，或在 CI 流程中未正确生成。
+5. **测试数据准备不完整**：测试可能依赖外部数据或配置，但未在 CI 流程中预先准备。
+
+最可能的修复方案：
+1. **确认文件存在性**：检查本地仓库中 `tests/e2e/nightly/multi_node/config/` 目录下是否存在 `DeepSeek-V3_2-W8A8-EP-aime2025.yaml` 文件。如果不存在，创建该文件或使用正确的配置文件。
+2. **修正路径逻辑**：修改 `multi_node_config.py` 中的路径解析逻辑，使用绝对路径或确保 `CONFIG_BASE_PATH` 在 CI 中正确设置。可以在测试开始前打印 `CONFIG_BASE_PATH` 和 `full_path` 以调试。
+3. **添加配置检查**：在测试脚本中添加文件存在性检查，如果文件不存在，则抛出更清晰的错误信息或自动生成默认配置。
+4. **CI 工作流调整**：在 GitHub Actions 工作流中，确保在运行测试前将配置文件复制或生成到正确目录，或使用 `actions/checkout` 完整拉取仓库。
+5. **环境变量配置**：在 CI 环境变量中明确设置 `CONFIG_YAML_PATH` 或 `CONFIG_BASE_PATH`，确保路径解析一致性。

@@ -1,0 +1,15 @@
+类型: 代码问题
+
+根本原因：
+1. **vllm-leader容器启动失败**：容器以退出码1终止，并进入CrashLoopBackOff状态，重启7次后仍未成功。
+2. **基准测试未执行**：由于主容器持续崩溃，基准测试脚本无法正常运行，导致没有生成基准测试结果。
+3. **PVC目录不存在**：脚本尝试从`/root/.cache/benchmark_results/releases-v0.18.0-DeepSeek-V3_2-W8A8-EP-aime2025`获取结果，但该目录不存在（"Directory does not exist"），说明基准测试从未成功运行。
+4. **容器镜像或应用代码问题**：使用的镜像`vllm-ascend:nightly-ci-releases-v0.18.0-a3`可能存在配置错误或代码缺陷，导致应用无法正常启动。
+5. **缺少详细的错误日志**：当前日志仅显示容器退出码为1，未提供具体的应用错误信息，难以定位根本原因。
+
+修复方案：
+1. **获取容器详细日志**：使用`kubectl logs`或`kubectl describe pod`命令查看vllm-leader容器的详细启动错误信息，确定具体的失败原因（如依赖缺失、配置错误、内存不足等）。
+2. **验证镜像版本**：确认`nightly-ci-releases-v0.18.0-a3`镜像是否稳定，或回滚到已知可用的旧版本进行测试。
+3. **检查应用启动脚本**：审查容器ENTRYPOINT/CMD，确保启动命令正确，且所有必需的配置文件和环境变量都已设置。
+4. **增加健康检查**：在Kubernetes配置中添加适当的livenessProbe和readinessProbe，以便更快发现问题。
+5. **预创建PVC目录**：如果基准测试依赖特定目录结构，在Pod启动前确保PVC中的目录已正确创建。
