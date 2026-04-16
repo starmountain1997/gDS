@@ -1,0 +1,1819 @@
+# Run ID: 24355380566
+# Commit: f4d6c44acbb76c8ca079d7c360caef7a478fb48f
+# Job: multi-node (releases-v0.18.0, multi-node-dpsk3.2-2node, DeepSeek-V3_2-W8A8-A3-dual-nodes.yaml, 2) / DeepSeek-V3_2-W8A8-A3-dual-nodes.yaml
+# Date: 2026-04-13
+============================================================
+
+﻿2026-04-13T17:58:16.0877544Z Current runner version: '2.332.0'
+2026-04-13T17:58:16.0883596Z Runner name: 'linux-aarch64-a3-0-ggwx6-runner-mvt7k'
+2026-04-13T17:58:16.0884389Z Runner group name: 'Default'
+2026-04-13T17:58:16.0885213Z Machine name: 'linux-aarch64-a3-0-ggwx6-runner-mvt7k'
+2026-04-13T17:58:16.0888189Z ##[group]GITHUB_TOKEN Permissions
+2026-04-13T17:58:16.0890561Z Contents: read
+2026-04-13T17:58:16.0891150Z Issues: read
+2026-04-13T17:58:16.0891610Z Metadata: read
+2026-04-13T17:58:16.0892094Z PullRequests: read
+2026-04-13T17:58:16.0892555Z ##[endgroup]
+2026-04-13T17:58:16.0894629Z Secret source: Actions
+2026-04-13T17:58:16.0895311Z Prepare workflow directory
+2026-04-13T17:58:16.1492899Z Prepare all required actions
+2026-04-13T17:58:16.1529991Z Getting action download info
+2026-04-13T17:58:17.1894444Z Download action repository 'actions/checkout@v6' (SHA:de0fac2e4500dabe0009e67214ff5f5447ce83dd)
+2026-04-13T17:58:21.4935078Z Download action repository 'actions/upload-artifact@v7' (SHA:043fb46d1a93c77aae656e7c1c64a875d1fc6a0a)
+2026-04-13T17:58:24.9282976Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-04-13T17:58:32.4443071Z Uses: vllm-project/vllm-ascend/.github/workflows/_e2e_nightly_multi_node.yaml@refs/heads/main (f4d6c44acbb76c8ca079d7c360caef7a478fb48f)
+2026-04-13T17:58:32.4447871Z ##[group] Inputs
+2026-04-13T17:58:32.4448369Z   soc_version: a3
+2026-04-13T17:58:32.4448659Z   runner: linux-aarch64-a3-0
+2026-04-13T17:58:32.4449420Z   image: swr.cn-southwest-2.myhuaweicloud.com/base_image/ascend-ci/vllm-ascend:nightly-ci-releases-v0.18.0-a3
+2026-04-13T17:58:32.4450368Z   config_file_path: DeepSeek-V3_2-W8A8-A3-dual-nodes.yaml
+2026-04-13T17:58:32.4450758Z   replicas: 1
+2026-04-13T17:58:32.4451055Z   size: 2
+2026-04-13T17:58:32.4451325Z   vllm_version: v0.18.0
+2026-04-13T17:58:32.4451775Z   vllm_ascend_remote_url: https://github.com/vllm-project/vllm-ascend.git
+2026-04-13T17:58:32.4452341Z   vllm_ascend_ref: f4d6c44acbb76c8ca079d7c360caef7a478fb48f
+2026-04-13T17:58:32.4453323Z   should_run: true
+2026-04-13T17:58:32.4453651Z   ascend_log_prefix: /root/.cache/ascend-logs
+2026-04-13T17:58:32.4454084Z   name: multi-node-dpsk3.2-2node
+2026-04-13T17:58:32.4454436Z ##[endgroup]
+2026-04-13T17:58:32.4455200Z Complete job name: multi-node (releases-v0.18.0, multi-node-dpsk3.2-2node, DeepSeek-V3_2-W8A8-A3-dual-nodes.yaml, 2) / DeepSeek-V3_2-W8A8-A3-dual-nodes.yaml
+2026-04-13T17:58:32.5148699Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T17:58:32.5152183Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T17:58:32.5152919Z ##[endgroup]
+2026-04-13T17:58:40.1909201Z (node:123) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T17:58:40.1910401Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T17:58:42.5250599Z ##[group]Run if [ "schedule" = "pull_request" ]; then
+2026-04-13T17:58:42.5251092Z [36;1mif [ "schedule" = "pull_request" ]; then[0m
+2026-04-13T17:58:42.5251396Z [36;1m  if [ "a3" = "a3" ]; then[0m
+2026-04-13T17:58:42.5251836Z [36;1m    # NOTE: This is too hack, we should find a better way to manage kubeconfig for pr tests.[0m
+2026-04-13T17:58:42.5252350Z [36;1m    cp /root/.cache/.kube/kubeconfig.yaml "$KUBECONFIG"[0m
+2026-04-13T17:58:42.5252667Z [36;1m  else[0m
+2026-04-13T17:58:42.5252947Z [36;1m    cp /root/.cache/.kube/hk_001_kb.yaml "$KUBECONFIG"[0m
+2026-04-13T17:58:42.5253277Z [36;1m  fi[0m
+2026-04-13T17:58:42.5253458Z [36;1melse[0m
+2026-04-13T17:58:42.5298599Z [36;1m  echo "***" | base64 -d > "$KUBECONFIG"[0m
+2026-04-13T17:58:42.5298955Z [36;1mfi[0m
+2026-04-13T17:58:42.5299365Z shell: bash -el {0}
+2026-04-13T17:58:42.5299573Z ##[endgroup]
+2026-04-13T17:58:42.5439016Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T17:58:42.5440216Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T17:58:42.5440523Z ##[endgroup]
+2026-04-13T17:58:42.9761782Z (node:529) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T17:58:42.9763885Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T17:58:44.2141888Z ##[group]Run actions/checkout@v6
+2026-04-13T17:58:44.2142366Z with:
+2026-04-13T17:58:44.2142614Z   repository: vllm-project/vllm-ascend
+2026-04-13T17:58:44.2143105Z   token: ***
+2026-04-13T17:58:44.2143333Z   ssh-strict: true
+2026-04-13T17:58:44.2143590Z   ssh-user: git
+2026-04-13T17:58:44.2143814Z   persist-credentials: true
+2026-04-13T17:58:44.2144064Z   clean: true
+2026-04-13T17:58:44.2144286Z   sparse-checkout-cone-mode: true
+2026-04-13T17:58:44.2144575Z   fetch-depth: 1
+2026-04-13T17:58:44.2144764Z   fetch-tags: false
+2026-04-13T17:58:44.2144954Z   show-progress: true
+2026-04-13T17:58:44.2145155Z   lfs: false
+2026-04-13T17:58:44.2145322Z   submodules: false
+2026-04-13T17:58:44.2145521Z   set-safe-directory: true
+2026-04-13T17:58:44.2145792Z ##[endgroup]
+2026-04-13T17:58:44.2195822Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T17:58:44.2196739Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T17:58:44.2197035Z ##[endgroup]
+2026-04-13T17:58:44.6501028Z (node:559) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T17:58:44.6502165Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T17:58:45.2673266Z Syncing repository: vllm-project/vllm-ascend
+2026-04-13T17:58:45.2674610Z ##[group]Getting Git version info
+2026-04-13T17:58:45.2674959Z Working directory is '/__w/vllm-ascend/vllm-ascend'
+2026-04-13T17:58:45.2675456Z [command]/usr/bin/git version
+2026-04-13T17:58:45.2675701Z git version 2.34.1
+2026-04-13T17:58:45.2677198Z ##[endgroup]
+2026-04-13T17:58:45.2681457Z Copying '/root/.gitconfig' to '/__w/_temp/fa0ed382-c84d-4cb5-a18d-d9a145f7b399/.gitconfig'
+2026-04-13T17:58:45.2682261Z Temporarily overriding HOME='/__w/_temp/fa0ed382-c84d-4cb5-a18d-d9a145f7b399' before making global git config changes
+2026-04-13T17:58:45.2682980Z Adding repository directory to the temporary git global config as a safe directory
+2026-04-13T17:58:45.2683600Z [command]/usr/bin/git config --global --add safe.directory /__w/vllm-ascend/vllm-ascend
+2026-04-13T17:58:45.2717672Z Deleting the contents of '/__w/vllm-ascend/vllm-ascend'
+2026-04-13T17:58:45.2721586Z ##[group]Initializing the repository
+2026-04-13T17:58:45.2725156Z [command]/usr/bin/git init /__w/vllm-ascend/vllm-ascend
+2026-04-13T17:58:45.2877885Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-04-13T17:58:45.2878448Z hint: is subject to change. To configure the initial branch name to use in all
+2026-04-13T17:58:45.2879019Z hint: of your new repositories, which will suppress this warning, call:
+2026-04-13T17:58:45.2879396Z hint: 
+2026-04-13T17:58:45.2879663Z hint: 	git config --global init.defaultBranch <name>
+2026-04-13T17:58:45.2880079Z hint: 
+2026-04-13T17:58:45.2880366Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-04-13T17:58:45.2880858Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-04-13T17:58:45.2881229Z hint: 
+2026-04-13T17:58:45.2881433Z hint: 	git branch -m <name>
+2026-04-13T17:58:45.2886817Z Initialized empty Git repository in /__w/vllm-ascend/vllm-ascend/.git/
+2026-04-13T17:58:45.2895941Z [command]/usr/bin/git remote add origin https://github.com/vllm-project/vllm-ascend
+2026-04-13T17:58:45.2937623Z ##[endgroup]
+2026-04-13T17:58:45.2937980Z ##[group]Disabling automatic garbage collection
+2026-04-13T17:58:45.2941002Z [command]/usr/bin/git config --local gc.auto 0
+2026-04-13T17:58:45.2968427Z ##[endgroup]
+2026-04-13T17:58:45.2968741Z ##[group]Setting up auth
+2026-04-13T17:58:45.2970285Z Removing SSH command configuration
+2026-04-13T17:58:45.2976377Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-04-13T17:58:45.3005705Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-04-13T17:58:45.3207026Z Removing HTTP extra header
+2026-04-13T17:58:45.3210872Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-04-13T17:58:45.3238428Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-04-13T17:58:45.3440867Z Removing includeIf entries pointing to credentials config files
+2026-04-13T17:58:45.3445423Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-04-13T17:58:45.3472662Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-04-13T17:58:45.3662585Z [command]/usr/bin/git config --file /__w/_temp/git-credentials-f3314e7f-da6c-4a2b-a93b-3339ca3cf8d5.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-04-13T17:58:45.3702285Z [command]/usr/bin/git config --local includeIf.gitdir:/__w/vllm-ascend/vllm-ascend/.git.path /__w/_temp/git-credentials-f3314e7f-da6c-4a2b-a93b-3339ca3cf8d5.config
+2026-04-13T17:58:45.3730091Z [command]/usr/bin/git config --local includeIf.gitdir:/__w/vllm-ascend/vllm-ascend/.git/worktrees/*.path /__w/_temp/git-credentials-f3314e7f-da6c-4a2b-a93b-3339ca3cf8d5.config
+2026-04-13T17:58:45.3756418Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-f3314e7f-da6c-4a2b-a93b-3339ca3cf8d5.config
+2026-04-13T17:58:45.3785236Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-f3314e7f-da6c-4a2b-a93b-3339ca3cf8d5.config
+2026-04-13T17:58:45.3810288Z ##[endgroup]
+2026-04-13T17:58:45.3810995Z ##[group]Fetching the repository
+2026-04-13T17:58:45.3818895Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +f4d6c44acbb76c8ca079d7c360caef7a478fb48f:refs/remotes/origin/main
+2026-04-13T17:58:48.0639556Z From https://gh-proxy.test.osinfra.cn/https://github.com/vllm-project/vllm-ascend
+2026-04-13T17:58:48.0640290Z  * [new ref]         f4d6c44acbb76c8ca079d7c360caef7a478fb48f -> origin/main
+2026-04-13T17:58:48.0666295Z [command]/usr/bin/git branch --list --remote origin/main
+2026-04-13T17:58:48.0698115Z   origin/main
+2026-04-13T17:58:48.0705803Z [command]/usr/bin/git rev-parse refs/remotes/origin/main
+2026-04-13T17:58:48.0728380Z f4d6c44acbb76c8ca079d7c360caef7a478fb48f
+2026-04-13T17:58:48.0732544Z ##[endgroup]
+2026-04-13T17:58:48.0732899Z ##[group]Determining the checkout info
+2026-04-13T17:58:48.0734640Z ##[endgroup]
+2026-04-13T17:58:48.0745771Z [command]/usr/bin/git sparse-checkout disable
+2026-04-13T17:58:48.0792206Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-04-13T17:58:48.0835464Z ##[group]Checking out the ref
+2026-04-13T17:58:48.0840328Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-04-13T17:58:48.2024928Z Switched to a new branch 'main'
+2026-04-13T17:58:48.2025351Z Branch 'main' set up to track remote branch 'main' from 'origin'.
+2026-04-13T17:58:48.2037384Z ##[endgroup]
+2026-04-13T17:58:48.2081165Z [command]/usr/bin/git log -1 --format=%H
+2026-04-13T17:58:48.2103623Z f4d6c44acbb76c8ca079d7c360caef7a478fb48f
+2026-04-13T17:58:48.6567554Z ##[group]Run # Derive a unique, valid k8s resource name from config_file_path.
+2026-04-13T17:58:48.6568125Z [36;1m# Derive a unique, valid k8s resource name from config_file_path.[0m
+2026-04-13T17:58:48.6568642Z [36;1m# Append 6-char random suffix to avoid conflicts; total length capped at 63 chars.[0m
+2026-04-13T17:58:48.6569166Z [36;1m[0m
+2026-04-13T17:58:48.6569588Z [36;1mconfig_file="DeepSeek-V3_2-W8A8-A3-dual-nodes.yaml"[0m
+2026-04-13T17:58:48.6570383Z [36;1mlws_suffix=$(echo "$config_file" | sed 's/\.yaml$//' | tr '[:upper:]' '[:lower:]' | tr '._' '-' | cut -c1-43)[0m
+2026-04-13T17:58:48.6571026Z [36;1mrand_suffix=$(tr -d '-' < /proc/sys/kernel/random/uuid | cut -c1-6)[0m
+2026-04-13T17:58:48.6571436Z [36;1mLWS_NAME="vllm-${lws_suffix}-${rand_suffix}"[0m
+2026-04-13T17:58:48.6571721Z [36;1m[0m
+2026-04-13T17:58:48.6571896Z [36;1m{[0m
+2026-04-13T17:58:48.6572096Z [36;1m  echo "LWS_NAME=${LWS_NAME}"[0m
+2026-04-13T17:58:48.6572447Z [36;1m  echo "LEADER_POD=${LWS_NAME}-0"[0m
+2026-04-13T17:58:48.6572786Z [36;1m  echo "LOG_PREFIX=/root/.cache/ascend-logs/${LWS_NAME}"[0m
+2026-04-13T17:58:48.6573148Z [36;1m} >> $GITHUB_ENV[0m
+2026-04-13T17:58:48.6573513Z shell: bash -el {0}
+2026-04-13T17:58:48.6573735Z ##[endgroup]
+2026-04-13T17:58:48.6670771Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T17:58:48.6672142Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T17:58:48.6672636Z ##[endgroup]
+2026-04-13T17:58:49.0933103Z (node:600) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T17:58:49.0934091Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T17:58:50.1251117Z ##[group]Run install -D tests/e2e/nightly/multi_node/scripts/run.sh /root/.cache/tests/run.sh
+2026-04-13T17:58:50.1251793Z [36;1minstall -D tests/e2e/nightly/multi_node/scripts/run.sh /root/.cache/tests/run.sh[0m
+2026-04-13T17:58:50.1252449Z shell: bash -el {0}
+2026-04-13T17:58:50.1252642Z env:
+2026-04-13T17:58:50.1252911Z   LWS_NAME: vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2
+2026-04-13T17:58:50.1253320Z   LEADER_POD: vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0
+2026-04-13T17:58:50.1253810Z   LOG_PREFIX: /root/.cache/ascend-logs/vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2
+2026-04-13T17:58:50.1254218Z ##[endgroup]
+2026-04-13T17:58:50.1352284Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T17:58:50.1353184Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T17:58:50.1353471Z ##[endgroup]
+2026-04-13T17:58:50.5603572Z (node:654) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T17:58:50.5604533Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T17:58:52.0571205Z ##[group]Run set -euo pipefail
+2026-04-13T17:58:52.0571546Z [36;1mset -euo pipefail[0m
+2026-04-13T17:58:52.0571784Z [36;1mTIMEOUT=120[0m
+2026-04-13T17:58:52.0572001Z [36;1mSLEEP_INTERVAL=2[0m
+2026-04-13T17:58:52.0572209Z [36;1m[0m
+2026-04-13T17:58:52.0572377Z [36;1m[0m
+2026-04-13T17:58:52.0572701Z [36;1mecho "Deleting leaderworkerset [$LWS_NAME] in namespace [$NAMESPACE]..."[0m
+2026-04-13T17:58:52.0573267Z [36;1mkubectl delete leaderworkerset "$LWS_NAME" -n "$NAMESPACE" --ignore-not-found[0m
+2026-04-13T17:58:52.0573852Z [36;1mkubectl delete service "${LWS_NAME}-leader" -n "$NAMESPACE" --ignore-not-found[0m
+2026-04-13T17:58:52.0574249Z [36;1m[0m
+2026-04-13T17:58:52.0574542Z [36;1mecho "Waiting for pods of leaderworkerset [$LWS_NAME] to be deleted..."[0m
+2026-04-13T17:58:52.0574930Z [36;1mSTART_TIME=$(date +%s)[0m
+2026-04-13T17:58:52.0575177Z [36;1mwhile true; do[0m
+2026-04-13T17:58:52.0575426Z [36;1m  ELAPSED=$(( $(date +%s) - START_TIME ))[0m
+2026-04-13T17:58:52.0575771Z [36;1m  if [[ $ELAPSED -ge $TIMEOUT ]]; then[0m
+2026-04-13T17:58:52.0576145Z [36;1m    echo "Timeout reached ($TIMEOUT seconds), some pods still exist:"[0m
+2026-04-13T17:58:52.0576601Z [36;1m    kubectl get pods -n "$NAMESPACE" | grep "^${LWS_NAME}-" || true[0m
+2026-04-13T17:58:52.0576952Z [36;1m    exit 1[0m
+2026-04-13T17:58:52.0577139Z [36;1m  fi[0m
+2026-04-13T17:58:52.0577535Z [36;1m  PODS_EXIST=$(kubectl get pods -n "$NAMESPACE" -o jsonpath='{.items[*].metadata.name}' 2>/dev/null \[0m
+2026-04-13T17:58:52.0578200Z [36;1m    | tr ' ' '\n' | grep "^${LWS_NAME}-" || true)[0m
+2026-04-13T17:58:52.0578505Z [36;1m  if [[ -z "$PODS_EXIST" ]]; then[0m
+2026-04-13T17:58:52.0578808Z [36;1m    echo "All pods for [$LWS_NAME] deleted."[0m
+2026-04-13T17:58:52.0579092Z [36;1m    break[0m
+2026-04-13T17:58:52.0579378Z [36;1m  fi[0m
+2026-04-13T17:58:52.0579648Z [36;1m  echo "Waiting for pods to be deleted: $PODS_EXIST"[0m
+2026-04-13T17:58:52.0580163Z [36;1m  sleep $SLEEP_INTERVAL[0m
+2026-04-13T17:58:52.0580409Z [36;1mdone[0m
+2026-04-13T17:58:52.0580897Z shell: bash -el {0}
+2026-04-13T17:58:52.0581084Z env:
+2026-04-13T17:58:52.0581343Z   LWS_NAME: vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2
+2026-04-13T17:58:52.0581749Z   LEADER_POD: vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0
+2026-04-13T17:58:52.0582234Z   LOG_PREFIX: /root/.cache/ascend-logs/vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2
+2026-04-13T17:58:52.0582645Z ##[endgroup]
+2026-04-13T17:58:52.0680862Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T17:58:52.0682249Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T17:58:52.0682735Z ##[endgroup]
+2026-04-13T17:58:52.4929328Z (node:720) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T17:58:52.4930436Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T17:58:53.0858900Z Deleting leaderworkerset [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2] in namespace [vllm-project]...
+2026-04-13T17:58:53.2139529Z Waiting for pods of leaderworkerset [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2] to be deleted...
+2026-04-13T17:58:53.3555799Z All pods for [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2] deleted.
+2026-04-13T17:58:53.8176822Z ##[group]Run set -euo pipefail
+2026-04-13T17:58:53.8177150Z [36;1mset -euo pipefail[0m
+2026-04-13T17:58:53.8177372Z [36;1m[0m
+2026-04-13T17:58:53.8177547Z [36;1msize="2"[0m
+2026-04-13T17:58:53.8177763Z [36;1mreplicas="1"[0m
+2026-04-13T17:58:53.8178292Z [36;1mimage="swr.cn-southwest-2.myhuaweicloud.com/base_image/ascend-ci/vllm-ascend:nightly-ci-releases-v0.18.0-a3"[0m
+2026-04-13T17:58:53.8178934Z [36;1mconfig_file_path="DeepSeek-V3_2-W8A8-A3-dual-nodes.yaml"[0m
+2026-04-13T17:58:53.8179483Z [36;1mfail_tag="FAIL_TAG_DeepSeek-V3_2-W8A8-A3-dual-nodes.yaml"[0m
+2026-04-13T17:58:53.8179982Z [36;1mis_pr_test="false"[0m
+2026-04-13T17:58:53.8180280Z [36;1mvllm_version="v0.18.0"[0m
+2026-04-13T17:58:53.8180633Z [36;1mvllm_ascend_ref="f4d6c44acbb76c8ca079d7c360caef7a478fb48f"[0m
+2026-04-13T17:58:53.8181131Z [36;1mvllm_ascend_remote_url="https://github.com/vllm-project/vllm-ascend.git"[0m
+2026-04-13T17:58:53.8181540Z [36;1mrunner="a3"[0m
+2026-04-13T17:58:53.8181824Z [36;1mecho "FAIL_TAG=${fail_tag}" >> $GITHUB_ENV[0m
+2026-04-13T17:58:53.8182097Z [36;1m[0m
+2026-04-13T17:58:53.8182285Z [36;1mif [ "a3" = "a3" ]; then[0m
+2026-04-13T17:58:53.8182521Z [36;1m  npu_per_node=16[0m
+2026-04-13T17:58:53.8182796Z [36;1m  pvc_name=nv-action-vllm-benchmarks-v2[0m
+2026-04-13T17:58:53.8183082Z [36;1melse[0m
+2026-04-13T17:58:53.8183271Z [36;1m  npu_per_node=8[0m
+2026-04-13T17:58:53.8183517Z [36;1m  pvc_name=vllm-project-hk001[0m
+2026-04-13T17:58:53.8183768Z [36;1mfi[0m
+2026-04-13T17:58:53.8183933Z [36;1m[0m
+2026-04-13T17:58:53.8184167Z [36;1mbenchmark_job_name="multi-node-dpsk3.2-2node"[0m
+2026-04-13T17:58:53.8184489Z [36;1mif [ -z "$benchmark_job_name" ]; then[0m
+2026-04-13T17:58:53.8184817Z [36;1m  benchmark_job_name="${config_file_path%.yaml}"[0m
+2026-04-13T17:58:53.8185108Z [36;1mfi[0m
+2026-04-13T17:58:53.8185274Z [36;1m[0m
+2026-04-13T17:58:53.8185554Z [36;1mjinja2 tests/e2e/nightly/multi_node/scripts/lws.yaml.jinja2 \[0m
+2026-04-13T17:58:53.8185927Z [36;1m  -D lws_name="$LWS_NAME" \[0m
+2026-04-13T17:58:53.8186185Z [36;1m  -D log_prefix="$LOG_PREFIX" \[0m
+2026-04-13T17:58:53.8186453Z [36;1m  -D size="$size" \[0m
+2026-04-13T17:58:53.8186694Z [36;1m  -D replicas="$replicas" \[0m
+2026-04-13T17:58:53.8187127Z [36;1m  -D image="$image" \[0m
+2026-04-13T17:58:53.8187408Z [36;1m  -D config_file_path="$config_file_path" \[0m
+2026-04-13T17:58:53.8187721Z [36;1m  -D npu_per_node="$npu_per_node" \[0m
+2026-04-13T17:58:53.8187992Z [36;1m  -D fail_tag="$fail_tag" \[0m
+2026-04-13T17:58:53.8188261Z [36;1m  -D is_pr_test="$is_pr_test" \[0m
+2026-04-13T17:58:53.8188536Z [36;1m  -D vllm_version="$vllm_version" \[0m
+2026-04-13T17:58:53.8188841Z [36;1m  -D vllm_ascend_ref="$vllm_ascend_ref" \[0m
+2026-04-13T17:58:53.8189193Z [36;1m  -D vllm_ascend_remote_url="$vllm_ascend_remote_url" \[0m
+2026-04-13T17:58:53.8189601Z [36;1m  -D pvc_name="$pvc_name" \[0m
+2026-04-13T17:58:53.8190032Z [36;1m  -D benchmark_job_name="$benchmark_job_name" \[0m
+2026-04-13T17:58:53.8190362Z [36;1m  -D runner="$runner" \[0m
+2026-04-13T17:58:53.8190604Z [36;1m  --outfile lws.yaml[0m
+2026-04-13T17:58:53.8190833Z [36;1m[0m
+2026-04-13T17:58:53.8191027Z [36;1mkubectl apply -f ./lws.yaml[0m
+2026-04-13T17:58:53.8191394Z shell: bash -el {0}
+2026-04-13T17:58:53.8191592Z env:
+2026-04-13T17:58:53.8191843Z   LWS_NAME: vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2
+2026-04-13T17:58:53.8192244Z   LEADER_POD: vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0
+2026-04-13T17:58:53.8192726Z   LOG_PREFIX: /root/.cache/ascend-logs/vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2
+2026-04-13T17:58:53.8193129Z ##[endgroup]
+2026-04-13T17:58:53.8277967Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T17:58:53.8278845Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T17:58:53.8279136Z ##[endgroup]
+2026-04-13T17:58:54.2680284Z (node:798) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T17:58:54.2681269Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T17:58:55.6273131Z leaderworkerset.leaderworkerset.x-k8s.io/vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2 created
+2026-04-13T17:58:55.6486978Z service/vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-leader created
+2026-04-13T17:58:56.1219579Z ##[group]Run set -euo pipefail
+2026-04-13T17:58:56.1220153Z [36;1mset -euo pipefail[0m
+2026-04-13T17:58:56.1220425Z [36;1mSIZE="2"[0m
+2026-04-13T17:58:56.1220644Z [36;1mTIMEOUT=1200[0m
+2026-04-13T17:58:56.1220842Z [36;1m[0m
+2026-04-13T17:58:56.1221202Z [36;1mecho "Waiting for all pods to become Running and Ready (timeout ${TIMEOUT}s)..."[0m
+2026-04-13T17:58:56.1221645Z [36;1mSTART_TIME=$(date +%s)[0m
+2026-04-13T17:58:56.1221897Z [36;1mwhile true; do[0m
+2026-04-13T17:58:56.1222156Z [36;1m  ELAPSED=$(( $(date +%s) - START_TIME ))[0m
+2026-04-13T17:58:56.1222480Z [36;1m  if [[ $ELAPSED -ge $TIMEOUT ]]; then[0m
+2026-04-13T17:58:56.1222883Z [36;1m    echo "Timeout reached after ${ELAPSED}s, dumping pod status:"[0m
+2026-04-13T17:58:56.1223296Z [36;1m    kubectl get pods -n "$NAMESPACE"[0m
+2026-04-13T17:58:56.1223631Z [36;1m    kubectl describe pod "$LEADER_POD" -n "$NAMESPACE"[0m
+2026-04-13T17:58:56.1223959Z [36;1m    exit 1[0m
+2026-04-13T17:58:56.1224186Z [36;1m  fi[0m
+2026-04-13T17:58:56.1224364Z [36;1m[0m
+2026-04-13T17:58:56.1224543Z [36;1m  ALL_READY=true[0m
+2026-04-13T17:58:56.1224775Z [36;1m  for ((i=1; i<SIZE; i++)); do[0m
+2026-04-13T17:58:56.1225029Z [36;1m    POD="${LWS_NAME}-0-${i}"[0m
+2026-04-13T17:58:56.1225528Z [36;1m    PHASE=$(kubectl get pod "$POD" -n "$NAMESPACE" -o jsonpath='{.status.phase}' 2>/dev/null || echo "NotFound")[0m
+2026-04-13T17:58:56.1226263Z [36;1m    READY=$(kubectl get pod "$POD" -n "$NAMESPACE" -o jsonpath='{.status.containerStatuses[*].ready}' 2>/dev/null)[0m
+2026-04-13T17:58:56.1226870Z [36;1m    echo "Worker [$POD] phase=$PHASE ready=$READY"[0m
+2026-04-13T17:58:56.1227243Z [36;1m    if [[ "$PHASE" != "Running" || "$READY" != "true" ]]; then[0m
+2026-04-13T17:58:56.1227568Z [36;1m      ALL_READY=false[0m
+2026-04-13T17:58:56.1227793Z [36;1m      break[0m
+2026-04-13T17:58:56.1228182Z [36;1m    fi[0m
+2026-04-13T17:58:56.1228367Z [36;1m  done[0m
+2026-04-13T17:58:56.1228540Z [36;1m[0m
+2026-04-13T17:58:56.1229011Z [36;1m  LEADER_PHASE=$(kubectl get pod "$LEADER_POD" -n "$NAMESPACE" -o jsonpath='{.status.phase}' 2>/dev/null || echo "NotFound")[0m
+2026-04-13T17:58:56.1230108Z [36;1m  LEADER_READY=$(kubectl get pod "$LEADER_POD" -n "$NAMESPACE" -o jsonpath='{.status.containerStatuses[*].ready}' 2>/dev/null)[0m
+2026-04-13T17:58:56.1230777Z [36;1m  echo "Leader [$LEADER_POD] phase=$LEADER_PHASE ready=$LEADER_READY"[0m
+2026-04-13T17:58:56.1231248Z [36;1m  if [[ "$LEADER_PHASE" != "Running" || "$LEADER_READY" != "true" ]]; then[0m
+2026-04-13T17:58:56.1231613Z [36;1m    ALL_READY=false[0m
+2026-04-13T17:58:56.1231827Z [36;1m  fi[0m
+2026-04-13T17:58:56.1232010Z [36;1m[0m
+2026-04-13T17:58:56.1232213Z [36;1m  if [[ "$ALL_READY" == "true" ]]; then[0m
+2026-04-13T17:58:56.1232520Z [36;1m    echo "All pods are Running and Ready."[0m
+2026-04-13T17:58:56.1232802Z [36;1m    break[0m
+2026-04-13T17:58:56.1232996Z [36;1m  fi[0m
+2026-04-13T17:58:56.1233172Z [36;1m  sleep 2[0m
+2026-04-13T17:58:56.1233363Z [36;1mdone[0m
+2026-04-13T17:58:56.1233739Z shell: bash -el {0}
+2026-04-13T17:58:56.1233936Z env:
+2026-04-13T17:58:56.1234198Z   LWS_NAME: vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2
+2026-04-13T17:58:56.1234593Z   LEADER_POD: vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0
+2026-04-13T17:58:56.1235078Z   LOG_PREFIX: /root/.cache/ascend-logs/vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2
+2026-04-13T17:58:56.1235550Z   FAIL_TAG: FAIL_TAG_DeepSeek-V3_2-W8A8-A3-dual-nodes.yaml
+2026-04-13T17:58:56.1235850Z ##[endgroup]
+2026-04-13T17:58:56.1333585Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T17:58:56.1334624Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T17:58:56.1334994Z ##[endgroup]
+2026-04-13T17:58:56.5620136Z (node:888) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T17:58:56.5621333Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T17:58:57.1860000Z Waiting for all pods to become Running and Ready (timeout 1200s)...
+2026-04-13T17:58:57.3048504Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T17:58:57.4213452Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Pending ready=
+2026-04-13T17:58:59.5403028Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T17:58:59.6689414Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Pending ready=
+2026-04-13T17:59:01.7861970Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T17:59:01.9069200Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Pending ready=
+2026-04-13T17:59:04.0303290Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T17:59:04.1548003Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Pending ready=
+2026-04-13T17:59:06.2751803Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T17:59:06.3890380Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Pending ready=
+2026-04-13T17:59:08.5208347Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T17:59:08.6443162Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Pending ready=
+2026-04-13T17:59:10.7670639Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T17:59:10.8878078Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Pending ready=false
+2026-04-13T17:59:13.0163784Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T17:59:13.1395300Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T17:59:15.2758736Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T17:59:15.3962467Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T17:59:17.5106186Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T17:59:17.6327014Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T17:59:19.7586804Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T17:59:19.8783421Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T17:59:21.9946231Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T17:59:22.1371617Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T17:59:24.2668725Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T17:59:24.3976975Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T17:59:26.5215198Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T17:59:26.6467710Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T17:59:28.7679630Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T17:59:28.9039292Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T17:59:31.0302731Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T17:59:31.1618437Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T17:59:33.2867519Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T17:59:33.4074086Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T17:59:35.5381892Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T17:59:35.6580178Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T17:59:37.7794159Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T17:59:37.8956363Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T17:59:40.0260653Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T17:59:40.1476011Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T17:59:42.2803580Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T17:59:42.4026445Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T17:59:44.5440282Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T17:59:44.6663114Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T17:59:46.7930936Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T17:59:46.9072826Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T17:59:49.0387699Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T17:59:49.1518395Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T17:59:51.2708773Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T17:59:51.3836277Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T17:59:53.5060956Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T17:59:53.6293162Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T17:59:55.7514095Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T17:59:55.8706885Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T17:59:57.9935740Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T17:59:58.1116714Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:00:00.2380610Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:00:00.3531034Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:00:02.4786848Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:00:02.6003645Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:00:04.7309714Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:00:04.8509271Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:00:06.9747673Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:00:07.0993476Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:00:09.2321137Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:00:09.3560585Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:00:11.4907759Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:00:11.6100262Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:00:13.7461734Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:00:13.8787135Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:00:15.9994931Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:00:16.1232975Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:00:18.2508067Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:00:18.3794720Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:00:20.5113720Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:00:20.6431047Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:00:22.7763923Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:00:22.8969422Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:00:25.0364048Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:00:25.1573796Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:00:27.2822833Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:00:27.4090711Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:00:29.5306534Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:00:29.6458649Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:00:31.7705638Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:00:31.9046947Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:00:34.0226908Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:00:34.1426574Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:00:36.2646392Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:00:36.3887417Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:00:38.5039903Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:00:38.6223664Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:00:40.7459103Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:00:40.8731965Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:00:42.9980772Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:00:43.1102561Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:00:45.2456454Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:00:45.3655757Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:00:47.5094348Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:00:47.6435664Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:00:49.7709103Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:00:49.8951487Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:00:52.0371321Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:00:52.1672080Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:00:54.2944080Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:00:54.4262315Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:00:56.5649195Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:00:56.6924460Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:00:58.8141007Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:00:58.9452473Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:01:01.0874034Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:01:01.2127681Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:01:03.3472414Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:01:03.4675387Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:01:05.5868016Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:01:05.7078499Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:01:07.8387094Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:01:07.9667598Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:01:10.0948873Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:01:10.2130654Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:01:12.3398480Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:01:12.4597385Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:01:14.5811682Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:01:14.6989024Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:01:16.8224661Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:01:16.9425217Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:01:19.0604480Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:01:19.1803472Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:01:21.2988712Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:01:21.4211630Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:01:23.5363455Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:01:23.6510817Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:01:25.7860251Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:01:25.9068354Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:01:28.0341086Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:01:28.1483129Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:01:30.2732397Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:01:30.4127143Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:01:32.5313072Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:01:32.6446507Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:01:34.7582930Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:01:34.8804142Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:01:37.1054095Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:01:37.2287759Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:01:39.3680179Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:01:39.4970305Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:01:41.6395560Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:01:41.7645585Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:01:43.8924466Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:01:44.0081082Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:01:46.1473216Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:01:46.2694416Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:01:48.3989517Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:01:48.5187905Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:01:50.6406422Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:01:50.7631952Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:01:52.8782808Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:01:52.9881592Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:01:55.1181462Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:01:55.2336081Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:01:57.3621855Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:01:57.4811334Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:01:59.6055357Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:01:59.7264726Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:02:01.8550214Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:02:01.9854703Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:02:04.1056280Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:02:04.2295821Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:02:06.3476219Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:02:06.4702659Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:02:08.5942959Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:02:08.7188026Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:02:10.8391973Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:02:10.9491288Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:02:13.0785594Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:02:13.1963564Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:02:15.3225486Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:02:15.4485152Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:02:17.5756121Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:02:17.6877906Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:02:19.8123073Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:02:19.9273685Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:02:22.0529015Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:02:22.1798782Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:02:24.3048389Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:02:24.4191570Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:02:26.5483960Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:02:26.6826930Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:02:28.8147432Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:02:28.9366853Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:02:31.0735475Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:02:31.1918962Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:02:33.3134196Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:02:33.4374964Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:02:35.5602196Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:02:35.6849550Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:02:37.8107106Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:02:37.9359434Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:02:40.0606482Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:02:40.1853131Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:02:42.3250813Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:02:42.4489005Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:02:44.5777829Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:02:44.7048230Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:02:46.8362544Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:02:46.9587939Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:02:49.0831360Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:02:49.2026797Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:02:51.3186056Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:02:51.4374978Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:02:53.5572884Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:02:53.6714142Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:02:55.7912003Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:02:55.9137525Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:02:58.0352830Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:02:58.1514544Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:03:00.2742481Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:03:00.3960992Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:03:02.5211350Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:03:02.6389492Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:03:04.7619148Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:03:04.8765470Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:03:07.0068957Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:03:07.1300115Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:03:09.2592947Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:03:09.3766003Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:03:11.5011408Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:03:11.6189088Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:03:13.7438656Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:03:13.8611484Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:03:15.9764695Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:03:16.0913683Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:03:18.2073602Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:03:18.3238451Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:03:20.4432768Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:03:20.5618889Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:03:22.6773718Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:03:22.7900039Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:03:24.9172978Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:03:25.0302302Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:03:27.1615101Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:03:27.2768331Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:03:29.3988387Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:03:29.5234997Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:03:31.6406397Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:03:31.7755473Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:03:33.8971253Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:03:34.0199696Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:03:36.1462156Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:03:36.2590795Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:03:38.3785148Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:03:38.4936352Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:03:40.6157391Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:03:40.7390844Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:03:42.8794507Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:03:43.0003705Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:03:45.1205269Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:03:45.2469391Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:03:47.3631897Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:03:47.4768614Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:03:49.5966055Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:03:49.7253517Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:03:51.8493444Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:03:51.9725992Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:03:54.0964737Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:03:54.2154892Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:03:56.3359420Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:03:56.4581807Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:03:58.5789418Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:03:58.7039178Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:04:00.8270027Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:04:00.9545733Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:04:03.0797633Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:04:03.1956402Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:04:05.3232808Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:04:05.4489692Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:04:07.5751890Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:04:07.6971410Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:04:09.8131625Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:04:09.9335443Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:04:12.0544486Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:04:12.1757650Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:04:14.3034792Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:04:14.4311561Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:04:16.5473339Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:04:16.6779774Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:04:18.7967099Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:04:18.9182871Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:04:21.0403006Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:04:21.1604255Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:04:23.2858917Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:04:23.4040052Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:04:25.5171130Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:04:25.6329626Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:04:27.7580490Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:04:27.8814521Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:04:29.9992854Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:04:30.1224418Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:04:32.2427342Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:04:32.3706144Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:04:34.4873240Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:04:34.6014403Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:04:36.7235885Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:04:36.8485563Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:04:38.9831062Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:04:39.1069613Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:04:41.2397091Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:04:41.3626632Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:04:43.4903543Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:04:43.6066497Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:04:45.7425403Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:04:45.8652598Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:04:47.9916008Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:04:48.1061029Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:04:50.2299751Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:04:50.3494790Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:04:52.4815895Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:04:52.6035375Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:04:54.7322394Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:04:54.8552366Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:04:56.9797076Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:04:57.0986086Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:04:59.2213274Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:04:59.3472406Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:05:01.4716582Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:05:01.5948540Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:05:03.7426628Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:05:03.8688351Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:05:05.9887175Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:05:06.1057768Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:05:08.2302484Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:05:08.3390737Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:05:10.4665018Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:05:10.5851011Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:05:12.7106446Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:05:12.8352761Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:05:14.9583868Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:05:15.0822272Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:05:17.2045947Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:05:17.3229400Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:05:19.5389562Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:05:19.6683965Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:05:21.7884382Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:05:21.9070727Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:05:24.0247496Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:05:24.1494970Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:05:26.2778670Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:05:26.3974870Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:05:28.5209290Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:05:28.6334394Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:05:30.7682425Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:05:30.8861908Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:05:33.0194069Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:05:33.1355607Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:05:35.2503634Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:05:35.3729322Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:05:37.4956210Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:05:37.6140717Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:05:39.7414306Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:05:39.8572127Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:05:41.9812172Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:05:42.0944036Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:05:44.2044410Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:05:44.3192761Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:05:46.4441805Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:05:46.5597953Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:05:48.6848634Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:05:48.8011647Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:05:50.9195024Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:05:51.0326154Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:05:53.1472630Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:05:53.2614831Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:05:55.3803920Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:05:55.4972119Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:05:57.6172840Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:05:57.7307209Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:05:59.8478279Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:05:59.9722592Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:06:02.0939332Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:06:02.2216275Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:06:04.3365926Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:06:04.4476332Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:06:06.5696679Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:06:06.6848425Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:06:08.8069284Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:06:08.9230946Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:06:11.0432570Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:06:11.1614728Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:06:13.2940621Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:06:13.4147000Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:06:15.5455272Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:06:15.6624572Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:06:17.7925884Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:06:17.9184657Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:06:20.0527417Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:06:20.1829586Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:06:22.3122965Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:06:22.4371094Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:06:24.5566148Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:06:24.6752565Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:06:26.7909465Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:06:26.9696672Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:06:29.0785589Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:06:29.1912106Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:06:31.3088275Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:06:31.4204582Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:06:33.5352255Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:06:33.6534167Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:06:35.7678164Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:06:35.8783032Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:06:37.9910358Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:06:38.1215378Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:06:40.2397019Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:06:40.3614322Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:06:42.4764981Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:06:42.5978203Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:06:44.7193837Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:06:44.8387009Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:06:46.9708167Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:06:47.0912622Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:06:49.2133822Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:06:49.3268035Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:06:51.4513914Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:06:51.5726127Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:06:53.6891961Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:06:53.8064644Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:06:55.9318439Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:06:56.0524518Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:06:58.1697410Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:06:58.2826683Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:07:00.4057166Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:07:00.5258563Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:07:02.6553583Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:07:02.7780088Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:07:04.9099216Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:07:05.0281797Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:07:07.1518531Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:07:07.2710825Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:07:09.3865344Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:07:09.5069218Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:07:11.6280170Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:07:11.7550942Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:07:13.8790615Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:07:14.0072560Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:07:16.1325104Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:07:16.2469396Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:07:18.3702321Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:07:18.4835557Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:07:20.6052233Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:07:20.7220820Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:07:22.8406453Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:07:22.9585600Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:07:25.0779112Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:07:25.1890691Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:07:27.3115947Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:07:27.4332034Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:07:29.5588449Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:07:29.6771675Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:07:31.8092892Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:07:31.9543449Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:07:34.0808821Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:07:34.1925473Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:07:36.3158092Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:07:36.4372025Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:07:38.5579534Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:07:38.6820464Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:07:40.8041221Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:07:40.9275670Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:07:43.0587030Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:07:43.1799587Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:07:45.3095964Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:07:45.4390962Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:07:47.5776982Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:07:47.7097995Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:07:49.8340505Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:07:49.9539981Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:07:52.0877342Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:07:52.2101772Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:07:54.3480243Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:07:54.4782683Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:07:56.6134361Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:07:56.7374834Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:07:58.8738879Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:07:59.0011302Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:08:01.1258503Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:08:01.2496180Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:08:03.3884717Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:08:03.5109947Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:08:05.6311707Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:08:05.7503258Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:08:07.8724983Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:08:07.9933289Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:08:10.1092012Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:08:10.2290349Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:08:12.3668893Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:08:12.4924958Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:08:14.6155015Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:08:14.7407811Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:08:16.8660439Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:08:16.9892758Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:08:19.1237592Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:08:19.2387935Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:08:21.3731209Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:08:21.4886655Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:08:23.6158852Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:08:23.7440461Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:08:25.8754463Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:08:25.9939057Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:08:28.1208241Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:08:28.2367679Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:08:30.3677925Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:08:30.5039382Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:08:32.6259664Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:08:32.7437760Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:08:34.8659440Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:08:34.9865945Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:08:37.1101217Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:08:37.2347402Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:08:39.3676116Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:08:39.4823994Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:08:41.6063657Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:08:41.7258735Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:08:43.8441852Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:08:43.9744617Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:08:46.1119317Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:08:46.2365448Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:08:48.3530742Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:08:48.4738011Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:08:50.5976917Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:08:50.7151273Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:08:52.8463985Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:08:52.9655123Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:08:55.0840030Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:08:55.1953340Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:08:57.3208730Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:08:57.4416876Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:08:59.5589218Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:08:59.6775468Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:09:01.7990434Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:09:01.9149889Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:09:04.0356143Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:09:04.1567498Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:09:06.2780443Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:09:06.3906742Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:09:08.5168061Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:09:08.6376459Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:09:10.7539553Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:09:10.8672209Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:09:12.9937638Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:09:13.1223001Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:09:15.2435423Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:09:15.3674599Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:09:17.4899331Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:09:17.6082343Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:09:19.7306995Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:09:19.8496420Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:09:21.9700972Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:09:22.0833524Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:09:24.2027824Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:09:24.3217645Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:09:26.4398532Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:09:26.5596381Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:09:28.6790680Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:09:28.7969713Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:09:30.9159404Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:09:31.0354439Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:09:33.1565620Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:09:33.2891637Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:09:35.4087201Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:09:35.5201305Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:09:37.6457220Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:09:37.7640967Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:09:39.8842817Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:09:39.9993461Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:09:42.1241316Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:09:42.2425171Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:09:44.3706770Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:09:44.4895334Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:09:46.6158652Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:09:46.7374581Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:09:48.9042408Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:09:49.0292666Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:09:51.1416734Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:09:51.2509460Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:09:53.3704333Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:09:53.4839341Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:09:55.6077620Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:09:55.7291916Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:09:57.8496943Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:09:57.9781496Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:10:00.0916160Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:10:00.2094747Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:10:02.3423975Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:10:02.4705415Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:10:04.5918441Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:10:04.7141578Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:10:06.8368684Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:10:06.9611533Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:10:09.0840231Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:10:09.2060171Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:10:11.3295371Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:10:11.4569383Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:10:13.5901606Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:10:13.7220737Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:10:15.8421702Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:10:15.9684019Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:10:18.0890602Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:10:18.2129127Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:10:20.3320712Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:10:20.4488489Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:10:22.5719331Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:10:22.6995393Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:10:24.8273136Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:10:24.9470286Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:10:27.0750405Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:10:27.1993397Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:10:29.3257319Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:10:29.4536269Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:10:31.5744753Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:10:31.7026177Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:10:33.8278734Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:10:33.9557078Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:10:36.0792313Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:10:36.1997730Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:10:38.3259537Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:10:38.4544417Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:10:40.5776809Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:10:40.7086715Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:10:42.8404241Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:10:42.9646846Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:10:45.0922490Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:10:45.2250821Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:10:47.3484547Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:10:47.4682137Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:10:49.5920434Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:10:49.7178270Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:10:51.8421756Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:10:51.9675260Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:10:54.1036269Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:10:54.2230583Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:10:56.3517130Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:10:56.4745983Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:10:58.6013387Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:10:58.7280129Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:11:00.8506408Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:11:00.9718071Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:11:03.1019709Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:11:03.2181632Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:11:05.3455069Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:11:05.4682722Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:11:07.6002219Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:11:07.7197396Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:11:09.8419391Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:11:09.9677276Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:11:12.0964346Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:11:12.2173585Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:11:14.3403399Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:11:14.4615256Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:11:16.5833340Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:11:16.7124264Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:11:18.8381791Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:11:18.9601579Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:11:21.0848341Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:11:21.2050136Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:11:23.3354757Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:11:23.4501218Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:11:25.5692687Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:11:25.6861416Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:11:27.8158829Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:11:27.9407930Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:11:30.0584973Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:11:30.2097987Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:11:32.3323294Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:11:32.4555365Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:11:34.5802591Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:11:34.7092880Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:11:36.8373194Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:11:36.9783193Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:11:39.1022308Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:11:39.2278062Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:11:41.3631801Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:11:41.4924427Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:11:43.6112524Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:11:43.7370385Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:11:45.8686307Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:11:45.9923720Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:11:48.1242988Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:11:48.2541340Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:11:50.3873675Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:11:50.5126854Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:11:52.6430402Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:11:52.7816817Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:11:54.8987593Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:11:55.0188460Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:11:57.1386271Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:11:57.2557186Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:11:59.3760328Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:11:59.4935457Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:12:01.6224845Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:12:01.7448047Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:12:03.8632991Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:12:03.9988329Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:12:06.1187181Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:12:06.2340660Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:12:08.3503951Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:12:08.4665268Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:12:10.5844429Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:12:10.7027005Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:12:12.8194616Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:12:12.9411607Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:12:15.0718711Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:12:15.1944723Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:12:17.3069690Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:12:17.4226875Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:12:19.5417509Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:12:19.6603490Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:12:21.7806196Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:12:21.9135968Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:12:24.0268310Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:12:24.1589726Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:12:26.2792110Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:12:26.3964233Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:12:28.5213636Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:12:28.6387861Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:12:30.7639966Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:12:30.8932603Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:12:33.0126050Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:12:33.1371551Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:12:35.3116878Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:12:35.4535507Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:12:37.5967012Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:12:37.7314982Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:12:39.8733081Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:12:39.9979247Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:12:42.1358886Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:12:42.2638395Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:12:44.3874820Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:12:44.5253607Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:12:46.6501062Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:12:46.7763523Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:12:48.9150955Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:12:49.0527996Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:12:51.2224328Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:12:51.3472409Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:12:53.4792646Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:12:53.5998792Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:12:55.7165352Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:12:55.8450164Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:12:57.9677699Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:12:58.0888797Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:13:00.2182978Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:13:00.3446384Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:13:02.4754760Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:13:02.5986617Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:13:04.7285829Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:13:04.8515510Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:13:06.9743179Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:13:07.0965164Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:13:09.2182762Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:13:09.3401424Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:13:11.4648491Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:13:11.5795801Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:13:13.8023071Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:13:13.9212061Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:13:16.0546282Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:13:16.1787845Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:13:18.3111134Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:13:18.4378060Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:13:20.5603763Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:13:20.6906282Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:13:22.8211619Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:13:22.9499415Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:13:25.0731932Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:13:25.1962092Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:13:27.3227128Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:13:27.4455751Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:13:29.5763632Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:13:29.7002454Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:13:31.8269423Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:13:31.9502004Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:13:34.0763536Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:13:34.2041883Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:13:36.3272355Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:13:36.4492153Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:13:38.5725638Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:13:38.7038433Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:13:40.8364442Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:13:40.9684625Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:13:43.0969317Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:13:43.2225645Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:13:45.3506899Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:13:45.4785914Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:13:47.6021443Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:13:47.7230047Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:13:49.8435164Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:13:49.9730317Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:13:52.1014091Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:13:52.2306546Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:13:54.3567259Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:13:54.4776646Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:13:56.5927492Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:13:56.7055476Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:13:58.8302159Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:13:58.9456724Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:14:01.0658186Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:14:01.1884179Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:14:03.3082635Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:14:03.4446879Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:14:05.5614837Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:14:05.6840197Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:14:07.8018027Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:14:07.9254671Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:14:10.0428740Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:14:10.1639343Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:14:12.2898888Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:14:12.4095990Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:14:14.5341179Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:14:14.6528226Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:14:16.7745730Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:14:16.8925838Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:14:19.0134196Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:14:19.1357145Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:14:21.2574678Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:14:21.3721513Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:14:23.4902698Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:14:23.6153390Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:14:25.7342628Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:14:25.8501354Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:14:27.9757627Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:14:28.0947514Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:14:30.2097639Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:14:30.3580217Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:14:32.4811440Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:14:32.6042340Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:14:34.7249809Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:14:34.8466165Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:14:36.9663184Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:14:37.0861562Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:14:39.2122141Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:14:39.3370324Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:14:41.4586460Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:14:41.5808670Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:14:43.7076678Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:14:43.8328799Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:14:45.9552032Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:14:46.0799609Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:14:48.1993178Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:14:48.3163776Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:14:50.4352424Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:14:50.5536584Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:14:52.6703542Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:14:52.7973487Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:14:54.9256916Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:14:55.0451628Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:14:57.1747393Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:14:57.2910169Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:14:59.4139743Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:14:59.5346992Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:15:01.6545698Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:15:01.7739568Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:15:03.9131705Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:15:04.0361081Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:15:06.1610306Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:15:06.2807451Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:15:08.4130801Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:15:08.5523673Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:15:10.6837652Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:15:10.8062300Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:15:12.9289540Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:15:13.0613347Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:15:15.1839637Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:15:15.3054796Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:15:17.4245311Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:15:17.5502543Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:15:19.6842289Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:15:19.8113603Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:15:21.9313107Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:15:22.0536010Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:15:24.1800796Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:15:24.3067030Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:15:26.4231584Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:15:26.5468441Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:15:28.6671906Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:15:28.7914688Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:15:30.9095000Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:15:31.0265104Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:15:33.1445041Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:15:33.2664963Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:15:35.3927347Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:15:35.5130932Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:15:37.6284011Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:15:37.7506472Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:15:39.8757773Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:15:39.9993843Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:15:42.1175923Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:15:42.2347649Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:15:44.3500356Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:15:44.4677193Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:15:46.5850141Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:15:46.7022316Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:15:48.8220960Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:15:48.9455164Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:15:51.0758624Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:15:51.2044498Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:15:53.3321894Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:15:53.4531539Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:15:55.5763187Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:15:55.6936792Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:15:57.8148248Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:15:57.9341759Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:16:00.0508415Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:16:00.1730768Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:16:02.2943300Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:16:02.4163273Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:16:04.5446504Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:16:04.6720778Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:16:06.8000220Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:16:06.9225348Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:16:09.0656593Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:16:09.1933045Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:16:11.3306636Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:16:11.4523360Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:16:13.5732182Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:16:13.7035600Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:16:15.8369281Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:16:15.9626046Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:16:18.0879402Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:16:18.2159927Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:16:20.3447418Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:16:20.4643257Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:16:22.5810575Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:16:22.7033899Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:16:24.8413207Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:16:24.9756032Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:16:27.0950469Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:16:27.2254312Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:16:29.3503027Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:16:29.4697567Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:16:31.5866208Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:16:31.7052114Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:16:33.8286506Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:16:33.9522181Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:16:36.0714833Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:16:36.1939590Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:16:38.3156098Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:16:38.4369373Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:16:40.5647889Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:16:40.6967894Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:16:42.8178130Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:16:42.9566982Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:16:45.0821543Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:16:45.2104813Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:16:47.3398319Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:16:47.4784179Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:16:49.6009475Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:16:49.7214692Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:16:51.8593571Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:16:51.9865988Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:16:54.1153810Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:16:54.2370321Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:16:56.3620330Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:16:56.4767969Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:16:58.6030077Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:16:58.7301123Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:17:00.8550993Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:17:00.9894735Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:17:03.1167032Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:17:03.2385568Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:17:05.3650941Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:17:05.4812430Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:17:07.5990555Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:17:07.7144239Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:17:09.8305259Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:17:09.9516016Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:17:12.0775087Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:17:12.1964068Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:17:14.3343578Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:17:14.4529932Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:17:16.5825427Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:17:16.7031491Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:17:18.8323757Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:17:19.0046325Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:17:21.1151930Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:17:21.2324103Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:17:23.3730517Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:17:23.4892185Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:17:25.6140803Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:17:25.7342009Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:17:27.8671413Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:17:27.9893387Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:17:30.1167739Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:17:30.2456152Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:17:32.3656792Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:17:32.4863949Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:17:34.6143660Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:17:34.7326406Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:17:36.8546831Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:17:36.9928277Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:17:39.1123966Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:17:39.2332301Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:17:41.3492371Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:17:41.4739798Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:17:43.5851474Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:17:43.7007753Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:17:45.8194125Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:17:45.9387498Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:17:48.0705942Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:17:48.1951157Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:17:50.3190884Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:17:50.4394993Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:17:52.5546293Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:17:52.6793354Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:17:54.7961861Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:17:54.9152274Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:17:57.0351211Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:17:57.1559363Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:17:59.2817716Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:17:59.4006940Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:18:01.5223404Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:18:01.6408530Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:18:03.7507734Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:18:03.8651800Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:18:05.9815018Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:18:06.0935098Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:18:08.2126742Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:18:08.3401274Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:18:10.4570250Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:18:10.5770402Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:18:12.6897022Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:18:12.8046916Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:18:14.9215560Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:18:15.0599786Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:18:17.1839545Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:18:17.3091360Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:18:19.4336214Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:18:19.5606603Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:18:21.6750611Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:18:21.8025142Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:18:23.9247169Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:18:24.0499341Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:18:26.1800932Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:18:26.2975878Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:18:28.4229492Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:18:28.5488102Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:18:30.6710805Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:18:30.7901374Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:18:32.9130528Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:18:33.0382770Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:18:35.1602219Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:18:35.2782532Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:18:37.5078863Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:18:37.6330370Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:18:39.7576253Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:18:39.8808017Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:18:42.0022397Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:18:42.1490555Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:18:44.2739941Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:18:44.3980225Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:18:46.5164250Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:18:46.6335178Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:18:48.7997896Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:18:48.9417916Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:18:51.0809201Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:18:51.2156785Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:18:53.3356156Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:18:53.4641675Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:18:55.5983932Z Worker [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1] phase=Pending ready=
+2026-04-13T18:18:55.7310008Z Leader [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0] phase=Running ready=true
+2026-04-13T18:18:57.7342984Z Timeout reached after 1200s, dumping pod status:
+2026-04-13T18:18:57.8722458Z NAME                                               READY   STATUS    RESTARTS   AGE
+2026-04-13T18:18:57.8723423Z linux-aarch64-a3-0-ggwx6-runner-28mkq              1/1     Running   0          43m
+2026-04-13T18:18:57.8724117Z linux-aarch64-a3-0-ggwx6-runner-28mkq-workflow     1/1     Running   0          43m
+2026-04-13T18:18:57.8724675Z linux-aarch64-a3-0-ggwx6-runner-5n2r7              1/1     Running   0          43m
+2026-04-13T18:18:57.8725220Z linux-aarch64-a3-0-ggwx6-runner-5n2r7-workflow     1/1     Running   0          43m
+2026-04-13T18:18:57.8725764Z linux-aarch64-a3-0-ggwx6-runner-mvt7k              1/1     Running   0          21m
+2026-04-13T18:18:57.8726298Z linux-aarch64-a3-0-ggwx6-runner-mvt7k-workflow     1/1     Running   0          20m
+2026-04-13T18:18:57.8726854Z linux-aarch64-a3-0-ggwx6-runner-wg9zl              1/1     Running   0          21m
+2026-04-13T18:18:57.8727393Z linux-aarch64-a3-0-ggwx6-runner-wg9zl-workflow     1/1     Running   0          20m
+2026-04-13T18:18:57.8727925Z linux-aarch64-a3-2-nqp5k-runner-f8q5z              1/1     Running   0          91m
+2026-04-13T18:18:57.8728474Z linux-aarch64-a3-2-nqp5k-runner-f8q5z-workflow     1/1     Running   0          91m
+2026-04-13T18:18:57.8729009Z linux-aarch64-a3-2-nqp5k-runner-vm4l2              1/1     Running   0          91m
+2026-04-13T18:18:57.8729543Z linux-aarch64-a3-2-nqp5k-runner-vm4l2-workflow     1/1     Running   0          91m
+2026-04-13T18:18:57.8730255Z linux-aarch64-a3-4-92cdc-runner-8lz7c              1/1     Running   0          91m
+2026-04-13T18:18:57.8730797Z linux-aarch64-a3-4-92cdc-runner-8lz7c-workflow     1/1     Running   0          91m
+2026-04-13T18:18:57.8731327Z linux-aarch64-a3-4-92cdc-runner-sxxz6              1/1     Running   0          91m
+2026-04-13T18:18:57.8731872Z linux-aarch64-a3-4-92cdc-runner-sxxz6-workflow     1/1     Running   0          91m
+2026-04-13T18:18:57.8732365Z test-server-0                                      1/1     Running   0          6h
+2026-04-13T18:18:57.8732775Z test-server-0-1                                    1/1     Running   0          5h59m
+2026-04-13T18:18:57.8733412Z vllm-deepseek-r1-w8a8-longseq-bc092a-0             1/1     Running   0          42m
+2026-04-13T18:18:57.8734036Z vllm-deepseek-r1-w8a8-longseq-bc092a-0-1           1/1     Running   0          42m
+2026-04-13T18:18:57.8734588Z vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0     1/1     Running   0          20m
+2026-04-13T18:18:57.8735162Z vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1   0/1     Pending   0          20m
+2026-04-13T18:18:57.8735695Z vllm-qwen3-235b-a22b-9f142d-0                      1/1     Running   0          42m
+2026-04-13T18:18:57.8736170Z vllm-qwen3-235b-a22b-9f142d-0-1                    1/1     Running   0          42m
+2026-04-13T18:18:57.8736669Z vllm-qwen3-235b-w8a8-eplb-285730-0                 0/1     Pending   0          19m
+2026-04-13T18:18:57.8737174Z vllm-qwen3-235b-w8a8-eplb-285730-0-1               0/1     Pending   0          19m
+2026-04-13T18:18:57.9791926Z Name:             vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0
+2026-04-13T18:18:57.9792374Z Namespace:        vllm-project
+2026-04-13T18:18:57.9792641Z Priority:         0
+2026-04-13T18:18:57.9792845Z Service Account:  default
+2026-04-13T18:18:57.9793086Z Node:             172.22.5.45/172.22.5.45
+2026-04-13T18:18:57.9793371Z Start Time:       Mon, 13 Apr 2026 17:59:09 +0000
+2026-04-13T18:18:57.9793681Z Labels:           apps.kubernetes.io/pod-index=0
+2026-04-13T18:18:57.9794218Z                   controller-revision-hash=vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-85bf87bffc
+2026-04-13T18:18:57.9794718Z                   leaderworkerset.sigs.k8s.io/group-index=0
+2026-04-13T18:18:57.9795184Z                   leaderworkerset.sigs.k8s.io/group-key=e14cd244e3d83d9bedf3c03ec54006a051530255
+2026-04-13T18:18:57.9795770Z                   leaderworkerset.sigs.k8s.io/name=vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2
+2026-04-13T18:18:57.9796291Z                   leaderworkerset.sigs.k8s.io/template-revision-hash=87855b7b7
+2026-04-13T18:18:57.9796959Z                   leaderworkerset.sigs.k8s.io/worker-index=0
+2026-04-13T18:18:57.9797259Z                   role=leader
+2026-04-13T18:18:57.9797746Z                   statefulset.kubernetes.io/pod-name=vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0
+2026-04-13T18:18:57.9798301Z Annotations:      cce.kubectl.kubernetes.io/ascend-1980-configuration:
+2026-04-13T18:18:57.9799035Z                     {"pod_name":"vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0","server_id":"172.22.5.45","devices":[{"device_id":"0","device_ip":"40.130.133...
+2026-04-13T18:18:57.9799655Z                   huawei.com/AscendReal:
+2026-04-13T18:18:57.9800532Z                     Ascend910-4,Ascend910-8,Ascend910-9,Ascend910-15,Ascend910-10,Ascend910-1,Ascend910-6,Ascend910-3,Ascend910-0,Ascend910-2,Ascend910-11,Asc...
+2026-04-13T18:18:57.9801257Z                   huawei.com/kltDev:
+2026-04-13T18:18:57.9801958Z                     Ascend910-4,Ascend910-8,Ascend910-9,Ascend910-15,Ascend910-10,Ascend910-1,Ascend910-6,Ascend910-3,Ascend910-0,Ascend910-2,Ascend910-11,Asc...
+2026-04-13T18:18:57.9802706Z                   leaderworkerset.sigs.k8s.io/size: 2
+2026-04-13T18:18:57.9803034Z                   localdns.cce.io/servers: ["169.254.20.10"]
+2026-04-13T18:18:57.9803384Z                   node-local-dns-webhook.k8s.io/status: injected
+2026-04-13T18:18:57.9803689Z Status:           Running
+2026-04-13T18:18:57.9803973Z IP:               10.0.0.166
+2026-04-13T18:18:57.9804176Z IPs:
+2026-04-13T18:18:57.9804353Z   IP:           10.0.0.166
+2026-04-13T18:18:57.9804696Z Controlled By:  StatefulSet/vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2
+2026-04-13T18:18:57.9805060Z Containers:
+2026-04-13T18:18:57.9805241Z   vllm-leader:
+2026-04-13T18:18:57.9805664Z     Container ID:  docker://a0176b66edd2f13782d4537df4fc7e8dc51890f300e29ac7ec9e7be12570cceb
+2026-04-13T18:18:57.9806382Z     Image:         swr.cn-southwest-2.myhuaweicloud.com/base_image/ascend-ci/vllm-ascend:nightly-ci-releases-v0.18.0-a3
+2026-04-13T18:18:57.9807531Z     Image ID:      docker-pullable://swr.cn-southwest-2.myhuaweicloud.com/base_image/ascend-ci/vllm-ascend@sha256:e126a08c970026569c279e60404e4e5bd516f232b4457d6205089718ab45d5d7
+2026-04-13T18:18:57.9808282Z     Port:          8080/TCP
+2026-04-13T18:18:57.9808504Z     Host Port:     0/TCP
+2026-04-13T18:18:57.9808718Z     Command:
+2026-04-13T18:18:57.9808935Z       sh
+2026-04-13T18:18:57.9809228Z       -c
+2026-04-13T18:18:57.9809431Z       bash /root/.cache/tests/run.sh
+2026-04-13T18:18:57.9809673Z       
+2026-04-13T18:18:57.9809925Z     State:          Running
+2026-04-13T18:18:57.9810294Z       Started:      Mon, 13 Apr 2026 17:59:10 +0000
+2026-04-13T18:18:57.9810564Z     Ready:          True
+2026-04-13T18:18:57.9810784Z     Restart Count:  0
+2026-04-13T18:18:57.9810981Z     Limits:
+2026-04-13T18:18:57.9811171Z       ephemeral-storage:       100Gi
+2026-04-13T18:18:57.9811444Z       huawei.com/ascend-1980:  16
+2026-04-13T18:18:57.9811683Z       memory:                  512Gi
+2026-04-13T18:18:57.9811917Z     Requests:
+2026-04-13T18:18:57.9812113Z       cpu:                     125
+2026-04-13T18:18:57.9812354Z       ephemeral-storage:       100Gi
+2026-04-13T18:18:57.9812611Z       huawei.com/ascend-1980:  16
+2026-04-13T18:18:57.9812849Z       memory:                  512Gi
+2026-04-13T18:18:57.9813081Z     Environment:
+2026-04-13T18:18:57.9813674Z       LWS_LEADER_ADDRESS:      vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0.vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2.vllm-project
+2026-04-13T18:18:57.9814405Z       LWS_GROUP_SIZE:          2
+2026-04-13T18:18:57.9814638Z       LWS_WORKER_INDEX:        0
+2026-04-13T18:18:57.9814952Z       CONFIG_YAML_PATH:        DeepSeek-V3_2-W8A8-A3-dual-nodes.yaml
+2026-04-13T18:18:57.9815452Z       LOG_PREFIX:              /root/.cache/ascend-logs/vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2
+2026-04-13T18:18:57.9815912Z       WORKSPACE:               /vllm-workspace
+2026-04-13T18:18:57.9816268Z       FAIL_TAG:                FAIL_TAG_DeepSeek-V3_2-W8A8-A3-dual-nodes.yaml
+2026-04-13T18:18:57.9816745Z       IS_PR_TEST:              false
+2026-04-13T18:18:57.9817014Z       VLLM_VERSION:            v0.18.0
+2026-04-13T18:18:57.9817361Z       VLLM_ASCEND_REF:         f4d6c44acbb76c8ca079d7c360caef7a478fb48f
+2026-04-13T18:18:57.9817818Z       VLLM_ASCEND_REMOTE_URL:  https://github.com/vllm-project/vllm-ascend.git
+2026-04-13T18:18:57.9818255Z       BENCHMARK_JOB_NAME:      multi-node-dpsk3.2-2node
+2026-04-13T18:18:57.9818565Z       VLLM_CI_RUNNER:          a3
+2026-04-13T18:18:57.9818886Z       VLLM_ASCEND_VERSION:     f4d6c44acbb76c8ca079d7c360caef7a478fb48f
+2026-04-13T18:18:57.9819219Z     Mounts:
+2026-04-13T18:18:57.9819400Z       /dev/shm from dshm (rw)
+2026-04-13T18:18:57.9819655Z       /root/.cache from shared-volume (rw)
+2026-04-13T18:18:57.9820170Z       /usr/local/Ascend/driver/tools from driver-tools (rw)
+2026-04-13T18:18:57.9820638Z       /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-bq48m (ro)
+2026-04-13T18:18:57.9821031Z Conditions:
+2026-04-13T18:18:57.9821218Z   Type                        Status
+2026-04-13T18:18:57.9821480Z   PodReadyToStartContainers   True 
+2026-04-13T18:18:57.9821752Z   Initialized                 True 
+2026-04-13T18:18:57.9821990Z   Ready                       True 
+2026-04-13T18:18:57.9822219Z   ContainersReady             True 
+2026-04-13T18:18:57.9822465Z   PodScheduled                True 
+2026-04-13T18:18:57.9822684Z Volumes:
+2026-04-13T18:18:57.9822856Z   dshm:
+2026-04-13T18:18:57.9823139Z     Type:       EmptyDir (a temporary directory that shares a pod's lifetime)
+2026-04-13T18:18:57.9823488Z     Medium:     Memory
+2026-04-13T18:18:57.9823697Z     SizeLimit:  15Gi
+2026-04-13T18:18:57.9823965Z   shared-volume:
+2026-04-13T18:18:57.9824352Z     Type:       PersistentVolumeClaim (a reference to a PersistentVolumeClaim in the same namespace)
+2026-04-13T18:18:57.9824836Z     ClaimName:  nv-action-vllm-benchmarks-v2
+2026-04-13T18:18:57.9825103Z     ReadOnly:   false
+2026-04-13T18:18:57.9825310Z   driver-tools:
+2026-04-13T18:18:57.9825556Z     Type:          HostPath (bare host directory volume)
+2026-04-13T18:18:57.9825872Z     Path:          /usr/local/Ascend/driver/tools
+2026-04-13T18:18:57.9826260Z     HostPathType:  
+2026-04-13T18:18:57.9826479Z   kube-api-access-bq48m:
+2026-04-13T18:18:57.9826851Z     Type:                    Projected (a volume that contains injected data from multiple sources)
+2026-04-13T18:18:57.9827278Z     TokenExpirationSeconds:  3607
+2026-04-13T18:18:57.9827551Z     ConfigMapName:           kube-root-ca.crt
+2026-04-13T18:18:57.9827834Z     Optional:                false
+2026-04-13T18:18:57.9828088Z     DownwardAPI:             true
+2026-04-13T18:18:57.9828326Z QoS Class:                   Burstable
+2026-04-13T18:18:57.9828588Z Node-Selectors:              <none>
+2026-04-13T18:18:57.9828965Z Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+2026-04-13T18:18:57.9829447Z                              node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+2026-04-13T18:18:57.9829808Z Events:
+2026-04-13T18:18:57.9830187Z   Type    Reason                 Age                From               Message
+2026-04-13T18:18:57.9830579Z   ----    ------                 ----               ----               -------
+2026-04-13T18:18:57.9831307Z   Normal  Scheduled              20m                default-scheduler  Successfully assigned vllm-project/vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0 to 172.22.5.45
+2026-04-13T18:18:57.9832512Z   Normal  Pulling                19m                kubelet            spec.containers{vllm-leader}: Pulling image "swr.cn-southwest-2.myhuaweicloud.com/base_image/ascend-ci/vllm-ascend:nightly-ci-releases-v0.18.0-a3"
+2026-04-13T18:18:57.9834151Z   Normal  Pulled                 19m                kubelet            spec.containers{vllm-leader}: Successfully pulled image "swr.cn-southwest-2.myhuaweicloud.com/base_image/ascend-ci/vllm-ascend:nightly-ci-releases-v0.18.0-a3" in 129ms (129ms including waiting). Image size: 17222394767 bytes.
+2026-04-13T18:18:57.9835453Z   Normal  SuccessfulCreate       19m                kubelet            spec.containers{vllm-leader}: Created container: vllm-leader
+2026-04-13T18:18:57.9836265Z   Normal  Started                19m                kubelet            spec.containers{vllm-leader}: Started container vllm-leader
+2026-04-13T18:18:57.9837305Z   Normal  SuccessfulMountVolume  19m (x2 over 19m)  kubelet            Successfully mounted volumes for pod "vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0_vllm-project(6e16b1b2-7f5f-400b-a320-814a2b5e7755)"
+2026-04-13T18:18:58.0569295Z ##[error]Error: failed to run script step: Error: command terminated with non-zero exit code: command terminated with exit code 1
+2026-04-13T18:18:58.0606987Z ##[error]Process completed with exit code 1.
+2026-04-13T18:18:58.0748770Z ##[error]Executing the custom container implementation failed. Please contact your self hosted runner administrator.
+2026-04-13T18:18:58.1097612Z ##[group]Run set -euo pipefail
+2026-04-13T18:18:58.1097936Z [36;1mset -euo pipefail[0m
+2026-04-13T18:18:58.1098229Z [36;1mmkdir -p /tmp/benchmark_results[0m
+2026-04-13T18:18:58.1098757Z [36;1mecho "Fetching benchmark results from PVC at /root/.cache/benchmark_results/multi-node-dpsk3.2-2node..."[0m
+2026-04-13T18:18:58.1099366Z [36;1m# Copy from PVC mounted directory (persists after pod termination)[0m
+2026-04-13T18:18:58.1099993Z [36;1mSRC="/root/.cache/benchmark_results/multi-node-dpsk3.2-2node"[0m
+2026-04-13T18:18:58.1100508Z [36;1mif [ -d "$SRC" ] && [ "$(ls -A "$SRC" 2>/dev/null)" ]; then[0m
+2026-04-13T18:18:58.1100849Z [36;1m  cp -r "$SRC"/. /tmp/benchmark_results/[0m
+2026-04-13T18:18:58.1101214Z [36;1m  echo "Benchmark results fetched successfully from PVC:"[0m
+2026-04-13T18:18:58.1101565Z [36;1m  ls -la /tmp/benchmark_results/[0m
+2026-04-13T18:18:58.1101856Z [36;1m  # Clean up PVC contents after copying[0m
+2026-04-13T18:18:58.1102225Z [36;1m  echo "Cleaning up PVC contents at $SRC..."[0m
+2026-04-13T18:18:58.1102518Z [36;1m  rm -rf "${SRC:?}"/*[0m
+2026-04-13T18:18:58.1102806Z [36;1m  echo "PVC contents cleaned up successfully"[0m
+2026-04-13T18:18:58.1103099Z [36;1melse[0m
+2026-04-13T18:18:58.1103367Z [36;1m  echo "Warning: No benchmark results found in PVC at $SRC"[0m
+2026-04-13T18:18:58.1103734Z [36;1m  echo "Directory contents (if exists):"[0m
+2026-04-13T18:18:58.1104162Z [36;1m  ls -la "$SRC" 2>/dev/null || echo "Directory does not exist"[0m
+2026-04-13T18:18:58.1104482Z [36;1mfi[0m
+2026-04-13T18:18:58.1104772Z shell: bash -el {0}
+2026-04-13T18:18:58.1104955Z env:
+2026-04-13T18:18:58.1105220Z   LWS_NAME: vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2
+2026-04-13T18:18:58.1105617Z   LEADER_POD: vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0
+2026-04-13T18:18:58.1106091Z   LOG_PREFIX: /root/.cache/ascend-logs/vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2
+2026-04-13T18:18:58.1106559Z   FAIL_TAG: FAIL_TAG_DeepSeek-V3_2-W8A8-A3-dual-nodes.yaml
+2026-04-13T18:18:58.1106887Z ##[endgroup]
+2026-04-13T18:18:58.1247776Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T18:18:58.1248630Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T18:18:58.1248909Z ##[endgroup]
+2026-04-13T18:18:58.5601650Z (node:1062) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T18:18:58.5602636Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T18:18:59.5025261Z Fetching benchmark results from PVC at /root/.cache/benchmark_results/multi-node-dpsk3.2-2node...
+2026-04-13T18:18:59.5069297Z Warning: No benchmark results found in PVC at /root/.cache/benchmark_results/multi-node-dpsk3.2-2node
+2026-04-13T18:18:59.5069802Z Directory contents (if exists):
+2026-04-13T18:18:59.5102459Z Directory does not exist
+2026-04-13T18:19:00.0925890Z ##[group]Run echo "Current pod status:"
+2026-04-13T18:19:00.0926360Z [36;1mecho "Current pod status:"[0m
+2026-04-13T18:19:00.0926719Z [36;1mkubectl get pods -n "$NAMESPACE" --ignore-not-found=true[0m
+2026-04-13T18:19:00.0927238Z [36;1m[0m
+2026-04-13T18:19:00.0927461Z [36;1mecho "Deleting resources for [$LWS_NAME]..."[0m
+2026-04-13T18:19:00.0927861Z [36;1mkubectl delete -f ./lws.yaml --ignore-not-found=true || true[0m
+2026-04-13T18:19:00.0928211Z [36;1m[0m
+2026-04-13T18:19:00.0928474Z [36;1mecho "Waiting for pods of [$LWS_NAME] to fully terminate..."[0m
+2026-04-13T18:19:00.0928826Z [36;1mTIMEOUT=300[0m
+2026-04-13T18:19:00.0929041Z [36;1mSLEEP_INTERVAL=5[0m
+2026-04-13T18:19:00.0929277Z [36;1mSTART_TIME=$(date +%s)[0m
+2026-04-13T18:19:00.0929519Z [36;1mwhile true; do[0m
+2026-04-13T18:19:00.0929777Z [36;1m  ELAPSED=$(( $(date +%s) - START_TIME ))[0m
+2026-04-13T18:19:00.0930312Z [36;1m  if [[ $ELAPSED -ge $TIMEOUT ]]; then[0m
+2026-04-13T18:19:00.0930813Z [36;1m    echo "Timeout reached ($TIMEOUT seconds) waiting for termination, continuing anyway."[0m
+2026-04-13T18:19:00.0931345Z [36;1m    kubectl get pods -n "$NAMESPACE" | grep "^${LWS_NAME}-" || true[0m
+2026-04-13T18:19:00.0931700Z [36;1m    break[0m
+2026-04-13T18:19:00.0931894Z [36;1m  fi[0m
+2026-04-13T18:19:00.0932295Z [36;1m  PODS_EXIST=$(kubectl get pods -n "$NAMESPACE" -o jsonpath='{.items[*].metadata.name}' 2>/dev/null \[0m
+2026-04-13T18:19:00.0932815Z [36;1m    | tr ' ' '\n' | grep "^${LWS_NAME}-" || true)[0m
+2026-04-13T18:19:00.0933128Z [36;1m  if [[ -z "$PODS_EXIST" ]]; then[0m
+2026-04-13T18:19:00.0933448Z [36;1m    echo "All pods for [$LWS_NAME] have terminated."[0m
+2026-04-13T18:19:00.0933758Z [36;1m    break[0m
+2026-04-13T18:19:00.0933946Z [36;1m  fi[0m
+2026-04-13T18:19:00.0934288Z [36;1m  echo "Waiting for pods to terminate: $PODS_EXIST"[0m
+2026-04-13T18:19:00.0934611Z [36;1m  sleep $SLEEP_INTERVAL[0m
+2026-04-13T18:19:00.0934842Z [36;1mdone[0m
+2026-04-13T18:19:00.0935131Z shell: bash -el {0}
+2026-04-13T18:19:00.0935339Z env:
+2026-04-13T18:19:00.0935599Z   LWS_NAME: vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2
+2026-04-13T18:19:00.0936010Z   LEADER_POD: vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0
+2026-04-13T18:19:00.0936507Z   LOG_PREFIX: /root/.cache/ascend-logs/vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2
+2026-04-13T18:19:00.0936978Z   FAIL_TAG: FAIL_TAG_DeepSeek-V3_2-W8A8-A3-dual-nodes.yaml
+2026-04-13T18:19:00.0937287Z ##[endgroup]
+2026-04-13T18:19:00.1021100Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T18:19:00.1022592Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T18:19:00.1023102Z ##[endgroup]
+2026-04-13T18:19:00.5333516Z (node:1176) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T18:19:00.5334573Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T18:19:01.3684340Z Current pod status:
+2026-04-13T18:19:01.4657696Z NAME                                               READY   STATUS    RESTARTS   AGE
+2026-04-13T18:19:01.4658246Z linux-aarch64-a3-0-ggwx6-runner-28mkq              1/1     Running   0          44m
+2026-04-13T18:19:01.4658894Z linux-aarch64-a3-0-ggwx6-runner-28mkq-workflow     1/1     Running   0          43m
+2026-04-13T18:19:01.4659452Z linux-aarch64-a3-0-ggwx6-runner-5n2r7              1/1     Running   0          44m
+2026-04-13T18:19:01.4660116Z linux-aarch64-a3-0-ggwx6-runner-5n2r7-workflow     1/1     Running   0          43m
+2026-04-13T18:19:01.4660667Z linux-aarch64-a3-0-ggwx6-runner-mvt7k              1/1     Running   0          21m
+2026-04-13T18:19:01.4661214Z linux-aarch64-a3-0-ggwx6-runner-mvt7k-workflow     1/1     Running   0          20m
+2026-04-13T18:19:01.4661751Z linux-aarch64-a3-0-ggwx6-runner-wg9zl              1/1     Running   0          21m
+2026-04-13T18:19:01.4662548Z linux-aarch64-a3-0-ggwx6-runner-wg9zl-workflow     1/1     Running   0          20m
+2026-04-13T18:19:01.4663106Z linux-aarch64-a3-2-nqp5k-runner-f8q5z              1/1     Running   0          92m
+2026-04-13T18:19:01.4663643Z linux-aarch64-a3-2-nqp5k-runner-f8q5z-workflow     1/1     Running   0          91m
+2026-04-13T18:19:01.4664392Z linux-aarch64-a3-2-nqp5k-runner-vm4l2              1/1     Running   0          92m
+2026-04-13T18:19:01.4664941Z linux-aarch64-a3-2-nqp5k-runner-vm4l2-workflow     1/1     Running   0          91m
+2026-04-13T18:19:01.4665478Z linux-aarch64-a3-4-92cdc-runner-8lz7c              1/1     Running   0          92m
+2026-04-13T18:19:01.4666019Z linux-aarch64-a3-4-92cdc-runner-8lz7c-workflow     1/1     Running   0          91m
+2026-04-13T18:19:01.4666560Z linux-aarch64-a3-4-92cdc-runner-sxxz6              1/1     Running   0          92m
+2026-04-13T18:19:01.4667092Z linux-aarch64-a3-4-92cdc-runner-sxxz6-workflow     1/1     Running   0          91m
+2026-04-13T18:19:01.4667584Z test-server-0                                      1/1     Running   0          6h
+2026-04-13T18:19:01.4668010Z test-server-0-1                                    1/1     Running   0          5h59m
+2026-04-13T18:19:01.4668498Z vllm-deepseek-r1-w8a8-longseq-bc092a-0             1/1     Running   0          42m
+2026-04-13T18:19:01.4669059Z vllm-deepseek-r1-w8a8-longseq-bc092a-0-1           1/1     Running   0          42m
+2026-04-13T18:19:01.4669620Z vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0     1/1     Running   0          20m
+2026-04-13T18:19:01.4670314Z vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1   0/1     Pending   0          20m
+2026-04-13T18:19:01.4670848Z vllm-qwen3-235b-a22b-9f142d-0                      1/1     Running   0          42m
+2026-04-13T18:19:01.4671336Z vllm-qwen3-235b-a22b-9f142d-0-1                    1/1     Running   0          42m
+2026-04-13T18:19:01.4671831Z vllm-qwen3-235b-w8a8-eplb-285730-0                 0/1     Pending   0          20m
+2026-04-13T18:19:01.4672340Z vllm-qwen3-235b-w8a8-eplb-285730-0-1               0/1     Pending   0          20m
+2026-04-13T18:19:01.4711550Z Deleting resources for [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2]...
+2026-04-13T18:19:01.5304818Z leaderworkerset.leaderworkerset.x-k8s.io "vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2" deleted from vllm-project namespace
+2026-04-13T18:19:01.5509653Z service "vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-leader" deleted from vllm-project namespace
+2026-04-13T18:19:01.5685147Z Waiting for pods of [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2] to fully terminate...
+2026-04-13T18:19:01.7484875Z Waiting for pods to terminate: vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0
+2026-04-13T18:19:01.7485380Z vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1
+2026-04-13T18:19:06.9256341Z Waiting for pods to terminate: vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0
+2026-04-13T18:19:06.9256877Z vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1
+2026-04-13T18:19:12.0288747Z Waiting for pods to terminate: vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0
+2026-04-13T18:19:12.0289312Z vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1
+2026-04-13T18:19:17.1298188Z Waiting for pods to terminate: vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0
+2026-04-13T18:19:17.1298719Z vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1
+2026-04-13T18:19:22.2301902Z Waiting for pods to terminate: vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0
+2026-04-13T18:19:22.2302441Z vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1
+2026-04-13T18:19:27.3294778Z Waiting for pods to terminate: vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0
+2026-04-13T18:19:27.3295320Z vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1
+2026-04-13T18:19:32.4392522Z Waiting for pods to terminate: vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0
+2026-04-13T18:19:32.4393066Z vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1
+2026-04-13T18:19:37.5520786Z Waiting for pods to terminate: vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1
+2026-04-13T18:19:42.6496768Z Waiting for pods to terminate: vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0-1
+2026-04-13T18:19:47.8524050Z All pods for [vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2] have terminated.
+2026-04-13T18:19:48.3305418Z ##[group]Run set -euo pipefail
+2026-04-13T18:19:48.3305735Z [36;1mset -euo pipefail[0m
+2026-04-13T18:19:48.3305962Z [36;1msize="2"[0m
+2026-04-13T18:19:48.3306390Z [36;1mDEST="/tmp/collected-logs"[0m
+2026-04-13T18:19:48.3306779Z [36;1mPLOG_PATH=/root/ascend/log[0m
+2026-04-13T18:19:48.3307031Z [36;1mKUBE_LOG_PATH=/var/log[0m
+2026-04-13T18:19:48.3307299Z [36;1mfor i in $(seq 0 $((size - 1))); do[0m
+2026-04-13T18:19:48.3307577Z [36;1m  if [ "${i}" -eq 0 ]; then[0m
+2026-04-13T18:19:48.3307831Z [36;1m    POD="${LWS_NAME}-0"[0m
+2026-04-13T18:19:48.3308066Z [36;1m  else[0m
+2026-04-13T18:19:48.3308267Z [36;1m    POD="${LWS_NAME}-0-${i}"[0m
+2026-04-13T18:19:48.3308510Z [36;1m  fi[0m
+2026-04-13T18:19:48.3308837Z [36;1m  mkdir -p "${DEST}/node${i}/${PLOG_PATH}" "${DEST}/node${i}/${KUBE_LOG_PATH}"[0m
+2026-04-13T18:19:48.3309219Z [36;1m  # pod stdout.[0m
+2026-04-13T18:19:48.3309620Z [36;1m  cp "/tmp/${POD}_logs.txt" "${DEST}/node${i}/${KUBE_LOG_PATH}/" 2>/dev/null || true[0m
+2026-04-13T18:19:48.3310209Z [36;1m  # Ascend plogs from PVC.[0m
+2026-04-13T18:19:48.3310492Z [36;1m  SRC="${LOG_PREFIX}/node_${i}_plogs"[0m
+2026-04-13T18:19:48.3310782Z [36;1m  if [ -d "$SRC" ]; then[0m
+2026-04-13T18:19:48.3311110Z [36;1m    cp -r "$SRC"/. "${DEST}/node${i}/${PLOG_PATH}/" 2>/dev/null || true[0m
+2026-04-13T18:19:48.3311447Z [36;1m  fi[0m
+2026-04-13T18:19:48.3311634Z [36;1mdone[0m
+2026-04-13T18:19:48.3311808Z [36;1m[0m
+2026-04-13T18:19:48.3312084Z [36;1mtar -czf /tmp/ascend-logs.tar.gz -C /tmp collected-logs[0m
+2026-04-13T18:19:48.3312507Z shell: bash -el {0}
+2026-04-13T18:19:48.3312697Z env:
+2026-04-13T18:19:48.3312956Z   LWS_NAME: vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2
+2026-04-13T18:19:48.3313355Z   LEADER_POD: vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0
+2026-04-13T18:19:48.3313845Z   LOG_PREFIX: /root/.cache/ascend-logs/vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2
+2026-04-13T18:19:48.3314329Z   FAIL_TAG: FAIL_TAG_DeepSeek-V3_2-W8A8-A3-dual-nodes.yaml
+2026-04-13T18:19:48.3314637Z ##[endgroup]
+2026-04-13T18:19:48.3453020Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T18:19:48.3454023Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T18:19:48.3454373Z ##[endgroup]
+2026-04-13T18:19:48.7738466Z (node:1310) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T18:19:48.7739476Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T18:19:49.8927683Z ##[group]Run actions/upload-artifact@v7
+2026-04-13T18:19:49.8927990Z with:
+2026-04-13T18:19:49.8928252Z   name: DeepSeek-V3_2-W8A8-A3-dual-nodes.yaml-ascend-logs
+2026-04-13T18:19:49.8928583Z   path: /tmp/ascend-logs.tar.gz
+2026-04-13T18:19:49.8928826Z   retention-days: 7
+2026-04-13T18:19:49.8929030Z   if-no-files-found: warn
+2026-04-13T18:19:49.8929247Z   compression-level: 6
+2026-04-13T18:19:49.8929456Z   overwrite: false
+2026-04-13T18:19:49.8929666Z   include-hidden-files: false
+2026-04-13T18:19:49.8930081Z   archive: true
+2026-04-13T18:19:49.8930283Z env:
+2026-04-13T18:19:49.8930530Z   LWS_NAME: vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2
+2026-04-13T18:19:49.8930952Z   LEADER_POD: vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0
+2026-04-13T18:19:49.8931446Z   LOG_PREFIX: /root/.cache/ascend-logs/vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2
+2026-04-13T18:19:49.8931911Z   FAIL_TAG: FAIL_TAG_DeepSeek-V3_2-W8A8-A3-dual-nodes.yaml
+2026-04-13T18:19:49.8932229Z ##[endgroup]
+2026-04-13T18:19:49.8958578Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T18:19:49.8959422Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T18:19:49.8959703Z ##[endgroup]
+2026-04-13T18:19:50.3258058Z (node:1453) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T18:19:50.3259038Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T18:19:51.3250260Z With the provided path, there will be 1 file uploaded
+2026-04-13T18:19:51.3256890Z Artifact name is valid!
+2026-04-13T18:19:51.3257435Z Root directory input is valid!
+2026-04-13T18:19:52.1984255Z Uploading artifact: DeepSeek-V3_2-W8A8-A3-dual-nodes.yaml-ascend-logs.zip
+2026-04-13T18:19:52.2528234Z Beginning upload of artifact content to blob storage
+2026-04-13T18:19:53.1698951Z Uploaded bytes 1445
+2026-04-13T18:19:53.3996998Z Finished uploading artifact content to blob storage!
+2026-04-13T18:19:53.3997690Z SHA256 digest of uploaded artifact is 904e1bf757b3f37020115012acc1e8bc84f6378157936a4148bfef7bcebe1c3d
+2026-04-13T18:19:53.3998250Z Finalizing artifact upload
+2026-04-13T18:19:54.3139136Z Artifact DeepSeek-V3_2-W8A8-A3-dual-nodes.yaml-ascend-logs successfully finalized. Artifact ID 6412164184
+2026-04-13T18:19:54.3140211Z Artifact DeepSeek-V3_2-W8A8-A3-dual-nodes.yaml-ascend-logs has been successfully uploaded! Final size is 1445 bytes. Artifact ID is 6412164184
+2026-04-13T18:19:54.3141111Z Artifact download URL: https://github.com/vllm-project/vllm-ascend/actions/runs/24355380566/artifacts/6412164184
+2026-04-13T18:19:55.0159312Z ##[group]Run echo "artifact_ts=$(date -u +%Y%m%dT%H%M%SZ)" >> $GITHUB_OUTPUT
+2026-04-13T18:19:55.0159968Z [36;1mecho "artifact_ts=$(date -u +%Y%m%dT%H%M%SZ)" >> $GITHUB_OUTPUT[0m
+2026-04-13T18:19:55.0160541Z shell: bash -el {0}
+2026-04-13T18:19:55.0160739Z env:
+2026-04-13T18:19:55.0161003Z   LWS_NAME: vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2
+2026-04-13T18:19:55.0161410Z   LEADER_POD: vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0
+2026-04-13T18:19:55.0161894Z   LOG_PREFIX: /root/.cache/ascend-logs/vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2
+2026-04-13T18:19:55.0162372Z   FAIL_TAG: FAIL_TAG_DeepSeek-V3_2-W8A8-A3-dual-nodes.yaml
+2026-04-13T18:19:55.0162685Z ##[endgroup]
+2026-04-13T18:19:55.0267211Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T18:19:55.0268125Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T18:19:55.0268416Z ##[endgroup]
+2026-04-13T18:19:55.4547337Z (node:1602) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T18:19:55.4548268Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T18:19:56.7717515Z ##[group]Run actions/upload-artifact@v4
+2026-04-13T18:19:56.7717845Z with:
+2026-04-13T18:19:56.7718231Z   name: nightly-test-benchmark-results-multi-node-dpsk3.2-2node-20260413T181956Z
+2026-04-13T18:19:56.7718698Z   path: /tmp/benchmark_results/
+2026-04-13T18:19:56.7718951Z   if-no-files-found: warn
+2026-04-13T18:19:56.7719173Z   retention-days: 90
+2026-04-13T18:19:56.7719392Z   compression-level: 0
+2026-04-13T18:19:56.7719609Z   overwrite: false
+2026-04-13T18:19:56.7719819Z   include-hidden-files: false
+2026-04-13T18:19:56.7720246Z env:
+2026-04-13T18:19:56.7720505Z   LWS_NAME: vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2
+2026-04-13T18:19:56.7720922Z   LEADER_POD: vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2-0
+2026-04-13T18:19:56.7721414Z   LOG_PREFIX: /root/.cache/ascend-logs/vllm-deepseek-v3-2-w8a8-a3-dual-nodes-00b3c2
+2026-04-13T18:19:56.7721921Z   FAIL_TAG: FAIL_TAG_DeepSeek-V3_2-W8A8-A3-dual-nodes.yaml
+2026-04-13T18:19:56.7722225Z ##[endgroup]
+2026-04-13T18:19:56.7748585Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T18:19:56.7749446Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T18:19:56.7749744Z ##[endgroup]
+2026-04-13T18:19:57.2100295Z (node:1762) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T18:19:57.2101303Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T18:19:58.4120330Z ##[warning]No files were found with the provided path: /tmp/benchmark_results/. No artifacts will be uploaded.
+2026-04-13T18:19:58.9897760Z Post job cleanup.
+2026-04-13T18:19:58.9922273Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T18:19:58.9923145Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T18:19:58.9923629Z ##[endgroup]
+2026-04-13T18:19:59.4457285Z (node:1934) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T18:19:59.4458300Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T18:20:00.3570671Z [command]/usr/bin/git version
+2026-04-13T18:20:00.3615042Z git version 2.34.1
+2026-04-13T18:20:00.3643176Z Copying '/root/.gitconfig' to '/__w/_temp/b7e3949f-978a-4a9d-8fa4-e5f9c5c3813f/.gitconfig'
+2026-04-13T18:20:00.3650919Z Temporarily overriding HOME='/__w/_temp/b7e3949f-978a-4a9d-8fa4-e5f9c5c3813f' before making global git config changes
+2026-04-13T18:20:00.3651737Z Adding repository directory to the temporary git global config as a safe directory
+2026-04-13T18:20:00.3655360Z [command]/usr/bin/git config --global --add safe.directory /__w/vllm-ascend/vllm-ascend
+2026-04-13T18:20:00.3690538Z Removing SSH command configuration
+2026-04-13T18:20:00.3695958Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-04-13T18:20:00.3729026Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-04-13T18:20:00.3952186Z Removing HTTP extra header
+2026-04-13T18:20:00.3955830Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-04-13T18:20:00.3983089Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-04-13T18:20:00.4175605Z Removing includeIf entries pointing to credentials config files
+2026-04-13T18:20:00.4180343Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-04-13T18:20:00.4200631Z includeif.gitdir:/__w/vllm-ascend/vllm-ascend/.git.path
+2026-04-13T18:20:00.4201104Z includeif.gitdir:/__w/vllm-ascend/vllm-ascend/.git/worktrees/*.path
+2026-04-13T18:20:00.4201534Z includeif.gitdir:/github/workspace/.git.path
+2026-04-13T18:20:00.4201920Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-04-13T18:20:00.4208404Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/__w/vllm-ascend/vllm-ascend/.git.path
+2026-04-13T18:20:00.4227016Z /__w/_temp/git-credentials-f3314e7f-da6c-4a2b-a93b-3339ca3cf8d5.config
+2026-04-13T18:20:00.4234924Z [command]/usr/bin/git config --local --unset includeif.gitdir:/__w/vllm-ascend/vllm-ascend/.git.path /__w/_temp/git-credentials-f3314e7f-da6c-4a2b-a93b-3339ca3cf8d5.config
+2026-04-13T18:20:00.4267483Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/__w/vllm-ascend/vllm-ascend/.git/worktrees/*.path
+2026-04-13T18:20:00.4285786Z /__w/_temp/git-credentials-f3314e7f-da6c-4a2b-a93b-3339ca3cf8d5.config
+2026-04-13T18:20:00.4293847Z [command]/usr/bin/git config --local --unset includeif.gitdir:/__w/vllm-ascend/vllm-ascend/.git/worktrees/*.path /__w/_temp/git-credentials-f3314e7f-da6c-4a2b-a93b-3339ca3cf8d5.config
+2026-04-13T18:20:00.4320779Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+2026-04-13T18:20:00.4338662Z /github/runner_temp/git-credentials-f3314e7f-da6c-4a2b-a93b-3339ca3cf8d5.config
+2026-04-13T18:20:00.4345955Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-f3314e7f-da6c-4a2b-a93b-3339ca3cf8d5.config
+2026-04-13T18:20:00.4371457Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-04-13T18:20:00.4390088Z /github/runner_temp/git-credentials-f3314e7f-da6c-4a2b-a93b-3339ca3cf8d5.config
+2026-04-13T18:20:00.4396629Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-f3314e7f-da6c-4a2b-a93b-3339ca3cf8d5.config
+2026-04-13T18:20:00.4424343Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-04-13T18:20:00.4609574Z Removing credentials config '/__w/_temp/git-credentials-f3314e7f-da6c-4a2b-a93b-3339ca3cf8d5.config'
+2026-04-13T18:20:19.9072905Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T18:20:19.9073849Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T18:20:19.9074166Z ##[endgroup]
+2026-04-13T18:20:20.4545923Z Cleaning up orphan processes
+2026-04-13T18:20:20.4568504Z ##[warning]Node.js 20 actions are deprecated. The following actions are running on Node.js 20 and may not work as expected: actions/upload-artifact@v4. Actions will be forced to run with Node.js 24 by default starting June 2nd, 2026. Please check if updated versions of these actions are available that support Node.js 24. To opt into Node.js 24 now, set the FORCE_JAVASCRIPT_ACTIONS_TO_NODE24=true environment variable on the runner or in your workflow file. Once Node.js 24 becomes the default, you can temporarily opt out by setting ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
