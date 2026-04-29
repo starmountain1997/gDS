@@ -1,0 +1,175 @@
+# Run ID: 23859663944
+# Commit: 9d2ebc8c49886ac4c221bd114a3627f7222937aa
+# Job: single-node (releases-v0.18.0, qwen3-235b-a22b-w8a8, linux-aarch64-a3-16, Qwen3-235B-A22B-W8A8.yaml) / qwen3-235b-a22b-w8a8
+# Date: 2026-04-01
+============================================================
+
+﻿2026-04-01T18:06:59.8943068Z Current runner version: '2.332.0'
+2026-04-01T18:06:59.8950778Z Runner name: 'linux-aarch64-a3-16-fz5lm-runner-pm8ph'
+2026-04-01T18:06:59.8951808Z Runner group name: 'Default'
+2026-04-01T18:06:59.8953080Z Machine name: 'linux-aarch64-a3-16-fz5lm-runner-pm8ph'
+2026-04-01T18:06:59.8956827Z ##[group]GITHUB_TOKEN Permissions
+2026-04-01T18:06:59.8960006Z Contents: read
+2026-04-01T18:06:59.8960646Z Issues: read
+2026-04-01T18:06:59.8961278Z Metadata: read
+2026-04-01T18:06:59.8961964Z PullRequests: read
+2026-04-01T18:06:59.8962587Z ##[endgroup]
+2026-04-01T18:06:59.8965310Z Secret source: Actions
+2026-04-01T18:06:59.8966150Z Prepare workflow directory
+2026-04-01T18:06:59.9867304Z Prepare all required actions
+2026-04-01T18:06:59.9909251Z Getting action download info
+2026-04-01T18:07:00.9845741Z Download action repository 'actions/checkout@v6' (SHA:de0fac2e4500dabe0009e67214ff5f5447ce83dd)
+2026-04-01T18:07:06.2195871Z Uses: vllm-project/vllm-ascend/.github/workflows/_e2e_nightly_single_node.yaml@refs/heads/main (9d2ebc8c49886ac4c221bd114a3627f7222937aa)
+2026-04-01T18:07:06.2200857Z ##[group] Inputs
+2026-04-01T18:07:06.2201252Z   runner: linux-aarch64-a3-16
+2026-04-01T18:07:06.2201867Z   image: swr.cn-southwest-2.myhuaweicloud.com/base_image/ascend-ci/vllm-ascend:nightly-releases-v0.18.0-a3
+2026-04-01T18:07:06.2202569Z   tests: 
+2026-04-01T18:07:06.2202864Z   config_file_path: Qwen3-235B-A22B-W8A8.yaml
+2026-04-01T18:07:06.2203267Z   name: qwen3-235b-a22b-w8a8
+2026-04-01T18:07:06.2203730Z   vllm_version: v0.18.0
+2026-04-01T18:07:06.2204537Z   should_run: true
+2026-04-01T18:07:06.2204837Z ##[endgroup]
+2026-04-01T18:07:06.2205554Z Complete job name: single-node (releases-v0.18.0, qwen3-235b-a22b-w8a8, linux-aarch64-a3-16, Qwen3-235B-A22B-W8A8.yaml) / qwen3-235b-a22b-w8a8
+2026-04-01T18:07:06.2941590Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-01T18:07:06.2952503Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-01T18:07:06.2953750Z ##[endgroup]
+2026-04-01T18:09:18.1593191Z (node:236) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-01T18:09:18.1594438Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-01T18:09:19.3079042Z ##[group]Run npu-smi info
+2026-04-01T18:09:19.3079497Z [36;1mnpu-smi info[0m
+2026-04-01T18:09:19.3080154Z [36;1mcat /usr/local/Ascend/ascend-toolkit/latest/"$(uname -i)"-linux/ascend_toolkit_install.info[0m
+2026-04-01T18:09:19.3080750Z [36;1mpip install uv[0m
+2026-04-01T18:09:19.3081504Z shell: bash -el {0}
+2026-04-01T18:09:19.3081836Z env:
+2026-04-01T18:09:19.3082077Z   HF_HUB_OFFLINE: 1
+2026-04-01T18:09:19.3082346Z   VLLM_USE_MODELSCOPE: true
+2026-04-01T18:09:19.3082858Z   UV_INDEX_URL: http://cache-service.nginx-pypi-cache.svc.cluster.local/pypi/simple
+2026-04-01T18:09:19.3083535Z   UV_EXTRA_INDEX_URL: https://mirrors.huaweicloud.com/ascend/repos/pypi
+2026-04-01T18:09:19.3084044Z   UV_INDEX_STRATEGY: unsafe-best-match
+2026-04-01T18:09:19.3084376Z   UV_NO_CACHE: 1
+2026-04-01T18:09:19.3084737Z   UV_SYSTEM_PYTHON: 1
+2026-04-01T18:09:19.3085077Z   VLLM_ENGINE_READY_TIMEOUT_S: 1800
+2026-04-01T18:09:19.3085418Z ##[endgroup]
+2026-04-01T18:09:19.3241487Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-01T18:09:19.3242714Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-01T18:09:19.3243079Z ##[endgroup]
+2026-04-01T18:09:19.7715372Z (node:383) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-01T18:09:19.7716461Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-01T18:09:32.8817293Z +------------------------------------------------------------------------------------------------+
+2026-04-01T18:09:32.8818100Z | npu-smi 25.5.0                   Version: 25.5.0                                               |
+2026-04-01T18:09:32.8818753Z +---------------------------+---------------+----------------------------------------------------+
+2026-04-01T18:09:32.8820402Z | NPU   Name                | Health        | Power(W)    Temp(C)           Hugepages-Usage(page)|
+2026-04-01T18:09:32.8821105Z | Chip  Phy-ID              | Bus-Id        | AICore(%)   Memory-Usage(MB)  HBM-Usage(MB)        |
+2026-04-01T18:09:32.8821750Z +===========================+===============+====================================================+
+2026-04-01T18:09:32.8822354Z | 0     Ascend910           | OK            | 167.2       35                0    / 0             |
+2026-04-01T18:09:32.8822886Z | 0     0                   | 0000:9D:00.0  | 0           0    / 0          3172 / 65536         |
+2026-04-01T18:09:32.8823441Z +------------------------------------------------------------------------------------------------+
+2026-04-01T18:09:32.8824063Z | 0     Ascend910           | OK            | -           36                0    / 0             |
+2026-04-01T18:09:32.8824579Z | 1     1                   | 0000:9F:00.0  | 0           0    / 0          2884 / 65536         |
+2026-04-01T18:09:32.8825064Z +===========================+===============+====================================================+
+2026-04-01T18:09:32.8825595Z | 1     Ascend910           | OK            | 166.4       34                0    / 0             |
+2026-04-01T18:09:32.8826105Z | 0     2                   | 0000:99:00.0  | 0           0    / 0          3159 / 65536         |
+2026-04-01T18:09:32.8826663Z +------------------------------------------------------------------------------------------------+
+2026-04-01T18:09:32.8827223Z | 1     Ascend910           | OK            | -           36                0    / 0             |
+2026-04-01T18:09:32.8829154Z | 1     3                   | 0000:9B:00.0  | 0           0    / 0          2891 / 65536         |
+2026-04-01T18:09:32.8829668Z +===========================+===============+====================================================+
+2026-04-01T18:09:32.8830384Z | 2     Ascend910           | OK            | 166.5       36                0    / 0             |
+2026-04-01T18:09:32.8830901Z | 0     4                   | 0000:95:00.0  | 0           0    / 0          3169 / 65536         |
+2026-04-01T18:09:32.8831717Z +------------------------------------------------------------------------------------------------+
+2026-04-01T18:09:32.8832275Z | 2     Ascend910           | OK            | -           34                0    / 0             |
+2026-04-01T18:09:32.8832798Z | 1     5                   | 0000:97:00.0  | 0           0    / 0          2883 / 65536         |
+2026-04-01T18:09:32.8833299Z +===========================+===============+====================================================+
+2026-04-01T18:09:32.8833876Z | 3     Ascend910           | OK            | 156.0       35                0    / 0             |
+2026-04-01T18:09:32.8834410Z | 0     6                   | 0000:91:00.0  | 0           0    / 0          3168 / 65536         |
+2026-04-01T18:09:32.8834928Z +------------------------------------------------------------------------------------------------+
+2026-04-01T18:09:32.8835600Z | 3     Ascend910           | OK            | -           34                0    / 0             |
+2026-04-01T18:09:32.8836207Z | 1     7                   | 0000:93:00.0  | 0           0    / 0          2885 / 65536         |
+2026-04-01T18:09:32.8836654Z +===========================+===============+====================================================+
+2026-04-01T18:09:32.8837213Z | 4     Ascend910           | OK            | 163.6       36                0    / 0             |
+2026-04-01T18:09:32.8837715Z | 0     8                   | 0000:8D:00.0  | 0           0    / 0          3172 / 65536         |
+2026-04-01T18:09:32.8838244Z +------------------------------------------------------------------------------------------------+
+2026-04-01T18:09:32.8838896Z | 4     Ascend910           | OK            | -           34                0    / 0             |
+2026-04-01T18:09:32.8839472Z | 1     9                   | 0000:8F:00.0  | 0           0    / 0          2886 / 65536         |
+2026-04-01T18:09:32.8840104Z +===========================+===============+====================================================+
+2026-04-01T18:09:32.8840652Z | 5     Ascend910           | OK            | 169.0       36                0    / 0             |
+2026-04-01T18:09:32.8841159Z | 0     10                  | 0000:89:00.0  | 0           0    / 0          3154 / 65536         |
+2026-04-01T18:09:32.8841747Z +------------------------------------------------------------------------------------------------+
+2026-04-01T18:09:32.8842319Z | 5     Ascend910           | OK            | -           36                0    / 0             |
+2026-04-01T18:09:32.8842835Z | 1     11                  | 0000:8B:00.0  | 0           0    / 0          2898 / 65536         |
+2026-04-01T18:09:33.1936976Z +===========================+===============+====================================================+
+2026-04-01T18:09:33.1937579Z | 6     Ascend910           | OK            | 164.1       35                0    / 0             |
+2026-04-01T18:09:33.1938113Z | 0     12                  | 0000:85:00.0  | 0           0    / 0          3169 / 65536         |
+2026-04-01T18:09:33.1938844Z +------------------------------------------------------------------------------------------------+
+2026-04-01T18:09:33.1939456Z | 6     Ascend910           | OK            | -           34                0    / 0             |
+2026-04-01T18:09:33.1939944Z | 1     13                  | 0000:87:00.0  | 0           0    / 0          2885 / 65536         |
+2026-04-01T18:09:33.1940464Z +===========================+===============+====================================================+
+2026-04-01T18:09:33.1940944Z | 7     Ascend910           | OK            | 164.0       33                0    / 0             |
+2026-04-01T18:09:33.1941468Z | 0     14                  | 0000:81:00.0  | 0           0    / 0          3162 / 65536         |
+2026-04-01T18:09:33.1942057Z +------------------------------------------------------------------------------------------------+
+2026-04-01T18:09:33.1942605Z | 7     Ascend910           | OK            | -           35                0    / 0             |
+2026-04-01T18:09:33.1943448Z | 1     15                  | 0000:83:00.0  | 0           0    / 0          2894 / 65536         |
+2026-04-01T18:09:33.1943957Z +===========================+===============+====================================================+
+2026-04-01T18:09:33.1944491Z +---------------------------+---------------+----------------------------------------------------+
+2026-04-01T18:09:33.1945253Z | NPU     Chip              | Process id    | Process name             | Process memory(MB)      |
+2026-04-01T18:09:33.1946226Z +===========================+===============+====================================================+
+2026-04-01T18:09:33.1946771Z | No running processes found in NPU 0                                                            |
+2026-04-01T18:09:33.1947295Z +===========================+===============+====================================================+
+2026-04-01T18:09:33.1947845Z | No running processes found in NPU 1                                                            |
+2026-04-01T18:09:33.1948371Z +===========================+===============+====================================================+
+2026-04-01T18:09:33.1948900Z | No running processes found in NPU 2                                                            |
+2026-04-01T18:09:33.1949442Z +===========================+===============+====================================================+
+2026-04-01T18:09:33.1949983Z | No running processes found in NPU 3                                                            |
+2026-04-01T18:09:33.1950625Z +===========================+===============+====================================================+
+2026-04-01T18:09:33.1951173Z | No running processes found in NPU 4                                                            |
+2026-04-01T18:09:33.1951681Z +===========================+===============+====================================================+
+2026-04-01T18:09:33.1952560Z | No running processes found in NPU 5                                                            |
+2026-04-01T18:09:33.1953117Z +===========================+===============+====================================================+
+2026-04-01T18:09:33.1953643Z | No running processes found in NPU 6                                                            |
+2026-04-01T18:09:33.1954255Z +===========================+===============+====================================================+
+2026-04-01T18:09:33.1954834Z | No running processes found in NPU 7                                                            |
+2026-04-01T18:09:33.1955380Z +===========================+===============+====================================================+
+2026-04-01T18:09:33.1972057Z package_name=Ascend-cann-toolkit
+2026-04-01T18:09:33.1972406Z version=8.5.1
+2026-04-01T18:09:33.1972711Z innerversion=V100R001C25SPC002B220
+2026-04-01T18:09:33.1973215Z compatible_version=[V100R001C15],[V100R001C18],[V100R001C19],[V100R001C20],[V100R001C21],[V100R001C23]
+2026-04-01T18:09:33.1973736Z arch=aarch64
+2026-04-01T18:09:33.1973976Z os=linux
+2026-04-01T18:09:33.1974373Z path=/usr/local/Ascend/cann-8.5.1
+2026-04-01T18:09:55.0125622Z ERROR: Could not find a version that satisfies the requirement uv (from versions: none)
+2026-04-01T18:10:01.6787738Z ERROR: No matching distribution found for uv
+2026-04-01T18:10:01.8348772Z ##[error]Error: failed to run script step: Error: command terminated with non-zero exit code: command terminated with exit code 1
+2026-04-01T18:10:01.8453836Z ##[error]Process completed with exit code 1.
+2026-04-01T18:10:01.8939059Z ##[error]Executing the custom container implementation failed. Please contact your self hosted runner administrator.
+2026-04-01T18:10:02.1371506Z ##[group]Run export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+2026-04-01T18:10:02.1372141Z [36;1mexport LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH[0m
+2026-04-01T18:10:02.1372692Z [36;1mecho "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib" >> ~/.bashrc[0m
+2026-04-01T18:10:02.1373274Z [36;1mecho "Running YAML-driven test with config: Qwen3-235B-A22B-W8A8.yaml"[0m
+2026-04-01T18:10:02.1373874Z [36;1mpytest -sv tests/e2e/nightly/single_node/models/scripts/test_single_node.py[0m
+2026-04-01T18:10:02.1374798Z shell: bash -el {0}
+2026-04-01T18:10:02.1375024Z env:
+2026-04-01T18:10:02.1375219Z   HF_HUB_OFFLINE: 1
+2026-04-01T18:10:02.1375452Z   VLLM_USE_MODELSCOPE: true
+2026-04-01T18:10:02.1375921Z   UV_INDEX_URL: http://cache-service.nginx-pypi-cache.svc.cluster.local/pypi/simple
+2026-04-01T18:10:02.1376510Z   UV_EXTRA_INDEX_URL: https://mirrors.huaweicloud.com/ascend/repos/pypi
+2026-04-01T18:10:02.1376942Z   UV_INDEX_STRATEGY: unsafe-best-match
+2026-04-01T18:10:02.1377307Z   UV_NO_CACHE: 1
+2026-04-01T18:10:02.1377519Z   UV_SYSTEM_PYTHON: 1
+2026-04-01T18:10:02.1377765Z   VLLM_ENGINE_READY_TIMEOUT_S: 1800
+2026-04-01T18:10:02.1378055Z   VLLM_WORKER_MULTIPROC_METHOD: spawn
+2026-04-01T18:10:02.1378372Z   VLLM_CI_RUNNER: linux-aarch64-a3-16
+2026-04-01T18:10:02.1378688Z   CONFIG_YAML_PATH: Qwen3-235B-A22B-W8A8.yaml
+2026-04-01T18:10:02.1378982Z ##[endgroup]
+2026-04-01T18:10:02.1501944Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-01T18:10:02.1502993Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-01T18:10:02.1503307Z ##[endgroup]
+2026-04-01T18:10:02.6211932Z (node:415) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-01T18:10:02.6212892Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-01T18:10:18.9185619Z Running YAML-driven test with config: Qwen3-235B-A22B-W8A8.yaml
+2026-04-01T18:10:18.9189028Z /__w/_temp/20c7f47b-3088-430f-8b23-6db35987cb61.sh: line 4: pytest: command not found
+2026-04-01T18:10:18.9937192Z ##[error]Error: failed to run script step: Error: command terminated with non-zero exit code: command terminated with exit code 127
+2026-04-01T18:10:19.0149630Z ##[error]Process completed with exit code 1.
+2026-04-01T18:10:19.0266271Z ##[error]Executing the custom container implementation failed. Please contact your self hosted runner administrator.
+2026-04-01T18:10:19.0334108Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-01T18:10:19.0335171Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-01T18:10:19.0335480Z ##[endgroup]
+2026-04-01T18:10:19.6889543Z Cleaning up orphan processes

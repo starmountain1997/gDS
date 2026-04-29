@@ -1,0 +1,1803 @@
+# Run ID: 24355380566
+# Commit: f4d6c44acbb76c8ca079d7c360caef7a478fb48f
+# Job: multi-node (releases-v0.18.0, multi-node-kimi-k2-instruct-w8a8, Kimi-K2-Instruct-W8A8.yaml, 2) / Kimi-K2-Instruct-W8A8.yaml
+# Date: 2026-04-13
+============================================================
+
+﻿2026-04-13T18:54:58.9488810Z Current runner version: '2.332.0'
+2026-04-13T18:54:58.9494902Z Runner name: 'linux-aarch64-a3-0-ggwx6-runner-dg5w5'
+2026-04-13T18:54:58.9495653Z Runner group name: 'Default'
+2026-04-13T18:54:58.9496453Z Machine name: 'linux-aarch64-a3-0-ggwx6-runner-dg5w5'
+2026-04-13T18:54:58.9499371Z ##[group]GITHUB_TOKEN Permissions
+2026-04-13T18:54:58.9501768Z Contents: read
+2026-04-13T18:54:58.9502352Z Issues: read
+2026-04-13T18:54:58.9502785Z Metadata: read
+2026-04-13T18:54:58.9503262Z PullRequests: read
+2026-04-13T18:54:58.9503716Z ##[endgroup]
+2026-04-13T18:54:58.9505870Z Secret source: Actions
+2026-04-13T18:54:58.9506665Z Prepare workflow directory
+2026-04-13T18:54:59.0102370Z Prepare all required actions
+2026-04-13T18:54:59.0138639Z Getting action download info
+2026-04-13T18:55:00.1429378Z Download action repository 'actions/checkout@v6' (SHA:de0fac2e4500dabe0009e67214ff5f5447ce83dd)
+2026-04-13T18:55:05.2287817Z Download action repository 'actions/upload-artifact@v7' (SHA:043fb46d1a93c77aae656e7c1c64a875d1fc6a0a)
+2026-04-13T18:55:09.0409089Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-04-13T18:55:17.3668652Z Uses: vllm-project/vllm-ascend/.github/workflows/_e2e_nightly_multi_node.yaml@refs/heads/main (f4d6c44acbb76c8ca079d7c360caef7a478fb48f)
+2026-04-13T18:55:17.3673212Z ##[group] Inputs
+2026-04-13T18:55:17.3673649Z   soc_version: a3
+2026-04-13T18:55:17.3673993Z   runner: linux-aarch64-a3-0
+2026-04-13T18:55:17.3674655Z   image: swr.cn-southwest-2.myhuaweicloud.com/base_image/ascend-ci/vllm-ascend:nightly-ci-releases-v0.18.0-a3
+2026-04-13T18:55:17.3675323Z   config_file_path: Kimi-K2-Instruct-W8A8.yaml
+2026-04-13T18:55:17.3675728Z   replicas: 1
+2026-04-13T18:55:17.3675975Z   size: 2
+2026-04-13T18:55:17.3676247Z   vllm_version: v0.18.0
+2026-04-13T18:55:17.3676721Z   vllm_ascend_remote_url: https://github.com/vllm-project/vllm-ascend.git
+2026-04-13T18:55:17.3677287Z   vllm_ascend_ref: f4d6c44acbb76c8ca079d7c360caef7a478fb48f
+2026-04-13T18:55:17.3678160Z   should_run: true
+2026-04-13T18:55:17.3678512Z   ascend_log_prefix: /root/.cache/ascend-logs
+2026-04-13T18:55:17.3678913Z   name: multi-node-kimi-k2-instruct-w8a8
+2026-04-13T18:55:17.3679286Z ##[endgroup]
+2026-04-13T18:55:17.3680135Z Complete job name: multi-node (releases-v0.18.0, multi-node-kimi-k2-instruct-w8a8, Kimi-K2-Instruct-W8A8.yaml, 2) / Kimi-K2-Instruct-W8A8.yaml
+2026-04-13T18:55:17.4361536Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T18:55:17.4364974Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T18:55:17.4365697Z ##[endgroup]
+2026-04-13T18:55:33.0145348Z (node:124) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T18:55:33.0146550Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T18:55:35.3651499Z ##[group]Run if [ "schedule" = "pull_request" ]; then
+2026-04-13T18:55:35.3652011Z [36;1mif [ "schedule" = "pull_request" ]; then[0m
+2026-04-13T18:55:35.3652322Z [36;1m  if [ "a3" = "a3" ]; then[0m
+2026-04-13T18:55:35.3652757Z [36;1m    # NOTE: This is too hack, we should find a better way to manage kubeconfig for pr tests.[0m
+2026-04-13T18:55:35.3653270Z [36;1m    cp /root/.cache/.kube/kubeconfig.yaml "$KUBECONFIG"[0m
+2026-04-13T18:55:35.3653706Z [36;1m  else[0m
+2026-04-13T18:55:35.3654009Z [36;1m    cp /root/.cache/.kube/hk_001_kb.yaml "$KUBECONFIG"[0m
+2026-04-13T18:55:35.3654325Z [36;1m  fi[0m
+2026-04-13T18:55:35.3654511Z [36;1melse[0m
+2026-04-13T18:55:35.3702996Z [36;1m  echo "***" | base64 -d > "$KUBECONFIG"[0m
+2026-04-13T18:55:35.3703332Z [36;1mfi[0m
+2026-04-13T18:55:35.3703785Z shell: bash -el {0}
+2026-04-13T18:55:35.3704007Z ##[endgroup]
+2026-04-13T18:55:35.3847241Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T18:55:35.3848286Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T18:55:35.3848585Z ##[endgroup]
+2026-04-13T18:55:35.8106286Z (node:530) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T18:55:35.8107594Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T18:55:36.8400672Z ##[group]Run actions/checkout@v6
+2026-04-13T18:55:36.8401076Z with:
+2026-04-13T18:55:36.8401352Z   repository: vllm-project/vllm-ascend
+2026-04-13T18:55:36.8401929Z   token: ***
+2026-04-13T18:55:36.8402148Z   ssh-strict: true
+2026-04-13T18:55:36.8402374Z   ssh-user: git
+2026-04-13T18:55:36.8402612Z   persist-credentials: true
+2026-04-13T18:55:36.8402870Z   clean: true
+2026-04-13T18:55:36.8403131Z   sparse-checkout-cone-mode: true
+2026-04-13T18:55:36.8403527Z   fetch-depth: 1
+2026-04-13T18:55:36.8403778Z   fetch-tags: false
+2026-04-13T18:55:36.8404014Z   show-progress: true
+2026-04-13T18:55:36.8404239Z   lfs: false
+2026-04-13T18:55:36.8404445Z   submodules: false
+2026-04-13T18:55:36.8404683Z   set-safe-directory: true
+2026-04-13T18:55:36.8404950Z ##[endgroup]
+2026-04-13T18:55:36.8454529Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T18:55:36.8455484Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T18:55:36.8455800Z ##[endgroup]
+2026-04-13T18:55:37.2818918Z (node:560) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T18:55:37.2820078Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T18:55:37.9549073Z Syncing repository: vllm-project/vllm-ascend
+2026-04-13T18:55:37.9550895Z ##[group]Getting Git version info
+2026-04-13T18:55:37.9551308Z Working directory is '/__w/vllm-ascend/vllm-ascend'
+2026-04-13T18:55:37.9551834Z [command]/usr/bin/git version
+2026-04-13T18:55:37.9681367Z git version 2.34.1
+2026-04-13T18:55:37.9702157Z ##[endgroup]
+2026-04-13T18:55:37.9710143Z Copying '/root/.gitconfig' to '/__w/_temp/177ebcc2-fddc-4ddc-b767-8780f4d117d0/.gitconfig'
+2026-04-13T18:55:37.9719338Z Temporarily overriding HOME='/__w/_temp/177ebcc2-fddc-4ddc-b767-8780f4d117d0' before making global git config changes
+2026-04-13T18:55:37.9720401Z Adding repository directory to the temporary git global config as a safe directory
+2026-04-13T18:55:37.9723619Z [command]/usr/bin/git config --global --add safe.directory /__w/vllm-ascend/vllm-ascend
+2026-04-13T18:55:37.9765428Z Deleting the contents of '/__w/vllm-ascend/vllm-ascend'
+2026-04-13T18:55:37.9769609Z ##[group]Initializing the repository
+2026-04-13T18:55:37.9772998Z [command]/usr/bin/git init /__w/vllm-ascend/vllm-ascend
+2026-04-13T18:55:37.9888398Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-04-13T18:55:37.9888957Z hint: is subject to change. To configure the initial branch name to use in all
+2026-04-13T18:55:37.9889465Z hint: of your new repositories, which will suppress this warning, call:
+2026-04-13T18:55:37.9889907Z hint: 
+2026-04-13T18:55:37.9890243Z hint: 	git config --global init.defaultBranch <name>
+2026-04-13T18:55:37.9890550Z hint: 
+2026-04-13T18:55:37.9890843Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-04-13T18:55:37.9891368Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-04-13T18:55:37.9891756Z hint: 
+2026-04-13T18:55:37.9891954Z hint: 	git branch -m <name>
+2026-04-13T18:55:37.9897902Z Initialized empty Git repository in /__w/vllm-ascend/vllm-ascend/.git/
+2026-04-13T18:55:37.9908421Z [command]/usr/bin/git remote add origin https://github.com/vllm-project/vllm-ascend
+2026-04-13T18:55:37.9950265Z ##[endgroup]
+2026-04-13T18:55:37.9950631Z ##[group]Disabling automatic garbage collection
+2026-04-13T18:55:37.9954115Z [command]/usr/bin/git config --local gc.auto 0
+2026-04-13T18:55:37.9978463Z ##[endgroup]
+2026-04-13T18:55:37.9978783Z ##[group]Setting up auth
+2026-04-13T18:55:37.9979926Z Removing SSH command configuration
+2026-04-13T18:55:37.9985626Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-04-13T18:55:38.0012220Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-04-13T18:55:38.0440762Z Removing HTTP extra header
+2026-04-13T18:55:38.0444579Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-04-13T18:55:38.0471578Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-04-13T18:55:38.0719456Z Removing includeIf entries pointing to credentials config files
+2026-04-13T18:55:38.0720098Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-04-13T18:55:38.0736154Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-04-13T18:55:38.0936518Z [command]/usr/bin/git config --file /__w/_temp/git-credentials-600ee228-8bac-4a4e-a9d5-0baeefdf2bd1.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-04-13T18:55:38.0973306Z [command]/usr/bin/git config --local includeIf.gitdir:/__w/vllm-ascend/vllm-ascend/.git.path /__w/_temp/git-credentials-600ee228-8bac-4a4e-a9d5-0baeefdf2bd1.config
+2026-04-13T18:55:38.1001512Z [command]/usr/bin/git config --local includeIf.gitdir:/__w/vllm-ascend/vllm-ascend/.git/worktrees/*.path /__w/_temp/git-credentials-600ee228-8bac-4a4e-a9d5-0baeefdf2bd1.config
+2026-04-13T18:55:38.1029818Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-600ee228-8bac-4a4e-a9d5-0baeefdf2bd1.config
+2026-04-13T18:55:38.1056584Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-600ee228-8bac-4a4e-a9d5-0baeefdf2bd1.config
+2026-04-13T18:55:38.1079292Z ##[endgroup]
+2026-04-13T18:55:38.1079639Z ##[group]Fetching the repository
+2026-04-13T18:55:38.1088513Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +f4d6c44acbb76c8ca079d7c360caef7a478fb48f:refs/remotes/origin/main
+2026-04-13T18:55:40.2010570Z From https://gh-proxy.test.osinfra.cn/https://github.com/vllm-project/vllm-ascend
+2026-04-13T18:55:40.2011199Z  * [new ref]         f4d6c44acbb76c8ca079d7c360caef7a478fb48f -> origin/main
+2026-04-13T18:55:40.2060124Z [command]/usr/bin/git branch --list --remote origin/main
+2026-04-13T18:55:40.2066168Z   origin/main
+2026-04-13T18:55:40.2074970Z [command]/usr/bin/git rev-parse refs/remotes/origin/main
+2026-04-13T18:55:40.2094951Z f4d6c44acbb76c8ca079d7c360caef7a478fb48f
+2026-04-13T18:55:40.2099023Z ##[endgroup]
+2026-04-13T18:55:40.2099381Z ##[group]Determining the checkout info
+2026-04-13T18:55:40.2101679Z ##[endgroup]
+2026-04-13T18:55:40.2104537Z [command]/usr/bin/git sparse-checkout disable
+2026-04-13T18:55:40.2150911Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-04-13T18:55:40.2173685Z ##[group]Checking out the ref
+2026-04-13T18:55:40.2177770Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-04-13T18:55:40.3353492Z Switched to a new branch 'main'
+2026-04-13T18:55:40.3353973Z Branch 'main' set up to track remote branch 'main' from 'origin'.
+2026-04-13T18:55:40.3363236Z ##[endgroup]
+2026-04-13T18:55:40.3404112Z [command]/usr/bin/git log -1 --format=%H
+2026-04-13T18:55:40.3423362Z f4d6c44acbb76c8ca079d7c360caef7a478fb48f
+2026-04-13T18:55:40.8352729Z ##[group]Run # Derive a unique, valid k8s resource name from config_file_path.
+2026-04-13T18:55:40.8353290Z [36;1m# Derive a unique, valid k8s resource name from config_file_path.[0m
+2026-04-13T18:55:40.8353931Z [36;1m# Append 6-char random suffix to avoid conflicts; total length capped at 63 chars.[0m
+2026-04-13T18:55:40.8354374Z [36;1m[0m
+2026-04-13T18:55:40.8354606Z [36;1mconfig_file="Kimi-K2-Instruct-W8A8.yaml"[0m
+2026-04-13T18:55:40.8355267Z [36;1mlws_suffix=$(echo "$config_file" | sed 's/\.yaml$//' | tr '[:upper:]' '[:lower:]' | tr '._' '-' | cut -c1-43)[0m
+2026-04-13T18:55:40.8355843Z [36;1mrand_suffix=$(tr -d '-' < /proc/sys/kernel/random/uuid | cut -c1-6)[0m
+2026-04-13T18:55:40.8356253Z [36;1mLWS_NAME="vllm-${lws_suffix}-${rand_suffix}"[0m
+2026-04-13T18:55:40.8356552Z [36;1m[0m
+2026-04-13T18:55:40.8356756Z [36;1m{[0m
+2026-04-13T18:55:40.8356950Z [36;1m  echo "LWS_NAME=${LWS_NAME}"[0m
+2026-04-13T18:55:40.8357292Z [36;1m  echo "LEADER_POD=${LWS_NAME}-0"[0m
+2026-04-13T18:55:40.8357639Z [36;1m  echo "LOG_PREFIX=/root/.cache/ascend-logs/${LWS_NAME}"[0m
+2026-04-13T18:55:40.8357975Z [36;1m} >> $GITHUB_ENV[0m
+2026-04-13T18:55:40.8358310Z shell: bash -el {0}
+2026-04-13T18:55:40.8358508Z ##[endgroup]
+2026-04-13T18:55:40.8445722Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T18:55:40.8446603Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T18:55:40.8446901Z ##[endgroup]
+2026-04-13T18:55:41.2686385Z (node:601) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T18:55:41.2687375Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T18:55:42.3203824Z ##[group]Run install -D tests/e2e/nightly/multi_node/scripts/run.sh /root/.cache/tests/run.sh
+2026-04-13T18:55:42.3204502Z [36;1minstall -D tests/e2e/nightly/multi_node/scripts/run.sh /root/.cache/tests/run.sh[0m
+2026-04-13T18:55:42.3205073Z shell: bash -el {0}
+2026-04-13T18:55:42.3205275Z env:
+2026-04-13T18:55:42.3205512Z   LWS_NAME: vllm-kimi-k2-instruct-w8a8-ebb4b5
+2026-04-13T18:55:42.3205864Z   LEADER_POD: vllm-kimi-k2-instruct-w8a8-ebb4b5-0
+2026-04-13T18:55:42.3206295Z   LOG_PREFIX: /root/.cache/ascend-logs/vllm-kimi-k2-instruct-w8a8-ebb4b5
+2026-04-13T18:55:42.3206665Z ##[endgroup]
+2026-04-13T18:55:42.3420999Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T18:55:42.3421920Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T18:55:42.3422217Z ##[endgroup]
+2026-04-13T18:55:42.7770813Z (node:655) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T18:55:42.7771783Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T18:55:43.9876631Z ##[group]Run set -euo pipefail
+2026-04-13T18:55:43.9876980Z [36;1mset -euo pipefail[0m
+2026-04-13T18:55:43.9877214Z [36;1mTIMEOUT=120[0m
+2026-04-13T18:55:43.9877434Z [36;1mSLEEP_INTERVAL=2[0m
+2026-04-13T18:55:43.9877652Z [36;1m[0m
+2026-04-13T18:55:43.9877832Z [36;1m[0m
+2026-04-13T18:55:43.9878162Z [36;1mecho "Deleting leaderworkerset [$LWS_NAME] in namespace [$NAMESPACE]..."[0m
+2026-04-13T18:55:43.9878726Z [36;1mkubectl delete leaderworkerset "$LWS_NAME" -n "$NAMESPACE" --ignore-not-found[0m
+2026-04-13T18:55:43.9879321Z [36;1mkubectl delete service "${LWS_NAME}-leader" -n "$NAMESPACE" --ignore-not-found[0m
+2026-04-13T18:55:43.9879728Z [36;1m[0m
+2026-04-13T18:55:43.9880219Z [36;1mecho "Waiting for pods of leaderworkerset [$LWS_NAME] to be deleted..."[0m
+2026-04-13T18:55:43.9880622Z [36;1mSTART_TIME=$(date +%s)[0m
+2026-04-13T18:55:43.9880873Z [36;1mwhile true; do[0m
+2026-04-13T18:55:43.9881136Z [36;1m  ELAPSED=$(( $(date +%s) - START_TIME ))[0m
+2026-04-13T18:55:43.9881492Z [36;1m  if [[ $ELAPSED -ge $TIMEOUT ]]; then[0m
+2026-04-13T18:55:43.9881877Z [36;1m    echo "Timeout reached ($TIMEOUT seconds), some pods still exist:"[0m
+2026-04-13T18:55:43.9882344Z [36;1m    kubectl get pods -n "$NAMESPACE" | grep "^${LWS_NAME}-" || true[0m
+2026-04-13T18:55:43.9882700Z [36;1m    exit 1[0m
+2026-04-13T18:55:43.9882897Z [36;1m  fi[0m
+2026-04-13T18:55:43.9883308Z [36;1m  PODS_EXIST=$(kubectl get pods -n "$NAMESPACE" -o jsonpath='{.items[*].metadata.name}' 2>/dev/null \[0m
+2026-04-13T18:55:43.9883913Z [36;1m    | tr ' ' '\n' | grep "^${LWS_NAME}-" || true)[0m
+2026-04-13T18:55:43.9884402Z [36;1m  if [[ -z "$PODS_EXIST" ]]; then[0m
+2026-04-13T18:55:43.9884715Z [36;1m    echo "All pods for [$LWS_NAME] deleted."[0m
+2026-04-13T18:55:43.9885003Z [36;1m    break[0m
+2026-04-13T18:55:43.9885196Z [36;1m  fi[0m
+2026-04-13T18:55:43.9885462Z [36;1m  echo "Waiting for pods to be deleted: $PODS_EXIST"[0m
+2026-04-13T18:55:43.9885790Z [36;1m  sleep $SLEEP_INTERVAL[0m
+2026-04-13T18:55:43.9886037Z [36;1mdone[0m
+2026-04-13T18:55:43.9886538Z shell: bash -el {0}
+2026-04-13T18:55:43.9886733Z env:
+2026-04-13T18:55:43.9886968Z   LWS_NAME: vllm-kimi-k2-instruct-w8a8-ebb4b5
+2026-04-13T18:55:43.9887316Z   LEADER_POD: vllm-kimi-k2-instruct-w8a8-ebb4b5-0
+2026-04-13T18:55:43.9887737Z   LOG_PREFIX: /root/.cache/ascend-logs/vllm-kimi-k2-instruct-w8a8-ebb4b5
+2026-04-13T18:55:43.9888118Z ##[endgroup]
+2026-04-13T18:55:44.0237553Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T18:55:44.0238437Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T18:55:44.0238755Z ##[endgroup]
+2026-04-13T18:55:44.4563370Z (node:721) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T18:55:44.4564431Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T18:55:45.0305455Z Deleting leaderworkerset [vllm-kimi-k2-instruct-w8a8-ebb4b5] in namespace [vllm-project]...
+2026-04-13T18:55:45.1951286Z Waiting for pods of leaderworkerset [vllm-kimi-k2-instruct-w8a8-ebb4b5] to be deleted...
+2026-04-13T18:55:45.2965473Z All pods for [vllm-kimi-k2-instruct-w8a8-ebb4b5] deleted.
+2026-04-13T18:55:45.7606455Z ##[group]Run set -euo pipefail
+2026-04-13T18:55:45.7606807Z [36;1mset -euo pipefail[0m
+2026-04-13T18:55:45.7607035Z [36;1m[0m
+2026-04-13T18:55:45.7607227Z [36;1msize="2"[0m
+2026-04-13T18:55:45.7607436Z [36;1mreplicas="1"[0m
+2026-04-13T18:55:45.7607965Z [36;1mimage="swr.cn-southwest-2.myhuaweicloud.com/base_image/ascend-ci/vllm-ascend:nightly-ci-releases-v0.18.0-a3"[0m
+2026-04-13T18:55:45.7608606Z [36;1mconfig_file_path="Kimi-K2-Instruct-W8A8.yaml"[0m
+2026-04-13T18:55:45.7608979Z [36;1mfail_tag="FAIL_TAG_Kimi-K2-Instruct-W8A8.yaml"[0m
+2026-04-13T18:55:45.7609288Z [36;1mis_pr_test="false"[0m
+2026-04-13T18:55:45.7609532Z [36;1mvllm_version="v0.18.0"[0m
+2026-04-13T18:55:45.7610045Z [36;1mvllm_ascend_ref="f4d6c44acbb76c8ca079d7c360caef7a478fb48f"[0m
+2026-04-13T18:55:45.7610596Z [36;1mvllm_ascend_remote_url="https://github.com/vllm-project/vllm-ascend.git"[0m
+2026-04-13T18:55:45.7611000Z [36;1mrunner="a3"[0m
+2026-04-13T18:55:45.7611282Z [36;1mecho "FAIL_TAG=${fail_tag}" >> $GITHUB_ENV[0m
+2026-04-13T18:55:45.7611555Z [36;1m[0m
+2026-04-13T18:55:45.7611744Z [36;1mif [ "a3" = "a3" ]; then[0m
+2026-04-13T18:55:45.7611993Z [36;1m  npu_per_node=16[0m
+2026-04-13T18:55:45.7612264Z [36;1m  pvc_name=nv-action-vllm-benchmarks-v2[0m
+2026-04-13T18:55:45.7612555Z [36;1melse[0m
+2026-04-13T18:55:45.7612761Z [36;1m  npu_per_node=8[0m
+2026-04-13T18:55:45.7613001Z [36;1m  pvc_name=vllm-project-hk001[0m
+2026-04-13T18:55:45.7613255Z [36;1mfi[0m
+2026-04-13T18:55:45.7613426Z [36;1m[0m
+2026-04-13T18:55:45.7613711Z [36;1mbenchmark_job_name="multi-node-kimi-k2-instruct-w8a8"[0m
+2026-04-13T18:55:45.7614170Z [36;1mif [ -z "$benchmark_job_name" ]; then[0m
+2026-04-13T18:55:45.7614500Z [36;1m  benchmark_job_name="${config_file_path%.yaml}"[0m
+2026-04-13T18:55:45.7614796Z [36;1mfi[0m
+2026-04-13T18:55:45.7614980Z [36;1m[0m
+2026-04-13T18:55:45.7615269Z [36;1mjinja2 tests/e2e/nightly/multi_node/scripts/lws.yaml.jinja2 \[0m
+2026-04-13T18:55:45.7615657Z [36;1m  -D lws_name="$LWS_NAME" \[0m
+2026-04-13T18:55:45.7615938Z [36;1m  -D log_prefix="$LOG_PREFIX" \[0m
+2026-04-13T18:55:45.7616206Z [36;1m  -D size="$size" \[0m
+2026-04-13T18:55:45.7616451Z [36;1m  -D replicas="$replicas" \[0m
+2026-04-13T18:55:45.7616703Z [36;1m  -D image="$image" \[0m
+2026-04-13T18:55:45.7616986Z [36;1m  -D config_file_path="$config_file_path" \[0m
+2026-04-13T18:55:45.7617483Z [36;1m  -D npu_per_node="$npu_per_node" \[0m
+2026-04-13T18:55:45.7617760Z [36;1m  -D fail_tag="$fail_tag" \[0m
+2026-04-13T18:55:45.7618032Z [36;1m  -D is_pr_test="$is_pr_test" \[0m
+2026-04-13T18:55:45.7618322Z [36;1m  -D vllm_version="$vllm_version" \[0m
+2026-04-13T18:55:45.7618625Z [36;1m  -D vllm_ascend_ref="$vllm_ascend_ref" \[0m
+2026-04-13T18:55:45.7618990Z [36;1m  -D vllm_ascend_remote_url="$vllm_ascend_remote_url" \[0m
+2026-04-13T18:55:45.7619329Z [36;1m  -D pvc_name="$pvc_name" \[0m
+2026-04-13T18:55:45.7619625Z [36;1m  -D benchmark_job_name="$benchmark_job_name" \[0m
+2026-04-13T18:55:45.7620107Z [36;1m  -D runner="$runner" \[0m
+2026-04-13T18:55:45.7620365Z [36;1m  --outfile lws.yaml[0m
+2026-04-13T18:55:45.7620588Z [36;1m[0m
+2026-04-13T18:55:45.7620786Z [36;1mkubectl apply -f ./lws.yaml[0m
+2026-04-13T18:55:45.7621154Z shell: bash -el {0}
+2026-04-13T18:55:45.7621355Z env:
+2026-04-13T18:55:45.7621583Z   LWS_NAME: vllm-kimi-k2-instruct-w8a8-ebb4b5
+2026-04-13T18:55:45.7621918Z   LEADER_POD: vllm-kimi-k2-instruct-w8a8-ebb4b5-0
+2026-04-13T18:55:45.7622332Z   LOG_PREFIX: /root/.cache/ascend-logs/vllm-kimi-k2-instruct-w8a8-ebb4b5
+2026-04-13T18:55:45.7622702Z ##[endgroup]
+2026-04-13T18:55:45.7747358Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T18:55:45.7748241Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T18:55:45.7748552Z ##[endgroup]
+2026-04-13T18:55:46.2009066Z (node:799) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T18:55:46.2010579Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T18:55:47.2080495Z leaderworkerset.leaderworkerset.x-k8s.io/vllm-kimi-k2-instruct-w8a8-ebb4b5 created
+2026-04-13T18:55:47.2370151Z service/vllm-kimi-k2-instruct-w8a8-ebb4b5-leader created
+2026-04-13T18:55:47.7127132Z ##[group]Run set -euo pipefail
+2026-04-13T18:55:47.7127504Z [36;1mset -euo pipefail[0m
+2026-04-13T18:55:47.7127741Z [36;1mSIZE="2"[0m
+2026-04-13T18:55:47.7127944Z [36;1mTIMEOUT=1200[0m
+2026-04-13T18:55:47.7128148Z [36;1m[0m
+2026-04-13T18:55:47.7128494Z [36;1mecho "Waiting for all pods to become Running and Ready (timeout ${TIMEOUT}s)..."[0m
+2026-04-13T18:55:47.7128919Z [36;1mSTART_TIME=$(date +%s)[0m
+2026-04-13T18:55:47.7129165Z [36;1mwhile true; do[0m
+2026-04-13T18:55:47.7129424Z [36;1m  ELAPSED=$(( $(date +%s) - START_TIME ))[0m
+2026-04-13T18:55:47.7129739Z [36;1m  if [[ $ELAPSED -ge $TIMEOUT ]]; then[0m
+2026-04-13T18:55:47.7130410Z [36;1m    echo "Timeout reached after ${ELAPSED}s, dumping pod status:"[0m
+2026-04-13T18:55:47.7130809Z [36;1m    kubectl get pods -n "$NAMESPACE"[0m
+2026-04-13T18:55:47.7131153Z [36;1m    kubectl describe pod "$LEADER_POD" -n "$NAMESPACE"[0m
+2026-04-13T18:55:47.7131480Z [36;1m    exit 1[0m
+2026-04-13T18:55:47.7131707Z [36;1m  fi[0m
+2026-04-13T18:55:47.7131886Z [36;1m[0m
+2026-04-13T18:55:47.7132080Z [36;1m  ALL_READY=true[0m
+2026-04-13T18:55:47.7132314Z [36;1m  for ((i=1; i<SIZE; i++)); do[0m
+2026-04-13T18:55:47.7132575Z [36;1m    POD="${LWS_NAME}-0-${i}"[0m
+2026-04-13T18:55:47.7133086Z [36;1m    PHASE=$(kubectl get pod "$POD" -n "$NAMESPACE" -o jsonpath='{.status.phase}' 2>/dev/null || echo "NotFound")[0m
+2026-04-13T18:55:47.7133834Z [36;1m    READY=$(kubectl get pod "$POD" -n "$NAMESPACE" -o jsonpath='{.status.containerStatuses[*].ready}' 2>/dev/null)[0m
+2026-04-13T18:55:47.7134497Z [36;1m    echo "Worker [$POD] phase=$PHASE ready=$READY"[0m
+2026-04-13T18:55:47.7134876Z [36;1m    if [[ "$PHASE" != "Running" || "$READY" != "true" ]]; then[0m
+2026-04-13T18:55:47.7135278Z [36;1m      ALL_READY=false[0m
+2026-04-13T18:55:47.7135509Z [36;1m      break[0m
+2026-04-13T18:55:47.7135717Z [36;1m    fi[0m
+2026-04-13T18:55:47.7135911Z [36;1m  done[0m
+2026-04-13T18:55:47.7136088Z [36;1m[0m
+2026-04-13T18:55:47.7136567Z [36;1m  LEADER_PHASE=$(kubectl get pod "$LEADER_POD" -n "$NAMESPACE" -o jsonpath='{.status.phase}' 2>/dev/null || echo "NotFound")[0m
+2026-04-13T18:55:47.7137601Z [36;1m  LEADER_READY=$(kubectl get pod "$LEADER_POD" -n "$NAMESPACE" -o jsonpath='{.status.containerStatuses[*].ready}' 2>/dev/null)[0m
+2026-04-13T18:55:47.7138257Z [36;1m  echo "Leader [$LEADER_POD] phase=$LEADER_PHASE ready=$LEADER_READY"[0m
+2026-04-13T18:55:47.7138742Z [36;1m  if [[ "$LEADER_PHASE" != "Running" || "$LEADER_READY" != "true" ]]; then[0m
+2026-04-13T18:55:47.7139111Z [36;1m    ALL_READY=false[0m
+2026-04-13T18:55:47.7139334Z [36;1m  fi[0m
+2026-04-13T18:55:47.7139521Z [36;1m[0m
+2026-04-13T18:55:47.7139730Z [36;1m  if [[ "$ALL_READY" == "true" ]]; then[0m
+2026-04-13T18:55:47.7140211Z [36;1m    echo "All pods are Running and Ready."[0m
+2026-04-13T18:55:47.7140504Z [36;1m    break[0m
+2026-04-13T18:55:47.7140714Z [36;1m  fi[0m
+2026-04-13T18:55:47.7140897Z [36;1m  sleep 2[0m
+2026-04-13T18:55:47.7141108Z [36;1mdone[0m
+2026-04-13T18:55:47.7141500Z shell: bash -el {0}
+2026-04-13T18:55:47.7141711Z env:
+2026-04-13T18:55:47.7141940Z   LWS_NAME: vllm-kimi-k2-instruct-w8a8-ebb4b5
+2026-04-13T18:55:47.7142270Z   LEADER_POD: vllm-kimi-k2-instruct-w8a8-ebb4b5-0
+2026-04-13T18:55:47.7142695Z   LOG_PREFIX: /root/.cache/ascend-logs/vllm-kimi-k2-instruct-w8a8-ebb4b5
+2026-04-13T18:55:47.7143103Z   FAIL_TAG: FAIL_TAG_Kimi-K2-Instruct-W8A8.yaml
+2026-04-13T18:55:47.7143382Z ##[endgroup]
+2026-04-13T18:55:47.7235684Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T18:55:47.7236790Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T18:55:47.7237137Z ##[endgroup]
+2026-04-13T18:55:48.1538779Z (node:889) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T18:55:48.1539931Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T18:55:48.7421853Z Waiting for all pods to become Running and Ready (timeout 1200s)...
+2026-04-13T18:55:48.8679011Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:55:49.0063233Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:55:51.1345214Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:55:51.2513188Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:55:53.3778329Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:55:53.4973382Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:55:55.7170397Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:55:55.8439577Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:55:57.9723851Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:55:58.0915096Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:56:00.2221284Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:56:00.3365160Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:56:02.4566293Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:56:02.5774932Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:56:04.6953985Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:56:04.8249762Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:56:06.9720339Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:56:07.1164796Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:56:09.2556071Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:56:09.3862346Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:56:11.5188642Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:56:11.6574231Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:56:13.8030342Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:56:13.9250976Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:56:16.0520183Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:56:16.1843312Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:56:18.3313801Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:56:18.4665935Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:56:20.6080120Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:56:20.7349560Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:56:22.8753381Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:56:23.0076438Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:56:25.1377340Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:56:25.2622504Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:56:27.3927965Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:56:27.5130910Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:56:29.6406131Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:56:29.7647455Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:56:31.8969772Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:56:32.0306799Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:56:34.1762331Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:56:34.2981511Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:56:36.4293406Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:56:36.5579288Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:56:38.6918848Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:56:38.8127274Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:56:40.9474513Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:56:41.0755264Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:56:43.2047760Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:56:43.3256052Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:56:45.4441700Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:56:45.5800246Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:56:47.7097765Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:56:47.8376942Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:56:49.9548427Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:56:50.0927570Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:56:52.2241280Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:56:52.3446437Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:56:54.4765312Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:56:54.5994674Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:56:56.7208762Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:56:56.8436639Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:56:58.9751427Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:56:59.1174110Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:57:01.2464949Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:57:01.3643322Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:57:03.4811317Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:57:03.6085765Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:57:05.7277380Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:57:05.8410627Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:57:07.9602573Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:57:08.0791622Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:57:10.2003932Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:57:10.3234771Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:57:12.4458091Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:57:12.5675504Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:57:14.6898142Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:57:14.8099158Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:57:16.9343223Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:57:17.0567506Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:57:19.1776127Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:57:19.2995663Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:57:21.4230996Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:57:21.5388772Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:57:23.6614339Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:57:23.7791546Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:57:25.9007474Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:57:26.0170088Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:57:28.1408784Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:57:28.2707023Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:57:30.4045159Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:57:30.5364353Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:57:32.6600141Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:57:32.7810307Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:57:34.9018813Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:57:35.0277736Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:57:37.1542021Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:57:37.2745851Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:57:39.3991728Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:57:39.5146623Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:57:41.6362015Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:57:41.7636355Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:57:43.8939349Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:57:44.0093721Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:57:46.1333604Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:57:46.2573351Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:57:48.3850728Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:57:48.4956100Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:57:50.6098084Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:57:50.7228103Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:57:52.8380318Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:57:52.9488915Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:57:55.0703566Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:57:55.1824130Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:57:57.3197683Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:57:57.4340127Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:57:59.5485708Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:57:59.6688852Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:58:01.7841931Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:58:01.8957974Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:58:04.0285959Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:58:04.1437048Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:58:06.2732275Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:58:06.3898659Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:58:08.5190383Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:58:08.6362943Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:58:10.7809646Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:58:10.9019469Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:58:13.0233411Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:58:13.1335608Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:58:15.2491632Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:58:15.3686672Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:58:17.4930402Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:58:17.6109687Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:58:19.7333896Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:58:19.8451626Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:58:21.9599501Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:58:22.0813002Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:58:24.1927760Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:58:24.3084740Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:58:26.4226176Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:58:26.5370865Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:58:28.6492648Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:58:28.7693049Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:58:30.9026509Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:58:31.0177841Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:58:33.1346819Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:58:33.2511826Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:58:35.3904289Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:58:35.5058384Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:58:37.6262831Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:58:37.7515907Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:58:39.8755326Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:58:40.0082894Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:58:42.1352491Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:58:42.2584050Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:58:44.3828145Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:58:44.4992540Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:58:46.6249682Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:58:46.7387641Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:58:48.8688378Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:58:48.9807991Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:58:51.1487350Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:58:51.2723739Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:58:53.4077129Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:58:53.5217733Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:58:55.6447097Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:58:55.7570165Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:58:57.8735258Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:58:57.9892369Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:59:00.4038440Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:59:00.5035455Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:59:02.6347882Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:59:02.7526002Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:59:04.8815331Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:59:04.9947218Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:59:07.1096077Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:59:07.2208145Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:59:09.3391537Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:59:09.4654805Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:59:11.5837404Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:59:11.6988889Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:59:13.8282254Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:59:13.9457801Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:59:16.0670600Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:59:16.1818509Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:59:18.2998132Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:59:18.4204683Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:59:20.5374029Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:59:20.6469767Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:59:22.7842826Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:59:22.8939491Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:59:25.0176928Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:59:25.1519413Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:59:27.2794434Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:59:27.3901240Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:59:29.5191228Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:59:29.6366396Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:59:31.7681285Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:59:31.8856550Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:59:34.0095651Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:59:34.1397760Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:59:36.2823097Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:59:36.4118276Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:59:38.5368290Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:59:38.6693543Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:59:40.7897626Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:59:40.9220930Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:59:43.0478292Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:59:43.1790349Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:59:45.3266428Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:59:45.4503767Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:59:47.5877411Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:59:47.6980101Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:59:49.8237135Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:59:49.9464417Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:59:52.0742859Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:59:52.1969777Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:59:54.3208497Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:59:54.4367363Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:59:56.5524805Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:59:56.6698494Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T18:59:58.7834956Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T18:59:58.9209894Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:00:01.0403856Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:00:01.1569952Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:00:03.3019925Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:00:03.4223413Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:00:05.5451193Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:00:05.6765091Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:00:07.8065039Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:00:07.9232720Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:00:10.0833809Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:00:10.2008366Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:00:12.3381518Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:00:12.4749665Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:00:14.5931504Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:00:14.7068979Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:00:16.8385827Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:00:16.9495067Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:00:19.0703052Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:00:19.1806321Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:00:21.3078418Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:00:21.4412463Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:00:23.5824938Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:00:23.7110633Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:00:25.8411767Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:00:25.9695474Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:00:28.0947848Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:00:28.2161684Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:00:30.3547991Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:00:30.4712538Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:00:32.5888208Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:00:32.7021208Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:00:34.8296388Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:00:34.9437673Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:00:37.0668848Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:00:37.1832223Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:00:39.3093249Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:00:39.4211138Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:00:41.5465172Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:00:41.6752221Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:00:43.7932928Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:00:43.9184341Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:00:46.0437481Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:00:46.1722530Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:00:48.2953881Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:00:48.4214283Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:00:50.5530274Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:00:50.6631445Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:00:52.7801663Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:00:52.8952578Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:00:55.0475848Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:00:55.1692900Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:00:57.3065601Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:00:57.4370431Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:00:59.5758167Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:00:59.6857545Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:01:01.8304658Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:01:01.9439747Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:01:04.0687862Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:01:04.1884401Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:01:06.3101394Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:01:06.4252742Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:01:08.5450460Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:01:08.6585492Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:01:10.7747869Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:01:10.9011675Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:01:13.0209790Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:01:13.1420743Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:01:15.2596126Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:01:15.3733548Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:01:17.4894264Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:01:17.6049203Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:01:19.7272325Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:01:19.8403768Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:01:21.9531427Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:01:22.0719688Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:01:24.1901406Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:01:24.3046856Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:01:26.4371738Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:01:26.5512238Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:01:28.6824084Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:01:28.8048860Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:01:30.9346773Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:01:31.0507772Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:01:33.1822337Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:01:33.3014409Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:01:35.4353378Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:01:35.5576416Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:01:37.6803326Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:01:37.8113796Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:01:39.9527375Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:01:40.0824286Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:01:42.2079658Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:01:42.3277010Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:01:44.4716350Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:01:44.5851629Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:01:46.7196719Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:01:46.8402818Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:01:48.9802465Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:01:49.1002989Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:01:51.2343339Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:01:51.3440979Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:01:53.4623363Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:01:53.5814415Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:01:55.7112610Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:01:55.8271606Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:01:57.9502160Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:01:58.0800516Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:02:00.4117274Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:02:00.9480504Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:02:03.1699965Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:02:03.3597263Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:02:05.5402563Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:02:05.7141503Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:02:07.8894783Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:02:08.0410287Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:02:10.2392574Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:02:10.4384316Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:02:12.5975209Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:02:12.8333277Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:02:14.9823440Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:02:15.3232844Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:02:17.4724998Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:02:17.8362515Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:02:20.0039911Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:02:20.1575174Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:02:22.3415134Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:02:22.7186673Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:02:24.8784034Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:02:25.0274264Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:02:27.1871880Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:02:27.3712669Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:02:29.5353048Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:02:29.6748144Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:02:31.8578491Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:02:32.0633331Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:02:34.2993545Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:02:34.4541153Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:02:36.6120698Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:02:36.9151179Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:02:39.0640884Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:02:39.2275065Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:02:41.3851355Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:02:41.7180734Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:02:43.8827565Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:02:44.2245479Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:02:46.3842544Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:02:46.5400815Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:02:48.7049942Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:02:48.8588564Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:02:51.0160233Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:02:51.1860422Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:02:53.3449069Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:02:53.6329222Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:02:55.7784039Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:02:55.9047242Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:02:58.0718281Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:02:58.2266538Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:03:00.3729358Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:03:00.8013123Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:03:02.9463062Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:03:03.0824240Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:03:05.2600855Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:03:05.4144833Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:03:07.5684097Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:03:07.7553710Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:03:09.8940545Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:03:10.0523775Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:03:12.7358008Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:03:12.8978108Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:03:15.0424564Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:03:15.1958642Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:03:17.3344022Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:03:17.8988976Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:03:20.2287563Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:03:20.3920148Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:03:22.5731968Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:03:22.7515478Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:03:24.9080556Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:03:25.0725448Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:03:27.2244980Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:03:27.3841574Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:03:29.5391995Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:03:29.6900687Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:03:31.8455359Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:03:31.9905528Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:03:34.1349549Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:03:34.2789271Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:03:36.4765964Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:03:36.6368895Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:03:38.7773491Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:03:38.8970707Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:03:41.0347383Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:03:41.1700067Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:03:43.3094308Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:03:43.4303554Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:03:45.5658290Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:03:45.6861326Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:03:47.8276045Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:03:47.9467600Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:03:50.0780541Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:03:50.2095946Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:03:52.3500291Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:03:52.4994477Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:03:54.6706402Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:03:54.8311022Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:03:56.9806835Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:03:57.0984178Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:03:59.2152288Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:03:59.3353986Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:04:01.4552765Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:04:01.5731358Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:04:03.6928552Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:04:03.8052585Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:04:05.9394095Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:04:06.0532199Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:04:08.1627941Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:04:08.2847525Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:04:10.4180819Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:04:10.5363236Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:04:12.6606030Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:04:12.7759294Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:04:14.9089706Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:04:15.0309223Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:04:17.1453553Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:04:17.2603890Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:04:19.3752014Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:04:19.4833406Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:04:21.6247365Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:04:21.7372978Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:04:23.8662872Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:04:23.9793623Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:04:26.1137219Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:04:26.2317391Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:04:28.3473222Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:04:28.4700757Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:04:30.5928939Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:04:30.7194895Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:04:32.8548342Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:04:32.9895668Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:04:35.1244558Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:04:35.2675078Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:04:37.3903996Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:04:37.5205839Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:04:39.6523773Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:04:39.7922610Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:04:41.9808476Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:04:42.1011147Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:04:44.2236556Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:04:44.3454464Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=
+2026-04-13T19:04:46.5028082Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:04:46.6362387Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Pending ready=false
+2026-04-13T19:04:48.7693801Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:04:48.9016665Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:04:51.0221103Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:04:51.1518081Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:04:53.2798032Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:04:53.4067213Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:04:55.5398080Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:04:55.6654946Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:04:57.7809730Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:04:57.9132034Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:05:00.0366099Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:05:00.1630330Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:05:02.3182247Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:05:02.4422622Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:05:04.5871490Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:05:04.7455819Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:05:06.8853141Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:05:07.0059522Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:05:09.1419785Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:05:09.2704024Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:05:11.4113261Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:05:11.5587743Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:05:13.6789605Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:05:13.7925280Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:05:15.9175718Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:05:16.0416218Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:05:18.1620442Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:05:18.3171496Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:05:20.4548436Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:05:20.5835714Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:05:22.7054185Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:05:22.8272702Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:05:24.9729802Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:05:25.0971224Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:05:27.2271988Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:05:27.3419101Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:05:29.4775413Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:05:29.6019370Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:05:31.7258665Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:05:31.8436269Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:05:33.9696965Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:05:34.0944841Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:05:36.2146723Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:05:36.3298859Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:05:38.4546890Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:05:38.5870350Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:05:40.7219191Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:05:40.8453244Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:05:42.9714444Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:05:43.1043898Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:05:45.2297465Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:05:45.3529334Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:05:47.4882665Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:05:47.6031860Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:05:49.7276381Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:05:49.8502921Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:05:51.9733316Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:05:52.1015481Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:05:54.2296246Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:05:54.3435030Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:05:56.4635034Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:05:56.5875603Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:05:58.7160214Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:05:58.8356649Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:06:00.9777093Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:06:01.1031453Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:06:03.2308833Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:06:03.3676234Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:06:05.4892349Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:06:05.6065299Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:06:07.7364755Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:06:07.8654500Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:06:09.9972417Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:06:10.1244256Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:06:12.2827462Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:06:12.4215207Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:06:14.5430512Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:06:14.6606290Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:06:16.7905211Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:06:16.9116526Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:06:19.0286077Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:06:19.1494760Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:06:21.2749791Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:06:21.3902225Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:06:23.5126757Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:06:23.6276604Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:06:25.7451550Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:06:25.8856230Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:06:28.0247499Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:06:28.1598967Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:06:30.2935366Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:06:30.4217759Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:06:32.5522082Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:06:32.6826399Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:06:34.8041570Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:06:35.0210547Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:06:37.1450610Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:06:37.2632938Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:06:39.3892746Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:06:39.5155709Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:06:41.6489769Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:06:41.7747615Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:06:43.9040069Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:06:44.0307159Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:06:46.1721109Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:06:46.2923297Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:06:48.4166807Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:06:48.5451642Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:06:50.6739062Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:06:50.8064982Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:06:52.9303050Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:06:53.0749403Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:06:55.2055850Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:06:55.3334973Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:06:57.4527235Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:06:57.5936945Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:06:59.7265209Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:06:59.8572754Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:07:01.9995689Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:07:02.1292082Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:07:04.2604748Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:07:04.3888101Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:07:06.5111670Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:07:06.6559103Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:07:08.7837965Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:07:08.9087488Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:07:11.0419743Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:07:11.1673431Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:07:13.2950536Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:07:13.4236725Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:07:15.5458591Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:07:15.6745594Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:07:17.8006405Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:07:17.9221944Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:07:20.0531850Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:07:20.1889884Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:07:22.3191741Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:07:22.4439791Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:07:24.5886230Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:07:24.7272397Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:07:26.8717770Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:07:26.9876038Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:07:29.1226064Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:07:29.2656699Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:07:31.3970892Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:07:31.5175628Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:07:33.6340608Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:07:33.7604199Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:07:35.8895791Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:07:36.0162538Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:07:38.1401732Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:07:38.2806424Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:07:40.4155302Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:07:40.5527061Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:07:42.6808028Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:07:42.8105574Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:07:44.9487996Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:07:45.0907738Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:07:47.2218729Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:07:47.3659821Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:07:49.4963099Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:07:49.6303319Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:07:51.7588110Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:07:51.8821212Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:07:53.9973432Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:07:54.1196045Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:07:56.2383736Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:07:56.3614606Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:07:58.4899398Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:07:58.6188923Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:08:00.7377166Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:08:00.8633808Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:08:02.9832487Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:08:03.1002502Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:08:05.2245712Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:08:05.3464376Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:08:07.4922361Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:08:07.6197806Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:08:09.7453158Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:08:09.8761018Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:08:12.0050830Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:08:12.1271579Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:08:14.2557119Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:08:14.3851727Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:08:16.5040310Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:08:16.6293065Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:08:18.7561048Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:08:18.8791872Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:08:20.9983228Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:08:21.1135906Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:08:23.2567997Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:08:23.3876877Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:08:25.5376620Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:08:25.6761822Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:08:27.8063742Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:08:27.9397704Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:08:30.0812351Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:08:30.2056990Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:08:32.3462585Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:08:32.4817540Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:08:34.6187053Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:08:34.7441788Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:08:36.8892360Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:08:37.0092578Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:08:39.1368662Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:08:39.2782994Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:08:41.4192043Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:08:41.5460740Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:08:43.6795070Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:08:43.7965301Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:08:45.9216812Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:08:46.0418564Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:08:48.1751906Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:08:48.2964689Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:08:50.4441224Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:08:50.5712724Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:08:52.7007173Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:08:52.8151310Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:08:54.9432083Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:08:55.0842737Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:08:57.2486260Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:08:57.3831994Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:08:59.5260680Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:08:59.6498018Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:09:01.7772046Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:09:01.9019169Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:09:04.0386025Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:09:04.1492510Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:09:06.2889235Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:09:06.4095928Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:09:08.5472926Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:09:08.6900234Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:09:10.8177024Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:09:10.9374224Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:09:13.0632415Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:09:13.1844089Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:09:15.3209578Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:09:15.4431668Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:09:17.5792881Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:09:17.6991328Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:09:19.8355046Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:09:19.9550860Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:09:22.0861695Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:09:22.2183221Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:09:24.3575734Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:09:24.4702563Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:09:26.6111112Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:09:26.7330765Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:09:28.8629280Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:09:28.9965679Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:09:31.1259698Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:09:31.2416561Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:09:33.3728582Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:09:33.4998932Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:09:35.6448117Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:09:35.7824653Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:09:37.9333218Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:09:38.0637636Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:09:40.2029128Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:09:40.3380723Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:09:42.4832819Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:09:42.6052531Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:09:44.7430051Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:09:44.8677683Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:09:46.9822637Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:09:47.1052198Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:09:49.2265286Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:09:49.3676065Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:09:51.4946789Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:09:51.6183907Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:09:53.7416814Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:09:53.8626208Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:09:55.9899295Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:09:56.1119456Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:09:58.2510695Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:09:58.3804001Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:10:00.5136547Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:10:00.6289470Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:10:02.7666041Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:10:02.8918604Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:10:05.0291167Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:10:05.1509213Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:10:07.2823912Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:10:07.4302684Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:10:09.5583608Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:10:09.6797684Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:10:11.8032720Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:10:11.9307735Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:10:14.0641859Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:10:14.1891526Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:10:16.3085225Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:10:16.4270159Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:10:18.5450174Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:10:18.6636719Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:10:20.7781606Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:10:20.8987483Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:10:23.0246876Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:10:23.1419054Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:10:25.2759133Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:10:25.3971720Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:10:27.5190333Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:10:27.6518396Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:10:29.7747118Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:10:29.9008886Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:10:32.0423651Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:10:32.1696225Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:10:34.3029447Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:10:34.4197838Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:10:36.5596871Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:10:36.6755454Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:10:38.7962857Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:10:38.9185725Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:10:41.0390801Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:10:41.1526345Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:10:43.2768595Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:10:43.3985155Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:10:45.5153601Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:10:45.6356439Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:10:47.7623093Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:10:47.8954595Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:10:50.0196523Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:10:50.1428842Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:10:52.2797019Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:10:52.4082974Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:10:54.5539222Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:10:54.6727555Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:10:56.8147913Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:10:56.9320142Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:10:59.0559190Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:10:59.1817772Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:11:01.3163110Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:11:01.4392038Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:11:03.5586171Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:11:03.6837034Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:11:05.8073409Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:11:05.9310532Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:11:08.0565640Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:11:08.1783027Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:11:10.3148326Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:11:10.4519441Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:11:12.5850657Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:11:12.7077432Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:11:14.8344713Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:11:14.9509515Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:11:17.0729724Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:11:17.1887469Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:11:19.3110029Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:11:19.4384976Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:11:21.5668297Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:11:21.6860159Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:11:23.8293313Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:11:23.9527611Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:11:26.0882574Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:11:26.2235254Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:11:28.3577095Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:11:28.4814237Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:11:30.6338248Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:11:30.7522675Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:11:32.8746363Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:11:32.9948561Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:11:35.1251234Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:11:35.2394939Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:11:37.3853896Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:11:37.5022815Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:11:39.6234605Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:11:39.7386580Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:11:41.8649786Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:11:41.9937132Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:11:44.1240070Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:11:44.2548336Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:11:46.3865772Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:11:46.5003453Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:11:48.6290794Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:11:48.7525857Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:11:50.8783384Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:11:50.9988717Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:11:53.1253853Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:11:53.2491112Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:11:55.3629457Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:11:55.4876496Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:11:57.6209654Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:11:57.7441407Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:11:59.8712591Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:11:59.9918049Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:12:02.1272280Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:12:02.2513364Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:12:04.3894507Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:12:04.5191393Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:12:06.6612647Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:12:06.7796992Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:12:08.9035544Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:12:09.0180668Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:12:11.1512079Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:12:11.2860141Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:12:13.4129315Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:12:13.5321746Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:12:15.6746126Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:12:15.7914086Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:12:17.9129760Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:12:18.0427625Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:12:20.1646215Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:12:20.2843366Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:12:22.4210300Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:12:22.5404640Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:12:24.6665402Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:12:24.7861449Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:12:26.9216499Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:12:27.0503712Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:12:29.1761078Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:12:29.3264141Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:12:31.4714706Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:12:31.5896303Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:12:33.7186454Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:12:33.8396877Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:12:35.9642810Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:12:36.0945153Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:12:38.2347902Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:12:38.3674653Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:12:40.5215833Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:12:40.6475467Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:12:42.7741930Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:12:42.8891227Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:12:45.0292280Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:12:45.1656310Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:12:47.2887757Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:12:47.4132296Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:12:49.5380623Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:12:49.6778947Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:12:51.8129298Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:12:51.9329063Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:12:54.0740797Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:12:54.1945895Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:12:56.3242003Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:12:56.4338261Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:12:58.5637755Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:12:58.6833658Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:13:00.8247472Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:13:00.9562677Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:13:03.0869011Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:13:03.2088816Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:13:05.3395864Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:13:05.4802943Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:13:07.6194569Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:13:07.7442114Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:13:09.8732303Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:13:09.9899486Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:13:12.1005221Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:13:12.2179727Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:13:14.3577851Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:13:14.4943340Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:13:16.6301555Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:13:16.7511586Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:13:18.8821894Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:13:19.0134649Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:13:21.1457188Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:13:21.2795226Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:13:23.4105489Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:13:23.5287784Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:13:25.6605013Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:13:25.7854668Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:13:27.9166302Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:13:28.0605102Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:13:30.2000130Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:13:30.3368199Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:13:32.4630740Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:13:32.6273161Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:13:34.7529619Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:13:34.8751742Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:13:36.9925556Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:13:37.1120054Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:13:39.2316415Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:13:39.3674877Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:13:41.4867370Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:13:41.6012148Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:13:43.7333543Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:13:43.8581642Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:13:45.9990395Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:13:46.1189091Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:13:48.2492938Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:13:48.3738316Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:13:50.5031461Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:13:50.6227607Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:13:52.7485372Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:13:52.8611776Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:13:54.9997247Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:13:55.1291453Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:13:57.2497562Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:13:57.3767378Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:13:59.5048059Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:13:59.6359130Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:14:01.7766298Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:14:01.8932383Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:14:04.0257145Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:14:04.1462042Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:14:06.2724567Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:14:06.3976281Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:14:08.5190588Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:14:08.6379322Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:14:10.7667987Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:14:10.8940847Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:14:13.0205731Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:14:13.1350552Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:14:15.2783464Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:14:15.4061301Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:14:17.5373939Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:14:17.6527567Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:14:19.7809823Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:14:19.8995989Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:14:22.0179138Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:14:22.1559684Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:14:24.2845745Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:14:24.4201191Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:14:26.5502364Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:14:26.6780461Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:14:28.8102465Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:14:28.9324951Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:14:31.0669744Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:14:31.1868978Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:14:33.3117778Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:14:33.4356681Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:14:35.5760336Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:14:35.6861701Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:14:37.8344280Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:14:37.9584432Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:14:40.0848437Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:14:40.2087763Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:14:42.3421054Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:14:42.4671540Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:14:44.5927767Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:14:44.7100717Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:14:46.8363532Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:14:46.9592578Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:14:49.0885657Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:14:49.2028474Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:14:51.3425526Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:14:51.4627308Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:14:53.5963156Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:14:53.7206344Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:14:55.8555396Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:14:55.9723742Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:14:58.1172365Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:14:58.2398430Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:15:00.3699289Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:15:00.4978119Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:15:02.6530564Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:15:02.7856274Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:15:04.9135104Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:15:05.0325506Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:15:07.1660657Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:15:07.2981823Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:15:09.4250416Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:15:09.5438599Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:15:11.6758699Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:15:11.8087301Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:15:14.0440216Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:15:14.1769155Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:15:16.3009284Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:15:16.4149613Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:15:18.5430859Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:15:18.6607309Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:15:20.7873291Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:15:20.9111047Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:15:23.0508807Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:15:23.1734280Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:15:25.3089389Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:15:25.4299147Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:15:27.5609387Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:15:27.6979153Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:15:29.8776491Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:15:30.0011399Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:15:32.1248132Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:15:32.2611200Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:15:34.3865985Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:15:34.5121860Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:15:36.6560994Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:15:36.7880285Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:15:38.9097424Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:15:39.0460530Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:15:41.1883804Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:15:41.3130528Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:15:43.4379700Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:15:43.5662831Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:15:45.6991376Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:15:45.8516460Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:15:47.9800339Z Worker [vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1] phase=Pending ready=
+2026-04-13T19:15:48.0905912Z Leader [vllm-kimi-k2-instruct-w8a8-ebb4b5-0] phase=Running ready=true
+2026-04-13T19:15:50.0931793Z Timeout reached after 1202s, dumping pod status:
+2026-04-13T19:15:50.1635129Z NAME                                             READY   STATUS    RESTARTS   AGE
+2026-04-13T19:15:50.1635691Z linux-aarch64-a3-0-ggwx6-runner-5n2r7            1/1     Running   0          100m
+2026-04-13T19:15:50.1636309Z linux-aarch64-a3-0-ggwx6-runner-5n2r7-workflow   1/1     Running   0          100m
+2026-04-13T19:15:50.1636903Z linux-aarch64-a3-0-ggwx6-runner-dg5w5            1/1     Running   0          21m
+2026-04-13T19:15:50.1637484Z linux-aarch64-a3-0-ggwx6-runner-dg5w5-workflow   1/1     Running   0          20m
+2026-04-13T19:15:50.1638024Z linux-aarch64-a3-0-ggwx6-runner-frwcz            1/1     Running   0          10m
+2026-04-13T19:15:50.1638583Z linux-aarch64-a3-0-ggwx6-runner-frwcz-workflow   1/1     Running   0          9m43s
+2026-04-13T19:15:50.1639212Z linux-aarch64-a3-0-ggwx6-runner-v84vn            1/1     Running   0          33m
+2026-04-13T19:15:50.1639754Z linux-aarch64-a3-0-ggwx6-runner-v84vn-workflow   1/1     Running   0          32m
+2026-04-13T19:15:50.1640429Z linux-aarch64-a3-4-92cdc-runner-8lz7c            1/1     Running   0          148m
+2026-04-13T19:15:50.1640968Z linux-aarch64-a3-4-92cdc-runner-8lz7c-workflow   1/1     Running   0          148m
+2026-04-13T19:15:50.1641511Z linux-aarch64-a3-4-92cdc-runner-sxxz6            1/1     Running   0          148m
+2026-04-13T19:15:50.1642064Z linux-aarch64-a3-4-92cdc-runner-sxxz6-workflow   1/1     Running   0          148m
+2026-04-13T19:15:50.1642899Z test-server-0                                    1/1     Running   0          6h57m
+2026-04-13T19:15:50.1643322Z test-server-0-1                                  1/1     Running   0          6h56m
+2026-04-13T19:15:50.1643852Z vllm-deepseek-r1-w8a8-longseq-bc092a-0           1/1     Running   0          99m
+2026-04-13T19:15:50.1644391Z vllm-deepseek-r1-w8a8-longseq-bc092a-0-1         1/1     Running   0          99m
+2026-04-13T19:15:50.1644927Z vllm-deepseek-v3-1-bf16-ada586-0                 0/1     Pending   0          9m13s
+2026-04-13T19:15:50.1645447Z vllm-deepseek-v3-1-bf16-ada586-0-1               0/1     Pending   0          9m13s
+2026-04-13T19:15:50.1645964Z vllm-kimi-k2-instruct-w8a8-ebb4b5-0              1/1     Running   0          20m
+2026-04-13T19:15:50.1646498Z vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1            0/1     Pending   0          20m
+2026-04-13T19:15:50.1647037Z vllm-qwen3-235b-disagg-pd-30858e-0               1/1     Running   0          32m
+2026-04-13T19:15:50.1647551Z vllm-qwen3-235b-disagg-pd-30858e-0-1             1/1     Running   0          32m
+2026-04-13T19:15:50.2736986Z Name:             vllm-kimi-k2-instruct-w8a8-ebb4b5-0
+2026-04-13T19:15:50.2737347Z Namespace:        vllm-project
+2026-04-13T19:15:50.2737588Z Priority:         0
+2026-04-13T19:15:50.2737796Z Service Account:  default
+2026-04-13T19:15:50.2738039Z Node:             172.22.5.112/172.22.5.112
+2026-04-13T19:15:50.2738356Z Start Time:       Mon, 13 Apr 2026 19:04:45 +0000
+2026-04-13T19:15:50.2738691Z Labels:           apps.kubernetes.io/pod-index=0
+2026-04-13T19:15:50.2739194Z                   controller-revision-hash=vllm-kimi-k2-instruct-w8a8-ebb4b5-74f5bbb456
+2026-04-13T19:15:50.2739670Z                   leaderworkerset.sigs.k8s.io/group-index=0
+2026-04-13T19:15:50.2740274Z                   leaderworkerset.sigs.k8s.io/group-key=92a5bb2fac45482b8207be03a9a08a96b6d6c2b7
+2026-04-13T19:15:50.2741056Z                   leaderworkerset.sigs.k8s.io/name=vllm-kimi-k2-instruct-w8a8-ebb4b5
+2026-04-13T19:15:50.2741575Z                   leaderworkerset.sigs.k8s.io/template-revision-hash=7977b8c4f5
+2026-04-13T19:15:50.2742005Z                   leaderworkerset.sigs.k8s.io/worker-index=0
+2026-04-13T19:15:50.2742307Z                   role=leader
+2026-04-13T19:15:50.2742731Z                   statefulset.kubernetes.io/pod-name=vllm-kimi-k2-instruct-w8a8-ebb4b5-0
+2026-04-13T19:15:50.2743254Z Annotations:      cce.kubectl.kubernetes.io/ascend-1980-configuration:
+2026-04-13T19:15:50.2743971Z                     {"pod_name":"vllm-kimi-k2-instruct-w8a8-ebb4b5-0","server_id":"172.22.5.112","devices":[{"device_id":"0","device_ip":"40.130.137.25","supe...
+2026-04-13T19:15:50.2744601Z                   huawei.com/AscendReal:
+2026-04-13T19:15:50.2745337Z                     Ascend910-9,Ascend910-1,Ascend910-4,Ascend910-2,Ascend910-15,Ascend910-11,Ascend910-7,Ascend910-13,Ascend910-14,Ascend910-8,Ascend910-5,As...
+2026-04-13T19:15:50.2746077Z                   huawei.com/kltDev:
+2026-04-13T19:15:50.2746805Z                     Ascend910-9,Ascend910-1,Ascend910-4,Ascend910-2,Ascend910-15,Ascend910-11,Ascend910-7,Ascend910-13,Ascend910-14,Ascend910-8,Ascend910-5,As...
+2026-04-13T19:15:50.2747559Z                   leaderworkerset.sigs.k8s.io/size: 2
+2026-04-13T19:15:50.2747889Z                   localdns.cce.io/servers: ["169.254.20.10"]
+2026-04-13T19:15:50.2748256Z                   node-local-dns-webhook.k8s.io/status: injected
+2026-04-13T19:15:50.2748574Z Status:           Running
+2026-04-13T19:15:50.2748858Z IP:               10.0.0.188
+2026-04-13T19:15:50.2749079Z IPs:
+2026-04-13T19:15:50.2749256Z   IP:           10.0.0.188
+2026-04-13T19:15:50.2749562Z Controlled By:  StatefulSet/vllm-kimi-k2-instruct-w8a8-ebb4b5
+2026-04-13T19:15:50.2750028Z Containers:
+2026-04-13T19:15:50.2750228Z   vllm-leader:
+2026-04-13T19:15:50.2750659Z     Container ID:  docker://243e0c89f1dd3dee3d2b37ea68480a66b590c0585f373b25e02b81601667297f
+2026-04-13T19:15:50.2751400Z     Image:         swr.cn-southwest-2.myhuaweicloud.com/base_image/ascend-ci/vllm-ascend:nightly-ci-releases-v0.18.0-a3
+2026-04-13T19:15:50.2752582Z     Image ID:      docker-pullable://swr.cn-southwest-2.myhuaweicloud.com/base_image/ascend-ci/vllm-ascend@sha256:e126a08c970026569c279e60404e4e5bd516f232b4457d6205089718ab45d5d7
+2026-04-13T19:15:50.2753328Z     Port:          8080/TCP
+2026-04-13T19:15:50.2753563Z     Host Port:     0/TCP
+2026-04-13T19:15:50.2753776Z     Command:
+2026-04-13T19:15:50.2753960Z       sh
+2026-04-13T19:15:50.2754136Z       -c
+2026-04-13T19:15:50.2754333Z       bash /root/.cache/tests/run.sh
+2026-04-13T19:15:50.2754581Z       
+2026-04-13T19:15:50.2754757Z     State:          Running
+2026-04-13T19:15:50.2755018Z       Started:      Mon, 13 Apr 2026 19:04:47 +0000
+2026-04-13T19:15:50.2755301Z     Ready:          True
+2026-04-13T19:15:50.2755509Z     Restart Count:  0
+2026-04-13T19:15:50.2755711Z     Limits:
+2026-04-13T19:15:50.2755909Z       ephemeral-storage:       100Gi
+2026-04-13T19:15:50.2756174Z       huawei.com/ascend-1980:  16
+2026-04-13T19:15:50.2756428Z       memory:                  512Gi
+2026-04-13T19:15:50.2756657Z     Requests:
+2026-04-13T19:15:50.2756854Z       cpu:                     125
+2026-04-13T19:15:50.2757103Z       ephemeral-storage:       100Gi
+2026-04-13T19:15:50.2757353Z       huawei.com/ascend-1980:  16
+2026-04-13T19:15:50.2757596Z       memory:                  512Gi
+2026-04-13T19:15:50.2757832Z     Environment:
+2026-04-13T19:15:50.2758322Z       LWS_LEADER_ADDRESS:      vllm-kimi-k2-instruct-w8a8-ebb4b5-0.vllm-kimi-k2-instruct-w8a8-ebb4b5.vllm-project
+2026-04-13T19:15:50.2758933Z       LWS_GROUP_SIZE:          2
+2026-04-13T19:15:50.2759182Z       LWS_WORKER_INDEX:        0
+2026-04-13T19:15:50.2759470Z       CONFIG_YAML_PATH:        Kimi-K2-Instruct-W8A8.yaml
+2026-04-13T19:15:50.2760047Z       LOG_PREFIX:              /root/.cache/ascend-logs/vllm-kimi-k2-instruct-w8a8-ebb4b5
+2026-04-13T19:15:50.2760461Z       WORKSPACE:               /vllm-workspace
+2026-04-13T19:15:50.2760920Z       FAIL_TAG:                FAIL_TAG_Kimi-K2-Instruct-W8A8.yaml
+2026-04-13T19:15:50.2761260Z       IS_PR_TEST:              false
+2026-04-13T19:15:50.2761513Z       VLLM_VERSION:            v0.18.0
+2026-04-13T19:15:50.2761857Z       VLLM_ASCEND_REF:         f4d6c44acbb76c8ca079d7c360caef7a478fb48f
+2026-04-13T19:15:50.2762365Z       VLLM_ASCEND_REMOTE_URL:  https://github.com/vllm-project/vllm-ascend.git
+2026-04-13T19:15:50.2762950Z       BENCHMARK_JOB_NAME:      multi-node-kimi-k2-instruct-w8a8
+2026-04-13T19:15:50.2763295Z       VLLM_CI_RUNNER:          a3
+2026-04-13T19:15:50.2763637Z       VLLM_ASCEND_VERSION:     f4d6c44acbb76c8ca079d7c360caef7a478fb48f
+2026-04-13T19:15:50.2763968Z     Mounts:
+2026-04-13T19:15:50.2764167Z       /dev/shm from dshm (rw)
+2026-04-13T19:15:50.2764429Z       /root/.cache from shared-volume (rw)
+2026-04-13T19:15:50.2764758Z       /usr/local/Ascend/driver/tools from driver-tools (rw)
+2026-04-13T19:15:50.2765233Z       /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-72wld (ro)
+2026-04-13T19:15:50.2765638Z Conditions:
+2026-04-13T19:15:50.2765825Z   Type                        Status
+2026-04-13T19:15:50.2766095Z   PodReadyToStartContainers   True 
+2026-04-13T19:15:50.2766368Z   Initialized                 True 
+2026-04-13T19:15:50.2766611Z   Ready                       True 
+2026-04-13T19:15:50.2766858Z   ContainersReady             True 
+2026-04-13T19:15:50.2767097Z   PodScheduled                True 
+2026-04-13T19:15:50.2767332Z Volumes:
+2026-04-13T19:15:50.2767501Z   dshm:
+2026-04-13T19:15:50.2767786Z     Type:       EmptyDir (a temporary directory that shares a pod's lifetime)
+2026-04-13T19:15:50.2768150Z     Medium:     Memory
+2026-04-13T19:15:50.2768365Z     SizeLimit:  15Gi
+2026-04-13T19:15:50.2768567Z   shared-volume:
+2026-04-13T19:15:50.2769036Z     Type:       PersistentVolumeClaim (a reference to a PersistentVolumeClaim in the same namespace)
+2026-04-13T19:15:50.2769521Z     ClaimName:  nv-action-vllm-benchmarks-v2
+2026-04-13T19:15:50.2769805Z     ReadOnly:   false
+2026-04-13T19:15:50.2770190Z   driver-tools:
+2026-04-13T19:15:50.2770554Z     Type:          HostPath (bare host directory volume)
+2026-04-13T19:15:50.2770884Z     Path:          /usr/local/Ascend/driver/tools
+2026-04-13T19:15:50.2771168Z     HostPathType:  
+2026-04-13T19:15:50.2771381Z   kube-api-access-72wld:
+2026-04-13T19:15:50.2771763Z     Type:                    Projected (a volume that contains injected data from multiple sources)
+2026-04-13T19:15:50.2772191Z     TokenExpirationSeconds:  3607
+2026-04-13T19:15:50.2772479Z     ConfigMapName:           kube-root-ca.crt
+2026-04-13T19:15:50.2772760Z     Optional:                false
+2026-04-13T19:15:50.2773007Z     DownwardAPI:             true
+2026-04-13T19:15:50.2773256Z QoS Class:                   Burstable
+2026-04-13T19:15:50.2773515Z Node-Selectors:              <none>
+2026-04-13T19:15:50.2773885Z Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+2026-04-13T19:15:50.2774389Z                              node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+2026-04-13T19:15:50.2774753Z Events:
+2026-04-13T19:15:50.2775006Z   Type     Reason                 Age                From               Message
+2026-04-13T19:15:50.2775406Z   ----     ------                 ----               ----               -------
+2026-04-13T19:15:50.2776925Z   Warning  FailedScheduling       20m                default-scheduler  0/13 nodes are available: 11 Insufficient huawei.com/ascend-1980, 2 node(s) had untolerated taint {dedicated: nightly}, 4 Insufficient cpu, 4 Insufficient memory, 5 Insufficient ephemeral-storage. preemption: 0/13 nodes are available: 11 No preemption victims found for incoming pod, 2 Preemption is not helpful for scheduling.
+2026-04-13T19:15:50.2779738Z   Warning  FailedScheduling       13m (x3 over 19m)  default-scheduler  0/13 nodes are available: 11 Insufficient huawei.com/ascend-1980, 2 node(s) had untolerated taint {dedicated: nightly}, 4 Insufficient cpu, 4 Insufficient memory, 5 Insufficient ephemeral-storage. preemption: 0/13 nodes are available: 11 No preemption victims found for incoming pod, 2 Preemption is not helpful for scheduling.
+2026-04-13T19:15:50.2781701Z   Normal   Scheduled              11m                default-scheduler  Successfully assigned vllm-project/vllm-kimi-k2-instruct-w8a8-ebb4b5-0 to 172.22.5.112
+2026-04-13T19:15:50.2782877Z   Normal   Pulling                11m                kubelet            spec.containers{vllm-leader}: Pulling image "swr.cn-southwest-2.myhuaweicloud.com/base_image/ascend-ci/vllm-ascend:nightly-ci-releases-v0.18.0-a3"
+2026-04-13T19:15:50.2784480Z   Normal   Pulled                 11m                kubelet            spec.containers{vllm-leader}: Successfully pulled image "swr.cn-southwest-2.myhuaweicloud.com/base_image/ascend-ci/vllm-ascend:nightly-ci-releases-v0.18.0-a3" in 108ms (108ms including waiting). Image size: 17222394767 bytes.
+2026-04-13T19:15:50.2785785Z   Normal   SuccessfulCreate       11m                kubelet            spec.containers{vllm-leader}: Created container: vllm-leader
+2026-04-13T19:15:50.2786820Z   Normal   SuccessfulMountVolume  11m (x2 over 11m)  kubelet            Successfully mounted volumes for pod "vllm-kimi-k2-instruct-w8a8-ebb4b5-0_vllm-project(c46ca727-d8e9-4c33-906a-9bcb61af8641)"
+2026-04-13T19:15:50.2787822Z   Normal   Started                11m                kubelet            spec.containers{vllm-leader}: Started container vllm-leader
+2026-04-13T19:15:50.3682663Z ##[error]Error: failed to run script step: Error: command terminated with non-zero exit code: command terminated with exit code 1
+2026-04-13T19:15:50.3725769Z ##[error]Process completed with exit code 1.
+2026-04-13T19:15:50.3822692Z ##[error]Executing the custom container implementation failed. Please contact your self hosted runner administrator.
+2026-04-13T19:15:50.4897930Z ##[group]Run set -euo pipefail
+2026-04-13T19:15:50.4898264Z [36;1mset -euo pipefail[0m
+2026-04-13T19:15:50.4898537Z [36;1mmkdir -p /tmp/benchmark_results[0m
+2026-04-13T19:15:50.4899212Z [36;1mecho "Fetching benchmark results from PVC at /root/.cache/benchmark_results/multi-node-kimi-k2-instruct-w8a8..."[0m
+2026-04-13T19:15:50.4900223Z [36;1m# Copy from PVC mounted directory (persists after pod termination)[0m
+2026-04-13T19:15:50.4900732Z [36;1mSRC="/root/.cache/benchmark_results/multi-node-kimi-k2-instruct-w8a8"[0m
+2026-04-13T19:15:50.4901202Z [36;1mif [ -d "$SRC" ] && [ "$(ls -A "$SRC" 2>/dev/null)" ]; then[0m
+2026-04-13T19:15:50.4901548Z [36;1m  cp -r "$SRC"/. /tmp/benchmark_results/[0m
+2026-04-13T19:15:50.4901927Z [36;1m  echo "Benchmark results fetched successfully from PVC:"[0m
+2026-04-13T19:15:50.4902287Z [36;1m  ls -la /tmp/benchmark_results/[0m
+2026-04-13T19:15:50.4902581Z [36;1m  # Clean up PVC contents after copying[0m
+2026-04-13T19:15:50.4902949Z [36;1m  echo "Cleaning up PVC contents at $SRC..."[0m
+2026-04-13T19:15:50.4903252Z [36;1m  rm -rf "${SRC:?}"/*[0m
+2026-04-13T19:15:50.4903540Z [36;1m  echo "PVC contents cleaned up successfully"[0m
+2026-04-13T19:15:50.4903834Z [36;1melse[0m
+2026-04-13T19:15:50.4904116Z [36;1m  echo "Warning: No benchmark results found in PVC at $SRC"[0m
+2026-04-13T19:15:50.4904489Z [36;1m  echo "Directory contents (if exists):"[0m
+2026-04-13T19:15:50.4904858Z [36;1m  ls -la "$SRC" 2>/dev/null || echo "Directory does not exist"[0m
+2026-04-13T19:15:50.4905180Z [36;1mfi[0m
+2026-04-13T19:15:50.4905467Z shell: bash -el {0}
+2026-04-13T19:15:50.4905660Z env:
+2026-04-13T19:15:50.4905893Z   LWS_NAME: vllm-kimi-k2-instruct-w8a8-ebb4b5
+2026-04-13T19:15:50.4906237Z   LEADER_POD: vllm-kimi-k2-instruct-w8a8-ebb4b5-0
+2026-04-13T19:15:50.4906654Z   LOG_PREFIX: /root/.cache/ascend-logs/vllm-kimi-k2-instruct-w8a8-ebb4b5
+2026-04-13T19:15:50.4907066Z   FAIL_TAG: FAIL_TAG_Kimi-K2-Instruct-W8A8.yaml
+2026-04-13T19:15:50.4907357Z ##[endgroup]
+2026-04-13T19:15:50.5060601Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T19:15:50.5061469Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T19:15:50.5061760Z ##[endgroup]
+2026-04-13T19:15:50.9876356Z (node:1076) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T19:15:50.9877373Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T19:15:51.6567838Z Fetching benchmark results from PVC at /root/.cache/benchmark_results/multi-node-kimi-k2-instruct-w8a8...
+2026-04-13T19:15:51.6605918Z Warning: No benchmark results found in PVC at /root/.cache/benchmark_results/multi-node-kimi-k2-instruct-w8a8
+2026-04-13T19:15:51.6606460Z Directory contents (if exists):
+2026-04-13T19:15:51.6633546Z Directory does not exist
+2026-04-13T19:15:52.1611916Z ##[group]Run echo "Current pod status:"
+2026-04-13T19:15:52.1612279Z [36;1mecho "Current pod status:"[0m
+2026-04-13T19:15:52.1612650Z [36;1mkubectl get pods -n "$NAMESPACE" --ignore-not-found=true[0m
+2026-04-13T19:15:52.1613003Z [36;1m[0m
+2026-04-13T19:15:52.1613232Z [36;1mecho "Deleting resources for [$LWS_NAME]..."[0m
+2026-04-13T19:15:52.1613653Z [36;1mkubectl delete -f ./lws.yaml --ignore-not-found=true || true[0m
+2026-04-13T19:15:52.1614004Z [36;1m[0m
+2026-04-13T19:15:52.1614274Z [36;1mecho "Waiting for pods of [$LWS_NAME] to fully terminate..."[0m
+2026-04-13T19:15:52.1614616Z [36;1mTIMEOUT=300[0m
+2026-04-13T19:15:52.1614836Z [36;1mSLEEP_INTERVAL=5[0m
+2026-04-13T19:15:52.1615067Z [36;1mSTART_TIME=$(date +%s)[0m
+2026-04-13T19:15:52.1615316Z [36;1mwhile true; do[0m
+2026-04-13T19:15:52.1615568Z [36;1m  ELAPSED=$(( $(date +%s) - START_TIME ))[0m
+2026-04-13T19:15:52.1615886Z [36;1m  if [[ $ELAPSED -ge $TIMEOUT ]]; then[0m
+2026-04-13T19:15:52.1616375Z [36;1m    echo "Timeout reached ($TIMEOUT seconds) waiting for termination, continuing anyway."[0m
+2026-04-13T19:15:52.1616909Z [36;1m    kubectl get pods -n "$NAMESPACE" | grep "^${LWS_NAME}-" || true[0m
+2026-04-13T19:15:52.1617265Z [36;1m    break[0m
+2026-04-13T19:15:52.1617462Z [36;1m  fi[0m
+2026-04-13T19:15:52.1617867Z [36;1m  PODS_EXIST=$(kubectl get pods -n "$NAMESPACE" -o jsonpath='{.items[*].metadata.name}' 2>/dev/null \[0m
+2026-04-13T19:15:52.1618552Z [36;1m    | tr ' ' '\n' | grep "^${LWS_NAME}-" || true)[0m
+2026-04-13T19:15:52.1618969Z [36;1m  if [[ -z "$PODS_EXIST" ]]; then[0m
+2026-04-13T19:15:52.1619296Z [36;1m    echo "All pods for [$LWS_NAME] have terminated."[0m
+2026-04-13T19:15:52.1619611Z [36;1m    break[0m
+2026-04-13T19:15:52.1619803Z [36;1m  fi[0m
+2026-04-13T19:15:52.1620237Z [36;1m  echo "Waiting for pods to terminate: $PODS_EXIST"[0m
+2026-04-13T19:15:52.1620566Z [36;1m  sleep $SLEEP_INTERVAL[0m
+2026-04-13T19:15:52.1620803Z [36;1mdone[0m
+2026-04-13T19:15:52.1621105Z shell: bash -el {0}
+2026-04-13T19:15:52.1621314Z env:
+2026-04-13T19:15:52.1621535Z   LWS_NAME: vllm-kimi-k2-instruct-w8a8-ebb4b5
+2026-04-13T19:15:52.1621880Z   LEADER_POD: vllm-kimi-k2-instruct-w8a8-ebb4b5-0
+2026-04-13T19:15:52.1622303Z   LOG_PREFIX: /root/.cache/ascend-logs/vllm-kimi-k2-instruct-w8a8-ebb4b5
+2026-04-13T19:15:52.1622709Z   FAIL_TAG: FAIL_TAG_Kimi-K2-Instruct-W8A8.yaml
+2026-04-13T19:15:52.1623002Z ##[endgroup]
+2026-04-13T19:15:52.1697547Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T19:15:52.1698511Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T19:15:52.1698800Z ##[endgroup]
+2026-04-13T19:15:52.5970003Z (node:1190) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T19:15:52.5970984Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T19:15:53.2618491Z Current pod status:
+2026-04-13T19:15:53.3342004Z NAME                                             READY   STATUS    RESTARTS   AGE
+2026-04-13T19:15:53.3342551Z linux-aarch64-a3-0-ggwx6-runner-5n2r7            1/1     Running   0          100m
+2026-04-13T19:15:53.3343161Z linux-aarch64-a3-0-ggwx6-runner-5n2r7-workflow   1/1     Running   0          100m
+2026-04-13T19:15:53.3343755Z linux-aarch64-a3-0-ggwx6-runner-dg5w5            1/1     Running   0          21m
+2026-04-13T19:15:53.3344321Z linux-aarch64-a3-0-ggwx6-runner-dg5w5-workflow   1/1     Running   0          20m
+2026-04-13T19:15:53.3344859Z linux-aarch64-a3-0-ggwx6-runner-frwcz            1/1     Running   0          10m
+2026-04-13T19:15:53.3345418Z linux-aarch64-a3-0-ggwx6-runner-frwcz-workflow   1/1     Running   0          9m46s
+2026-04-13T19:15:53.3345970Z linux-aarch64-a3-0-ggwx6-runner-v84vn            1/1     Running   0          33m
+2026-04-13T19:15:53.3346498Z linux-aarch64-a3-0-ggwx6-runner-v84vn-workflow   1/1     Running   0          32m
+2026-04-13T19:15:53.3347336Z linux-aarch64-a3-4-92cdc-runner-8lz7c            1/1     Running   0          148m
+2026-04-13T19:15:53.3347899Z linux-aarch64-a3-4-92cdc-runner-8lz7c-workflow   1/1     Running   0          148m
+2026-04-13T19:15:53.3348434Z linux-aarch64-a3-4-92cdc-runner-sxxz6            1/1     Running   0          148m
+2026-04-13T19:15:53.3349029Z linux-aarch64-a3-4-92cdc-runner-sxxz6-workflow   1/1     Running   0          148m
+2026-04-13T19:15:53.3349526Z test-server-0                                    1/1     Running   0          6h57m
+2026-04-13T19:15:53.3350099Z test-server-0-1                                  1/1     Running   0          6h56m
+2026-04-13T19:15:53.3350590Z vllm-deepseek-r1-w8a8-longseq-bc092a-0           1/1     Running   0          99m
+2026-04-13T19:15:53.3351134Z vllm-deepseek-r1-w8a8-longseq-bc092a-0-1         1/1     Running   0          99m
+2026-04-13T19:15:53.3351658Z vllm-deepseek-v3-1-bf16-ada586-0                 0/1     Pending   0          9m16s
+2026-04-13T19:15:53.3352183Z vllm-deepseek-v3-1-bf16-ada586-0-1               0/1     Pending   0          9m16s
+2026-04-13T19:15:53.3352717Z vllm-kimi-k2-instruct-w8a8-ebb4b5-0              1/1     Running   0          20m
+2026-04-13T19:15:53.3353242Z vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1            0/1     Pending   0          20m
+2026-04-13T19:15:53.3353769Z vllm-qwen3-235b-disagg-pd-30858e-0               1/1     Running   0          32m
+2026-04-13T19:15:53.3354432Z vllm-qwen3-235b-disagg-pd-30858e-0-1             1/1     Running   0          32m
+2026-04-13T19:15:53.3375403Z Deleting resources for [vllm-kimi-k2-instruct-w8a8-ebb4b5]...
+2026-04-13T19:15:53.3956246Z leaderworkerset.leaderworkerset.x-k8s.io "vllm-kimi-k2-instruct-w8a8-ebb4b5" deleted from vllm-project namespace
+2026-04-13T19:15:53.4191273Z service "vllm-kimi-k2-instruct-w8a8-ebb4b5-leader" deleted from vllm-project namespace
+2026-04-13T19:15:53.4333683Z Waiting for pods of [vllm-kimi-k2-instruct-w8a8-ebb4b5] to fully terminate...
+2026-04-13T19:15:53.6639243Z Waiting for pods to terminate: vllm-kimi-k2-instruct-w8a8-ebb4b5-0
+2026-04-13T19:15:53.6639685Z vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1
+2026-04-13T19:15:58.7886487Z Waiting for pods to terminate: vllm-kimi-k2-instruct-w8a8-ebb4b5-0
+2026-04-13T19:15:58.7886953Z vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1
+2026-04-13T19:16:03.8928420Z Waiting for pods to terminate: vllm-kimi-k2-instruct-w8a8-ebb4b5-0
+2026-04-13T19:16:03.8928902Z vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1
+2026-04-13T19:16:09.0090264Z Waiting for pods to terminate: vllm-kimi-k2-instruct-w8a8-ebb4b5-0
+2026-04-13T19:16:09.0090730Z vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1
+2026-04-13T19:16:14.1209186Z Waiting for pods to terminate: vllm-kimi-k2-instruct-w8a8-ebb4b5-0
+2026-04-13T19:16:14.1209631Z vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1
+2026-04-13T19:16:19.2301645Z Waiting for pods to terminate: vllm-kimi-k2-instruct-w8a8-ebb4b5-0
+2026-04-13T19:16:19.2302099Z vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1
+2026-04-13T19:16:24.3473339Z Waiting for pods to terminate: vllm-kimi-k2-instruct-w8a8-ebb4b5-0
+2026-04-13T19:16:24.3473834Z vllm-kimi-k2-instruct-w8a8-ebb4b5-0-1
+2026-04-13T19:16:29.5068469Z All pods for [vllm-kimi-k2-instruct-w8a8-ebb4b5] have terminated.
+2026-04-13T19:16:30.0109340Z ##[group]Run set -euo pipefail
+2026-04-13T19:16:30.0110006Z [36;1mset -euo pipefail[0m
+2026-04-13T19:16:30.0110400Z [36;1msize="2"[0m
+2026-04-13T19:16:30.0110761Z [36;1mDEST="/tmp/collected-logs"[0m
+2026-04-13T19:16:30.0111338Z [36;1mPLOG_PATH=/root/ascend/log[0m
+2026-04-13T19:16:30.0111792Z [36;1mKUBE_LOG_PATH=/var/log[0m
+2026-04-13T19:16:30.0112249Z [36;1mfor i in $(seq 0 $((size - 1))); do[0m
+2026-04-13T19:16:30.0112734Z [36;1m  if [ "${i}" -eq 0 ]; then[0m
+2026-04-13T19:16:30.0113159Z [36;1m    POD="${LWS_NAME}-0"[0m
+2026-04-13T19:16:30.0113564Z [36;1m  else[0m
+2026-04-13T19:16:30.0113925Z [36;1m    POD="${LWS_NAME}-0-${i}"[0m
+2026-04-13T19:16:30.0114331Z [36;1m  fi[0m
+2026-04-13T19:16:30.0114871Z [36;1m  mkdir -p "${DEST}/node${i}/${PLOG_PATH}" "${DEST}/node${i}/${KUBE_LOG_PATH}"[0m
+2026-04-13T19:16:30.0115567Z [36;1m  # pod stdout.[0m
+2026-04-13T19:16:30.0116389Z [36;1m  cp "/tmp/${POD}_logs.txt" "${DEST}/node${i}/${KUBE_LOG_PATH}/" 2>/dev/null || true[0m
+2026-04-13T19:16:30.0117105Z [36;1m  # Ascend plogs from PVC.[0m
+2026-04-13T19:16:30.0117593Z [36;1m  SRC="${LOG_PREFIX}/node_${i}_plogs"[0m
+2026-04-13T19:16:30.0118080Z [36;1m  if [ -d "$SRC" ]; then[0m
+2026-04-13T19:16:30.0118682Z [36;1m    cp -r "$SRC"/. "${DEST}/node${i}/${PLOG_PATH}/" 2>/dev/null || true[0m
+2026-04-13T19:16:30.0119272Z [36;1m  fi[0m
+2026-04-13T19:16:30.0119585Z [36;1mdone[0m
+2026-04-13T19:16:30.0120013Z [36;1m[0m
+2026-04-13T19:16:30.0120485Z [36;1mtar -czf /tmp/ascend-logs.tar.gz -C /tmp collected-logs[0m
+2026-04-13T19:16:30.0121253Z shell: bash -el {0}
+2026-04-13T19:16:30.0121575Z env:
+2026-04-13T19:16:30.0121964Z   LWS_NAME: vllm-kimi-k2-instruct-w8a8-ebb4b5
+2026-04-13T19:16:30.0122538Z   LEADER_POD: vllm-kimi-k2-instruct-w8a8-ebb4b5-0
+2026-04-13T19:16:30.0123244Z   LOG_PREFIX: /root/.cache/ascend-logs/vllm-kimi-k2-instruct-w8a8-ebb4b5
+2026-04-13T19:16:30.0123971Z   FAIL_TAG: FAIL_TAG_Kimi-K2-Instruct-W8A8.yaml
+2026-04-13T19:16:30.0124456Z ##[endgroup]
+2026-04-13T19:16:30.0207204Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T19:16:30.0208095Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T19:16:30.0208394Z ##[endgroup]
+2026-04-13T19:16:30.4563062Z (node:1322) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T19:16:30.4564361Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T19:16:31.7255742Z ##[group]Run actions/upload-artifact@v7
+2026-04-13T19:16:31.7256035Z with:
+2026-04-13T19:16:31.7256266Z   name: Kimi-K2-Instruct-W8A8.yaml-ascend-logs
+2026-04-13T19:16:31.7256589Z   path: /tmp/ascend-logs.tar.gz
+2026-04-13T19:16:31.7256830Z   retention-days: 7
+2026-04-13T19:16:31.7257066Z   if-no-files-found: warn
+2026-04-13T19:16:31.7257304Z   compression-level: 6
+2026-04-13T19:16:31.7257510Z   overwrite: false
+2026-04-13T19:16:31.7257725Z   include-hidden-files: false
+2026-04-13T19:16:31.7257960Z   archive: true
+2026-04-13T19:16:31.7258141Z env:
+2026-04-13T19:16:31.7258364Z   LWS_NAME: vllm-kimi-k2-instruct-w8a8-ebb4b5
+2026-04-13T19:16:31.7258696Z   LEADER_POD: vllm-kimi-k2-instruct-w8a8-ebb4b5-0
+2026-04-13T19:16:31.7259124Z   LOG_PREFIX: /root/.cache/ascend-logs/vllm-kimi-k2-instruct-w8a8-ebb4b5
+2026-04-13T19:16:31.7259533Z   FAIL_TAG: FAIL_TAG_Kimi-K2-Instruct-W8A8.yaml
+2026-04-13T19:16:31.7259809Z ##[endgroup]
+2026-04-13T19:16:31.7286593Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T19:16:31.7287448Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T19:16:31.7287735Z ##[endgroup]
+2026-04-13T19:16:32.1591313Z (node:1463) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T19:16:32.1592219Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T19:16:33.1986601Z With the provided path, there will be 1 file uploaded
+2026-04-13T19:16:33.1990735Z Artifact name is valid!
+2026-04-13T19:16:33.1991168Z Root directory input is valid!
+2026-04-13T19:16:34.3059727Z Uploading artifact: Kimi-K2-Instruct-W8A8.yaml-ascend-logs.zip
+2026-04-13T19:16:34.4067426Z Beginning upload of artifact content to blob storage
+2026-04-13T19:16:35.3034487Z Uploaded bytes 413
+2026-04-13T19:16:35.5236364Z Finished uploading artifact content to blob storage!
+2026-04-13T19:16:35.5237499Z SHA256 digest of uploaded artifact is 6ee9edadad2ae154ef49d4ab8288080c1bbbc495ead081a8ac24b8bfebffae3b
+2026-04-13T19:16:35.5238104Z Finalizing artifact upload
+2026-04-13T19:16:36.3446622Z Artifact Kimi-K2-Instruct-W8A8.yaml-ascend-logs successfully finalized. Artifact ID 6413201023
+2026-04-13T19:16:36.3447465Z Artifact Kimi-K2-Instruct-W8A8.yaml-ascend-logs has been successfully uploaded! Final size is 413 bytes. Artifact ID is 6413201023
+2026-04-13T19:16:36.3450840Z Artifact download URL: https://github.com/vllm-project/vllm-ascend/actions/runs/24355380566/artifacts/6413201023
+2026-04-13T19:16:36.9304009Z ##[group]Run echo "artifact_ts=$(date -u +%Y%m%dT%H%M%SZ)" >> $GITHUB_OUTPUT
+2026-04-13T19:16:36.9304534Z [36;1mecho "artifact_ts=$(date -u +%Y%m%dT%H%M%SZ)" >> $GITHUB_OUTPUT[0m
+2026-04-13T19:16:36.9305090Z shell: bash -el {0}
+2026-04-13T19:16:36.9305297Z env:
+2026-04-13T19:16:36.9305529Z   LWS_NAME: vllm-kimi-k2-instruct-w8a8-ebb4b5
+2026-04-13T19:16:36.9305869Z   LEADER_POD: vllm-kimi-k2-instruct-w8a8-ebb4b5-0
+2026-04-13T19:16:36.9306294Z   LOG_PREFIX: /root/.cache/ascend-logs/vllm-kimi-k2-instruct-w8a8-ebb4b5
+2026-04-13T19:16:36.9306714Z   FAIL_TAG: FAIL_TAG_Kimi-K2-Instruct-W8A8.yaml
+2026-04-13T19:16:36.9307013Z ##[endgroup]
+2026-04-13T19:16:36.9401872Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T19:16:36.9402780Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T19:16:36.9403081Z ##[endgroup]
+2026-04-13T19:16:37.3730209Z (node:1611) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T19:16:37.3731203Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T19:16:38.6473957Z ##[group]Run actions/upload-artifact@v4
+2026-04-13T19:16:38.6474470Z with:
+2026-04-13T19:16:38.6474923Z   name: nightly-test-benchmark-results-multi-node-kimi-k2-instruct-w8a8-20260413T191638Z
+2026-04-13T19:16:38.6475461Z   path: /tmp/benchmark_results/
+2026-04-13T19:16:38.6475733Z   if-no-files-found: warn
+2026-04-13T19:16:38.6475966Z   retention-days: 90
+2026-04-13T19:16:38.6476196Z   compression-level: 0
+2026-04-13T19:16:38.6476423Z   overwrite: false
+2026-04-13T19:16:38.6476644Z   include-hidden-files: false
+2026-04-13T19:16:38.6476874Z env:
+2026-04-13T19:16:38.6477104Z   LWS_NAME: vllm-kimi-k2-instruct-w8a8-ebb4b5
+2026-04-13T19:16:38.6477455Z   LEADER_POD: vllm-kimi-k2-instruct-w8a8-ebb4b5-0
+2026-04-13T19:16:38.6477883Z   LOG_PREFIX: /root/.cache/ascend-logs/vllm-kimi-k2-instruct-w8a8-ebb4b5
+2026-04-13T19:16:38.6478304Z   FAIL_TAG: FAIL_TAG_Kimi-K2-Instruct-W8A8.yaml
+2026-04-13T19:16:38.6478591Z ##[endgroup]
+2026-04-13T19:16:38.6505700Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T19:16:38.6506587Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T19:16:38.6506904Z ##[endgroup]
+2026-04-13T19:16:39.0788565Z (node:1772) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T19:16:39.0789544Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T19:16:40.2028579Z ##[warning]No files were found with the provided path: /tmp/benchmark_results/. No artifacts will be uploaded.
+2026-04-13T19:16:40.7978682Z Post job cleanup.
+2026-04-13T19:16:40.8003394Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T19:16:40.8004280Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T19:16:40.8004588Z ##[endgroup]
+2026-04-13T19:16:41.2440065Z (node:1943) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T19:16:41.2441046Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T19:16:42.0819096Z [command]/usr/bin/git version
+2026-04-13T19:16:42.1000930Z git version 2.34.1
+2026-04-13T19:16:42.1031606Z Copying '/root/.gitconfig' to '/__w/_temp/08c16705-4945-4476-925c-b0ab0e2c1512/.gitconfig'
+2026-04-13T19:16:42.1042558Z Temporarily overriding HOME='/__w/_temp/08c16705-4945-4476-925c-b0ab0e2c1512' before making global git config changes
+2026-04-13T19:16:42.1043384Z Adding repository directory to the temporary git global config as a safe directory
+2026-04-13T19:16:42.1046876Z [command]/usr/bin/git config --global --add safe.directory /__w/vllm-ascend/vllm-ascend
+2026-04-13T19:16:42.1085534Z Removing SSH command configuration
+2026-04-13T19:16:42.1091536Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-04-13T19:16:42.1141426Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-04-13T19:16:42.1664151Z Removing HTTP extra header
+2026-04-13T19:16:42.1667561Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-04-13T19:16:42.1697977Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-04-13T19:16:42.1938135Z Removing includeIf entries pointing to credentials config files
+2026-04-13T19:16:42.1941238Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-04-13T19:16:42.1962331Z includeif.gitdir:/__w/vllm-ascend/vllm-ascend/.git.path
+2026-04-13T19:16:42.1962805Z includeif.gitdir:/__w/vllm-ascend/vllm-ascend/.git/worktrees/*.path
+2026-04-13T19:16:42.1963239Z includeif.gitdir:/github/workspace/.git.path
+2026-04-13T19:16:42.1963629Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-04-13T19:16:42.1969757Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/__w/vllm-ascend/vllm-ascend/.git.path
+2026-04-13T19:16:42.1989077Z /__w/_temp/git-credentials-600ee228-8bac-4a4e-a9d5-0baeefdf2bd1.config
+2026-04-13T19:16:42.1997715Z [command]/usr/bin/git config --local --unset includeif.gitdir:/__w/vllm-ascend/vllm-ascend/.git.path /__w/_temp/git-credentials-600ee228-8bac-4a4e-a9d5-0baeefdf2bd1.config
+2026-04-13T19:16:42.2084021Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/__w/vllm-ascend/vllm-ascend/.git/worktrees/*.path
+2026-04-13T19:16:42.2084710Z /__w/_temp/git-credentials-600ee228-8bac-4a4e-a9d5-0baeefdf2bd1.config
+2026-04-13T19:16:42.2085868Z [command]/usr/bin/git config --local --unset includeif.gitdir:/__w/vllm-ascend/vllm-ascend/.git/worktrees/*.path /__w/_temp/git-credentials-600ee228-8bac-4a4e-a9d5-0baeefdf2bd1.config
+2026-04-13T19:16:42.2088609Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+2026-04-13T19:16:42.2109737Z /github/runner_temp/git-credentials-600ee228-8bac-4a4e-a9d5-0baeefdf2bd1.config
+2026-04-13T19:16:42.2116444Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-600ee228-8bac-4a4e-a9d5-0baeefdf2bd1.config
+2026-04-13T19:16:42.2145469Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-04-13T19:16:42.2165474Z /github/runner_temp/git-credentials-600ee228-8bac-4a4e-a9d5-0baeefdf2bd1.config
+2026-04-13T19:16:42.2172754Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-600ee228-8bac-4a4e-a9d5-0baeefdf2bd1.config
+2026-04-13T19:16:42.2203404Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-04-13T19:16:42.2459563Z Removing credentials config '/__w/_temp/git-credentials-600ee228-8bac-4a4e-a9d5-0baeefdf2bd1.config'
+2026-04-13T19:17:02.3804712Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T19:17:02.3805674Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T19:17:02.3805986Z ##[endgroup]
+2026-04-13T19:17:02.9604590Z Cleaning up orphan processes
+2026-04-13T19:17:02.9627620Z ##[warning]Node.js 20 actions are deprecated. The following actions are running on Node.js 20 and may not work as expected: actions/upload-artifact@v4. Actions will be forced to run with Node.js 24 by default starting June 2nd, 2026. Please check if updated versions of these actions are available that support Node.js 24. To opt into Node.js 24 now, set the FORCE_JAVASCRIPT_ACTIONS_TO_NODE24=true environment variable on the runner or in your workflow file. Once Node.js 24 becomes the default, you can temporarily opt out by setting ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

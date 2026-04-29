@@ -1,0 +1,1430 @@
+# Run ID: 21522751536
+# Commit: 4230bc86461e4b879e0b434eaa11cfbd2bf83ef7
+# Job: multi-node (multi-node-kimi-k2-instruct-w8a8, Kimi-K2-Instruct-W8A8.yaml, 2) / Kimi-K2-Instruct-W8A8.yaml
+# Date: 2026-01-30
+============================================================
+
+﻿2026-01-31T03:37:44.9035206Z Current runner version: '2.330.0'
+2026-01-31T03:37:44.9039681Z Runner name: 'linux-aarch64-a3-0-wgt9d-runner-q9czs'
+2026-01-31T03:37:44.9040394Z Runner group name: 'Default'
+2026-01-31T03:37:44.9041096Z Machine name: 'linux-aarch64-a3-0-wgt9d-runner-q9czs'
+2026-01-31T03:37:44.9044785Z ##[group]GITHUB_TOKEN Permissions
+2026-01-31T03:37:44.9046761Z Actions: write
+2026-01-31T03:37:44.9047275Z ArtifactMetadata: write
+2026-01-31T03:37:44.9047653Z Attestations: write
+2026-01-31T03:37:44.9048078Z Checks: write
+2026-01-31T03:37:44.9048427Z Contents: write
+2026-01-31T03:37:44.9048808Z Deployments: write
+2026-01-31T03:37:44.9049336Z Discussions: write
+2026-01-31T03:37:44.9049713Z Issues: write
+2026-01-31T03:37:44.9050091Z Metadata: read
+2026-01-31T03:37:44.9050491Z Models: read
+2026-01-31T03:37:44.9050840Z Packages: write
+2026-01-31T03:37:44.9051212Z Pages: write
+2026-01-31T03:37:44.9051603Z PullRequests: write
+2026-01-31T03:37:44.9052192Z RepositoryProjects: write
+2026-01-31T03:37:44.9052795Z SecurityEvents: write
+2026-01-31T03:37:44.9053214Z Statuses: write
+2026-01-31T03:37:44.9053625Z ##[endgroup]
+2026-01-31T03:37:44.9055354Z Secret source: Actions
+2026-01-31T03:37:44.9055866Z Prepare workflow directory
+2026-01-31T03:37:44.9582641Z Prepare all required actions
+2026-01-31T03:37:44.9614848Z Getting action download info
+2026-01-31T03:37:45.9834386Z Download action repository 'actions/checkout@v6' (SHA:8e8c483db84b4bee98b60c0593521ed34d9990e8)
+2026-01-31T03:37:50.6748429Z Download action repository 'actions/upload-artifact@v6' (SHA:b7c566a772e6b6bfb58ed0dc250532a479d7789f)
+2026-01-31T03:37:58.9009983Z Uses: vllm-project/vllm-ascend/.github/workflows/_e2e_nightly_multi_node.yaml@refs/heads/main (4230bc86461e4b879e0b434eaa11cfbd2bf83ef7)
+2026-01-31T03:37:58.9013767Z ##[group] Inputs
+2026-01-31T03:37:58.9014059Z   soc_version: a3
+2026-01-31T03:37:58.9014330Z   runner: linux-aarch64-a3-0
+2026-01-31T03:37:58.9014769Z   image: swr.cn-southwest-2.myhuaweicloud.com/base_image/ascend-ci/vllm-ascend:nightly-a3
+2026-01-31T03:37:58.9015213Z   config_file_path: Kimi-K2-Instruct-W8A8.yaml
+2026-01-31T03:37:58.9015523Z   replicas: 1
+2026-01-31T03:37:58.9015720Z   size: 2
+2026-01-31T03:37:58.9015957Z   vllm_version: v0.14.1
+2026-01-31T03:37:58.9016352Z   vllm_ascend_remote_url: https://github.com/vllm-project/vllm-ascend.git
+2026-01-31T03:37:58.9016671Z   vllm_ascend_ref: main
+2026-01-31T03:37:58.9016955Z ##[endgroup]
+2026-01-31T03:37:58.9017522Z Complete job name: multi-node (multi-node-kimi-k2-instruct-w8a8, Kimi-K2-Instruct-W8A8.yaml, 2) / Kimi-K2-Instruct-W8A8.yaml
+2026-01-31T03:37:58.9523681Z ##[group]Run '/home/runner/k8s/index.js'
+2026-01-31T03:37:58.9526214Z shell: /home/runner/externals/node20/bin/node {0}
+2026-01-31T03:37:58.9526697Z ##[endgroup]
+2026-01-31T03:38:14.4461097Z (node:73) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-01-31T03:38:14.4461950Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-01-31T03:38:40.0471363Z ##[group]Run # Decode and save kubeconfig
+2026-01-31T03:38:40.0471820Z [36;1m# Decode and save kubeconfig[0m
+2026-01-31T03:38:40.0504665Z [36;1mecho "***" | base64 -d > $KUBECONFIG[0m
+2026-01-31T03:38:40.0505273Z shell: bash -el {0}
+2026-01-31T03:38:40.0505600Z ##[endgroup]
+2026-01-31T03:38:40.0633364Z ##[group]Run '/home/runner/k8s/index.js'
+2026-01-31T03:38:40.0634518Z shell: /home/runner/externals/node20/bin/node {0}
+2026-01-31T03:38:40.0634835Z ##[endgroup]
+2026-01-31T03:38:40.4333374Z (node:5672) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-01-31T03:38:40.4334910Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-01-31T03:39:15.7314934Z ##[group]Run actions/checkout@v6
+2026-01-31T03:39:15.7315255Z with:
+2026-01-31T03:39:15.7315561Z   repository: vllm-project/vllm-ascend
+2026-01-31T03:39:15.7316310Z   token: ***
+2026-01-31T03:39:15.7316532Z   ssh-strict: true
+2026-01-31T03:39:15.7316794Z   ssh-user: git
+2026-01-31T03:39:15.7317042Z   persist-credentials: true
+2026-01-31T03:39:15.7317273Z   clean: true
+2026-01-31T03:39:15.7317601Z   sparse-checkout-cone-mode: true
+2026-01-31T03:39:15.7317874Z   fetch-depth: 1
+2026-01-31T03:39:15.7318072Z   fetch-tags: false
+2026-01-31T03:39:15.7318322Z   show-progress: true
+2026-01-31T03:39:15.7318528Z   lfs: false
+2026-01-31T03:39:15.7318754Z   submodules: false
+2026-01-31T03:39:15.7318999Z   set-safe-directory: true
+2026-01-31T03:39:15.7319218Z ##[endgroup]
+2026-01-31T03:39:15.7374300Z ##[group]Run '/home/runner/k8s/index.js'
+2026-01-31T03:39:15.7375301Z shell: /home/runner/externals/node20/bin/node {0}
+2026-01-31T03:39:15.7375720Z ##[endgroup]
+2026-01-31T03:39:16.1011210Z (node:6100) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-01-31T03:39:16.1012258Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-01-31T03:39:33.9830484Z Syncing repository: vllm-project/vllm-ascend
+2026-01-31T03:39:33.9831462Z ##[group]Getting Git version info
+2026-01-31T03:39:33.9831716Z Working directory is '/__w/vllm-ascend/vllm-ascend'
+2026-01-31T03:39:33.9832257Z [command]/usr/bin/git version
+2026-01-31T03:39:33.9832444Z git version 2.34.1
+2026-01-31T03:39:33.9833627Z ##[endgroup]
+2026-01-31T03:39:33.9836475Z Copying '/root/.gitconfig' to '/__w/_temp/ae8c7033-066c-497c-b534-1e189bcc31f2/.gitconfig'
+2026-01-31T03:39:33.9841400Z Temporarily overriding HOME='/__w/_temp/ae8c7033-066c-497c-b534-1e189bcc31f2' before making global git config changes
+2026-01-31T03:39:33.9842108Z Adding repository directory to the temporary git global config as a safe directory
+2026-01-31T03:39:33.9846499Z [command]/usr/bin/git config --global --add safe.directory /__w/vllm-ascend/vllm-ascend
+2026-01-31T03:39:33.9873994Z Deleting the contents of '/__w/vllm-ascend/vllm-ascend'
+2026-01-31T03:39:33.9876860Z ##[group]Initializing the repository
+2026-01-31T03:39:33.9880587Z [command]/usr/bin/git init /__w/vllm-ascend/vllm-ascend
+2026-01-31T03:39:33.9994757Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-01-31T03:39:33.9995149Z hint: is subject to change. To configure the initial branch name to use in all
+2026-01-31T03:39:33.9995516Z hint: of your new repositories, which will suppress this warning, call:
+2026-01-31T03:39:33.9995784Z hint: 
+2026-01-31T03:39:33.9996002Z hint: 	git config --global init.defaultBranch <name>
+2026-01-31T03:39:33.9996236Z hint: 
+2026-01-31T03:39:33.9996447Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-01-31T03:39:33.9996833Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-01-31T03:39:33.9997108Z hint: 
+2026-01-31T03:39:33.9997263Z hint: 	git branch -m <name>
+2026-01-31T03:39:34.0002337Z Initialized empty Git repository in /__w/vllm-ascend/vllm-ascend/.git/
+2026-01-31T03:39:34.0010396Z [command]/usr/bin/git remote add origin https://github.com/vllm-project/vllm-ascend
+2026-01-31T03:39:34.0067795Z ##[endgroup]
+2026-01-31T03:39:34.0068171Z ##[group]Disabling automatic garbage collection
+2026-01-31T03:39:34.0071105Z [command]/usr/bin/git config --local gc.auto 0
+2026-01-31T03:39:34.0095421Z ##[endgroup]
+2026-01-31T03:39:34.0095689Z ##[group]Setting up auth
+2026-01-31T03:39:34.0096804Z Removing SSH command configuration
+2026-01-31T03:39:34.0101959Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-01-31T03:39:34.0128915Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-01-31T03:39:34.0311191Z Removing HTTP extra header
+2026-01-31T03:39:34.0314203Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-01-31T03:39:34.0338921Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-01-31T03:39:34.0510631Z Removing includeIf entries pointing to credentials config files
+2026-01-31T03:39:34.0515271Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-01-31T03:39:34.0540487Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-01-31T03:39:34.0718679Z [command]/usr/bin/git config --file /__w/_temp/git-credentials-2e114668-b7fe-4e35-811e-78585aaacc4a.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-01-31T03:39:34.0750217Z [command]/usr/bin/git config --local includeIf.gitdir:/__w/vllm-ascend/vllm-ascend/.git.path /__w/_temp/git-credentials-2e114668-b7fe-4e35-811e-78585aaacc4a.config
+2026-01-31T03:39:34.0780630Z [command]/usr/bin/git config --local includeIf.gitdir:/__w/vllm-ascend/vllm-ascend/.git/worktrees/*.path /__w/_temp/git-credentials-2e114668-b7fe-4e35-811e-78585aaacc4a.config
+2026-01-31T03:39:34.0806523Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-2e114668-b7fe-4e35-811e-78585aaacc4a.config
+2026-01-31T03:39:34.0831854Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-2e114668-b7fe-4e35-811e-78585aaacc4a.config
+2026-01-31T03:39:34.0859048Z ##[endgroup]
+2026-01-31T03:39:34.0859329Z ##[group]Fetching the repository
+2026-01-31T03:39:34.0866325Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +4230bc86461e4b879e0b434eaa11cfbd2bf83ef7:refs/remotes/origin/main
+2026-01-31T03:39:35.6659418Z From https://gh-proxy.test.osinfra.cn/https://github.com/vllm-project/vllm-ascend
+2026-01-31T03:39:35.6659922Z  * [new ref]         4230bc86461e4b879e0b434eaa11cfbd2bf83ef7 -> origin/main
+2026-01-31T03:39:35.6675926Z ##[endgroup]
+2026-01-31T03:39:35.6676282Z ##[group]Determining the checkout info
+2026-01-31T03:39:35.6676755Z ##[endgroup]
+2026-01-31T03:39:35.6682091Z [command]/usr/bin/git sparse-checkout disable
+2026-01-31T03:39:35.6730954Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-01-31T03:39:35.6754470Z ##[group]Checking out the ref
+2026-01-31T03:39:35.6758908Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-01-31T03:39:35.7595877Z Switched to a new branch 'main'
+2026-01-31T03:39:35.7596202Z Branch 'main' set up to track remote branch 'main' from 'origin'.
+2026-01-31T03:39:35.7605103Z ##[endgroup]
+2026-01-31T03:39:35.7650108Z [command]/usr/bin/git log -1 --format=%H
+2026-01-31T03:39:35.7671169Z 4230bc86461e4b879e0b434eaa11cfbd2bf83ef7
+2026-01-31T03:39:53.4872779Z ##[group]Run # prepare for lws entrypoint scripts
+2026-01-31T03:39:53.4873120Z [36;1m# prepare for lws entrypoint scripts[0m
+2026-01-31T03:39:53.4873461Z [36;1minstall -D tests/e2e/nightly/multi_node/scripts/run.sh /root/.cache/tests/run.sh[0m
+2026-01-31T03:39:53.4873969Z shell: bash -el {0}
+2026-01-31T03:39:53.4874144Z ##[endgroup]
+2026-01-31T03:39:53.4938669Z ##[group]Run '/home/runner/k8s/index.js'
+2026-01-31T03:39:53.4939314Z shell: /home/runner/externals/node20/bin/node {0}
+2026-01-31T03:39:53.4939523Z ##[endgroup]
+2026-01-31T03:39:53.8488873Z (node:6688) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-01-31T03:39:53.8489577Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-01-31T03:40:29.7598904Z ##[group]Run set -euo pipefail
+2026-01-31T03:40:29.7599294Z [36;1mset -euo pipefail[0m
+2026-01-31T03:40:29.7599520Z [36;1m[0m
+2026-01-31T03:40:29.7599736Z [36;1mCRD_NAME="${CRD_NAME:-vllm}"[0m
+2026-01-31T03:40:29.7600250Z [36;1mTIMEOUT=${TIMEOUT:-120}[0m
+2026-01-31T03:40:29.7600487Z [36;1mSLEEP_INTERVAL=2[0m
+2026-01-31T03:40:29.7600712Z [36;1m[0m
+2026-01-31T03:40:29.7601184Z [36;1mecho "Deleting leaderworkerset [$CRD_NAME] in namespace [$NAMESPACE]..."[0m
+2026-01-31T03:40:29.7601661Z [36;1mkubectl delete leaderworkerset "$CRD_NAME" -n "$NAMESPACE" --ignore-not-found[0m
+2026-01-31T03:40:29.7602128Z [36;1m[0m
+2026-01-31T03:40:29.7602461Z [36;1mecho "Waiting for all pods starting with 'vllm' to be deleted..."[0m
+2026-01-31T03:40:29.7602793Z [36;1mSTART_TIME=$(date +%s)[0m
+2026-01-31T03:40:29.7603042Z [36;1m[0m
+2026-01-31T03:40:29.7603238Z [36;1mwhile true; do[0m
+2026-01-31T03:40:29.7603479Z [36;1m  NOW=$(date +%s)[0m
+2026-01-31T03:40:29.7603931Z [36;1m  ELAPSED=$((NOW - START_TIME))[0m
+2026-01-31T03:40:29.7604340Z [36;1m[0m
+2026-01-31T03:40:29.7604583Z [36;1m  if [[ $ELAPSED -ge $TIMEOUT ]]; then[0m
+2026-01-31T03:40:29.7604897Z [36;1m    echo "Timeout reached ($TIMEOUT seconds), some pods still exist:"[0m
+2026-01-31T03:40:29.7605249Z [36;1m    kubectl get pods -n "$NAMESPACE" | grep '^vllm' || true[0m
+2026-01-31T03:40:29.7605492Z [36;1m    exit 1[0m
+2026-01-31T03:40:29.7605647Z [36;1m  fi[0m
+2026-01-31T03:40:29.7605782Z [36;1m[0m
+2026-01-31T03:40:29.7606165Z [36;1m  PODS_EXIST=$(kubectl get pods -n "$NAMESPACE" -o jsonpath='{.items[*].metadata.name}' 2>/dev/null | tr ' ' '\n' | grep '^vllm' || true)[0m
+2026-01-31T03:40:29.7606594Z [36;1m[0m
+2026-01-31T03:40:29.7606744Z [36;1m  if [[ -z "$PODS_EXIST" ]]; then[0m
+2026-01-31T03:40:29.7606965Z [36;1m    echo "All vllm pods deleted."[0m
+2026-01-31T03:40:29.7607167Z [36;1m    break[0m
+2026-01-31T03:40:29.7607315Z [36;1m  else[0m
+2026-01-31T03:40:29.7607527Z [36;1m    echo "Waiting for pods to be deleted: $PODS_EXIST"[0m
+2026-01-31T03:40:29.7607775Z [36;1m    sleep $SLEEP_INTERVAL[0m
+2026-01-31T03:40:29.7607957Z [36;1m  fi[0m
+2026-01-31T03:40:29.7608099Z [36;1mdone[0m
+2026-01-31T03:40:29.7608428Z shell: bash -el {0}
+2026-01-31T03:40:29.7608586Z ##[endgroup]
+2026-01-31T03:40:29.7678214Z ##[group]Run '/home/runner/k8s/index.js'
+2026-01-31T03:40:29.7678905Z shell: /home/runner/externals/node20/bin/node {0}
+2026-01-31T03:40:29.7679132Z ##[endgroup]
+2026-01-31T03:40:30.1210016Z (node:7470) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-01-31T03:40:30.1210750Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-01-31T03:40:48.2412410Z Deleting leaderworkerset [vllm] in namespace [vllm-project]...
+2026-01-31T03:40:48.5592687Z Waiting for all pods starting with 'vllm' to be deleted...
+2026-01-31T03:40:48.7478434Z All vllm pods deleted.
+2026-01-31T03:41:07.0338378Z ##[group]Run set -e
+2026-01-31T03:41:07.0338604Z [36;1mset -e[0m
+2026-01-31T03:41:07.0338754Z [36;1m[0m
+2026-01-31T03:41:07.0338888Z [36;1msize="2"[0m
+2026-01-31T03:41:07.0339043Z [36;1mreplicas="1"[0m
+2026-01-31T03:41:07.0339395Z [36;1mimage="swr.cn-southwest-2.myhuaweicloud.com/base_image/ascend-ci/vllm-ascend:nightly-a3"[0m
+2026-01-31T03:41:07.0339797Z [36;1mconfig_file_path="Kimi-K2-Instruct-W8A8.yaml"[0m
+2026-01-31T03:41:07.0340077Z [36;1mfail_tag=FAIL_TAG_"Kimi-K2-Instruct-W8A8.yaml"[0m
+2026-01-31T03:41:07.0340338Z [36;1mecho "FAIL_TAG=${fail_tag}" >> $GITHUB_ENV[0m
+2026-01-31T03:41:07.0340591Z [36;1m[0m
+2026-01-31T03:41:07.0340807Z [36;1mrequired_params=("size" "replicas" "image" "config_file_path")[0m
+2026-01-31T03:41:07.0341107Z [36;1mfor param in "${required_params[@]}"; do[0m
+2026-01-31T03:41:07.0341327Z [36;1m  if [ -z "${!param}" ]; then[0m
+2026-01-31T03:41:07.0341585Z [36;1m    echo "Error: Parameter '$param' is required but empty"[0m
+2026-01-31T03:41:07.0341853Z [36;1m    exit 1[0m
+2026-01-31T03:41:07.0342100Z [36;1m  fi[0m
+2026-01-31T03:41:07.0342262Z [36;1mdone[0m
+2026-01-31T03:41:07.0342405Z [36;1m[0m
+2026-01-31T03:41:07.0342546Z [36;1mif [ "a3" = "a3" ]; then[0m
+2026-01-31T03:41:07.0342944Z [36;1m  npu_per_node=16[0m
+2026-01-31T03:41:07.0343232Z [36;1m  TEMPLATE_FILE="tests/e2e/nightly/multi_node/scripts/lws.yaml.jinja2"[0m
+2026-01-31T03:41:07.0343521Z [36;1melse[0m
+2026-01-31T03:41:07.0343750Z [36;1m  npu_per_node=8[0m
+2026-01-31T03:41:07.0344033Z [36;1m  TEMPLATE_FILE="tests/e2e/nightly/multi_node/scripts/lws-a2.yaml.jinja2"[0m
+2026-01-31T03:41:07.0344329Z [36;1mfi[0m
+2026-01-31T03:41:07.0344470Z [36;1m[0m
+2026-01-31T03:41:07.0344611Z [36;1mjinja2 $TEMPLATE_FILE \[0m
+2026-01-31T03:41:07.0344809Z [36;1m  -D size="$size" \[0m
+2026-01-31T03:41:07.0345006Z [36;1m  -D replicas="$replicas" \[0m
+2026-01-31T03:41:07.0345204Z [36;1m  -D image="$image" \[0m
+2026-01-31T03:41:07.0345425Z [36;1m  -D config_file_path="$config_file_path" \[0m
+2026-01-31T03:41:07.0345667Z [36;1m  -D npu_per_node="$npu_per_node" \[0m
+2026-01-31T03:41:07.0345876Z [36;1m  -D fail_tag="$fail_tag" \[0m
+2026-01-31T03:41:07.0346071Z [36;1m  --outfile lws.yaml[0m
+2026-01-31T03:41:07.0346236Z [36;1m[0m
+2026-01-31T03:41:07.0346387Z [36;1mkubectl apply -f ./lws.yaml[0m
+2026-01-31T03:41:07.0346714Z shell: bash -el {0}
+2026-01-31T03:41:07.0346866Z ##[endgroup]
+2026-01-31T03:41:07.0421527Z ##[group]Run '/home/runner/k8s/index.js'
+2026-01-31T03:41:07.0422390Z shell: /home/runner/externals/node20/bin/node {0}
+2026-01-31T03:41:07.0422611Z ##[endgroup]
+2026-01-31T03:41:07.3913332Z (node:8435) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-01-31T03:41:07.3914123Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-01-31T03:41:26.0331705Z leaderworkerset.leaderworkerset.x-k8s.io/vllm created
+2026-01-31T03:41:26.0545976Z service/vllm-leader created
+2026-01-31T03:41:44.4971720Z ##[group]Run POD_PREFIX="${POD_PREFIX:-vllm-0}"
+2026-01-31T03:41:44.4972242Z [36;1mPOD_PREFIX="${POD_PREFIX:-vllm-0}"[0m
+2026-01-31T03:41:44.4972465Z [36;1mSIZE="2"[0m
+2026-01-31T03:41:44.4972663Z [36;1mTIMEOUT=1200  # default timeout 20 minutes[0m
+2026-01-31T03:41:44.4972878Z [36;1m[0m
+2026-01-31T03:41:44.4973194Z [36;1mecho "Waiting for Pods in namespace [$NAMESPACE] to become Running and Ready (timeout ${TIMEOUT}s)..."[0m
+2026-01-31T03:41:44.4973546Z [36;1m[0m
+2026-01-31T03:41:44.4973698Z [36;1mSTART_TIME=$(date +%s)[0m
+2026-01-31T03:41:44.4973958Z [36;1m[0m
+2026-01-31T03:41:44.4974097Z [36;1mwhile true; do[0m
+2026-01-31T03:41:44.4974324Z [36;1m  NOW=$(date +%s)[0m
+2026-01-31T03:41:44.4974521Z [36;1m  ELAPSED=$((NOW - START_TIME))[0m
+2026-01-31T03:41:44.4974741Z [36;1m  if [[ $ELAPSED -ge $TIMEOUT ]]; then[0m
+2026-01-31T03:41:44.4974988Z [36;1m    echo "Timeout reached after ${ELAPSED}s"[0m
+2026-01-31T03:41:44.4975294Z [36;1m    echo "Dumping pod status for debugging:"[0m
+2026-01-31T03:41:44.4975533Z [36;1m    kubectl get pods -n "$NAMESPACE"[0m
+2026-01-31T03:41:44.4975799Z [36;1m    kubectl describe pod "$LEADER_POD" -n "$NAMESPACE"[0m
+2026-01-31T03:41:44.4976049Z [36;1m    exit 1[0m
+2026-01-31T03:41:44.4976201Z [36;1m  fi[0m
+2026-01-31T03:41:44.4976342Z [36;1m[0m
+2026-01-31T03:41:44.4976489Z [36;1m  # 1) check follower pods[0m
+2026-01-31T03:41:44.4976681Z [36;1m  ALL_FOLLOWERS_READY=true[0m
+2026-01-31T03:41:44.4976877Z [36;1m  for ((i=1; i<SIZE; i++)); do[0m
+2026-01-31T03:41:44.4977075Z [36;1m    POD="${POD_PREFIX}-${i}"[0m
+2026-01-31T03:41:44.4977459Z [36;1m    PHASE=$(kubectl get pod "$POD" -n "$NAMESPACE" -o jsonpath='{.status.phase}' 2>/dev/null || echo "NotFound")[0m
+2026-01-31T03:41:44.4978013Z [36;1m    READY=$(kubectl get pod "$POD" -n "$NAMESPACE" -o jsonpath='{.status.containerStatuses[*].ready}' 2>/dev/null)[0m
+2026-01-31T03:41:44.4978381Z [36;1m[0m
+2026-01-31T03:41:44.4978569Z [36;1m    echo "Follower [$POD] phase=$PHASE ready=$READY"[0m
+2026-01-31T03:41:44.4978803Z [36;1m[0m
+2026-01-31T03:41:44.4978984Z [36;1m    if [[ "$PHASE" != "Running" || "$READY" != "true" ]]; then[0m
+2026-01-31T03:41:44.4979422Z [36;1m      echo "Follower [$POD] not Ready yet..."[0m
+2026-01-31T03:41:44.4979664Z [36;1m      ALL_FOLLOWERS_READY=false[0m
+2026-01-31T03:41:44.4979858Z [36;1m      break[0m
+2026-01-31T03:41:44.4980020Z [36;1m    fi[0m
+2026-01-31T03:41:44.4980168Z [36;1m  done[0m
+2026-01-31T03:41:44.4980303Z [36;1m[0m
+2026-01-31T03:41:44.4980458Z [36;1m  # 2) check leader pod[0m
+2026-01-31T03:41:44.4980856Z [36;1m  LEADER_PHASE=$(kubectl get pod "$LEADER_POD" -n "$NAMESPACE" -o jsonpath='{.status.phase}' 2>/dev/null || echo "NotFound")[0m
+2026-01-31T03:41:44.4981471Z [36;1m  LEADER_READY=$(kubectl get pod "$LEADER_POD" -n "$NAMESPACE" -o jsonpath='{.status.containerStatuses[*].ready}' 2>/dev/null)[0m
+2026-01-31T03:41:44.4981883Z [36;1m[0m
+2026-01-31T03:41:44.4982218Z [36;1m  echo "Leader [$LEADER_POD] phase=$LEADER_PHASE ready=$LEADER_READY"[0m
+2026-01-31T03:41:44.4982494Z [36;1m[0m
+2026-01-31T03:41:44.4982711Z [36;1m  if [[ "$LEADER_PHASE" != "Running" || "$LEADER_READY" != "true" ]]; then[0m
+2026-01-31T03:41:44.4983014Z [36;1m    echo "Leader not Ready yet..."[0m
+2026-01-31T03:41:44.4983229Z [36;1m    ALL_FOLLOWERS_READY=false[0m
+2026-01-31T03:41:44.4983514Z [36;1m  fi[0m
+2026-01-31T03:41:44.4983655Z [36;1m[0m
+2026-01-31T03:41:44.4983977Z [36;1m  if [[ "$ALL_FOLLOWERS_READY" == "true" ]]; then[0m
+2026-01-31T03:41:44.4984322Z [36;1m    echo "All follower pods and leader pod are Running and Ready — continuing."[0m
+2026-01-31T03:41:44.4984667Z [36;1m    break[0m
+2026-01-31T03:41:44.4984823Z [36;1m  fi[0m
+2026-01-31T03:41:44.4984962Z [36;1m[0m
+2026-01-31T03:41:44.4985093Z [36;1m  sleep 2[0m
+2026-01-31T03:41:44.4985245Z [36;1mdone[0m
+2026-01-31T03:41:44.4985506Z shell: bash -el {0}
+2026-01-31T03:41:44.4985653Z env:
+2026-01-31T03:41:44.4985827Z   FAIL_TAG: FAIL_TAG_Kimi-K2-Instruct-W8A8.yaml
+2026-01-31T03:41:44.4986155Z ##[endgroup]
+2026-01-31T03:41:44.5073494Z ##[group]Run '/home/runner/k8s/index.js'
+2026-01-31T03:41:44.5074210Z shell: /home/runner/externals/node20/bin/node {0}
+2026-01-31T03:41:44.5074499Z ##[endgroup]
+2026-01-31T03:41:44.8596866Z (node:9578) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-01-31T03:41:44.8597577Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-01-31T03:42:03.3292703Z Waiting for Pods in namespace [vllm-project] to become Running and Ready (timeout 1200s)...
+2026-01-31T03:42:03.4483580Z Follower [vllm-0-1] phase=Running ready=true
+2026-01-31T03:42:03.5630495Z Leader [vllm-0] phase=Running ready=true
+2026-01-31T03:42:03.5631155Z All follower pods and leader pod are Running and Ready — continuing.
+2026-01-31T03:42:21.9123601Z ##[group]Run set -euo pipefail
+2026-01-31T03:42:21.9123934Z [36;1mset -euo pipefail[0m
+2026-01-31T03:42:21.9124137Z [36;1m[0m
+2026-01-31T03:42:21.9124277Z [36;1msize="2"[0m
+2026-01-31T03:42:21.9124430Z [36;1mpids=()[0m
+2026-01-31T03:42:21.9124571Z [36;1m[0m
+2026-01-31T03:42:21.9124775Z [36;1mcleanup() {[0m
+2026-01-31T03:42:21.9124986Z [36;1m  echo "Cleaning up background log streams..."[0m
+2026-01-31T03:42:21.9125234Z [36;1m  for pid in "${pids[@]}"; do[0m
+2026-01-31T03:42:21.9125450Z [36;1m    kill "$pid" 2>/dev/null || true[0m
+2026-01-31T03:42:21.9125653Z [36;1m  done[0m
+2026-01-31T03:42:21.9125794Z [36;1m}[0m
+2026-01-31T03:42:21.9125948Z [36;1mtrap cleanup EXIT[0m
+2026-01-31T03:42:21.9126113Z [36;1m[0m
+2026-01-31T03:42:21.9126270Z [36;1mfor i in $(seq 1 $((size - 1))); do[0m
+2026-01-31T03:42:21.9126482Z [36;1m  POD="vllm-0-${i}"[0m
+2026-01-31T03:42:21.9126647Z [36;1m[0m
+2026-01-31T03:42:21.9126875Z [36;1m  echo "==== Collecting logs from worker pod: $POD ===="[0m
+2026-01-31T03:42:21.9127156Z [36;1m  kubectl logs -f "$POD" -n "$NAMESPACE" \[0m
+2026-01-31T03:42:21.9127399Z [36;1m    > "/tmp/${POD}_logs.txt" 2>&1 &[0m
+2026-01-31T03:42:21.9127597Z [36;1m[0m
+2026-01-31T03:42:21.9127729Z [36;1m  pids+=($!)[0m
+2026-01-31T03:42:21.9128029Z [36;1mdone[0m
+2026-01-31T03:42:21.9128175Z [36;1m[0m
+2026-01-31T03:42:21.9128374Z [36;1mecho "==== Streaming logs from leader pod: $LEADER_POD ===="[0m
+2026-01-31T03:42:21.9128673Z [36;1mecho "Looking for logs containing: $FAIL_TAG"[0m
+2026-01-31T03:42:21.9128886Z [36;1m[0m
+2026-01-31T03:42:21.9129130Z [36;1mkubectl logs -f "$LEADER_POD" -n "$NAMESPACE" | while IFS= read -r line; do[0m
+2026-01-31T03:42:21.9129430Z [36;1m  echo "$line"[0m
+2026-01-31T03:42:21.9129628Z [36;1m  if echo "$line" | grep -q "$FAIL_TAG"; then[0m
+2026-01-31T03:42:21.9129847Z [36;1m    exit 1[0m
+2026-01-31T03:42:21.9130001Z [36;1m  fi[0m
+2026-01-31T03:42:21.9130137Z [36;1mdone[0m
+2026-01-31T03:42:21.9130457Z shell: bash -el {0}
+2026-01-31T03:42:21.9130607Z env:
+2026-01-31T03:42:21.9130779Z   FAIL_TAG: FAIL_TAG_Kimi-K2-Instruct-W8A8.yaml
+2026-01-31T03:42:21.9131000Z ##[endgroup]
+2026-01-31T03:42:21.9206628Z ##[group]Run '/home/runner/k8s/index.js'
+2026-01-31T03:42:21.9207280Z shell: /home/runner/externals/node20/bin/node {0}
+2026-01-31T03:42:21.9207511Z ##[endgroup]
+2026-01-31T03:42:22.3216140Z (node:10903) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-01-31T03:42:22.3216836Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-01-31T03:42:40.8703069Z ==== Collecting logs from worker pod: vllm-0-1 ====
+2026-01-31T03:42:40.8703393Z ==== Streaming logs from leader pod: vllm-0 ====
+2026-01-31T03:42:40.8703731Z Looking for logs containing: FAIL_TAG_Kimi-K2-Instruct-W8A8.yaml
+2026-01-31T03:42:40.9542964Z ====> Check NPU info
+2026-01-31T03:42:40.9556835Z +------------------------------------------------------------------------------------------------+
+2026-01-31T03:42:40.9565406Z | npu-smi 25.5.0                   Version: 25.5.0                                               |
+2026-01-31T03:42:40.9574354Z +---------------------------+---------------+----------------------------------------------------+
+2026-01-31T03:42:40.9584711Z | NPU   Name                | Health        | Power(W)    Temp(C)           Hugepages-Usage(page)|
+2026-01-31T03:42:40.9596038Z | Chip  Phy-ID              | Bus-Id        | AICore(%)   Memory-Usage(MB)  HBM-Usage(MB)        |
+2026-01-31T03:42:40.9606818Z +===========================+===============+====================================================+
+2026-01-31T03:42:40.9616631Z | 0     Ascend910           | OK            | 165.9       36                0    / 0             |
+2026-01-31T03:42:40.9626368Z | 0     0                   | 0000:9D:00.0  | 0           0    / 0          3150 / 65536         |
+2026-01-31T03:42:40.9637027Z +------------------------------------------------------------------------------------------------+
+2026-01-31T03:42:40.9648060Z | 0     Ascend910           | OK            | -           36                0    / 0             |
+2026-01-31T03:42:40.9656901Z | 1     1                   | 0000:9F:00.0  | 0           0    / 0          2897 / 65536         |
+2026-01-31T03:42:40.9667461Z +===========================+===============+====================================================+
+2026-01-31T03:42:40.9677541Z | 1     Ascend910           | OK            | 164.1       35                0    / 0             |
+2026-01-31T03:42:40.9687710Z | 0     2                   | 0000:99:00.0  | 0           0    / 0          3152 / 65536         |
+2026-01-31T03:42:40.9697941Z +------------------------------------------------------------------------------------------------+
+2026-01-31T03:42:40.9708031Z | 1     Ascend910           | OK            | -           36                0    / 0             |
+2026-01-31T03:42:40.9718253Z | 1     3                   | 0000:9B:00.0  | 0           0    / 0          2885 / 65536         |
+2026-01-31T03:42:40.9728773Z +===========================+===============+====================================================+
+2026-01-31T03:42:40.9738678Z | 2     Ascend910           | OK            | 160.9       35                0    / 0             |
+2026-01-31T03:42:40.9748568Z | 0     4                   | 0000:95:00.0  | 0           0    / 0          3141 / 65536         |
+2026-01-31T03:42:40.9759199Z +------------------------------------------------------------------------------------------------+
+2026-01-31T03:42:40.9769393Z | 2     Ascend910           | OK            | -           35                0    / 0             |
+2026-01-31T03:42:40.9779955Z | 1     5                   | 0000:97:00.0  | 0           0    / 0          2894 / 65536         |
+2026-01-31T03:42:40.9790008Z +===========================+===============+====================================================+
+2026-01-31T03:42:40.9800038Z | 3     Ascend910           | OK            | 164.5       35                0    / 0             |
+2026-01-31T03:42:40.9810007Z | 0     6                   | 0000:91:00.0  | 0           0    / 0          3154 / 65536         |
+2026-01-31T03:42:40.9820600Z +------------------------------------------------------------------------------------------------+
+2026-01-31T03:42:40.9830480Z | 3     Ascend910           | OK            | -           34                0    / 0             |
+2026-01-31T03:42:40.9841019Z | 1     7                   | 0000:93:00.0  | 0           0    / 0          2884 / 65536         |
+2026-01-31T03:42:40.9872624Z +===========================+===============+====================================================+
+2026-01-31T03:42:40.9911233Z | 4     Ascend910           | OK            | 167.6       35                0    / 0             |
+2026-01-31T03:42:40.9972875Z | 0     8                   | 0000:8D:00.0  | 0           0    / 0          3147 / 65536         |
+2026-01-31T03:42:40.9985737Z +------------------------------------------------------------------------------------------------+
+2026-01-31T03:42:40.9992944Z | 4     Ascend910           | OK            | -           36                0    / 0             |
+2026-01-31T03:42:41.0003751Z | 1     9                   | 0000:8F:00.0  | 0           0    / 0          2897 / 65536         |
+2026-01-31T03:42:41.0013973Z +===========================+===============+====================================================+
+2026-01-31T03:42:41.0024375Z | 5     Ascend910           | OK            | 167.5       35                0    / 0             |
+2026-01-31T03:42:41.0034938Z | 0     10                  | 0000:89:00.0  | 0           0    / 0          3142 / 65536         |
+2026-01-31T03:42:41.0045950Z +------------------------------------------------------------------------------------------------+
+2026-01-31T03:42:41.0056532Z | 5     Ascend910           | OK            | -           37                0    / 0             |
+2026-01-31T03:42:41.0066896Z | 1     11                  | 0000:8B:00.0  | 0           0    / 0          2895 / 65536         |
+2026-01-31T03:42:41.0076184Z +===========================+===============+====================================================+
+2026-01-31T03:42:41.0087623Z | 6     Ascend910           | OK            | 162.6       36                0    / 0             |
+2026-01-31T03:42:41.0097973Z | 0     12                  | 0000:85:00.0  | 0           0    / 0          3142 / 65536         |
+2026-01-31T03:42:41.0106903Z +------------------------------------------------------------------------------------------------+
+2026-01-31T03:42:41.0116792Z | 6     Ascend910           | OK            | -           36                0    / 0             |
+2026-01-31T03:42:41.0126631Z | 1     13                  | 0000:87:00.0  | 0           0    / 0          2897 / 65536         |
+2026-01-31T03:42:41.0136974Z +===========================+===============+====================================================+
+2026-01-31T03:42:41.0146728Z | 7     Ascend910           | OK            | 158.7       35                0    / 0             |
+2026-01-31T03:42:41.0156578Z | 0     14                  | 0000:81:00.0  | 0           0    / 0          3154 / 65536         |
+2026-01-31T03:42:41.0173603Z +------------------------------------------------------------------------------------------------+
+2026-01-31T03:42:41.0183237Z | 7     Ascend910           | OK            | -           36                0    / 0             |
+2026-01-31T03:42:41.0193997Z | 1     15                  | 0000:83:00.0  | 0           0    / 0          2883 / 65536         |
+2026-01-31T03:42:41.0204452Z +===========================+===============+====================================================+
+2026-01-31T03:42:41.0214401Z +---------------------------+---------------+----------------------------------------------------+
+2026-01-31T03:42:41.0227533Z | NPU     Chip              | Process id    | Process name             | Process memory(MB)      |
+2026-01-31T03:42:41.0237423Z +===========================+===============+====================================================+
+2026-01-31T03:42:41.0248464Z | No running processes found in NPU 0                                                            |
+2026-01-31T03:42:41.0258262Z +===========================+===============+====================================================+
+2026-01-31T03:42:41.0267950Z | No running processes found in NPU 1                                                            |
+2026-01-31T03:42:41.0281063Z +===========================+===============+====================================================+
+2026-01-31T03:42:41.0291695Z | No running processes found in NPU 2                                                            |
+2026-01-31T03:42:41.0301467Z +===========================+===============+====================================================+
+2026-01-31T03:42:41.0312136Z | No running processes found in NPU 3                                                            |
+2026-01-31T03:42:41.0322320Z +===========================+===============+====================================================+
+2026-01-31T03:42:41.0332576Z | No running processes found in NPU 4                                                            |
+2026-01-31T03:42:41.0342121Z +===========================+===============+====================================================+
+2026-01-31T03:42:41.0351376Z | No running processes found in NPU 5                                                            |
+2026-01-31T03:42:41.0361402Z +===========================+===============+====================================================+
+2026-01-31T03:42:41.0371474Z | No running processes found in NPU 6                                                            |
+2026-01-31T03:42:41.0380854Z +===========================+===============+====================================================+
+2026-01-31T03:42:41.0390261Z | No running processes found in NPU 7                                                            |
+2026-01-31T03:42:41.0401152Z +===========================+===============+====================================================+
+2026-01-31T03:42:41.0410310Z package_name=Ascend-cann-toolkit
+2026-01-31T03:42:41.0419972Z version=8.5.0
+2026-01-31T03:42:41.0429353Z innerversion=V100R001C25SPC001B232
+2026-01-31T03:42:41.0439293Z compatible_version=[V100R001C15],[V100R001C18],[V100R001C19],[V100R001C20],[V100R001C21],[V100R001C23]
+2026-01-31T03:42:41.0449219Z arch=aarch64
+2026-01-31T03:42:41.0458172Z os=linux
+2026-01-31T03:42:41.0467611Z path=/usr/local/Ascend/cann-8.5.0
+2026-01-31T03:42:41.0476934Z ====> Configure mirrors and git proxy
+2026-01-31T03:42:41.0486882Z Writing to /root/.config/pip/pip.conf
+2026-01-31T03:42:41.0496987Z Installed vLLM-related Python packages:
+2026-01-31T03:42:41.0506450Z ais_bench_benchmark               3.0.20250930               /vllm-workspace/vllm-ascend/benchmark
+2026-01-31T03:42:41.0515457Z vllm                              0.13.0+empty               /vllm-workspace/vllm
+2026-01-31T03:42:41.0525570Z vllm_ascend                       0.13.0rc3.dev28+gcd11f67d2 /vllm-workspace/vllm-ascend
+2026-01-31T03:42:41.0535036Z 
+2026-01-31T03:42:41.0544285Z ============================
+2026-01-31T03:42:41.0554024Z vLLM Git information
+2026-01-31T03:42:41.0563866Z ============================
+2026-01-31T03:42:41.0572880Z Branch:      HEAD
+2026-01-31T03:42:41.0582511Z Commit hash: 72506c98349d6bcd32b4e33eec7b5513453c1502
+2026-01-31T03:42:41.0591652Z Author:      Harry Mellor <19981378+hmellor@users.noreply.github.com>
+2026-01-31T03:42:41.0601685Z Date:        2025-12-18 21:59:10 +0000
+2026-01-31T03:42:41.0611211Z Message:     Check for truthy `rope_parameters` not the existence of it (#30983)
+2026-01-31T03:42:41.0620111Z Tags:        v0.13.0
+2026-01-31T03:42:41.0629901Z Remote:      origin	https://ghfast.top/https://github.com/vllm-project/vllm.git (fetch)
+2026-01-31T03:42:41.0638809Z 
+2026-01-31T03:42:41.0648884Z 
+2026-01-31T03:42:41.0658071Z ============================
+2026-01-31T03:42:41.0667382Z vLLM-Ascend Git information
+2026-01-31T03:42:41.0676271Z ============================
+2026-01-31T03:42:41.0686798Z Branch:      releases/v0.13.0
+2026-01-31T03:42:41.0696207Z Commit hash: cd11f67d26001f695f923c48f39ce941f8c476ff
+2026-01-31T03:42:41.0706118Z Author:      xulei <33539210+serlar@users.noreply.github.com>
+2026-01-31T03:42:41.0715650Z Date:        2026-01-30 21:21:37 +0800
+2026-01-31T03:42:41.0725120Z Message:     fix: resolve sync bug in DispathFFNCombine when expert num per card is 32 (#6422)
+2026-01-31T03:42:41.0734489Z Tags:        
+2026-01-31T03:42:41.0743368Z Remote:      origin	https://ghfast.top/https://github.com/vllm-project/vllm-ascend (fetch)
+2026-01-31T03:42:41.0754233Z 
+2026-01-31T03:42:41.0762753Z ====> Check triton ascend info
+2026-01-31T03:42:41.0772182Z Ubuntu clang version 15.0.7
+2026-01-31T03:42:41.0781819Z Target: aarch64-unknown-linux-gnu
+2026-01-31T03:42:41.0791207Z Thread model: posix
+2026-01-31T03:42:41.0801272Z InstalledDir: /usr/bin
+2026-01-31T03:42:41.0811418Z Found candidate GCC installation: /usr/bin/../lib/gcc/aarch64-linux-gnu/11
+2026-01-31T03:42:41.0820830Z Selected GCC installation: /usr/bin/../lib/gcc/aarch64-linux-gnu/11
+2026-01-31T03:42:41.0830378Z Candidate multilib: .;@m64
+2026-01-31T03:42:41.0839965Z Selected multilib: .;@m64
+2026-01-31T03:42:41.0849787Z /usr/local/Ascend/ascend-toolkit/latest/bin/bishengir-compile
+2026-01-31T03:42:41.0860398Z Name: triton-ascend
+2026-01-31T03:42:41.0868078Z Version: 3.2.0
+2026-01-31T03:42:41.0877146Z Summary: A language and compiler for custom Deep Learning operations on Ascend hardwares
+2026-01-31T03:42:41.0887961Z Home-page: https://gitcode.com/Ascend/triton-ascend/
+2026-01-31T03:42:41.0897524Z Author: 
+2026-01-31T03:42:41.0909325Z Author-email: 
+2026-01-31T03:42:41.0915999Z License: 
+2026-01-31T03:42:41.0926417Z Location: /usr/local/python3.11.14/lib/python3.11/site-packages
+2026-01-31T03:42:41.0935699Z Requires: 
+2026-01-31T03:42:41.0945763Z Required-by: vllm_ascend
+2026-01-31T03:42:41.0955331Z INFO 01-31 03:42:06 [__init__.py:43] Available plugins for group vllm.platform_plugins:
+2026-01-31T03:42:41.0964891Z INFO 01-31 03:42:06 [__init__.py:45] - ascend -> vllm_ascend:register
+2026-01-31T03:42:41.0977129Z INFO 01-31 03:42:06 [__init__.py:48] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+2026-01-31T03:42:41.0986632Z INFO 01-31 03:42:07 [__init__.py:217] Platform plugin ascend is activated
+2026-01-31T03:42:41.0995945Z ============================= test session starts ==============================
+2026-01-31T03:42:41.1008962Z platform linux -- Python 3.11.14, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/python3.11.14/bin/python3
+2026-01-31T03:42:41.1018414Z cachedir: .pytest_cache
+2026-01-31T03:42:41.1028256Z rootdir: /vllm-workspace/vllm-ascend
+2026-01-31T03:42:41.1038807Z configfile: pyproject.toml
+2026-01-31T03:42:41.1051663Z plugins: cov-7.0.0, mock-3.15.1, asyncio-1.3.0, anyio-4.12.1
+2026-01-31T03:42:41.1063292Z asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+2026-01-31T03:42:41.1073258Z collecting ... collected 1 item
+2026-01-31T03:42:41.1083565Z 
+2026-01-31T03:42:41.1094290Z [2026-01-31 03:42:13] INFO multi_node_config.py:294: Loading config yaml: tests/e2e/nightly/multi_node/config/Kimi-K2-Instruct-W8A8.yaml
+2026-01-31T03:42:41.1104001Z [2026-01-31 03:42:13] INFO multi_node_config.py:351: Resolving cluster IPs via DNS...
+2026-01-31T03:42:41.1115667Z [2026-01-31 03:42:13] INFO multi_node_config.py:212: Node 0 envs: {'VLLM_USE_MODELSCOPE': 'True', 'HCCL_BUFFSIZE': '1024', 'SERVER_PORT': '8080', 'OMP_PROC_BIND': 'False', 'OMP_NUM_THREADS': '100', 'NUMEXPR_MAX_THREADS': '128', 'HCCL_IF_IP': '10.0.0.218', 'HCCL_SOCKET_IFNAME': 'eth0', 'GLOO_SOCKET_IFNAME': 'eth0', 'TP_SOCKET_IFNAME': 'eth0', 'LOCAL_IP': '10.0.0.218', 'NIC_NAME': 'eth0', 'MASTER_IP': '10.0.0.218'}
+2026-01-31T03:42:41.1124421Z [2026-01-31 03:42:13] INFO multi_node_config.py:137: Not launching proxy on non-master node
+2026-01-31T03:42:41.1139401Z [2026-01-31 03:42:13] INFO conftest.py:107: Starting server with command: vllm serve vllm-ascend/Kimi-K2-Instruct-W8A8 --host 0.0.0.0 --port 8080 --data-parallel-size 4 --data-parallel-size-local 2 --data-parallel-start-rank 0 --data-parallel-address 10.0.0.218 --data-parallel-rpc-port 13389 --tensor-parallel-size 8 --seed 1024 --enable-expert-parallel --max-num-seqs 32 --max-model-len 8192 --max-num-batched-tokens 8192 --quantization ascend --trust-remote-code --no-enable-prefix-caching --gpu-memory-utilization 0.9 --additional-config {"torchair_graph_config":{"enabled":true}}
+2026-01-31T03:42:41.1152976Z tests/e2e/nightly/multi_node/scripts/test_multi_node.py::test_multi_node INFO 01-31 03:42:17 [__init__.py:43] Available plugins for group vllm.platform_plugins:
+2026-01-31T03:42:41.1158606Z INFO 01-31 03:42:17 [__init__.py:45] - ascend -> vllm_ascend:register
+2026-01-31T03:42:41.1168907Z INFO 01-31 03:42:17 [__init__.py:48] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+2026-01-31T03:42:41.1178241Z INFO 01-31 03:42:17 [__init__.py:217] Platform plugin ascend is activated
+2026-01-31T03:42:41.1188769Z 2026-01-31 03:42:23,864 - 135 - vllmProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.13.0+empty: default 1
+2026-01-31T03:42:41.1202078Z INFO 01-31 03:42:23 [__init__.py:108] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+2026-01-31T03:42:41.1212301Z [0;36m(APIServer pid=135)[0;0m INFO 01-31 03:42:24 [api_server.py:1351] vLLM API server version 0.13.0
+2026-01-31T03:42:41.1225074Z [0;36m(APIServer pid=135)[0;0m INFO 01-31 03:42:24 [utils.py:253] non-default args: {'model_tag': 'vllm-ascend/Kimi-K2-Instruct-W8A8', 'host': '0.0.0.0', 'port': 8080, 'model': 'vllm-ascend/Kimi-K2-Instruct-W8A8', 'trust_remote_code': True, 'seed': 1024, 'max_model_len': 8192, 'quantization': 'ascend', 'tensor_parallel_size': 8, 'data_parallel_size': 4, 'data_parallel_start_rank': 0, 'data_parallel_size_local': 2, 'data_parallel_address': '10.0.0.218', 'data_parallel_rpc_port': 13389, 'enable_expert_parallel': True, 'enable_prefix_caching': False, 'max_num_batched_tokens': 8192, 'max_num_seqs': 32, 'additional_config': {'torchair_graph_config': {'enabled': True}}}
+2026-01-31T03:42:41.1233261Z [0;36m(APIServer pid=135)[0;0m 2026-01-31 03:42:24,222 - modelscope - WARNING - We can not confirm the cached file is for revision: master
+2026-01-31T03:42:41.1243658Z [0;36m(APIServer pid=135)[0;0m INFO 01-31 03:42:24 [arg_utils.py:595] HF_HUB_OFFLINE is True, replace model_id [vllm-ascend/Kimi-K2-Instruct-W8A8] to model_path [/root/.cache/modelscope/hub/models/vllm-ascend/Kimi-K2-Instruct-W8A8]
+2026-01-31T03:42:41.1253280Z [0;36m(APIServer pid=135)[0;0m The argument `trust_remote_code` is to be used with Auto classes. It has no effect here and is ignored.
+2026-01-31T03:42:41.1263463Z [0;36m(APIServer pid=135)[0;0m You are using a model of type kimi_k2 to instantiate a model of type deepseek_v3. This is not supported for all configurations of models and can yield errors.
+2026-01-31T03:42:41.1272807Z [0;36m(APIServer pid=135)[0;0m INFO 01-31 03:42:24 [config.py:373] Replacing legacy 'type' key with 'rope_type'
+2026-01-31T03:42:41.1282953Z [0;36m(APIServer pid=135)[0;0m INFO 01-31 03:42:33 [model.py:514] Resolved architecture: DeepseekV3ForCausalLM
+2026-01-31T03:42:41.1292175Z [0;36m(APIServer pid=135)[0;0m INFO 01-31 03:42:33 [model.py:1661] Using max model len 8192
+2026-01-31T03:42:41.1301733Z [0;36m(APIServer pid=135)[0;0m INFO 01-31 03:42:33 [scheduler.py:230] Chunked prefill is enabled with max_num_batched_tokens=8192.
+2026-01-31T03:42:41.1312422Z [0;36m(APIServer pid=135)[0;0m INFO 01-31 03:42:34 [ascend_config.py:55] Linear layer sharding enabled with config: None. Note: This feature works optimally with FLASHCOMM2 and DSA-CP enabled; using it without these features may result in significant performance degradation.
+2026-01-31T03:42:41.1322293Z [0;36m(APIServer pid=135)[0;0m INFO 01-31 03:42:34 [platform.py:254] PIECEWISE compilation enabled on NPU. use_inductor not supported - using only ACL Graph mode
+2026-01-31T03:42:41.1332236Z [0;36m(APIServer pid=135)[0;0m INFO 01-31 03:42:34 [utils.py:521] Calculated maximum supported batch sizes for ACL graph: 5
+2026-01-31T03:42:41.1343082Z [0;36m(APIServer pid=135)[0;0m WARNING 01-31 03:42:34 [utils.py:524] Currently, communication is performed using FFTS+ method, which reduces the number of available streams and, as a result, limits the range of runtime shapes that can be handled. To both improve communication performance and increase the number of supported shapes, set HCCL_OP_EXPANSION_MODE=AIV.
+2026-01-31T03:42:41.1352349Z [0;36m(APIServer pid=135)[0;0m INFO 01-31 03:42:34 [utils.py:543] Adjusted ACL graph batch sizes for DeepseekV3ForCausalLM model (layers: 61): 7 → 5 sizes
+2026-01-31T03:42:41.1362602Z [0;36m(APIServer pid=135)[0;0m [2026-01-31 03:42:34] INFO tokenization_kimi.py:118: Reloaded tiktoken model from /root/.cache/modelscope/hub/models/vllm-ascend/Kimi-K2-Instruct-W8A8/tiktoken.model
+2026-01-31T03:42:41.1371552Z [0;36m(APIServer pid=135)[0;0m [2026-01-31 03:42:34] INFO tokenization_kimi.py:124: #words: 163842 - BOS ID: 163584 - EOS ID: 163585
+2026-01-31T03:42:41.1381618Z [0;36m(APIServer pid=135)[0;0m WARNING 01-31 03:42:34 [registry.py:204] Using a slow tokenizer. This might cause a significant slowdown. Consider using a fast tokenizer instead.
+2026-01-31T03:42:41.1390985Z [0;36m(APIServer pid=135)[0;0m INFO 01-31 03:42:34 [utils.py:821] Started DP Coordinator process (PID: 507)
+2026-01-31T03:42:41.1401315Z INFO 01-31 03:42:39 [__init__.py:43] Available plugins for group vllm.platform_plugins:
+2026-01-31T03:42:41.1410733Z INFO 01-31 03:42:39 [__init__.py:45] - ascend -> vllm_ascend:register
+2026-01-31T03:42:41.1420838Z INFO 01-31 03:42:39 [__init__.py:48] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+2026-01-31T03:42:41.1429834Z INFO 01-31 03:42:39 [__init__.py:217] Platform plugin ascend is activated
+2026-01-31T03:42:41.1439781Z INFO 01-31 03:42:39 [__init__.py:43] Available plugins for group vllm.platform_plugins:
+2026-01-31T03:42:41.1449229Z INFO 01-31 03:42:39 [__init__.py:45] - ascend -> vllm_ascend:register
+2026-01-31T03:42:41.1459170Z INFO 01-31 03:42:39 [__init__.py:48] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+2026-01-31T03:42:41.1468304Z INFO 01-31 03:42:39 [__init__.py:217] Platform plugin ascend is activated
+2026-01-31T03:42:49.1038989Z INFO 01-31 03:42:49 [__init__.py:43] Available plugins for group vllm.platform_plugins:
+2026-01-31T03:42:49.1049589Z INFO 01-31 03:42:49 [__init__.py:45] - ascend -> vllm_ascend:register
+2026-01-31T03:42:49.1062379Z INFO 01-31 03:42:49 [__init__.py:48] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+2026-01-31T03:42:49.1100445Z INFO 01-31 03:42:49 [__init__.py:217] Platform plugin ascend is activated
+2026-01-31T03:42:54.7303725Z [0;36m(EngineCore_DP1 pid=979)[0;0m 2026-01-31 03:42:54,727 - 979 - vllmProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.13.0+empty: default 1
+2026-01-31T03:42:54.7313910Z [0;36m(EngineCore_DP0 pid=510)[0;0m 2026-01-31 03:42:54,728 - 510 - vllmProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.13.0+empty: default 1
+2026-01-31T03:42:54.7327641Z [0;36m(EngineCore_DP1 pid=979)[0;0m INFO 01-31 03:42:54 [__init__.py:108] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+2026-01-31T03:42:54.7354210Z [0;36m(EngineCore_DP0 pid=510)[0;0m INFO 01-31 03:42:54 [__init__.py:108] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+2026-01-31T03:42:54.7381850Z [0;36m(EngineCore_DP0 pid=510)[0;0m INFO 01-31 03:42:54 [core.py:93] Initializing a V1 LLM engine (v0.13.0) with config: model='/root/.cache/modelscope/hub/models/vllm-ascend/Kimi-K2-Instruct-W8A8', speculative_config=None, tokenizer='/root/.cache/modelscope/hub/models/vllm-ascend/Kimi-K2-Instruct-W8A8', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=8192, download_dir=None, load_format=auto, tensor_parallel_size=8, pipeline_parallel_size=1, data_parallel_size=4, disable_custom_all_reduce=True, quantization=ascend, enforce_eager=False, kv_cache_dtype=auto, device_config=npu, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_fallback=False, disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False), seed=1024, served_model_name=/root/.cache/modelscope/hub/models/vllm-ascend/Kimi-K2-Instruct-W8A8, enable_prefix_caching=False, enable_chunked_prefill=True, pooler_config=None, compilation_config={'level': None, 'mode': <CompilationMode.VLLM_COMPILE: 3>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'vllm_ascend.compilation.compiler_interface.AscendCompiler', 'custom_ops': ['all'], 'splitting_ops': ['vllm::unified_attention', 'vllm::unified_attention_with_output', 'vllm::unified_mla_attention', 'vllm::unified_mla_attention_with_output', 'vllm::mamba_mixer2', 'vllm::mamba_mixer', 'vllm::short_conv', 'vllm::linear_attention', 'vllm::plamo2_mamba_mixer', 'vllm::gdn_attention_core', 'vllm::kda_attention', 'vllm::sparse_attn_indexer', 'vllm::mla_forward'], 'compile_mm_encoder': False, 'compile_sizes': [], 'compile_ranges_split_points': [8192], 'inductor_compile_config': {'enable_auto_functionalized_v2': False}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.PIECEWISE: 1>, 'cudagraph_num_of_warmups': 1, 'cudagraph_capture_sizes': [1, 4, 8, 16, 32], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': True, 'fuse_act_quant': True, 'fuse_attn_quant': False, 'eliminate_noops': True, 'enable_sp': False, 'fuse_gemm_comms': False, 'fuse_allreduce_rms': False}, 'max_cudagraph_capture_size': 32, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False}, 'local_cache_dir': None}
+2026-01-31T03:42:59.4939820Z INFO 01-31 03:42:59 [__init__.py:43] Available plugins for group vllm.platform_plugins:
+2026-01-31T03:42:59.4953555Z INFO 01-31 03:42:59 [__init__.py:43] Available plugins for group vllm.platform_plugins:
+2026-01-31T03:42:59.4964513Z INFO 01-31 03:42:59 [__init__.py:45] - ascend -> vllm_ascend:register
+2026-01-31T03:42:59.4974558Z INFO 01-31 03:42:59 [__init__.py:45] - ascend -> vllm_ascend:register
+2026-01-31T03:42:59.4986460Z INFO 01-31 03:42:59 [__init__.py:48] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+2026-01-31T03:42:59.4996483Z INFO 01-31 03:42:59 [__init__.py:48] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+2026-01-31T03:42:59.5017102Z INFO 01-31 03:42:59 [__init__.py:217] Platform plugin ascend is activated
+2026-01-31T03:42:59.5026872Z INFO 01-31 03:42:59 [__init__.py:217] Platform plugin ascend is activated
+2026-01-31T03:43:05.2111311Z 2026-01-31 03:43:05,205 - 1238 - vllmProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.13.0+empty: default 1
+2026-01-31T03:43:05.2168392Z INFO 01-31 03:43:05 [__init__.py:108] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+2026-01-31T03:43:05.2173702Z 2026-01-31 03:43:05,210 - 1237 - vllmProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.13.0+empty: default 1
+2026-01-31T03:43:05.2186689Z INFO 01-31 03:43:05 [__init__.py:108] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+2026-01-31T03:43:09.3548095Z INFO 01-31 03:43:09 [ascend_config.py:55] Linear layer sharding enabled with config: None. Note: This feature works optimally with FLASHCOMM2 and DSA-CP enabled; using it without these features may result in significant performance degradation.
+2026-01-31T03:43:09.3568018Z INFO 01-31 03:43:09 [ascend_config.py:55] Linear layer sharding enabled with config: None. Note: This feature works optimally with FLASHCOMM2 and DSA-CP enabled; using it without these features may result in significant performance degradation.
+2026-01-31T03:43:09.4491381Z INFO 01-31 03:43:09 [parallel_state.py:1203] world_size=32 rank=0 local_rank=0 distributed_init_method=tcp://10.0.0.218:37941 backend=hccl
+2026-01-31T03:43:09.6035072Z INFO 01-31 03:43:09 [parallel_state.py:1203] world_size=32 rank=8 local_rank=0 distributed_init_method=tcp://10.0.0.218:37941 backend=hccl
+2026-01-31T03:43:09.8840358Z INFO 01-31 03:43:09 [__init__.py:43] Available plugins for group vllm.platform_plugins:
+2026-01-31T03:43:09.8849065Z INFO 01-31 03:43:09 [__init__.py:45] - ascend -> vllm_ascend:register
+2026-01-31T03:43:09.8860656Z INFO 01-31 03:43:09 [__init__.py:48] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+2026-01-31T03:43:09.8921385Z INFO 01-31 03:43:09 [__init__.py:217] Platform plugin ascend is activated
+2026-01-31T03:43:09.9056188Z INFO 01-31 03:43:09 [__init__.py:43] Available plugins for group vllm.platform_plugins:
+2026-01-31T03:43:09.9064677Z INFO 01-31 03:43:09 [__init__.py:45] - ascend -> vllm_ascend:register
+2026-01-31T03:43:09.9075200Z INFO 01-31 03:43:09 [__init__.py:48] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+2026-01-31T03:43:09.9195625Z INFO 01-31 03:43:09 [__init__.py:217] Platform plugin ascend is activated
+2026-01-31T03:43:15.6115110Z 2026-01-31 03:43:15,609 - 1707 - vllmProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.13.0+empty: default 1
+2026-01-31T03:43:15.6135919Z 2026-01-31 03:43:15,610 - 1708 - vllmProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.13.0+empty: default 1
+2026-01-31T03:43:15.6161858Z INFO 01-31 03:43:15 [__init__.py:108] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+2026-01-31T03:43:15.6172864Z INFO 01-31 03:43:15 [__init__.py:108] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+2026-01-31T03:43:17.6933245Z INFO 01-31 03:43:17 [ascend_config.py:55] Linear layer sharding enabled with config: None. Note: This feature works optimally with FLASHCOMM2 and DSA-CP enabled; using it without these features may result in significant performance degradation.
+2026-01-31T03:43:17.7062119Z INFO 01-31 03:43:17 [ascend_config.py:55] Linear layer sharding enabled with config: None. Note: This feature works optimally with FLASHCOMM2 and DSA-CP enabled; using it without these features may result in significant performance degradation.
+2026-01-31T03:43:18.1035763Z INFO 01-31 03:43:18 [parallel_state.py:1203] world_size=32 rank=9 local_rank=1 distributed_init_method=tcp://10.0.0.218:37941 backend=hccl
+2026-01-31T03:43:18.1220144Z INFO 01-31 03:43:18 [parallel_state.py:1203] world_size=32 rank=1 local_rank=1 distributed_init_method=tcp://10.0.0.218:37941 backend=hccl
+2026-01-31T03:43:20.2448705Z INFO 01-31 03:43:20 [__init__.py:43] Available plugins for group vllm.platform_plugins:
+2026-01-31T03:43:20.2456499Z INFO 01-31 03:43:20 [__init__.py:45] - ascend -> vllm_ascend:register
+2026-01-31T03:43:20.2467538Z INFO 01-31 03:43:20 [__init__.py:48] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+2026-01-31T03:43:20.2527241Z INFO 01-31 03:43:20 [__init__.py:217] Platform plugin ascend is activated
+2026-01-31T03:43:20.2828001Z INFO 01-31 03:43:20 [__init__.py:43] Available plugins for group vllm.platform_plugins:
+2026-01-31T03:43:20.2837219Z INFO 01-31 03:43:20 [__init__.py:45] - ascend -> vllm_ascend:register
+2026-01-31T03:43:20.2847274Z INFO 01-31 03:43:20 [__init__.py:48] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+2026-01-31T03:43:20.2913349Z INFO 01-31 03:43:20 [__init__.py:217] Platform plugin ascend is activated
+2026-01-31T03:43:26.0042163Z 2026-01-31 03:43:26,001 - 2251 - vllmProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.13.0+empty: default 1
+2026-01-31T03:43:26.0070263Z INFO 01-31 03:43:26 [__init__.py:108] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+2026-01-31T03:43:26.0156198Z 2026-01-31 03:43:26,013 - 2253 - vllmProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.13.0+empty: default 1
+2026-01-31T03:43:26.0188219Z INFO 01-31 03:43:26 [__init__.py:108] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+2026-01-31T03:43:28.0582732Z INFO 01-31 03:43:28 [ascend_config.py:55] Linear layer sharding enabled with config: None. Note: This feature works optimally with FLASHCOMM2 and DSA-CP enabled; using it without these features may result in significant performance degradation.
+2026-01-31T03:43:28.1158345Z INFO 01-31 03:43:28 [ascend_config.py:55] Linear layer sharding enabled with config: None. Note: This feature works optimally with FLASHCOMM2 and DSA-CP enabled; using it without these features may result in significant performance degradation.
+2026-01-31T03:43:28.4821431Z INFO 01-31 03:43:28 [parallel_state.py:1203] world_size=32 rank=10 local_rank=2 distributed_init_method=tcp://10.0.0.218:37941 backend=hccl
+2026-01-31T03:43:28.7059147Z INFO 01-31 03:43:28 [parallel_state.py:1203] world_size=32 rank=2 local_rank=2 distributed_init_method=tcp://10.0.0.218:37941 backend=hccl
+2026-01-31T03:43:30.5940704Z INFO 01-31 03:43:30 [__init__.py:43] Available plugins for group vllm.platform_plugins:
+2026-01-31T03:43:30.5950481Z INFO 01-31 03:43:30 [__init__.py:45] - ascend -> vllm_ascend:register
+2026-01-31T03:43:30.5962625Z INFO 01-31 03:43:30 [__init__.py:48] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+2026-01-31T03:43:30.6017186Z INFO 01-31 03:43:30 [__init__.py:217] Platform plugin ascend is activated
+2026-01-31T03:43:30.6197512Z INFO 01-31 03:43:30 [__init__.py:43] Available plugins for group vllm.platform_plugins:
+2026-01-31T03:43:30.6208191Z INFO 01-31 03:43:30 [__init__.py:45] - ascend -> vllm_ascend:register
+2026-01-31T03:43:30.6219271Z INFO 01-31 03:43:30 [__init__.py:48] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+2026-01-31T03:43:30.6282781Z INFO 01-31 03:43:30 [__init__.py:217] Platform plugin ascend is activated
+2026-01-31T03:43:36.3435701Z 2026-01-31 03:43:36,341 - 2806 - vllmProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.13.0+empty: default 1
+2026-01-31T03:43:36.3458770Z 2026-01-31 03:43:36,344 - 2805 - vllmProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.13.0+empty: default 1
+2026-01-31T03:43:36.3470713Z INFO 01-31 03:43:36 [__init__.py:108] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+2026-01-31T03:43:36.3501579Z INFO 01-31 03:43:36 [__init__.py:108] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+2026-01-31T03:43:38.4046324Z INFO 01-31 03:43:38 [ascend_config.py:55] Linear layer sharding enabled with config: None. Note: This feature works optimally with FLASHCOMM2 and DSA-CP enabled; using it without these features may result in significant performance degradation.
+2026-01-31T03:43:38.4776732Z INFO 01-31 03:43:38 [ascend_config.py:55] Linear layer sharding enabled with config: None. Note: This feature works optimally with FLASHCOMM2 and DSA-CP enabled; using it without these features may result in significant performance degradation.
+2026-01-31T03:43:38.8362612Z INFO 01-31 03:43:38 [parallel_state.py:1203] world_size=32 rank=3 local_rank=3 distributed_init_method=tcp://10.0.0.218:37941 backend=hccl
+2026-01-31T03:43:39.0340648Z INFO 01-31 03:43:39 [parallel_state.py:1203] world_size=32 rank=11 local_rank=3 distributed_init_method=tcp://10.0.0.218:37941 backend=hccl
+2026-01-31T03:43:40.9294147Z INFO 01-31 03:43:40 [__init__.py:43] Available plugins for group vllm.platform_plugins:
+2026-01-31T03:43:40.9294682Z INFO 01-31 03:43:40 [__init__.py:45] - ascend -> vllm_ascend:register
+2026-01-31T03:43:40.9295256Z INFO 01-31 03:43:40 [__init__.py:48] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+2026-01-31T03:43:40.9319950Z INFO 01-31 03:43:40 [__init__.py:217] Platform plugin ascend is activated
+2026-01-31T03:43:40.9973502Z INFO 01-31 03:43:40 [__init__.py:43] Available plugins for group vllm.platform_plugins:
+2026-01-31T03:43:40.9983838Z INFO 01-31 03:43:40 [__init__.py:45] - ascend -> vllm_ascend:register
+2026-01-31T03:43:40.9993539Z INFO 01-31 03:43:40 [__init__.py:48] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+2026-01-31T03:43:41.0058536Z INFO 01-31 03:43:41 [__init__.py:217] Platform plugin ascend is activated
+2026-01-31T03:43:46.4800816Z 2026-01-31 03:43:46,477 - 3360 - vllmProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.13.0+empty: default 1
+2026-01-31T03:43:46.4828319Z INFO 01-31 03:43:46 [__init__.py:108] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+2026-01-31T03:43:46.5603907Z 2026-01-31 03:43:46,558 - 3359 - vllmProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.13.0+empty: default 1
+2026-01-31T03:43:46.5635275Z INFO 01-31 03:43:46 [__init__.py:108] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+2026-01-31T03:43:48.5346556Z INFO 01-31 03:43:48 [ascend_config.py:55] Linear layer sharding enabled with config: None. Note: This feature works optimally with FLASHCOMM2 and DSA-CP enabled; using it without these features may result in significant performance degradation.
+2026-01-31T03:43:48.6255857Z INFO 01-31 03:43:48 [ascend_config.py:55] Linear layer sharding enabled with config: None. Note: This feature works optimally with FLASHCOMM2 and DSA-CP enabled; using it without these features may result in significant performance degradation.
+2026-01-31T03:43:48.9533526Z INFO 01-31 03:43:48 [parallel_state.py:1203] world_size=32 rank=4 local_rank=4 distributed_init_method=tcp://10.0.0.218:37941 backend=hccl
+2026-01-31T03:43:49.0486108Z INFO 01-31 03:43:49 [parallel_state.py:1203] world_size=32 rank=12 local_rank=4 distributed_init_method=tcp://10.0.0.218:37941 backend=hccl
+2026-01-31T03:43:50.9918692Z INFO 01-31 03:43:50 [__init__.py:43] Available plugins for group vllm.platform_plugins:
+2026-01-31T03:43:50.9927421Z INFO 01-31 03:43:50 [__init__.py:45] - ascend -> vllm_ascend:register
+2026-01-31T03:43:50.9938631Z INFO 01-31 03:43:50 [__init__.py:48] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+2026-01-31T03:43:51.0004413Z INFO 01-31 03:43:50 [__init__.py:217] Platform plugin ascend is activated
+2026-01-31T03:43:51.2607593Z INFO 01-31 03:43:51 [__init__.py:43] Available plugins for group vllm.platform_plugins:
+2026-01-31T03:43:51.2614922Z INFO 01-31 03:43:51 [__init__.py:45] - ascend -> vllm_ascend:register
+2026-01-31T03:43:51.2626000Z INFO 01-31 03:43:51 [__init__.py:48] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+2026-01-31T03:43:51.2687380Z INFO 01-31 03:43:51 [__init__.py:217] Platform plugin ascend is activated
+2026-01-31T03:43:56.5147295Z 2026-01-31 03:43:56,511 - 3913 - vllmProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.13.0+empty: default 1
+2026-01-31T03:43:56.5173471Z INFO 01-31 03:43:56 [__init__.py:108] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+2026-01-31T03:43:56.7673357Z 2026-01-31 03:43:56,765 - 3917 - vllmProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.13.0+empty: default 1
+2026-01-31T03:43:56.7704136Z INFO 01-31 03:43:56 [__init__.py:108] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+2026-01-31T03:43:58.7481913Z INFO 01-31 03:43:58 [ascend_config.py:55] Linear layer sharding enabled with config: None. Note: This feature works optimally with FLASHCOMM2 and DSA-CP enabled; using it without these features may result in significant performance degradation.
+2026-01-31T03:43:58.8924848Z INFO 01-31 03:43:58 [ascend_config.py:55] Linear layer sharding enabled with config: None. Note: This feature works optimally with FLASHCOMM2 and DSA-CP enabled; using it without these features may result in significant performance degradation.
+2026-01-31T03:43:59.3082236Z INFO 01-31 03:43:59 [parallel_state.py:1203] world_size=32 rank=13 local_rank=5 distributed_init_method=tcp://10.0.0.218:37941 backend=hccl
+2026-01-31T03:43:59.3461852Z INFO 01-31 03:43:59 [parallel_state.py:1203] world_size=32 rank=5 local_rank=5 distributed_init_method=tcp://10.0.0.218:37941 backend=hccl
+2026-01-31T03:44:01.0695427Z INFO 01-31 03:44:01 [__init__.py:43] Available plugins for group vllm.platform_plugins:
+2026-01-31T03:44:01.0704682Z INFO 01-31 03:44:01 [__init__.py:45] - ascend -> vllm_ascend:register
+2026-01-31T03:44:01.0716729Z INFO 01-31 03:44:01 [__init__.py:48] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+2026-01-31T03:44:01.0776446Z INFO 01-31 03:44:01 [__init__.py:217] Platform plugin ascend is activated
+2026-01-31T03:44:01.4008697Z INFO 01-31 03:44:01 [__init__.py:43] Available plugins for group vllm.platform_plugins:
+2026-01-31T03:44:01.4015823Z INFO 01-31 03:44:01 [__init__.py:45] - ascend -> vllm_ascend:register
+2026-01-31T03:44:01.4025988Z INFO 01-31 03:44:01 [__init__.py:48] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+2026-01-31T03:44:01.4086132Z INFO 01-31 03:44:01 [__init__.py:217] Platform plugin ascend is activated
+2026-01-31T03:44:06.5991756Z 2026-01-31 03:44:06,596 - 4467 - vllmProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.13.0+empty: default 1
+2026-01-31T03:44:06.6018738Z INFO 01-31 03:44:06 [__init__.py:108] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+2026-01-31T03:44:06.8846722Z 2026-01-31 03:44:06,882 - 4470 - vllmProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.13.0+empty: default 1
+2026-01-31T03:44:06.8873118Z INFO 01-31 03:44:06 [__init__.py:108] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+2026-01-31T03:44:08.6295914Z INFO 01-31 03:44:08 [ascend_config.py:55] Linear layer sharding enabled with config: None. Note: This feature works optimally with FLASHCOMM2 and DSA-CP enabled; using it without these features may result in significant performance degradation.
+2026-01-31T03:44:08.9292199Z INFO 01-31 03:44:08 [ascend_config.py:55] Linear layer sharding enabled with config: None. Note: This feature works optimally with FLASHCOMM2 and DSA-CP enabled; using it without these features may result in significant performance degradation.
+2026-01-31T03:44:09.0505396Z INFO 01-31 03:44:09 [parallel_state.py:1203] world_size=32 rank=6 local_rank=6 distributed_init_method=tcp://10.0.0.218:37941 backend=hccl
+2026-01-31T03:44:09.3347461Z INFO 01-31 03:44:09 [parallel_state.py:1203] world_size=32 rank=14 local_rank=6 distributed_init_method=tcp://10.0.0.218:37941 backend=hccl
+2026-01-31T03:44:11.2081418Z INFO 01-31 03:44:11 [__init__.py:43] Available plugins for group vllm.platform_plugins:
+2026-01-31T03:44:11.2091911Z INFO 01-31 03:44:11 [__init__.py:45] - ascend -> vllm_ascend:register
+2026-01-31T03:44:11.2103506Z INFO 01-31 03:44:11 [__init__.py:48] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+2026-01-31T03:44:11.2164027Z INFO 01-31 03:44:11 [__init__.py:217] Platform plugin ascend is activated
+2026-01-31T03:44:11.5239373Z INFO 01-31 03:44:11 [__init__.py:43] Available plugins for group vllm.platform_plugins:
+2026-01-31T03:44:11.5251719Z INFO 01-31 03:44:11 [__init__.py:45] - ascend -> vllm_ascend:register
+2026-01-31T03:44:11.5261537Z INFO 01-31 03:44:11 [__init__.py:48] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+2026-01-31T03:44:11.5380205Z INFO 01-31 03:44:11 [__init__.py:217] Platform plugin ascend is activated
+2026-01-31T03:44:16.7306679Z 2026-01-31 03:44:16,728 - 5021 - vllmProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.13.0+empty: default 1
+2026-01-31T03:44:16.7331177Z INFO 01-31 03:44:16 [__init__.py:108] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+2026-01-31T03:44:17.0684117Z 2026-01-31 03:44:17,065 - 5024 - vllmProfiler - INFO - VLLM_USE_V1 not set, auto-detected via vLLM 0.13.0+empty: default 1
+2026-01-31T03:44:17.0708844Z INFO 01-31 03:44:17 [__init__.py:108] Registered model loader `<class 'vllm_ascend.model_loader.netloader.netloader.ModelNetLoaderElastic'>` with load format `netloader`
+2026-01-31T03:44:18.7103979Z INFO 01-31 03:44:18 [ascend_config.py:55] Linear layer sharding enabled with config: None. Note: This feature works optimally with FLASHCOMM2 and DSA-CP enabled; using it without these features may result in significant performance degradation.
+2026-01-31T03:44:19.1777455Z INFO 01-31 03:44:19 [ascend_config.py:55] Linear layer sharding enabled with config: None. Note: This feature works optimally with FLASHCOMM2 and DSA-CP enabled; using it without these features may result in significant performance degradation.
+2026-01-31T03:44:19.2738818Z INFO 01-31 03:44:19 [parallel_state.py:1203] world_size=32 rank=7 local_rank=7 distributed_init_method=tcp://10.0.0.218:37941 backend=hccl
+2026-01-31T03:44:19.7434388Z INFO 01-31 03:44:19 [parallel_state.py:1203] world_size=32 rank=15 local_rank=7 distributed_init_method=tcp://10.0.0.218:37941 backend=hccl
+2026-01-31T03:44:19.7971227Z [Gloo] Rank 5 is connected to 31 peer ranks. Expected number of connected peer ranks is : 31
+2026-01-31T03:44:19.7971875Z [Gloo] Rank 0 is connected to 31 peer ranks. Expected number of connected peer ranks is : 31
+2026-01-31T03:44:19.7972474Z [Gloo] Rank 4 is connected to 31 peer ranks. Expected number of connected peer ranks is : 31
+2026-01-31T03:44:19.7972952Z [Gloo] Rank 6 is connected to 31 peer ranks. Expected number of connected peer ranks is : 31
+2026-01-31T03:44:19.7973461Z [Gloo] Rank 2 is connected to 31 peer ranks. Expected number of connected peer ranks is : 31
+2026-01-31T03:44:19.7976598Z [Gloo] Rank 3 is connected to 31 peer ranks. Expected number of connected peer ranks is : 31
+2026-01-31T03:44:19.7987482Z [Gloo] Rank 7 is connected to 31 peer ranks. Expected number of connected peer ranks is : 31
+2026-01-31T03:44:19.8583070Z [Gloo] Rank 1 is connected to 31 peer ranks. Expected number of connected peer ranks is : 31
+2026-01-31T03:44:19.8651503Z [Gloo] Rank 8 is connected to 31 peer ranks. Expected number of connected peer ranks is : 31
+2026-01-31T03:44:19.8775272Z [Gloo] Rank 9 is connected to 31 peer ranks. Expected number of connected peer ranks is : 31
+2026-01-31T03:44:19.8795173Z [Gloo] Rank 15 is connected to 31 peer ranks. Expected number of connected peer ranks is : 31
+2026-01-31T03:44:19.8805673Z [Gloo] Rank 12 is connected to 31 peer ranks. Expected number of connected peer ranks is : 31
+2026-01-31T03:44:19.8816038Z [Gloo] Rank 13 is connected to 31 peer ranks. Expected number of connected peer ranks is : 31
+2026-01-31T03:44:19.8825946Z [Gloo] Rank 14 is connected to 31 peer ranks. Expected number of connected peer ranks is : 31
+2026-01-31T03:44:19.9468557Z [Gloo] Rank 11 is connected to 31 peer ranks. Expected number of connected peer ranks is : 31
+2026-01-31T03:44:19.9469115Z [Gloo] Rank 10 is connected to 31 peer ranks. Expected number of connected peer ranks is : 31
+2026-01-31T03:44:20.0194781Z [Gloo] Rank 0 is connected to 7 peer ranks. Expected number of connected peer ranks is : 7
+2026-01-31T03:44:20.0205275Z [Gloo] Rank 1 is connected to 7 peer ranks. Expected number of connected peer ranks is : 7
+2026-01-31T03:44:20.0217960Z [Gloo] Rank 1 is connected to 7 peer ranks. Expected number of connected peer ranks is : 7
+2026-01-31T03:44:20.0226702Z [Gloo] Rank 0 is connected to 7 peer ranks. Expected number of connected peer ranks is : 7
+2026-01-31T03:44:20.0236577Z [Gloo] Rank 3 is connected to 7 peer ranks. Expected number of connected peer ranks is : 7
+2026-01-31T03:44:20.0248711Z [Gloo] Rank 5 is connected to 7 peer ranks. Expected number of connected peer ranks is : 7
+2026-01-31T03:44:20.0258467Z [Gloo] Rank 4 is connected to 7 peer ranks. Expected number of connected peer ranks is : 7
+2026-01-31T03:44:20.0268724Z [Gloo] Rank 2 is connected to 7 peer ranks. Expected number of connected peer ranks is : 7
+2026-01-31T03:44:20.0279762Z [Gloo] Rank 4 is connected to 7 peer ranks. Expected number of connected peer ranks is : 7
+2026-01-31T03:44:20.0290233Z [Gloo] Rank 2 is connected to 7 peer ranks. Expected number of connected peer ranks is : 7
+2026-01-31T03:44:20.0300258Z [Gloo] Rank 3 is connected to 7 peer ranks. Expected number of connected peer ranks is : 7
+2026-01-31T03:44:20.0310379Z [Gloo] Rank 7 is connected to 7 peer ranks. Expected number of connected peer ranks is : 7
+2026-01-31T03:44:20.0321362Z [Gloo] Rank 6 is connected to 7 peer ranks. Expected number of connected peer ranks is : 7
+2026-01-31T03:44:20.0332686Z [Gloo] Rank 6 is connected to 7 peer ranks. Expected number of connected peer ranks is : 7
+2026-01-31T03:44:20.0342633Z [Gloo] Rank 5 is connected to 7 peer ranks. Expected number of connected peer ranks is : 7
+2026-01-31T03:44:20.0354631Z [Gloo] Rank 7 is connected to 7 peer ranks. Expected number of connected peer ranks is : 7
+2026-01-31T03:44:20.0363416Z [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+2026-01-31T03:44:20.0373349Z [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+2026-01-31T03:44:20.0383536Z [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+2026-01-31T03:44:20.0393777Z [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+2026-01-31T03:44:20.0404630Z [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+2026-01-31T03:44:20.0416168Z [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+2026-01-31T03:44:20.0425412Z [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+2026-01-31T03:44:20.0435504Z [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+2026-01-31T03:44:20.0446234Z [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+2026-01-31T03:44:20.0456007Z [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+2026-01-31T03:44:20.0466413Z [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+2026-01-31T03:44:20.0477188Z [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+2026-01-31T03:44:20.0487158Z [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+2026-01-31T03:44:20.0497008Z [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+2026-01-31T03:44:20.0507125Z [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+2026-01-31T03:44:20.0518610Z [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+2026-01-31T03:44:20.0528863Z [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+2026-01-31T03:44:20.0538423Z [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+2026-01-31T03:44:20.0548236Z [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+2026-01-31T03:44:20.0558868Z [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+2026-01-31T03:44:20.0569562Z [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+2026-01-31T03:44:20.0578944Z [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+2026-01-31T03:44:20.0587914Z [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+2026-01-31T03:44:20.0597877Z [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+2026-01-31T03:44:20.0801435Z [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+2026-01-31T03:44:20.0826195Z [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+2026-01-31T03:44:20.0836131Z [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+2026-01-31T03:44:20.0846198Z [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+2026-01-31T03:44:20.0857335Z [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+2026-01-31T03:44:20.0866787Z [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+2026-01-31T03:44:20.0877178Z [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+2026-01-31T03:44:20.0888564Z [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+2026-01-31T03:44:20.0898032Z [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+2026-01-31T03:44:20.0908173Z [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+2026-01-31T03:44:20.0918507Z [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+2026-01-31T03:44:20.0929080Z [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+2026-01-31T03:44:20.0939137Z [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+2026-01-31T03:44:20.0949740Z [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+2026-01-31T03:44:20.0959415Z [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+2026-01-31T03:44:20.0969760Z [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+2026-01-31T03:44:20.0979574Z [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+2026-01-31T03:44:20.0992859Z [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+2026-01-31T03:44:20.1004015Z [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+2026-01-31T03:44:20.1014722Z [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+2026-01-31T03:44:20.1024164Z [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+2026-01-31T03:44:20.1034630Z [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+2026-01-31T03:44:20.1043764Z [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+2026-01-31T03:44:20.1054180Z [Gloo] Rank 1 is connected to 3 peer ranks. Expected number of connected peer ranks is : 3
+2026-01-31T03:44:20.1064131Z [Gloo] Rank 0 is connected to 3 peer ranks. Expected number of connected peer ranks is : 3
+2026-01-31T03:44:20.1073966Z [Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+2026-01-31T03:44:20.1084164Z [Gloo] Rank 1 is connected to 3 peer ranks. Expected number of connected peer ranks is : 3
+2026-01-31T03:44:20.1094275Z [Gloo] Rank 0 is connected to 3 peer ranks. Expected number of connected peer ranks is : 3
+2026-01-31T03:44:20.1111485Z [Gloo] Rank 1 is connected to 3 peer ranks. Expected number of connected peer ranks is : 3
+2026-01-31T03:44:20.1143170Z [Gloo] Rank 0 is connected to 3 peer ranks. Expected number of connected peer ranks is : 3
+2026-01-31T03:44:20.1143783Z [Gloo] Rank 1 is connected to 3 peer ranks. Expected number of connected peer ranks is : 3
+2026-01-31T03:44:20.1144317Z [Gloo] Rank 0 is connected to 3 peer ranks. Expected number of connected peer ranks is : 3
+2026-01-31T03:44:20.1153667Z [Gloo] Rank 1 is connected to 3 peer ranks. Expected number of connected peer ranks is : 3
+2026-01-31T03:44:20.1162981Z [Gloo] Rank 0 is connected to 3 peer ranks. Expected number of connected peer ranks is : 3
+2026-01-31T03:44:20.1173401Z [Gloo] Rank 0 is connected to 3 peer ranks. Expected number of connected peer ranks is : 3
+2026-01-31T03:44:20.1186783Z [Gloo] Rank 1 is connected to 3 peer ranks. Expected number of connected peer ranks is : 3
+2026-01-31T03:44:20.1197304Z [Gloo] Rank 1 is connected to 3 peer ranks. Expected number of connected peer ranks is : 3
+2026-01-31T03:44:20.1208574Z [Gloo] Rank 0 is connected to 3 peer ranks. Expected number of connected peer ranks is : 3
+2026-01-31T03:44:20.1218879Z [Gloo] Rank 1 is connected to 3 peer ranks. Expected number of connected peer ranks is : 3
+2026-01-31T03:44:20.1229348Z [Gloo] Rank 0 is connected to 3 peer ranks. Expected number of connected peer ranks is : 3
+2026-01-31T03:44:20.1275692Z [Gloo] Rank 0 is connected to 31 peer ranks. Expected number of connected peer ranks is : 31
+2026-01-31T03:44:20.1300257Z INFO 01-31 03:44:20 [parallel_state.py:1411] rank 0 in world size 32 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 0, EP rank 0
+2026-01-31T03:44:20.1749196Z [Gloo] Rank 8 is connected to 31 peer ranks. Expected number of connected peer ranks is : 31
+2026-01-31T03:44:20.1760369Z [Gloo] Rank 1 is connected to 31 peer ranks. Expected number of connected peer ranks is : 31
+2026-01-31T03:44:20.1771708Z [Gloo] Rank 4 is connected to 31 peer ranks. Expected number of connected peer ranks is : 31
+2026-01-31T03:44:20.1782312Z [Gloo] Rank 6 is connected to 31 peer ranks. Expected number of connected peer ranks is : 31
+2026-01-31T03:44:20.1793112Z INFO 01-31 03:44:20 [parallel_state.py:1411] rank 8 in world size 32 is assigned as DP rank 1, PP rank 0, PCP rank 0, TP rank 0, EP rank 8
+2026-01-31T03:44:20.1803932Z INFO 01-31 03:44:20 [parallel_state.py:1411] rank 1 in world size 32 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 1, EP rank 1
+2026-01-31T03:44:20.1813917Z INFO 01-31 03:44:20 [parallel_state.py:1411] rank 4 in world size 32 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 4, EP rank 4
+2026-01-31T03:44:20.1824451Z INFO 01-31 03:44:20 [parallel_state.py:1411] rank 6 in world size 32 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 6, EP rank 6
+2026-01-31T03:44:20.1834380Z [Gloo] Rank 14 is connected to 31 peer ranks. Expected number of connected peer ranks is : 31
+2026-01-31T03:44:20.1846529Z INFO 01-31 03:44:20 [parallel_state.py:1411] rank 14 in world size 32 is assigned as DP rank 1, PP rank 0, PCP rank 0, TP rank 6, EP rank 14
+2026-01-31T03:44:20.1857444Z [Gloo] Rank 10 is connected to 31 peer ranks. Expected number of connected peer ranks is : 31
+2026-01-31T03:44:20.1868346Z INFO 01-31 03:44:20 [parallel_state.py:1411] rank 10 in world size 32 is assigned as DP rank 1, PP rank 0, PCP rank 0, TP rank 2, EP rank 10
+2026-01-31T03:44:20.1878173Z [Gloo] Rank 5 is connected to 31 peer ranks. Expected number of connected peer ranks is : 31
+2026-01-31T03:44:20.1889669Z INFO 01-31 03:44:20 [parallel_state.py:1411] rank 5 in world size 32 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 5, EP rank 5
+2026-01-31T03:44:20.2382997Z [Gloo] Rank 3 is connected to 31 peer ranks. Expected number of connected peer ranks is : 31
+2026-01-31T03:44:20.2403482Z [Gloo] Rank 15 is connected to 31 peer ranks. Expected number of connected peer ranks is : 31
+2026-01-31T03:44:20.2413179Z [Gloo] Rank 7 is connected to 31 peer ranks. Expected number of connected peer ranks is : 31
+2026-01-31T03:44:20.2422663Z [Gloo] Rank 9 is connected to 31 peer ranks. Expected number of connected peer ranks is : 31
+2026-01-31T03:44:20.2432522Z [Gloo] Rank 13 is connected to 31 peer ranks. Expected number of connected peer ranks is : 31
+2026-01-31T03:44:20.2443226Z [Gloo] Rank 11 is connected to 31 peer ranks. Expected number of connected peer ranks is : 31
+2026-01-31T03:44:20.2452935Z [Gloo] Rank 12 is connected to 31 peer ranks. Expected number of connected peer ranks is : 31
+2026-01-31T03:44:20.2462554Z INFO 01-31 03:44:20 [parallel_state.py:1411] rank 3 in world size 32 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 3, EP rank 3
+2026-01-31T03:44:20.2472733Z INFO 01-31 03:44:20 [parallel_state.py:1411] rank 9 in world size 32 is assigned as DP rank 1, PP rank 0, PCP rank 0, TP rank 1, EP rank 9
+2026-01-31T03:44:20.2483012Z INFO 01-31 03:44:20 [parallel_state.py:1411] rank 15 in world size 32 is assigned as DP rank 1, PP rank 0, PCP rank 0, TP rank 7, EP rank 15
+2026-01-31T03:44:20.2493377Z INFO 01-31 03:44:20 [parallel_state.py:1411] rank 7 in world size 32 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 7, EP rank 7
+2026-01-31T03:44:20.2503429Z INFO 01-31 03:44:20 [parallel_state.py:1411] rank 13 in world size 32 is assigned as DP rank 1, PP rank 0, PCP rank 0, TP rank 5, EP rank 13
+2026-01-31T03:44:20.2515031Z INFO 01-31 03:44:20 [parallel_state.py:1411] rank 11 in world size 32 is assigned as DP rank 1, PP rank 0, PCP rank 0, TP rank 3, EP rank 11
+2026-01-31T03:44:20.2525678Z INFO 01-31 03:44:20 [parallel_state.py:1411] rank 12 in world size 32 is assigned as DP rank 1, PP rank 0, PCP rank 0, TP rank 4, EP rank 12
+2026-01-31T03:44:20.2535566Z [Gloo] Rank 2 is connected to 31 peer ranks. Expected number of connected peer ranks is : 31
+2026-01-31T03:44:20.2545623Z INFO 01-31 03:44:20 [parallel_state.py:1411] rank 2 in world size 32 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 2, EP rank 2
+2026-01-31T03:44:20.3033955Z [Gloo] Rank 0 is connected to 31 peer ranks. Expected number of connected peer ranks is : 31
+2026-01-31T03:44:20.3041453Z [Gloo] Rank 7 is connected to 31 peer ranks. Expected number of connected peer ranks is : 31
+2026-01-31T03:44:20.3050229Z [Gloo] Rank 1 is connected to 31 peer ranks. Expected number of connected peer ranks is : 31
+2026-01-31T03:44:20.3060021Z [Gloo] Rank 2 is connected to 31 peer ranks. Expected number of connected peer ranks is : 31
+2026-01-31T03:44:20.3071383Z [Gloo] Rank 10 is connected to 31 peer ranks. Expected number of connected peer ranks is : 31
+2026-01-31T03:44:20.3080294Z [Gloo] Rank 3 is connected to 31 peer ranks. Expected number of connected peer ranks is : 31
+2026-01-31T03:44:20.3089703Z [Gloo] Rank 9 is connected to 31 peer ranks. Expected number of connected peer ranks is : 31
+2026-01-31T03:44:20.3099440Z [Gloo] Rank 12 is connected to 31 peer ranks. Expected number of connected peer ranks is : 31
+2026-01-31T03:44:20.3109456Z [Gloo] Rank 4 is connected to 31 peer ranks. Expected number of connected peer ranks is : 31
+2026-01-31T03:44:20.3122750Z [Gloo] Rank 6 is connected to 31 peer ranks. Expected number of connected peer ranks is : 31
+2026-01-31T03:44:20.3133680Z [Gloo] Rank 14 is connected to 31 peer ranks. Expected number of connected peer ranks is : 31
+2026-01-31T03:44:20.3143189Z [Gloo] Rank 13 is connected to 31 peer ranks. Expected number of connected peer ranks is : 31
+2026-01-31T03:44:20.3152737Z [Gloo] Rank 11 is connected to 31 peer ranks. Expected number of connected peer ranks is : 31
+2026-01-31T03:44:20.3163245Z [Gloo] Rank 8 is connected to 31 peer ranks. Expected number of connected peer ranks is : 31
+2026-01-31T03:44:20.3172744Z [Gloo] Rank 5 is connected to 31 peer ranks. Expected number of connected peer ranks is : 31
+2026-01-31T03:44:20.3191774Z [Gloo] Rank 15 is connected to 31 peer ranks. Expected number of connected peer ranks is : 31
+2026-01-31T03:44:20.4338976Z [0;36m(Worker_DP0_TP3_EP3 pid=2806)[0;0m INFO 01-31 03:44:20 [model_runner_v1.py:2369] Starting to load model /root/.cache/modelscope/hub/models/vllm-ascend/Kimi-K2-Instruct-W8A8...
+2026-01-31T03:44:20.4373153Z [0;36m(Worker_DP0_TP6_EP6 pid=4467)[0;0m INFO 01-31 03:44:20 [model_runner_v1.py:2369] Starting to load model /root/.cache/modelscope/hub/models/vllm-ascend/Kimi-K2-Instruct-W8A8...
+2026-01-31T03:44:20.4383108Z [0;36m(Worker_DP1_TP7_EP15 pid=5024)[0;0m INFO 01-31 03:44:20 [model_runner_v1.py:2369] Starting to load model /root/.cache/modelscope/hub/models/vllm-ascend/Kimi-K2-Instruct-W8A8...
+2026-01-31T03:44:20.4393901Z [0;36m(Worker_DP1_TP6_EP14 pid=4470)[0;0m INFO 01-31 03:44:20 [model_runner_v1.py:2369] Starting to load model /root/.cache/modelscope/hub/models/vllm-ascend/Kimi-K2-Instruct-W8A8...
+2026-01-31T03:44:20.4443991Z [0;36m(Worker_DP0_TP7_EP7 pid=5021)[0;0m INFO 01-31 03:44:20 [model_runner_v1.py:2369] Starting to load model /root/.cache/modelscope/hub/models/vllm-ascend/Kimi-K2-Instruct-W8A8...
+2026-01-31T03:44:20.4537211Z [0;36m(Worker_DP1_TP4_EP12 pid=3359)[0;0m INFO 01-31 03:44:20 [model_runner_v1.py:2369] Starting to load model /root/.cache/modelscope/hub/models/vllm-ascend/Kimi-K2-Instruct-W8A8...
+2026-01-31T03:44:20.4587178Z [0;36m(Worker_DP0_TP1_EP1 pid=1707)[0;0m INFO 01-31 03:44:20 [model_runner_v1.py:2369] Starting to load model /root/.cache/modelscope/hub/models/vllm-ascend/Kimi-K2-Instruct-W8A8...
+2026-01-31T03:44:20.4666088Z [0;36m(Worker_DP1_TP3_EP11 pid=2805)[0;0m INFO 01-31 03:44:20 [model_runner_v1.py:2369] Starting to load model /root/.cache/modelscope/hub/models/vllm-ascend/Kimi-K2-Instruct-W8A8...
+2026-01-31T03:44:20.4698287Z [0;36m(Worker_DP1_TP1_EP9 pid=1708)[0;0m INFO 01-31 03:44:20 [model_runner_v1.py:2369] Starting to load model /root/.cache/modelscope/hub/models/vllm-ascend/Kimi-K2-Instruct-W8A8...
+2026-01-31T03:44:20.4734331Z [0;36m(Worker_DP1_TP5_EP13 pid=3917)[0;0m INFO 01-31 03:44:20 [model_runner_v1.py:2369] Starting to load model /root/.cache/modelscope/hub/models/vllm-ascend/Kimi-K2-Instruct-W8A8...
+2026-01-31T03:44:20.4907005Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m INFO 01-31 03:44:20 [model_runner_v1.py:2369] Starting to load model /root/.cache/modelscope/hub/models/vllm-ascend/Kimi-K2-Instruct-W8A8...
+2026-01-31T03:44:20.4969303Z [0;36m(Worker_DP0_TP2_EP2 pid=2253)[0;0m INFO 01-31 03:44:20 [model_runner_v1.py:2369] Starting to load model /root/.cache/modelscope/hub/models/vllm-ascend/Kimi-K2-Instruct-W8A8...
+2026-01-31T03:44:20.5139493Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m INFO 01-31 03:44:20 [model_runner_v1.py:2369] Starting to load model /root/.cache/modelscope/hub/models/vllm-ascend/Kimi-K2-Instruct-W8A8...
+2026-01-31T03:44:20.5178508Z [0;36m(Worker_DP0_TP4_EP4 pid=3360)[0;0m INFO 01-31 03:44:20 [model_runner_v1.py:2369] Starting to load model /root/.cache/modelscope/hub/models/vllm-ascend/Kimi-K2-Instruct-W8A8...
+2026-01-31T03:44:20.5210412Z [0;36m(Worker_DP1_TP0_EP8 pid=1237)[0;0m INFO 01-31 03:44:20 [model_runner_v1.py:2369] Starting to load model /root/.cache/modelscope/hub/models/vllm-ascend/Kimi-K2-Instruct-W8A8...
+2026-01-31T03:44:20.5349174Z [0;36m(Worker_DP0_TP0_EP0 pid=1238)[0;0m INFO 01-31 03:44:20 [model_runner_v1.py:2369] Starting to load model /root/.cache/modelscope/hub/models/vllm-ascend/Kimi-K2-Instruct-W8A8...
+2026-01-31T03:44:20.7999949Z [0;36m(Worker_DP1_TP7_EP15 pid=5024)[0;0m INFO 01-31 03:44:20 [utils.py:99] Using the vLLM Ascend modelslim Quantization now!
+2026-01-31T03:44:20.8023108Z [0;36m(Worker_DP0_TP6_EP6 pid=4467)[0;0m INFO 01-31 03:44:20 [utils.py:99] Using the vLLM Ascend modelslim Quantization now!
+2026-01-31T03:44:20.8066877Z [0;36m(Worker_DP0_TP3_EP3 pid=2806)[0;0m INFO 01-31 03:44:20 [utils.py:99] Using the vLLM Ascend modelslim Quantization now!
+2026-01-31T03:44:20.8507238Z [0;36m(Worker_DP1_TP4_EP12 pid=3359)[0;0m INFO 01-31 03:44:20 [utils.py:99] Using the vLLM Ascend modelslim Quantization now!
+2026-01-31T03:44:20.9238844Z [0;36m(Worker_DP1_TP7_EP15 pid=5024)[0;0m INFO 01-31 03:44:20 [layer.py:365] Disabling MoE shared_experts cuda stream
+2026-01-31T03:44:20.9246695Z [0;36m(Worker_DP0_TP3_EP3 pid=2806)[0;0m INFO 01-31 03:44:20 [layer.py:365] Disabling MoE shared_experts cuda stream
+2026-01-31T03:44:20.9256489Z [0;36m(Worker_DP0_TP6_EP6 pid=4467)[0;0m INFO 01-31 03:44:20 [layer.py:365] Disabling MoE shared_experts cuda stream
+2026-01-31T03:44:20.9265291Z [0;36m(Worker_DP1_TP4_EP12 pid=3359)[0;0m INFO 01-31 03:44:20 [layer.py:365] Disabling MoE shared_experts cuda stream
+2026-01-31T03:44:20.9740169Z [0;36m(Worker_DP1_TP7_EP15 pid=5024)[0;0m INFO 01-31 03:44:20 [layer.py:494] [EP Rank 15/32] Expert parallelism is enabled. Expert placement strategy: linear. Local/global number of experts: 12/384. Experts local to global index map: 0->180, 1->181, 2->182, 3->183, 4->184, 5->185, 6->186, 7->187, 8->188, 9->189, 10->190, 11->191.
+2026-01-31T03:44:20.9747626Z [0;36m(Worker_DP0_TP6_EP6 pid=4467)[0;0m INFO 01-31 03:44:20 [layer.py:494] [EP Rank 6/32] Expert parallelism is enabled. Expert placement strategy: linear. Local/global number of experts: 12/384. Experts local to global index map: 0->72, 1->73, 2->74, 3->75, 4->76, 5->77, 6->78, 7->79, 8->80, 9->81, 10->82, 11->83.
+2026-01-31T03:44:20.9758745Z [0;36m(Worker_DP0_TP3_EP3 pid=2806)[0;0m INFO 01-31 03:44:20 [layer.py:494] [EP Rank 3/32] Expert parallelism is enabled. Expert placement strategy: linear. Local/global number of experts: 12/384. Experts local to global index map: 0->36, 1->37, 2->38, 3->39, 4->40, 5->41, 6->42, 7->43, 8->44, 9->45, 10->46, 11->47.
+2026-01-31T03:44:20.9768121Z [0;36m(Worker_DP1_TP4_EP12 pid=3359)[0;0m INFO 01-31 03:44:20 [layer.py:494] [EP Rank 12/32] Expert parallelism is enabled. Expert placement strategy: linear. Local/global number of experts: 12/384. Experts local to global index map: 0->144, 1->145, 2->146, 3->147, 4->148, 5->149, 6->150, 7->151, 8->152, 9->153, 10->154, 11->155.
+2026-01-31T03:44:22.1102623Z [0;36m(Worker_DP1_TP6_EP14 pid=4470)[0;0m INFO 01-31 03:44:22 [utils.py:99] Using the vLLM Ascend modelslim Quantization now!
+2026-01-31T03:44:22.1828208Z [0;36m(Worker_DP1_TP6_EP14 pid=4470)[0;0m INFO 01-31 03:44:22 [layer.py:365] Disabling MoE shared_experts cuda stream
+2026-01-31T03:44:22.2104231Z [0;36m(Worker_DP1_TP6_EP14 pid=4470)[0;0m INFO 01-31 03:44:22 [layer.py:494] [EP Rank 14/32] Expert parallelism is enabled. Expert placement strategy: linear. Local/global number of experts: 12/384. Experts local to global index map: 0->168, 1->169, 2->170, 3->171, 4->172, 5->173, 6->174, 7->175, 8->176, 9->177, 10->178, 11->179.
+2026-01-31T03:44:22.3042952Z [0;36m(Worker_DP0_TP4_EP4 pid=3360)[0;0m INFO 01-31 03:44:22 [utils.py:99] Using the vLLM Ascend modelslim Quantization now!
+2026-01-31T03:44:22.3840305Z [0;36m(Worker_DP0_TP4_EP4 pid=3360)[0;0m INFO 01-31 03:44:22 [layer.py:365] Disabling MoE shared_experts cuda stream
+2026-01-31T03:44:22.4136578Z [0;36m(Worker_DP0_TP4_EP4 pid=3360)[0;0m INFO 01-31 03:44:22 [layer.py:494] [EP Rank 4/32] Expert parallelism is enabled. Expert placement strategy: linear. Local/global number of experts: 12/384. Experts local to global index map: 0->48, 1->49, 2->50, 3->51, 4->52, 5->53, 6->54, 7->55, 8->56, 9->57, 10->58, 11->59.
+2026-01-31T03:44:22.4981859Z [0;36m(Worker_DP0_TP7_EP7 pid=5021)[0;0m INFO 01-31 03:44:22 [utils.py:99] Using the vLLM Ascend modelslim Quantization now!
+2026-01-31T03:44:22.5744533Z [0;36m(Worker_DP0_TP7_EP7 pid=5021)[0;0m INFO 01-31 03:44:22 [layer.py:365] Disabling MoE shared_experts cuda stream
+2026-01-31T03:44:22.6013848Z [0;36m(Worker_DP0_TP7_EP7 pid=5021)[0;0m INFO 01-31 03:44:22 [layer.py:494] [EP Rank 7/32] Expert parallelism is enabled. Expert placement strategy: linear. Local/global number of experts: 12/384. Experts local to global index map: 0->84, 1->85, 2->86, 3->87, 4->88, 5->89, 6->90, 7->91, 8->92, 9->93, 10->94, 11->95.
+2026-01-31T03:44:22.6643662Z [0;36m(Worker_DP1_TP3_EP11 pid=2805)[0;0m INFO 01-31 03:44:22 [utils.py:99] Using the vLLM Ascend modelslim Quantization now!
+2026-01-31T03:44:22.6731082Z [0;36m(Worker_DP0_TP1_EP1 pid=1707)[0;0m INFO 01-31 03:44:22 [utils.py:99] Using the vLLM Ascend modelslim Quantization now!
+2026-01-31T03:44:22.6778853Z [0;36m(Worker_DP1_TP1_EP9 pid=1708)[0;0m INFO 01-31 03:44:22 [utils.py:99] Using the vLLM Ascend modelslim Quantization now!
+2026-01-31T03:44:22.7473212Z [0;36m(Worker_DP1_TP3_EP11 pid=2805)[0;0m INFO 01-31 03:44:22 [layer.py:365] Disabling MoE shared_experts cuda stream
+2026-01-31T03:44:22.7745950Z [0;36m(Worker_DP1_TP3_EP11 pid=2805)[0;0m INFO 01-31 03:44:22 [layer.py:494] [EP Rank 11/32] Expert parallelism is enabled. Expert placement strategy: linear. Local/global number of experts: 12/384. Experts local to global index map: 0->132, 1->133, 2->134, 3->135, 4->136, 5->137, 6->138, 7->139, 8->140, 9->141, 10->142, 11->143.
+2026-01-31T03:44:22.7866739Z [0;36m(Worker_DP0_TP2_EP2 pid=2253)[0;0m INFO 01-31 03:44:22 [utils.py:99] Using the vLLM Ascend modelslim Quantization now!
+2026-01-31T03:44:22.7997807Z [0;36m(Worker_DP0_TP1_EP1 pid=1707)[0;0m INFO 01-31 03:44:22 [layer.py:365] Disabling MoE shared_experts cuda stream
+2026-01-31T03:44:22.8031321Z [0;36m(Worker_DP1_TP1_EP9 pid=1708)[0;0m INFO 01-31 03:44:22 [layer.py:365] Disabling MoE shared_experts cuda stream
+2026-01-31T03:44:22.8270361Z [0;36m(Worker_DP0_TP1_EP1 pid=1707)[0;0m INFO 01-31 03:44:22 [layer.py:494] [EP Rank 1/32] Expert parallelism is enabled. Expert placement strategy: linear. Local/global number of experts: 12/384. Experts local to global index map: 0->12, 1->13, 2->14, 3->15, 4->16, 5->17, 6->18, 7->19, 8->20, 9->21, 10->22, 11->23.
+2026-01-31T03:44:22.8287940Z [0;36m(Worker_DP1_TP1_EP9 pid=1708)[0;0m INFO 01-31 03:44:22 [layer.py:494] [EP Rank 9/32] Expert parallelism is enabled. Expert placement strategy: linear. Local/global number of experts: 12/384. Experts local to global index map: 0->108, 1->109, 2->110, 3->111, 4->112, 5->113, 6->114, 7->115, 8->116, 9->117, 10->118, 11->119.
+2026-01-31T03:44:22.8586922Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m INFO 01-31 03:44:22 [utils.py:99] Using the vLLM Ascend modelslim Quantization now!
+2026-01-31T03:44:22.8995581Z [0;36m(Worker_DP0_TP2_EP2 pid=2253)[0;0m INFO 01-31 03:44:22 [layer.py:365] Disabling MoE shared_experts cuda stream
+2026-01-31T03:44:22.9271207Z [0;36m(Worker_DP0_TP2_EP2 pid=2253)[0;0m INFO 01-31 03:44:22 [layer.py:494] [EP Rank 2/32] Expert parallelism is enabled. Expert placement strategy: linear. Local/global number of experts: 12/384. Experts local to global index map: 0->24, 1->25, 2->26, 3->27, 4->28, 5->29, 6->30, 7->31, 8->32, 9->33, 10->34, 11->35.
+2026-01-31T03:44:22.9643106Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m INFO 01-31 03:44:22 [layer.py:365] Disabling MoE shared_experts cuda stream
+2026-01-31T03:44:22.9869874Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m INFO 01-31 03:44:22 [utils.py:99] Using the vLLM Ascend modelslim Quantization now!
+2026-01-31T03:44:22.9894755Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m INFO 01-31 03:44:22 [layer.py:494] [EP Rank 10/32] Expert parallelism is enabled. Expert placement strategy: linear. Local/global number of experts: 12/384. Experts local to global index map: 0->120, 1->121, 2->122, 3->123, 4->124, 5->125, 6->126, 7->127, 8->128, 9->129, 10->130, 11->131.
+2026-01-31T03:44:23.0604738Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m INFO 01-31 03:44:23 [layer.py:365] Disabling MoE shared_experts cuda stream
+2026-01-31T03:44:23.0845648Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m INFO 01-31 03:44:23 [layer.py:494] [EP Rank 5/32] Expert parallelism is enabled. Expert placement strategy: linear. Local/global number of experts: 12/384. Experts local to global index map: 0->60, 1->61, 2->62, 3->63, 4->64, 5->65, 6->66, 7->67, 8->68, 9->69, 10->70, 11->71.
+2026-01-31T03:44:23.0889343Z [0;36m(Worker_DP0_TP0_EP0 pid=1238)[0;0m INFO 01-31 03:44:23 [utils.py:99] Using the vLLM Ascend modelslim Quantization now!
+2026-01-31T03:44:23.1128701Z [0;36m(Worker_DP1_TP5_EP13 pid=3917)[0;0m INFO 01-31 03:44:23 [utils.py:99] Using the vLLM Ascend modelslim Quantization now!
+2026-01-31T03:44:23.1445890Z [0;36m(Worker_DP1_TP0_EP8 pid=1237)[0;0m INFO 01-31 03:44:23 [utils.py:99] Using the vLLM Ascend modelslim Quantization now!
+2026-01-31T03:44:23.1584009Z [0;36m(Worker_DP0_TP0_EP0 pid=1238)[0;0m INFO 01-31 03:44:23 [layer.py:365] Disabling MoE shared_experts cuda stream
+2026-01-31T03:44:23.1800385Z [0;36m(Worker_DP1_TP5_EP13 pid=3917)[0;0m INFO 01-31 03:44:23 [layer.py:365] Disabling MoE shared_experts cuda stream
+2026-01-31T03:44:23.1879564Z [0;36m(Worker_DP0_TP0_EP0 pid=1238)[0;0m INFO 01-31 03:44:23 [layer.py:494] [EP Rank 0/32] Expert parallelism is enabled. Expert placement strategy: linear. Local/global number of experts: 12/384. Experts local to global index map: 0->0, 1->1, 2->2, 3->3, 4->4, 5->5, 6->6, 7->7, 8->8, 9->9, 10->10, 11->11.
+2026-01-31T03:44:23.2048204Z [0;36m(Worker_DP1_TP5_EP13 pid=3917)[0;0m INFO 01-31 03:44:23 [layer.py:494] [EP Rank 13/32] Expert parallelism is enabled. Expert placement strategy: linear. Local/global number of experts: 12/384. Experts local to global index map: 0->156, 1->157, 2->158, 3->159, 4->160, 5->161, 6->162, 7->163, 8->164, 9->165, 10->166, 11->167.
+2026-01-31T03:44:23.2266783Z [0;36m(Worker_DP1_TP0_EP8 pid=1237)[0;0m INFO 01-31 03:44:23 [layer.py:365] Disabling MoE shared_experts cuda stream
+2026-01-31T03:44:23.2518476Z [0;36m(Worker_DP1_TP0_EP8 pid=1237)[0;0m INFO 01-31 03:44:23 [layer.py:494] [EP Rank 8/32] Expert parallelism is enabled. Expert placement strategy: linear. Local/global number of experts: 12/384. Experts local to global index map: 0->96, 1->97, 2->98, 3->99, 4->100, 5->101, 6->102, 7->103, 8->104, 9->105, 10->106, 11->107.
+2026-01-31T03:44:23.9161847Z [0;36m(Worker_DP0_TP0_EP0 pid=1238)[0;0m /usr/local/python3.11.14/lib/python3.11/site-packages/torch/utils/_device.py:103: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)
+2026-01-31T03:44:23.9169092Z [0;36m(Worker_DP0_TP0_EP0 pid=1238)[0;0m   return func(*args, **kwargs)
+2026-01-31T03:44:23.9875486Z [0;36m(Worker_DP0_TP0_EP0 pid=1238)[0;0m INFO 01-31 03:44:23 [fused_moe.py:220] [EP Rank 0/32] Expert parallelism is enabled. Local/global number of experts: 12/384. Experts local to global index map: 0->0, 1->1, 2->2, 3->3, 4->4, 5->5, 6->6, 7->7, 8->8, 9->9, 10->10, 11->11.
+2026-01-31T03:44:24.0863995Z [0;36m(Worker_DP1_TP4_EP12 pid=3359)[0;0m /usr/local/python3.11.14/lib/python3.11/site-packages/torch/utils/_device.py:103: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)
+2026-01-31T03:44:24.0869898Z [0;36m(Worker_DP1_TP4_EP12 pid=3359)[0;0m   return func(*args, **kwargs)
+2026-01-31T03:44:24.0902441Z [0;36m(Worker_DP1_TP1_EP9 pid=1708)[0;0m /usr/local/python3.11.14/lib/python3.11/site-packages/torch/utils/_device.py:103: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)
+2026-01-31T03:44:24.0913081Z [0;36m(Worker_DP1_TP1_EP9 pid=1708)[0;0m   return func(*args, **kwargs)
+2026-01-31T03:44:24.1049654Z [0;36m(Worker_DP1_TP6_EP14 pid=4470)[0;0m /usr/local/python3.11.14/lib/python3.11/site-packages/torch/utils/_device.py:103: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)
+2026-01-31T03:44:24.1058186Z [0;36m(Worker_DP1_TP6_EP14 pid=4470)[0;0m   return func(*args, **kwargs)
+2026-01-31T03:44:24.1263750Z [0;36m(Worker_DP1_TP3_EP11 pid=2805)[0;0m /usr/local/python3.11.14/lib/python3.11/site-packages/torch/utils/_device.py:103: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)
+2026-01-31T03:44:24.1268454Z [0;36m(Worker_DP1_TP3_EP11 pid=2805)[0;0m   return func(*args, **kwargs)
+2026-01-31T03:44:24.1299666Z [0;36m(Worker_DP1_TP0_EP8 pid=1237)[0;0m /usr/local/python3.11.14/lib/python3.11/site-packages/torch/utils/_device.py:103: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)
+2026-01-31T03:44:24.1308304Z [0;36m(Worker_DP1_TP0_EP8 pid=1237)[0;0m   return func(*args, **kwargs)
+2026-01-31T03:44:24.1350481Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m /usr/local/python3.11.14/lib/python3.11/site-packages/torch/utils/_device.py:103: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)
+2026-01-31T03:44:24.1358956Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m   return func(*args, **kwargs)
+2026-01-31T03:44:24.1407397Z [0;36m(Worker_DP0_TP4_EP4 pid=3360)[0;0m /usr/local/python3.11.14/lib/python3.11/site-packages/torch/utils/_device.py:103: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)
+2026-01-31T03:44:24.1416210Z [0;36m(Worker_DP0_TP4_EP4 pid=3360)[0;0m   return func(*args, **kwargs)
+2026-01-31T03:44:24.1427552Z [0;36m(Worker_DP0_TP6_EP6 pid=4467)[0;0m /usr/local/python3.11.14/lib/python3.11/site-packages/torch/utils/_device.py:103: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)
+2026-01-31T03:44:24.1435739Z [0;36m(Worker_DP0_TP6_EP6 pid=4467)[0;0m   return func(*args, **kwargs)
+2026-01-31T03:44:24.1447449Z [0;36m(Worker_DP1_TP5_EP13 pid=3917)[0;0m /usr/local/python3.11.14/lib/python3.11/site-packages/torch/utils/_device.py:103: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)
+2026-01-31T03:44:24.1456567Z [0;36m(Worker_DP1_TP5_EP13 pid=3917)[0;0m   return func(*args, **kwargs)
+2026-01-31T03:44:24.1467811Z [0;36m(Worker_DP0_TP2_EP2 pid=2253)[0;0m /usr/local/python3.11.14/lib/python3.11/site-packages/torch/utils/_device.py:103: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)
+2026-01-31T03:44:24.1477122Z [0;36m(Worker_DP0_TP2_EP2 pid=2253)[0;0m   return func(*args, **kwargs)
+2026-01-31T03:44:24.1526059Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m /usr/local/python3.11.14/lib/python3.11/site-packages/torch/utils/_device.py:103: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)
+2026-01-31T03:44:24.1534153Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m   return func(*args, **kwargs)
+2026-01-31T03:44:24.1544212Z [0;36m(Worker_DP1_TP1_EP9 pid=1708)[0;0m INFO 01-31 03:44:24 [fused_moe.py:220] [EP Rank 9/32] Expert parallelism is enabled. Local/global number of experts: 12/384. Experts local to global index map: 0->108, 1->109, 2->110, 3->111, 4->112, 5->113, 6->114, 7->115, 8->116, 9->117, 10->118, 11->119.
+2026-01-31T03:44:24.1554303Z [0;36m(Worker_DP1_TP4_EP12 pid=3359)[0;0m INFO 01-31 03:44:24 [fused_moe.py:220] [EP Rank 12/32] Expert parallelism is enabled. Local/global number of experts: 12/384. Experts local to global index map: 0->144, 1->145, 2->146, 3->147, 4->148, 5->149, 6->150, 7->151, 8->152, 9->153, 10->154, 11->155.
+2026-01-31T03:44:24.1569825Z [0;36m(Worker_DP0_TP1_EP1 pid=1707)[0;0m /usr/local/python3.11.14/lib/python3.11/site-packages/torch/utils/_device.py:103: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)
+2026-01-31T03:44:24.1577955Z [0;36m(Worker_DP0_TP1_EP1 pid=1707)[0;0m   return func(*args, **kwargs)
+2026-01-31T03:44:24.1589100Z [0;36m(Worker_DP0_TP7_EP7 pid=5021)[0;0m /usr/local/python3.11.14/lib/python3.11/site-packages/torch/utils/_device.py:103: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)
+2026-01-31T03:44:24.1596787Z [0;36m(Worker_DP0_TP7_EP7 pid=5021)[0;0m   return func(*args, **kwargs)
+2026-01-31T03:44:24.1609276Z [0;36m(Worker_DP0_TP3_EP3 pid=2806)[0;0m /usr/local/python3.11.14/lib/python3.11/site-packages/torch/utils/_device.py:103: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)
+2026-01-31T03:44:24.1617276Z [0;36m(Worker_DP0_TP3_EP3 pid=2806)[0;0m   return func(*args, **kwargs)
+2026-01-31T03:44:24.1628763Z [0;36m(Worker_DP1_TP7_EP15 pid=5024)[0;0m /usr/local/python3.11.14/lib/python3.11/site-packages/torch/utils/_device.py:103: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)
+2026-01-31T03:44:24.1637268Z [0;36m(Worker_DP1_TP7_EP15 pid=5024)[0;0m   return func(*args, **kwargs)
+2026-01-31T03:44:24.1883513Z [0;36m(Worker_DP1_TP0_EP8 pid=1237)[0;0m INFO 01-31 03:44:24 [fused_moe.py:220] [EP Rank 8/32] Expert parallelism is enabled. Local/global number of experts: 12/384. Experts local to global index map: 0->96, 1->97, 2->98, 3->99, 4->100, 5->101, 6->102, 7->103, 8->104, 9->105, 10->106, 11->107.
+2026-01-31T03:44:24.1905848Z [0;36m(Worker_DP1_TP6_EP14 pid=4470)[0;0m INFO 01-31 03:44:24 [fused_moe.py:220] [EP Rank 14/32] Expert parallelism is enabled. Local/global number of experts: 12/384. Experts local to global index map: 0->168, 1->169, 2->170, 3->171, 4->172, 5->173, 6->174, 7->175, 8->176, 9->177, 10->178, 11->179.
+2026-01-31T03:44:24.1927424Z [0;36m(Worker_DP1_TP3_EP11 pid=2805)[0;0m INFO 01-31 03:44:24 [fused_moe.py:220] [EP Rank 11/32] Expert parallelism is enabled. Local/global number of experts: 12/384. Experts local to global index map: 0->132, 1->133, 2->134, 3->135, 4->136, 5->137, 6->138, 7->139, 8->140, 9->141, 10->142, 11->143.
+2026-01-31T03:44:24.2050817Z [0;36m(Worker_DP0_TP6_EP6 pid=4467)[0;0m INFO 01-31 03:44:24 [fused_moe.py:220] [EP Rank 6/32] Expert parallelism is enabled. Local/global number of experts: 12/384. Experts local to global index map: 0->72, 1->73, 2->74, 3->75, 4->76, 5->77, 6->78, 7->79, 8->80, 9->81, 10->82, 11->83.
+2026-01-31T03:44:24.2077290Z [0;36m(Worker_DP0_TP2_EP2 pid=2253)[0;0m INFO 01-31 03:44:24 [fused_moe.py:220] [EP Rank 2/32] Expert parallelism is enabled. Local/global number of experts: 12/384. Experts local to global index map: 0->24, 1->25, 2->26, 3->27, 4->28, 5->29, 6->30, 7->31, 8->32, 9->33, 10->34, 11->35.
+2026-01-31T03:44:24.2109318Z [0;36m(Worker_DP1_TP5_EP13 pid=3917)[0;0m INFO 01-31 03:44:24 [fused_moe.py:220] [EP Rank 13/32] Expert parallelism is enabled. Local/global number of experts: 12/384. Experts local to global index map: 0->156, 1->157, 2->158, 3->159, 4->160, 5->161, 6->162, 7->163, 8->164, 9->165, 10->166, 11->167.
+2026-01-31T03:44:24.2160158Z [0;36m(Worker_DP0_TP1_EP1 pid=1707)[0;0m INFO 01-31 03:44:24 [fused_moe.py:220] [EP Rank 1/32] Expert parallelism is enabled. Local/global number of experts: 12/384. Experts local to global index map: 0->12, 1->13, 2->14, 3->15, 4->16, 5->17, 6->18, 7->19, 8->20, 9->21, 10->22, 11->23.
+2026-01-31T03:44:24.2180898Z [0;36m(Worker_DP0_TP4_EP4 pid=3360)[0;0m INFO 01-31 03:44:24 [fused_moe.py:220] [EP Rank 4/32] Expert parallelism is enabled. Local/global number of experts: 12/384. Experts local to global index map: 0->48, 1->49, 2->50, 3->51, 4->52, 5->53, 6->54, 7->55, 8->56, 9->57, 10->58, 11->59.
+2026-01-31T03:44:24.2193858Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m INFO 01-31 03:44:24 [fused_moe.py:220] [EP Rank 5/32] Expert parallelism is enabled. Local/global number of experts: 12/384. Experts local to global index map: 0->60, 1->61, 2->62, 3->63, 4->64, 5->65, 6->66, 7->67, 8->68, 9->69, 10->70, 11->71.
+2026-01-31T03:44:24.2500690Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m INFO 01-31 03:44:24 [fused_moe.py:220] [EP Rank 10/32] Expert parallelism is enabled. Local/global number of experts: 12/384. Experts local to global index map: 0->120, 1->121, 2->122, 3->123, 4->124, 5->125, 6->126, 7->127, 8->128, 9->129, 10->130, 11->131.
+2026-01-31T03:44:24.2587443Z [0;36m(Worker_DP1_TP7_EP15 pid=5024)[0;0m INFO 01-31 03:44:24 [fused_moe.py:220] [EP Rank 15/32] Expert parallelism is enabled. Local/global number of experts: 12/384. Experts local to global index map: 0->180, 1->181, 2->182, 3->183, 4->184, 5->185, 6->186, 7->187, 8->188, 9->189, 10->190, 11->191.
+2026-01-31T03:44:24.2670862Z [0;36m(Worker_DP0_TP3_EP3 pid=2806)[0;0m INFO 01-31 03:44:24 [fused_moe.py:220] [EP Rank 3/32] Expert parallelism is enabled. Local/global number of experts: 12/384. Experts local to global index map: 0->36, 1->37, 2->38, 3->39, 4->40, 5->41, 6->42, 7->43, 8->44, 9->45, 10->46, 11->47.
+2026-01-31T03:44:24.2754255Z [0;36m(Worker_DP0_TP7_EP7 pid=5021)[0;0m INFO 01-31 03:44:24 [fused_moe.py:220] [EP Rank 7/32] Expert parallelism is enabled. Local/global number of experts: 12/384. Experts local to global index map: 0->84, 1->85, 2->86, 3->87, 4->88, 5->89, 6->90, 7->91, 8->92, 9->93, 10->94, 11->95.
+2026-01-31T03:46:24.7492097Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751] WorkerProc failed to start.
+2026-01-31T03:46:24.7719077Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751] Traceback (most recent call last):
+2026-01-31T03:46:24.7720088Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]   File "/vllm-workspace/vllm/vllm/v1/executor/multiproc_executor.py", line 722, in worker_main
+2026-01-31T03:46:24.7721226Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]     worker = WorkerProc(*args, **kwargs)
+2026-01-31T03:46:24.7721932Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-31T03:46:24.7722896Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]   File "/vllm-workspace/vllm/vllm/v1/executor/multiproc_executor.py", line 562, in __init__
+2026-01-31T03:46:24.7727040Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]     self.worker.load_model()
+2026-01-31T03:46:24.7736062Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]   File "/vllm-workspace/vllm-ascend/vllm_ascend/worker/worker.py", line 376, in load_model
+2026-01-31T03:46:24.7745595Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]     self.model_runner.load_model()
+2026-01-31T03:46:24.7756124Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]   File "/vllm-workspace/vllm-ascend/vllm_ascend/worker/model_runner_v1.py", line 2372, in load_model
+2026-01-31T03:46:24.7767654Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]     self.model = get_model(vllm_config=self.vllm_config)
+2026-01-31T03:46:24.7779259Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-31T03:46:24.7792527Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]   File "/vllm-workspace/vllm/vllm/model_executor/model_loader/__init__.py", line 132, in get_model
+2026-01-31T03:46:24.7802676Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]     return loader.load_model(vllm_config=vllm_config, model_config=model_config)
+2026-01-31T03:46:24.7812552Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-31T03:46:24.7822534Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]   File "/vllm-workspace/vllm/vllm/model_executor/model_loader/base_loader.py", line 49, in load_model
+2026-01-31T03:46:24.7833172Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]     model = initialize_model(
+2026-01-31T03:46:24.7843019Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]             ^^^^^^^^^^^^^^^^^
+2026-01-31T03:46:24.7853875Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]   File "/vllm-workspace/vllm/vllm/model_executor/model_loader/utils.py", line 48, in initialize_model
+2026-01-31T03:46:24.7863593Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]     return model_class(vllm_config=vllm_config, prefix=prefix)
+2026-01-31T03:46:24.7874007Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-31T03:46:24.7884724Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]   File "/vllm-workspace/vllm/vllm/model_executor/models/deepseek_v2.py", line 1410, in __init__
+2026-01-31T03:46:24.7894548Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]     self.model = self.model_cls(
+2026-01-31T03:46:24.7950127Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]                  ^^^^^^^^^^^^^^^
+2026-01-31T03:46:24.7951039Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]   File "/vllm-workspace/vllm/vllm/compilation/decorators.py", line 291, in __init__
+2026-01-31T03:46:24.7951815Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]     old_init(self, **kwargs)
+2026-01-31T03:46:24.7952754Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]   File "/vllm-workspace/vllm/vllm/model_executor/models/deepseek_v2.py", line 1267, in __init__
+2026-01-31T03:46:24.7953619Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]     self.start_layer, self.end_layer, self.layers = make_layers(
+2026-01-31T03:46:24.7958291Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]                                                     ^^^^^^^^^^^^
+2026-01-31T03:46:24.7966636Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]   File "/vllm-workspace/vllm/vllm/model_executor/models/utils.py", line 605, in make_layers
+2026-01-31T03:46:24.7976849Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]     + [
+2026-01-31T03:46:24.7986422Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]       ^
+2026-01-31T03:46:24.7996743Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]   File "/vllm-workspace/vllm/vllm/model_executor/models/utils.py", line 606, in <listcomp>
+2026-01-31T03:46:24.8007548Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]     maybe_offload_to_cpu(layer_fn(prefix=f"{prefix}.{idx}"))
+2026-01-31T03:46:24.8016516Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-31T03:46:24.8026791Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]   File "/vllm-workspace/vllm/vllm/model_executor/models/deepseek_v2.py", line 1269, in <lambda>
+2026-01-31T03:46:24.8036531Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]     lambda prefix: DeepseekV2DecoderLayer(
+2026-01-31T03:46:24.8047131Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]                    ^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-31T03:46:24.8056785Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]   File "/vllm-workspace/vllm/vllm/model_executor/models/deepseek_v2.py", line 1163, in __init__
+2026-01-31T03:46:24.8066686Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]     self.mlp = DeepseekV2MoE(
+2026-01-31T03:46:24.8076568Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]                ^^^^^^^^^^^^^^
+2026-01-31T03:46:24.8088816Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]   File "/vllm-workspace/vllm-ascend/vllm_ascend/patch/worker/patch_deepseekv3.py", line 98, in __init__
+2026-01-31T03:46:24.8097252Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]     self.experts = SharedFusedMoE(
+2026-01-31T03:46:24.8107502Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]                    ^^^^^^^^^^^^^^^
+2026-01-31T03:46:24.8117659Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]   File "/vllm-workspace/vllm-ascend/vllm_ascend/ops/fused_moe/fused_moe.py", line 418, in __init__
+2026-01-31T03:46:24.8128826Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]     AscendFusedMoE.__init__(self, **kwargs)
+2026-01-31T03:46:24.8139207Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]   File "/vllm-workspace/vllm-ascend/vllm_ascend/ops/fused_moe/fused_moe.py", line 250, in __init__
+2026-01-31T03:46:24.8148861Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]     setup_moe_comm_method(self.moe_config)
+2026-01-31T03:46:24.8161957Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]   File "/vllm-workspace/vllm-ascend/vllm_ascend/ops/fused_moe/moe_comm_method.py", line 45, in setup_moe_comm_method
+2026-01-31T03:46:24.8170269Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]     _MoECommMethods[MoECommType.ALLTOALL] = AlltoAllCommImpl(moe_config)
+2026-01-31T03:46:24.8180183Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-31T03:46:24.8190671Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]   File "/vllm-workspace/vllm-ascend/vllm_ascend/ops/fused_moe/moe_comm_method.py", line 70, in __init__
+2026-01-31T03:46:24.8201823Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]     self.token_dispatcher = self._get_token_dispatcher()
+2026-01-31T03:46:24.8211903Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-31T03:46:24.8222295Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]   File "/vllm-workspace/vllm-ascend/vllm_ascend/ops/fused_moe/moe_comm_method.py", line 246, in _get_token_dispatcher
+2026-01-31T03:46:24.8231583Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]     return TokenDispatcherWithAll2AllV(
+2026-01-31T03:46:24.8241875Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-31T03:46:24.8252350Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]   File "/vllm-workspace/vllm-ascend/vllm_ascend/ops/fused_moe/token_dispatcher.py", line 417, in __init__
+2026-01-31T03:46:24.8263068Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]     self.moe_all_to_all_group_name = backend.get_hccl_comm_name(local_rank)
+2026-01-31T03:46:24.8272848Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-31T03:46:24.8284311Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751] RuntimeError: create_config:build/CMakeFiles/torch_npu.dir/compiler_depend.ts:129 HCCL function error: hcclCommInitRootInfoConfig(numRanks, &rootInfo, rank, config, &(comm->hcclComm_)), error code is 1
+2026-01-31T03:46:24.8293396Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751] [ERROR] 2026-01-31-03:46:24 (PID:3913, Device:5, RankID:-1) ERR02200 DIST call hccl api failed.
+2026-01-31T03:46:24.8304993Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751] [PID: 3913] 2026-01-31-03:46:24.047.055 Ranktable_Detect_Failed(EI0015): Failed to collect cluster information of the communicator based on rootInfo detection. Reason: Within the timeout period, all ranks in the communication domain failed to connect to the server..
+2026-01-31T03:46:24.8316068Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]         Solution: 1. Check whether all ranks in the communicator have delivered the communicator creation interface. 2. Check the connectivity between the host networks of all nodes and the server node. 3. Check whether the HCCL_SOCKET_IFNAME environment variable of all nodes is correctly configured. 4. Increase the timeout by configuring the HCCL_CONNECT_TIMEOUT environment variable.
+2026-01-31T03:46:24.8326085Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]         TraceBack (most recent call last):
+2026-01-31T03:46:24.8336738Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]         Failed to collect cluster information of the communicator based on rootInfo detection. Reason: rank num[32]is different with rank list size[16] in total topo rank info..
+2026-01-31T03:46:24.8345917Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751] 
+2026-01-31T03:46:24.8355702Z [0;36m(Worker_DP0_TP5_EP5 pid=3913)[0;0m INFO 01-31 03:46:24 [multiproc_executor.py:709] Parent process exited, terminating worker
+2026-01-31T03:46:24.8365816Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751] WorkerProc failed to start.
+2026-01-31T03:46:24.8375095Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751] Traceback (most recent call last):
+2026-01-31T03:46:24.8384520Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]   File "/vllm-workspace/vllm/vllm/v1/executor/multiproc_executor.py", line 722, in worker_main
+2026-01-31T03:46:24.8397135Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]     worker = WorkerProc(*args, **kwargs)
+2026-01-31T03:46:24.8405246Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-31T03:46:24.8413916Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]   File "/vllm-workspace/vllm/vllm/v1/executor/multiproc_executor.py", line 562, in __init__
+2026-01-31T03:46:24.8423014Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]     self.worker.load_model()
+2026-01-31T03:46:24.8433237Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]   File "/vllm-workspace/vllm-ascend/vllm_ascend/worker/worker.py", line 376, in load_model
+2026-01-31T03:46:24.8443408Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]     self.model_runner.load_model()
+2026-01-31T03:46:24.8453539Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]   File "/vllm-workspace/vllm-ascend/vllm_ascend/worker/model_runner_v1.py", line 2372, in load_model
+2026-01-31T03:46:24.8463257Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]     self.model = get_model(vllm_config=self.vllm_config)
+2026-01-31T03:46:24.8473155Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-31T03:46:24.8484031Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]   File "/vllm-workspace/vllm/vllm/model_executor/model_loader/__init__.py", line 132, in get_model
+2026-01-31T03:46:24.8493461Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]     return loader.load_model(vllm_config=vllm_config, model_config=model_config)
+2026-01-31T03:46:24.8503028Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-31T03:46:24.8513376Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]   File "/vllm-workspace/vllm/vllm/model_executor/model_loader/base_loader.py", line 49, in load_model
+2026-01-31T03:46:24.8523193Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]     model = initialize_model(
+2026-01-31T03:46:24.8533005Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]             ^^^^^^^^^^^^^^^^^
+2026-01-31T03:46:24.8543324Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]   File "/vllm-workspace/vllm/vllm/model_executor/model_loader/utils.py", line 48, in initialize_model
+2026-01-31T03:46:24.8553123Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]     return model_class(vllm_config=vllm_config, prefix=prefix)
+2026-01-31T03:46:24.8563386Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-31T03:46:24.8572614Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]   File "/vllm-workspace/vllm/vllm/model_executor/models/deepseek_v2.py", line 1410, in __init__
+2026-01-31T03:46:24.8582560Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]     self.model = self.model_cls(
+2026-01-31T03:46:24.8592832Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]                  ^^^^^^^^^^^^^^^
+2026-01-31T03:46:24.8603311Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]   File "/vllm-workspace/vllm/vllm/compilation/decorators.py", line 291, in __init__
+2026-01-31T03:46:24.8614600Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]     old_init(self, **kwargs)
+2026-01-31T03:46:24.8623432Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]   File "/vllm-workspace/vllm/vllm/model_executor/models/deepseek_v2.py", line 1267, in __init__
+2026-01-31T03:46:24.8632617Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]     self.start_layer, self.end_layer, self.layers = make_layers(
+2026-01-31T03:46:24.8643045Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]                                                     ^^^^^^^^^^^^
+2026-01-31T03:46:24.8652298Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]   File "/vllm-workspace/vllm/vllm/model_executor/models/utils.py", line 605, in make_layers
+2026-01-31T03:46:24.8661597Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]     + [
+2026-01-31T03:46:24.8671600Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]       ^
+2026-01-31T03:46:24.8683088Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]   File "/vllm-workspace/vllm/vllm/model_executor/models/utils.py", line 606, in <listcomp>
+2026-01-31T03:46:24.8691820Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]     maybe_offload_to_cpu(layer_fn(prefix=f"{prefix}.{idx}"))
+2026-01-31T03:46:24.8701355Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-31T03:46:24.8711014Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]   File "/vllm-workspace/vllm/vllm/model_executor/models/deepseek_v2.py", line 1269, in <lambda>
+2026-01-31T03:46:24.8720752Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]     lambda prefix: DeepseekV2DecoderLayer(
+2026-01-31T03:46:24.8729816Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]                    ^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-31T03:46:24.8739770Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]   File "/vllm-workspace/vllm/vllm/model_executor/models/deepseek_v2.py", line 1163, in __init__
+2026-01-31T03:46:24.8749166Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]     self.mlp = DeepseekV2MoE(
+2026-01-31T03:46:24.8759079Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]                ^^^^^^^^^^^^^^
+2026-01-31T03:46:24.8770123Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]   File "/vllm-workspace/vllm-ascend/vllm_ascend/patch/worker/patch_deepseekv3.py", line 98, in __init__
+2026-01-31T03:46:24.8779194Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]     self.experts = SharedFusedMoE(
+2026-01-31T03:46:24.8789055Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]                    ^^^^^^^^^^^^^^^
+2026-01-31T03:46:24.8800338Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]   File "/vllm-workspace/vllm-ascend/vllm_ascend/ops/fused_moe/fused_moe.py", line 418, in __init__
+2026-01-31T03:46:24.8809333Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]     AscendFusedMoE.__init__(self, **kwargs)
+2026-01-31T03:46:24.8819606Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]   File "/vllm-workspace/vllm-ascend/vllm_ascend/ops/fused_moe/fused_moe.py", line 250, in __init__
+2026-01-31T03:46:24.8829473Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]     setup_moe_comm_method(self.moe_config)
+2026-01-31T03:46:24.8840280Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]   File "/vllm-workspace/vllm-ascend/vllm_ascend/ops/fused_moe/moe_comm_method.py", line 45, in setup_moe_comm_method
+2026-01-31T03:46:24.8851398Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]     _MoECommMethods[MoECommType.ALLTOALL] = AlltoAllCommImpl(moe_config)
+2026-01-31T03:46:24.8861223Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-31T03:46:24.8875206Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]   File "/vllm-workspace/vllm-ascend/vllm_ascend/ops/fused_moe/moe_comm_method.py", line 70, in __init__
+2026-01-31T03:46:24.8883562Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]     self.token_dispatcher = self._get_token_dispatcher()
+2026-01-31T03:46:24.8892966Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-31T03:46:24.8903340Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]   File "/vllm-workspace/vllm-ascend/vllm_ascend/ops/fused_moe/moe_comm_method.py", line 246, in _get_token_dispatcher
+2026-01-31T03:46:24.8912780Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]     return TokenDispatcherWithAll2AllV(
+2026-01-31T03:46:24.8923884Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-31T03:46:24.8934329Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]   File "/vllm-workspace/vllm-ascend/vllm_ascend/ops/fused_moe/token_dispatcher.py", line 417, in __init__
+2026-01-31T03:46:24.8944167Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]     self.moe_all_to_all_group_name = backend.get_hccl_comm_name(local_rank)
+2026-01-31T03:46:24.8953981Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-31T03:46:24.8965252Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751] RuntimeError: create_config:build/CMakeFiles/torch_npu.dir/compiler_depend.ts:129 HCCL function error: hcclCommInitRootInfoConfig(numRanks, &rootInfo, rank, config, &(comm->hcclComm_)), error code is 1
+2026-01-31T03:46:24.8974892Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751] [ERROR] 2026-01-31-03:46:24 (PID:2251, Device:2, RankID:-1) ERR02200 DIST call hccl api failed.
+2026-01-31T03:46:24.8985621Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751] [PID: 2251] 2026-01-31-03:46:24.047.437 Ranktable_Detect_Failed(EI0015): Failed to collect cluster information of the communicator based on rootInfo detection. Reason: Within the timeout period, all ranks in the communication domain failed to connect to the server..
+2026-01-31T03:46:24.8996422Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]         Solution: 1. Check whether all ranks in the communicator have delivered the communicator creation interface. 2. Check the connectivity between the host networks of all nodes and the server node. 3. Check whether the HCCL_SOCKET_IFNAME environment variable of all nodes is correctly configured. 4. Increase the timeout by configuring the HCCL_CONNECT_TIMEOUT environment variable.
+2026-01-31T03:46:24.9005421Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]         TraceBack (most recent call last):
+2026-01-31T03:46:24.9016669Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751]         Failed to collect cluster information of the communicator based on rootInfo detection. Reason: rank num[32]is different with rank list size[16] in total topo rank info..
+2026-01-31T03:46:24.9025525Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m ERROR 01-31 03:46:24 [multiproc_executor.py:751] 
+2026-01-31T03:46:24.9035496Z [0;36m(Worker_DP1_TP2_EP10 pid=2251)[0;0m INFO 01-31 03:46:24 [multiproc_executor.py:709] Parent process exited, terminating worker
+2026-01-31T03:46:24.9046355Z [0;36m(Worker_DP0_TP3_EP3 pid=2806)[0;0m INFO 01-31 03:46:24 [multiproc_executor.py:709] Parent process exited, terminating worker
+2026-01-31T03:46:24.9055339Z [0;36m(Worker_DP1_TP1_EP9 pid=1708)[0;0m INFO 01-31 03:46:24 [multiproc_executor.py:709] Parent process exited, terminating worker
+2026-01-31T03:46:24.9065614Z [0;36m(Worker_DP0_TP2_EP2 pid=2253)[0;0m INFO 01-31 03:46:24 [multiproc_executor.py:709] Parent process exited, terminating worker
+2026-01-31T03:46:24.9075066Z [0;36m(Worker_DP1_TP0_EP8 pid=1237)[0;0m INFO 01-31 03:46:24 [multiproc_executor.py:709] Parent process exited, terminating worker
+2026-01-31T03:46:24.9086078Z [0;36m(Worker_DP0_TP1_EP1 pid=1707)[0;0m INFO 01-31 03:46:24 [multiproc_executor.py:709] Parent process exited, terminating worker
+2026-01-31T03:46:24.9095761Z [0;36m(Worker_DP1_TP3_EP11 pid=2805)[0;0m INFO 01-31 03:46:24 [multiproc_executor.py:709] Parent process exited, terminating worker
+2026-01-31T03:46:24.9105544Z [0;36m(Worker_DP0_TP6_EP6 pid=4467)[0;0m INFO 01-31 03:46:24 [multiproc_executor.py:709] Parent process exited, terminating worker
+2026-01-31T03:46:24.9115053Z [0;36m(Worker_DP1_TP7_EP15 pid=5024)[0;0m INFO 01-31 03:46:24 [multiproc_executor.py:709] Parent process exited, terminating worker
+2026-01-31T03:46:24.9125585Z [0;36m(Worker_DP0_TP0_EP0 pid=1238)[0;0m INFO 01-31 03:46:24 [multiproc_executor.py:709] Parent process exited, terminating worker
+2026-01-31T03:46:25.1308544Z [0;36m(Worker_DP1_TP4_EP12 pid=3359)[0;0m INFO 01-31 03:46:25 [multiproc_executor.py:709] Parent process exited, terminating worker
+2026-01-31T03:46:25.1440882Z [0;36m(Worker_DP0_TP4_EP4 pid=3360)[0;0m INFO 01-31 03:46:25 [multiproc_executor.py:709] Parent process exited, terminating worker
+2026-01-31T03:46:25.2223073Z [0;36m(Worker_DP0_TP7_EP7 pid=5021)[0;0m INFO 01-31 03:46:25 [multiproc_executor.py:709] Parent process exited, terminating worker
+2026-01-31T03:46:25.5245241Z [0;36m(Worker_DP1_TP6_EP14 pid=4470)[0;0m INFO 01-31 03:46:25 [multiproc_executor.py:709] Parent process exited, terminating worker
+2026-01-31T03:46:26.1377258Z [0;36m(Worker_DP1_TP5_EP13 pid=3917)[0;0m INFO 01-31 03:46:26 [multiproc_executor.py:709] Parent process exited, terminating worker
+2026-01-31T03:46:28.8212492Z [0;36m(EngineCore_DP0 pid=510)[0;0m ERROR 01-31 03:46:28 [patch_core.py:68] EngineCore failed to start.
+2026-01-31T03:46:28.8223030Z [0;36m(EngineCore_DP0 pid=510)[0;0m ERROR 01-31 03:46:28 [patch_core.py:68] Traceback (most recent call last):
+2026-01-31T03:46:28.8233647Z [0;36m(EngineCore_DP0 pid=510)[0;0m ERROR 01-31 03:46:28 [patch_core.py:68]   File "/vllm-workspace/vllm-ascend/vllm_ascend/patch/platform/patch_core.py", line 55, in run_engine_core
+2026-01-31T03:46:28.8245187Z [0;36m(EngineCore_DP0 pid=510)[0;0m ERROR 01-31 03:46:28 [patch_core.py:68]     engine_core = DPEngineCoreProc(*args, **kwargs)
+2026-01-31T03:46:28.8256361Z [0;36m(EngineCore_DP0 pid=510)[0;0m ERROR 01-31 03:46:28 [patch_core.py:68]                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-31T03:46:28.8265963Z [0;36m(EngineCore_DP0 pid=510)[0;0m ERROR 01-31 03:46:28 [patch_core.py:68]   File "/vllm-workspace/vllm/vllm/v1/engine/core.py", line 1159, in __init__
+2026-01-31T03:46:28.8275539Z [0;36m(EngineCore_DP0 pid=510)[0;0m ERROR 01-31 03:46:28 [patch_core.py:68]     super().__init__(
+2026-01-31T03:46:28.8286722Z [0;36m(EngineCore_DP0 pid=510)[0;0m ERROR 01-31 03:46:28 [patch_core.py:68]   File "/vllm-workspace/vllm/vllm/v1/engine/core.py", line 637, in __init__
+2026-01-31T03:46:28.8297157Z [0;36m(EngineCore_DP0 pid=510)[0;0m ERROR 01-31 03:46:28 [patch_core.py:68]     super().__init__(
+2026-01-31T03:46:28.8308422Z [0;36m(EngineCore_DP0 pid=510)[0;0m ERROR 01-31 03:46:28 [patch_core.py:68]   File "/vllm-workspace/vllm/vllm/v1/engine/core.py", line 102, in __init__
+2026-01-31T03:46:28.8319746Z [0;36m(EngineCore_DP0 pid=510)[0;0m ERROR 01-31 03:46:28 [patch_core.py:68]     self.model_executor = executor_class(vllm_config)
+2026-01-31T03:46:28.8330000Z [0;36m(EngineCore_DP0 pid=510)[0;0m ERROR 01-31 03:46:28 [patch_core.py:68]                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-31T03:46:28.8339447Z [0;36m(EngineCore_DP0 pid=510)[0;0m ERROR 01-31 03:46:28 [patch_core.py:68]   File "/vllm-workspace/vllm/vllm/v1/executor/multiproc_executor.py", line 97, in __init__
+2026-01-31T03:46:28.8349287Z [0;36m(EngineCore_DP0 pid=510)[0;0m ERROR 01-31 03:46:28 [patch_core.py:68]     super().__init__(vllm_config)
+2026-01-31T03:46:28.8359780Z [0;36m(EngineCore_DP0 pid=510)[0;0m ERROR 01-31 03:46:28 [patch_core.py:68]   File "/vllm-workspace/vllm/vllm/v1/executor/abstract.py", line 101, in __init__
+2026-01-31T03:46:28.8369616Z [0;36m(EngineCore_DP0 pid=510)[0;0m ERROR 01-31 03:46:28 [patch_core.py:68]     self._init_executor()
+2026-01-31T03:46:28.8379929Z [0;36m(EngineCore_DP0 pid=510)[0;0m ERROR 01-31 03:46:28 [patch_core.py:68]   File "/vllm-workspace/vllm/vllm/v1/executor/multiproc_executor.py", line 172, in _init_executor
+2026-01-31T03:46:28.8390203Z [0;36m(EngineCore_DP0 pid=510)[0;0m ERROR 01-31 03:46:28 [patch_core.py:68]     self.workers = WorkerProc.wait_for_ready(unready_workers)
+2026-01-31T03:46:28.8399955Z [0;36m(EngineCore_DP0 pid=510)[0;0m ERROR 01-31 03:46:28 [patch_core.py:68]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-31T03:46:28.8410250Z [0;36m(EngineCore_DP0 pid=510)[0;0m ERROR 01-31 03:46:28 [patch_core.py:68]   File "/vllm-workspace/vllm/vllm/v1/executor/multiproc_executor.py", line 660, in wait_for_ready
+2026-01-31T03:46:28.8419642Z [0;36m(EngineCore_DP0 pid=510)[0;0m ERROR 01-31 03:46:28 [patch_core.py:68]     raise e from None
+2026-01-31T03:46:28.8430978Z [0;36m(EngineCore_DP0 pid=510)[0;0m ERROR 01-31 03:46:28 [patch_core.py:68] Exception: WorkerProc initialization failed due to an exception in a background process. See stack trace for root cause.
+2026-01-31T03:46:28.8440597Z [0;36m(EngineCore_DP1 pid=979)[0;0m ERROR 01-31 03:46:28 [patch_core.py:68] EngineCore failed to start.
+2026-01-31T03:46:28.8450794Z [0;36m(EngineCore_DP1 pid=979)[0;0m ERROR 01-31 03:46:28 [patch_core.py:68] Traceback (most recent call last):
+2026-01-31T03:46:28.8460573Z [0;36m(EngineCore_DP1 pid=979)[0;0m ERROR 01-31 03:46:28 [patch_core.py:68]   File "/vllm-workspace/vllm-ascend/vllm_ascend/patch/platform/patch_core.py", line 55, in run_engine_core
+2026-01-31T03:46:28.8469730Z [0;36m(EngineCore_DP1 pid=979)[0;0m ERROR 01-31 03:46:28 [patch_core.py:68]     engine_core = DPEngineCoreProc(*args, **kwargs)
+2026-01-31T03:46:28.8479588Z [0;36m(EngineCore_DP1 pid=979)[0;0m ERROR 01-31 03:46:28 [patch_core.py:68]                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-31T03:46:28.8490057Z [0;36m(EngineCore_DP1 pid=979)[0;0m ERROR 01-31 03:46:28 [patch_core.py:68]   File "/vllm-workspace/vllm/vllm/v1/engine/core.py", line 1159, in __init__
+2026-01-31T03:46:28.8499233Z [0;36m(EngineCore_DP1 pid=979)[0;0m ERROR 01-31 03:46:28 [patch_core.py:68]     super().__init__(
+2026-01-31T03:46:28.8509855Z [0;36m(EngineCore_DP1 pid=979)[0;0m ERROR 01-31 03:46:28 [patch_core.py:68]   File "/vllm-workspace/vllm/vllm/v1/engine/core.py", line 637, in __init__
+2026-01-31T03:46:28.8519401Z [0;36m(EngineCore_DP1 pid=979)[0;0m ERROR 01-31 03:46:28 [patch_core.py:68]     super().__init__(
+2026-01-31T03:46:28.8540666Z [0;36m(EngineCore_DP1 pid=979)[0;0m ERROR 01-31 03:46:28 [patch_core.py:68]   File "/vllm-workspace/vllm/vllm/v1/engine/core.py", line 102, in __init__
+2026-01-31T03:46:28.8541459Z [0;36m(EngineCore_DP1 pid=979)[0;0m ERROR 01-31 03:46:28 [patch_core.py:68]     self.model_executor = executor_class(vllm_config)
+2026-01-31T03:46:28.8548546Z [0;36m(EngineCore_DP1 pid=979)[0;0m ERROR 01-31 03:46:28 [patch_core.py:68]                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-31T03:46:28.8559282Z [0;36m(EngineCore_DP1 pid=979)[0;0m ERROR 01-31 03:46:28 [patch_core.py:68]   File "/vllm-workspace/vllm/vllm/v1/executor/multiproc_executor.py", line 97, in __init__
+2026-01-31T03:46:28.8569534Z [0;36m(EngineCore_DP1 pid=979)[0;0m ERROR 01-31 03:46:28 [patch_core.py:68]     super().__init__(vllm_config)
+2026-01-31T03:46:28.8579479Z [0;36m(EngineCore_DP1 pid=979)[0;0m ERROR 01-31 03:46:28 [patch_core.py:68]   File "/vllm-workspace/vllm/vllm/v1/executor/abstract.py", line 101, in __init__
+2026-01-31T03:46:28.8589141Z [0;36m(EngineCore_DP1 pid=979)[0;0m ERROR 01-31 03:46:28 [patch_core.py:68]     self._init_executor()
+2026-01-31T03:46:28.8599986Z [0;36m(EngineCore_DP1 pid=979)[0;0m ERROR 01-31 03:46:28 [patch_core.py:68]   File "/vllm-workspace/vllm/vllm/v1/executor/multiproc_executor.py", line 172, in _init_executor
+2026-01-31T03:46:28.8613301Z [0;36m(EngineCore_DP1 pid=979)[0;0m ERROR 01-31 03:46:28 [patch_core.py:68]     self.workers = WorkerProc.wait_for_ready(unready_workers)
+2026-01-31T03:46:28.8620104Z [0;36m(EngineCore_DP1 pid=979)[0;0m ERROR 01-31 03:46:28 [patch_core.py:68]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-31T03:46:28.8635647Z [0;36m(EngineCore_DP1 pid=979)[0;0m ERROR 01-31 03:46:28 [patch_core.py:68]   File "/vllm-workspace/vllm/vllm/v1/executor/multiproc_executor.py", line 660, in wait_for_ready
+2026-01-31T03:46:28.8639956Z [0;36m(EngineCore_DP1 pid=979)[0;0m ERROR 01-31 03:46:28 [patch_core.py:68]     raise e from None
+2026-01-31T03:46:28.8651017Z [0;36m(EngineCore_DP1 pid=979)[0;0m ERROR 01-31 03:46:28 [patch_core.py:68] Exception: WorkerProc initialization failed due to an exception in a background process. See stack trace for root cause.
+2026-01-31T03:46:29.6508175Z [0;36m(EngineCore_DP0 pid=510)[0;0m Process EngineCore_DP0:
+2026-01-31T03:46:29.6537774Z [0;36m(EngineCore_DP0 pid=510)[0;0m Traceback (most recent call last):
+2026-01-31T03:46:29.6546544Z [0;36m(EngineCore_DP0 pid=510)[0;0m   File "/usr/local/python3.11.14/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
+2026-01-31T03:46:29.6558386Z [0;36m(EngineCore_DP0 pid=510)[0;0m     self.run()
+2026-01-31T03:46:29.6568021Z [0;36m(EngineCore_DP0 pid=510)[0;0m   File "/usr/local/python3.11.14/lib/python3.11/multiprocessing/process.py", line 108, in run
+2026-01-31T03:46:29.6579422Z [0;36m(EngineCore_DP0 pid=510)[0;0m     self._target(*self._args, **self._kwargs)
+2026-01-31T03:46:29.6588765Z [0;36m(EngineCore_DP0 pid=510)[0;0m   File "/vllm-workspace/vllm-ascend/vllm_ascend/patch/platform/patch_core.py", line 72, in run_engine_core
+2026-01-31T03:46:29.6597656Z [0;36m(EngineCore_DP0 pid=510)[0;0m     raise e
+2026-01-31T03:46:29.6607980Z [0;36m(EngineCore_DP0 pid=510)[0;0m   File "/vllm-workspace/vllm-ascend/vllm_ascend/patch/platform/patch_core.py", line 55, in run_engine_core
+2026-01-31T03:46:29.6617444Z [0;36m(EngineCore_DP0 pid=510)[0;0m     engine_core = DPEngineCoreProc(*args, **kwargs)
+2026-01-31T03:46:29.6627166Z [0;36m(EngineCore_DP0 pid=510)[0;0m                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-31T03:46:29.6638051Z [0;36m(EngineCore_DP0 pid=510)[0;0m   File "/vllm-workspace/vllm/vllm/v1/engine/core.py", line 1159, in __init__
+2026-01-31T03:46:29.6648585Z [0;36m(EngineCore_DP0 pid=510)[0;0m     super().__init__(
+2026-01-31T03:46:29.6658823Z [0;36m(EngineCore_DP0 pid=510)[0;0m   File "/vllm-workspace/vllm/vllm/v1/engine/core.py", line 637, in __init__
+2026-01-31T03:46:29.6668381Z [0;36m(EngineCore_DP0 pid=510)[0;0m     super().__init__(
+2026-01-31T03:46:29.6678584Z [0;36m(EngineCore_DP0 pid=510)[0;0m   File "/vllm-workspace/vllm/vllm/v1/engine/core.py", line 102, in __init__
+2026-01-31T03:46:29.6688392Z [0;36m(EngineCore_DP0 pid=510)[0;0m     self.model_executor = executor_class(vllm_config)
+2026-01-31T03:46:29.6698188Z [0;36m(EngineCore_DP0 pid=510)[0;0m                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-31T03:46:29.6707603Z [0;36m(EngineCore_DP0 pid=510)[0;0m   File "/vllm-workspace/vllm/vllm/v1/executor/multiproc_executor.py", line 97, in __init__
+2026-01-31T03:46:29.6717195Z [0;36m(EngineCore_DP0 pid=510)[0;0m     super().__init__(vllm_config)
+2026-01-31T03:46:29.6727132Z [0;36m(EngineCore_DP0 pid=510)[0;0m   File "/vllm-workspace/vllm/vllm/v1/executor/abstract.py", line 101, in __init__
+2026-01-31T03:46:29.6737139Z [0;36m(EngineCore_DP0 pid=510)[0;0m     self._init_executor()
+2026-01-31T03:46:29.6747249Z [0;36m(EngineCore_DP0 pid=510)[0;0m   File "/vllm-workspace/vllm/vllm/v1/executor/multiproc_executor.py", line 172, in _init_executor
+2026-01-31T03:46:29.6758340Z [0;36m(EngineCore_DP0 pid=510)[0;0m     self.workers = WorkerProc.wait_for_ready(unready_workers)
+2026-01-31T03:46:29.6768796Z [0;36m(EngineCore_DP0 pid=510)[0;0m                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-31T03:46:29.6778643Z [0;36m(EngineCore_DP0 pid=510)[0;0m   File "/vllm-workspace/vllm/vllm/v1/executor/multiproc_executor.py", line 660, in wait_for_ready
+2026-01-31T03:46:29.6788894Z [0;36m(EngineCore_DP0 pid=510)[0;0m     raise e from None
+2026-01-31T03:46:29.6799284Z [0;36m(EngineCore_DP0 pid=510)[0;0m Exception: WorkerProc initialization failed due to an exception in a background process. See stack trace for root cause.
+2026-01-31T03:46:29.7993709Z [0;36m(EngineCore_DP1 pid=979)[0;0m Process EngineCore_DP1:
+2026-01-31T03:46:29.8018936Z [0;36m(EngineCore_DP1 pid=979)[0;0m Traceback (most recent call last):
+2026-01-31T03:46:29.8029099Z [0;36m(EngineCore_DP1 pid=979)[0;0m   File "/usr/local/python3.11.14/lib/python3.11/multiprocessing/process.py", line 314, in _bootstrap
+2026-01-31T03:46:29.8038654Z [0;36m(EngineCore_DP1 pid=979)[0;0m     self.run()
+2026-01-31T03:46:29.8048855Z [0;36m(EngineCore_DP1 pid=979)[0;0m   File "/usr/local/python3.11.14/lib/python3.11/multiprocessing/process.py", line 108, in run
+2026-01-31T03:46:29.8057946Z [0;36m(EngineCore_DP1 pid=979)[0;0m     self._target(*self._args, **self._kwargs)
+2026-01-31T03:46:29.8068963Z [0;36m(EngineCore_DP1 pid=979)[0;0m   File "/vllm-workspace/vllm-ascend/vllm_ascend/patch/platform/patch_core.py", line 72, in run_engine_core
+2026-01-31T03:46:29.8076977Z [0;36m(EngineCore_DP1 pid=979)[0;0m     raise e
+2026-01-31T03:46:29.8087757Z [0;36m(EngineCore_DP1 pid=979)[0;0m   File "/vllm-workspace/vllm-ascend/vllm_ascend/patch/platform/patch_core.py", line 55, in run_engine_core
+2026-01-31T03:46:29.8096865Z [0;36m(EngineCore_DP1 pid=979)[0;0m     engine_core = DPEngineCoreProc(*args, **kwargs)
+2026-01-31T03:46:29.8106766Z [0;36m(EngineCore_DP1 pid=979)[0;0m                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-31T03:46:29.8116168Z [0;36m(EngineCore_DP1 pid=979)[0;0m   File "/vllm-workspace/vllm/vllm/v1/engine/core.py", line 1159, in __init__
+2026-01-31T03:46:29.8135875Z [0;36m(EngineCore_DP1 pid=979)[0;0m     super().__init__(
+2026-01-31T03:46:29.8136398Z [0;36m(EngineCore_DP1 pid=979)[0;0m   File "/vllm-workspace/vllm/vllm/v1/engine/core.py", line 637, in __init__
+2026-01-31T03:46:29.8145005Z [0;36m(EngineCore_DP1 pid=979)[0;0m     super().__init__(
+2026-01-31T03:46:29.8154143Z [0;36m(EngineCore_DP1 pid=979)[0;0m   File "/vllm-workspace/vllm/vllm/v1/engine/core.py", line 102, in __init__
+2026-01-31T03:46:29.8164296Z [0;36m(EngineCore_DP1 pid=979)[0;0m     self.model_executor = executor_class(vllm_config)
+2026-01-31T03:46:29.8180100Z [0;36m(EngineCore_DP1 pid=979)[0;0m                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-31T03:46:29.8183675Z [0;36m(EngineCore_DP1 pid=979)[0;0m   File "/vllm-workspace/vllm/vllm/v1/executor/multiproc_executor.py", line 97, in __init__
+2026-01-31T03:46:29.8193618Z [0;36m(EngineCore_DP1 pid=979)[0;0m     super().__init__(vllm_config)
+2026-01-31T03:46:29.8203228Z [0;36m(EngineCore_DP1 pid=979)[0;0m   File "/vllm-workspace/vllm/vllm/v1/executor/abstract.py", line 101, in __init__
+2026-01-31T03:46:29.8213419Z [0;36m(EngineCore_DP1 pid=979)[0;0m     self._init_executor()
+2026-01-31T03:46:29.8223068Z [0;36m(EngineCore_DP1 pid=979)[0;0m   File "/vllm-workspace/vllm/vllm/v1/executor/multiproc_executor.py", line 172, in _init_executor
+2026-01-31T03:46:29.8232750Z [0;36m(EngineCore_DP1 pid=979)[0;0m     self.workers = WorkerProc.wait_for_ready(unready_workers)
+2026-01-31T03:46:29.8242472Z [0;36m(EngineCore_DP1 pid=979)[0;0m                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-31T03:46:29.8252484Z [0;36m(EngineCore_DP1 pid=979)[0;0m   File "/vllm-workspace/vllm/vllm/v1/executor/multiproc_executor.py", line 660, in wait_for_ready
+2026-01-31T03:46:29.8262286Z [0;36m(EngineCore_DP1 pid=979)[0;0m     raise e from None
+2026-01-31T03:46:29.8272611Z [0;36m(EngineCore_DP1 pid=979)[0;0m Exception: WorkerProc initialization failed due to an exception in a background process. See stack trace for root cause.
+2026-01-31T03:46:31.9454160Z [0;36m(APIServer pid=135)[0;0m Traceback (most recent call last):
+2026-01-31T03:46:31.9467289Z [0;36m(APIServer pid=135)[0;0m   File "/usr/local/python3.11.14/bin/vllm", line 7, in <module>
+2026-01-31T03:46:31.9478998Z [0;36m(APIServer pid=135)[0;0m     sys.exit(main())
+2026-01-31T03:46:31.9489412Z [0;36m(APIServer pid=135)[0;0m              ^^^^^^
+2026-01-31T03:46:31.9500406Z [0;36m(APIServer pid=135)[0;0m   File "/vllm-workspace/vllm/vllm/entrypoints/cli/main.py", line 73, in main
+2026-01-31T03:46:31.9513337Z [0;36m(APIServer pid=135)[0;0m     args.dispatch_function(args)
+2026-01-31T03:46:31.9525935Z [0;36m(APIServer pid=135)[0;0m   File "/vllm-workspace/vllm/vllm/entrypoints/cli/serve.py", line 60, in cmd
+2026-01-31T03:46:31.9540834Z [0;36m(APIServer pid=135)[0;0m     uvloop.run(run_server(args))
+2026-01-31T03:46:31.9552833Z [0;36m(APIServer pid=135)[0;0m   File "/usr/local/python3.11.14/lib/python3.11/site-packages/uvloop/__init__.py", line 92, in run
+2026-01-31T03:46:31.9563559Z [0;36m(APIServer pid=135)[0;0m     return runner.run(wrapper())
+2026-01-31T03:46:31.9574901Z [0;36m(APIServer pid=135)[0;0m            ^^^^^^^^^^^^^^^^^^^^^
+2026-01-31T03:46:31.9588484Z [0;36m(APIServer pid=135)[0;0m   File "/usr/local/python3.11.14/lib/python3.11/asyncio/runners.py", line 118, in run
+2026-01-31T03:46:31.9598746Z [0;36m(APIServer pid=135)[0;0m     return self._loop.run_until_complete(task)
+2026-01-31T03:46:31.9609522Z [0;36m(APIServer pid=135)[0;0m            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-31T03:46:31.9619643Z [0;36m(APIServer pid=135)[0;0m   File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+2026-01-31T03:46:31.9629911Z [0;36m(APIServer pid=135)[0;0m   File "/usr/local/python3.11.14/lib/python3.11/site-packages/uvloop/__init__.py", line 48, in wrapper
+2026-01-31T03:46:31.9642233Z [0;36m(APIServer pid=135)[0;0m     return await main
+2026-01-31T03:46:31.9649896Z [0;36m(APIServer pid=135)[0;0m            ^^^^^^^^^^
+2026-01-31T03:46:31.9660022Z [0;36m(APIServer pid=135)[0;0m   File "/vllm-workspace/vllm/vllm/entrypoints/openai/api_server.py", line 1398, in run_server
+2026-01-31T03:46:31.9669426Z [0;36m(APIServer pid=135)[0;0m     await run_server_worker(listen_address, sock, args, **uvicorn_kwargs)
+2026-01-31T03:46:31.9679459Z [0;36m(APIServer pid=135)[0;0m   File "/vllm-workspace/vllm/vllm/entrypoints/openai/api_server.py", line 1417, in run_server_worker
+2026-01-31T03:46:31.9689363Z [0;36m(APIServer pid=135)[0;0m     async with build_async_engine_client(
+2026-01-31T03:46:31.9699598Z [0;36m(APIServer pid=135)[0;0m   File "/usr/local/python3.11.14/lib/python3.11/contextlib.py", line 210, in __aenter__
+2026-01-31T03:46:31.9708948Z [0;36m(APIServer pid=135)[0;0m     return await anext(self.gen)
+2026-01-31T03:46:31.9719021Z [0;36m(APIServer pid=135)[0;0m            ^^^^^^^^^^^^^^^^^^^^^
+2026-01-31T03:46:31.9729505Z [0;36m(APIServer pid=135)[0;0m   File "/vllm-workspace/vllm/vllm/entrypoints/openai/api_server.py", line 172, in build_async_engine_client
+2026-01-31T03:46:31.9738859Z [0;36m(APIServer pid=135)[0;0m     async with build_async_engine_client_from_engine_args(
+2026-01-31T03:46:31.9748055Z [0;36m(APIServer pid=135)[0;0m   File "/usr/local/python3.11.14/lib/python3.11/contextlib.py", line 210, in __aenter__
+2026-01-31T03:46:31.9757087Z [0;36m(APIServer pid=135)[0;0m     return await anext(self.gen)
+2026-01-31T03:46:31.9768101Z [0;36m(APIServer pid=135)[0;0m            ^^^^^^^^^^^^^^^^^^^^^
+2026-01-31T03:46:31.9779389Z [0;36m(APIServer pid=135)[0;0m   File "/vllm-workspace/vllm/vllm/entrypoints/openai/api_server.py", line 213, in build_async_engine_client_from_engine_args
+2026-01-31T03:46:31.9789098Z [0;36m(APIServer pid=135)[0;0m     async_llm = AsyncLLM.from_vllm_config(
+2026-01-31T03:46:31.9798960Z [0;36m(APIServer pid=135)[0;0m                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-31T03:46:31.9810540Z [0;36m(APIServer pid=135)[0;0m   File "/vllm-workspace/vllm/vllm/v1/engine/async_llm.py", line 215, in from_vllm_config
+2026-01-31T03:46:31.9820042Z [0;36m(APIServer pid=135)[0;0m     return cls(
+2026-01-31T03:46:31.9830783Z [0;36m(APIServer pid=135)[0;0m            ^^^^
+2026-01-31T03:46:31.9842112Z [0;36m(APIServer pid=135)[0;0m   File "/vllm-workspace/vllm/vllm/v1/engine/async_llm.py", line 134, in __init__
+2026-01-31T03:46:31.9852766Z [0;36m(APIServer pid=135)[0;0m     self.engine_core = EngineCoreClient.make_async_mp_client(
+2026-01-31T03:46:31.9864612Z [0;36m(APIServer pid=135)[0;0m                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-31T03:46:31.9873056Z [0;36m(APIServer pid=135)[0;0m   File "/vllm-workspace/vllm/vllm/v1/engine/core_client.py", line 120, in make_async_mp_client
+2026-01-31T03:46:31.9882799Z [0;36m(APIServer pid=135)[0;0m     return DPLBAsyncMPClient(*client_args)
+2026-01-31T03:46:31.9893249Z [0;36m(APIServer pid=135)[0;0m            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-31T03:46:31.9903054Z [0;36m(APIServer pid=135)[0;0m   File "/vllm-workspace/vllm/vllm/v1/engine/core_client.py", line 1192, in __init__
+2026-01-31T03:46:31.9912306Z [0;36m(APIServer pid=135)[0;0m     super().__init__(
+2026-01-31T03:46:31.9922816Z [0;36m(APIServer pid=135)[0;0m   File "/vllm-workspace/vllm/vllm/v1/engine/core_client.py", line 1033, in __init__
+2026-01-31T03:46:31.9933061Z [0;36m(APIServer pid=135)[0;0m     super().__init__(
+2026-01-31T03:46:31.9943001Z [0;36m(APIServer pid=135)[0;0m   File "/vllm-workspace/vllm/vllm/v1/engine/core_client.py", line 820, in __init__
+2026-01-31T03:46:31.9952813Z [0;36m(APIServer pid=135)[0;0m     super().__init__(
+2026-01-31T03:46:31.9963880Z [0;36m(APIServer pid=135)[0;0m   File "/vllm-workspace/vllm/vllm/v1/engine/core_client.py", line 477, in __init__
+2026-01-31T03:46:31.9973462Z [0;36m(APIServer pid=135)[0;0m     with launch_core_engines(vllm_config, executor_class, log_stats) as (
+2026-01-31T03:46:31.9983519Z [0;36m(APIServer pid=135)[0;0m   File "/usr/local/python3.11.14/lib/python3.11/contextlib.py", line 144, in __exit__
+2026-01-31T03:46:31.9992597Z [0;36m(APIServer pid=135)[0;0m     next(self.gen)
+2026-01-31T03:46:32.0003870Z [0;36m(APIServer pid=135)[0;0m   File "/vllm-workspace/vllm/vllm/v1/engine/utils.py", line 903, in launch_core_engines
+2026-01-31T03:46:32.0013051Z [0;36m(APIServer pid=135)[0;0m     wait_for_engine_startup(
+2026-01-31T03:46:32.0022573Z [0;36m(APIServer pid=135)[0;0m   File "/vllm-workspace/vllm/vllm/v1/engine/utils.py", line 960, in wait_for_engine_startup
+2026-01-31T03:46:32.0031910Z [0;36m(APIServer pid=135)[0;0m     raise RuntimeError(
+2026-01-31T03:46:32.0042185Z [0;36m(APIServer pid=135)[0;0m RuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}
+2026-01-31T03:46:32.0051553Z [0;36m(APIServer pid=135)[0;0m [ERROR] 2026-01-31-03:46:31 (PID:135, Device:-1, RankID:-1) ERR99999 UNKNOWN applicaiton exception
+2026-01-31T03:46:32.3039241Z [0;36m(APIServer pid=135)[0;0m sys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute
+2026-01-31T03:46:33.7944340Z /usr/local/python3.11.14/lib/python3.11/multiprocessing/resource_tracker.py:254: UserWarning: resource_tracker: There appear to be 2 leaked shared_memory objects to clean up at shutdown
+2026-01-31T03:46:33.7954728Z   warnings.warn('resource_tracker: There appear to be %d '
+2026-01-31T03:46:39.7944925Z FAILED
+2026-01-31T03:46:39.7957505Z 
+2026-01-31T03:46:39.7970343Z =================================== FAILURES ===================================
+2026-01-31T03:46:39.7980571Z _______________________________ test_multi_node ________________________________
+2026-01-31T03:46:39.7990586Z 
+2026-01-31T03:46:39.8002597Z     @pytest.mark.asyncio
+2026-01-31T03:46:39.8011461Z     async def test_multi_node() -> None:
+2026-01-31T03:46:39.8020812Z         config = MultiNodeConfigLoader.from_yaml()
+2026-01-31T03:46:39.8030122Z     
+2026-01-31T03:46:39.8039635Z         with ProxyLauncher(
+2026-01-31T03:46:39.8049967Z                 nodes=config.nodes,
+2026-01-31T03:46:39.8059408Z                 disagg_cfg=config.disagg_cfg,
+2026-01-31T03:46:39.8069040Z                 envs=config.envs,
+2026-01-31T03:46:39.8079392Z                 proxy_port=config.proxy_port,
+2026-01-31T03:46:39.8089099Z                 cur_index=config.cur_index,
+2026-01-31T03:46:39.8099833Z         ) as proxy:
+2026-01-31T03:46:39.8110646Z     
+2026-01-31T03:46:39.8121330Z >           with RemoteOpenAIServer(
+2026-01-31T03:46:39.8131909Z                     model=config.model,
+2026-01-31T03:46:39.8143260Z                     vllm_serve_args=config.server_cmd,
+2026-01-31T03:46:39.8152642Z                     server_port=config.server_port,
+2026-01-31T03:46:39.8163366Z                     server_host=config.master_ip,
+2026-01-31T03:46:39.8173153Z                     env_dict=config.envs,
+2026-01-31T03:46:39.8182590Z                     auto_port=False,
+2026-01-31T03:46:39.8192572Z                     proxy_port=proxy.proxy_port,
+2026-01-31T03:46:39.8202905Z                     disaggregated_prefill=config.disagg_cfg,
+2026-01-31T03:46:39.8212891Z                     nodes_info=config.nodes,
+2026-01-31T03:46:39.8223503Z                     max_wait_seconds=2800,
+2026-01-31T03:46:39.8232765Z             ) as server:
+2026-01-31T03:46:39.8244119Z 
+2026-01-31T03:46:39.8255341Z tests/e2e/nightly/multi_node/scripts/test_multi_node.py:21: 
+2026-01-31T03:46:39.8265458Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-01-31T03:46:39.8278036Z tests/e2e/conftest.py:172: in __init__
+2026-01-31T03:46:39.8286060Z     self._wait_for_multiple_servers(
+2026-01-31T03:46:39.8296222Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-01-31T03:46:39.8305493Z 
+2026-01-31T03:46:39.8317149Z self = <tests.e2e.conftest.RemoteOpenAIServer object at 0xffff0f0e9dd0>
+2026-01-31T03:46:39.8330950Z targets = [('10.0.0.218', 'http://10.0.0.218:8080/health')], timeout = 2800
+2026-01-31T03:46:39.8340104Z log_interval = 30.0
+2026-01-31T03:46:39.8349635Z 
+2026-01-31T03:46:39.8360744Z     def _wait_for_multiple_servers(self,
+2026-01-31T03:46:39.8370081Z                                    targets,
+2026-01-31T03:46:39.8379592Z                                    timeout: float,
+2026-01-31T03:46:39.8389041Z                                    log_interval: float = 30.0):
+2026-01-31T03:46:39.8399088Z         """
+2026-01-31T03:46:39.8409597Z         targets: List[(node_ip, url)]
+2026-01-31T03:46:39.8418271Z         log_interval
+2026-01-31T03:46:39.8428271Z         """
+2026-01-31T03:46:39.8437388Z         start = time.time()
+2026-01-31T03:46:39.8447625Z         client = requests
+2026-01-31T03:46:39.8456922Z     
+2026-01-31T03:46:39.8466526Z         ready = {node_ip: False for node_ip, _ in targets}
+2026-01-31T03:46:39.8476093Z     
+2026-01-31T03:46:39.8486535Z         last_log_time = 0.0
+2026-01-31T03:46:39.8498492Z     
+2026-01-31T03:46:39.8504187Z         while True:
+2026-01-31T03:46:39.8513701Z             now = time.time()
+2026-01-31T03:46:39.8524360Z             all_ready = True
+2026-01-31T03:46:39.8534237Z             should_log = (now - last_log_time) >= log_interval
+2026-01-31T03:46:39.8543504Z     
+2026-01-31T03:46:39.8553686Z             for node_ip, url in targets:
+2026-01-31T03:46:39.8562616Z                 if ready[node_ip]:
+2026-01-31T03:46:39.8571279Z                     continue
+2026-01-31T03:46:39.8580578Z     
+2026-01-31T03:46:39.8591137Z                 try:
+2026-01-31T03:46:39.8600874Z                     resp = client.get(url)
+2026-01-31T03:46:39.8610743Z                     if resp.status_code == 200:
+2026-01-31T03:46:39.8620309Z                         ready[node_ip] = True
+2026-01-31T03:46:39.8629471Z                         logger.info(f"[READY] Node {node_ip} is ready.")
+2026-01-31T03:46:39.8639054Z                 except RequestException:
+2026-01-31T03:46:39.8648779Z                     all_ready = False
+2026-01-31T03:46:39.8658626Z                     if should_log:
+2026-01-31T03:46:39.8667577Z                         logger.debug(f"[WAIT] {url}: connection failed")
+2026-01-31T03:46:39.8677491Z     
+2026-01-31T03:46:39.8687215Z                     # check unexpected exit
+2026-01-31T03:46:39.8696604Z                     result = self._poll()
+2026-01-31T03:46:39.8706153Z                     if result is not None and result != 0:
+2026-01-31T03:46:39.8715140Z >                       raise RuntimeError(
+2026-01-31T03:46:39.8725386Z                             f"Server at {node_ip} exited unexpectedly."
+2026-01-31T03:46:39.8736725Z                         ) from None
+2026-01-31T03:46:39.8746496Z E                       RuntimeError: Server at 10.0.0.218 exited unexpectedly.
+2026-01-31T03:46:39.8757819Z 
+2026-01-31T03:46:39.8769935Z tests/e2e/conftest.py:265: RuntimeError
+2026-01-31T03:46:39.8783393Z =============================== warnings summary ===============================
+2026-01-31T03:46:39.8798257Z <frozen importlib._bootstrap>:241
+2026-01-31T03:46:39.8809566Z   <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute
+2026-01-31T03:46:39.8819957Z 
+2026-01-31T03:46:39.8830474Z <frozen importlib._bootstrap>:241
+2026-01-31T03:46:39.8842504Z   <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute
+2026-01-31T03:46:39.8853084Z 
+2026-01-31T03:46:39.8864175Z -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+2026-01-31T03:46:39.8873774Z =========================== short test summary info ============================
+2026-01-31T03:46:39.8884071Z FAILED tests/e2e/nightly/multi_node/scripts/test_multi_node.py::test_multi_node
+2026-01-31T03:46:39.8893954Z ================== 1 failed, 2 warnings in 266.44s (0:04:26) ===================
+2026-01-31T03:46:42.0587398Z [0;31mFAIL_TAG_Kimi-K2-Instruct-W8A8.yaml ✗ ERROR: Some tests failed, please check the error stack above for details. If this is insufficient to pinpoint the error, please download and review the logs of all other nodes from the job's summary.[0m
+2026-01-31T03:46:42.2034777Z Cleaning up background log streams...
+2026-01-31T03:46:42.3649241Z ##[error]Error: failed to run script step: Error: command terminated with non-zero exit code: command terminated with exit code 1
+2026-01-31T03:46:42.3688359Z ##[error]Process completed with exit code 1.
+2026-01-31T03:46:42.3775576Z ##[error]Executing the custom container implementation failed. Please contact your self hosted runner administrator.
+2026-01-31T03:46:42.4156628Z ##[group]Run actions/upload-artifact@v6
+2026-01-31T03:46:42.4156942Z with:
+2026-01-31T03:46:42.4157159Z   name: Kimi-K2-Instruct-W8A8.yaml-pod-logs
+2026-01-31T03:46:42.4157511Z   path: /tmp/vllm*_logs.txt
+2026-01-31T03:46:42.4157784Z   retention-days: 7
+2026-01-31T03:46:42.4157994Z   if-no-files-found: warn
+2026-01-31T03:46:42.4158260Z   compression-level: 6
+2026-01-31T03:46:42.4158511Z   overwrite: false
+2026-01-31T03:46:42.4158717Z   include-hidden-files: false
+2026-01-31T03:46:42.4158960Z env:
+2026-01-31T03:46:42.4159189Z   FAIL_TAG: FAIL_TAG_Kimi-K2-Instruct-W8A8.yaml
+2026-01-31T03:46:42.4159478Z ##[endgroup]
+2026-01-31T03:46:42.4185502Z ##[group]Run '/home/runner/k8s/index.js'
+2026-01-31T03:46:42.4186260Z shell: /home/runner/externals/node20/bin/node {0}
+2026-01-31T03:46:42.4186564Z ##[endgroup]
+2026-01-31T03:46:42.7679733Z (node:11703) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-01-31T03:46:42.7680593Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-01-31T03:47:02.1334582Z With the provided path, there will be 1 file uploaded
+2026-01-31T03:47:02.1338410Z Artifact name is valid!
+2026-01-31T03:47:02.1338828Z Root directory input is valid!
+2026-01-31T03:47:03.0195283Z Beginning upload of artifact content to blob storage
+2026-01-31T03:47:03.9879042Z Uploaded bytes 9398
+2026-01-31T03:47:04.2121627Z Finished uploading artifact content to blob storage!
+2026-01-31T03:47:04.2122251Z SHA256 digest of uploaded artifact zip is d99a0ae3183312f9cd269f0b1faaef52b5d7dd6f2793804d0267fdc820640a5e
+2026-01-31T03:47:04.2122742Z Finalizing artifact upload
+2026-01-31T03:47:05.0121256Z Artifact Kimi-K2-Instruct-W8A8.yaml-pod-logs.zip successfully finalized. Artifact ID 5326880767
+2026-01-31T03:47:05.0122137Z Artifact Kimi-K2-Instruct-W8A8.yaml-pod-logs has been successfully uploaded! Final size is 9398 bytes. Artifact ID is 5326880767
+2026-01-31T03:47:05.0123220Z Artifact download URL: https://github.com/vllm-project/vllm-ascend/actions/runs/21522751536/artifacts/5326880767
+2026-01-31T03:47:23.5198468Z ##[group]Run kubectl get pods -n $NAMESPACE --ignore-not-found=true
+2026-01-31T03:47:23.5199058Z [36;1mkubectl get pods -n $NAMESPACE --ignore-not-found=true[0m
+2026-01-31T03:47:23.5199459Z [36;1mkubectl delete -f ./lws.yaml --ignore-not-found=true || true[0m
+2026-01-31T03:47:23.5199926Z shell: bash -el {0}
+2026-01-31T03:47:23.5200157Z env:
+2026-01-31T03:47:23.5200422Z   FAIL_TAG: FAIL_TAG_Kimi-K2-Instruct-W8A8.yaml
+2026-01-31T03:47:23.5200720Z ##[endgroup]
+2026-01-31T03:47:23.5287109Z ##[group]Run '/home/runner/k8s/index.js'
+2026-01-31T03:47:23.5287891Z shell: /home/runner/externals/node20/bin/node {0}
+2026-01-31T03:47:23.5288185Z ##[endgroup]
+2026-01-31T03:47:23.8772342Z (node:13358) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-01-31T03:47:23.8773203Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-01-31T03:47:42.7615053Z NAME                                              READY   STATUS    RESTARTS      AGE
+2026-01-31T03:47:42.7615571Z linux-aarch64-a3-0-wgt9d-runner-q9czs             1/1     Running   0             10m
+2026-01-31T03:47:42.7616475Z linux-aarch64-a3-0-wgt9d-runner-q9czs-workflow    1/1     Running   0             9m43s
+2026-01-31T03:47:42.7616992Z linux-aarch64-a3-16-r8zc8-runner-7snkt            1/1     Running   0             49s
+2026-01-31T03:47:42.7617505Z linux-aarch64-a3-16-r8zc8-runner-7snkt-workflow   1/1     Running   0             27s
+2026-01-31T03:47:42.7617935Z vllm-0                                            1/1     Running   1 (60s ago)   6m16s
+2026-01-31T03:47:42.7618313Z vllm-0-1                                          1/1     Running   0             6m16s
+2026-01-31T03:47:42.8291267Z leaderworkerset.leaderworkerset.x-k8s.io "vllm" deleted from vllm-project namespace
+2026-01-31T03:47:42.8679792Z service "vllm-leader" deleted from vllm-project namespace
+2026-01-31T03:48:02.3558204Z Post job cleanup.
+2026-01-31T03:48:02.3583848Z ##[group]Run '/home/runner/k8s/index.js'
+2026-01-31T03:48:02.3584712Z shell: /home/runner/externals/node20/bin/node {0}
+2026-01-31T03:48:02.3584998Z ##[endgroup]
+2026-01-31T03:48:02.7208454Z (node:15193) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-01-31T03:48:02.7209381Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-01-31T03:48:21.8387387Z [command]/usr/bin/git version
+2026-01-31T03:48:21.8580252Z git version 2.34.1
+2026-01-31T03:48:21.8606766Z Copying '/root/.gitconfig' to '/__w/_temp/5552993c-2162-443c-abe9-ab0360aabe9e/.gitconfig'
+2026-01-31T03:48:21.8614714Z Temporarily overriding HOME='/__w/_temp/5552993c-2162-443c-abe9-ab0360aabe9e' before making global git config changes
+2026-01-31T03:48:21.8615430Z Adding repository directory to the temporary git global config as a safe directory
+2026-01-31T03:48:21.8619484Z [command]/usr/bin/git config --global --add safe.directory /__w/vllm-ascend/vllm-ascend
+2026-01-31T03:48:21.8661228Z Removing SSH command configuration
+2026-01-31T03:48:21.8664867Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-01-31T03:48:21.8717551Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-01-31T03:48:21.9195935Z Removing HTTP extra header
+2026-01-31T03:48:21.9200100Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-01-31T03:48:21.9225990Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-01-31T03:48:21.9409517Z Removing includeIf entries pointing to credentials config files
+2026-01-31T03:48:21.9413524Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-01-31T03:48:21.9431474Z includeif.gitdir:/__w/vllm-ascend/vllm-ascend/.git.path
+2026-01-31T03:48:21.9431898Z includeif.gitdir:/__w/vllm-ascend/vllm-ascend/.git/worktrees/*.path
+2026-01-31T03:48:21.9432491Z includeif.gitdir:/github/workspace/.git.path
+2026-01-31T03:48:21.9432851Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-01-31T03:48:21.9439458Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/__w/vllm-ascend/vllm-ascend/.git.path
+2026-01-31T03:48:21.9456230Z /__w/_temp/git-credentials-2e114668-b7fe-4e35-811e-78585aaacc4a.config
+2026-01-31T03:48:21.9464754Z [command]/usr/bin/git config --local --unset includeif.gitdir:/__w/vllm-ascend/vllm-ascend/.git.path /__w/_temp/git-credentials-2e114668-b7fe-4e35-811e-78585aaacc4a.config
+2026-01-31T03:48:21.9526170Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/__w/vllm-ascend/vllm-ascend/.git/worktrees/*.path
+2026-01-31T03:48:21.9526787Z /__w/_temp/git-credentials-2e114668-b7fe-4e35-811e-78585aaacc4a.config
+2026-01-31T03:48:21.9527870Z [command]/usr/bin/git config --local --unset includeif.gitdir:/__w/vllm-ascend/vllm-ascend/.git/worktrees/*.path /__w/_temp/git-credentials-2e114668-b7fe-4e35-811e-78585aaacc4a.config
+2026-01-31T03:48:21.9552132Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+2026-01-31T03:48:21.9572287Z /github/runner_temp/git-credentials-2e114668-b7fe-4e35-811e-78585aaacc4a.config
+2026-01-31T03:48:21.9575895Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-2e114668-b7fe-4e35-811e-78585aaacc4a.config
+2026-01-31T03:48:21.9608215Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-01-31T03:48:21.9626003Z /github/runner_temp/git-credentials-2e114668-b7fe-4e35-811e-78585aaacc4a.config
+2026-01-31T03:48:21.9632478Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-2e114668-b7fe-4e35-811e-78585aaacc4a.config
+2026-01-31T03:48:21.9659374Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-01-31T03:48:21.9859725Z Removing credentials config '/__w/_temp/git-credentials-2e114668-b7fe-4e35-811e-78585aaacc4a.config'
+2026-01-31T03:48:41.0640507Z ##[group]Run '/home/runner/k8s/index.js'
+2026-01-31T03:48:41.0641381Z shell: /home/runner/externals/node20/bin/node {0}
+2026-01-31T03:48:41.0641717Z ##[endgroup]
+2026-01-31T03:48:41.4924309Z Cleaning up orphan processes

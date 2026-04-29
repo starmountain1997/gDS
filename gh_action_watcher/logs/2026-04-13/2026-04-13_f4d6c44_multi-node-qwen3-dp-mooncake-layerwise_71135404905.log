@@ -1,0 +1,1811 @@
+# Run ID: 24355380566
+# Commit: f4d6c44acbb76c8ca079d7c360caef7a478fb48f
+# Job: multi-node (releases-v0.18.0, multi-node-qwen3-dp-mooncake-layerwise, Qwen3-235B-A22B-Mooncake-La... / Qwen3-235B-A22B-Mooncake-Layerwise.yaml
+# Date: 2026-04-13
+============================================================
+
+﻿2026-04-13T18:20:13.4220444Z Current runner version: '2.332.0'
+2026-04-13T18:20:13.4226586Z Runner name: 'linux-aarch64-a3-0-ggwx6-runner-q267x'
+2026-04-13T18:20:13.4227367Z Runner group name: 'Default'
+2026-04-13T18:20:13.4228572Z Machine name: 'linux-aarch64-a3-0-ggwx6-runner-q267x'
+2026-04-13T18:20:13.4231503Z ##[group]GITHUB_TOKEN Permissions
+2026-04-13T18:20:13.4233752Z Contents: read
+2026-04-13T18:20:13.4234245Z Issues: read
+2026-04-13T18:20:13.4234731Z Metadata: read
+2026-04-13T18:20:13.4235208Z PullRequests: read
+2026-04-13T18:20:13.4235649Z ##[endgroup]
+2026-04-13T18:20:13.4238045Z Secret source: Actions
+2026-04-13T18:20:13.4238848Z Prepare workflow directory
+2026-04-13T18:20:13.4864729Z Prepare all required actions
+2026-04-13T18:20:13.4901584Z Getting action download info
+2026-04-13T18:20:15.1476577Z Download action repository 'actions/checkout@v6' (SHA:de0fac2e4500dabe0009e67214ff5f5447ce83dd)
+2026-04-13T18:20:19.1740010Z Download action repository 'actions/upload-artifact@v7' (SHA:043fb46d1a93c77aae656e7c1c64a875d1fc6a0a)
+2026-04-13T18:20:24.3703465Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-04-13T18:20:31.9686541Z Uses: vllm-project/vllm-ascend/.github/workflows/_e2e_nightly_multi_node.yaml@refs/heads/main (f4d6c44acbb76c8ca079d7c360caef7a478fb48f)
+2026-04-13T18:20:31.9691114Z ##[group] Inputs
+2026-04-13T18:20:31.9691623Z   soc_version: a3
+2026-04-13T18:20:31.9692059Z   runner: linux-aarch64-a3-0
+2026-04-13T18:20:31.9692808Z   image: swr.cn-southwest-2.myhuaweicloud.com/base_image/ascend-ci/vllm-ascend:nightly-ci-releases-v0.18.0-a3
+2026-04-13T18:20:31.9693596Z   config_file_path: Qwen3-235B-A22B-Mooncake-Layerwise.yaml
+2026-04-13T18:20:31.9694130Z   replicas: 1
+2026-04-13T18:20:31.9694455Z   size: 2
+2026-04-13T18:20:31.9694811Z   vllm_version: v0.18.0
+2026-04-13T18:20:31.9695398Z   vllm_ascend_remote_url: https://github.com/vllm-project/vllm-ascend.git
+2026-04-13T18:20:31.9696071Z   vllm_ascend_ref: f4d6c44acbb76c8ca079d7c360caef7a478fb48f
+2026-04-13T18:20:31.9697018Z   should_run: true
+2026-04-13T18:20:31.9697445Z   ascend_log_prefix: /root/.cache/ascend-logs
+2026-04-13T18:20:31.9697953Z   name: multi-node-qwen3-dp-mooncake-layerwise
+2026-04-13T18:20:31.9698422Z ##[endgroup]
+2026-04-13T18:20:31.9699371Z Complete job name: multi-node (releases-v0.18.0, multi-node-qwen3-dp-mooncake-layerwise, Qwen3-235B-A22B-Mooncake-La... / Qwen3-235B-A22B-Mooncake-Layerwise.yaml
+2026-04-13T18:20:32.0410102Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T18:20:32.0413687Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T18:20:32.0414549Z ##[endgroup]
+2026-04-13T18:20:47.5965979Z (node:126) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T18:20:47.5967141Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T18:20:49.9463159Z ##[group]Run if [ "schedule" = "pull_request" ]; then
+2026-04-13T18:20:49.9463743Z [36;1mif [ "schedule" = "pull_request" ]; then[0m
+2026-04-13T18:20:49.9464123Z [36;1m  if [ "a3" = "a3" ]; then[0m
+2026-04-13T18:20:49.9464646Z [36;1m    # NOTE: This is too hack, we should find a better way to manage kubeconfig for pr tests.[0m
+2026-04-13T18:20:49.9465246Z [36;1m    cp /root/.cache/.kube/kubeconfig.yaml "$KUBECONFIG"[0m
+2026-04-13T18:20:49.9465661Z [36;1m  else[0m
+2026-04-13T18:20:49.9466044Z [36;1m    cp /root/.cache/.kube/hk_001_kb.yaml "$KUBECONFIG"[0m
+2026-04-13T18:20:49.9466434Z [36;1m  fi[0m
+2026-04-13T18:20:49.9466696Z [36;1melse[0m
+2026-04-13T18:20:49.9519999Z [36;1m  echo "***" | base64 -d > "$KUBECONFIG"[0m
+2026-04-13T18:20:49.9520396Z [36;1mfi[0m
+2026-04-13T18:20:49.9520947Z shell: bash -el {0}
+2026-04-13T18:20:49.9521244Z ##[endgroup]
+2026-04-13T18:20:49.9661614Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T18:20:49.9662787Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T18:20:49.9663172Z ##[endgroup]
+2026-04-13T18:20:50.3955794Z (node:535) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T18:20:50.3956827Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T18:20:51.4200934Z ##[group]Run actions/checkout@v6
+2026-04-13T18:20:51.4201383Z with:
+2026-04-13T18:20:51.4201706Z   repository: vllm-project/vllm-ascend
+2026-04-13T18:20:51.4202391Z   token: ***
+2026-04-13T18:20:51.4202723Z   ssh-strict: true
+2026-04-13T18:20:51.4203033Z   ssh-user: git
+2026-04-13T18:20:51.4203346Z   persist-credentials: true
+2026-04-13T18:20:51.4203701Z   clean: true
+2026-04-13T18:20:51.4204008Z   sparse-checkout-cone-mode: true
+2026-04-13T18:20:51.4204406Z   fetch-depth: 1
+2026-04-13T18:20:51.4204691Z   fetch-tags: false
+2026-04-13T18:20:51.4204948Z   show-progress: true
+2026-04-13T18:20:51.4205214Z   lfs: false
+2026-04-13T18:20:51.4205448Z   submodules: false
+2026-04-13T18:20:51.4205718Z   set-safe-directory: true
+2026-04-13T18:20:51.4206044Z ##[endgroup]
+2026-04-13T18:20:51.4262206Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T18:20:51.4263826Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T18:20:51.4264422Z ##[endgroup]
+2026-04-13T18:20:51.8506190Z (node:565) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T18:20:51.8507319Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T18:20:52.5025718Z Syncing repository: vllm-project/vllm-ascend
+2026-04-13T18:20:52.5027159Z ##[group]Getting Git version info
+2026-04-13T18:20:52.5027600Z Working directory is '/__w/vllm-ascend/vllm-ascend'
+2026-04-13T18:20:52.5028224Z [command]/usr/bin/git version
+2026-04-13T18:20:52.5146635Z git version 2.34.1
+2026-04-13T18:20:52.5168262Z ##[endgroup]
+2026-04-13T18:20:52.5174909Z Copying '/root/.gitconfig' to '/__w/_temp/f7219f8f-10e0-4ae6-953b-98a94002405e/.gitconfig'
+2026-04-13T18:20:52.5184071Z Temporarily overriding HOME='/__w/_temp/f7219f8f-10e0-4ae6-953b-98a94002405e' before making global git config changes
+2026-04-13T18:20:52.5184982Z Adding repository directory to the temporary git global config as a safe directory
+2026-04-13T18:20:52.5187853Z [command]/usr/bin/git config --global --add safe.directory /__w/vllm-ascend/vllm-ascend
+2026-04-13T18:20:52.5225614Z Deleting the contents of '/__w/vllm-ascend/vllm-ascend'
+2026-04-13T18:20:52.5229669Z ##[group]Initializing the repository
+2026-04-13T18:20:52.5233448Z [command]/usr/bin/git init /__w/vllm-ascend/vllm-ascend
+2026-04-13T18:20:52.5347785Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-04-13T18:20:52.5348363Z hint: is subject to change. To configure the initial branch name to use in all
+2026-04-13T18:20:52.5348920Z hint: of your new repositories, which will suppress this warning, call:
+2026-04-13T18:20:52.5349352Z hint: 
+2026-04-13T18:20:52.5349728Z hint: 	git config --global init.defaultBranch <name>
+2026-04-13T18:20:52.5350330Z hint: 
+2026-04-13T18:20:52.5350753Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-04-13T18:20:52.5351332Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-04-13T18:20:52.5351789Z hint: 
+2026-04-13T18:20:52.5352076Z hint: 	git branch -m <name>
+2026-04-13T18:20:52.5354455Z Initialized empty Git repository in /__w/vllm-ascend/vllm-ascend/.git/
+2026-04-13T18:20:52.5363369Z [command]/usr/bin/git remote add origin https://github.com/vllm-project/vllm-ascend
+2026-04-13T18:20:52.5413368Z ##[endgroup]
+2026-04-13T18:20:52.5413826Z ##[group]Disabling automatic garbage collection
+2026-04-13T18:20:52.5417150Z [command]/usr/bin/git config --local gc.auto 0
+2026-04-13T18:20:52.5446521Z ##[endgroup]
+2026-04-13T18:20:52.5446939Z ##[group]Setting up auth
+2026-04-13T18:20:52.5448300Z Removing SSH command configuration
+2026-04-13T18:20:52.5453949Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-04-13T18:20:52.5483425Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-04-13T18:20:52.5919500Z Removing HTTP extra header
+2026-04-13T18:20:52.5923086Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-04-13T18:20:52.5950472Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-04-13T18:20:52.6155903Z Removing includeIf entries pointing to credentials config files
+2026-04-13T18:20:52.6160684Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-04-13T18:20:52.6188255Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-04-13T18:20:52.6382193Z [command]/usr/bin/git config --file /__w/_temp/git-credentials-e51ac553-0294-4a24-9dcb-5f0ca9eab4f3.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-04-13T18:20:52.6416649Z [command]/usr/bin/git config --local includeIf.gitdir:/__w/vllm-ascend/vllm-ascend/.git.path /__w/_temp/git-credentials-e51ac553-0294-4a24-9dcb-5f0ca9eab4f3.config
+2026-04-13T18:20:52.6448815Z [command]/usr/bin/git config --local includeIf.gitdir:/__w/vllm-ascend/vllm-ascend/.git/worktrees/*.path /__w/_temp/git-credentials-e51ac553-0294-4a24-9dcb-5f0ca9eab4f3.config
+2026-04-13T18:20:52.6475602Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-e51ac553-0294-4a24-9dcb-5f0ca9eab4f3.config
+2026-04-13T18:20:52.6506619Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-e51ac553-0294-4a24-9dcb-5f0ca9eab4f3.config
+2026-04-13T18:20:52.6535977Z ##[endgroup]
+2026-04-13T18:20:52.6536394Z ##[group]Fetching the repository
+2026-04-13T18:20:52.6545006Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +f4d6c44acbb76c8ca079d7c360caef7a478fb48f:refs/remotes/origin/main
+2026-04-13T18:20:54.6429329Z From https://gh-proxy.test.osinfra.cn/https://github.com/vllm-project/vllm-ascend
+2026-04-13T18:20:54.6430120Z  * [new ref]         f4d6c44acbb76c8ca079d7c360caef7a478fb48f -> origin/main
+2026-04-13T18:20:54.6453456Z [command]/usr/bin/git branch --list --remote origin/main
+2026-04-13T18:20:54.6481124Z   origin/main
+2026-04-13T18:20:54.6488750Z [command]/usr/bin/git rev-parse refs/remotes/origin/main
+2026-04-13T18:20:54.6512320Z f4d6c44acbb76c8ca079d7c360caef7a478fb48f
+2026-04-13T18:20:54.6519026Z ##[endgroup]
+2026-04-13T18:20:54.6519487Z ##[group]Determining the checkout info
+2026-04-13T18:20:54.6520225Z ##[endgroup]
+2026-04-13T18:20:54.6535460Z [command]/usr/bin/git sparse-checkout disable
+2026-04-13T18:20:54.6582126Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-04-13T18:20:54.6607482Z ##[group]Checking out the ref
+2026-04-13T18:20:54.6612080Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-04-13T18:20:54.7792426Z Switched to a new branch 'main'
+2026-04-13T18:20:54.7792853Z Branch 'main' set up to track remote branch 'main' from 'origin'.
+2026-04-13T18:20:54.7805103Z ##[endgroup]
+2026-04-13T18:20:54.7849527Z [command]/usr/bin/git log -1 --format=%H
+2026-04-13T18:20:54.7872049Z f4d6c44acbb76c8ca079d7c360caef7a478fb48f
+2026-04-13T18:20:55.2286498Z ##[group]Run # Derive a unique, valid k8s resource name from config_file_path.
+2026-04-13T18:20:55.2287139Z [36;1m# Derive a unique, valid k8s resource name from config_file_path.[0m
+2026-04-13T18:20:55.2287738Z [36;1m# Append 6-char random suffix to avoid conflicts; total length capped at 63 chars.[0m
+2026-04-13T18:20:55.2288228Z [36;1m[0m
+2026-04-13T18:20:55.2288732Z [36;1mconfig_file="Qwen3-235B-A22B-Mooncake-Layerwise.yaml"[0m
+2026-04-13T18:20:55.2289437Z [36;1mlws_suffix=$(echo "$config_file" | sed 's/\.yaml$//' | tr '[:upper:]' '[:lower:]' | tr '._' '-' | cut -c1-43)[0m
+2026-04-13T18:20:55.2290386Z [36;1mrand_suffix=$(tr -d '-' < /proc/sys/kernel/random/uuid | cut -c1-6)[0m
+2026-04-13T18:20:55.2290915Z [36;1mLWS_NAME="vllm-${lws_suffix}-${rand_suffix}"[0m
+2026-04-13T18:20:55.2291278Z [36;1m[0m
+2026-04-13T18:20:55.2291533Z [36;1m{[0m
+2026-04-13T18:20:55.2291805Z [36;1m  echo "LWS_NAME=${LWS_NAME}"[0m
+2026-04-13T18:20:55.2292241Z [36;1m  echo "LEADER_POD=${LWS_NAME}-0"[0m
+2026-04-13T18:20:55.2292659Z [36;1m  echo "LOG_PREFIX=/root/.cache/ascend-logs/${LWS_NAME}"[0m
+2026-04-13T18:20:55.2293076Z [36;1m} >> $GITHUB_ENV[0m
+2026-04-13T18:20:55.2293514Z shell: bash -el {0}
+2026-04-13T18:20:55.2293793Z ##[endgroup]
+2026-04-13T18:20:55.2389604Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T18:20:55.2391336Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T18:20:55.2391926Z ##[endgroup]
+2026-04-13T18:20:55.6755000Z (node:606) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T18:20:55.6756030Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T18:20:56.6382585Z ##[group]Run install -D tests/e2e/nightly/multi_node/scripts/run.sh /root/.cache/tests/run.sh
+2026-04-13T18:20:56.6383331Z [36;1minstall -D tests/e2e/nightly/multi_node/scripts/run.sh /root/.cache/tests/run.sh[0m
+2026-04-13T18:20:56.6383975Z shell: bash -el {0}
+2026-04-13T18:20:56.6384244Z env:
+2026-04-13T18:20:56.6384598Z   LWS_NAME: vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14
+2026-04-13T18:20:56.6385111Z   LEADER_POD: vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0
+2026-04-13T18:20:56.6385716Z   LOG_PREFIX: /root/.cache/ascend-logs/vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14
+2026-04-13T18:20:56.6386230Z ##[endgroup]
+2026-04-13T18:20:56.6490880Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T18:20:56.6491942Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T18:20:56.6492307Z ##[endgroup]
+2026-04-13T18:20:57.0798227Z (node:660) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T18:20:57.0799237Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T18:20:58.1480845Z ##[group]Run set -euo pipefail
+2026-04-13T18:20:58.1481303Z [36;1mset -euo pipefail[0m
+2026-04-13T18:20:58.1481610Z [36;1mTIMEOUT=120[0m
+2026-04-13T18:20:58.1481909Z [36;1mSLEEP_INTERVAL=2[0m
+2026-04-13T18:20:58.1482204Z [36;1m[0m
+2026-04-13T18:20:58.1482460Z [36;1m[0m
+2026-04-13T18:20:58.1482868Z [36;1mecho "Deleting leaderworkerset [$LWS_NAME] in namespace [$NAMESPACE]..."[0m
+2026-04-13T18:20:58.1483516Z [36;1mkubectl delete leaderworkerset "$LWS_NAME" -n "$NAMESPACE" --ignore-not-found[0m
+2026-04-13T18:20:58.1484189Z [36;1mkubectl delete service "${LWS_NAME}-leader" -n "$NAMESPACE" --ignore-not-found[0m
+2026-04-13T18:20:58.1484676Z [36;1m[0m
+2026-04-13T18:20:58.1485052Z [36;1mecho "Waiting for pods of leaderworkerset [$LWS_NAME] to be deleted..."[0m
+2026-04-13T18:20:58.1485525Z [36;1mSTART_TIME=$(date +%s)[0m
+2026-04-13T18:20:58.1485859Z [36;1mwhile true; do[0m
+2026-04-13T18:20:58.1486194Z [36;1m  ELAPSED=$(( $(date +%s) - START_TIME ))[0m
+2026-04-13T18:20:58.1486631Z [36;1m  if [[ $ELAPSED -ge $TIMEOUT ]]; then[0m
+2026-04-13T18:20:58.1487101Z [36;1m    echo "Timeout reached ($TIMEOUT seconds), some pods still exist:"[0m
+2026-04-13T18:20:58.1487651Z [36;1m    kubectl get pods -n "$NAMESPACE" | grep "^${LWS_NAME}-" || true[0m
+2026-04-13T18:20:58.1488082Z [36;1m    exit 1[0m
+2026-04-13T18:20:58.1488357Z [36;1m  fi[0m
+2026-04-13T18:20:58.1488841Z [36;1m  PODS_EXIST=$(kubectl get pods -n "$NAMESPACE" -o jsonpath='{.items[*].metadata.name}' 2>/dev/null \[0m
+2026-04-13T18:20:58.1489598Z [36;1m    | tr ' ' '\n' | grep "^${LWS_NAME}-" || true)[0m
+2026-04-13T18:20:58.1490146Z [36;1m  if [[ -z "$PODS_EXIST" ]]; then[0m
+2026-04-13T18:20:58.1490627Z [36;1m    echo "All pods for [$LWS_NAME] deleted."[0m
+2026-04-13T18:20:58.1490988Z [36;1m    break[0m
+2026-04-13T18:20:58.1491252Z [36;1m  fi[0m
+2026-04-13T18:20:58.1491593Z [36;1m  echo "Waiting for pods to be deleted: $PODS_EXIST"[0m
+2026-04-13T18:20:58.1491994Z [36;1m  sleep $SLEEP_INTERVAL[0m
+2026-04-13T18:20:58.1492315Z [36;1mdone[0m
+2026-04-13T18:20:58.1492912Z shell: bash -el {0}
+2026-04-13T18:20:58.1493182Z env:
+2026-04-13T18:20:58.1493530Z   LWS_NAME: vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14
+2026-04-13T18:20:58.1494037Z   LEADER_POD: vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0
+2026-04-13T18:20:58.1494619Z   LOG_PREFIX: /root/.cache/ascend-logs/vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14
+2026-04-13T18:20:58.1495121Z ##[endgroup]
+2026-04-13T18:20:58.1596058Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T18:20:58.1597108Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T18:20:58.1597473Z ##[endgroup]
+2026-04-13T18:20:58.5931488Z (node:726) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T18:20:58.5932492Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T18:20:59.1897846Z Deleting leaderworkerset [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14] in namespace [vllm-project]...
+2026-04-13T18:20:59.5570204Z Waiting for pods of leaderworkerset [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14] to be deleted...
+2026-04-13T18:20:59.6593040Z All pods for [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14] deleted.
+2026-04-13T18:21:00.1085831Z ##[group]Run set -euo pipefail
+2026-04-13T18:21:00.1086254Z [36;1mset -euo pipefail[0m
+2026-04-13T18:21:00.1086562Z [36;1m[0m
+2026-04-13T18:21:00.1086836Z [36;1msize="2"[0m
+2026-04-13T18:21:00.1087114Z [36;1mreplicas="1"[0m
+2026-04-13T18:21:00.1087730Z [36;1mimage="swr.cn-southwest-2.myhuaweicloud.com/base_image/ascend-ci/vllm-ascend:nightly-ci-releases-v0.18.0-a3"[0m
+2026-04-13T18:21:00.1088478Z [36;1mconfig_file_path="Qwen3-235B-A22B-Mooncake-Layerwise.yaml"[0m
+2026-04-13T18:21:00.1089021Z [36;1mfail_tag="FAIL_TAG_Qwen3-235B-A22B-Mooncake-Layerwise.yaml"[0m
+2026-04-13T18:21:00.1089462Z [36;1mis_pr_test="false"[0m
+2026-04-13T18:21:00.1089779Z [36;1mvllm_version="v0.18.0"[0m
+2026-04-13T18:21:00.1090422Z [36;1mvllm_ascend_ref="f4d6c44acbb76c8ca079d7c360caef7a478fb48f"[0m
+2026-04-13T18:21:00.1091099Z [36;1mvllm_ascend_remote_url="https://github.com/vllm-project/vllm-ascend.git"[0m
+2026-04-13T18:21:00.1091581Z [36;1mrunner="a3"[0m
+2026-04-13T18:21:00.1091947Z [36;1mecho "FAIL_TAG=${fail_tag}" >> $GITHUB_ENV[0m
+2026-04-13T18:21:00.1092304Z [36;1m[0m
+2026-04-13T18:21:00.1092567Z [36;1mif [ "a3" = "a3" ]; then[0m
+2026-04-13T18:21:00.1092899Z [36;1m  npu_per_node=16[0m
+2026-04-13T18:21:00.1093258Z [36;1m  pvc_name=nv-action-vllm-benchmarks-v2[0m
+2026-04-13T18:21:00.1093631Z [36;1melse[0m
+2026-04-13T18:21:00.1093900Z [36;1m  npu_per_node=8[0m
+2026-04-13T18:21:00.1094230Z [36;1m  pvc_name=vllm-project-hk001[0m
+2026-04-13T18:21:00.1094572Z [36;1mfi[0m
+2026-04-13T18:21:00.1094825Z [36;1m[0m
+2026-04-13T18:21:00.1095203Z [36;1mbenchmark_job_name="multi-node-qwen3-dp-mooncake-layerwise"[0m
+2026-04-13T18:21:00.1095679Z [36;1mif [ -z "$benchmark_job_name" ]; then[0m
+2026-04-13T18:21:00.1096092Z [36;1m  benchmark_job_name="${config_file_path%.yaml}"[0m
+2026-04-13T18:21:00.1096471Z [36;1mfi[0m
+2026-04-13T18:21:00.1096718Z [36;1m[0m
+2026-04-13T18:21:00.1097081Z [36;1mjinja2 tests/e2e/nightly/multi_node/scripts/lws.yaml.jinja2 \[0m
+2026-04-13T18:21:00.1097550Z [36;1m  -D lws_name="$LWS_NAME" \[0m
+2026-04-13T18:21:00.1097899Z [36;1m  -D log_prefix="$LOG_PREFIX" \[0m
+2026-04-13T18:21:00.1098253Z [36;1m  -D size="$size" \[0m
+2026-04-13T18:21:00.1098772Z [36;1m  -D replicas="$replicas" \[0m
+2026-04-13T18:21:00.1099113Z [36;1m  -D image="$image" \[0m
+2026-04-13T18:21:00.1099488Z [36;1m  -D config_file_path="$config_file_path" \[0m
+2026-04-13T18:21:00.1100010Z [36;1m  -D npu_per_node="$npu_per_node" \[0m
+2026-04-13T18:21:00.1100393Z [36;1m  -D fail_tag="$fail_tag" \[0m
+2026-04-13T18:21:00.1100849Z [36;1m  -D is_pr_test="$is_pr_test" \[0m
+2026-04-13T18:21:00.1101214Z [36;1m  -D vllm_version="$vllm_version" \[0m
+2026-04-13T18:21:00.1101592Z [36;1m  -D vllm_ascend_ref="$vllm_ascend_ref" \[0m
+2026-04-13T18:21:00.1102035Z [36;1m  -D vllm_ascend_remote_url="$vllm_ascend_remote_url" \[0m
+2026-04-13T18:21:00.1102444Z [36;1m  -D pvc_name="$pvc_name" \[0m
+2026-04-13T18:21:00.1102825Z [36;1m  -D benchmark_job_name="$benchmark_job_name" \[0m
+2026-04-13T18:21:00.1103226Z [36;1m  -D runner="$runner" \[0m
+2026-04-13T18:21:00.1103549Z [36;1m  --outfile lws.yaml[0m
+2026-04-13T18:21:00.1103857Z [36;1m[0m
+2026-04-13T18:21:00.1104133Z [36;1mkubectl apply -f ./lws.yaml[0m
+2026-04-13T18:21:00.1104581Z shell: bash -el {0}
+2026-04-13T18:21:00.1104861Z env:
+2026-04-13T18:21:00.1105206Z   LWS_NAME: vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14
+2026-04-13T18:21:00.1105704Z   LEADER_POD: vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0
+2026-04-13T18:21:00.1106291Z   LOG_PREFIX: /root/.cache/ascend-logs/vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14
+2026-04-13T18:21:00.1106792Z ##[endgroup]
+2026-04-13T18:21:00.1212455Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T18:21:00.1213519Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T18:21:00.1213902Z ##[endgroup]
+2026-04-13T18:21:00.5496315Z (node:804) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T18:21:00.5497327Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T18:21:01.5548602Z leaderworkerset.leaderworkerset.x-k8s.io/vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14 created
+2026-04-13T18:21:01.5796614Z service/vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-leader created
+2026-04-13T18:21:03.3178376Z ##[group]Run set -euo pipefail
+2026-04-13T18:21:03.3178790Z [36;1mset -euo pipefail[0m
+2026-04-13T18:21:03.3179104Z [36;1mSIZE="2"[0m
+2026-04-13T18:21:03.3179382Z [36;1mTIMEOUT=1200[0m
+2026-04-13T18:21:03.3179660Z [36;1m[0m
+2026-04-13T18:21:03.3180286Z [36;1mecho "Waiting for all pods to become Running and Ready (timeout ${TIMEOUT}s)..."[0m
+2026-04-13T18:21:03.3180860Z [36;1mSTART_TIME=$(date +%s)[0m
+2026-04-13T18:21:03.3181194Z [36;1mwhile true; do[0m
+2026-04-13T18:21:03.3181542Z [36;1m  ELAPSED=$(( $(date +%s) - START_TIME ))[0m
+2026-04-13T18:21:03.3181940Z [36;1m  if [[ $ELAPSED -ge $TIMEOUT ]]; then[0m
+2026-04-13T18:21:03.3182414Z [36;1m    echo "Timeout reached after ${ELAPSED}s, dumping pod status:"[0m
+2026-04-13T18:21:03.3182896Z [36;1m    kubectl get pods -n "$NAMESPACE"[0m
+2026-04-13T18:21:03.3183328Z [36;1m    kubectl describe pod "$LEADER_POD" -n "$NAMESPACE"[0m
+2026-04-13T18:21:03.3183729Z [36;1m    exit 1[0m
+2026-04-13T18:21:03.3184034Z [36;1m  fi[0m
+2026-04-13T18:21:03.3184289Z [36;1m[0m
+2026-04-13T18:21:03.3184551Z [36;1m  ALL_READY=true[0m
+2026-04-13T18:21:03.3184864Z [36;1m  for ((i=1; i<SIZE; i++)); do[0m
+2026-04-13T18:21:03.3185204Z [36;1m    POD="${LWS_NAME}-0-${i}"[0m
+2026-04-13T18:21:03.3185799Z [36;1m    PHASE=$(kubectl get pod "$POD" -n "$NAMESPACE" -o jsonpath='{.status.phase}' 2>/dev/null || echo "NotFound")[0m
+2026-04-13T18:21:03.3186630Z [36;1m    READY=$(kubectl get pod "$POD" -n "$NAMESPACE" -o jsonpath='{.status.containerStatuses[*].ready}' 2>/dev/null)[0m
+2026-04-13T18:21:03.3187271Z [36;1m    echo "Worker [$POD] phase=$PHASE ready=$READY"[0m
+2026-04-13T18:21:03.3187735Z [36;1m    if [[ "$PHASE" != "Running" || "$READY" != "true" ]]; then[0m
+2026-04-13T18:21:03.3188149Z [36;1m      ALL_READY=false[0m
+2026-04-13T18:21:03.3188630Z [36;1m      break[0m
+2026-04-13T18:21:03.3188910Z [36;1m    fi[0m
+2026-04-13T18:21:03.3189175Z [36;1m  done[0m
+2026-04-13T18:21:03.3189429Z [36;1m[0m
+2026-04-13T18:21:03.3190128Z [36;1m  LEADER_PHASE=$(kubectl get pod "$LEADER_POD" -n "$NAMESPACE" -o jsonpath='{.status.phase}' 2>/dev/null || echo "NotFound")[0m
+2026-04-13T18:21:03.3191151Z [36;1m  LEADER_READY=$(kubectl get pod "$LEADER_POD" -n "$NAMESPACE" -o jsonpath='{.status.containerStatuses[*].ready}' 2>/dev/null)[0m
+2026-04-13T18:21:03.3191892Z [36;1m  echo "Leader [$LEADER_POD] phase=$LEADER_PHASE ready=$LEADER_READY"[0m
+2026-04-13T18:21:03.3192446Z [36;1m  if [[ "$LEADER_PHASE" != "Running" || "$LEADER_READY" != "true" ]]; then[0m
+2026-04-13T18:21:03.3192892Z [36;1m    ALL_READY=false[0m
+2026-04-13T18:21:03.3193187Z [36;1m  fi[0m
+2026-04-13T18:21:03.3193448Z [36;1m[0m
+2026-04-13T18:21:03.3193731Z [36;1m  if [[ "$ALL_READY" == "true" ]]; then[0m
+2026-04-13T18:21:03.3194123Z [36;1m    echo "All pods are Running and Ready."[0m
+2026-04-13T18:21:03.3194487Z [36;1m    break[0m
+2026-04-13T18:21:03.3194759Z [36;1m  fi[0m
+2026-04-13T18:21:03.3195019Z [36;1m  sleep 2[0m
+2026-04-13T18:21:03.3195480Z [36;1mdone[0m
+2026-04-13T18:21:03.3196004Z shell: bash -el {0}
+2026-04-13T18:21:03.3196284Z env:
+2026-04-13T18:21:03.3196640Z   LWS_NAME: vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14
+2026-04-13T18:21:03.3197149Z   LEADER_POD: vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0
+2026-04-13T18:21:03.3197743Z   LOG_PREFIX: /root/.cache/ascend-logs/vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14
+2026-04-13T18:21:03.3198399Z   FAIL_TAG: FAIL_TAG_Qwen3-235B-A22B-Mooncake-Layerwise.yaml
+2026-04-13T18:21:03.3198817Z ##[endgroup]
+2026-04-13T18:21:03.3398311Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T18:21:03.3399505Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T18:21:03.3400159Z ##[endgroup]
+2026-04-13T18:21:03.7808996Z (node:934) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T18:21:03.7810610Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T18:21:04.3935069Z Waiting for all pods to become Running and Ready (timeout 1200s)...
+2026-04-13T18:21:04.5292504Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:21:04.6491728Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Pending ready=
+2026-04-13T18:21:06.7853203Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:21:06.9053315Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Pending ready=
+2026-04-13T18:21:09.0384467Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:21:09.1597671Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Pending ready=
+2026-04-13T18:21:11.2830508Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:21:11.3997965Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Pending ready=
+2026-04-13T18:21:13.5165864Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:21:13.6337272Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Pending ready=
+2026-04-13T18:21:15.7555736Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:21:15.8753726Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Pending ready=false
+2026-04-13T18:21:17.9944914Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:21:18.1199760Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:21:20.2354762Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:21:20.3524210Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:21:22.4718444Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:21:22.5940327Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:21:24.7269201Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:21:24.8585763Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:21:26.9767349Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:21:27.0932342Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:21:29.2119392Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:21:29.3284440Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:21:31.4476581Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:21:31.5704209Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:21:33.6983074Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:21:33.8377327Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:21:35.9820656Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:21:36.1020382Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:21:38.2249060Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:21:38.3485334Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:21:40.4768219Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:21:40.5972180Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:21:42.7176695Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:21:42.8381941Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:21:44.9574157Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:21:45.0936374Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:21:47.2174705Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:21:47.3406738Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:21:49.4649461Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:21:49.6043323Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:21:51.7073781Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:21:51.8308440Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:21:53.9551641Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:21:54.0847866Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:21:56.2089116Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:21:56.3273613Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:21:58.4562752Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:21:58.5816308Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:22:00.7048302Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:22:00.8212851Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:22:02.9447963Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:22:03.0671821Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:22:05.1878178Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:22:05.3084126Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:22:07.4527242Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:22:07.5672021Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:22:09.6913759Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:22:09.8157067Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:22:11.9405624Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:22:12.0562807Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:22:14.1942285Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:22:14.3149153Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:22:16.4416773Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:22:16.5626976Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:22:18.6825191Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:22:18.8086060Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:22:20.9297270Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:22:21.0471829Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:22:23.1818873Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:22:23.3072535Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:22:25.4328374Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:22:25.5613167Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:22:27.6830609Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:22:27.8025749Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:22:29.9308845Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:22:30.0474708Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:22:32.1741055Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:22:32.3207552Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:22:34.4478260Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:22:34.5875587Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:22:36.7196237Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:22:36.8420297Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:22:38.9601302Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:22:39.0854791Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:22:41.2283649Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:22:41.3569183Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:22:43.4879268Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:22:43.6145310Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:22:45.7419084Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:22:45.8762492Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:22:48.0043528Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:22:48.1251129Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:22:50.2424234Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:22:50.3539439Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:22:52.4740431Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:22:52.5891952Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:22:54.7087612Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:22:54.8239940Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:22:56.9482228Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:22:57.0594904Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:22:59.1769495Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:22:59.2964554Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:23:01.4218337Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:23:01.5422834Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:23:03.6625999Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:23:03.7972907Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:23:05.9369495Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:23:06.0688064Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:23:08.1888313Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:23:08.3035924Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:23:10.4474395Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:23:10.5746768Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:23:12.7010507Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:23:12.8202545Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:23:14.9469185Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:23:15.0728889Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:23:17.1918599Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:23:17.3217935Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:23:19.4464304Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:23:19.5717665Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:23:21.8956103Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:23:22.0223254Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:23:24.1462034Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:23:24.2802957Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:23:26.4058883Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:23:26.5407365Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:23:28.6604729Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:23:28.7870904Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:23:30.9133552Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:23:31.0447253Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:23:33.1756484Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:23:33.2913397Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:23:35.4209109Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:23:35.5809294Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:23:37.7143297Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:23:37.8528730Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:23:39.9778581Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:23:40.1057644Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:23:42.2407497Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:23:42.3663100Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:23:44.4855982Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:23:44.6208394Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:23:46.7547392Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:23:46.8778091Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:23:48.9993385Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:23:49.1266816Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:23:51.2501575Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:23:51.3736908Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:23:53.4944454Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:23:53.6138592Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:23:55.7549995Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:23:55.8927262Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:23:58.0173386Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:23:58.1429285Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:24:00.2687657Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:24:00.4036017Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:24:02.5215254Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:24:02.6471353Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:24:04.7742000Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:24:04.9178144Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:24:07.0386553Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:24:07.1759092Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:24:09.2981481Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:24:09.4117301Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:24:11.5350916Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:24:11.6728501Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:24:13.8047158Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:24:13.9334130Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:24:16.0693073Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:24:16.1884143Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:24:18.3139562Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:24:18.4403499Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:24:20.5692489Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:24:20.6916115Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:24:22.8255684Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:24:23.0136005Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:24:25.1488427Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:24:25.2669595Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:24:27.3964220Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:24:27.5246063Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:24:29.6463786Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:24:29.7707033Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:24:31.8957901Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:24:32.0223264Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:24:34.1479485Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:24:34.2674157Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:24:36.3945227Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:24:36.5186200Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:24:38.6452868Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:24:38.7628972Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:24:40.8886806Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:24:41.0116358Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:24:43.1473284Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:24:43.2778986Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:24:45.4011725Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:24:45.5264503Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:24:47.6470656Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:24:47.7791266Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:24:49.9202046Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:24:50.0646470Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:24:52.1857947Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:24:52.3237164Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:24:54.4451999Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:24:54.5588537Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:24:56.6885035Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:24:56.8134799Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:24:58.9356327Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:24:59.0564046Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:25:01.1831794Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:25:01.3032566Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:25:03.4495878Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:25:03.5790143Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:25:05.7032792Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:25:05.8370877Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:25:07.9642874Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:25:08.1099225Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:25:10.2478456Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:25:10.3725859Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:25:12.5177293Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:25:12.6399163Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:25:14.7765919Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:25:14.9058570Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:25:17.0374922Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:25:17.1598787Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:25:19.2882058Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:25:19.4096413Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:25:21.5309160Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:25:21.6512548Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:25:23.7814249Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:25:23.9027047Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:25:26.0367156Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:25:26.1642586Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:25:28.2940270Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:25:28.4116198Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:25:30.5445808Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:25:30.6748837Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:25:32.8110092Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:25:32.9384999Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:25:35.0701472Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:25:35.1853398Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:25:37.3050849Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:25:37.4215986Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:25:39.5457600Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:25:39.6644294Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:25:41.7837902Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:25:41.9034134Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:25:44.0198436Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:25:44.1362798Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:25:46.2562998Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:25:46.3782826Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:25:48.4928423Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:25:48.6146587Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:25:50.7503912Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:25:50.9227122Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:25:53.0472722Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:25:53.1670444Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:25:55.2922316Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:25:55.4144182Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:25:57.5410907Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:25:57.6692139Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:25:59.7840519Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:25:59.8980087Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:26:02.0252921Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:26:02.1581351Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:26:04.2857273Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:26:04.4175062Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:26:06.5472233Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:26:06.6913043Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:26:08.8209413Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:26:08.9506951Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:26:11.0838998Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:26:11.2106277Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:26:13.3490679Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:26:13.4605415Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:26:15.5868915Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:26:15.7198429Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:26:17.8506915Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:26:17.9790296Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:26:20.1147244Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:26:20.2451656Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:26:22.3763039Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:26:22.5076809Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:26:24.6384347Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:26:24.7531815Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:26:26.8885492Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:26:27.0228700Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:26:29.1490353Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:26:29.2677223Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:26:31.4139476Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:26:31.5473546Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:26:33.6722357Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:26:33.7919720Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:26:35.9273470Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:26:36.0486034Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:26:38.1795073Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:26:38.3079129Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:26:40.4286657Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:26:40.5445729Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:26:42.6625490Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:26:42.7874063Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:26:44.9210773Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:26:45.0491958Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:26:47.1791531Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:26:47.2959144Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:26:49.4273389Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:26:49.5532908Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:26:51.6773130Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:26:51.7966250Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:26:53.9196262Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:26:54.0367969Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:26:56.1541849Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:26:56.2709215Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:26:58.4023546Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:26:58.5267642Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:27:00.6421867Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:27:00.7612432Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:27:02.8784949Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:27:03.0014985Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:27:05.1334140Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:27:05.2666061Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:27:07.3930703Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:27:07.5084845Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:27:09.6426530Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:27:09.7663533Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:27:11.8940706Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:27:12.0163548Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:27:14.1411843Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:27:14.2610524Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:27:16.3918477Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:27:16.5286006Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:27:18.6621889Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:27:18.7960980Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:27:20.9319479Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:27:21.0534332Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:27:23.1889681Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:27:23.3188623Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:27:25.4435811Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:27:25.5665190Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:27:27.6921210Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:27:27.8208776Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:27:29.9458850Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:27:30.0784798Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:27:32.2126939Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:27:32.3388088Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:27:34.4622182Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:27:34.6029599Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:27:36.7427385Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:27:36.8701390Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:27:38.9959108Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:27:39.1284838Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:27:41.2548568Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:27:41.3826172Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:27:43.5256435Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:27:43.6515172Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:27:45.7807174Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:27:45.9083027Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:27:48.0384644Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:27:48.1771513Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:27:50.3020447Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:27:50.4262556Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:27:52.5498323Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:27:52.6875346Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:27:54.8148475Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:27:54.9381226Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:27:57.0659018Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:27:57.1863442Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:27:59.3128836Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:27:59.4371976Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:28:01.5599062Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:28:01.6871465Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:28:03.8236769Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:28:03.9513829Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:28:06.0856851Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:28:06.2109309Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:28:08.4411320Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:28:08.5691554Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:28:10.6981871Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:28:10.8254468Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:28:12.9501913Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:28:13.0754408Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:28:15.2045834Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:28:15.3310272Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:28:17.4780913Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:28:17.6026285Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:28:19.7290223Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:28:19.8474326Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:28:21.9896947Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:28:22.1135558Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:28:24.2456340Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:28:24.3646653Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:28:26.4910278Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:28:26.6077064Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:28:28.7345010Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:28:28.8717119Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:28:31.0034547Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:28:31.1206713Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:28:33.2601828Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:28:33.3825783Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:28:35.5201140Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:28:35.6491360Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:28:37.7865800Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:28:37.9184604Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:28:40.0443644Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:28:40.1710133Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:28:42.2925968Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:28:42.4237346Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:28:44.5489109Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:28:44.6778149Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:28:46.8085640Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:28:46.9310275Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:28:49.0559506Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:28:49.1803390Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:28:51.2969402Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:28:51.4201473Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:28:53.5356648Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:28:53.6522677Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:28:55.7743975Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:28:55.8981432Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:28:58.0189912Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:28:58.1519690Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:29:00.2898861Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:29:00.4105741Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:29:02.5448924Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:29:02.6688578Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:29:04.7951832Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:29:04.9213885Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:29:07.0388978Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:29:07.1593157Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:29:09.2802177Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:29:09.4041139Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:29:11.5466364Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:29:11.6682620Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:29:13.7867850Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:29:13.9045730Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:29:16.0326684Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:29:16.1551616Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:29:18.7745568Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:29:18.8924508Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:29:21.0367492Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:29:21.1555091Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:29:23.2812928Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:29:23.4061931Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:29:25.5249478Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:29:25.6617365Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:29:27.7853972Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:29:27.9044215Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:29:30.0281448Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:29:30.1586650Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:29:32.2917708Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:29:32.4320394Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:29:34.5525785Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:29:34.6751295Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:29:36.8127791Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:29:36.9357401Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:29:39.0608298Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:29:39.1798183Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:29:41.3008156Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:29:41.4263193Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:29:43.5615648Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:29:43.6813479Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:29:45.8062322Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:29:45.9321396Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:29:48.0701180Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:29:48.1966670Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:29:50.3136374Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:29:50.4362786Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:29:52.5563128Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:29:52.6807207Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:29:54.8044376Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:29:54.9297083Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:29:57.0478647Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:29:57.1616286Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:29:59.2791329Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:29:59.4018262Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:30:01.7730391Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:30:01.9049925Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:30:04.0296134Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:30:04.1483212Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:30:06.2708731Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:30:06.4047098Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:30:08.5354782Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:30:08.6653515Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:30:10.8209158Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:30:10.9575471Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:30:13.0803070Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:30:13.2142595Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:30:15.3530910Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:30:15.4879584Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:30:17.6123458Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:30:17.7341993Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:30:19.8664578Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:30:19.9831988Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:30:22.1064202Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:30:22.2248692Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:30:24.3505380Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:30:24.4760199Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:30:26.6070270Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:30:26.7437221Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:30:28.8757576Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:30:29.0140712Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:30:31.1562816Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:30:31.2846416Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:30:33.4120506Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:30:33.5390555Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:30:35.6697051Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:30:35.7920828Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:30:37.9291564Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:30:38.0493907Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:30:40.1848471Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:30:40.3217671Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:30:42.4570262Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:30:42.5856707Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:30:44.7089057Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:30:44.8453920Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:30:46.9812747Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:30:47.1033853Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:30:49.2322939Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:30:49.3585054Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:30:51.4893697Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:30:51.6137742Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:30:53.7360460Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:30:53.8753927Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:30:56.0055565Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:30:56.1304723Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:30:58.2553041Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:30:58.3722184Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:31:00.4899538Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:31:00.6071911Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:31:02.7341068Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:31:02.8550309Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:31:04.9884840Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:31:05.1170156Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:31:07.2436982Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:31:07.3704636Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:31:09.4898553Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:31:09.6114673Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:31:11.7592753Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:31:11.8872164Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:31:14.0388814Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:31:14.1795942Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:31:16.3075462Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:31:16.4408715Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:31:18.5701939Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:31:18.6924935Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:31:20.8286525Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:31:20.9674850Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:31:23.0932044Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:31:23.2225212Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:31:25.3553413Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:31:25.4890912Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:31:27.6367492Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:31:27.7558695Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:31:29.8795532Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:31:30.0136335Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:31:32.1537766Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:31:32.2773163Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:31:34.4058103Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:31:34.5302298Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:31:36.6650227Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:31:36.7953455Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:31:38.9308228Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:31:39.0549737Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:31:41.1761046Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:31:41.3101074Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:31:43.4359193Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:31:43.5564034Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:31:45.6939926Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:31:45.8280633Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:31:47.9486834Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:31:48.0810680Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:31:50.2132938Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:31:50.3431351Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:31:52.4657807Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:31:52.5902567Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:31:54.7226230Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:31:54.8447907Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:31:56.9795461Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:31:57.1182520Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:31:59.2443020Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:31:59.3762528Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:32:01.5076419Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:32:01.6317263Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:32:03.7602496Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:32:03.8921677Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:32:06.0235108Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:32:06.1547038Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:32:08.2812795Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:32:08.4137962Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:32:10.5529591Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:32:10.6899199Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:32:12.8182268Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:32:12.9449939Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:32:15.0803344Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:32:15.2206378Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:32:17.3473681Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:32:17.4765213Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:32:19.6017724Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:32:19.7305886Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:32:21.8719091Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:32:21.9976668Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:32:24.1227088Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:32:24.2490650Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:32:26.3733601Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:32:26.4948213Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:32:28.6198487Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:32:28.7431746Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:32:30.8900331Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:32:31.0239259Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:32:33.1536263Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:32:33.2775856Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:32:35.4136205Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:32:35.5597343Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:32:37.6854158Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:32:37.8198721Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:32:39.9621701Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:32:40.0868008Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:32:42.2182497Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:32:42.3420328Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:32:44.4740771Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:32:44.6041006Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:32:46.7342232Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:32:46.8512446Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:32:48.9765495Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:32:49.1001878Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:32:51.2257313Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:32:51.3498715Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:32:53.4816722Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:32:53.6076166Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:32:55.7297197Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:32:55.8665393Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:32:57.9827211Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:32:58.1170724Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:33:00.2436089Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:33:00.3726811Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:33:02.5075309Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:33:02.6325058Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:33:04.7619089Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:33:04.8857801Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:33:07.0186595Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:33:07.1453943Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:33:09.2735832Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:33:09.4007318Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:33:11.5411256Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:33:11.6791908Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:33:13.8019903Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:33:13.9272248Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:33:16.0625522Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:33:16.1866006Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:33:18.3222625Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:33:18.4503214Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:33:20.5929658Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:33:20.7433550Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:33:22.8688026Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:33:22.9918938Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:33:25.1248483Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:33:25.2658658Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:33:27.3944506Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:33:27.5215172Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:33:29.6533205Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:33:29.7926577Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:33:31.9209058Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:33:32.0607234Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:33:34.1946060Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:33:34.3212313Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:33:36.4472882Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:33:36.5727872Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:33:38.6983793Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:33:38.8267028Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:33:40.9585046Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:33:41.0901022Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:33:43.2388379Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:33:43.3607189Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:33:45.4920489Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:33:45.6232399Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:33:47.7621225Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:33:47.8987662Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:33:50.0559374Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:33:50.2165623Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:33:52.3502485Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:33:52.4770822Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:33:54.6297374Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:33:54.7629529Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:33:56.9058667Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:33:57.0429708Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:33:59.1813380Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:33:59.3015748Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:34:01.4381252Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:34:01.5707750Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:34:03.7009444Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:34:03.8350474Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:34:05.9683399Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:34:06.1032393Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:34:08.2377571Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:34:08.3724893Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:34:10.5177210Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:34:10.6427793Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:34:12.7686111Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:34:12.9048742Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:34:15.0510572Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:34:15.1987713Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:34:17.3314607Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:34:17.4745149Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:34:19.6025755Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:34:19.7410875Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:34:21.8848042Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:34:22.0178735Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:34:24.1520126Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:34:24.2765670Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:34:26.4074253Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:34:26.5436790Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:34:28.6697479Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:34:28.7986536Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:34:30.9342219Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:34:31.0621166Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:34:33.1948649Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:34:33.3276444Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:34:35.4625428Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:34:35.5967143Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:34:37.7359371Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:34:37.8663168Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:34:40.0250540Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:34:40.1554546Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:34:42.2868098Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:34:42.4144097Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:34:44.5479250Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:34:44.6844869Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:34:46.8287836Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:34:46.9640854Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:34:49.0972579Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:34:49.2387660Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:34:51.3744178Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:34:51.4971964Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:34:53.6317827Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:34:53.7586597Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:34:55.9026031Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:34:56.0378506Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:34:58.1656356Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:34:58.2975034Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:35:00.4335986Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:35:00.5691418Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:35:02.9120368Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:35:03.0407741Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:35:05.1755261Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:35:05.2928001Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:35:07.4185124Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:35:07.5409915Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:35:09.6874012Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:35:09.8165392Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:35:11.9505872Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:35:12.0826356Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:35:14.2072977Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:35:14.3489822Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:35:16.4829266Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:35:16.6083031Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:35:18.7407015Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:35:18.8759799Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:35:21.0076941Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:35:21.1395063Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:35:23.2736130Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:35:23.4037086Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:35:25.5405472Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:35:25.6653784Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:35:27.8065055Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:35:27.9419948Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:35:30.1041866Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:35:30.2194054Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:35:32.3535597Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:35:32.4931931Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:35:34.6240303Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:35:34.7544339Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:35:36.8886608Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:35:37.0233118Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:35:39.1835191Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:35:39.3090170Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:35:41.4553230Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:35:41.5882074Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:35:43.7216700Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:35:43.8454215Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:35:45.9729375Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:35:46.0955438Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:35:48.2395535Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:35:48.3610744Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:35:50.4948304Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:35:50.6333940Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:35:52.7635252Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:35:52.8870082Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:35:55.0304892Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:35:55.1571876Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:35:57.2884229Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:35:57.4163602Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:35:59.5477926Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:35:59.6746269Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:36:01.8056698Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:36:01.9355502Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:36:04.0527613Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:36:04.1731262Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:36:06.2967881Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:36:06.4167390Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:36:08.5528867Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:36:08.6786152Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:36:10.8149195Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:36:10.9349213Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:36:13.0590567Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:36:13.1966628Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:36:15.3430873Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:36:15.4857424Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:36:17.6134486Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:36:17.7311923Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:36:19.8591779Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:36:19.9879357Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:36:22.1121970Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:36:22.2420363Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:36:24.3987188Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:36:24.5331133Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:36:26.6813690Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:36:26.8153336Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:36:28.9494573Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:36:29.0718265Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:36:31.2010982Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:36:31.3289438Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:36:33.4518963Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:36:33.5739563Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:36:35.7015719Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:36:35.8240909Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:36:37.9539217Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:36:38.0854604Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:36:40.2090232Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:36:40.3369902Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:36:42.4688916Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:36:42.5904884Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:36:44.7243650Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:36:44.8682414Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:36:47.0013160Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:36:47.1206879Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:36:49.2520202Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:36:49.3904279Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:36:51.5103638Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:36:51.6457344Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:36:53.7887651Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:36:53.9217086Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:36:56.0522584Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:36:56.1747061Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:36:58.3181971Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:36:58.4521608Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:37:00.6036642Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:37:00.7305158Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:37:02.8555057Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:37:02.9893929Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:37:05.1287334Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:37:05.2524287Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:37:07.3862317Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:37:07.5140637Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:37:09.6440986Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:37:09.7664460Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:37:11.9053393Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:37:12.0237990Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:37:14.1593758Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:37:14.2877309Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:37:16.4264909Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:37:16.5514596Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:37:18.6786344Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:37:18.8117092Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:37:20.9752228Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:37:21.1221385Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:37:23.2485284Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:37:23.3840322Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:37:25.5178265Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:37:25.6361813Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:37:27.7711921Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:37:27.8955626Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:37:30.0244292Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:37:30.1549774Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:37:32.2935748Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:37:32.4200100Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:37:34.5492332Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:37:34.6967836Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:37:36.8295669Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:37:36.9567388Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:37:39.0889267Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:37:39.2253969Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:37:41.3567504Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:37:41.4895302Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:37:43.6290230Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:37:43.7522263Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:37:45.8844258Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:37:46.0033845Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:37:48.1363955Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:37:48.2710177Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:37:50.4125132Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:37:50.5495466Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:37:52.6944427Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:37:52.8242334Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:37:54.9545983Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:37:55.0831690Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:37:57.2091108Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:37:57.3486985Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:37:59.4696128Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:37:59.6026752Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:38:01.7324685Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:38:01.8552058Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:38:03.9757199Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:38:04.0987788Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:38:06.2250049Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:38:06.3471350Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:38:08.4740115Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:38:08.5874173Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:38:10.7148179Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:38:10.8441754Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:38:12.9893552Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:38:13.1245275Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:38:15.2745298Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:38:15.3943532Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:38:17.5316695Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:38:17.6677491Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:38:19.8010094Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:38:19.9368408Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:38:22.0655619Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:38:22.1892372Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:38:24.3254955Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:38:24.4465735Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:38:26.5882748Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:38:26.7223491Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:38:28.8476620Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:38:28.9851539Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:38:31.1130964Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:38:31.2471474Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:38:33.3705943Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:38:33.5033508Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:38:35.6351876Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:38:35.7528416Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:38:37.8903801Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:38:38.0212784Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:38:40.1596900Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:38:40.2843149Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:38:42.4239703Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:38:42.5497679Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:38:44.6802771Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:38:44.8094494Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:38:46.9401270Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:38:47.0642077Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:38:49.2041386Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:38:49.3477239Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:38:51.4778882Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:38:51.6027216Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:38:53.7338984Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:38:53.8523726Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:38:55.9849026Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:38:56.1181928Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:38:58.2530245Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:38:58.4009410Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:39:00.5335416Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:39:00.6573178Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:39:02.7904023Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:39:02.9115845Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:39:05.0403128Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:39:05.1765895Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:39:07.3023322Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:39:07.4183193Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:39:09.5542120Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:39:09.6769400Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:39:11.8036290Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:39:11.9333594Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:39:14.0585881Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:39:14.1878934Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:39:16.3149627Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:39:16.4417396Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:39:18.5778170Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:39:18.6953444Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:39:20.8260098Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:39:20.9604300Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:39:23.1001480Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:39:23.2295233Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:39:25.3660479Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:39:25.4852486Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:39:27.6101483Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:39:27.7381165Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:39:29.8700687Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:39:29.9902457Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:39:32.1203359Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:39:32.2405785Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:39:34.3674048Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:39:34.4926045Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:39:36.6526378Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:39:36.7780967Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:39:38.9089173Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:39:39.0414030Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:39:41.1875183Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:39:41.3107504Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:39:43.4382379Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:39:43.5611057Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:39:45.6852714Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:39:45.8067064Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:39:47.9356890Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:39:48.0680949Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:39:50.2150160Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:39:50.3562048Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:39:52.4822236Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:39:52.6039395Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:39:54.7327931Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:39:54.8542139Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:39:56.9933582Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:39:57.1214764Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:39:59.2480054Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:39:59.3759388Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:40:01.4951407Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:40:01.6297609Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:40:03.7848589Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:40:03.9037859Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:40:06.0241078Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:40:06.1440467Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:40:08.2714489Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:40:08.3847580Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:40:10.5086392Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:40:10.6249281Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:40:12.7485263Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:40:12.8786925Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:40:14.9965072Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:40:15.1209541Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:40:17.2348987Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:40:17.3612772Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:40:19.4813907Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:40:19.5977973Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:40:21.7228420Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:40:21.8443386Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:40:23.9629438Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:40:24.0857296Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:40:26.2031287Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:40:26.3255239Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:40:28.4450702Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:40:28.5625413Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:40:30.6826491Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:40:30.7979166Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:40:32.9155801Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:40:33.0390442Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:40:35.1630112Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:40:35.2810263Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:40:37.4172586Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:40:37.5413170Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:40:39.6713057Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:40:39.7923462Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:40:41.9198826Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:40:42.0351828Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:40:44.1687203Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:40:44.2912735Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:40:46.4125623Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:40:46.5398980Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:40:48.6612687Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:40:48.7864192Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:40:50.9213759Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:40:51.0591397Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:40:53.1888144Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:40:53.3384791Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:40:55.4720957Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:40:55.5912829Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:40:57.7152026Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:40:57.8570793Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:40:59.9928701Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:41:00.1315487Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:41:02.2597481Z Worker [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1] phase=Pending ready=
+2026-04-13T18:41:02.3844322Z Leader [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0] phase=Running ready=true
+2026-04-13T18:41:04.3871809Z Timeout reached after 1200s, dumping pod status:
+2026-04-13T18:41:04.4674351Z NAME                                                 READY   STATUS    RESTARTS   AGE
+2026-04-13T18:41:04.4674895Z linux-aarch64-a3-0-ggwx6-runner-28mkq                1/1     Running   0          66m
+2026-04-13T18:41:04.4675530Z linux-aarch64-a3-0-ggwx6-runner-28mkq-workflow       1/1     Running   0          65m
+2026-04-13T18:41:04.4676234Z linux-aarch64-a3-0-ggwx6-runner-5n2r7                1/1     Running   0          66m
+2026-04-13T18:41:04.4676893Z linux-aarch64-a3-0-ggwx6-runner-5n2r7-workflow       1/1     Running   0          65m
+2026-04-13T18:41:04.4677560Z linux-aarch64-a3-0-ggwx6-runner-8sh68                1/1     Running   0          20m
+2026-04-13T18:41:04.4678567Z linux-aarch64-a3-0-ggwx6-runner-8sh68-workflow       1/1     Running   0          19m
+2026-04-13T18:41:04.4679220Z linux-aarch64-a3-0-ggwx6-runner-q267x                1/1     Running   0          21m
+2026-04-13T18:41:04.4679992Z linux-aarch64-a3-0-ggwx6-runner-q267x-workflow       1/1     Running   0          20m
+2026-04-13T18:41:04.4680681Z linux-aarch64-a3-2-nqp5k-runner-f8q5z                1/1     Running   0          114m
+2026-04-13T18:41:04.4681340Z linux-aarch64-a3-2-nqp5k-runner-f8q5z-workflow       1/1     Running   0          113m
+2026-04-13T18:41:04.4681994Z linux-aarch64-a3-2-nqp5k-runner-vm4l2                1/1     Running   0          114m
+2026-04-13T18:41:04.4682643Z linux-aarch64-a3-2-nqp5k-runner-vm4l2-workflow       1/1     Running   0          113m
+2026-04-13T18:41:04.4683294Z linux-aarch64-a3-4-92cdc-runner-8lz7c                1/1     Running   0          114m
+2026-04-13T18:41:04.4683939Z linux-aarch64-a3-4-92cdc-runner-8lz7c-workflow       1/1     Running   0          113m
+2026-04-13T18:41:04.4684606Z linux-aarch64-a3-4-92cdc-runner-sxxz6                1/1     Running   0          114m
+2026-04-13T18:41:04.4685254Z linux-aarch64-a3-4-92cdc-runner-sxxz6-workflow       1/1     Running   0          113m
+2026-04-13T18:41:04.4685880Z test-server-0                                        1/1     Running   0          6h22m
+2026-04-13T18:41:04.4686398Z test-server-0-1                                      1/1     Running   0          6h21m
+2026-04-13T18:41:04.4686992Z vllm-deepseek-r1-w8a8-longseq-bc092a-0               1/1     Running   0          64m
+2026-04-13T18:41:04.4687636Z vllm-deepseek-r1-w8a8-longseq-bc092a-0-1             1/1     Running   0          64m
+2026-04-13T18:41:04.4688247Z vllm-qwen3-235b-a22b-9f142d-0                        1/1     Running   0          64m
+2026-04-13T18:41:04.4688822Z vllm-qwen3-235b-a22b-9f142d-0-1                      1/1     Running   0          64m
+2026-04-13T18:41:04.4689588Z vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0     1/1     Running   0          20m
+2026-04-13T18:41:04.4690430Z vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1   0/1     Pending   0          20m
+2026-04-13T18:41:04.4691091Z vllm-qwen3-235b-w8a8-longseq-9eebaa-0                0/1     Pending   0          19m
+2026-04-13T18:41:04.4691736Z vllm-qwen3-235b-w8a8-longseq-9eebaa-0-1              0/1     Pending   0          19m
+2026-04-13T18:41:04.5766551Z Name:             vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0
+2026-04-13T18:41:04.5766985Z Namespace:        vllm-project
+2026-04-13T18:41:04.5767279Z Priority:         0
+2026-04-13T18:41:04.5767553Z Service Account:  default
+2026-04-13T18:41:04.5767863Z Node:             172.22.5.45/172.22.5.45
+2026-04-13T18:41:04.5768257Z Start Time:       Mon, 13 Apr 2026 18:21:14 +0000
+2026-04-13T18:41:04.5768666Z Labels:           apps.kubernetes.io/pod-index=0
+2026-04-13T18:41:04.5769259Z                   controller-revision-hash=vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-6f7d5f5447
+2026-04-13T18:41:04.5769977Z                   leaderworkerset.sigs.k8s.io/group-index=0
+2026-04-13T18:41:04.5770556Z                   leaderworkerset.sigs.k8s.io/group-key=9cd7ac6f2525130ee95c27862a70f91abba14c08
+2026-04-13T18:41:04.5771231Z                   leaderworkerset.sigs.k8s.io/name=vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14
+2026-04-13T18:41:04.5771854Z                   leaderworkerset.sigs.k8s.io/template-revision-hash=8fc897d5f
+2026-04-13T18:41:04.5772353Z                   leaderworkerset.sigs.k8s.io/worker-index=0
+2026-04-13T18:41:04.5772735Z                   role=leader
+2026-04-13T18:41:04.5773248Z                   statefulset.kubernetes.io/pod-name=vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0
+2026-04-13T18:41:04.5773907Z Annotations:      cce.kubectl.kubernetes.io/ascend-1980-configuration:
+2026-04-13T18:41:04.5774721Z                     {"pod_name":"vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0","server_id":"172.22.5.45","devices":[{"device_id":"0","device_ip":"40.130.1...
+2026-04-13T18:41:04.5775444Z                   huawei.com/AscendReal:
+2026-04-13T18:41:04.5776524Z                     Ascend910-7,Ascend910-14,Ascend910-10,Ascend910-11,Ascend910-15,Ascend910-1,Ascend910-6,Ascend910-4,Ascend910-5,Ascend910-0,Ascend910-9,As...
+2026-04-13T18:41:04.5777340Z                   huawei.com/kltDev:
+2026-04-13T18:41:04.5778129Z                     Ascend910-7,Ascend910-14,Ascend910-10,Ascend910-11,Ascend910-15,Ascend910-1,Ascend910-6,Ascend910-4,Ascend910-5,Ascend910-0,Ascend910-9,As...
+2026-04-13T18:41:04.5778973Z                   leaderworkerset.sigs.k8s.io/size: 2
+2026-04-13T18:41:04.5779377Z                   localdns.cce.io/servers: ["169.254.20.10"]
+2026-04-13T18:41:04.5779813Z                   node-local-dns-webhook.k8s.io/status: injected
+2026-04-13T18:41:04.5780346Z Status:           Running
+2026-04-13T18:41:04.5780646Z IP:               10.0.0.167
+2026-04-13T18:41:04.5780948Z IPs:
+2026-04-13T18:41:04.5781201Z   IP:           10.0.0.167
+2026-04-13T18:41:04.5781684Z Controlled By:  StatefulSet/vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14
+2026-04-13T18:41:04.5782155Z Containers:
+2026-04-13T18:41:04.5782423Z   vllm-leader:
+2026-04-13T18:41:04.5782943Z     Container ID:  docker://5f5f2ed02fdfb162c23bdf21711ba7098f9fe660b6c8b7552f82c17b0e7badaf
+2026-04-13T18:41:04.5783767Z     Image:         swr.cn-southwest-2.myhuaweicloud.com/base_image/ascend-ci/vllm-ascend:nightly-ci-releases-v0.18.0-a3
+2026-04-13T18:41:04.5784889Z     Image ID:      docker-pullable://swr.cn-southwest-2.myhuaweicloud.com/base_image/ascend-ci/vllm-ascend@sha256:e126a08c970026569c279e60404e4e5bd516f232b4457d6205089718ab45d5d7
+2026-04-13T18:41:04.5785789Z     Port:          8080/TCP
+2026-04-13T18:41:04.5786108Z     Host Port:     0/TCP
+2026-04-13T18:41:04.5786405Z     Command:
+2026-04-13T18:41:04.5786662Z       sh
+2026-04-13T18:41:04.5786961Z       -c
+2026-04-13T18:41:04.5787371Z       bash /root/.cache/tests/run.sh
+2026-04-13T18:41:04.5787829Z       
+2026-04-13T18:41:04.5788101Z     State:          Running
+2026-04-13T18:41:04.5788447Z       Started:      Mon, 13 Apr 2026 18:21:16 +0000
+2026-04-13T18:41:04.5788813Z     Ready:          True
+2026-04-13T18:41:04.5789117Z     Restart Count:  0
+2026-04-13T18:41:04.5789399Z     Limits:
+2026-04-13T18:41:04.5789677Z       ephemeral-storage:       100Gi
+2026-04-13T18:41:04.5790157Z       huawei.com/ascend-1980:  16
+2026-04-13T18:41:04.5790485Z       memory:                  512Gi
+2026-04-13T18:41:04.5790804Z     Requests:
+2026-04-13T18:41:04.5791073Z       cpu:                     125
+2026-04-13T18:41:04.5791410Z       ephemeral-storage:       100Gi
+2026-04-13T18:41:04.5791755Z       huawei.com/ascend-1980:  16
+2026-04-13T18:41:04.5792082Z       memory:                  512Gi
+2026-04-13T18:41:04.5792412Z     Environment:
+2026-04-13T18:41:04.5793124Z       LWS_LEADER_ADDRESS:      vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0.vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14.vllm-project
+2026-04-13T18:41:04.5793891Z       LWS_GROUP_SIZE:          2
+2026-04-13T18:41:04.5794216Z       LWS_WORKER_INDEX:        0
+2026-04-13T18:41:04.5794632Z       CONFIG_YAML_PATH:        Qwen3-235B-A22B-Mooncake-Layerwise.yaml
+2026-04-13T18:41:04.5795239Z       LOG_PREFIX:              /root/.cache/ascend-logs/vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14
+2026-04-13T18:41:04.5795840Z       WORKSPACE:               /vllm-workspace
+2026-04-13T18:41:04.5796284Z       FAIL_TAG:                FAIL_TAG_Qwen3-235B-A22B-Mooncake-Layerwise.yaml
+2026-04-13T18:41:04.5796713Z       IS_PR_TEST:              false
+2026-04-13T18:41:04.5797044Z       VLLM_VERSION:            v0.18.0
+2026-04-13T18:41:04.5797455Z       VLLM_ASCEND_REF:         f4d6c44acbb76c8ca079d7c360caef7a478fb48f
+2026-04-13T18:41:04.5798002Z       VLLM_ASCEND_REMOTE_URL:  https://github.com/vllm-project/vllm-ascend.git
+2026-04-13T18:41:04.5798562Z       BENCHMARK_JOB_NAME:      multi-node-qwen3-dp-mooncake-layerwise
+2026-04-13T18:41:04.5798994Z       VLLM_CI_RUNNER:          a3
+2026-04-13T18:41:04.5799403Z       VLLM_ASCEND_VERSION:     f4d6c44acbb76c8ca079d7c360caef7a478fb48f
+2026-04-13T18:41:04.5799822Z     Mounts:
+2026-04-13T18:41:04.5800384Z       /dev/shm from dshm (rw)
+2026-04-13T18:41:04.5800725Z       /root/.cache from shared-volume (rw)
+2026-04-13T18:41:04.5801132Z       /usr/local/Ascend/driver/tools from driver-tools (rw)
+2026-04-13T18:41:04.5801668Z       /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-jwdth (ro)
+2026-04-13T18:41:04.5802153Z Conditions:
+2026-04-13T18:41:04.5802416Z   Type                        Status
+2026-04-13T18:41:04.5802767Z   PodReadyToStartContainers   True 
+2026-04-13T18:41:04.5803119Z   Initialized                 True 
+2026-04-13T18:41:04.5803437Z   Ready                       True 
+2026-04-13T18:41:04.5803763Z   ContainersReady             True 
+2026-04-13T18:41:04.5804089Z   PodScheduled                True 
+2026-04-13T18:41:04.5804395Z Volumes:
+2026-04-13T18:41:04.5804653Z   dshm:
+2026-04-13T18:41:04.5805008Z     Type:       EmptyDir (a temporary directory that shares a pod's lifetime)
+2026-04-13T18:41:04.5805455Z     Medium:     Memory
+2026-04-13T18:41:04.5805805Z     SizeLimit:  15Gi
+2026-04-13T18:41:04.5806090Z   shared-volume:
+2026-04-13T18:41:04.5806568Z     Type:       PersistentVolumeClaim (a reference to a PersistentVolumeClaim in the same namespace)
+2026-04-13T18:41:04.5807147Z     ClaimName:  nv-action-vllm-benchmarks-v2
+2026-04-13T18:41:04.5807499Z     ReadOnly:   false
+2026-04-13T18:41:04.5807790Z   driver-tools:
+2026-04-13T18:41:04.5808112Z     Type:          HostPath (bare host directory volume)
+2026-04-13T18:41:04.5808529Z     Path:          /usr/local/Ascend/driver/tools
+2026-04-13T18:41:04.5808894Z     HostPathType:  
+2026-04-13T18:41:04.5809189Z   kube-api-access-jwdth:
+2026-04-13T18:41:04.5809653Z     Type:                    Projected (a volume that contains injected data from multiple sources)
+2026-04-13T18:41:04.5810319Z     TokenExpirationSeconds:  3607
+2026-04-13T18:41:04.5810797Z     ConfigMapName:           kube-root-ca.crt
+2026-04-13T18:41:04.5811167Z     Optional:                false
+2026-04-13T18:41:04.5811509Z     DownwardAPI:             true
+2026-04-13T18:41:04.5811836Z QoS Class:                   Burstable
+2026-04-13T18:41:04.5812178Z Node-Selectors:              <none>
+2026-04-13T18:41:04.5812631Z Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+2026-04-13T18:41:04.5813215Z                              node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+2026-04-13T18:41:04.5813655Z Events:
+2026-04-13T18:41:04.5813980Z   Type    Reason                 Age                From               Message
+2026-04-13T18:41:04.5814452Z   ----    ------                 ----               ----               -------
+2026-04-13T18:41:04.5815271Z   Normal  Scheduled              20m                default-scheduler  Successfully assigned vllm-project/vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0 to 172.22.5.45
+2026-04-13T18:41:04.5816656Z   Normal  Pulling                19m                kubelet            spec.containers{vllm-leader}: Pulling image "swr.cn-southwest-2.myhuaweicloud.com/base_image/ascend-ci/vllm-ascend:nightly-ci-releases-v0.18.0-a3"
+2026-04-13T18:41:04.5818159Z   Normal  SuccessfulMountVolume  19m (x2 over 19m)  kubelet            Successfully mounted volumes for pod "vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0_vllm-project(0eebc8db-1787-4d5e-8c0b-dd4dd4afb25a)"
+2026-04-13T18:41:04.5819998Z   Normal  Pulled                 19m                kubelet            spec.containers{vllm-leader}: Successfully pulled image "swr.cn-southwest-2.myhuaweicloud.com/base_image/ascend-ci/vllm-ascend:nightly-ci-releases-v0.18.0-a3" in 100ms (100ms including waiting). Image size: 17222394767 bytes.
+2026-04-13T18:41:04.5821450Z   Normal  SuccessfulCreate       19m                kubelet            spec.containers{vllm-leader}: Created container: vllm-leader
+2026-04-13T18:41:04.5822255Z   Normal  Started                19m                kubelet            spec.containers{vllm-leader}: Started container vllm-leader
+2026-04-13T18:41:04.7221725Z ##[error]Error: failed to run script step: Error: command terminated with non-zero exit code: command terminated with exit code 1
+2026-04-13T18:41:04.7263465Z ##[error]Process completed with exit code 1.
+2026-04-13T18:41:04.7421345Z ##[error]Executing the custom container implementation failed. Please contact your self hosted runner administrator.
+2026-04-13T18:41:04.8519271Z ##[group]Run set -euo pipefail
+2026-04-13T18:41:04.8519693Z [36;1mset -euo pipefail[0m
+2026-04-13T18:41:04.8520239Z [36;1mmkdir -p /tmp/benchmark_results[0m
+2026-04-13T18:41:04.8520936Z [36;1mecho "Fetching benchmark results from PVC at /root/.cache/benchmark_results/multi-node-qwen3-dp-mooncake-layerwise..."[0m
+2026-04-13T18:41:04.8521708Z [36;1m# Copy from PVC mounted directory (persists after pod termination)[0m
+2026-04-13T18:41:04.8522331Z [36;1mSRC="/root/.cache/benchmark_results/multi-node-qwen3-dp-mooncake-layerwise"[0m
+2026-04-13T18:41:04.8522929Z [36;1mif [ -d "$SRC" ] && [ "$(ls -A "$SRC" 2>/dev/null)" ]; then[0m
+2026-04-13T18:41:04.8523353Z [36;1m  cp -r "$SRC"/. /tmp/benchmark_results/[0m
+2026-04-13T18:41:04.8523805Z [36;1m  echo "Benchmark results fetched successfully from PVC:"[0m
+2026-04-13T18:41:04.8524244Z [36;1m  ls -la /tmp/benchmark_results/[0m
+2026-04-13T18:41:04.8524616Z [36;1m  # Clean up PVC contents after copying[0m
+2026-04-13T18:41:04.8525069Z [36;1m  echo "Cleaning up PVC contents at $SRC..."[0m
+2026-04-13T18:41:04.8525448Z [36;1m  rm -rf "${SRC:?}"/*[0m
+2026-04-13T18:41:04.8525879Z [36;1m  echo "PVC contents cleaned up successfully"[0m
+2026-04-13T18:41:04.8526250Z [36;1melse[0m
+2026-04-13T18:41:04.8526600Z [36;1m  echo "Warning: No benchmark results found in PVC at $SRC"[0m
+2026-04-13T18:41:04.8527059Z [36;1m  echo "Directory contents (if exists):"[0m
+2026-04-13T18:41:04.8527511Z [36;1m  ls -la "$SRC" 2>/dev/null || echo "Directory does not exist"[0m
+2026-04-13T18:41:04.8528091Z [36;1mfi[0m
+2026-04-13T18:41:04.8528492Z shell: bash -el {0}
+2026-04-13T18:41:04.8528776Z env:
+2026-04-13T18:41:04.8529124Z   LWS_NAME: vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14
+2026-04-13T18:41:04.8529645Z   LEADER_POD: vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0
+2026-04-13T18:41:04.8530390Z   LOG_PREFIX: /root/.cache/ascend-logs/vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14
+2026-04-13T18:41:04.8530963Z   FAIL_TAG: FAIL_TAG_Qwen3-235B-A22B-Mooncake-Layerwise.yaml
+2026-04-13T18:41:04.8531374Z ##[endgroup]
+2026-04-13T18:41:04.9048374Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T18:41:04.9049401Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T18:41:04.9049768Z ##[endgroup]
+2026-04-13T18:41:05.3614620Z (node:1117) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T18:41:05.3615667Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T18:41:06.0248682Z Fetching benchmark results from PVC at /root/.cache/benchmark_results/multi-node-qwen3-dp-mooncake-layerwise...
+2026-04-13T18:41:06.0297926Z Warning: No benchmark results found in PVC at /root/.cache/benchmark_results/multi-node-qwen3-dp-mooncake-layerwise
+2026-04-13T18:41:06.0298543Z Directory contents (if exists):
+2026-04-13T18:41:06.0322678Z Directory does not exist
+2026-04-13T18:41:06.5236794Z ##[group]Run echo "Current pod status:"
+2026-04-13T18:41:06.5237240Z [36;1mecho "Current pod status:"[0m
+2026-04-13T18:41:06.5237687Z [36;1mkubectl get pods -n "$NAMESPACE" --ignore-not-found=true[0m
+2026-04-13T18:41:06.5238118Z [36;1m[0m
+2026-04-13T18:41:06.5238429Z [36;1mecho "Deleting resources for [$LWS_NAME]..."[0m
+2026-04-13T18:41:06.5238913Z [36;1mkubectl delete -f ./lws.yaml --ignore-not-found=true || true[0m
+2026-04-13T18:41:06.5239357Z [36;1m[0m
+2026-04-13T18:41:06.5239706Z [36;1mecho "Waiting for pods of [$LWS_NAME] to fully terminate..."[0m
+2026-04-13T18:41:06.5240345Z [36;1mTIMEOUT=300[0m
+2026-04-13T18:41:06.5240657Z [36;1mSLEEP_INTERVAL=5[0m
+2026-04-13T18:41:06.5240977Z [36;1mSTART_TIME=$(date +%s)[0m
+2026-04-13T18:41:06.5241318Z [36;1mwhile true; do[0m
+2026-04-13T18:41:06.5241666Z [36;1m  ELAPSED=$(( $(date +%s) - START_TIME ))[0m
+2026-04-13T18:41:06.5242061Z [36;1m  if [[ $ELAPSED -ge $TIMEOUT ]]; then[0m
+2026-04-13T18:41:06.5242638Z [36;1m    echo "Timeout reached ($TIMEOUT seconds) waiting for termination, continuing anyway."[0m
+2026-04-13T18:41:06.5243254Z [36;1m    kubectl get pods -n "$NAMESPACE" | grep "^${LWS_NAME}-" || true[0m
+2026-04-13T18:41:06.5243689Z [36;1m    break[0m
+2026-04-13T18:41:06.5243967Z [36;1m  fi[0m
+2026-04-13T18:41:06.5244450Z [36;1m  PODS_EXIST=$(kubectl get pods -n "$NAMESPACE" -o jsonpath='{.items[*].metadata.name}' 2>/dev/null \[0m
+2026-04-13T18:41:06.5245053Z [36;1m    | tr ' ' '\n' | grep "^${LWS_NAME}-" || true)[0m
+2026-04-13T18:41:06.5245449Z [36;1m  if [[ -z "$PODS_EXIST" ]]; then[0m
+2026-04-13T18:41:06.5245947Z [36;1m    echo "All pods for [$LWS_NAME] have terminated."[0m
+2026-04-13T18:41:06.5246336Z [36;1m    break[0m
+2026-04-13T18:41:06.5246615Z [36;1m  fi[0m
+2026-04-13T18:41:06.5246947Z [36;1m  echo "Waiting for pods to terminate: $PODS_EXIST"[0m
+2026-04-13T18:41:06.5247358Z [36;1m  sleep $SLEEP_INTERVAL[0m
+2026-04-13T18:41:06.5247674Z [36;1mdone[0m
+2026-04-13T18:41:06.5248054Z shell: bash -el {0}
+2026-04-13T18:41:06.5248337Z env:
+2026-04-13T18:41:06.5248678Z   LWS_NAME: vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14
+2026-04-13T18:41:06.5249187Z   LEADER_POD: vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0
+2026-04-13T18:41:06.5249779Z   LOG_PREFIX: /root/.cache/ascend-logs/vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14
+2026-04-13T18:41:06.5250496Z   FAIL_TAG: FAIL_TAG_Qwen3-235B-A22B-Mooncake-Layerwise.yaml
+2026-04-13T18:41:06.5250905Z ##[endgroup]
+2026-04-13T18:41:06.5332785Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T18:41:06.5334086Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T18:41:06.5334456Z ##[endgroup]
+2026-04-13T18:41:06.9734156Z (node:1231) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T18:41:06.9735182Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T18:41:07.6229520Z Current pod status:
+2026-04-13T18:41:07.7341383Z NAME                                                 READY   STATUS    RESTARTS   AGE
+2026-04-13T18:41:07.7341985Z linux-aarch64-a3-0-ggwx6-runner-28mkq                1/1     Running   0          66m
+2026-04-13T18:41:07.7342639Z linux-aarch64-a3-0-ggwx6-runner-28mkq-workflow       1/1     Running   0          65m
+2026-04-13T18:41:07.7343302Z linux-aarch64-a3-0-ggwx6-runner-5n2r7                1/1     Running   0          66m
+2026-04-13T18:41:07.7343951Z linux-aarch64-a3-0-ggwx6-runner-5n2r7-workflow       1/1     Running   0          65m
+2026-04-13T18:41:07.7344607Z linux-aarch64-a3-0-ggwx6-runner-8sh68                1/1     Running   0          20m
+2026-04-13T18:41:07.7345244Z linux-aarch64-a3-0-ggwx6-runner-8sh68-workflow       1/1     Running   0          19m
+2026-04-13T18:41:07.7345937Z linux-aarch64-a3-0-ggwx6-runner-q267x                1/1     Running   0          21m
+2026-04-13T18:41:07.7347009Z linux-aarch64-a3-0-ggwx6-runner-q267x-workflow       1/1     Running   0          20m
+2026-04-13T18:41:07.7347672Z linux-aarch64-a3-2-nqp5k-runner-f8q5z                1/1     Running   0          114m
+2026-04-13T18:41:07.7348336Z linux-aarch64-a3-2-nqp5k-runner-f8q5z-workflow       1/1     Running   0          113m
+2026-04-13T18:41:07.7348981Z linux-aarch64-a3-2-nqp5k-runner-vm4l2                1/1     Running   0          114m
+2026-04-13T18:41:07.7349641Z linux-aarch64-a3-2-nqp5k-runner-vm4l2-workflow       1/1     Running   0          113m
+2026-04-13T18:41:07.7350446Z linux-aarch64-a3-4-92cdc-runner-8lz7c                1/1     Running   0          114m
+2026-04-13T18:41:07.7351101Z linux-aarch64-a3-4-92cdc-runner-8lz7c-workflow       1/1     Running   0          113m
+2026-04-13T18:41:07.7351740Z linux-aarch64-a3-4-92cdc-runner-sxxz6                1/1     Running   0          114m
+2026-04-13T18:41:07.7352389Z linux-aarch64-a3-4-92cdc-runner-sxxz6-workflow       1/1     Running   0          113m
+2026-04-13T18:41:07.7352970Z test-server-0                                        1/1     Running   0          6h22m
+2026-04-13T18:41:07.7353484Z test-server-0-1                                      1/1     Running   0          6h21m
+2026-04-13T18:41:07.7354071Z vllm-deepseek-r1-w8a8-longseq-bc092a-0               1/1     Running   0          64m
+2026-04-13T18:41:07.7354720Z vllm-deepseek-r1-w8a8-longseq-bc092a-0-1             1/1     Running   0          64m
+2026-04-13T18:41:07.7355325Z vllm-qwen3-235b-a22b-9f142d-0                        1/1     Running   0          65m
+2026-04-13T18:41:07.7355969Z vllm-qwen3-235b-a22b-9f142d-0-1                      1/1     Running   0          65m
+2026-04-13T18:41:07.7356612Z vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0     1/1     Running   0          20m
+2026-04-13T18:41:07.7357293Z vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1   0/1     Pending   0          20m
+2026-04-13T18:41:07.7357951Z vllm-qwen3-235b-w8a8-longseq-9eebaa-0                0/1     Pending   0          19m
+2026-04-13T18:41:07.7358578Z vllm-qwen3-235b-w8a8-longseq-9eebaa-0-1              0/1     Pending   0          19m
+2026-04-13T18:41:07.7404257Z Deleting resources for [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14]...
+2026-04-13T18:41:07.8078266Z leaderworkerset.leaderworkerset.x-k8s.io "vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14" deleted from vllm-project namespace
+2026-04-13T18:41:07.8244007Z service "vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-leader" deleted from vllm-project namespace
+2026-04-13T18:41:07.8371628Z Waiting for pods of [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14] to fully terminate...
+2026-04-13T18:41:08.1022107Z Waiting for pods to terminate: vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0
+2026-04-13T18:41:08.1022699Z vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1
+2026-04-13T18:41:13.2442954Z Waiting for pods to terminate: vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0
+2026-04-13T18:41:13.2443534Z vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1
+2026-04-13T18:41:18.3549055Z Waiting for pods to terminate: vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0
+2026-04-13T18:41:18.3549666Z vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1
+2026-04-13T18:41:23.4669958Z Waiting for pods to terminate: vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0
+2026-04-13T18:41:23.4670561Z vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1
+2026-04-13T18:41:28.5772430Z Waiting for pods to terminate: vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0
+2026-04-13T18:41:28.5773010Z vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1
+2026-04-13T18:41:33.7267666Z Waiting for pods to terminate: vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0
+2026-04-13T18:41:33.7268657Z vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1
+2026-04-13T18:41:38.8446577Z Waiting for pods to terminate: vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0
+2026-04-13T18:41:38.8447171Z vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0-1
+2026-04-13T18:41:43.9588335Z All pods for [vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14] have terminated.
+2026-04-13T18:41:44.4526634Z ##[group]Run set -euo pipefail
+2026-04-13T18:41:44.4527044Z [36;1mset -euo pipefail[0m
+2026-04-13T18:41:44.4527352Z [36;1msize="2"[0m
+2026-04-13T18:41:44.4527652Z [36;1mDEST="/tmp/collected-logs"[0m
+2026-04-13T18:41:44.4528107Z [36;1mPLOG_PATH=/root/ascend/log[0m
+2026-04-13T18:41:44.4528445Z [36;1mKUBE_LOG_PATH=/var/log[0m
+2026-04-13T18:41:44.4528797Z [36;1mfor i in $(seq 0 $((size - 1))); do[0m
+2026-04-13T18:41:44.4529167Z [36;1m  if [ "${i}" -eq 0 ]; then[0m
+2026-04-13T18:41:44.4529501Z [36;1m    POD="${LWS_NAME}-0"[0m
+2026-04-13T18:41:44.4529819Z [36;1m  else[0m
+2026-04-13T18:41:44.4530288Z [36;1m    POD="${LWS_NAME}-0-${i}"[0m
+2026-04-13T18:41:44.4530617Z [36;1m  fi[0m
+2026-04-13T18:41:44.4531029Z [36;1m  mkdir -p "${DEST}/node${i}/${PLOG_PATH}" "${DEST}/node${i}/${KUBE_LOG_PATH}"[0m
+2026-04-13T18:41:44.4531505Z [36;1m  # pod stdout.[0m
+2026-04-13T18:41:44.4532097Z [36;1m  cp "/tmp/${POD}_logs.txt" "${DEST}/node${i}/${KUBE_LOG_PATH}/" 2>/dev/null || true[0m
+2026-04-13T18:41:44.4532592Z [36;1m  # Ascend plogs from PVC.[0m
+2026-04-13T18:41:44.4532961Z [36;1m  SRC="${LOG_PREFIX}/node_${i}_plogs"[0m
+2026-04-13T18:41:44.4533329Z [36;1m  if [ -d "$SRC" ]; then[0m
+2026-04-13T18:41:44.4533744Z [36;1m    cp -r "$SRC"/. "${DEST}/node${i}/${PLOG_PATH}/" 2>/dev/null || true[0m
+2026-04-13T18:41:44.4534172Z [36;1m  fi[0m
+2026-04-13T18:41:44.4534443Z [36;1mdone[0m
+2026-04-13T18:41:44.4534701Z [36;1m[0m
+2026-04-13T18:41:44.4535059Z [36;1mtar -czf /tmp/ascend-logs.tar.gz -C /tmp collected-logs[0m
+2026-04-13T18:41:44.4535561Z shell: bash -el {0}
+2026-04-13T18:41:44.4535836Z env:
+2026-04-13T18:41:44.4536184Z   LWS_NAME: vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14
+2026-04-13T18:41:44.4536693Z   LEADER_POD: vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0
+2026-04-13T18:41:44.4537291Z   LOG_PREFIX: /root/.cache/ascend-logs/vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14
+2026-04-13T18:41:44.4537970Z   FAIL_TAG: FAIL_TAG_Qwen3-235B-A22B-Mooncake-Layerwise.yaml
+2026-04-13T18:41:44.4538371Z ##[endgroup]
+2026-04-13T18:41:44.4627015Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T18:41:44.4628167Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T18:41:44.4628543Z ##[endgroup]
+2026-04-13T18:41:44.8933161Z (node:1364) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T18:41:44.8934190Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T18:41:46.0829115Z ##[group]Run actions/upload-artifact@v7
+2026-04-13T18:41:46.0829682Z with:
+2026-04-13T18:41:46.0830299Z   name: Qwen3-235B-A22B-Mooncake-Layerwise.yaml-ascend-logs
+2026-04-13T18:41:46.0830999Z   path: /tmp/ascend-logs.tar.gz
+2026-04-13T18:41:46.0831494Z   retention-days: 7
+2026-04-13T18:41:46.0831857Z   if-no-files-found: warn
+2026-04-13T18:41:46.0832165Z   compression-level: 6
+2026-04-13T18:41:46.0832460Z   overwrite: false
+2026-04-13T18:41:46.0832753Z   include-hidden-files: false
+2026-04-13T18:41:46.0833059Z   archive: true
+2026-04-13T18:41:46.0833323Z env:
+2026-04-13T18:41:46.0833660Z   LWS_NAME: vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14
+2026-04-13T18:41:46.0834168Z   LEADER_POD: vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0
+2026-04-13T18:41:46.0834758Z   LOG_PREFIX: /root/.cache/ascend-logs/vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14
+2026-04-13T18:41:46.0835333Z   FAIL_TAG: FAIL_TAG_Qwen3-235B-A22B-Mooncake-Layerwise.yaml
+2026-04-13T18:41:46.0835731Z ##[endgroup]
+2026-04-13T18:41:46.0868120Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T18:41:46.0869675Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T18:41:46.0870339Z ##[endgroup]
+2026-04-13T18:41:46.5210309Z (node:1507) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T18:41:46.5211335Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T18:41:47.5563051Z With the provided path, there will be 1 file uploaded
+2026-04-13T18:41:47.5567257Z Artifact name is valid!
+2026-04-13T18:41:47.5567850Z Root directory input is valid!
+2026-04-13T18:41:48.3978398Z Uploading artifact: Qwen3-235B-A22B-Mooncake-Layerwise.yaml-ascend-logs.zip
+2026-04-13T18:41:48.4693972Z Beginning upload of artifact content to blob storage
+2026-04-13T18:41:49.3824185Z Uploaded bytes 414
+2026-04-13T18:41:49.6077906Z Finished uploading artifact content to blob storage!
+2026-04-13T18:41:49.6078669Z SHA256 digest of uploaded artifact is 5ff6d4ae5b7e56185683b84ce87f937dfad8def2cdc801d71b00d0236034590b
+2026-04-13T18:41:49.6079295Z Finalizing artifact upload
+2026-04-13T18:41:50.4542253Z Artifact Qwen3-235B-A22B-Mooncake-Layerwise.yaml-ascend-logs successfully finalized. Artifact ID 6412571088
+2026-04-13T18:41:50.4543314Z Artifact Qwen3-235B-A22B-Mooncake-Layerwise.yaml-ascend-logs has been successfully uploaded! Final size is 414 bytes. Artifact ID is 6412571088
+2026-04-13T18:41:50.4547621Z Artifact download URL: https://github.com/vllm-project/vllm-ascend/actions/runs/24355380566/artifacts/6412571088
+2026-04-13T18:41:50.9877196Z ##[group]Run echo "artifact_ts=$(date -u +%Y%m%dT%H%M%SZ)" >> $GITHUB_OUTPUT
+2026-04-13T18:41:50.9877814Z [36;1mecho "artifact_ts=$(date -u +%Y%m%dT%H%M%SZ)" >> $GITHUB_OUTPUT[0m
+2026-04-13T18:41:50.9878528Z shell: bash -el {0}
+2026-04-13T18:41:50.9878820Z env:
+2026-04-13T18:41:50.9879186Z   LWS_NAME: vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14
+2026-04-13T18:41:50.9879708Z   LEADER_POD: vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0
+2026-04-13T18:41:50.9880529Z   LOG_PREFIX: /root/.cache/ascend-logs/vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14
+2026-04-13T18:41:50.9881123Z   FAIL_TAG: FAIL_TAG_Qwen3-235B-A22B-Mooncake-Layerwise.yaml
+2026-04-13T18:41:50.9881541Z ##[endgroup]
+2026-04-13T18:41:50.9968267Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T18:41:50.9969329Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T18:41:50.9969709Z ##[endgroup]
+2026-04-13T18:41:51.4239924Z (node:1656) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T18:41:51.4241008Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T18:41:52.6515429Z ##[group]Run actions/upload-artifact@v4
+2026-04-13T18:41:52.6515851Z with:
+2026-04-13T18:41:52.6516436Z   name: nightly-test-benchmark-results-multi-node-qwen3-dp-mooncake-layerwise-20260413T184152Z
+2026-04-13T18:41:52.6517285Z   path: /tmp/benchmark_results/
+2026-04-13T18:41:52.6517649Z   if-no-files-found: warn
+2026-04-13T18:41:52.6517969Z   retention-days: 90
+2026-04-13T18:41:52.6518407Z   compression-level: 0
+2026-04-13T18:41:52.6518719Z   overwrite: false
+2026-04-13T18:41:52.6519025Z   include-hidden-files: false
+2026-04-13T18:41:52.6519343Z env:
+2026-04-13T18:41:52.6519696Z   LWS_NAME: vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14
+2026-04-13T18:41:52.6520437Z   LEADER_POD: vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14-0
+2026-04-13T18:41:52.6521051Z   LOG_PREFIX: /root/.cache/ascend-logs/vllm-qwen3-235b-a22b-mooncake-layerwise-44ca14
+2026-04-13T18:41:52.6521649Z   FAIL_TAG: FAIL_TAG_Qwen3-235B-A22B-Mooncake-Layerwise.yaml
+2026-04-13T18:41:52.6522058Z ##[endgroup]
+2026-04-13T18:41:52.6550722Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T18:41:52.6551787Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T18:41:52.6552185Z ##[endgroup]
+2026-04-13T18:41:53.0841688Z (node:1816) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T18:41:53.0842750Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T18:41:54.4929812Z ##[warning]No files were found with the provided path: /tmp/benchmark_results/. No artifacts will be uploaded.
+2026-04-13T18:41:55.0835925Z Post job cleanup.
+2026-04-13T18:41:55.0862297Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T18:41:55.0863402Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T18:41:55.0863789Z ##[endgroup]
+2026-04-13T18:41:55.5164748Z (node:1988) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T18:41:55.5165769Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T18:41:56.3028189Z [command]/usr/bin/git version
+2026-04-13T18:41:56.3221331Z git version 2.34.1
+2026-04-13T18:41:56.3253925Z Copying '/root/.gitconfig' to '/__w/_temp/344768a9-2fcb-49f3-bdda-822d14cdb960/.gitconfig'
+2026-04-13T18:41:56.3262556Z Temporarily overriding HOME='/__w/_temp/344768a9-2fcb-49f3-bdda-822d14cdb960' before making global git config changes
+2026-04-13T18:41:56.3263523Z Adding repository directory to the temporary git global config as a safe directory
+2026-04-13T18:41:56.3266464Z [command]/usr/bin/git config --global --add safe.directory /__w/vllm-ascend/vllm-ascend
+2026-04-13T18:41:56.3304350Z Removing SSH command configuration
+2026-04-13T18:41:56.3309819Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-04-13T18:41:56.3367814Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-04-13T18:41:56.3869543Z Removing HTTP extra header
+2026-04-13T18:41:56.3871763Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-04-13T18:41:56.3899707Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-04-13T18:41:56.4101528Z Removing includeIf entries pointing to credentials config files
+2026-04-13T18:41:56.4106539Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-04-13T18:41:56.4127385Z includeif.gitdir:/__w/vllm-ascend/vllm-ascend/.git.path
+2026-04-13T18:41:56.4127886Z includeif.gitdir:/__w/vllm-ascend/vllm-ascend/.git/worktrees/*.path
+2026-04-13T18:41:56.4128362Z includeif.gitdir:/github/workspace/.git.path
+2026-04-13T18:41:56.4128840Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-04-13T18:41:56.4135004Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/__w/vllm-ascend/vllm-ascend/.git.path
+2026-04-13T18:41:56.4153706Z /__w/_temp/git-credentials-e51ac553-0294-4a24-9dcb-5f0ca9eab4f3.config
+2026-04-13T18:41:56.4161907Z [command]/usr/bin/git config --local --unset includeif.gitdir:/__w/vllm-ascend/vllm-ascend/.git.path /__w/_temp/git-credentials-e51ac553-0294-4a24-9dcb-5f0ca9eab4f3.config
+2026-04-13T18:41:56.4195898Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/__w/vllm-ascend/vllm-ascend/.git/worktrees/*.path
+2026-04-13T18:41:56.4214518Z /__w/_temp/git-credentials-e51ac553-0294-4a24-9dcb-5f0ca9eab4f3.config
+2026-04-13T18:41:56.4222248Z [command]/usr/bin/git config --local --unset includeif.gitdir:/__w/vllm-ascend/vllm-ascend/.git/worktrees/*.path /__w/_temp/git-credentials-e51ac553-0294-4a24-9dcb-5f0ca9eab4f3.config
+2026-04-13T18:41:56.4250309Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+2026-04-13T18:41:56.4269228Z /github/runner_temp/git-credentials-e51ac553-0294-4a24-9dcb-5f0ca9eab4f3.config
+2026-04-13T18:41:56.4276219Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-e51ac553-0294-4a24-9dcb-5f0ca9eab4f3.config
+2026-04-13T18:41:56.4303735Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-04-13T18:41:56.4323146Z /github/runner_temp/git-credentials-e51ac553-0294-4a24-9dcb-5f0ca9eab4f3.config
+2026-04-13T18:41:56.4329554Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-e51ac553-0294-4a24-9dcb-5f0ca9eab4f3.config
+2026-04-13T18:41:56.4358546Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-04-13T18:41:56.4553411Z Removing credentials config '/__w/_temp/git-credentials-e51ac553-0294-4a24-9dcb-5f0ca9eab4f3.config'
+2026-04-13T18:42:16.3099140Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T18:42:16.3100619Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T18:42:16.3101043Z ##[endgroup]
+2026-04-13T18:42:16.8114903Z Cleaning up orphan processes
+2026-04-13T18:42:16.8136404Z ##[warning]Node.js 20 actions are deprecated. The following actions are running on Node.js 20 and may not work as expected: actions/upload-artifact@v4. Actions will be forced to run with Node.js 24 by default starting June 2nd, 2026. Please check if updated versions of these actions are available that support Node.js 24. To opt into Node.js 24 now, set the FORCE_JAVASCRIPT_ACTIONS_TO_NODE24=true environment variable on the runner or in your workflow file. Once Node.js 24 becomes the default, you can temporarily opt out by setting ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

@@ -1,0 +1,1827 @@
+# Run ID: 24355380566
+# Commit: f4d6c44acbb76c8ca079d7c360caef7a478fb48f
+# Job: multi-node (releases-v0.18.0, multi-node-deepseek-v3.2-W8A8-EP-aime2025, DeepSeek-V3_2-W8A8-EP-ai... / DeepSeek-V3_2-W8A8-EP-aime2025.yaml
+# Date: 2026-04-13
+============================================================
+
+﻿2026-04-13T17:01:49.3852815Z Current runner version: '2.332.0'
+2026-04-13T17:01:49.3858420Z Runner name: 'linux-aarch64-a3-0-ggwx6-runner-7nmk8'
+2026-04-13T17:01:49.3859190Z Runner group name: 'Default'
+2026-04-13T17:01:49.3860304Z Machine name: 'linux-aarch64-a3-0-ggwx6-runner-7nmk8'
+2026-04-13T17:01:49.3863265Z ##[group]GITHUB_TOKEN Permissions
+2026-04-13T17:01:49.3865439Z Contents: read
+2026-04-13T17:01:49.3865902Z Issues: read
+2026-04-13T17:01:49.3866361Z Metadata: read
+2026-04-13T17:01:49.3866823Z PullRequests: read
+2026-04-13T17:01:49.3867242Z ##[endgroup]
+2026-04-13T17:01:49.3869257Z Secret source: Actions
+2026-04-13T17:01:49.3870074Z Prepare workflow directory
+2026-04-13T17:01:49.4464826Z Prepare all required actions
+2026-04-13T17:01:49.4500807Z Getting action download info
+2026-04-13T17:01:51.5634927Z Download action repository 'actions/checkout@v6' (SHA:de0fac2e4500dabe0009e67214ff5f5447ce83dd)
+2026-04-13T17:01:56.0326115Z Download action repository 'actions/upload-artifact@v7' (SHA:043fb46d1a93c77aae656e7c1c64a875d1fc6a0a)
+2026-04-13T17:01:59.7998241Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-04-13T17:02:13.0710245Z Uses: vllm-project/vllm-ascend/.github/workflows/_e2e_nightly_multi_node.yaml@refs/heads/main (f4d6c44acbb76c8ca079d7c360caef7a478fb48f)
+2026-04-13T17:02:13.0714366Z ##[group] Inputs
+2026-04-13T17:02:13.0714731Z   soc_version: a3
+2026-04-13T17:02:13.0715027Z   runner: linux-aarch64-a3-0
+2026-04-13T17:02:13.0715810Z   image: swr.cn-southwest-2.myhuaweicloud.com/base_image/ascend-ci/vllm-ascend:nightly-ci-releases-v0.18.0-a3
+2026-04-13T17:02:13.0716513Z   config_file_path: DeepSeek-V3_2-W8A8-EP-aime2025.yaml
+2026-04-13T17:02:13.0716883Z   replicas: 1
+2026-04-13T17:02:13.0717169Z   size: 4
+2026-04-13T17:02:13.0717445Z   vllm_version: v0.18.0
+2026-04-13T17:02:13.0717929Z   vllm_ascend_remote_url: https://github.com/vllm-project/vllm-ascend.git
+2026-04-13T17:02:13.0718503Z   vllm_ascend_ref: f4d6c44acbb76c8ca079d7c360caef7a478fb48f
+2026-04-13T17:02:13.0719377Z   should_run: true
+2026-04-13T17:02:13.0719690Z   ascend_log_prefix: /root/.cache/ascend-logs
+2026-04-13T17:02:13.0720340Z   name: multi-node-deepseek-v3.2-W8A8-EP-aime2025
+2026-04-13T17:02:13.0720747Z ##[endgroup]
+2026-04-13T17:02:13.0721435Z Complete job name: multi-node (releases-v0.18.0, multi-node-deepseek-v3.2-W8A8-EP-aime2025, DeepSeek-V3_2-W8A8-EP-ai... / DeepSeek-V3_2-W8A8-EP-aime2025.yaml
+2026-04-13T17:02:13.1365522Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T17:02:13.1368496Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T17:02:13.1369314Z ##[endgroup]
+2026-04-13T17:02:28.7010580Z (node:130) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T17:02:28.7011574Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T17:02:31.3411323Z ##[group]Run if [ "schedule" = "pull_request" ]; then
+2026-04-13T17:02:31.3411804Z [36;1mif [ "schedule" = "pull_request" ]; then[0m
+2026-04-13T17:02:31.3412104Z [36;1m  if [ "a3" = "a3" ]; then[0m
+2026-04-13T17:02:31.3412541Z [36;1m    # NOTE: This is too hack, we should find a better way to manage kubeconfig for pr tests.[0m
+2026-04-13T17:02:31.3413049Z [36;1m    cp /root/.cache/.kube/kubeconfig.yaml "$KUBECONFIG"[0m
+2026-04-13T17:02:31.3413392Z [36;1m  else[0m
+2026-04-13T17:02:31.3413686Z [36;1m    cp /root/.cache/.kube/hk_001_kb.yaml "$KUBECONFIG"[0m
+2026-04-13T17:02:31.3413987Z [36;1m  fi[0m
+2026-04-13T17:02:31.3414172Z [36;1melse[0m
+2026-04-13T17:02:31.3466624Z [36;1m  echo "***" | base64 -d > "$KUBECONFIG"[0m
+2026-04-13T17:02:31.3466910Z [36;1mfi[0m
+2026-04-13T17:02:31.3467352Z shell: bash -el {0}
+2026-04-13T17:02:31.3467574Z ##[endgroup]
+2026-04-13T17:02:31.3611531Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T17:02:31.3612549Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T17:02:31.3612846Z ##[endgroup]
+2026-04-13T17:02:31.7887495Z (node:539) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T17:02:31.7888880Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T17:02:32.8306370Z ##[group]Run actions/checkout@v6
+2026-04-13T17:02:32.8306894Z with:
+2026-04-13T17:02:32.8307177Z   repository: vllm-project/vllm-ascend
+2026-04-13T17:02:32.8307721Z   token: ***
+2026-04-13T17:02:32.8307928Z   ssh-strict: true
+2026-04-13T17:02:32.8308153Z   ssh-user: git
+2026-04-13T17:02:32.8308395Z   persist-credentials: true
+2026-04-13T17:02:32.8308667Z   clean: true
+2026-04-13T17:02:32.8308920Z   sparse-checkout-cone-mode: true
+2026-04-13T17:02:32.8309229Z   fetch-depth: 1
+2026-04-13T17:02:32.8309411Z   fetch-tags: false
+2026-04-13T17:02:32.8309676Z   show-progress: true
+2026-04-13T17:02:32.8310016Z   lfs: false
+2026-04-13T17:02:32.8310292Z   submodules: false
+2026-04-13T17:02:32.8310502Z   set-safe-directory: true
+2026-04-13T17:02:32.8310742Z ##[endgroup]
+2026-04-13T17:02:32.8360337Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T17:02:32.8361274Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T17:02:32.8361571Z ##[endgroup]
+2026-04-13T17:02:33.2658889Z (node:569) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T17:02:33.2660096Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T17:02:33.8733612Z Syncing repository: vllm-project/vllm-ascend
+2026-04-13T17:02:33.8734885Z ##[group]Getting Git version info
+2026-04-13T17:02:33.8735237Z Working directory is '/__w/vllm-ascend/vllm-ascend'
+2026-04-13T17:02:33.8735731Z [command]/usr/bin/git version
+2026-04-13T17:02:33.8735975Z git version 2.34.1
+2026-04-13T17:02:33.8737600Z ##[endgroup]
+2026-04-13T17:02:33.8741463Z Copying '/root/.gitconfig' to '/__w/_temp/cd8a925e-3c88-493d-b719-b039452f33fb/.gitconfig'
+2026-04-13T17:02:33.8742255Z Temporarily overriding HOME='/__w/_temp/cd8a925e-3c88-493d-b719-b039452f33fb' before making global git config changes
+2026-04-13T17:02:33.8742983Z Adding repository directory to the temporary git global config as a safe directory
+2026-04-13T17:02:33.8743618Z [command]/usr/bin/git config --global --add safe.directory /__w/vllm-ascend/vllm-ascend
+2026-04-13T17:02:33.8769017Z Deleting the contents of '/__w/vllm-ascend/vllm-ascend'
+2026-04-13T17:02:33.8772418Z ##[group]Initializing the repository
+2026-04-13T17:02:33.8775919Z [command]/usr/bin/git init /__w/vllm-ascend/vllm-ascend
+2026-04-13T17:02:33.8804597Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-04-13T17:02:33.8805151Z hint: is subject to change. To configure the initial branch name to use in all
+2026-04-13T17:02:33.8805682Z hint: of your new repositories, which will suppress this warning, call:
+2026-04-13T17:02:33.8806054Z hint: 
+2026-04-13T17:02:33.8806337Z hint: 	git config --global init.defaultBranch <name>
+2026-04-13T17:02:33.8806684Z hint: 
+2026-04-13T17:02:33.8806975Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-04-13T17:02:33.8807469Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-04-13T17:02:33.8807841Z hint: 
+2026-04-13T17:02:33.8808043Z hint: 	git branch -m <name>
+2026-04-13T17:02:33.8815946Z Initialized empty Git repository in /__w/vllm-ascend/vllm-ascend/.git/
+2026-04-13T17:02:33.8824039Z [command]/usr/bin/git remote add origin https://github.com/vllm-project/vllm-ascend
+2026-04-13T17:02:33.8856818Z ##[endgroup]
+2026-04-13T17:02:33.8859960Z ##[group]Disabling automatic garbage collection
+2026-04-13T17:02:33.8860344Z [command]/usr/bin/git config --local gc.auto 0
+2026-04-13T17:02:33.8885854Z ##[endgroup]
+2026-04-13T17:02:33.8886192Z ##[group]Setting up auth
+2026-04-13T17:02:33.8887170Z Removing SSH command configuration
+2026-04-13T17:02:33.8891783Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-04-13T17:02:33.8917623Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-04-13T17:02:33.9130027Z Removing HTTP extra header
+2026-04-13T17:02:33.9132981Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-04-13T17:02:33.9157377Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-04-13T17:02:33.9334602Z Removing includeIf entries pointing to credentials config files
+2026-04-13T17:02:33.9338709Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-04-13T17:02:33.9364001Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-04-13T17:02:33.9544038Z [command]/usr/bin/git config --file /__w/_temp/git-credentials-f95a3912-ce63-472a-83b0-72cced0764af.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-04-13T17:02:33.9580534Z [command]/usr/bin/git config --local includeIf.gitdir:/__w/vllm-ascend/vllm-ascend/.git.path /__w/_temp/git-credentials-f95a3912-ce63-472a-83b0-72cced0764af.config
+2026-04-13T17:02:33.9604567Z [command]/usr/bin/git config --local includeIf.gitdir:/__w/vllm-ascend/vllm-ascend/.git/worktrees/*.path /__w/_temp/git-credentials-f95a3912-ce63-472a-83b0-72cced0764af.config
+2026-04-13T17:02:33.9633442Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-f95a3912-ce63-472a-83b0-72cced0764af.config
+2026-04-13T17:02:33.9657868Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-f95a3912-ce63-472a-83b0-72cced0764af.config
+2026-04-13T17:02:33.9679474Z ##[endgroup]
+2026-04-13T17:02:33.9679919Z ##[group]Fetching the repository
+2026-04-13T17:02:33.9687171Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +f4d6c44acbb76c8ca079d7c360caef7a478fb48f:refs/remotes/origin/main
+2026-04-13T17:02:37.1055774Z From https://gh-proxy.test.osinfra.cn/https://github.com/vllm-project/vllm-ascend
+2026-04-13T17:02:37.1056408Z  * [new ref]         f4d6c44acbb76c8ca079d7c360caef7a478fb48f -> origin/main
+2026-04-13T17:02:37.1107212Z [command]/usr/bin/git branch --list --remote origin/main
+2026-04-13T17:02:37.1107544Z   origin/main
+2026-04-13T17:02:37.1108488Z [command]/usr/bin/git rev-parse refs/remotes/origin/main
+2026-04-13T17:02:37.1129366Z f4d6c44acbb76c8ca079d7c360caef7a478fb48f
+2026-04-13T17:02:37.1133189Z ##[endgroup]
+2026-04-13T17:02:37.1133556Z ##[group]Determining the checkout info
+2026-04-13T17:02:37.1135272Z ##[endgroup]
+2026-04-13T17:02:37.1138933Z [command]/usr/bin/git sparse-checkout disable
+2026-04-13T17:02:37.1176805Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-04-13T17:02:37.1203147Z ##[group]Checking out the ref
+2026-04-13T17:02:37.1206544Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-04-13T17:02:37.2405355Z Switched to a new branch 'main'
+2026-04-13T17:02:37.2405739Z Branch 'main' set up to track remote branch 'main' from 'origin'.
+2026-04-13T17:02:37.2415097Z ##[endgroup]
+2026-04-13T17:02:37.2452418Z [command]/usr/bin/git log -1 --format=%H
+2026-04-13T17:02:37.2474316Z f4d6c44acbb76c8ca079d7c360caef7a478fb48f
+2026-04-13T17:02:37.6924775Z ##[group]Run # Derive a unique, valid k8s resource name from config_file_path.
+2026-04-13T17:02:37.6925394Z [36;1m# Derive a unique, valid k8s resource name from config_file_path.[0m
+2026-04-13T17:02:37.6925949Z [36;1m# Append 6-char random suffix to avoid conflicts; total length capped at 63 chars.[0m
+2026-04-13T17:02:37.6926368Z [36;1m[0m
+2026-04-13T17:02:37.6926890Z [36;1mconfig_file="DeepSeek-V3_2-W8A8-EP-aime2025.yaml"[0m
+2026-04-13T17:02:37.6927438Z [36;1mlws_suffix=$(echo "$config_file" | sed 's/\.yaml$//' | tr '[:upper:]' '[:lower:]' | tr '._' '-' | cut -c1-43)[0m
+2026-04-13T17:02:37.6928066Z [36;1mrand_suffix=$(tr -d '-' < /proc/sys/kernel/random/uuid | cut -c1-6)[0m
+2026-04-13T17:02:37.6928483Z [36;1mLWS_NAME="vllm-${lws_suffix}-${rand_suffix}"[0m
+2026-04-13T17:02:37.6928762Z [36;1m[0m
+2026-04-13T17:02:37.6928935Z [36;1m{[0m
+2026-04-13T17:02:37.6929123Z [36;1m  echo "LWS_NAME=${LWS_NAME}"[0m
+2026-04-13T17:02:37.6929453Z [36;1m  echo "LEADER_POD=${LWS_NAME}-0"[0m
+2026-04-13T17:02:37.6929795Z [36;1m  echo "LOG_PREFIX=/root/.cache/ascend-logs/${LWS_NAME}"[0m
+2026-04-13T17:02:37.6930338Z [36;1m} >> $GITHUB_ENV[0m
+2026-04-13T17:02:37.6930699Z shell: bash -el {0}
+2026-04-13T17:02:37.6930893Z ##[endgroup]
+2026-04-13T17:02:37.7049419Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T17:02:37.7050746Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T17:02:37.7051096Z ##[endgroup]
+2026-04-13T17:02:38.1366891Z (node:611) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T17:02:38.1367873Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T17:02:39.2793235Z ##[group]Run install -D tests/e2e/nightly/multi_node/scripts/run.sh /root/.cache/tests/run.sh
+2026-04-13T17:02:39.2793915Z [36;1minstall -D tests/e2e/nightly/multi_node/scripts/run.sh /root/.cache/tests/run.sh[0m
+2026-04-13T17:02:39.2794461Z shell: bash -el {0}
+2026-04-13T17:02:39.2794656Z env:
+2026-04-13T17:02:39.2794905Z   LWS_NAME: vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865
+2026-04-13T17:02:39.2795294Z   LEADER_POD: vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0
+2026-04-13T17:02:39.2795783Z   LOG_PREFIX: /root/.cache/ascend-logs/vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865
+2026-04-13T17:02:39.2796200Z ##[endgroup]
+2026-04-13T17:02:39.2890616Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T17:02:39.2891501Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T17:02:39.2891779Z ##[endgroup]
+2026-04-13T17:02:39.7161778Z (node:666) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T17:02:39.7162720Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T17:02:40.8010998Z ##[group]Run set -euo pipefail
+2026-04-13T17:02:40.8011358Z [36;1mset -euo pipefail[0m
+2026-04-13T17:02:40.8011592Z [36;1mTIMEOUT=120[0m
+2026-04-13T17:02:40.8011798Z [36;1mSLEEP_INTERVAL=2[0m
+2026-04-13T17:02:40.8012008Z [36;1m[0m
+2026-04-13T17:02:40.8012179Z [36;1m[0m
+2026-04-13T17:02:40.8012506Z [36;1mecho "Deleting leaderworkerset [$LWS_NAME] in namespace [$NAMESPACE]..."[0m
+2026-04-13T17:02:40.8013071Z [36;1mkubectl delete leaderworkerset "$LWS_NAME" -n "$NAMESPACE" --ignore-not-found[0m
+2026-04-13T17:02:40.8013662Z [36;1mkubectl delete service "${LWS_NAME}-leader" -n "$NAMESPACE" --ignore-not-found[0m
+2026-04-13T17:02:40.8014063Z [36;1m[0m
+2026-04-13T17:02:40.8014361Z [36;1mecho "Waiting for pods of leaderworkerset [$LWS_NAME] to be deleted..."[0m
+2026-04-13T17:02:40.8014746Z [36;1mSTART_TIME=$(date +%s)[0m
+2026-04-13T17:02:40.8014984Z [36;1mwhile true; do[0m
+2026-04-13T17:02:40.8015227Z [36;1m  ELAPSED=$(( $(date +%s) - START_TIME ))[0m
+2026-04-13T17:02:40.8015573Z [36;1m  if [[ $ELAPSED -ge $TIMEOUT ]]; then[0m
+2026-04-13T17:02:40.8015953Z [36;1m    echo "Timeout reached ($TIMEOUT seconds), some pods still exist:"[0m
+2026-04-13T17:02:40.8016415Z [36;1m    kubectl get pods -n "$NAMESPACE" | grep "^${LWS_NAME}-" || true[0m
+2026-04-13T17:02:40.8016753Z [36;1m    exit 1[0m
+2026-04-13T17:02:40.8017014Z [36;1m  fi[0m
+2026-04-13T17:02:40.8017419Z [36;1m  PODS_EXIST=$(kubectl get pods -n "$NAMESPACE" -o jsonpath='{.items[*].metadata.name}' 2>/dev/null \[0m
+2026-04-13T17:02:40.8018094Z [36;1m    | tr ' ' '\n' | grep "^${LWS_NAME}-" || true)[0m
+2026-04-13T17:02:40.8018401Z [36;1m  if [[ -z "$PODS_EXIST" ]]; then[0m
+2026-04-13T17:02:40.8018706Z [36;1m    echo "All pods for [$LWS_NAME] deleted."[0m
+2026-04-13T17:02:40.8018987Z [36;1m    break[0m
+2026-04-13T17:02:40.8019173Z [36;1m  fi[0m
+2026-04-13T17:02:40.8019429Z [36;1m  echo "Waiting for pods to be deleted: $PODS_EXIST"[0m
+2026-04-13T17:02:40.8019748Z [36;1m  sleep $SLEEP_INTERVAL[0m
+2026-04-13T17:02:40.8020192Z [36;1mdone[0m
+2026-04-13T17:02:40.8020670Z shell: bash -el {0}
+2026-04-13T17:02:40.8020854Z env:
+2026-04-13T17:02:40.8021100Z   LWS_NAME: vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865
+2026-04-13T17:02:40.8021493Z   LEADER_POD: vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0
+2026-04-13T17:02:40.8021957Z   LOG_PREFIX: /root/.cache/ascend-logs/vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865
+2026-04-13T17:02:40.8022363Z ##[endgroup]
+2026-04-13T17:02:40.8097135Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T17:02:40.8098117Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T17:02:40.8098401Z ##[endgroup]
+2026-04-13T17:02:41.2411279Z (node:732) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T17:02:41.2412280Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T17:02:41.8359376Z Deleting leaderworkerset [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865] in namespace [vllm-project]...
+2026-04-13T17:02:41.9858110Z Waiting for pods of leaderworkerset [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865] to be deleted...
+2026-04-13T17:02:42.0862471Z All pods for [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865] deleted.
+2026-04-13T17:02:42.5715813Z ##[group]Run set -euo pipefail
+2026-04-13T17:02:42.5716148Z [36;1mset -euo pipefail[0m
+2026-04-13T17:02:42.5716372Z [36;1m[0m
+2026-04-13T17:02:42.5716545Z [36;1msize="4"[0m
+2026-04-13T17:02:42.5716756Z [36;1mreplicas="1"[0m
+2026-04-13T17:02:42.5717383Z [36;1mimage="swr.cn-southwest-2.myhuaweicloud.com/base_image/ascend-ci/vllm-ascend:nightly-ci-releases-v0.18.0-a3"[0m
+2026-04-13T17:02:42.5718029Z [36;1mconfig_file_path="DeepSeek-V3_2-W8A8-EP-aime2025.yaml"[0m
+2026-04-13T17:02:42.5718453Z [36;1mfail_tag="FAIL_TAG_DeepSeek-V3_2-W8A8-EP-aime2025.yaml"[0m
+2026-04-13T17:02:42.5718795Z [36;1mis_pr_test="false"[0m
+2026-04-13T17:02:42.5719028Z [36;1mvllm_version="v0.18.0"[0m
+2026-04-13T17:02:42.5719373Z [36;1mvllm_ascend_ref="f4d6c44acbb76c8ca079d7c360caef7a478fb48f"[0m
+2026-04-13T17:02:42.5720074Z [36;1mvllm_ascend_remote_url="https://github.com/vllm-project/vllm-ascend.git"[0m
+2026-04-13T17:02:42.5720496Z [36;1mrunner="a3"[0m
+2026-04-13T17:02:42.5720785Z [36;1mecho "FAIL_TAG=${fail_tag}" >> $GITHUB_ENV[0m
+2026-04-13T17:02:42.5721061Z [36;1m[0m
+2026-04-13T17:02:42.5721248Z [36;1mif [ "a3" = "a3" ]; then[0m
+2026-04-13T17:02:42.5721485Z [36;1m  npu_per_node=16[0m
+2026-04-13T17:02:42.5721766Z [36;1m  pvc_name=nv-action-vllm-benchmarks-v2[0m
+2026-04-13T17:02:42.5722051Z [36;1melse[0m
+2026-04-13T17:02:42.5722242Z [36;1m  npu_per_node=8[0m
+2026-04-13T17:02:42.5722492Z [36;1m  pvc_name=vllm-project-hk001[0m
+2026-04-13T17:02:42.5722742Z [36;1mfi[0m
+2026-04-13T17:02:42.5722908Z [36;1m[0m
+2026-04-13T17:02:42.5723215Z [36;1mbenchmark_job_name="multi-node-deepseek-v3.2-W8A8-EP-aime2025"[0m
+2026-04-13T17:02:42.5723625Z [36;1mif [ -z "$benchmark_job_name" ]; then[0m
+2026-04-13T17:02:42.5723950Z [36;1m  benchmark_job_name="${config_file_path%.yaml}"[0m
+2026-04-13T17:02:42.5724244Z [36;1mfi[0m
+2026-04-13T17:02:42.5724406Z [36;1m[0m
+2026-04-13T17:02:42.5724693Z [36;1mjinja2 tests/e2e/nightly/multi_node/scripts/lws.yaml.jinja2 \[0m
+2026-04-13T17:02:42.5725069Z [36;1m  -D lws_name="$LWS_NAME" \[0m
+2026-04-13T17:02:42.5725335Z [36;1m  -D log_prefix="$LOG_PREFIX" \[0m
+2026-04-13T17:02:42.5725600Z [36;1m  -D size="$size" \[0m
+2026-04-13T17:02:42.5726032Z [36;1m  -D replicas="$replicas" \[0m
+2026-04-13T17:02:42.5726283Z [36;1m  -D image="$image" \[0m
+2026-04-13T17:02:42.5726569Z [36;1m  -D config_file_path="$config_file_path" \[0m
+2026-04-13T17:02:42.5726887Z [36;1m  -D npu_per_node="$npu_per_node" \[0m
+2026-04-13T17:02:42.5727241Z [36;1m  -D fail_tag="$fail_tag" \[0m
+2026-04-13T17:02:42.5727504Z [36;1m  -D is_pr_test="$is_pr_test" \[0m
+2026-04-13T17:02:42.5727775Z [36;1m  -D vllm_version="$vllm_version" \[0m
+2026-04-13T17:02:42.5728088Z [36;1m  -D vllm_ascend_ref="$vllm_ascend_ref" \[0m
+2026-04-13T17:02:42.5728442Z [36;1m  -D vllm_ascend_remote_url="$vllm_ascend_remote_url" \[0m
+2026-04-13T17:02:42.5728768Z [36;1m  -D pvc_name="$pvc_name" \[0m
+2026-04-13T17:02:42.5729067Z [36;1m  -D benchmark_job_name="$benchmark_job_name" \[0m
+2026-04-13T17:02:42.5729383Z [36;1m  -D runner="$runner" \[0m
+2026-04-13T17:02:42.5729620Z [36;1m  --outfile lws.yaml[0m
+2026-04-13T17:02:42.5729965Z [36;1m[0m
+2026-04-13T17:02:42.5730218Z [36;1mkubectl apply -f ./lws.yaml[0m
+2026-04-13T17:02:42.5730586Z shell: bash -el {0}
+2026-04-13T17:02:42.5730777Z env:
+2026-04-13T17:02:42.5731022Z   LWS_NAME: vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865
+2026-04-13T17:02:42.5731410Z   LEADER_POD: vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0
+2026-04-13T17:02:42.5731894Z   LOG_PREFIX: /root/.cache/ascend-logs/vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865
+2026-04-13T17:02:42.5732287Z ##[endgroup]
+2026-04-13T17:02:42.5847220Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T17:02:42.5848121Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T17:02:42.5848415Z ##[endgroup]
+2026-04-13T17:02:43.0132821Z (node:810) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T17:02:43.0134646Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T17:02:43.8834700Z leaderworkerset.leaderworkerset.x-k8s.io/vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865 created
+2026-04-13T17:02:43.9019138Z service/vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-leader created
+2026-04-13T17:02:44.3928119Z ##[group]Run set -euo pipefail
+2026-04-13T17:02:44.3928441Z [36;1mset -euo pipefail[0m
+2026-04-13T17:02:44.3928666Z [36;1mSIZE="4"[0m
+2026-04-13T17:02:44.3928862Z [36;1mTIMEOUT=1200[0m
+2026-04-13T17:02:44.3929059Z [36;1m[0m
+2026-04-13T17:02:44.3929400Z [36;1mecho "Waiting for all pods to become Running and Ready (timeout ${TIMEOUT}s)..."[0m
+2026-04-13T17:02:44.3929822Z [36;1mSTART_TIME=$(date +%s)[0m
+2026-04-13T17:02:44.3930259Z [36;1mwhile true; do[0m
+2026-04-13T17:02:44.3930519Z [36;1m  ELAPSED=$(( $(date +%s) - START_TIME ))[0m
+2026-04-13T17:02:44.3930827Z [36;1m  if [[ $ELAPSED -ge $TIMEOUT ]]; then[0m
+2026-04-13T17:02:44.3931203Z [36;1m    echo "Timeout reached after ${ELAPSED}s, dumping pod status:"[0m
+2026-04-13T17:02:44.3931593Z [36;1m    kubectl get pods -n "$NAMESPACE"[0m
+2026-04-13T17:02:44.3931931Z [36;1m    kubectl describe pod "$LEADER_POD" -n "$NAMESPACE"[0m
+2026-04-13T17:02:44.3932264Z [36;1m    exit 1[0m
+2026-04-13T17:02:44.3932484Z [36;1m  fi[0m
+2026-04-13T17:02:44.3932651Z [36;1m[0m
+2026-04-13T17:02:44.3932828Z [36;1m  ALL_READY=true[0m
+2026-04-13T17:02:44.3933058Z [36;1m  for ((i=1; i<SIZE; i++)); do[0m
+2026-04-13T17:02:44.3933313Z [36;1m    POD="${LWS_NAME}-0-${i}"[0m
+2026-04-13T17:02:44.3933817Z [36;1m    PHASE=$(kubectl get pod "$POD" -n "$NAMESPACE" -o jsonpath='{.status.phase}' 2>/dev/null || echo "NotFound")[0m
+2026-04-13T17:02:44.3934571Z [36;1m    READY=$(kubectl get pod "$POD" -n "$NAMESPACE" -o jsonpath='{.status.containerStatuses[*].ready}' 2>/dev/null)[0m
+2026-04-13T17:02:44.3935128Z [36;1m    echo "Worker [$POD] phase=$PHASE ready=$READY"[0m
+2026-04-13T17:02:44.3935512Z [36;1m    if [[ "$PHASE" != "Running" || "$READY" != "true" ]]; then[0m
+2026-04-13T17:02:44.3935843Z [36;1m      ALL_READY=false[0m
+2026-04-13T17:02:44.3936063Z [36;1m      break[0m
+2026-04-13T17:02:44.3936435Z [36;1m    fi[0m
+2026-04-13T17:02:44.3936621Z [36;1m  done[0m
+2026-04-13T17:02:44.3936791Z [36;1m[0m
+2026-04-13T17:02:44.3937356Z [36;1m  LEADER_PHASE=$(kubectl get pod "$LEADER_POD" -n "$NAMESPACE" -o jsonpath='{.status.phase}' 2>/dev/null || echo "NotFound")[0m
+2026-04-13T17:02:44.3938196Z [36;1m  LEADER_READY=$(kubectl get pod "$LEADER_POD" -n "$NAMESPACE" -o jsonpath='{.status.containerStatuses[*].ready}' 2>/dev/null)[0m
+2026-04-13T17:02:44.3938857Z [36;1m  echo "Leader [$LEADER_POD] phase=$LEADER_PHASE ready=$LEADER_READY"[0m
+2026-04-13T17:02:44.3939333Z [36;1m  if [[ "$LEADER_PHASE" != "Running" || "$LEADER_READY" != "true" ]]; then[0m
+2026-04-13T17:02:44.3939702Z [36;1m    ALL_READY=false[0m
+2026-04-13T17:02:44.3940055Z [36;1m  fi[0m
+2026-04-13T17:02:44.3940246Z [36;1m[0m
+2026-04-13T17:02:44.3940461Z [36;1m  if [[ "$ALL_READY" == "true" ]]; then[0m
+2026-04-13T17:02:44.3940772Z [36;1m    echo "All pods are Running and Ready."[0m
+2026-04-13T17:02:44.3941064Z [36;1m    break[0m
+2026-04-13T17:02:44.3941270Z [36;1m  fi[0m
+2026-04-13T17:02:44.3941451Z [36;1m  sleep 2[0m
+2026-04-13T17:02:44.3941657Z [36;1mdone[0m
+2026-04-13T17:02:44.3942116Z shell: bash -el {0}
+2026-04-13T17:02:44.3942322Z env:
+2026-04-13T17:02:44.3942575Z   LWS_NAME: vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865
+2026-04-13T17:02:44.3942960Z   LEADER_POD: vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0
+2026-04-13T17:02:44.3943441Z   LOG_PREFIX: /root/.cache/ascend-logs/vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865
+2026-04-13T17:02:44.3943906Z   FAIL_TAG: FAIL_TAG_DeepSeek-V3_2-W8A8-EP-aime2025.yaml
+2026-04-13T17:02:44.3944201Z ##[endgroup]
+2026-04-13T17:02:44.4045181Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T17:02:44.4046249Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T17:02:44.4046598Z ##[endgroup]
+2026-04-13T17:02:44.8360177Z (node:900) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T17:02:44.8361314Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T17:02:45.5381578Z Waiting for all pods to become Running and Ready (timeout 1200s)...
+2026-04-13T17:02:45.6550429Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:02:45.7743847Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:02:47.8937575Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:02:48.0120329Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:02:50.1308646Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:02:50.2508458Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:02:52.3767626Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:02:52.4895863Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:02:54.6109487Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:02:54.7340524Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:02:56.8554813Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:02:56.9774083Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:02:59.1010343Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:02:59.2250255Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:03:01.3536927Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:03:01.4832147Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:03:03.6152369Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:03:03.7416368Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:03:05.8751185Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:03:05.9993993Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:03:08.1235005Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:03:08.2389394Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:03:10.3659216Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:03:10.4869702Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:03:12.6067393Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:03:12.7354080Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:03:14.8525527Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:03:14.9772136Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:03:17.0968210Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:03:17.2117716Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:03:19.3250102Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:03:19.4388229Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:03:21.5714639Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:03:21.6882075Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:03:23.8123075Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:03:23.9300470Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:03:26.0544747Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:03:26.1769454Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:03:28.2918420Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:03:28.4228290Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:03:30.5485509Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:03:30.6670955Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:03:32.7883526Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:03:32.9094206Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:03:35.0310668Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:03:35.1482497Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:03:37.2731570Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:03:37.3916339Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:03:39.5138766Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:03:39.6375042Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:03:41.7689062Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:03:41.8987628Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:03:44.0249918Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:03:44.1469566Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:03:46.2686314Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:03:46.3861765Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:03:48.5189126Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:03:48.6403717Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:03:50.7704512Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:03:50.8876566Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:03:53.0163147Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:03:53.1368736Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:03:55.2661057Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:03:55.3915263Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:03:57.5152210Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:03:57.6255673Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:03:59.7541305Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:03:59.8752587Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:04:01.9994195Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:04:02.1275301Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:04:04.3053628Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:04:04.4142234Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:04:06.5319567Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:04:06.6490657Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:04:08.7772475Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:04:08.8943305Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:04:11.0316463Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:04:11.1538621Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:04:13.2767456Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:04:13.3903970Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:04:15.5149521Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:04:15.6400941Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:04:17.7619257Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:04:17.8786297Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:04:20.0014190Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:04:20.1160198Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:04:22.2509791Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:04:22.3708343Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:04:24.4925866Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:04:24.6074960Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:04:26.7310002Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:04:26.8401982Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:04:28.9612515Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:04:29.0745015Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:04:31.1949083Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:04:31.3131169Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:04:33.4271727Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:04:33.5442682Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:04:35.6596248Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:04:35.7794985Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:04:37.8936462Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:04:38.0130476Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:04:40.1245013Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:04:40.2354734Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:04:42.3512376Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:04:42.4804732Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:04:44.6126920Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:04:44.7320618Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:04:46.8581798Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:04:46.9728785Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:04:49.0921677Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:04:49.2027552Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:04:51.3189339Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:04:51.4434069Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:04:53.5678717Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:04:53.6772854Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:04:55.8028579Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:04:55.9131884Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:04:58.0321726Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:04:58.1431865Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:05:00.2631905Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:05:00.3725571Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:05:02.5051081Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:05:02.6305247Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:05:04.7701931Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:05:04.9081779Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:05:07.0283312Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:05:07.1475514Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:05:09.2664280Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:05:09.3853350Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:05:11.5102364Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:05:11.6347798Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:05:13.7602972Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:05:13.8755194Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:05:15.9867696Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:05:16.1017812Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:05:18.2165628Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:05:18.3251526Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:05:20.4409277Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:05:20.5586320Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:05:22.6791287Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:05:22.7954482Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:05:24.9296108Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:05:25.0559761Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:05:27.1796213Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:05:27.2959467Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:05:29.4206832Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:05:29.5401442Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:05:31.6911156Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:05:31.8252634Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:05:33.9588258Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:05:34.0824120Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:05:36.2279231Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:05:36.4127130Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:05:38.5310744Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:05:38.6613358Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:05:40.7969273Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:05:40.9297892Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:05:43.0697060Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:05:43.1942354Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:05:45.3373642Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:05:45.4640174Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:05:47.5885141Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:05:47.7089475Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:05:49.8407523Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:05:49.9755234Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:05:52.1028801Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:05:52.2150317Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:05:54.3520344Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:05:54.4653462Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:05:56.5944648Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:05:56.7137136Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:05:58.8384629Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:05:58.9515373Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:06:01.0784935Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:06:01.2000258Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:06:03.3353646Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:06:03.4535326Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:06:05.5714547Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:06:05.6921773Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:06:07.8114294Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:06:07.9323692Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:06:10.0495004Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:06:10.1786430Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:06:12.3156239Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:06:12.4455889Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:06:14.5704015Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:06:14.6851160Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:06:16.8089212Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:06:16.9247326Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:06:19.0437714Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:06:19.1633067Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:06:21.2859227Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:06:21.3988948Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:06:23.5223058Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:06:23.6430048Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:06:25.7641781Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:06:25.8951695Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:06:28.0119231Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:06:28.1318587Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:06:30.2754958Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:06:30.4237831Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:06:32.5509711Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:06:32.6777469Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:06:34.7935063Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:06:34.9206361Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:06:37.0478585Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:06:37.1675492Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:06:39.2881165Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:06:39.4019592Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:06:41.5162789Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:06:41.6578059Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:06:43.7811848Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:06:43.9166816Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:06:46.0322344Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:06:46.1479402Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:06:48.2690472Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:06:48.4009530Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:06:50.5212277Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:06:50.6361465Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:06:52.7524165Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:06:52.8712220Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:06:55.0033837Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:06:55.1271561Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:06:57.2591533Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:06:57.3878962Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:06:59.5213643Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:06:59.6422960Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:07:01.7735622Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:07:01.8993815Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:07:04.0227480Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:07:04.1520188Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:07:06.2772189Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:07:06.4136334Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:07:08.5257162Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:07:08.6525558Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:07:10.7832436Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:07:10.8985909Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:07:13.0206777Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:07:13.1664858Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:07:15.2860411Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:07:15.4074936Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:07:17.5262885Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:07:17.6512049Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:07:19.7696833Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:07:19.8873506Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:07:22.0124062Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:07:22.1390545Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:07:24.2714972Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:07:24.3840976Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:07:26.5517481Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:07:26.6886935Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:07:28.8124154Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:07:28.9277454Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:07:31.0558418Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:07:31.1753555Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:07:33.3003091Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:07:33.4270826Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:07:35.5428900Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:07:35.6587655Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:07:37.7891676Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:07:37.9080869Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:07:40.0311383Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:07:40.1457587Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:07:42.2703954Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:07:42.3847845Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:07:44.5084686Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:07:44.6305818Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:07:46.7537335Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:07:46.8807282Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:07:49.0020310Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:07:49.1206066Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:07:51.2375824Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:07:51.3596820Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:07:53.4839485Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:07:53.6094377Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:07:55.7349772Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:07:55.8543817Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:07:57.9819299Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:07:58.0995939Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:08:00.2236241Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:08:00.3453632Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:08:02.4738845Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:08:02.5986300Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:08:04.7305665Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:08:04.8537756Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:08:06.9909463Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:08:07.1275601Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:08:09.2500091Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:08:09.3631618Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:08:11.4992809Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:08:11.6625883Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:08:13.7828821Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:08:13.9001929Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:08:16.0367121Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:08:16.1521112Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:08:18.2867035Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:08:18.4091781Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:08:20.5335518Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:08:20.6518211Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:08:22.7756116Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:08:22.8951695Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:08:25.0220388Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:08:25.1379996Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:08:27.2761702Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:08:27.3856838Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:08:29.5120113Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:08:29.6397546Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:08:31.7706276Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:08:31.8797657Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:08:34.0033173Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:08:34.1229435Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:08:36.2485036Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:08:36.3766785Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:08:38.5005297Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:08:38.6202047Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:08:40.7406052Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:08:40.8634225Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:08:42.9968077Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:08:43.1143193Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:08:45.2456363Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:08:45.3722350Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:08:47.4988683Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:08:47.6183579Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:08:49.7427628Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:08:49.8629903Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:08:51.9912314Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:08:52.1203199Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:08:54.2487279Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:08:54.3709687Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:08:56.5146115Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:08:56.6634605Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:08:58.7774282Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:08:58.8921540Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:09:01.0104890Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:09:01.1428793Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:09:03.2679489Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:09:03.4023183Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:09:05.5273185Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:09:05.6488465Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:09:07.7672121Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:09:07.8915287Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:09:10.0139511Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:09:10.1398702Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:09:12.2570798Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:09:12.3808618Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:09:14.5078336Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:09:14.6247186Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:09:16.7493615Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:09:16.8706645Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:09:19.0022692Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:09:19.1227634Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:09:21.2502122Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:09:21.3744264Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:09:23.4925369Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:09:23.6112313Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:09:25.7276168Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:09:25.8474143Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:09:27.9653509Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:09:28.0914188Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:09:30.2165265Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:09:30.3457497Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:09:32.4823843Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:09:32.5977710Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:09:34.7209944Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:09:34.8410543Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:09:36.9804127Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:09:37.0980090Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:09:39.2140873Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:09:39.3261212Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:09:41.4426480Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:09:41.5711515Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:09:43.7189721Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:09:43.8315596Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:09:45.9539027Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:09:46.0753890Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:09:48.1983896Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:09:48.3151367Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:09:50.4346211Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:09:50.5591454Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:09:52.6797340Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:09:52.7969897Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:09:54.9279405Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:09:55.0484238Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:09:57.1727679Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:09:57.2837109Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:09:59.4028553Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:09:59.5156942Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:10:01.6329820Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:10:01.7452032Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:10:03.8751729Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:10:03.9915804Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:10:06.1253579Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:10:06.2419183Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:10:08.3677405Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:10:08.4802619Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:10:10.6135808Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:10:10.7476060Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:10:12.8762103Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:10:12.9927182Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:10:15.1035807Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:10:15.2284369Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:10:17.3477259Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:10:17.4619105Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:10:19.5760089Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:10:19.6902784Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:10:21.8033254Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:10:21.9222884Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:10:24.0370480Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:10:24.1546453Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:10:26.2706218Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:10:26.3927803Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:10:28.5044595Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:10:28.6220619Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:10:30.7523610Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:10:30.8697367Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:10:32.9841959Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:10:33.1081234Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:10:35.2465704Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:10:35.3604173Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:10:37.4772733Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:10:37.5931007Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:10:39.7060412Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:10:39.8177532Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:10:41.9322422Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:10:42.0469150Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:10:44.1708763Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:10:44.2917507Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:10:46.4038936Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:10:46.5155364Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:10:48.6300287Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:10:48.7455858Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:10:50.8540472Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:10:50.9793110Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:10:53.0943930Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:10:53.2059148Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:10:55.3273163Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:10:55.4482994Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:10:57.5699665Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:10:57.6912552Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:10:59.8203357Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:10:59.9535240Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:11:02.0892862Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:11:02.2061964Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:11:04.3323786Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:11:04.4555773Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:11:06.5768130Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:11:06.6984338Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:11:08.8244515Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:11:08.9454004Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:11:11.0683173Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:11:11.1850292Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:11:13.3060491Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:11:13.4290792Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:11:15.5595996Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:11:15.6825192Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:11:17.8156150Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:11:17.9277959Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:11:20.0579191Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:11:20.1777149Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:11:22.3053720Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:11:22.4347297Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:11:24.5541290Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:11:24.6751392Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:11:26.7896873Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:11:26.9055752Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:11:29.0398527Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:11:29.1538783Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:11:31.2736404Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:11:31.3938335Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:11:33.5112560Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:11:33.6296252Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:11:35.7596759Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:11:35.8764063Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:11:38.0009334Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:11:38.1240356Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:11:40.2655998Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:11:40.3855708Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:11:42.5126081Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:11:42.6365291Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:11:44.7559483Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:11:44.8840213Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:11:47.0110626Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:11:47.1298431Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=
+2026-04-13T17:11:49.2509277Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:11:49.3723210Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=false
+2026-04-13T17:11:51.4916740Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:11:51.6177204Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=false
+2026-04-13T17:11:53.7432570Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:11:53.8581157Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=false
+2026-04-13T17:11:55.9809710Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:11:56.0953588Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=false
+2026-04-13T17:11:58.2175713Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:11:58.3399443Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=false
+2026-04-13T17:12:00.4865366Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:12:00.7194184Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=false
+2026-04-13T17:12:02.8415225Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:12:02.9703042Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=false
+2026-04-13T17:12:05.0874402Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:12:05.2078563Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=false
+2026-04-13T17:12:07.3290127Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:12:07.4525569Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=false
+2026-04-13T17:12:09.5749537Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:12:09.6913360Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=false
+2026-04-13T17:12:11.9243130Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:12:12.0424044Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=false
+2026-04-13T17:12:14.1673820Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:12:14.3061504Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=false
+2026-04-13T17:12:16.4260986Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:12:16.5463677Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=false
+2026-04-13T17:12:18.6644975Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:12:18.7806608Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=false
+2026-04-13T17:12:20.8900046Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:12:21.0048086Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=false
+2026-04-13T17:12:23.1346990Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:12:23.2492216Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=false
+2026-04-13T17:12:25.3745576Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:12:25.4887308Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=false
+2026-04-13T17:12:27.6090498Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:12:27.7295205Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=false
+2026-04-13T17:12:29.8507119Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:12:29.9782002Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=false
+2026-04-13T17:12:32.1195435Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:12:32.2438630Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=false
+2026-04-13T17:12:34.3733825Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:12:34.4941935Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=false
+2026-04-13T17:12:36.6292355Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:12:36.7545848Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=false
+2026-04-13T17:12:38.8798273Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:12:38.9964461Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Pending ready=false
+2026-04-13T17:12:41.1311567Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:12:41.2448459Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:12:43.3615000Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:12:43.4787230Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:12:45.5967519Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:12:45.7102341Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:12:47.8482281Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:12:47.9662004Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:12:50.0944335Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:12:50.2163007Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:12:52.3491346Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:12:52.4756145Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:12:54.5989529Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:12:54.7229416Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:12:56.8404583Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:12:56.9799494Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:12:59.1101909Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:12:59.2381370Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:13:01.3669134Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:13:01.4887194Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:13:03.6113170Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:13:03.7464489Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:13:05.8672848Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:13:05.9871695Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:13:08.1120364Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:13:08.2286663Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:13:10.3538954Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:13:10.4732076Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:13:12.5994976Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:13:12.7159790Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:13:14.8487867Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:13:14.9795859Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:13:17.1020817Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:13:17.2199652Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:13:19.3464251Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:13:19.4696489Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:13:21.5993216Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:13:21.7180792Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:13:23.8379038Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:13:23.9584829Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:13:26.0897653Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:13:26.2375483Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:13:28.3897837Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:13:28.5103423Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:13:30.6357469Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:13:30.7711944Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:13:32.8904358Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:13:33.0261877Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:13:35.1455382Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:13:35.2692366Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:13:37.3913343Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:13:37.5044624Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:13:39.6214391Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:13:39.7416618Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:13:41.8831241Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:13:42.0053149Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:13:44.1360480Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:13:44.2580828Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:13:46.3840421Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:13:46.4988159Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:13:48.6251990Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:13:48.7397549Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:13:50.8556703Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:13:50.9711157Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:13:53.0952248Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:13:53.2064720Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:13:55.3297519Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:13:55.4598221Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:13:57.5826231Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:13:57.7040944Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:13:59.8220797Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:13:59.9360885Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:14:02.0540675Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:14:02.1844083Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:14:04.2990144Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:14:04.4165925Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:14:06.5276685Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:14:06.6424901Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:14:08.7723302Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:14:08.8917350Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:14:11.0131958Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:14:11.1293186Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:14:13.2530981Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:14:13.3636474Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:14:15.4887409Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:14:15.6096816Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:14:17.7353673Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:14:17.8490748Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:14:19.9771833Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:14:20.0983223Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:14:22.2319063Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:14:22.3479564Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:14:24.4674214Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:14:24.5930288Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:14:26.7178710Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:14:26.8395837Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:14:28.9662527Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:14:29.0874523Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:14:31.2122753Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:14:31.3419680Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:14:33.4620400Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:14:33.5819092Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:14:35.7017275Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:14:35.8273185Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:14:37.9493087Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:14:38.0711531Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:14:40.1968354Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:14:40.3147827Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:14:42.4372795Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:14:42.5597350Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:14:44.6813397Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:14:44.8047189Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:14:46.9257732Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:14:47.0395446Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:14:49.1512796Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:14:49.2745122Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:14:51.3835602Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:14:51.5040977Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:14:53.6182923Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:14:53.7394059Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:14:55.8520663Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:14:55.9671437Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:14:58.0864584Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:14:58.2001764Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:15:00.3242666Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:15:00.4365709Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:15:02.5744757Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:15:02.6958449Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:15:04.8113875Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:15:04.9430668Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:15:07.0656971Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:15:07.1768038Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:15:09.2949119Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:15:09.4167079Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:15:11.5376055Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:15:11.6692355Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:15:13.7936268Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:15:13.9306681Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:15:16.0529943Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:15:16.1794894Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:15:18.2948025Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:15:18.4118914Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:15:20.5333345Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:15:20.6608880Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:15:22.7845986Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:15:22.9202304Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:15:25.0408718Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:15:25.1578224Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:15:27.2905295Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:15:27.4087308Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:15:29.5377089Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:15:29.6592561Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:15:31.7827556Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:15:31.9031740Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:15:34.0315147Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:15:34.1608709Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:15:36.2861843Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:15:36.4130186Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:15:38.5471194Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:15:38.6677070Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:15:40.7932926Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:15:40.9222090Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:15:43.0419457Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:15:43.1609597Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:15:45.2847573Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:15:45.4011908Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:15:47.5213667Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:15:47.6413771Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:15:49.7628930Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:15:49.8854783Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:15:51.9998799Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:15:52.1183449Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:15:54.2360564Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:15:54.3543320Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:15:56.4767009Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:15:56.5874901Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:15:58.7043337Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:15:58.8319050Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:16:01.0120447Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:16:01.1829076Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:16:03.3062465Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:16:03.4255458Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:16:05.5569276Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:16:05.6771716Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:16:07.8011368Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:16:07.9374488Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:16:10.0885220Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:16:10.2359682Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:16:12.3706217Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:16:12.4970848Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:16:14.6387937Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:16:14.7699369Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:16:16.9065289Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:16:17.0258605Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:16:19.1539092Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:16:19.2746016Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:16:21.3982855Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:16:21.5324344Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:16:23.6585179Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:16:23.7949286Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:16:25.9138185Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:16:26.0498153Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:16:28.1700150Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:16:28.2940867Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:16:30.4474036Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:16:30.5709764Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:16:32.6929509Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:16:32.8141240Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:16:34.9356952Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:16:35.0601487Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:16:37.1798752Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:16:37.3080144Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:16:39.4366914Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:16:39.5543790Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:16:41.6880546Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:16:41.8088679Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:16:43.9382871Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:16:44.0711550Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:16:46.1908840Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:16:46.3082463Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:16:48.4225757Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:16:48.5386701Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:16:50.6515452Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:16:50.7668685Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:16:52.8841699Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:16:53.0075236Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:16:55.1300701Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:16:55.2486184Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:16:57.3647144Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:16:57.4743137Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:16:59.5888395Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:16:59.7050294Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:17:01.8366068Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:17:01.9552811Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:17:04.0865138Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:17:04.2155358Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:17:06.3323311Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:17:06.4668333Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:17:08.5905065Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:17:08.7029334Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:17:10.8227807Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:17:10.9488574Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:17:13.0718697Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:17:13.1915565Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:17:15.3525023Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:17:15.4809156Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:17:17.6014145Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:17:17.7158111Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:17:19.8393431Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:17:19.9501852Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:17:22.0722169Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:17:22.1928492Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:17:24.3236759Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:17:24.4382063Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:17:26.5715165Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:17:26.6874164Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:17:28.8128011Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:17:28.9371584Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:17:31.0603015Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:17:31.1839526Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:17:33.2989685Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:17:33.4130616Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:17:35.5392048Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:17:35.6581141Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:17:37.7787577Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:17:37.8964366Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:17:40.0184075Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:17:40.1339791Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:17:42.2492922Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:17:42.3698015Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:17:44.4982130Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:17:44.6149900Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:17:46.7309607Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:17:46.8572134Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:17:48.9756175Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:17:49.0938265Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:17:51.2136221Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:17:51.3377184Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:17:53.4682789Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:17:53.5838731Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:17:55.6997157Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:17:55.8264107Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:17:57.9516919Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:17:58.0891324Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:18:00.2186256Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:18:00.3443309Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:18:02.4591828Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:18:02.5782598Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:18:04.7020700Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:18:04.8269974Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:18:06.9841076Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:18:07.1422457Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:18:09.2749018Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:18:09.3948901Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:18:11.5240809Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:18:11.6478906Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:18:13.7777649Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:18:13.9075529Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:18:16.0315222Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:18:16.1471872Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:18:18.2719020Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:18:18.3917896Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:18:20.5218495Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:18:20.6478196Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:18:22.7747206Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:18:22.8894737Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:18:25.0150872Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:18:25.1420410Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:18:27.2663537Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:18:27.3775043Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:18:29.5008008Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:18:29.6191212Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:18:31.7405132Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:18:31.8605883Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:18:33.9820707Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:18:34.1038308Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:18:36.2337324Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:18:36.3672105Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:18:38.4878052Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:18:38.6026669Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:18:40.7232970Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:18:40.8412529Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:18:42.9726372Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:18:43.0970472Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:18:45.2336149Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:18:45.3687051Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:18:47.4962200Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:18:47.6243001Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:18:49.7642639Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:18:49.8957838Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:18:52.0274181Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:18:52.1558198Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:18:54.2837095Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:18:54.4087205Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:18:56.5372832Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:18:56.6556871Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:18:58.7823736Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:18:58.8966359Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:19:01.0241476Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:19:01.1431690Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:19:03.2809069Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:19:03.4132137Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:19:05.5431903Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:19:05.6653927Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:19:07.7907868Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:19:07.9197323Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:19:10.0524869Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:19:10.1756119Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:19:12.3020791Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:19:12.4190702Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:19:14.5381250Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:19:14.6482415Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:19:16.7667025Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:19:16.8766449Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:19:18.9942152Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:19:19.1093607Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:19:21.2264945Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:19:21.3417526Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:19:23.4647703Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:19:23.5869199Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:19:25.7028601Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:19:25.8199985Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:19:27.9416483Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:19:28.0762277Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:19:30.2046215Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:19:30.3206667Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:19:32.4381427Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:19:32.5518084Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:19:34.6746647Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:19:34.7881622Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:19:36.9075339Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:19:37.0269309Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:19:39.1419108Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:19:39.2650057Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:19:41.3796313Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:19:41.4929205Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:19:43.6089436Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:19:43.7283735Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:19:45.8589621Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:19:45.9826454Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:19:48.1113361Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:19:48.2415166Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:19:50.3783133Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:19:50.5071084Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:19:52.6422139Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:19:52.7692140Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:19:54.9027071Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:19:55.0301536Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:19:57.1733530Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:19:57.2986858Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:19:59.4377906Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:19:59.5684434Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:20:01.7054704Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:20:01.8450260Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:20:03.9777682Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:20:04.1261393Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:20:06.2558270Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:20:06.3898766Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:20:08.5194581Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:20:08.6443725Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:20:10.7663488Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:20:10.8867947Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:20:13.0262603Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:20:13.1516973Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:20:15.2779699Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:20:15.4055025Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:20:17.5262102Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:20:17.6406165Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:20:19.7564494Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:20:19.8756847Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:20:21.9955031Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:20:22.1210317Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:20:24.2537526Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:20:24.3832671Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:20:26.5061471Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:20:26.6289821Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:20:28.7451731Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:20:28.8739567Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:20:30.9976574Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:20:31.1180439Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:20:33.2411241Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:20:33.3606994Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:20:35.4780866Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:20:35.6006818Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:20:37.7232130Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:20:37.8451351Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:20:39.9659439Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:20:40.1910380Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:20:42.3146786Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:20:42.4386432Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:20:44.5671921Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:20:44.6800689Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:20:46.7996978Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:20:46.9160809Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:20:49.0387786Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:20:49.1581732Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:20:51.2803725Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:20:51.3903081Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:20:53.5060971Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:20:53.6256580Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:20:55.7646290Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:20:55.8894969Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:20:58.0140787Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:20:58.1348150Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:21:00.2663019Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:21:00.3952165Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:21:02.5088179Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:21:02.6262535Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:21:04.7432117Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:21:04.8656835Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:21:07.0016944Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:21:07.1305096Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:21:09.2468583Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:21:09.3648180Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:21:11.4932771Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:21:11.6147571Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:21:13.7316558Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:21:13.8515000Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:21:15.9736830Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:21:16.0930337Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:21:18.2114393Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:21:18.3301669Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:21:20.4436266Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:21:20.5605760Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:21:22.6798171Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:21:22.7984511Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:21:24.9168629Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:21:25.0376798Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:21:27.1521390Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:21:27.2710754Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:21:29.3871093Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:21:29.5117049Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:21:31.6276752Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:21:31.7432859Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:21:33.8618398Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:21:33.9844490Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:21:36.1062610Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:21:36.2260063Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:21:38.3357008Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:21:38.4485933Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:21:40.5695663Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:21:40.6806042Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:21:42.7923095Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:21:42.9042078Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:21:45.0191145Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:21:45.1350700Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:21:47.2517523Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:21:47.3687515Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:21:49.4804056Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:21:49.5953126Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:21:51.7119429Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:21:51.8315928Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:21:53.9451832Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:21:54.0674185Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:21:56.1834103Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:21:56.2976174Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:21:58.4054935Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:21:58.5195680Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:22:00.6370207Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:22:00.7477259Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:22:02.8635163Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:22:02.9876104Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:22:05.1050249Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:22:05.2235318Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=false
+2026-04-13T17:22:07.3386930Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:22:07.4545805Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:22:09.5709344Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:22:09.6907414Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:22:11.8109364Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:22:11.9458678Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:22:14.0686347Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:22:14.1995155Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:22:16.3119046Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:22:16.4257383Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:22:18.5453245Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:22:18.6632321Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:22:20.7802480Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:22:20.9084583Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:22:23.0253146Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:22:23.1413151Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:22:25.2629286Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:22:25.3796220Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:22:27.5276798Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:22:27.7225116Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:22:29.8760156Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:22:30.0019601Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:22:32.1290442Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:22:32.2484289Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:22:34.3953516Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:22:34.5253751Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:22:36.6519221Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:22:36.7794869Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:22:38.9130588Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:22:39.0385433Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:22:41.1586563Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:22:41.2890423Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:22:43.4208168Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1] phase=Pending ready=
+2026-04-13T17:22:43.5609771Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0] phase=Running ready=true
+2026-04-13T17:22:45.5640952Z Timeout reached after 1200s, dumping pod status:
+2026-04-13T17:22:45.6397807Z NAME                                             READY   STATUS    RESTARTS        AGE
+2026-04-13T17:22:45.6398402Z linux-aarch64-a3-0-ggwx6-runner-7nmk8            1/1     Running   0               21m
+2026-04-13T17:22:45.6399069Z linux-aarch64-a3-0-ggwx6-runner-7nmk8-workflow   1/1     Running   0               20m
+2026-04-13T17:22:45.6399653Z linux-aarch64-a3-0-ggwx6-runner-qqwqg            1/1     Running   0               21m
+2026-04-13T17:22:45.6400377Z linux-aarch64-a3-0-ggwx6-runner-qqwqg-workflow   1/1     Running   0               20m
+2026-04-13T17:22:45.6400959Z linux-aarch64-a3-2-nqp5k-runner-f8q5z            1/1     Running   0               35m
+2026-04-13T17:22:45.6401605Z linux-aarch64-a3-2-nqp5k-runner-f8q5z-workflow   1/1     Running   0               34m
+2026-04-13T17:22:45.6402175Z linux-aarch64-a3-2-nqp5k-runner-vm4l2            1/1     Running   0               35m
+2026-04-13T17:22:45.6403053Z linux-aarch64-a3-2-nqp5k-runner-vm4l2-workflow   1/1     Running   0               34m
+2026-04-13T17:22:45.6403632Z linux-aarch64-a3-4-92cdc-runner-8lz7c            1/1     Running   0               35m
+2026-04-13T17:22:45.6404197Z linux-aarch64-a3-4-92cdc-runner-8lz7c-workflow   1/1     Running   0               34m
+2026-04-13T17:22:45.6404783Z linux-aarch64-a3-4-92cdc-runner-cknmv            1/1     Running   0               153m
+2026-04-13T17:22:45.6405372Z linux-aarch64-a3-4-92cdc-runner-cknmv-workflow   1/1     Running   0               152m
+2026-04-13T17:22:45.6405944Z linux-aarch64-a3-4-92cdc-runner-sxxz6            1/1     Running   0               35m
+2026-04-13T17:22:45.6406516Z linux-aarch64-a3-4-92cdc-runner-sxxz6-workflow   1/1     Running   0               34m
+2026-04-13T17:22:45.6407090Z linux-aarch64-a3-4-92cdc-runner-vprtk            1/1     Running   0               130m
+2026-04-13T17:22:45.6407670Z linux-aarch64-a3-4-92cdc-runner-vprtk-workflow   1/1     Running   0               129m
+2026-04-13T17:22:45.6408251Z linux-aarch64-a3-4-92cdc-runner-zlbqj            1/1     Running   0               153m
+2026-04-13T17:22:45.6408856Z linux-aarch64-a3-4-92cdc-runner-zlbqj-workflow   1/1     Running   0               152m
+2026-04-13T17:22:45.6409375Z test-server-0                                    1/1     Running   0               5h4m
+2026-04-13T17:22:45.6409797Z test-server-0-1                                  1/1     Running   0               5h3m
+2026-04-13T17:22:45.6410451Z vllm-deepseek-v3-2-w8a8-ep-93e2d0-0              1/1     Running   0               20m
+2026-04-13T17:22:45.6411011Z vllm-deepseek-v3-2-w8a8-ep-93e2d0-0-1            1/1     Running   0               20m
+2026-04-13T17:22:45.6411609Z vllm-deepseek-v3-2-w8a8-ep-93e2d0-0-2            1/1     Running   0               20m
+2026-04-13T17:22:45.6412148Z vllm-deepseek-v3-2-w8a8-ep-93e2d0-0-3            1/1     Running   0               20m
+2026-04-13T17:22:45.6412707Z vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0     1/1     Running   6 (3m35s ago)   20m
+2026-04-13T17:22:45.6413429Z vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1   0/1     Pending   0               20m
+2026-04-13T17:22:45.6414019Z vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-2   0/1     Pending   0               20m
+2026-04-13T17:22:45.6414604Z vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-3   0/1     Pending   0               20m
+2026-04-13T17:22:45.7497969Z Name:             vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0
+2026-04-13T17:22:45.7498366Z Namespace:        vllm-project
+2026-04-13T17:22:45.7498615Z Priority:         0
+2026-04-13T17:22:45.7498821Z Service Account:  default
+2026-04-13T17:22:45.7499066Z Node:             172.22.5.45/172.22.5.45
+2026-04-13T17:22:45.7499376Z Start Time:       Mon, 13 Apr 2026 17:11:49 +0000
+2026-04-13T17:22:45.7499694Z Labels:           apps.kubernetes.io/pod-index=0
+2026-04-13T17:22:45.7500355Z                   controller-revision-hash=vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-7b64d79b75
+2026-04-13T17:22:45.7500893Z                   leaderworkerset.sigs.k8s.io/group-index=0
+2026-04-13T17:22:45.7501373Z                   leaderworkerset.sigs.k8s.io/group-key=e360dab3b4d1b6befd7ec8ebd8d567c339ceaf52
+2026-04-13T17:22:45.7502043Z                   leaderworkerset.sigs.k8s.io/name=vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865
+2026-04-13T17:22:45.7502588Z                   leaderworkerset.sigs.k8s.io/template-revision-hash=7bcbdf9775
+2026-04-13T17:22:45.7503009Z                   leaderworkerset.sigs.k8s.io/worker-index=0
+2026-04-13T17:22:45.7503312Z                   role=leader
+2026-04-13T17:22:45.7503720Z                   statefulset.kubernetes.io/pod-name=vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0
+2026-04-13T17:22:45.7504269Z Annotations:      cce.kubectl.kubernetes.io/ascend-1980-configuration:
+2026-04-13T17:22:45.7505051Z                     {"pod_name":"vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0","server_id":"172.22.5.45","devices":[{"device_id":"0","device_ip":"40.130.133.6...
+2026-04-13T17:22:45.7505681Z                   huawei.com/AscendReal:
+2026-04-13T17:22:45.7506679Z                     Ascend910-0,Ascend910-10,Ascend910-12,Ascend910-2,Ascend910-8,Ascend910-3,Ascend910-5,Ascend910-1,Ascend910-11,Ascend910-7,Ascend910-9,Asc...
+2026-04-13T17:22:45.7507415Z                   huawei.com/kltDev:
+2026-04-13T17:22:45.7508124Z                     Ascend910-0,Ascend910-10,Ascend910-12,Ascend910-2,Ascend910-8,Ascend910-3,Ascend910-5,Ascend910-1,Ascend910-11,Ascend910-7,Ascend910-9,Asc...
+2026-04-13T17:22:45.7508879Z                   leaderworkerset.sigs.k8s.io/size: 4
+2026-04-13T17:22:45.7509210Z                   localdns.cce.io/servers: ["169.254.20.10"]
+2026-04-13T17:22:45.7509559Z                   node-local-dns-webhook.k8s.io/status: injected
+2026-04-13T17:22:45.7509973Z Status:           Running
+2026-04-13T17:22:45.7510224Z IP:               10.0.0.164
+2026-04-13T17:22:45.7510433Z IPs:
+2026-04-13T17:22:45.7510598Z   IP:           10.0.0.164
+2026-04-13T17:22:45.7510943Z Controlled By:  StatefulSet/vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865
+2026-04-13T17:22:45.7511323Z Containers:
+2026-04-13T17:22:45.7511591Z   vllm-leader:
+2026-04-13T17:22:45.7512034Z     Container ID:  docker://bf04dde7f3a9172af6a7da87d9067997dd455c2921cad35b9c720ac2fcb45ae8
+2026-04-13T17:22:45.7512770Z     Image:         swr.cn-southwest-2.myhuaweicloud.com/base_image/ascend-ci/vllm-ascend:nightly-ci-releases-v0.18.0-a3
+2026-04-13T17:22:45.7513823Z     Image ID:      docker-pullable://swr.cn-southwest-2.myhuaweicloud.com/base_image/ascend-ci/vllm-ascend@sha256:e126a08c970026569c279e60404e4e5bd516f232b4457d6205089718ab45d5d7
+2026-04-13T17:22:45.7514585Z     Port:          8080/TCP
+2026-04-13T17:22:45.7514854Z     Host Port:     0/TCP
+2026-04-13T17:22:45.7515186Z     Command:
+2026-04-13T17:22:45.7515365Z       sh
+2026-04-13T17:22:45.7515541Z       -c
+2026-04-13T17:22:45.7515734Z       bash /root/.cache/tests/run.sh
+2026-04-13T17:22:45.7515981Z       
+2026-04-13T17:22:45.7516151Z     State:          Running
+2026-04-13T17:22:45.7516534Z       Started:      Mon, 13 Apr 2026 17:22:04 +0000
+2026-04-13T17:22:45.7516822Z     Last State:     Terminated
+2026-04-13T17:22:45.7517054Z       Reason:       Error
+2026-04-13T17:22:45.7517278Z       Exit Code:    1
+2026-04-13T17:22:45.7517520Z       Started:      Mon, 13 Apr 2026 17:18:35 +0000
+2026-04-13T17:22:45.7517817Z       Finished:     Mon, 13 Apr 2026 17:19:10 +0000
+2026-04-13T17:22:45.7518095Z     Ready:          True
+2026-04-13T17:22:45.7518305Z     Restart Count:  6
+2026-04-13T17:22:45.7518501Z     Limits:
+2026-04-13T17:22:45.7518696Z       ephemeral-storage:       100Gi
+2026-04-13T17:22:45.7518956Z       huawei.com/ascend-1980:  16
+2026-04-13T17:22:45.7519210Z       memory:                  512Gi
+2026-04-13T17:22:45.7519447Z     Requests:
+2026-04-13T17:22:45.7519626Z       cpu:                     125
+2026-04-13T17:22:45.7519992Z       ephemeral-storage:       100Gi
+2026-04-13T17:22:45.7520290Z       huawei.com/ascend-1980:  16
+2026-04-13T17:22:45.7520540Z       memory:                  512Gi
+2026-04-13T17:22:45.7520782Z     Environment:
+2026-04-13T17:22:45.7521354Z       LWS_LEADER_ADDRESS:      vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0.vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865.vllm-project
+2026-04-13T17:22:45.7522086Z       LWS_GROUP_SIZE:          4
+2026-04-13T17:22:45.7522328Z       LWS_WORKER_INDEX:        0
+2026-04-13T17:22:45.7522635Z       CONFIG_YAML_PATH:        DeepSeek-V3_2-W8A8-EP-aime2025.yaml
+2026-04-13T17:22:45.7523131Z       LOG_PREFIX:              /root/.cache/ascend-logs/vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865
+2026-04-13T17:22:45.7523583Z       WORKSPACE:               /vllm-workspace
+2026-04-13T17:22:45.7523927Z       FAIL_TAG:                FAIL_TAG_DeepSeek-V3_2-W8A8-EP-aime2025.yaml
+2026-04-13T17:22:45.7524269Z       IS_PR_TEST:              false
+2026-04-13T17:22:45.7524512Z       VLLM_VERSION:            v0.18.0
+2026-04-13T17:22:45.7524851Z       VLLM_ASCEND_REF:         f4d6c44acbb76c8ca079d7c360caef7a478fb48f
+2026-04-13T17:22:45.7525309Z       VLLM_ASCEND_REMOTE_URL:  https://github.com/vllm-project/vllm-ascend.git
+2026-04-13T17:22:45.7525912Z       BENCHMARK_JOB_NAME:      multi-node-deepseek-v3.2-W8A8-EP-aime2025
+2026-04-13T17:22:45.7526285Z       VLLM_CI_RUNNER:          a3
+2026-04-13T17:22:45.7526619Z       VLLM_ASCEND_VERSION:     f4d6c44acbb76c8ca079d7c360caef7a478fb48f
+2026-04-13T17:22:45.7526943Z     Mounts:
+2026-04-13T17:22:45.7527134Z       /dev/shm from dshm (rw)
+2026-04-13T17:22:45.7527389Z       /root/.cache from shared-volume (rw)
+2026-04-13T17:22:45.7527711Z       /usr/local/Ascend/driver/tools from driver-tools (rw)
+2026-04-13T17:22:45.7528173Z       /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-7dq6m (ro)
+2026-04-13T17:22:45.7528565Z Conditions:
+2026-04-13T17:22:45.7528749Z   Type                        Status
+2026-04-13T17:22:45.7529014Z   PodReadyToStartContainers   True 
+2026-04-13T17:22:45.7529269Z   Initialized                 True 
+2026-04-13T17:22:45.7529511Z   Ready                       True 
+2026-04-13T17:22:45.7529755Z   ContainersReady             True 
+2026-04-13T17:22:45.7530155Z   PodScheduled                True 
+2026-04-13T17:22:45.7530393Z Volumes:
+2026-04-13T17:22:45.7530554Z   dshm:
+2026-04-13T17:22:45.7530841Z     Type:       EmptyDir (a temporary directory that shares a pod's lifetime)
+2026-04-13T17:22:45.7531204Z     Medium:     Memory
+2026-04-13T17:22:45.7531406Z     SizeLimit:  15Gi
+2026-04-13T17:22:45.7531677Z   shared-volume:
+2026-04-13T17:22:45.7532078Z     Type:       PersistentVolumeClaim (a reference to a PersistentVolumeClaim in the same namespace)
+2026-04-13T17:22:45.7532563Z     ClaimName:  nv-action-vllm-benchmarks-v2
+2026-04-13T17:22:45.7532839Z     ReadOnly:   false
+2026-04-13T17:22:45.7533037Z   driver-tools:
+2026-04-13T17:22:45.7533283Z     Type:          HostPath (bare host directory volume)
+2026-04-13T17:22:45.7533611Z     Path:          /usr/local/Ascend/driver/tools
+2026-04-13T17:22:45.7533887Z     HostPathType:  
+2026-04-13T17:22:45.7534101Z   kube-api-access-7dq6m:
+2026-04-13T17:22:45.7534594Z     Type:                    Projected (a volume that contains injected data from multiple sources)
+2026-04-13T17:22:45.7535023Z     TokenExpirationSeconds:  3607
+2026-04-13T17:22:45.7535308Z     ConfigMapName:           kube-root-ca.crt
+2026-04-13T17:22:45.7535594Z     Optional:                false
+2026-04-13T17:22:45.7535838Z     DownwardAPI:             true
+2026-04-13T17:22:45.7536099Z QoS Class:                   Burstable
+2026-04-13T17:22:45.7536354Z Node-Selectors:              <none>
+2026-04-13T17:22:45.7536732Z Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+2026-04-13T17:22:45.7537238Z                              node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+2026-04-13T17:22:45.7537585Z Events:
+2026-04-13T17:22:45.7537841Z   Type     Reason                 Age                    From               Message
+2026-04-13T17:22:45.7538243Z   ----     ------                 ----                   ----               -------
+2026-04-13T17:22:45.7539811Z   Warning  FailedScheduling       20m                    default-scheduler  0/13 nodes are available: 11 Insufficient huawei.com/ascend-1980, 2 node(s) had untolerated taint {dedicated: nightly}, 4 Insufficient ephemeral-storage, 4 Insufficient memory, 5 Insufficient cpu. preemption: 0/13 nodes are available: 11 No preemption victims found for incoming pod, 2 Preemption is not helpful for scheduling.
+2026-04-13T17:22:45.7542726Z   Warning  FailedScheduling       14m                    default-scheduler  0/13 nodes are available: 11 Insufficient huawei.com/ascend-1980, 2 node(s) had untolerated taint {dedicated: nightly}, 4 Insufficient ephemeral-storage, 4 Insufficient memory, 5 Insufficient cpu. preemption: 0/13 nodes are available: 11 No preemption victims found for incoming pod, 2 Preemption is not helpful for scheduling.
+2026-04-13T17:22:45.7544582Z   Normal   Scheduled              11m                    default-scheduler  Successfully assigned vllm-project/vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0 to 172.22.5.45
+2026-04-13T17:22:45.7546170Z   Normal   Pulled                 10m                    kubelet            spec.containers{vllm-leader}: Successfully pulled image "swr.cn-southwest-2.myhuaweicloud.com/base_image/ascend-ci/vllm-ascend:nightly-ci-releases-v0.18.0-a3" in 44.873s (44.873s including waiting). Image size: 17222394767 bytes.
+2026-04-13T17:22:45.7547817Z   Normal   SuccessfulMountVolume  10m (x2 over 10m)      kubelet            Successfully mounted volumes for pod "vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0_vllm-project(19ee4445-31ad-45f4-9b3a-602e086fa7b6)"
+2026-04-13T17:22:45.7549491Z   Normal   Pulled                 9m30s                  kubelet            spec.containers{vllm-leader}: Successfully pulled image "swr.cn-southwest-2.myhuaweicloud.com/base_image/ascend-ci/vllm-ascend:nightly-ci-releases-v0.18.0-a3" in 136ms (136ms including waiting). Image size: 17222394767 bytes.
+2026-04-13T17:22:45.7550976Z   Normal   SuccessfulCreate       8m42s (x3 over 10m)    kubelet            spec.containers{vllm-leader}: Created container: vllm-leader
+2026-04-13T17:22:45.7552397Z   Normal   Pulled                 8m42s                  kubelet            spec.containers{vllm-leader}: Successfully pulled image "swr.cn-southwest-2.myhuaweicloud.com/base_image/ascend-ci/vllm-ascend:nightly-ci-releases-v0.18.0-a3" in 119ms (119ms including waiting). Image size: 17222394767 bytes.
+2026-04-13T17:22:45.7553713Z   Normal   Started                8m41s (x3 over 10m)    kubelet            spec.containers{vllm-leader}: Started container vllm-leader
+2026-04-13T17:22:45.7554535Z   Warning  BackOffStart           7m54s (x3 over 8m53s)  kubelet            spec.containers{vllm-leader}: the failed container exited with ExitCode: 1
+2026-04-13T17:22:45.7555411Z   Warning  BackOffStart           7m54s (x3 over 8m53s)  kubelet            spec.containers{vllm-leader}: Back-off restarting failed container
+2026-04-13T17:22:45.7556558Z   Normal   Pulling                7m42s (x4 over 10m)    kubelet            spec.containers{vllm-leader}: Pulling image "swr.cn-southwest-2.myhuaweicloud.com/base_image/ascend-ci/vllm-ascend:nightly-ci-releases-v0.18.0-a3"
+2026-04-13T17:22:45.7558332Z   Normal   Pulled                 7m42s                  kubelet            spec.containers{vllm-leader}: Successfully pulled image "swr.cn-southwest-2.myhuaweicloud.com/base_image/ascend-ci/vllm-ascend:nightly-ci-releases-v0.18.0-a3" in 129ms (129ms including waiting). Image size: 17222394767 bytes.
+2026-04-13T17:22:45.7560254Z   Warning  BackOffStart           55s (x26 over 8m53s)   kubelet            spec.containers{vllm-leader}: Back-off restarting failed container vllm-leader in pod vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0_vllm-project(19ee4445-31ad-45f4-9b3a-602e086fa7b6)
+2026-04-13T17:22:45.8317498Z ##[error]Error: failed to run script step: Error: command terminated with non-zero exit code: command terminated with exit code 1
+2026-04-13T17:22:45.8360956Z ##[error]Process completed with exit code 1.
+2026-04-13T17:22:45.8447428Z ##[error]Executing the custom container implementation failed. Please contact your self hosted runner administrator.
+2026-04-13T17:22:45.8757134Z ##[group]Run set -euo pipefail
+2026-04-13T17:22:45.8757465Z [36;1mset -euo pipefail[0m
+2026-04-13T17:22:45.8757734Z [36;1mmkdir -p /tmp/benchmark_results[0m
+2026-04-13T17:22:45.8758351Z [36;1mecho "Fetching benchmark results from PVC at /root/.cache/benchmark_results/multi-node-deepseek-v3.2-W8A8-EP-aime2025..."[0m
+2026-04-13T17:22:45.8759059Z [36;1m# Copy from PVC mounted directory (persists after pod termination)[0m
+2026-04-13T17:22:45.8759603Z [36;1mSRC="/root/.cache/benchmark_results/multi-node-deepseek-v3.2-W8A8-EP-aime2025"[0m
+2026-04-13T17:22:45.8760338Z [36;1mif [ -d "$SRC" ] && [ "$(ls -A "$SRC" 2>/dev/null)" ]; then[0m
+2026-04-13T17:22:45.8760699Z [36;1m  cp -r "$SRC"/. /tmp/benchmark_results/[0m
+2026-04-13T17:22:45.8761085Z [36;1m  echo "Benchmark results fetched successfully from PVC:"[0m
+2026-04-13T17:22:45.8761544Z [36;1m  ls -la /tmp/benchmark_results/[0m
+2026-04-13T17:22:45.8761853Z [36;1m  # Clean up PVC contents after copying[0m
+2026-04-13T17:22:45.8762227Z [36;1m  echo "Cleaning up PVC contents at $SRC..."[0m
+2026-04-13T17:22:45.8762539Z [36;1m  rm -rf "${SRC:?}"/*[0m
+2026-04-13T17:22:45.8762823Z [36;1m  echo "PVC contents cleaned up successfully"[0m
+2026-04-13T17:22:45.8763115Z [36;1melse[0m
+2026-04-13T17:22:45.8763383Z [36;1m  echo "Warning: No benchmark results found in PVC at $SRC"[0m
+2026-04-13T17:22:45.8763752Z [36;1m  echo "Directory contents (if exists):"[0m
+2026-04-13T17:22:45.8764127Z [36;1m  ls -la "$SRC" 2>/dev/null || echo "Directory does not exist"[0m
+2026-04-13T17:22:45.8764447Z [36;1mfi[0m
+2026-04-13T17:22:45.8764720Z shell: bash -el {0}
+2026-04-13T17:22:45.8764912Z env:
+2026-04-13T17:22:45.8765154Z   LWS_NAME: vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865
+2026-04-13T17:22:45.8765556Z   LEADER_POD: vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0
+2026-04-13T17:22:45.8766026Z   LOG_PREFIX: /root/.cache/ascend-logs/vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865
+2026-04-13T17:22:45.8766499Z   FAIL_TAG: FAIL_TAG_DeepSeek-V3_2-W8A8-EP-aime2025.yaml
+2026-04-13T17:22:45.8766805Z ##[endgroup]
+2026-04-13T17:22:45.8873509Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T17:22:45.8874382Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T17:22:45.8874661Z ##[endgroup]
+2026-04-13T17:22:46.3156497Z (node:1080) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T17:22:46.3157514Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T17:22:46.9989542Z Fetching benchmark results from PVC at /root/.cache/benchmark_results/multi-node-deepseek-v3.2-W8A8-EP-aime2025...
+2026-04-13T17:22:47.0031268Z Warning: No benchmark results found in PVC at /root/.cache/benchmark_results/multi-node-deepseek-v3.2-W8A8-EP-aime2025
+2026-04-13T17:22:47.0032285Z Directory contents (if exists):
+2026-04-13T17:22:47.0052157Z Directory does not exist
+2026-04-13T17:22:47.4806682Z ##[group]Run echo "Current pod status:"
+2026-04-13T17:22:47.4807064Z [36;1mecho "Current pod status:"[0m
+2026-04-13T17:22:47.4807427Z [36;1mkubectl get pods -n "$NAMESPACE" --ignore-not-found=true[0m
+2026-04-13T17:22:47.4807762Z [36;1m[0m
+2026-04-13T17:22:47.4807994Z [36;1mecho "Deleting resources for [$LWS_NAME]..."[0m
+2026-04-13T17:22:47.4808396Z [36;1mkubectl delete -f ./lws.yaml --ignore-not-found=true || true[0m
+2026-04-13T17:22:47.4808732Z [36;1m[0m
+2026-04-13T17:22:47.4809006Z [36;1mecho "Waiting for pods of [$LWS_NAME] to fully terminate..."[0m
+2026-04-13T17:22:47.4809352Z [36;1mTIMEOUT=300[0m
+2026-04-13T17:22:47.4809560Z [36;1mSLEEP_INTERVAL=5[0m
+2026-04-13T17:22:47.4809793Z [36;1mSTART_TIME=$(date +%s)[0m
+2026-04-13T17:22:47.4810254Z [36;1mwhile true; do[0m
+2026-04-13T17:22:47.4810508Z [36;1m  ELAPSED=$(( $(date +%s) - START_TIME ))[0m
+2026-04-13T17:22:47.4810851Z [36;1m  if [[ $ELAPSED -ge $TIMEOUT ]]; then[0m
+2026-04-13T17:22:47.4811352Z [36;1m    echo "Timeout reached ($TIMEOUT seconds) waiting for termination, continuing anyway."[0m
+2026-04-13T17:22:47.4811961Z [36;1m    kubectl get pods -n "$NAMESPACE" | grep "^${LWS_NAME}-" || true[0m
+2026-04-13T17:22:47.4812311Z [36;1m    break[0m
+2026-04-13T17:22:47.4812503Z [36;1m  fi[0m
+2026-04-13T17:22:47.4812905Z [36;1m  PODS_EXIST=$(kubectl get pods -n "$NAMESPACE" -o jsonpath='{.items[*].metadata.name}' 2>/dev/null \[0m
+2026-04-13T17:22:47.4813428Z [36;1m    | tr ' ' '\n' | grep "^${LWS_NAME}-" || true)[0m
+2026-04-13T17:22:47.4813754Z [36;1m  if [[ -z "$PODS_EXIST" ]]; then[0m
+2026-04-13T17:22:47.4814075Z [36;1m    echo "All pods for [$LWS_NAME] have terminated."[0m
+2026-04-13T17:22:47.4814389Z [36;1m    break[0m
+2026-04-13T17:22:47.4814582Z [36;1m  fi[0m
+2026-04-13T17:22:47.4814826Z [36;1m  echo "Waiting for pods to terminate: $PODS_EXIST"[0m
+2026-04-13T17:22:47.4815147Z [36;1m  sleep $SLEEP_INTERVAL[0m
+2026-04-13T17:22:47.4815387Z [36;1mdone[0m
+2026-04-13T17:22:47.4815696Z shell: bash -el {0}
+2026-04-13T17:22:47.4815892Z env:
+2026-04-13T17:22:47.4816248Z   LWS_NAME: vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865
+2026-04-13T17:22:47.4816639Z   LEADER_POD: vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0
+2026-04-13T17:22:47.4817111Z   LOG_PREFIX: /root/.cache/ascend-logs/vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865
+2026-04-13T17:22:47.4817566Z   FAIL_TAG: FAIL_TAG_DeepSeek-V3_2-W8A8-EP-aime2025.yaml
+2026-04-13T17:22:47.4817863Z ##[endgroup]
+2026-04-13T17:22:47.4909451Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T17:22:47.4910633Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T17:22:47.4910916Z ##[endgroup]
+2026-04-13T17:22:47.9301138Z (node:1195) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T17:22:47.9302127Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T17:22:48.5674950Z Current pod status:
+2026-04-13T17:22:48.6380182Z NAME                                             READY   STATUS    RESTARTS        AGE
+2026-04-13T17:22:48.6380785Z linux-aarch64-a3-0-ggwx6-runner-7nmk8            1/1     Running   0               21m
+2026-04-13T17:22:48.6381430Z linux-aarch64-a3-0-ggwx6-runner-7nmk8-workflow   1/1     Running   0               20m
+2026-04-13T17:22:48.6382056Z linux-aarch64-a3-0-ggwx6-runner-qqwqg            1/1     Running   0               21m
+2026-04-13T17:22:48.6382630Z linux-aarch64-a3-0-ggwx6-runner-qqwqg-workflow   1/1     Running   0               20m
+2026-04-13T17:22:48.6383194Z linux-aarch64-a3-2-nqp5k-runner-f8q5z            1/1     Running   0               35m
+2026-04-13T17:22:48.6383766Z linux-aarch64-a3-2-nqp5k-runner-f8q5z-workflow   1/1     Running   0               34m
+2026-04-13T17:22:48.6384349Z linux-aarch64-a3-2-nqp5k-runner-vm4l2            1/1     Running   0               35m
+2026-04-13T17:22:48.6385399Z linux-aarch64-a3-2-nqp5k-runner-vm4l2-workflow   1/1     Running   0               34m
+2026-04-13T17:22:48.6385973Z linux-aarch64-a3-4-92cdc-runner-8lz7c            1/1     Running   0               35m
+2026-04-13T17:22:48.6386533Z linux-aarch64-a3-4-92cdc-runner-8lz7c-workflow   1/1     Running   0               35m
+2026-04-13T17:22:48.6387092Z linux-aarch64-a3-4-92cdc-runner-cknmv            1/1     Running   0               153m
+2026-04-13T17:22:48.6387679Z linux-aarch64-a3-4-92cdc-runner-cknmv-workflow   1/1     Running   0               152m
+2026-04-13T17:22:48.6388251Z linux-aarch64-a3-4-92cdc-runner-sxxz6            1/1     Running   0               35m
+2026-04-13T17:22:48.6388806Z linux-aarch64-a3-4-92cdc-runner-sxxz6-workflow   1/1     Running   0               35m
+2026-04-13T17:22:48.6389380Z linux-aarch64-a3-4-92cdc-runner-vprtk            1/1     Running   0               130m
+2026-04-13T17:22:48.6390123Z linux-aarch64-a3-4-92cdc-runner-vprtk-workflow   1/1     Running   0               129m
+2026-04-13T17:22:48.6390710Z linux-aarch64-a3-4-92cdc-runner-zlbqj            1/1     Running   0               153m
+2026-04-13T17:22:48.6391293Z linux-aarch64-a3-4-92cdc-runner-zlbqj-workflow   1/1     Running   0               152m
+2026-04-13T17:22:48.6391897Z test-server-0                                    1/1     Running   0               5h4m
+2026-04-13T17:22:48.6392316Z test-server-0-1                                  1/1     Running   0               5h3m
+2026-04-13T17:22:48.6392809Z vllm-deepseek-v3-2-w8a8-ep-93e2d0-0              1/1     Running   0               20m
+2026-04-13T17:22:48.6393356Z vllm-deepseek-v3-2-w8a8-ep-93e2d0-0-1            1/1     Running   0               20m
+2026-04-13T17:22:48.6393884Z vllm-deepseek-v3-2-w8a8-ep-93e2d0-0-2            1/1     Running   0               20m
+2026-04-13T17:22:48.6394418Z vllm-deepseek-v3-2-w8a8-ep-93e2d0-0-3            1/1     Running   0               20m
+2026-04-13T17:22:48.6394979Z vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0     1/1     Running   6 (3m38s ago)   20m
+2026-04-13T17:22:48.6395570Z vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1   0/1     Pending   0               20m
+2026-04-13T17:22:48.6396154Z vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-2   0/1     Pending   0               20m
+2026-04-13T17:22:48.6396737Z vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-3   0/1     Pending   0               20m
+2026-04-13T17:22:48.6412636Z Deleting resources for [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865]...
+2026-04-13T17:22:48.6993289Z leaderworkerset.leaderworkerset.x-k8s.io "vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865" deleted from vllm-project namespace
+2026-04-13T17:22:48.7201859Z service "vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-leader" deleted from vllm-project namespace
+2026-04-13T17:22:48.7284625Z Waiting for pods of [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865] to fully terminate...
+2026-04-13T17:22:48.8341226Z Waiting for pods to terminate: vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0
+2026-04-13T17:22:48.8341835Z vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1
+2026-04-13T17:22:48.8342207Z vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-2
+2026-04-13T17:22:48.8342554Z vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-3
+2026-04-13T17:22:54.0165968Z Waiting for pods to terminate: vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1
+2026-04-13T17:22:59.1674611Z Waiting for pods to terminate: vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1
+2026-04-13T17:23:04.2852329Z Waiting for pods to terminate: vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0-1
+2026-04-13T17:23:09.3904703Z All pods for [vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865] have terminated.
+2026-04-13T17:23:09.8936056Z ##[group]Run set -euo pipefail
+2026-04-13T17:23:09.8936440Z [36;1mset -euo pipefail[0m
+2026-04-13T17:23:09.8936665Z [36;1msize="4"[0m
+2026-04-13T17:23:09.8936881Z [36;1mDEST="/tmp/collected-logs"[0m
+2026-04-13T17:23:09.8937155Z [36;1mPLOG_PATH=/root/ascend/log[0m
+2026-04-13T17:23:09.8937400Z [36;1mKUBE_LOG_PATH=/var/log[0m
+2026-04-13T17:23:09.8937666Z [36;1mfor i in $(seq 0 $((size - 1))); do[0m
+2026-04-13T17:23:09.8938124Z [36;1m  if [ "${i}" -eq 0 ]; then[0m
+2026-04-13T17:23:09.8938379Z [36;1m    POD="${LWS_NAME}-0"[0m
+2026-04-13T17:23:09.8938621Z [36;1m  else[0m
+2026-04-13T17:23:09.8938816Z [36;1m    POD="${LWS_NAME}-0-${i}"[0m
+2026-04-13T17:23:09.8939061Z [36;1m  fi[0m
+2026-04-13T17:23:09.8939388Z [36;1m  mkdir -p "${DEST}/node${i}/${PLOG_PATH}" "${DEST}/node${i}/${KUBE_LOG_PATH}"[0m
+2026-04-13T17:23:09.8939773Z [36;1m  # pod stdout.[0m
+2026-04-13T17:23:09.8940438Z [36;1m  cp "/tmp/${POD}_logs.txt" "${DEST}/node${i}/${KUBE_LOG_PATH}/" 2>/dev/null || true[0m
+2026-04-13T17:23:09.8940853Z [36;1m  # Ascend plogs from PVC.[0m
+2026-04-13T17:23:09.8941144Z [36;1m  SRC="${LOG_PREFIX}/node_${i}_plogs"[0m
+2026-04-13T17:23:09.8941433Z [36;1m  if [ -d "$SRC" ]; then[0m
+2026-04-13T17:23:09.8941771Z [36;1m    cp -r "$SRC"/. "${DEST}/node${i}/${PLOG_PATH}/" 2>/dev/null || true[0m
+2026-04-13T17:23:09.8942119Z [36;1m  fi[0m
+2026-04-13T17:23:09.8942307Z [36;1mdone[0m
+2026-04-13T17:23:09.8942478Z [36;1m[0m
+2026-04-13T17:23:09.8942830Z [36;1mtar -czf /tmp/ascend-logs.tar.gz -C /tmp collected-logs[0m
+2026-04-13T17:23:09.8943259Z shell: bash -el {0}
+2026-04-13T17:23:09.8943446Z env:
+2026-04-13T17:23:09.8943694Z   LWS_NAME: vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865
+2026-04-13T17:23:09.8944078Z   LEADER_POD: vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0
+2026-04-13T17:23:09.8944545Z   LOG_PREFIX: /root/.cache/ascend-logs/vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865
+2026-04-13T17:23:09.8945005Z   FAIL_TAG: FAIL_TAG_DeepSeek-V3_2-W8A8-EP-aime2025.yaml
+2026-04-13T17:23:09.8945302Z ##[endgroup]
+2026-04-13T17:23:09.9048017Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T17:23:09.9049454Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T17:23:09.9050079Z ##[endgroup]
+2026-04-13T17:23:10.3326905Z (node:1324) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T17:23:10.3327834Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T17:23:11.5556683Z ##[group]Run actions/upload-artifact@v7
+2026-04-13T17:23:11.5556972Z with:
+2026-04-13T17:23:11.5557231Z   name: DeepSeek-V3_2-W8A8-EP-aime2025.yaml-ascend-logs
+2026-04-13T17:23:11.5557561Z   path: /tmp/ascend-logs.tar.gz
+2026-04-13T17:23:11.5557792Z   retention-days: 7
+2026-04-13T17:23:11.5558003Z   if-no-files-found: warn
+2026-04-13T17:23:11.5558229Z   compression-level: 6
+2026-04-13T17:23:11.5558433Z   overwrite: false
+2026-04-13T17:23:11.5558638Z   include-hidden-files: false
+2026-04-13T17:23:11.5558873Z   archive: true
+2026-04-13T17:23:11.5559042Z env:
+2026-04-13T17:23:11.5559281Z   LWS_NAME: vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865
+2026-04-13T17:23:11.5559669Z   LEADER_POD: vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0
+2026-04-13T17:23:11.5560356Z   LOG_PREFIX: /root/.cache/ascend-logs/vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865
+2026-04-13T17:23:11.5560846Z   FAIL_TAG: FAIL_TAG_DeepSeek-V3_2-W8A8-EP-aime2025.yaml
+2026-04-13T17:23:11.5561136Z ##[endgroup]
+2026-04-13T17:23:11.5587562Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T17:23:11.5588426Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T17:23:11.5588705Z ##[endgroup]
+2026-04-13T17:23:11.9911061Z (node:1463) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T17:23:11.9912498Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T17:23:13.1319128Z With the provided path, there will be 1 file uploaded
+2026-04-13T17:23:13.1324326Z Artifact name is valid!
+2026-04-13T17:23:13.1324587Z Root directory input is valid!
+2026-04-13T17:23:17.8316771Z Uploading artifact: DeepSeek-V3_2-W8A8-EP-aime2025.yaml-ascend-logs.zip
+2026-04-13T17:23:17.9154152Z Beginning upload of artifact content to blob storage
+2026-04-13T17:23:18.8865997Z Uploaded bytes 3269
+2026-04-13T17:23:19.1301475Z Finished uploading artifact content to blob storage!
+2026-04-13T17:23:19.1302163Z SHA256 digest of uploaded artifact is e400a9511d9f9a565b91ae2280abe363a4c874acd0273a20d3aea04d36fe73fe
+2026-04-13T17:23:19.1302736Z Finalizing artifact upload
+2026-04-13T17:23:20.2823818Z Artifact DeepSeek-V3_2-W8A8-EP-aime2025.yaml-ascend-logs successfully finalized. Artifact ID 6411124641
+2026-04-13T17:23:20.2824816Z Artifact DeepSeek-V3_2-W8A8-EP-aime2025.yaml-ascend-logs has been successfully uploaded! Final size is 3269 bytes. Artifact ID is 6411124641
+2026-04-13T17:23:20.2825809Z Artifact download URL: https://github.com/vllm-project/vllm-ascend/actions/runs/24355380566/artifacts/6411124641
+2026-04-13T17:23:20.8632766Z ##[group]Run echo "artifact_ts=$(date -u +%Y%m%dT%H%M%SZ)" >> $GITHUB_OUTPUT
+2026-04-13T17:23:20.8633419Z [36;1mecho "artifact_ts=$(date -u +%Y%m%dT%H%M%SZ)" >> $GITHUB_OUTPUT[0m
+2026-04-13T17:23:20.8633961Z shell: bash -el {0}
+2026-04-13T17:23:20.8634170Z env:
+2026-04-13T17:23:20.8634415Z   LWS_NAME: vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865
+2026-04-13T17:23:20.8634822Z   LEADER_POD: vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0
+2026-04-13T17:23:20.8635308Z   LOG_PREFIX: /root/.cache/ascend-logs/vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865
+2026-04-13T17:23:20.8635779Z   FAIL_TAG: FAIL_TAG_DeepSeek-V3_2-W8A8-EP-aime2025.yaml
+2026-04-13T17:23:20.8636077Z ##[endgroup]
+2026-04-13T17:23:20.8745334Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T17:23:20.8746651Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T17:23:20.8747182Z ##[endgroup]
+2026-04-13T17:23:21.3091071Z (node:1612) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T17:23:21.3092056Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T17:23:22.5544305Z ##[group]Run actions/upload-artifact@v4
+2026-04-13T17:23:22.5544650Z with:
+2026-04-13T17:23:22.5545139Z   name: nightly-test-benchmark-results-multi-node-deepseek-v3.2-W8A8-EP-aime2025-20260413T172321Z
+2026-04-13T17:23:22.5545721Z   path: /tmp/benchmark_results/
+2026-04-13T17:23:22.5545981Z   if-no-files-found: warn
+2026-04-13T17:23:22.5546203Z   retention-days: 90
+2026-04-13T17:23:22.5546419Z   compression-level: 0
+2026-04-13T17:23:22.5546636Z   overwrite: false
+2026-04-13T17:23:22.5546842Z   include-hidden-files: false
+2026-04-13T17:23:22.5547064Z env:
+2026-04-13T17:23:22.5547300Z   LWS_NAME: vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865
+2026-04-13T17:23:22.5547704Z   LEADER_POD: vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865-0
+2026-04-13T17:23:22.5548187Z   LOG_PREFIX: /root/.cache/ascend-logs/vllm-deepseek-v3-2-w8a8-ep-aime2025-91e865
+2026-04-13T17:23:22.5548667Z   FAIL_TAG: FAIL_TAG_DeepSeek-V3_2-W8A8-EP-aime2025.yaml
+2026-04-13T17:23:22.5548963Z ##[endgroup]
+2026-04-13T17:23:22.5577800Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T17:23:22.5578686Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T17:23:22.5578975Z ##[endgroup]
+2026-04-13T17:23:22.9910214Z (node:1775) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T17:23:22.9911218Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T17:23:24.1662379Z ##[warning]No files were found with the provided path: /tmp/benchmark_results/. No artifacts will be uploaded.
+2026-04-13T17:23:24.7077590Z Post job cleanup.
+2026-04-13T17:23:24.7101419Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T17:23:24.7102286Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T17:23:24.7102575Z ##[endgroup]
+2026-04-13T17:23:25.1449022Z (node:1945) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-13T17:23:25.1450370Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-13T17:23:25.9228132Z [command]/usr/bin/git version
+2026-04-13T17:23:25.9427049Z git version 2.34.1
+2026-04-13T17:23:25.9456303Z Copying '/root/.gitconfig' to '/__w/_temp/b1d6e583-2fae-4212-bb79-d8b8b3aa29cd/.gitconfig'
+2026-04-13T17:23:25.9464810Z Temporarily overriding HOME='/__w/_temp/b1d6e583-2fae-4212-bb79-d8b8b3aa29cd' before making global git config changes
+2026-04-13T17:23:25.9465647Z Adding repository directory to the temporary git global config as a safe directory
+2026-04-13T17:23:25.9469681Z [command]/usr/bin/git config --global --add safe.directory /__w/vllm-ascend/vllm-ascend
+2026-04-13T17:23:25.9507797Z Removing SSH command configuration
+2026-04-13T17:23:25.9512766Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-04-13T17:23:25.9568807Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-04-13T17:23:26.0094945Z Removing HTTP extra header
+2026-04-13T17:23:26.0098438Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-04-13T17:23:26.0126940Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-04-13T17:23:26.0330031Z Removing includeIf entries pointing to credentials config files
+2026-04-13T17:23:26.0334688Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-04-13T17:23:26.0357803Z includeif.gitdir:/__w/vllm-ascend/vllm-ascend/.git.path
+2026-04-13T17:23:26.0358265Z includeif.gitdir:/__w/vllm-ascend/vllm-ascend/.git/worktrees/*.path
+2026-04-13T17:23:26.0358684Z includeif.gitdir:/github/workspace/.git.path
+2026-04-13T17:23:26.0359067Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-04-13T17:23:26.0366522Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/__w/vllm-ascend/vllm-ascend/.git.path
+2026-04-13T17:23:26.0385509Z /__w/_temp/git-credentials-f95a3912-ce63-472a-83b0-72cced0764af.config
+2026-04-13T17:23:26.0394362Z [command]/usr/bin/git config --local --unset includeif.gitdir:/__w/vllm-ascend/vllm-ascend/.git.path /__w/_temp/git-credentials-f95a3912-ce63-472a-83b0-72cced0764af.config
+2026-04-13T17:23:26.0428198Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/__w/vllm-ascend/vllm-ascend/.git/worktrees/*.path
+2026-04-13T17:23:26.0447170Z /__w/_temp/git-credentials-f95a3912-ce63-472a-83b0-72cced0764af.config
+2026-04-13T17:23:26.0454891Z [command]/usr/bin/git config --local --unset includeif.gitdir:/__w/vllm-ascend/vllm-ascend/.git/worktrees/*.path /__w/_temp/git-credentials-f95a3912-ce63-472a-83b0-72cced0764af.config
+2026-04-13T17:23:26.0482685Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+2026-04-13T17:23:26.0501035Z /github/runner_temp/git-credentials-f95a3912-ce63-472a-83b0-72cced0764af.config
+2026-04-13T17:23:26.0508162Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-f95a3912-ce63-472a-83b0-72cced0764af.config
+2026-04-13T17:23:26.0535894Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-04-13T17:23:26.0554963Z /github/runner_temp/git-credentials-f95a3912-ce63-472a-83b0-72cced0764af.config
+2026-04-13T17:23:26.0562087Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-f95a3912-ce63-472a-83b0-72cced0764af.config
+2026-04-13T17:23:26.0589604Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-04-13T17:23:26.0814045Z Removing credentials config '/__w/_temp/git-credentials-f95a3912-ce63-472a-83b0-72cced0764af.config'
+2026-04-13T17:23:45.6111953Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-13T17:23:45.6112887Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-13T17:23:45.6113193Z ##[endgroup]
+2026-04-13T17:23:46.0829737Z Cleaning up orphan processes
+2026-04-13T17:23:46.0850717Z ##[warning]Node.js 20 actions are deprecated. The following actions are running on Node.js 20 and may not work as expected: actions/upload-artifact@v4. Actions will be forced to run with Node.js 24 by default starting June 2nd, 2026. Please check if updated versions of these actions are available that support Node.js 24. To opt into Node.js 24 now, set the FORCE_JAVASCRIPT_ACTIONS_TO_NODE24=true environment variable on the runner or in your workflow file. Once Node.js 24 becomes the default, you can temporarily opt out by setting ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

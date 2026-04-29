@@ -1,0 +1,704 @@
+# Run ID: 23859663944
+# Commit: 9d2ebc8c49886ac4c221bd114a3627f7222937aa
+# Job: multi-node (releases-v0.18.0, multi-node-kimi-k2-instruct-w8a8, Kimi-K2-Instruct-W8A8.yaml, 2) / Kimi-K2-Instruct-W8A8.yaml
+# Date: 2026-04-01
+============================================================
+
+﻿2026-04-01T17:40:34.2615958Z Current runner version: '2.332.0'
+2026-04-01T17:40:34.2622050Z Runner name: 'linux-aarch64-a3-0-ggwx6-runner-bcwxh'
+2026-04-01T17:40:34.2622847Z Runner group name: 'Default'
+2026-04-01T17:40:34.2623665Z Machine name: 'linux-aarch64-a3-0-ggwx6-runner-bcwxh'
+2026-04-01T17:40:34.2626312Z ##[group]GITHUB_TOKEN Permissions
+2026-04-01T17:40:34.2628490Z Contents: read
+2026-04-01T17:40:34.2628967Z Issues: read
+2026-04-01T17:40:34.2629429Z Metadata: read
+2026-04-01T17:40:34.2630054Z PullRequests: read
+2026-04-01T17:40:34.2630537Z ##[endgroup]
+2026-04-01T17:40:34.2632731Z Secret source: Actions
+2026-04-01T17:40:34.2633424Z Prepare workflow directory
+2026-04-01T17:40:34.3258961Z Prepare all required actions
+2026-04-01T17:40:34.3295657Z Getting action download info
+2026-04-01T17:40:35.5741999Z Download action repository 'actions/checkout@v6' (SHA:de0fac2e4500dabe0009e67214ff5f5447ce83dd)
+2026-04-01T17:40:40.9157184Z Download action repository 'actions/upload-artifact@v7' (SHA:bbbca2ddaa5d8feaa63e36b76fdaad77386f024f)
+2026-04-01T17:40:44.4199147Z Uses: vllm-project/vllm-ascend/.github/workflows/_e2e_nightly_multi_node.yaml@refs/heads/main (9d2ebc8c49886ac4c221bd114a3627f7222937aa)
+2026-04-01T17:40:44.4203936Z ##[group] Inputs
+2026-04-01T17:40:44.4204333Z   soc_version: a3
+2026-04-01T17:40:44.4204607Z   runner: linux-aarch64-a3-0
+2026-04-01T17:40:44.4205293Z   image: swr.cn-southwest-2.myhuaweicloud.com/base_image/ascend-ci/vllm-ascend:nightly-releases-v0.18.0-a3
+2026-04-01T17:40:44.4205951Z   config_file_path: Kimi-K2-Instruct-W8A8.yaml
+2026-04-01T17:40:44.4206283Z   replicas: 1
+2026-04-01T17:40:44.4206602Z   size: 2
+2026-04-01T17:40:44.4206881Z   vllm_version: v0.18.0
+2026-04-01T17:40:44.4207315Z   vllm_ascend_remote_url: https://github.com/vllm-project/vllm-ascend.git
+2026-04-01T17:40:44.4207828Z   vllm_ascend_ref: main
+2026-04-01T17:40:44.4208628Z   should_run: true
+2026-04-01T17:40:44.4208950Z   ascend_log_prefix: /root/.cache/ascend-logs
+2026-04-01T17:40:44.4209389Z ##[endgroup]
+2026-04-01T17:40:44.4210381Z Complete job name: multi-node (releases-v0.18.0, multi-node-kimi-k2-instruct-w8a8, Kimi-K2-Instruct-W8A8.yaml, 2) / Kimi-K2-Instruct-W8A8.yaml
+2026-04-01T17:40:44.4866971Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-01T17:40:44.4870371Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-01T17:40:44.4871233Z ##[endgroup]
+2026-04-01T17:41:00.0754597Z (node:123) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-01T17:41:00.0755808Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-01T17:41:01.5144073Z ##[group]Run if [ "schedule" = "pull_request" ]; then
+2026-04-01T17:41:01.5145074Z [36;1mif [ "schedule" = "pull_request" ]; then[0m
+2026-04-01T17:41:01.5145742Z [36;1m  if [ "a3" = "a3" ]; then[0m
+2026-04-01T17:41:01.5146622Z [36;1m    # NOTE: This is too hack, we should find a better way to manage kubeconfig for pr tests.[0m
+2026-04-01T17:41:01.5147699Z [36;1m    cp /root/.cache/.kube/kubeconfig.yaml "$KUBECONFIG"[0m
+2026-04-01T17:41:01.5148422Z [36;1m  else[0m
+2026-04-01T17:41:01.5148966Z [36;1m    cp /root/.cache/.kube/hk_001_kb.yaml "$KUBECONFIG"[0m
+2026-04-01T17:41:01.5149653Z [36;1m  fi[0m
+2026-04-01T17:41:01.5150240Z [36;1melse[0m
+2026-04-01T17:41:01.5219359Z [36;1m  echo "***" | base64 -d > "$KUBECONFIG"[0m
+2026-04-01T17:41:01.5219816Z [36;1mfi[0m
+2026-04-01T17:41:01.5220497Z shell: bash -el {0}
+2026-04-01T17:41:01.5220787Z ##[endgroup]
+2026-04-01T17:41:01.5528225Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-01T17:41:01.5530293Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-01T17:41:01.5530906Z ##[endgroup]
+2026-04-01T17:41:02.0332135Z (node:303) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-01T17:41:02.0333280Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-01T17:41:03.2774766Z ##[group]Run actions/checkout@v6
+2026-04-01T17:41:03.2775110Z with:
+2026-04-01T17:41:03.2775346Z   repository: vllm-project/vllm-ascend
+2026-04-01T17:41:03.2775850Z   token: ***
+2026-04-01T17:41:03.2776054Z   ssh-strict: true
+2026-04-01T17:41:03.2776274Z   ssh-user: git
+2026-04-01T17:41:03.2776500Z   persist-credentials: true
+2026-04-01T17:41:03.2776761Z   clean: true
+2026-04-01T17:41:03.2776991Z   sparse-checkout-cone-mode: true
+2026-04-01T17:41:03.2777257Z   fetch-depth: 1
+2026-04-01T17:41:03.2777440Z   fetch-tags: false
+2026-04-01T17:41:03.2777632Z   show-progress: true
+2026-04-01T17:41:03.2777821Z   lfs: false
+2026-04-01T17:41:03.2777990Z   submodules: false
+2026-04-01T17:41:03.2778179Z   set-safe-directory: true
+2026-04-01T17:41:03.2778404Z ##[endgroup]
+2026-04-01T17:41:03.2828340Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-01T17:41:03.2829252Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-01T17:41:03.2829542Z ##[endgroup]
+2026-04-01T17:41:03.7254744Z (node:333) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-01T17:41:03.7255740Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-01T17:41:04.4073856Z Syncing repository: vllm-project/vllm-ascend
+2026-04-01T17:41:04.4075164Z ##[group]Getting Git version info
+2026-04-01T17:41:04.4075535Z Working directory is '/__w/vllm-ascend/vllm-ascend'
+2026-04-01T17:41:04.4076054Z [command]/usr/bin/git version
+2026-04-01T17:41:04.4230978Z git version 2.34.1
+2026-04-01T17:41:04.4251214Z ##[endgroup]
+2026-04-01T17:41:04.4259964Z Copying '/root/.gitconfig' to '/__w/_temp/e45fe1c0-3320-4ec3-93c9-bf8d1b58be6c/.gitconfig'
+2026-04-01T17:41:04.4271454Z Temporarily overriding HOME='/__w/_temp/e45fe1c0-3320-4ec3-93c9-bf8d1b58be6c' before making global git config changes
+2026-04-01T17:41:04.4272357Z Adding repository directory to the temporary git global config as a safe directory
+2026-04-01T17:41:04.4275067Z [command]/usr/bin/git config --global --add safe.directory /__w/vllm-ascend/vllm-ascend
+2026-04-01T17:41:04.4322950Z Deleting the contents of '/__w/vllm-ascend/vllm-ascend'
+2026-04-01T17:41:04.4326081Z ##[group]Initializing the repository
+2026-04-01T17:41:04.4329933Z [command]/usr/bin/git init /__w/vllm-ascend/vllm-ascend
+2026-04-01T17:41:04.4472262Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-04-01T17:41:04.4472909Z hint: is subject to change. To configure the initial branch name to use in all
+2026-04-01T17:41:04.4473431Z hint: of your new repositories, which will suppress this warning, call:
+2026-04-01T17:41:04.4473791Z hint: 
+2026-04-01T17:41:04.4474086Z hint: 	git config --global init.defaultBranch <name>
+2026-04-01T17:41:04.4474375Z hint: 
+2026-04-01T17:41:04.4474664Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-04-01T17:41:04.4475179Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-04-01T17:41:04.4475554Z hint: 
+2026-04-01T17:41:04.4475752Z hint: 	git branch -m <name>
+2026-04-01T17:41:04.4481857Z Initialized empty Git repository in /__w/vllm-ascend/vllm-ascend/.git/
+2026-04-01T17:41:04.4490764Z [command]/usr/bin/git remote add origin https://github.com/vllm-project/vllm-ascend
+2026-04-01T17:41:04.4544513Z ##[endgroup]
+2026-04-01T17:41:04.4544874Z ##[group]Disabling automatic garbage collection
+2026-04-01T17:41:04.4547902Z [command]/usr/bin/git config --local gc.auto 0
+2026-04-01T17:41:04.4571752Z ##[endgroup]
+2026-04-01T17:41:04.4572070Z ##[group]Setting up auth
+2026-04-01T17:41:04.4574314Z Removing SSH command configuration
+2026-04-01T17:41:04.4579465Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-04-01T17:41:04.4610796Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-04-01T17:41:04.5169953Z Removing HTTP extra header
+2026-04-01T17:41:04.5174027Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-04-01T17:41:04.5205758Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-04-01T17:41:04.5431010Z Removing includeIf entries pointing to credentials config files
+2026-04-01T17:41:04.5435349Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-04-01T17:41:04.5468233Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-04-01T17:41:04.5692820Z [command]/usr/bin/git config --file /__w/_temp/git-credentials-60429907-3833-4e51-ab3f-64ad995d59da.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-04-01T17:41:04.5726952Z [command]/usr/bin/git config --local includeIf.gitdir:/__w/vllm-ascend/vllm-ascend/.git.path /__w/_temp/git-credentials-60429907-3833-4e51-ab3f-64ad995d59da.config
+2026-04-01T17:41:04.5754784Z [command]/usr/bin/git config --local includeIf.gitdir:/__w/vllm-ascend/vllm-ascend/.git/worktrees/*.path /__w/_temp/git-credentials-60429907-3833-4e51-ab3f-64ad995d59da.config
+2026-04-01T17:41:04.5790444Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-60429907-3833-4e51-ab3f-64ad995d59da.config
+2026-04-01T17:41:04.5824441Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-60429907-3833-4e51-ab3f-64ad995d59da.config
+2026-04-01T17:41:04.5848172Z ##[endgroup]
+2026-04-01T17:41:04.5848520Z ##[group]Fetching the repository
+2026-04-01T17:41:04.5857742Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +9d2ebc8c49886ac4c221bd114a3627f7222937aa:refs/remotes/origin/main
+2026-04-01T17:41:06.5716378Z From https://gh-proxy.test.osinfra.cn/https://github.com/vllm-project/vllm-ascend
+2026-04-01T17:41:06.5732464Z  * [new ref]         9d2ebc8c49886ac4c221bd114a3627f7222937aa -> origin/main
+2026-04-01T17:41:06.5741398Z [command]/usr/bin/git branch --list --remote origin/main
+2026-04-01T17:41:06.5776828Z   origin/main
+2026-04-01T17:41:06.5788139Z [command]/usr/bin/git rev-parse refs/remotes/origin/main
+2026-04-01T17:41:06.5821278Z 9d2ebc8c49886ac4c221bd114a3627f7222937aa
+2026-04-01T17:41:06.5822022Z ##[endgroup]
+2026-04-01T17:41:06.5822366Z ##[group]Determining the checkout info
+2026-04-01T17:41:06.5822837Z ##[endgroup]
+2026-04-01T17:41:06.5823063Z [command]/usr/bin/git sparse-checkout disable
+2026-04-01T17:41:06.5878599Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-04-01T17:41:06.5922810Z ##[group]Checking out the ref
+2026-04-01T17:41:06.5926589Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-04-01T17:41:06.7118895Z Switched to a new branch 'main'
+2026-04-01T17:41:06.7119327Z Branch 'main' set up to track remote branch 'main' from 'origin'.
+2026-04-01T17:41:06.7129135Z ##[endgroup]
+2026-04-01T17:41:06.7177541Z [command]/usr/bin/git log -1 --format=%H
+2026-04-01T17:41:06.7213663Z 9d2ebc8c49886ac4c221bd114a3627f7222937aa
+2026-04-01T17:41:07.1822807Z ##[group]Run # Derive a unique, valid k8s resource name from config_file_path.
+2026-04-01T17:41:07.1823376Z [36;1m# Derive a unique, valid k8s resource name from config_file_path.[0m
+2026-04-01T17:41:07.1823903Z [36;1m# Append 6-char random suffix to avoid conflicts; total length capped at 63 chars.[0m
+2026-04-01T17:41:07.1824312Z [36;1m[0m
+2026-04-01T17:41:07.1824531Z [36;1mconfig_file="Kimi-K2-Instruct-W8A8.yaml"[0m
+2026-04-01T17:41:07.1825053Z [36;1mlws_suffix=$(echo "$config_file" | sed 's/\.yaml$//' | tr '[:upper:]' '[:lower:]' | tr '._' '-' | cut -c1-43)[0m
+2026-04-01T17:41:07.1825627Z [36;1mrand_suffix=$(tr -d '-' < /proc/sys/kernel/random/uuid | cut -c1-6)[0m
+2026-04-01T17:41:07.1826199Z [36;1mLWS_NAME="vllm-${lws_suffix}-${rand_suffix}"[0m
+2026-04-01T17:41:07.1826487Z [36;1m[0m
+2026-04-01T17:41:07.1826650Z [36;1m{[0m
+2026-04-01T17:41:07.1826849Z [36;1m  echo "LWS_NAME=${LWS_NAME}"[0m
+2026-04-01T17:41:07.1827157Z [36;1m  echo "LEADER_POD=${LWS_NAME}-0"[0m
+2026-04-01T17:41:07.1827505Z [36;1m  echo "LOG_PREFIX=/root/.cache/ascend-logs/${LWS_NAME}"[0m
+2026-04-01T17:41:07.1827838Z [36;1m} >> $GITHUB_ENV[0m
+2026-04-01T17:41:07.1828163Z shell: bash -el {0}
+2026-04-01T17:41:07.1828363Z ##[endgroup]
+2026-04-01T17:41:07.1915931Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-01T17:41:07.1916806Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-01T17:41:07.1917089Z ##[endgroup]
+2026-04-01T17:41:07.6166028Z (node:375) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-01T17:41:07.6167016Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-01T17:41:08.6563608Z ##[group]Run install -D tests/e2e/nightly/multi_node/scripts/run.sh /root/.cache/tests/run.sh
+2026-04-01T17:41:08.6564288Z [36;1minstall -D tests/e2e/nightly/multi_node/scripts/run.sh /root/.cache/tests/run.sh[0m
+2026-04-01T17:41:08.6564849Z shell: bash -el {0}
+2026-04-01T17:41:08.6565043Z env:
+2026-04-01T17:41:08.6565284Z   LWS_NAME: vllm-kimi-k2-instruct-w8a8-2d4739
+2026-04-01T17:41:08.6565629Z   LEADER_POD: vllm-kimi-k2-instruct-w8a8-2d4739-0
+2026-04-01T17:41:08.6566067Z   LOG_PREFIX: /root/.cache/ascend-logs/vllm-kimi-k2-instruct-w8a8-2d4739
+2026-04-01T17:41:08.6566438Z ##[endgroup]
+2026-04-01T17:41:08.6642340Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-01T17:41:08.6643320Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-01T17:41:08.6643615Z ##[endgroup]
+2026-04-01T17:41:09.0894533Z (node:429) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-01T17:41:09.0895530Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-01T17:41:10.2042679Z ##[group]Run set -euo pipefail
+2026-04-01T17:41:10.2043111Z [36;1mset -euo pipefail[0m
+2026-04-01T17:41:10.2043372Z [36;1mTIMEOUT=120[0m
+2026-04-01T17:41:10.2043595Z [36;1mSLEEP_INTERVAL=2[0m
+2026-04-01T17:41:10.2043817Z [36;1m[0m
+2026-04-01T17:41:10.2043980Z [36;1m[0m
+2026-04-01T17:41:10.2044305Z [36;1mecho "Deleting leaderworkerset [$LWS_NAME] in namespace [$NAMESPACE]..."[0m
+2026-04-01T17:41:10.2044869Z [36;1mkubectl delete leaderworkerset "$LWS_NAME" -n "$NAMESPACE" --ignore-not-found[0m
+2026-04-01T17:41:10.2045439Z [36;1mkubectl delete service "${LWS_NAME}-leader" -n "$NAMESPACE" --ignore-not-found[0m
+2026-04-01T17:41:10.2045842Z [36;1m[0m
+2026-04-01T17:41:10.2046146Z [36;1mecho "Waiting for pods of leaderworkerset [$LWS_NAME] to be deleted..."[0m
+2026-04-01T17:41:10.2046541Z [36;1mSTART_TIME=$(date +%s)[0m
+2026-04-01T17:41:10.2046788Z [36;1mwhile true; do[0m
+2026-04-01T17:41:10.2047045Z [36;1m  ELAPSED=$(( $(date +%s) - START_TIME ))[0m
+2026-04-01T17:41:10.2047394Z [36;1m  if [[ $ELAPSED -ge $TIMEOUT ]]; then[0m
+2026-04-01T17:41:10.2047772Z [36;1m    echo "Timeout reached ($TIMEOUT seconds), some pods still exist:"[0m
+2026-04-01T17:41:10.2048236Z [36;1m    kubectl get pods -n "$NAMESPACE" | grep "^${LWS_NAME}-" || true[0m
+2026-04-01T17:41:10.2048583Z [36;1m    exit 1[0m
+2026-04-01T17:41:10.2048772Z [36;1m  fi[0m
+2026-04-01T17:41:10.2049173Z [36;1m  PODS_EXIST=$(kubectl get pods -n "$NAMESPACE" -o jsonpath='{.items[*].metadata.name}' 2>/dev/null \[0m
+2026-04-01T17:41:10.2049686Z [36;1m    | tr ' ' '\n' | grep "^${LWS_NAME}-" || true)[0m
+2026-04-01T17:41:10.2050175Z [36;1m  if [[ -z "$PODS_EXIST" ]]; then[0m
+2026-04-01T17:41:10.2050491Z [36;1m    echo "All pods for [$LWS_NAME] deleted."[0m
+2026-04-01T17:41:10.2050772Z [36;1m    break[0m
+2026-04-01T17:41:10.2051120Z [36;1m  fi[0m
+2026-04-01T17:41:10.2051383Z [36;1m  echo "Waiting for pods to be deleted: $PODS_EXIST"[0m
+2026-04-01T17:41:10.2051716Z [36;1m  sleep $SLEEP_INTERVAL[0m
+2026-04-01T17:41:10.2051951Z [36;1mdone[0m
+2026-04-01T17:41:10.2052425Z shell: bash -el {0}
+2026-04-01T17:41:10.2052617Z env:
+2026-04-01T17:41:10.2052854Z   LWS_NAME: vllm-kimi-k2-instruct-w8a8-2d4739
+2026-04-01T17:41:10.2053247Z   LEADER_POD: vllm-kimi-k2-instruct-w8a8-2d4739-0
+2026-04-01T17:41:10.2053658Z   LOG_PREFIX: /root/.cache/ascend-logs/vllm-kimi-k2-instruct-w8a8-2d4739
+2026-04-01T17:41:10.2054033Z ##[endgroup]
+2026-04-01T17:41:10.2144974Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-01T17:41:10.2146160Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-01T17:41:10.2146651Z ##[endgroup]
+2026-04-01T17:41:10.6476089Z (node:495) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-01T17:41:10.6477178Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-01T17:41:11.2700124Z Deleting leaderworkerset [vllm-kimi-k2-instruct-w8a8-2d4739] in namespace [vllm-project]...
+2026-04-01T17:41:11.7292600Z Waiting for pods of leaderworkerset [vllm-kimi-k2-instruct-w8a8-2d4739] to be deleted...
+2026-04-01T17:41:11.8801233Z All pods for [vllm-kimi-k2-instruct-w8a8-2d4739] deleted.
+2026-04-01T17:41:12.3846174Z ##[group]Run set -euo pipefail
+2026-04-01T17:41:12.3846597Z [36;1mset -euo pipefail[0m
+2026-04-01T17:41:12.3846823Z [36;1m[0m
+2026-04-01T17:41:12.3847006Z [36;1msize="2"[0m
+2026-04-01T17:41:12.3847198Z [36;1mreplicas="1"[0m
+2026-04-01T17:41:12.3847719Z [36;1mimage="swr.cn-southwest-2.myhuaweicloud.com/base_image/ascend-ci/vllm-ascend:nightly-releases-v0.18.0-a3"[0m
+2026-04-01T17:41:12.3848341Z [36;1mconfig_file_path="Kimi-K2-Instruct-W8A8.yaml"[0m
+2026-04-01T17:41:12.3848704Z [36;1mfail_tag="FAIL_TAG_Kimi-K2-Instruct-W8A8.yaml"[0m
+2026-04-01T17:41:12.3849029Z [36;1mis_pr_test="false"[0m
+2026-04-01T17:41:12.3849269Z [36;1mvllm_version="v0.18.0"[0m
+2026-04-01T17:41:12.3849508Z [36;1mvllm_ascend_ref="main"[0m
+2026-04-01T17:41:12.3850060Z [36;1mvllm_ascend_remote_url="https://github.com/vllm-project/vllm-ascend.git"[0m
+2026-04-01T17:41:12.3850522Z [36;1mecho "FAIL_TAG=${fail_tag}" >> $GITHUB_ENV[0m
+2026-04-01T17:41:12.3850795Z [36;1m[0m
+2026-04-01T17:41:12.3851043Z [36;1mif [ "a3" = "a3" ]; then[0m
+2026-04-01T17:41:12.3851284Z [36;1m  npu_per_node=16[0m
+2026-04-01T17:41:12.3851561Z [36;1m  pvc_name=nv-action-vllm-benchmarks-v2[0m
+2026-04-01T17:41:12.3851848Z [36;1melse[0m
+2026-04-01T17:41:12.3852037Z [36;1m  npu_per_node=8[0m
+2026-04-01T17:41:12.3852281Z [36;1m  pvc_name=vllm-project-hk001[0m
+2026-04-01T17:41:12.3852548Z [36;1mfi[0m
+2026-04-01T17:41:12.3852723Z [36;1m[0m
+2026-04-01T17:41:12.3853112Z [36;1mjinja2 tests/e2e/nightly/multi_node/scripts/lws.yaml.jinja2 \[0m
+2026-04-01T17:41:12.3853488Z [36;1m  -D lws_name="$LWS_NAME" \[0m
+2026-04-01T17:41:12.3853763Z [36;1m  -D log_prefix="$LOG_PREFIX" \[0m
+2026-04-01T17:41:12.3854040Z [36;1m  -D size="$size" \[0m
+2026-04-01T17:41:12.3854280Z [36;1m  -D replicas="$replicas" \[0m
+2026-04-01T17:41:12.3854541Z [36;1m  -D image="$image" \[0m
+2026-04-01T17:41:12.3854826Z [36;1m  -D config_file_path="$config_file_path" \[0m
+2026-04-01T17:41:12.3855146Z [36;1m  -D npu_per_node="$npu_per_node" \[0m
+2026-04-01T17:41:12.3855428Z [36;1m  -D fail_tag="$fail_tag" \[0m
+2026-04-01T17:41:12.3855689Z [36;1m  -D is_pr_test="$is_pr_test" \[0m
+2026-04-01T17:41:12.3855965Z [36;1m  -D vllm_version="$vllm_version" \[0m
+2026-04-01T17:41:12.3856268Z [36;1m  -D vllm_ascend_ref="$vllm_ascend_ref" \[0m
+2026-04-01T17:41:12.3856622Z [36;1m  -D vllm_ascend_remote_url="$vllm_ascend_remote_url" \[0m
+2026-04-01T17:41:12.3856944Z [36;1m  -D pvc_name="$pvc_name" \[0m
+2026-04-01T17:41:12.3857218Z [36;1m  --outfile lws.yaml[0m
+2026-04-01T17:41:12.3857448Z [36;1m[0m
+2026-04-01T17:41:12.3857829Z [36;1mkubectl apply -f ./lws.yaml[0m
+2026-04-01T17:41:12.3858182Z shell: bash -el {0}
+2026-04-01T17:41:12.3858389Z env:
+2026-04-01T17:41:12.3858613Z   LWS_NAME: vllm-kimi-k2-instruct-w8a8-2d4739
+2026-04-01T17:41:12.3858943Z   LEADER_POD: vllm-kimi-k2-instruct-w8a8-2d4739-0
+2026-04-01T17:41:12.3859364Z   LOG_PREFIX: /root/.cache/ascend-logs/vllm-kimi-k2-instruct-w8a8-2d4739
+2026-04-01T17:41:12.3859733Z ##[endgroup]
+2026-04-01T17:41:12.3936414Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-01T17:41:12.3937871Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-01T17:41:12.3938382Z ##[endgroup]
+2026-04-01T17:41:12.8194802Z (node:574) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-01T17:41:12.8195711Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-01T17:41:13.9405387Z leaderworkerset.leaderworkerset.x-k8s.io/vllm-kimi-k2-instruct-w8a8-2d4739 created
+2026-04-01T17:41:13.9644141Z service/vllm-kimi-k2-instruct-w8a8-2d4739-leader created
+2026-04-01T17:41:14.4795177Z ##[group]Run set -euo pipefail
+2026-04-01T17:41:14.4795501Z [36;1mset -euo pipefail[0m
+2026-04-01T17:41:14.4795733Z [36;1mSIZE="2"[0m
+2026-04-01T17:41:14.4795935Z [36;1mTIMEOUT=1200[0m
+2026-04-01T17:41:14.4796129Z [36;1m[0m
+2026-04-01T17:41:14.4796471Z [36;1mecho "Waiting for all pods to become Running and Ready (timeout ${TIMEOUT}s)..."[0m
+2026-04-01T17:41:14.4796892Z [36;1mSTART_TIME=$(date +%s)[0m
+2026-04-01T17:41:14.4797139Z [36;1mwhile true; do[0m
+2026-04-01T17:41:14.4797397Z [36;1m  ELAPSED=$(( $(date +%s) - START_TIME ))[0m
+2026-04-01T17:41:14.4797712Z [36;1m  if [[ $ELAPSED -ge $TIMEOUT ]]; then[0m
+2026-04-01T17:41:14.4798086Z [36;1m    echo "Timeout reached after ${ELAPSED}s, dumping pod status:"[0m
+2026-04-01T17:41:14.4798477Z [36;1m    kubectl get pods -n "$NAMESPACE"[0m
+2026-04-01T17:41:14.4798820Z [36;1m    kubectl describe pod "$LEADER_POD" -n "$NAMESPACE"[0m
+2026-04-01T17:41:14.4799160Z [36;1m    exit 1[0m
+2026-04-01T17:41:14.4799399Z [36;1m  fi[0m
+2026-04-01T17:41:14.4799571Z [36;1m[0m
+2026-04-01T17:41:14.4799748Z [36;1m  ALL_READY=true[0m
+2026-04-01T17:41:14.4800176Z [36;1m  for ((i=1; i<SIZE; i++)); do[0m
+2026-04-01T17:41:14.4800441Z [36;1m    POD="${LWS_NAME}-0-${i}"[0m
+2026-04-01T17:41:14.4800955Z [36;1m    PHASE=$(kubectl get pod "$POD" -n "$NAMESPACE" -o jsonpath='{.status.phase}' 2>/dev/null || echo "NotFound")[0m
+2026-04-01T17:41:14.4801703Z [36;1m    READY=$(kubectl get pod "$POD" -n "$NAMESPACE" -o jsonpath='{.status.containerStatuses[*].ready}' 2>/dev/null)[0m
+2026-04-01T17:41:14.4802267Z [36;1m    echo "Worker [$POD] phase=$PHASE ready=$READY"[0m
+2026-04-01T17:41:14.4802643Z [36;1m    if [[ "$PHASE" != "Running" || "$READY" != "true" ]]; then[0m
+2026-04-01T17:41:14.4802978Z [36;1m      ALL_READY=false[0m
+2026-04-01T17:41:14.4803286Z [36;1m      break[0m
+2026-04-01T17:41:14.4803488Z [36;1m    fi[0m
+2026-04-01T17:41:14.4803675Z [36;1m  done[0m
+2026-04-01T17:41:14.4803848Z [36;1m[0m
+2026-04-01T17:41:14.4804319Z [36;1m  LEADER_PHASE=$(kubectl get pod "$LEADER_POD" -n "$NAMESPACE" -o jsonpath='{.status.phase}' 2>/dev/null || echo "NotFound")[0m
+2026-04-01T17:41:14.4805151Z [36;1m  LEADER_READY=$(kubectl get pod "$LEADER_POD" -n "$NAMESPACE" -o jsonpath='{.status.containerStatuses[*].ready}' 2>/dev/null)[0m
+2026-04-01T17:41:14.4805807Z [36;1m  echo "Leader [$LEADER_POD] phase=$LEADER_PHASE ready=$LEADER_READY"[0m
+2026-04-01T17:41:14.4806279Z [36;1m  if [[ "$LEADER_PHASE" != "Running" || "$LEADER_READY" != "true" ]]; then[0m
+2026-04-01T17:41:14.4806646Z [36;1m    ALL_READY=false[0m
+2026-04-01T17:41:14.4806862Z [36;1m  fi[0m
+2026-04-01T17:41:14.4807039Z [36;1m[0m
+2026-04-01T17:41:14.4807236Z [36;1m  if [[ "$ALL_READY" == "true" ]]; then[0m
+2026-04-01T17:41:14.4807542Z [36;1m    echo "All pods are Running and Ready."[0m
+2026-04-01T17:41:14.4807821Z [36;1m    break[0m
+2026-04-01T17:41:14.4808197Z [36;1m  fi[0m
+2026-04-01T17:41:14.4808373Z [36;1m  sleep 2[0m
+2026-04-01T17:41:14.4808570Z [36;1mdone[0m
+2026-04-01T17:41:14.4808943Z shell: bash -el {0}
+2026-04-01T17:41:14.4809143Z env:
+2026-04-01T17:41:14.4809372Z   LWS_NAME: vllm-kimi-k2-instruct-w8a8-2d4739
+2026-04-01T17:41:14.4809698Z   LEADER_POD: vllm-kimi-k2-instruct-w8a8-2d4739-0
+2026-04-01T17:41:14.4810284Z   LOG_PREFIX: /root/.cache/ascend-logs/vllm-kimi-k2-instruct-w8a8-2d4739
+2026-04-01T17:41:14.4810696Z   FAIL_TAG: FAIL_TAG_Kimi-K2-Instruct-W8A8.yaml
+2026-04-01T17:41:14.4810976Z ##[endgroup]
+2026-04-01T17:41:14.4894591Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-01T17:41:14.4895733Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-01T17:41:14.4896226Z ##[endgroup]
+2026-04-01T17:41:14.9208068Z (node:664) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-01T17:41:14.9209066Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-01T17:41:15.5815533Z Waiting for all pods to become Running and Ready (timeout 1200s)...
+2026-04-01T17:41:15.7076150Z Worker [vllm-kimi-k2-instruct-w8a8-2d4739-0-1] phase=Pending ready=
+2026-04-01T17:41:15.8315235Z Leader [vllm-kimi-k2-instruct-w8a8-2d4739-0] phase=Pending ready=
+2026-04-01T17:41:17.9569343Z Worker [vllm-kimi-k2-instruct-w8a8-2d4739-0-1] phase=Pending ready=
+2026-04-01T17:41:18.0874975Z Leader [vllm-kimi-k2-instruct-w8a8-2d4739-0] phase=Pending ready=
+2026-04-01T17:41:20.2073652Z Worker [vllm-kimi-k2-instruct-w8a8-2d4739-0-1] phase=Pending ready=
+2026-04-01T17:41:20.3275264Z Leader [vllm-kimi-k2-instruct-w8a8-2d4739-0] phase=Pending ready=
+2026-04-01T17:41:22.4644703Z Worker [vllm-kimi-k2-instruct-w8a8-2d4739-0-1] phase=Pending ready=
+2026-04-01T17:41:22.5964551Z Leader [vllm-kimi-k2-instruct-w8a8-2d4739-0] phase=Pending ready=
+2026-04-01T17:41:24.7182962Z Worker [vllm-kimi-k2-instruct-w8a8-2d4739-0-1] phase=Pending ready=
+2026-04-01T17:41:24.8587029Z Leader [vllm-kimi-k2-instruct-w8a8-2d4739-0] phase=Pending ready=
+2026-04-01T17:41:26.9898700Z Worker [vllm-kimi-k2-instruct-w8a8-2d4739-0-1] phase=Pending ready=false
+2026-04-01T17:41:27.1119517Z Leader [vllm-kimi-k2-instruct-w8a8-2d4739-0] phase=Pending ready=false
+2026-04-01T17:41:29.2397413Z Worker [vllm-kimi-k2-instruct-w8a8-2d4739-0-1] phase=Running ready=true
+2026-04-01T17:41:29.3582925Z Leader [vllm-kimi-k2-instruct-w8a8-2d4739-0] phase=Running ready=true
+2026-04-01T17:41:29.3583373Z All pods are Running and Ready.
+2026-04-01T17:41:29.8742066Z ##[group]Run set -euo pipefail
+2026-04-01T17:41:29.8742442Z [36;1mset -euo pipefail[0m
+2026-04-01T17:41:29.8742667Z [36;1m[0m
+2026-04-01T17:41:29.8742858Z [36;1msize="2"[0m
+2026-04-01T17:41:29.8743041Z [36;1mpids=()[0m
+2026-04-01T17:41:29.8743223Z [36;1m[0m
+2026-04-01T17:41:29.8743401Z [36;1mcleanup() {[0m
+2026-04-01T17:41:29.8743770Z [36;1m  echo "Cleaning up background log streams..."[0m
+2026-04-01T17:41:29.8744120Z [36;1m  for pid in "${pids[@]}"; do[0m
+2026-04-01T17:41:29.8744392Z [36;1m    kill "$pid" 2>/dev/null || true[0m
+2026-04-01T17:41:29.8744655Z [36;1m  done[0m
+2026-04-01T17:41:29.8744847Z [36;1m}[0m
+2026-04-01T17:41:29.8745026Z [36;1mtrap cleanup EXIT[0m
+2026-04-01T17:41:29.8745243Z [36;1m[0m
+2026-04-01T17:41:29.8745435Z [36;1mfor i in $(seq 0 $((size - 1))); do[0m
+2026-04-01T17:41:29.8745695Z [36;1m  if [ "${i}" -eq 0 ]; then[0m
+2026-04-01T17:41:29.8745947Z [36;1m    POD="${LWS_NAME}-0"[0m
+2026-04-01T17:41:29.8746224Z [36;1m  else[0m
+2026-04-01T17:41:29.8746421Z [36;1m    POD="${LWS_NAME}-0-${i}"[0m
+2026-04-01T17:41:29.8746666Z [36;1m  fi[0m
+2026-04-01T17:41:29.8746929Z [36;1m  echo "==== Collecting logs from worker pod: $POD ===="[0m
+2026-04-01T17:41:29.8747295Z [36;1m  kubectl logs -f "$POD" -n "$NAMESPACE" \[0m
+2026-04-01T17:41:29.8747610Z [36;1m    > "/tmp/${POD}_logs.txt" 2>&1 &[0m
+2026-04-01T17:41:29.8747860Z [36;1m[0m
+2026-04-01T17:41:29.8748214Z [36;1m  pids+=($!)[0m
+2026-04-01T17:41:29.8748418Z [36;1mdone[0m
+2026-04-01T17:41:29.8748586Z [36;1m[0m
+2026-04-01T17:41:29.8748905Z [36;1mkubectl logs -f "$LEADER_POD" -n "$NAMESPACE" | while IFS= read -r line; do[0m
+2026-04-01T17:41:29.8749313Z [36;1m  echo "$line"[0m
+2026-04-01T17:41:29.8749570Z [36;1m  if echo "$line" | grep -q "$FAIL_TAG"; then[0m
+2026-04-01T17:41:29.8750027Z [36;1m    exit 1[0m
+2026-04-01T17:41:29.8750263Z [36;1m  fi[0m
+2026-04-01T17:41:29.8750434Z [36;1mdone[0m
+2026-04-01T17:41:29.8750740Z shell: bash -el {0}
+2026-04-01T17:41:29.8750936Z env:
+2026-04-01T17:41:29.8751152Z   LWS_NAME: vllm-kimi-k2-instruct-w8a8-2d4739
+2026-04-01T17:41:29.8751490Z   LEADER_POD: vllm-kimi-k2-instruct-w8a8-2d4739-0
+2026-04-01T17:41:29.8751902Z   LOG_PREFIX: /root/.cache/ascend-logs/vllm-kimi-k2-instruct-w8a8-2d4739
+2026-04-01T17:41:29.8752315Z   FAIL_TAG: FAIL_TAG_Kimi-K2-Instruct-W8A8.yaml
+2026-04-01T17:41:29.8752601Z ##[endgroup]
+2026-04-01T17:41:29.8890950Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-01T17:41:29.8891851Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-01T17:41:29.8892137Z ##[endgroup]
+2026-04-01T17:41:30.3642768Z (node:770) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-01T17:41:30.3644028Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-01T17:41:31.1020187Z ==== Collecting logs from worker pod: vllm-kimi-k2-instruct-w8a8-2d4739-0 ====
+2026-04-01T17:41:31.1020850Z ==== Collecting logs from worker pod: vllm-kimi-k2-instruct-w8a8-2d4739-0-1 ====
+2026-04-01T17:41:44.1140175Z ====> Check NPU info
+2026-04-01T17:41:45.5932586Z +------------------------------------------------------------------------------------------------+
+2026-04-01T17:41:45.5943119Z | npu-smi 25.5.0                   Version: 25.5.0                                               |
+2026-04-01T17:41:45.5955892Z +---------------------------+---------------+----------------------------------------------------+
+2026-04-01T17:41:45.5967215Z | NPU   Name                | Health        | Power(W)    Temp(C)           Hugepages-Usage(page)|
+2026-04-01T17:41:45.5978688Z | Chip  Phy-ID              | Bus-Id        | AICore(%)   Memory-Usage(MB)  HBM-Usage(MB)        |
+2026-04-01T17:41:45.5989114Z +===========================+===============+====================================================+
+2026-04-01T17:41:45.6000435Z | 0     Ascend910           | OK            | 167.2       36                0    / 0             |
+2026-04-01T17:41:45.6011291Z | 0     0                   | 0000:9D:00.0  | 0           0    / 0          3173 / 65536         |
+2026-04-01T17:41:45.6022899Z +------------------------------------------------------------------------------------------------+
+2026-04-01T17:41:45.6033808Z | 0     Ascend910           | OK            | -           36                0    / 0             |
+2026-04-01T17:41:45.6045545Z | 1     1                   | 0000:9F:00.0  | 0           0    / 0          2884 / 65536         |
+2026-04-01T17:41:45.6056885Z +===========================+===============+====================================================+
+2026-04-01T17:41:45.6074278Z | 1     Ascend910           | OK            | 166.6       35                0    / 0             |
+2026-04-01T17:41:45.6085611Z | 0     2                   | 0000:99:00.0  | 0           0    / 0          3160 / 65536         |
+2026-04-01T17:41:45.6096982Z +------------------------------------------------------------------------------------------------+
+2026-04-01T17:41:45.6108372Z | 1     Ascend910           | OK            | -           36                0    / 0             |
+2026-04-01T17:41:45.6119592Z | 1     3                   | 0000:9B:00.0  | 0           0    / 0          2891 / 65536         |
+2026-04-01T17:41:45.6131039Z +===========================+===============+====================================================+
+2026-04-01T17:41:45.6141737Z | 2     Ascend910           | OK            | 167.5       36                0    / 0             |
+2026-04-01T17:41:45.6152534Z | 0     4                   | 0000:95:00.0  | 0           0    / 0          3169 / 65536         |
+2026-04-01T17:41:45.6163651Z +------------------------------------------------------------------------------------------------+
+2026-04-01T17:41:45.6174885Z | 2     Ascend910           | OK            | -           34                0    / 0             |
+2026-04-01T17:41:45.6186184Z | 1     5                   | 0000:97:00.0  | 0           0    / 0          2883 / 65536         |
+2026-04-01T17:41:45.6197152Z +===========================+===============+====================================================+
+2026-04-01T17:41:45.6207105Z | 3     Ascend910           | OK            | 156.6       35                0    / 0             |
+2026-04-01T17:41:45.6218293Z | 0     6                   | 0000:91:00.0  | 0           0    / 0          3169 / 65536         |
+2026-04-01T17:41:45.6229221Z +------------------------------------------------------------------------------------------------+
+2026-04-01T17:41:45.6239522Z | 3     Ascend910           | OK            | -           34                0    / 0             |
+2026-04-01T17:41:45.6250759Z | 1     7                   | 0000:93:00.0  | 0           0    / 0          2885 / 65536         |
+2026-04-01T17:41:45.6262197Z +===========================+===============+====================================================+
+2026-04-01T17:41:45.6272934Z | 4     Ascend910           | OK            | 165.8       36                0    / 0             |
+2026-04-01T17:41:45.6283809Z | 0     8                   | 0000:8D:00.0  | 0           0    / 0          3172 / 65536         |
+2026-04-01T17:41:45.6295154Z +------------------------------------------------------------------------------------------------+
+2026-04-01T17:41:45.6305996Z | 4     Ascend910           | OK            | -           36                0    / 0             |
+2026-04-01T17:41:45.6317161Z | 1     9                   | 0000:8F:00.0  | 0           0    / 0          2886 / 65536         |
+2026-04-01T17:41:45.6327453Z +===========================+===============+====================================================+
+2026-04-01T17:41:45.6338519Z | 5     Ascend910           | OK            | 169.2       36                0    / 0             |
+2026-04-01T17:41:45.6349295Z | 0     10                  | 0000:89:00.0  | 0           0    / 0          3154 / 65536         |
+2026-04-01T17:41:45.6360025Z +------------------------------------------------------------------------------------------------+
+2026-04-01T17:41:45.6370820Z | 5     Ascend910           | OK            | -           37                0    / 0             |
+2026-04-01T17:41:45.6381868Z | 1     11                  | 0000:8B:00.0  | 0           0    / 0          2898 / 65536         |
+2026-04-01T17:41:45.8960465Z +===========================+===============+====================================================+
+2026-04-01T17:41:45.8968986Z | 6     Ascend910           | OK            | 164.8       36                0    / 0             |
+2026-04-01T17:41:45.8979113Z | 0     12                  | 0000:85:00.0  | 0           0    / 0          3168 / 65536         |
+2026-04-01T17:41:45.8990201Z +------------------------------------------------------------------------------------------------+
+2026-04-01T17:41:45.9001318Z | 6     Ascend910           | OK            | -           35                0    / 0             |
+2026-04-01T17:41:45.9012342Z | 1     13                  | 0000:87:00.0  | 0           0    / 0          2885 / 65536         |
+2026-04-01T17:41:45.9022463Z +===========================+===============+====================================================+
+2026-04-01T17:41:45.9033355Z | 7     Ascend910           | OK            | 164.3       34                0    / 0             |
+2026-04-01T17:41:45.9044213Z | 0     14                  | 0000:81:00.0  | 0           0    / 0          3162 / 65536         |
+2026-04-01T17:41:45.9055647Z +------------------------------------------------------------------------------------------------+
+2026-04-01T17:41:45.9066576Z | 7     Ascend910           | OK            | -           36                0    / 0             |
+2026-04-01T17:41:45.9077149Z | 1     15                  | 0000:83:00.0  | 0           0    / 0          2894 / 65536         |
+2026-04-01T17:41:45.9088360Z +===========================+===============+====================================================+
+2026-04-01T17:41:45.9099686Z +---------------------------+---------------+----------------------------------------------------+
+2026-04-01T17:41:45.9109930Z | NPU     Chip              | Process id    | Process name             | Process memory(MB)      |
+2026-04-01T17:41:45.9120695Z +===========================+===============+====================================================+
+2026-04-01T17:41:45.9131609Z | No running processes found in NPU 0                                                            |
+2026-04-01T17:41:45.9142669Z +===========================+===============+====================================================+
+2026-04-01T17:41:45.9152506Z | No running processes found in NPU 1                                                            |
+2026-04-01T17:41:45.9162687Z +===========================+===============+====================================================+
+2026-04-01T17:41:45.9174366Z | No running processes found in NPU 2                                                            |
+2026-04-01T17:41:45.9185158Z +===========================+===============+====================================================+
+2026-04-01T17:41:45.9195846Z | No running processes found in NPU 3                                                            |
+2026-04-01T17:41:45.9206423Z +===========================+===============+====================================================+
+2026-04-01T17:41:45.9217120Z | No running processes found in NPU 4                                                            |
+2026-04-01T17:41:45.9227676Z +===========================+===============+====================================================+
+2026-04-01T17:41:45.9239130Z | No running processes found in NPU 5                                                            |
+2026-04-01T17:41:45.9249690Z +===========================+===============+====================================================+
+2026-04-01T17:41:45.9262994Z | No running processes found in NPU 6                                                            |
+2026-04-01T17:41:45.9277619Z +===========================+===============+====================================================+
+2026-04-01T17:41:45.9290046Z | No running processes found in NPU 7                                                            |
+2026-04-01T17:41:45.9302119Z +===========================+===============+====================================================+
+2026-04-01T17:41:45.9313473Z package_name=Ascend-cann-toolkit
+2026-04-01T17:41:45.9323974Z version=8.5.1
+2026-04-01T17:41:45.9335281Z innerversion=V100R001C25SPC002B220
+2026-04-01T17:41:45.9347406Z compatible_version=[V100R001C15],[V100R001C18],[V100R001C19],[V100R001C20],[V100R001C21],[V100R001C23]
+2026-04-01T17:41:45.9358614Z arch=aarch64
+2026-04-01T17:41:45.9370391Z os=linux
+2026-04-01T17:41:45.9381747Z path=/usr/local/Ascend/cann-8.5.1
+2026-04-01T17:41:45.9392372Z 
+2026-04-01T17:41:45.9403781Z [0;34m=== Clearing logs from previous runs ===[0m
+2026-04-01T17:41:45.9414586Z ====> Configure mirrors and git proxy
+2026-04-01T17:41:46.1674147Z Writing to /root/.config/pip/pip.conf
+2026-04-01T17:41:46.2011549Z Installed vLLM-related Python packages:
+2026-04-01T17:41:46.8009895Z vllm                                     0.18.0+empty                /vllm-workspace/vllm
+2026-04-01T17:41:46.8019548Z vllm_ascend                              0.17.0rc2.dev168+g99e1ea0fe /vllm-workspace/vllm-ascend
+2026-04-01T17:41:46.8031386Z 
+2026-04-01T17:41:46.8045523Z ============================
+2026-04-01T17:41:46.8054604Z vLLM Git information
+2026-04-01T17:41:46.8065322Z ============================
+2026-04-01T17:41:46.8120676Z Branch:      HEAD
+2026-04-01T17:41:46.8148432Z Commit hash: bcf2be96120005e9aea171927f85055a6a5c0cf6
+2026-04-01T17:41:46.8224144Z Author:      khluu <khluu000@gmail.com>
+2026-04-01T17:41:46.8248607Z Date:        2026-03-19 15:06:38 -0700
+2026-04-01T17:41:46.8274799Z Message:     [cherry-pick][Bugfix] Disable monolithic TRTLLM MoE for Renormalize routing (#37591)#37605
+2026-04-01T17:41:46.8302064Z Tags:        v0.18.0
+2026-04-01T17:41:46.8360725Z Remote:      origin	https://ghfast.top/https://github.com/vllm-project/vllm.git (fetch)
+2026-04-01T17:41:46.8361183Z 
+2026-04-01T17:41:46.8361794Z 
+2026-04-01T17:41:46.8376296Z ============================
+2026-04-01T17:41:46.8391513Z vLLM-Ascend Git information
+2026-04-01T17:41:46.8408949Z ============================
+2026-04-01T17:41:46.8447256Z Branch:      releases/v0.18.0
+2026-04-01T17:41:46.8447620Z Commit hash: 99e1ea0fe685e93f53ee5adfe4b41cdd42fb809f
+2026-04-01T17:41:46.8485006Z Author:      Li Wang <wangli858794774@gmail.com>
+2026-04-01T17:41:46.8509811Z Date:        2026-04-01 22:41:09 +0800
+2026-04-01T17:41:46.8535259Z Message:     [v0.18.0][Misc] Upgrade torch_npu to pre-release built version (#7918)
+2026-04-01T17:41:46.8894237Z Tags:        
+2026-04-01T17:41:46.8923915Z Remote:      origin	https://ghfast.top/https://github.com/vllm-project/vllm-ascend (fetch)
+2026-04-01T17:41:46.8934693Z 
+2026-04-01T17:41:46.8945846Z ====> Check triton ascend info
+2026-04-01T17:41:47.3240541Z Ubuntu clang version 15.0.7
+2026-04-01T17:41:47.3249133Z Target: aarch64-unknown-linux-gnu
+2026-04-01T17:41:47.3260348Z Thread model: posix
+2026-04-01T17:41:47.3270155Z InstalledDir: /usr/bin
+2026-04-01T17:41:47.3281454Z Found candidate GCC installation: /usr/bin/../lib/gcc/aarch64-linux-gnu/11
+2026-04-01T17:41:47.3292916Z Selected GCC installation: /usr/bin/../lib/gcc/aarch64-linux-gnu/11
+2026-04-01T17:41:47.3303559Z Candidate multilib: .;@m64
+2026-04-01T17:41:47.3314145Z Selected multilib: .;@m64
+2026-04-01T17:41:47.3397055Z /usr/local/Ascend/cann-8.5.1/tools/bishengir/bin/bishengir-compile
+2026-04-01T17:41:47.7458670Z Name: triton-ascend
+2026-04-01T17:41:47.7482322Z Version: 3.2.0.dev20260322
+2026-04-01T17:41:47.7493945Z Summary: A language and compiler for custom Deep Learning operations on Ascend hardwares
+2026-04-01T17:41:47.7504683Z Home-page: https://gitcode.com/Ascend/triton-ascend/
+2026-04-01T17:41:47.7516121Z Author: 
+2026-04-01T17:41:47.7526897Z Author-email: 
+2026-04-01T17:41:47.7538528Z License: 
+2026-04-01T17:41:47.7549800Z Location: /usr/local/python3.11.14/lib/python3.11/site-packages
+2026-04-01T17:41:47.7561895Z Requires: 
+2026-04-01T17:41:47.7572629Z Required-by: vllm_ascend
+2026-04-01T17:41:51.8193501Z /root/.cache/tests/run.sh: line 205: pytest: command not found
+2026-04-01T17:41:51.8217671Z [0;31mFAIL_TAG_Kimi-K2-Instruct-W8A8.yaml ✗ ERROR: Some tests failed, please check the error stack above for details. If this is insufficient to pinpoint the error, please download and review the logs of all other nodes from the job's summary.[0m
+2026-04-01T17:41:51.8405152Z Cleaning up background log streams...
+2026-04-01T17:41:51.9312277Z ##[error]Error: failed to run script step: Error: command terminated with non-zero exit code: command terminated with exit code 1
+2026-04-01T17:41:51.9361044Z ##[error]Process completed with exit code 1.
+2026-04-01T17:41:51.9455210Z ##[error]Executing the custom container implementation failed. Please contact your self hosted runner administrator.
+2026-04-01T17:41:51.9936674Z ##[group]Run echo "Current pod status:"
+2026-04-01T17:41:51.9937041Z [36;1mecho "Current pod status:"[0m
+2026-04-01T17:41:51.9937408Z [36;1mkubectl get pods -n "$NAMESPACE" --ignore-not-found=true[0m
+2026-04-01T17:41:51.9937761Z [36;1m[0m
+2026-04-01T17:41:51.9937990Z [36;1mecho "Deleting resources for [$LWS_NAME]..."[0m
+2026-04-01T17:41:51.9938389Z [36;1mkubectl delete -f ./lws.yaml --ignore-not-found=true || true[0m
+2026-04-01T17:41:51.9938738Z [36;1m[0m
+2026-04-01T17:41:51.9939010Z [36;1mecho "Waiting for pods of [$LWS_NAME] to fully terminate..."[0m
+2026-04-01T17:41:51.9939509Z [36;1mTIMEOUT=300[0m
+2026-04-01T17:41:51.9939729Z [36;1mSLEEP_INTERVAL=5[0m
+2026-04-01T17:41:51.9940160Z [36;1mSTART_TIME=$(date +%s)[0m
+2026-04-01T17:41:51.9940420Z [36;1mwhile true; do[0m
+2026-04-01T17:41:51.9940683Z [36;1m  ELAPSED=$(( $(date +%s) - START_TIME ))[0m
+2026-04-01T17:41:51.9940999Z [36;1m  if [[ $ELAPSED -ge $TIMEOUT ]]; then[0m
+2026-04-01T17:41:51.9941517Z [36;1m    echo "Timeout reached ($TIMEOUT seconds) waiting for termination, continuing anyway."[0m
+2026-04-01T17:41:51.9942055Z [36;1m    kubectl get pods -n "$NAMESPACE" | grep "^${LWS_NAME}-" || true[0m
+2026-04-01T17:41:51.9942407Z [36;1m    break[0m
+2026-04-01T17:41:51.9942606Z [36;1m  fi[0m
+2026-04-01T17:41:51.9943007Z [36;1m  PODS_EXIST=$(kubectl get pods -n "$NAMESPACE" -o jsonpath='{.items[*].metadata.name}' 2>/dev/null \[0m
+2026-04-01T17:41:51.9943530Z [36;1m    | tr ' ' '\n' | grep "^${LWS_NAME}-" || true)[0m
+2026-04-01T17:41:51.9943852Z [36;1m  if [[ -z "$PODS_EXIST" ]]; then[0m
+2026-04-01T17:41:51.9944175Z [36;1m    echo "All pods for [$LWS_NAME] have terminated."[0m
+2026-04-01T17:41:51.9944482Z [36;1m    break[0m
+2026-04-01T17:41:51.9944788Z [36;1m  fi[0m
+2026-04-01T17:41:51.9945043Z [36;1m  echo "Waiting for pods to terminate: $PODS_EXIST"[0m
+2026-04-01T17:41:51.9945374Z [36;1m  sleep $SLEEP_INTERVAL[0m
+2026-04-01T17:41:51.9945616Z [36;1mdone[0m
+2026-04-01T17:41:51.9945895Z shell: bash -el {0}
+2026-04-01T17:41:51.9946093Z env:
+2026-04-01T17:41:51.9946310Z   LWS_NAME: vllm-kimi-k2-instruct-w8a8-2d4739
+2026-04-01T17:41:51.9946645Z   LEADER_POD: vllm-kimi-k2-instruct-w8a8-2d4739-0
+2026-04-01T17:41:51.9947057Z   LOG_PREFIX: /root/.cache/ascend-logs/vllm-kimi-k2-instruct-w8a8-2d4739
+2026-04-01T17:41:51.9947454Z   FAIL_TAG: FAIL_TAG_Kimi-K2-Instruct-W8A8.yaml
+2026-04-01T17:41:51.9947734Z ##[endgroup]
+2026-04-01T17:41:52.0087273Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-01T17:41:52.0088120Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-01T17:41:52.0088418Z ##[endgroup]
+2026-04-01T17:41:52.4356996Z (node:838) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-01T17:41:52.4357981Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-01T17:41:53.0735459Z Current pod status:
+2026-04-01T17:41:53.2592653Z NAME                                             READY   STATUS    RESTARTS     AGE
+2026-04-01T17:41:53.2593217Z linux-aarch64-a3-0-ggwx6-runner-bcwxh            1/1     Running   0            103s
+2026-04-01T17:41:53.2593863Z linux-aarch64-a3-0-ggwx6-runner-bcwxh-workflow   1/1     Running   0            69s
+2026-04-01T17:41:53.2594456Z linux-aarch64-a3-0-ggwx6-runner-n9fhr            1/1     Running   0            55m
+2026-04-01T17:41:53.2595063Z linux-aarch64-a3-0-ggwx6-runner-n9fhr-workflow   1/1     Running   0            54m
+2026-04-01T17:41:53.2595663Z linux-aarch64-a3-2-nqp5k-runner-pq7mj            1/1     Running   0            72m
+2026-04-01T17:41:53.2596235Z linux-aarch64-a3-2-nqp5k-runner-pq7mj-workflow   1/1     Running   0            71m
+2026-04-01T17:41:53.2596780Z linux-aarch64-a3-4-92cdc-runner-ds7jg            1/1     Running   0            72m
+2026-04-01T17:41:53.2597334Z linux-aarch64-a3-4-92cdc-runner-ds7jg-workflow   1/1     Running   0            71m
+2026-04-01T17:41:53.2598179Z vllm-kimi-k2-instruct-w8a8-2d4739-0              1/1     Running   1 (2s ago)   39s
+2026-04-01T17:41:53.2598722Z vllm-kimi-k2-instruct-w8a8-2d4739-0-1            1/1     Running   1 (2s ago)   39s
+2026-04-01T17:41:53.2599235Z vllm-qwen3-235b-a22b-2b8487-0                    1/1     Running   0            54m
+2026-04-01T17:41:53.2599729Z vllm-qwen3-235b-a22b-2b8487-0-1                  1/1     Running   0            54m
+2026-04-01T17:41:53.2625080Z Deleting resources for [vllm-kimi-k2-instruct-w8a8-2d4739]...
+2026-04-01T17:41:53.3292814Z leaderworkerset.leaderworkerset.x-k8s.io "vllm-kimi-k2-instruct-w8a8-2d4739" deleted from vllm-project namespace
+2026-04-01T17:41:53.3487948Z service "vllm-kimi-k2-instruct-w8a8-2d4739-leader" deleted from vllm-project namespace
+2026-04-01T17:41:53.3639887Z Waiting for pods of [vllm-kimi-k2-instruct-w8a8-2d4739] to fully terminate...
+2026-04-01T17:41:53.5632777Z Waiting for pods to terminate: vllm-kimi-k2-instruct-w8a8-2d4739-0
+2026-04-01T17:41:53.5633221Z vllm-kimi-k2-instruct-w8a8-2d4739-0-1
+2026-04-01T17:41:58.6531947Z Waiting for pods to terminate: vllm-kimi-k2-instruct-w8a8-2d4739-0
+2026-04-01T17:41:58.6532399Z vllm-kimi-k2-instruct-w8a8-2d4739-0-1
+2026-04-01T17:42:03.7809505Z Waiting for pods to terminate: vllm-kimi-k2-instruct-w8a8-2d4739-0
+2026-04-01T17:42:03.7810088Z vllm-kimi-k2-instruct-w8a8-2d4739-0-1
+2026-04-01T17:42:08.8671862Z Waiting for pods to terminate: vllm-kimi-k2-instruct-w8a8-2d4739-0
+2026-04-01T17:42:08.8672306Z vllm-kimi-k2-instruct-w8a8-2d4739-0-1
+2026-04-01T17:42:13.9544965Z All pods for [vllm-kimi-k2-instruct-w8a8-2d4739] have terminated.
+2026-04-01T17:42:14.4748383Z ##[group]Run set -euo pipefail
+2026-04-01T17:42:14.4748709Z [36;1mset -euo pipefail[0m
+2026-04-01T17:42:14.4748933Z [36;1msize="2"[0m
+2026-04-01T17:42:14.4749158Z [36;1mDEST="/tmp/collected-logs"[0m
+2026-04-01T17:42:14.4749432Z [36;1mPLOG_PATH=/root/ascend/log[0m
+2026-04-01T17:42:14.4749686Z [36;1mKUBE_LOG_PATH=/var/log[0m
+2026-04-01T17:42:14.4750135Z [36;1mfor i in $(seq 0 $((size - 1))); do[0m
+2026-04-01T17:42:14.4750425Z [36;1m  if [ "${i}" -eq 0 ]; then[0m
+2026-04-01T17:42:14.4750679Z [36;1m    POD="${LWS_NAME}-0"[0m
+2026-04-01T17:42:14.4750921Z [36;1m  else[0m
+2026-04-01T17:42:14.4751119Z [36;1m    POD="${LWS_NAME}-0-${i}"[0m
+2026-04-01T17:42:14.4751368Z [36;1m  fi[0m
+2026-04-01T17:42:14.4751703Z [36;1m  mkdir -p "${DEST}/node${i}/${PLOG_PATH}" "${DEST}/node${i}/${KUBE_LOG_PATH}"[0m
+2026-04-01T17:42:14.4752090Z [36;1m  # pod stdout.[0m
+2026-04-01T17:42:14.4752513Z [36;1m  cp "/tmp/${POD}_logs.txt" "${DEST}/node${i}/${KUBE_LOG_PATH}/" 2>/dev/null || true[0m
+2026-04-01T17:42:14.4752939Z [36;1m  # Ascend plogs from PVC.[0m
+2026-04-01T17:42:14.4753225Z [36;1m  SRC="${LOG_PREFIX}/node_${i}_plogs"[0m
+2026-04-01T17:42:14.4753514Z [36;1m  if [ -d "$SRC" ]; then[0m
+2026-04-01T17:42:14.4753845Z [36;1m    cp -r "$SRC"/. "${DEST}/node${i}/${PLOG_PATH}/" 2>/dev/null || true[0m
+2026-04-01T17:42:14.4754192Z [36;1m  fi[0m
+2026-04-01T17:42:14.4754380Z [36;1mdone[0m
+2026-04-01T17:42:14.4754553Z [36;1m[0m
+2026-04-01T17:42:14.4754828Z [36;1mtar -czf /tmp/ascend-logs.tar.gz -C /tmp collected-logs[0m
+2026-04-01T17:42:14.4755237Z shell: bash -el {0}
+2026-04-01T17:42:14.4755428Z env:
+2026-04-01T17:42:14.4755726Z   LWS_NAME: vllm-kimi-k2-instruct-w8a8-2d4739
+2026-04-01T17:42:14.4756054Z   LEADER_POD: vllm-kimi-k2-instruct-w8a8-2d4739-0
+2026-04-01T17:42:14.4756483Z   LOG_PREFIX: /root/.cache/ascend-logs/vllm-kimi-k2-instruct-w8a8-2d4739
+2026-04-01T17:42:14.4756900Z   FAIL_TAG: FAIL_TAG_Kimi-K2-Instruct-W8A8.yaml
+2026-04-01T17:42:14.4757185Z ##[endgroup]
+2026-04-01T17:42:14.4844400Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-01T17:42:14.4845873Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-01T17:42:14.4846393Z ##[endgroup]
+2026-04-01T17:42:14.9126702Z (node:971) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-01T17:42:14.9127690Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-01T17:42:16.1394660Z ##[group]Run actions/upload-artifact@v7
+2026-04-01T17:42:16.1394958Z with:
+2026-04-01T17:42:16.1395214Z   name: Kimi-K2-Instruct-W8A8.yaml-ascend-logs
+2026-04-01T17:42:16.1395637Z   path: /tmp/ascend-logs.tar.gz
+2026-04-01T17:42:16.1395886Z   retention-days: 7
+2026-04-01T17:42:16.1396101Z   if-no-files-found: warn
+2026-04-01T17:42:16.1396335Z   compression-level: 6
+2026-04-01T17:42:16.1396540Z   overwrite: false
+2026-04-01T17:42:16.1396746Z   include-hidden-files: false
+2026-04-01T17:42:16.1397147Z   archive: true
+2026-04-01T17:42:16.1397334Z env:
+2026-04-01T17:42:16.1397548Z   LWS_NAME: vllm-kimi-k2-instruct-w8a8-2d4739
+2026-04-01T17:42:16.1397872Z   LEADER_POD: vllm-kimi-k2-instruct-w8a8-2d4739-0
+2026-04-01T17:42:16.1398287Z   LOG_PREFIX: /root/.cache/ascend-logs/vllm-kimi-k2-instruct-w8a8-2d4739
+2026-04-01T17:42:16.1398698Z   FAIL_TAG: FAIL_TAG_Kimi-K2-Instruct-W8A8.yaml
+2026-04-01T17:42:16.1398973Z ##[endgroup]
+2026-04-01T17:42:16.1480597Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-01T17:42:16.1481889Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-01T17:42:16.1482393Z ##[endgroup]
+2026-04-01T17:42:16.5790724Z (node:1111) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-01T17:42:16.5791712Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-01T17:42:17.3527858Z With the provided path, there will be 1 file uploaded
+2026-04-01T17:42:17.3531276Z Artifact name is valid!
+2026-04-01T17:42:17.3531844Z Root directory input is valid!
+2026-04-01T17:42:18.1899075Z Uploading artifact: Kimi-K2-Instruct-W8A8.yaml-ascend-logs.zip
+2026-04-01T17:42:18.2526454Z Beginning upload of artifact content to blob storage
+2026-04-01T17:42:19.4601996Z Uploaded bytes 2747
+2026-04-01T17:42:19.7199323Z Finished uploading artifact content to blob storage!
+2026-04-01T17:42:19.7200109Z SHA256 digest of uploaded artifact is aad7f3c79cadba0c1a9fe76ba82c1749dfb8ab347698411f619229dcf7b19d98
+2026-04-01T17:42:19.7200654Z Finalizing artifact upload
+2026-04-01T17:42:20.6016005Z Artifact Kimi-K2-Instruct-W8A8.yaml-ascend-logs successfully finalized. Artifact ID 6226425063
+2026-04-01T17:42:20.6016959Z Artifact Kimi-K2-Instruct-W8A8.yaml-ascend-logs has been successfully uploaded! Final size is 2747 bytes. Artifact ID is 6226425063
+2026-04-01T17:42:20.6020045Z Artifact download URL: https://github.com/vllm-project/vllm-ascend/actions/runs/23859663944/artifacts/6226425063
+2026-04-01T17:42:21.1315883Z Post job cleanup.
+2026-04-01T17:42:21.1340189Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-01T17:42:21.1341076Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-01T17:42:21.1341382Z ##[endgroup]
+2026-04-01T17:42:21.5699417Z (node:1259) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-01T17:42:21.5700502Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-01T17:42:22.3560120Z [command]/usr/bin/git version
+2026-04-01T17:42:22.3594759Z git version 2.34.1
+2026-04-01T17:42:22.3623705Z Copying '/root/.gitconfig' to '/__w/_temp/915ee9d5-9efb-47b0-8fd5-78924f12e4ba/.gitconfig'
+2026-04-01T17:42:22.3642515Z Temporarily overriding HOME='/__w/_temp/915ee9d5-9efb-47b0-8fd5-78924f12e4ba' before making global git config changes
+2026-04-01T17:42:22.3643427Z Adding repository directory to the temporary git global config as a safe directory
+2026-04-01T17:42:22.3647281Z [command]/usr/bin/git config --global --add safe.directory /__w/vllm-ascend/vllm-ascend
+2026-04-01T17:42:22.3675637Z Removing SSH command configuration
+2026-04-01T17:42:22.3680571Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-04-01T17:42:22.3711611Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-04-01T17:42:22.3930665Z Removing HTTP extra header
+2026-04-01T17:42:22.3933776Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-04-01T17:42:22.3965851Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-04-01T17:42:22.4172591Z Removing includeIf entries pointing to credentials config files
+2026-04-01T17:42:22.4177716Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-04-01T17:42:22.4197602Z includeif.gitdir:/__w/vllm-ascend/vllm-ascend/.git.path
+2026-04-01T17:42:22.4198070Z includeif.gitdir:/__w/vllm-ascend/vllm-ascend/.git/worktrees/*.path
+2026-04-01T17:42:22.4198495Z includeif.gitdir:/github/workspace/.git.path
+2026-04-01T17:42:22.4198866Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-04-01T17:42:22.4205287Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/__w/vllm-ascend/vllm-ascend/.git.path
+2026-04-01T17:42:22.4226416Z /__w/_temp/git-credentials-60429907-3833-4e51-ab3f-64ad995d59da.config
+2026-04-01T17:42:22.4234404Z [command]/usr/bin/git config --local --unset includeif.gitdir:/__w/vllm-ascend/vllm-ascend/.git.path /__w/_temp/git-credentials-60429907-3833-4e51-ab3f-64ad995d59da.config
+2026-04-01T17:42:22.4272818Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/__w/vllm-ascend/vllm-ascend/.git/worktrees/*.path
+2026-04-01T17:42:22.4292818Z /__w/_temp/git-credentials-60429907-3833-4e51-ab3f-64ad995d59da.config
+2026-04-01T17:42:22.4300549Z [command]/usr/bin/git config --local --unset includeif.gitdir:/__w/vllm-ascend/vllm-ascend/.git/worktrees/*.path /__w/_temp/git-credentials-60429907-3833-4e51-ab3f-64ad995d59da.config
+2026-04-01T17:42:22.4329455Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+2026-04-01T17:42:22.4350082Z /github/runner_temp/git-credentials-60429907-3833-4e51-ab3f-64ad995d59da.config
+2026-04-01T17:42:22.4357128Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-60429907-3833-4e51-ab3f-64ad995d59da.config
+2026-04-01T17:42:22.4392618Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-04-01T17:42:22.4412796Z /github/runner_temp/git-credentials-60429907-3833-4e51-ab3f-64ad995d59da.config
+2026-04-01T17:42:22.4418678Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-60429907-3833-4e51-ab3f-64ad995d59da.config
+2026-04-01T17:42:22.4449338Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-04-01T17:42:22.4654744Z Removing credentials config '/__w/_temp/git-credentials-60429907-3833-4e51-ab3f-64ad995d59da.config'
+2026-04-01T17:42:41.6242585Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-01T17:42:41.6243538Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-01T17:42:41.6243846Z ##[endgroup]
+2026-04-01T17:42:42.1667218Z Cleaning up orphan processes
