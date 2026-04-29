@@ -1,0 +1,1350 @@
+# Run ID: 24608790351
+# Commit: bec63146cf1442542940d4c2ce9f7eee8ab9845c
+# Job: multi-node (releases-v0.18.0, multi-node-deepseek-v3.2-W8A8-EP-aime2025, DeepSeek-V3_2-W8A8-EP-ai... / DeepSeek-V3_2-W8A8-EP-aime2025.yaml
+# Date: 2026-04-18
+============================================================
+
+﻿2026-04-18T17:01:30.0833276Z Current runner version: '2.332.0'
+2026-04-18T17:01:30.0839479Z Runner name: 'linux-aarch64-a3-0-ggwx6-runner-x445l'
+2026-04-18T17:01:30.0840482Z Runner group name: 'Default'
+2026-04-18T17:01:30.0841320Z Machine name: 'linux-aarch64-a3-0-ggwx6-runner-x445l'
+2026-04-18T17:01:30.0844197Z ##[group]GITHUB_TOKEN Permissions
+2026-04-18T17:01:30.0846339Z Contents: read
+2026-04-18T17:01:30.0846822Z Issues: read
+2026-04-18T17:01:30.0847273Z Metadata: read
+2026-04-18T17:01:30.0847730Z PullRequests: read
+2026-04-18T17:01:30.0848174Z ##[endgroup]
+2026-04-18T17:01:30.0850229Z Secret source: Actions
+2026-04-18T17:01:30.0850862Z Prepare workflow directory
+2026-04-18T17:01:30.1448893Z Prepare all required actions
+2026-04-18T17:01:30.1485866Z Getting action download info
+2026-04-18T17:01:31.7404494Z Download action repository 'actions/checkout@v6' (SHA:de0fac2e4500dabe0009e67214ff5f5447ce83dd)
+2026-04-18T17:01:35.9291598Z Download action repository 'ascend-gha-runners/artifact@v0.3' (SHA:1b30485187fb8bbbdd297375647fdecf73b9e0f9)
+2026-04-18T17:01:37.7882033Z Download action repository 'actions/upload-artifact@v7' (SHA:043fb46d1a93c77aae656e7c1c64a875d1fc6a0a)
+2026-04-18T17:01:42.0029261Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-04-18T17:01:49.5724274Z Uses: vllm-project/vllm-ascend/.github/workflows/_e2e_nightly_multi_node.yaml@refs/heads/main (bec63146cf1442542940d4c2ce9f7eee8ab9845c)
+2026-04-18T17:01:49.5728850Z ##[group] Inputs
+2026-04-18T17:01:49.5729268Z   soc_version: a3
+2026-04-18T17:01:49.5729609Z   runner: linux-aarch64-a3-0
+2026-04-18T17:01:49.5730430Z   image: swr.cn-southwest-2.myhuaweicloud.com/base_image/ascend-ci/vllm-ascend:nightly-ci-releases-v0.18.0-a3
+2026-04-18T17:01:49.5731163Z   config_file_path: DeepSeek-V3_2-W8A8-EP-aime2025.yaml
+2026-04-18T17:01:49.5731635Z   replicas: 1
+2026-04-18T17:01:49.5731874Z   size: 4
+2026-04-18T17:01:49.5732320Z   vllm_ascend_remote_url: https://github.com/vllm-project/vllm-ascend.git
+2026-04-18T17:01:49.5732981Z   vllm_ascend_ref: bec63146cf1442542940d4c2ce9f7eee8ab9845c
+2026-04-18T17:01:49.5733847Z   should_run: true
+2026-04-18T17:01:49.5734282Z   ascend_log_prefix: /root/.cache/ascend-logs/releases-v0.18.0
+2026-04-18T17:01:49.5734708Z   name: 
+2026-04-18T17:01:49.5734963Z   vllm_ascend_branch: releases-v0.18.0
+2026-04-18T17:01:49.5735347Z ##[endgroup]
+2026-04-18T17:01:49.5736083Z Complete job name: multi-node (releases-v0.18.0, multi-node-deepseek-v3.2-W8A8-EP-aime2025, DeepSeek-V3_2-W8A8-EP-ai... / DeepSeek-V3_2-W8A8-EP-aime2025.yaml
+2026-04-18T17:01:49.6539729Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-18T17:01:49.6542944Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-18T17:01:49.6543590Z ##[endgroup]
+2026-04-18T17:01:57.2103795Z (node:128) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-18T17:01:57.2104860Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-18T17:01:59.2633326Z ##[group]Run if [ "schedule" = "pull_request" ]; then
+2026-04-18T17:01:59.2633822Z [36;1mif [ "schedule" = "pull_request" ]; then[0m
+2026-04-18T17:01:59.2634138Z [36;1m  if [ "a3" = "a3" ]; then[0m
+2026-04-18T17:01:59.2634578Z [36;1m    # NOTE: This is too hack, we should find a better way to manage kubeconfig for pr tests.[0m
+2026-04-18T17:01:59.2635124Z [36;1m    cp /root/.cache/.kube/kubeconfig.yaml "$KUBECONFIG"[0m
+2026-04-18T17:01:59.2635473Z [36;1m  else[0m
+2026-04-18T17:01:59.2635730Z [36;1m    cp /root/.cache/.kube/hk_001_kb.yaml "$KUBECONFIG"[0m
+2026-04-18T17:01:59.2636042Z [36;1m  fi[0m
+2026-04-18T17:01:59.2636235Z [36;1melse[0m
+2026-04-18T17:01:59.2694242Z [36;1m  echo "***" | base64 -d > "$KUBECONFIG"[0m
+2026-04-18T17:01:59.2694538Z [36;1mfi[0m
+2026-04-18T17:01:59.2695029Z shell: bash -el {0}
+2026-04-18T17:01:59.2695257Z ##[endgroup]
+2026-04-18T17:01:59.2842262Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-18T17:01:59.2844159Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-18T17:01:59.2844709Z ##[endgroup]
+2026-04-18T17:01:59.7132543Z (node:538) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-18T17:01:59.7133636Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-18T17:02:00.2964552Z ##[group]Run actions/checkout@v6
+2026-04-18T17:02:00.2964920Z with:
+2026-04-18T17:02:00.2965151Z   repository: vllm-project/vllm-ascend
+2026-04-18T17:02:00.2965664Z   token: ***
+2026-04-18T17:02:00.2965880Z   ssh-strict: true
+2026-04-18T17:02:00.2966093Z   ssh-user: git
+2026-04-18T17:02:00.2966329Z   persist-credentials: true
+2026-04-18T17:02:00.2966587Z   clean: true
+2026-04-18T17:02:00.2966793Z   sparse-checkout-cone-mode: true
+2026-04-18T17:02:00.2967052Z   fetch-depth: 1
+2026-04-18T17:02:00.2967233Z   fetch-tags: false
+2026-04-18T17:02:00.2967429Z   show-progress: true
+2026-04-18T17:02:00.2967645Z   lfs: false
+2026-04-18T17:02:00.2967817Z   submodules: false
+2026-04-18T17:02:00.2968025Z   set-safe-directory: true
+2026-04-18T17:02:00.2968287Z ##[endgroup]
+2026-04-18T17:02:00.3019288Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-18T17:02:00.3020446Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-18T17:02:00.3020748Z ##[endgroup]
+2026-04-18T17:02:00.7336518Z (node:568) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-18T17:02:00.7337575Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-18T17:02:01.1075762Z Syncing repository: vllm-project/vllm-ascend
+2026-04-18T17:02:01.1077184Z ##[group]Getting Git version info
+2026-04-18T17:02:01.1077532Z Working directory is '/__w/vllm-ascend/vllm-ascend'
+2026-04-18T17:02:01.1078056Z [command]/usr/bin/git version
+2026-04-18T17:02:01.1078306Z git version 2.34.1
+2026-04-18T17:02:01.1079149Z ##[endgroup]
+2026-04-18T17:02:01.1083449Z Copying '/root/.gitconfig' to '/__w/_temp/c8d8abbd-9a19-4fbc-be29-ddcb7a404554/.gitconfig'
+2026-04-18T17:02:01.1084292Z Temporarily overriding HOME='/__w/_temp/c8d8abbd-9a19-4fbc-be29-ddcb7a404554' before making global git config changes
+2026-04-18T17:02:01.1085019Z Adding repository directory to the temporary git global config as a safe directory
+2026-04-18T17:02:01.1107867Z [command]/usr/bin/git config --global --add safe.directory /__w/vllm-ascend/vllm-ascend
+2026-04-18T17:02:01.1108795Z Deleting the contents of '/__w/vllm-ascend/vllm-ascend'
+2026-04-18T17:02:01.1109344Z ##[group]Initializing the repository
+2026-04-18T17:02:01.1109687Z [command]/usr/bin/git init /__w/vllm-ascend/vllm-ascend
+2026-04-18T17:02:01.1130552Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-04-18T17:02:01.1131244Z hint: is subject to change. To configure the initial branch name to use in all
+2026-04-18T17:02:01.1131863Z hint: of your new repositories, which will suppress this warning, call:
+2026-04-18T17:02:01.1132274Z hint: 
+2026-04-18T17:02:01.1132572Z hint: 	git config --global init.defaultBranch <name>
+2026-04-18T17:02:01.1132925Z hint: 
+2026-04-18T17:02:01.1133304Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-04-18T17:02:01.1134078Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-04-18T17:02:01.1134539Z hint: 
+2026-04-18T17:02:01.1134743Z hint: 	git branch -m <name>
+2026-04-18T17:02:01.1138002Z Initialized empty Git repository in /__w/vllm-ascend/vllm-ascend/.git/
+2026-04-18T17:02:01.1146127Z [command]/usr/bin/git remote add origin https://github.com/vllm-project/vllm-ascend
+2026-04-18T17:02:01.1202823Z ##[endgroup]
+2026-04-18T17:02:01.1203274Z ##[group]Disabling automatic garbage collection
+2026-04-18T17:02:01.1206119Z [command]/usr/bin/git config --local gc.auto 0
+2026-04-18T17:02:01.1224383Z ##[endgroup]
+2026-04-18T17:02:01.1224803Z ##[group]Setting up auth
+2026-04-18T17:02:01.1225433Z Removing SSH command configuration
+2026-04-18T17:02:01.1229759Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-04-18T17:02:01.1251735Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-04-18T17:02:01.1404623Z Removing HTTP extra header
+2026-04-18T17:02:01.1407996Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-04-18T17:02:01.1427534Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-04-18T17:02:01.1569629Z Removing includeIf entries pointing to credentials config files
+2026-04-18T17:02:01.1573868Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-04-18T17:02:01.1593390Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-04-18T17:02:01.1739390Z [command]/usr/bin/git config --file /__w/_temp/git-credentials-ea634632-13f1-4997-81ab-639118f16fa3.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-04-18T17:02:01.1764836Z [command]/usr/bin/git config --local includeIf.gitdir:/__w/vllm-ascend/vllm-ascend/.git.path /__w/_temp/git-credentials-ea634632-13f1-4997-81ab-639118f16fa3.config
+2026-04-18T17:02:01.1784424Z [command]/usr/bin/git config --local includeIf.gitdir:/__w/vllm-ascend/vllm-ascend/.git/worktrees/*.path /__w/_temp/git-credentials-ea634632-13f1-4997-81ab-639118f16fa3.config
+2026-04-18T17:02:01.1802897Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-ea634632-13f1-4997-81ab-639118f16fa3.config
+2026-04-18T17:02:01.1821712Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-ea634632-13f1-4997-81ab-639118f16fa3.config
+2026-04-18T17:02:01.1837971Z ##[endgroup]
+2026-04-18T17:02:01.1838309Z ##[group]Fetching the repository
+2026-04-18T17:02:01.1846600Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +bec63146cf1442542940d4c2ce9f7eee8ab9845c:refs/remotes/origin/main
+2026-04-18T17:02:03.1198339Z From https://gh-proxy.test.osinfra.cn/https://github.com/vllm-project/vllm-ascend
+2026-04-18T17:02:03.1198965Z  * [new ref]         bec63146cf1442542940d4c2ce9f7eee8ab9845c -> origin/main
+2026-04-18T17:02:03.1213798Z [command]/usr/bin/git branch --list --remote origin/main
+2026-04-18T17:02:03.1230024Z   origin/main
+2026-04-18T17:02:03.1236309Z [command]/usr/bin/git rev-parse refs/remotes/origin/main
+2026-04-18T17:02:03.1250314Z bec63146cf1442542940d4c2ce9f7eee8ab9845c
+2026-04-18T17:02:03.1253385Z ##[endgroup]
+2026-04-18T17:02:03.1254044Z ##[group]Determining the checkout info
+2026-04-18T17:02:03.1255520Z ##[endgroup]
+2026-04-18T17:02:03.1259157Z [command]/usr/bin/git sparse-checkout disable
+2026-04-18T17:02:03.1285709Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-04-18T17:02:03.1302166Z ##[group]Checking out the ref
+2026-04-18T17:02:03.1306452Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-04-18T17:02:03.2400386Z Switched to a new branch 'main'
+2026-04-18T17:02:03.2400862Z Branch 'main' set up to track remote branch 'main' from 'origin'.
+2026-04-18T17:02:03.2405392Z ##[endgroup]
+2026-04-18T17:02:03.2431201Z [command]/usr/bin/git log -1 --format=%H
+2026-04-18T17:02:03.2447393Z bec63146cf1442542940d4c2ce9f7eee8ab9845c
+2026-04-18T17:02:04.5436570Z ##[group]Run # Derive a unique, valid k8s resource name from config_file_path.
+2026-04-18T17:02:04.5437138Z [36;1m# Derive a unique, valid k8s resource name from config_file_path.[0m
+2026-04-18T17:02:04.5437678Z [36;1m# Append 6-char random suffix to avoid conflicts; total length capped at 63 chars.[0m
+2026-04-18T17:02:04.5438271Z [36;1m[0m
+2026-04-18T17:02:04.5438537Z [36;1mconfig_file="DeepSeek-V3_2-W8A8-EP-aime2025.yaml"[0m
+2026-04-18T17:02:04.5438878Z [36;1mconfig_stem="${config_file%.yaml}"[0m
+2026-04-18T17:02:04.5439325Z [36;1mlws_suffix=$(echo "$config_stem" | tr '[:upper:]' '[:lower:]' | tr '._' '-' | cut -c1-43)[0m
+2026-04-18T17:02:04.5440024Z [36;1mrand_suffix=$(tr -d '-' < /proc/sys/kernel/random/uuid | cut -c1-6)[0m
+2026-04-18T17:02:04.5440481Z [36;1mLWS_NAME="vllm-${lws_suffix}-${rand_suffix}"[0m
+2026-04-18T17:02:04.5440776Z [36;1m[0m
+2026-04-18T17:02:04.5440977Z [36;1mbranch="releases-v0.18.0"[0m
+2026-04-18T17:02:04.5441279Z [36;1mif [ -n "$branch" ]; then[0m
+2026-04-18T17:02:04.5441601Z [36;1m  ARTIFACT_NAME="${branch}-${config_stem}-ascend-logs"[0m
+2026-04-18T17:02:04.5441923Z [36;1melse[0m
+2026-04-18T17:02:04.5442162Z [36;1m  ARTIFACT_NAME="${config_stem}-ascend-logs"[0m
+2026-04-18T17:02:04.5442447Z [36;1mfi[0m
+2026-04-18T17:02:04.5442629Z [36;1m[0m
+2026-04-18T17:02:04.5442812Z [36;1mjob_name=""[0m
+2026-04-18T17:02:04.5443026Z [36;1mif [ -z "$job_name" ]; then[0m
+2026-04-18T17:02:04.5443285Z [36;1m  job_name="$config_stem"[0m
+2026-04-18T17:02:04.5443586Z [36;1mfi[0m
+2026-04-18T17:02:04.5443817Z [36;1mBENCHMARK_JOB_NAME="${branch}-${job_name}"[0m
+2026-04-18T17:02:04.5444105Z [36;1m[0m
+2026-04-18T17:02:04.5444270Z [36;1m{[0m
+2026-04-18T17:02:04.5444468Z [36;1m  echo "LWS_NAME=${LWS_NAME}"[0m
+2026-04-18T17:02:04.5444751Z [36;1m  echo "LEADER_POD=${LWS_NAME}-0"[0m
+2026-04-18T17:02:04.5445141Z [36;1m  echo "LOG_PREFIX=/root/.cache/ascend-logs/releases-v0.18.0/${LWS_NAME}"[0m
+2026-04-18T17:02:04.5445536Z [36;1m} >> $GITHUB_ENV[0m
+2026-04-18T17:02:04.5445746Z [36;1m[0m
+2026-04-18T17:02:04.5445906Z [36;1m{[0m
+2026-04-18T17:02:04.5446115Z [36;1m  echo "artifact_name=${ARTIFACT_NAME}"[0m
+2026-04-18T17:02:04.5446443Z [36;1m  echo "benchmark_job_name=${BENCHMARK_JOB_NAME}"[0m
+2026-04-18T17:02:04.5446758Z [36;1m} >> $GITHUB_OUTPUT[0m
+2026-04-18T17:02:04.5447135Z shell: bash -el {0}
+2026-04-18T17:02:04.5447330Z ##[endgroup]
+2026-04-18T17:02:04.5568819Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-18T17:02:04.5569697Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-18T17:02:04.5570175Z ##[endgroup]
+2026-04-18T17:02:05.0184970Z (node:624) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-18T17:02:05.0185954Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-18T17:02:05.5431512Z ##[group]Run install -D tests/e2e/nightly/multi_node/scripts/run.sh /root/.cache/tests/run.sh
+2026-04-18T17:02:05.5432172Z [36;1minstall -D tests/e2e/nightly/multi_node/scripts/run.sh /root/.cache/tests/run.sh[0m
+2026-04-18T17:02:05.5432737Z shell: bash -el {0}
+2026-04-18T17:02:05.5432926Z env:
+2026-04-18T17:02:05.5433199Z   LWS_NAME: vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28
+2026-04-18T17:02:05.5433676Z   LEADER_POD: vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0
+2026-04-18T17:02:05.5434217Z   LOG_PREFIX: /root/.cache/ascend-logs/releases-v0.18.0/vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28
+2026-04-18T17:02:05.5434693Z ##[endgroup]
+2026-04-18T17:02:05.5513369Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-18T17:02:05.5514377Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-18T17:02:05.5514709Z ##[endgroup]
+2026-04-18T17:02:05.9799003Z (node:678) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-18T17:02:05.9800090Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-18T17:02:06.5730445Z ##[group]Run set -euo pipefail
+2026-04-18T17:02:06.5730792Z [36;1mset -euo pipefail[0m
+2026-04-18T17:02:06.5731018Z [36;1mTIMEOUT=120[0m
+2026-04-18T17:02:06.5731399Z [36;1mSLEEP_INTERVAL=2[0m
+2026-04-18T17:02:06.5731622Z [36;1m[0m
+2026-04-18T17:02:06.5731787Z [36;1m[0m
+2026-04-18T17:02:06.5732111Z [36;1mecho "Deleting leaderworkerset [$LWS_NAME] in namespace [$NAMESPACE]..."[0m
+2026-04-18T17:02:06.5732701Z [36;1mkubectl delete leaderworkerset "$LWS_NAME" -n "$NAMESPACE" --ignore-not-found[0m
+2026-04-18T17:02:06.5733276Z [36;1mkubectl delete service "${LWS_NAME}-leader" -n "$NAMESPACE" --ignore-not-found[0m
+2026-04-18T17:02:06.5733795Z [36;1m[0m
+2026-04-18T17:02:06.5734104Z [36;1mecho "Waiting for pods of leaderworkerset [$LWS_NAME] to be deleted..."[0m
+2026-04-18T17:02:06.5734489Z [36;1mSTART_TIME=$(date +%s)[0m
+2026-04-18T17:02:06.5734734Z [36;1mwhile true; do[0m
+2026-04-18T17:02:06.5734996Z [36;1m  ELAPSED=$(( $(date +%s) - START_TIME ))[0m
+2026-04-18T17:02:06.5735347Z [36;1m  if [[ $ELAPSED -ge $TIMEOUT ]]; then[0m
+2026-04-18T17:02:06.5735727Z [36;1m    echo "Timeout reached ($TIMEOUT seconds), some pods still exist:"[0m
+2026-04-18T17:02:06.5736196Z [36;1m    kubectl get pods -n "$NAMESPACE" | grep "^${LWS_NAME}-" || true[0m
+2026-04-18T17:02:06.5736543Z [36;1m    exit 1[0m
+2026-04-18T17:02:06.5736730Z [36;1m  fi[0m
+2026-04-18T17:02:06.5737138Z [36;1m  PODS_EXIST=$(kubectl get pods -n "$NAMESPACE" -o jsonpath='{.items[*].metadata.name}' 2>/dev/null \[0m
+2026-04-18T17:02:06.5737658Z [36;1m    | tr ' ' '\n' | grep "^${LWS_NAME}-" || true)[0m
+2026-04-18T17:02:06.5737966Z [36;1m  if [[ -z "$PODS_EXIST" ]]; then[0m
+2026-04-18T17:02:06.5738282Z [36;1m    echo "All pods for [$LWS_NAME] deleted."[0m
+2026-04-18T17:02:06.5738569Z [36;1m    break[0m
+2026-04-18T17:02:06.5738755Z [36;1m  fi[0m
+2026-04-18T17:02:06.5739012Z [36;1m  echo "Waiting for pods to be deleted: $PODS_EXIST"[0m
+2026-04-18T17:02:06.5739339Z [36;1m  sleep $SLEEP_INTERVAL[0m
+2026-04-18T17:02:06.5739573Z [36;1mdone[0m
+2026-04-18T17:02:06.5740268Z shell: bash -el {0}
+2026-04-18T17:02:06.5740456Z env:
+2026-04-18T17:02:06.5740714Z   LWS_NAME: vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28
+2026-04-18T17:02:06.5741118Z   LEADER_POD: vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0
+2026-04-18T17:02:06.5741654Z   LOG_PREFIX: /root/.cache/ascend-logs/releases-v0.18.0/vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28
+2026-04-18T17:02:06.5742125Z ##[endgroup]
+2026-04-18T17:02:06.5827795Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-18T17:02:06.5828647Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-18T17:02:06.5828933Z ##[endgroup]
+2026-04-18T17:02:07.0102480Z (node:744) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-18T17:02:07.0103488Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-18T17:02:07.3303149Z Deleting leaderworkerset [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28] in namespace [vllm-project]...
+2026-04-18T17:02:07.4376401Z Waiting for pods of leaderworkerset [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28] to be deleted...
+2026-04-18T17:02:07.4894285Z All pods for [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28] deleted.
+2026-04-18T17:02:07.7266117Z ##[group]Run set -euo pipefail
+2026-04-18T17:02:07.7266465Z [36;1mset -euo pipefail[0m
+2026-04-18T17:02:07.7266705Z [36;1m[0m
+2026-04-18T17:02:07.7266893Z [36;1msize="4"[0m
+2026-04-18T17:02:07.7267087Z [36;1mreplicas="1"[0m
+2026-04-18T17:02:07.7267613Z [36;1mimage="swr.cn-southwest-2.myhuaweicloud.com/base_image/ascend-ci/vllm-ascend:nightly-ci-releases-v0.18.0-a3"[0m
+2026-04-18T17:02:07.7268276Z [36;1mconfig_file_path="DeepSeek-V3_2-W8A8-EP-aime2025.yaml"[0m
+2026-04-18T17:02:07.7268689Z [36;1mfail_tag="FAIL_TAG_DeepSeek-V3_2-W8A8-EP-aime2025.yaml"[0m
+2026-04-18T17:02:07.7269030Z [36;1mis_pr_test="false"[0m
+2026-04-18T17:02:07.7269354Z [36;1mvllm_ascend_ref="bec63146cf1442542940d4c2ce9f7eee8ab9845c"[0m
+2026-04-18T17:02:07.7269996Z [36;1mvllm_ascend_remote_url="https://github.com/vllm-project/vllm-ascend.git"[0m
+2026-04-18T17:02:07.7270508Z [36;1mrunner="a3"[0m
+2026-04-18T17:02:07.7270933Z [36;1mecho "FAIL_TAG=${fail_tag}" >> $GITHUB_ENV[0m
+2026-04-18T17:02:07.7271250Z [36;1m[0m
+2026-04-18T17:02:07.7271428Z [36;1mif [ "a3" = "a3" ]; then[0m
+2026-04-18T17:02:07.7271674Z [36;1m  npu_per_node=16[0m
+2026-04-18T17:02:07.7271947Z [36;1m  pvc_name=nv-action-vllm-benchmarks-v2[0m
+2026-04-18T17:02:07.7272228Z [36;1melse[0m
+2026-04-18T17:02:07.7272418Z [36;1m  npu_per_node=8[0m
+2026-04-18T17:02:07.7272665Z [36;1m  pvc_name=vllm-project-hk001[0m
+2026-04-18T17:02:07.7272909Z [36;1mfi[0m
+2026-04-18T17:02:07.7273081Z [36;1m[0m
+2026-04-18T17:02:07.7273389Z [36;1mbenchmark_job_name="releases-v0.18.0-DeepSeek-V3_2-W8A8-EP-aime2025"[0m
+2026-04-18T17:02:07.7273842Z [36;1m[0m
+2026-04-18T17:02:07.7274127Z [36;1mjinja2 tests/e2e/nightly/multi_node/scripts/lws.yaml.jinja2 \[0m
+2026-04-18T17:02:07.7274492Z [36;1m  -D lws_name="$LWS_NAME" \[0m
+2026-04-18T17:02:07.7274769Z [36;1m  -D log_prefix="$LOG_PREFIX" \[0m
+2026-04-18T17:02:07.7275039Z [36;1m  -D size="$size" \[0m
+2026-04-18T17:02:07.7275283Z [36;1m  -D replicas="$replicas" \[0m
+2026-04-18T17:02:07.7275547Z [36;1m  -D image="$image" \[0m
+2026-04-18T17:02:07.7275831Z [36;1m  -D config_file_path="$config_file_path" \[0m
+2026-04-18T17:02:07.7276147Z [36;1m  -D npu_per_node="$npu_per_node" \[0m
+2026-04-18T17:02:07.7276427Z [36;1m  -D fail_tag="$fail_tag" \[0m
+2026-04-18T17:02:07.7276710Z [36;1m  -D is_pr_test="$is_pr_test" \[0m
+2026-04-18T17:02:07.7277011Z [36;1m  -D vllm_ascend_ref="$vllm_ascend_ref" \[0m
+2026-04-18T17:02:07.7277366Z [36;1m  -D vllm_ascend_remote_url="$vllm_ascend_remote_url" \[0m
+2026-04-18T17:02:07.7277689Z [36;1m  -D pvc_name="$pvc_name" \[0m
+2026-04-18T17:02:07.7277990Z [36;1m  -D benchmark_job_name="$benchmark_job_name" \[0m
+2026-04-18T17:02:07.7278294Z [36;1m  -D runner="$runner" \[0m
+2026-04-18T17:02:07.7278533Z [36;1m  --outfile lws.yaml[0m
+2026-04-18T17:02:07.7278763Z [36;1m[0m
+2026-04-18T17:02:07.7278960Z [36;1mkubectl apply -f ./lws.yaml[0m
+2026-04-18T17:02:07.7279313Z shell: bash -el {0}
+2026-04-18T17:02:07.7279506Z env:
+2026-04-18T17:02:07.7279751Z   LWS_NAME: vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28
+2026-04-18T17:02:07.7280377Z   LEADER_POD: vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0
+2026-04-18T17:02:07.7280925Z   LOG_PREFIX: /root/.cache/ascend-logs/releases-v0.18.0/vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28
+2026-04-18T17:02:07.7281379Z ##[endgroup]
+2026-04-18T17:02:07.7385011Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-18T17:02:07.7385906Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-18T17:02:07.7386203Z ##[endgroup]
+2026-04-18T17:02:08.1664278Z (node:822) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-18T17:02:08.1665254Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-18T17:02:08.7319037Z leaderworkerset.leaderworkerset.x-k8s.io/vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28 created
+2026-04-18T17:02:08.7569766Z service/vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-leader created
+2026-04-18T17:02:09.0086691Z ##[group]Run set -euo pipefail
+2026-04-18T17:02:09.0087026Z [36;1mset -euo pipefail[0m
+2026-04-18T17:02:09.0087250Z [36;1mSIZE="4"[0m
+2026-04-18T17:02:09.0087452Z [36;1mTIMEOUT=1200[0m
+2026-04-18T17:02:09.0087658Z [36;1m[0m
+2026-04-18T17:02:09.0087992Z [36;1mecho "Waiting for all pods to become Running and Ready (timeout ${TIMEOUT}s)..."[0m
+2026-04-18T17:02:09.0088428Z [36;1mSTART_TIME=$(date +%s)[0m
+2026-04-18T17:02:09.0088676Z [36;1mwhile true; do[0m
+2026-04-18T17:02:09.0088932Z [36;1m  ELAPSED=$(( $(date +%s) - START_TIME ))[0m
+2026-04-18T17:02:09.0089253Z [36;1m  if [[ $ELAPSED -ge $TIMEOUT ]]; then[0m
+2026-04-18T17:02:09.0089638Z [36;1m    echo "Timeout reached after ${ELAPSED}s, dumping pod status:"[0m
+2026-04-18T17:02:09.0090255Z [36;1m    kubectl get pods -n "$NAMESPACE"[0m
+2026-04-18T17:02:09.0090609Z [36;1m    kubectl describe pod "$LEADER_POD" -n "$NAMESPACE"[0m
+2026-04-18T17:02:09.0091117Z [36;1m    exit 1[0m
+2026-04-18T17:02:09.0091345Z [36;1m  fi[0m
+2026-04-18T17:02:09.0091521Z [36;1m[0m
+2026-04-18T17:02:09.0091700Z [36;1m  ALL_READY=true[0m
+2026-04-18T17:02:09.0091934Z [36;1m  for ((i=1; i<SIZE; i++)); do[0m
+2026-04-18T17:02:09.0092191Z [36;1m    POD="${LWS_NAME}-0-${i}"[0m
+2026-04-18T17:02:09.0092698Z [36;1m    PHASE=$(kubectl get pod "$POD" -n "$NAMESPACE" -o jsonpath='{.status.phase}' 2>/dev/null || echo "NotFound")[0m
+2026-04-18T17:02:09.0093462Z [36;1m    READY=$(kubectl get pod "$POD" -n "$NAMESPACE" -o jsonpath='{.status.containerStatuses[*].ready}' 2>/dev/null)[0m
+2026-04-18T17:02:09.0094095Z [36;1m    echo "Worker [$POD] phase=$PHASE ready=$READY"[0m
+2026-04-18T17:02:09.0094480Z [36;1m    if [[ "$PHASE" != "Running" || "$READY" != "true" ]]; then[0m
+2026-04-18T17:02:09.0094807Z [36;1m      ALL_READY=false[0m
+2026-04-18T17:02:09.0095029Z [36;1m      break[0m
+2026-04-18T17:02:09.0095237Z [36;1m    fi[0m
+2026-04-18T17:02:09.0095422Z [36;1m  done[0m
+2026-04-18T17:02:09.0095595Z [36;1m[0m
+2026-04-18T17:02:09.0096074Z [36;1m  LEADER_PHASE=$(kubectl get pod "$LEADER_POD" -n "$NAMESPACE" -o jsonpath='{.status.phase}' 2>/dev/null || echo "NotFound")[0m
+2026-04-18T17:02:09.0096905Z [36;1m  LEADER_READY=$(kubectl get pod "$LEADER_POD" -n "$NAMESPACE" -o jsonpath='{.status.containerStatuses[*].ready}' 2>/dev/null)[0m
+2026-04-18T17:02:09.0097564Z [36;1m  echo "Leader [$LEADER_POD] phase=$LEADER_PHASE ready=$LEADER_READY"[0m
+2026-04-18T17:02:09.0098033Z [36;1m  if [[ "$LEADER_PHASE" != "Running" || "$LEADER_READY" != "true" ]]; then[0m
+2026-04-18T17:02:09.0098399Z [36;1m    ALL_READY=false[0m
+2026-04-18T17:02:09.0098616Z [36;1m  fi[0m
+2026-04-18T17:02:09.0098791Z [36;1m[0m
+2026-04-18T17:02:09.0098983Z [36;1m  if [[ "$ALL_READY" == "true" ]]; then[0m
+2026-04-18T17:02:09.0099294Z [36;1m    echo "All pods are Running and Ready."[0m
+2026-04-18T17:02:09.0099575Z [36;1m    break[0m
+2026-04-18T17:02:09.0099761Z [36;1m  fi[0m
+2026-04-18T17:02:09.0100132Z [36;1m  sleep 2[0m
+2026-04-18T17:02:09.0100338Z [36;1mdone[0m
+2026-04-18T17:02:09.0100727Z shell: bash -el {0}
+2026-04-18T17:02:09.0100922Z env:
+2026-04-18T17:02:09.0101167Z   LWS_NAME: vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28
+2026-04-18T17:02:09.0101575Z   LEADER_POD: vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0
+2026-04-18T17:02:09.0102128Z   LOG_PREFIX: /root/.cache/ascend-logs/releases-v0.18.0/vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28
+2026-04-18T17:02:09.0102664Z   FAIL_TAG: FAIL_TAG_DeepSeek-V3_2-W8A8-EP-aime2025.yaml
+2026-04-18T17:02:09.0102959Z ##[endgroup]
+2026-04-18T17:02:09.0192419Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-18T17:02:09.0193265Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-18T17:02:09.0193618Z ##[endgroup]
+2026-04-18T17:02:09.4546429Z (node:912) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-18T17:02:09.4547765Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-18T17:02:09.8022344Z Waiting for all pods to become Running and Ready (timeout 1200s)...
+2026-04-18T17:02:09.8956761Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0-1] phase=Pending ready=
+2026-04-18T17:02:09.9829242Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0] phase=Pending ready=
+2026-04-18T17:02:12.0794361Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0-1] phase=Pending ready=
+2026-04-18T17:02:12.1712102Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0] phase=Pending ready=
+2026-04-18T17:02:14.2718685Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0-1] phase=Pending ready=
+2026-04-18T17:02:14.3688033Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0] phase=Pending ready=
+2026-04-18T17:02:16.4653400Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0-1] phase=Pending ready=
+2026-04-18T17:02:16.5720957Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0] phase=Pending ready=
+2026-04-18T17:02:18.6687743Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0-1] phase=Pending ready=
+2026-04-18T17:02:18.7597886Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0] phase=Pending ready=
+2026-04-18T17:02:20.8592896Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0-1] phase=Pending ready=
+2026-04-18T17:02:20.9595025Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0] phase=Pending ready=
+2026-04-18T17:02:23.0702988Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0-1] phase=Pending ready=false
+2026-04-18T17:02:23.1695216Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0] phase=Pending ready=false
+2026-04-18T17:02:25.2668143Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0-1] phase=Pending ready=false
+2026-04-18T17:02:25.3586810Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0] phase=Running ready=true
+2026-04-18T17:02:27.4567817Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0-1] phase=Pending ready=false
+2026-04-18T17:02:27.5497095Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0] phase=Running ready=true
+2026-04-18T17:02:29.6462460Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0-1] phase=Pending ready=false
+2026-04-18T17:02:29.7426519Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0] phase=Running ready=true
+2026-04-18T17:02:31.8369631Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0-1] phase=Pending ready=false
+2026-04-18T17:02:31.9261767Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0] phase=Running ready=true
+2026-04-18T17:02:34.0191453Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0-1] phase=Pending ready=false
+2026-04-18T17:02:34.1164733Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0] phase=Running ready=true
+2026-04-18T17:02:36.2160537Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0-1] phase=Pending ready=false
+2026-04-18T17:02:36.3068553Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0] phase=Running ready=true
+2026-04-18T17:02:38.4044871Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0-1] phase=Pending ready=false
+2026-04-18T17:02:38.4944896Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0] phase=Running ready=true
+2026-04-18T17:02:40.5944973Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0-1] phase=Pending ready=false
+2026-04-18T17:02:40.6870572Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0] phase=Running ready=true
+2026-04-18T17:02:42.7832636Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0-1] phase=Pending ready=false
+2026-04-18T17:02:42.8748605Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0] phase=Running ready=true
+2026-04-18T17:02:44.9687413Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0-1] phase=Pending ready=false
+2026-04-18T17:02:45.0696786Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0] phase=Running ready=true
+2026-04-18T17:02:47.1690787Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0-1] phase=Pending ready=false
+2026-04-18T17:02:47.2625930Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0] phase=Running ready=true
+2026-04-18T17:02:49.3594715Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0-1] phase=Pending ready=false
+2026-04-18T17:02:49.4554677Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0] phase=Running ready=true
+2026-04-18T17:02:51.5517896Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0-1] phase=Pending ready=false
+2026-04-18T17:02:51.6439126Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0] phase=Running ready=true
+2026-04-18T17:02:53.7417227Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0-1] phase=Pending ready=false
+2026-04-18T17:02:53.8319764Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0] phase=Running ready=true
+2026-04-18T17:02:55.9270088Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0-1] phase=Pending ready=false
+2026-04-18T17:02:56.0276318Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0] phase=Running ready=true
+2026-04-18T17:02:58.1199213Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0-1] phase=Pending ready=false
+2026-04-18T17:02:58.2106114Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0] phase=Running ready=true
+2026-04-18T17:03:00.3216020Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0-1] phase=Pending ready=false
+2026-04-18T17:03:00.4159143Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0] phase=Running ready=true
+2026-04-18T17:03:02.5134422Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0-1] phase=Pending ready=false
+2026-04-18T17:03:02.6129051Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0] phase=Running ready=true
+2026-04-18T17:03:04.7105630Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0-1] phase=Pending ready=false
+2026-04-18T17:03:04.8023842Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0] phase=Running ready=true
+2026-04-18T17:03:06.8987857Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0-1] phase=Pending ready=false
+2026-04-18T17:03:06.9891943Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0] phase=Running ready=true
+2026-04-18T17:03:09.0847005Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0-1] phase=Pending ready=false
+2026-04-18T17:03:09.1767299Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0] phase=Running ready=false
+2026-04-18T17:03:11.2710505Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0-1] phase=Pending ready=false
+2026-04-18T17:03:11.3615219Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0] phase=Running ready=true
+2026-04-18T17:03:13.4655565Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0-1] phase=Pending ready=false
+2026-04-18T17:03:13.5630557Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0] phase=Running ready=true
+2026-04-18T17:03:15.6628356Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0-1] phase=Pending ready=false
+2026-04-18T17:03:15.7539587Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0] phase=Running ready=true
+2026-04-18T17:03:17.8556108Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0-1] phase=Running ready=true
+2026-04-18T17:03:17.9461175Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0-2] phase=Running ready=true
+2026-04-18T17:03:18.0355837Z Worker [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0-3] phase=Running ready=true
+2026-04-18T17:03:18.1317699Z Leader [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0] phase=Running ready=true
+2026-04-18T17:03:18.1318182Z All pods are Running and Ready.
+2026-04-18T17:03:18.3963645Z ##[group]Run set -euo pipefail
+2026-04-18T17:03:18.3963985Z [36;1mset -euo pipefail[0m
+2026-04-18T17:03:18.3964210Z [36;1m[0m
+2026-04-18T17:03:18.3964389Z [36;1msize="4"[0m
+2026-04-18T17:03:18.3964572Z [36;1mpids=()[0m
+2026-04-18T17:03:18.3964755Z [36;1m[0m
+2026-04-18T17:03:18.3964931Z [36;1mcleanup() {[0m
+2026-04-18T17:03:18.3965192Z [36;1m  echo "Cleaning up background log streams..."[0m
+2026-04-18T17:03:18.3965522Z [36;1m  for pid in "${pids[@]}"; do[0m
+2026-04-18T17:03:18.3965791Z [36;1m    kill "$pid" 2>/dev/null || true[0m
+2026-04-18T17:03:18.3966059Z [36;1m  done[0m
+2026-04-18T17:03:18.3966240Z [36;1m}[0m
+2026-04-18T17:03:18.3966421Z [36;1mtrap cleanup EXIT[0m
+2026-04-18T17:03:18.3966656Z [36;1m[0m
+2026-04-18T17:03:18.3966856Z [36;1mfor i in $(seq 0 $((size - 1))); do[0m
+2026-04-18T17:03:18.3967221Z [36;1m  if [ "${i}" -eq 0 ]; then[0m
+2026-04-18T17:03:18.3967477Z [36;1m    POD="${LWS_NAME}-0"[0m
+2026-04-18T17:03:18.3967750Z [36;1m  else[0m
+2026-04-18T17:03:18.3967960Z [36;1m    POD="${LWS_NAME}-0-${i}"[0m
+2026-04-18T17:03:18.3968196Z [36;1m  fi[0m
+2026-04-18T17:03:18.3968462Z [36;1m  echo "==== Collecting logs from worker pod: $POD ===="[0m
+2026-04-18T17:03:18.3968831Z [36;1m  kubectl logs -f "$POD" -n "$NAMESPACE" \[0m
+2026-04-18T17:03:18.3969145Z [36;1m    > "/tmp/${POD}_logs.txt" 2>&1 &[0m
+2026-04-18T17:03:18.3969404Z [36;1m[0m
+2026-04-18T17:03:18.3969573Z [36;1m  pids+=($!)[0m
+2026-04-18T17:03:18.3969772Z [36;1mdone[0m
+2026-04-18T17:03:18.3970133Z [36;1m[0m
+2026-04-18T17:03:18.3970453Z [36;1mkubectl logs -f "$LEADER_POD" -n "$NAMESPACE" | while IFS= read -r line; do[0m
+2026-04-18T17:03:18.3970856Z [36;1m  echo "$line"[0m
+2026-04-18T17:03:18.3971317Z [36;1m  if echo "$line" | grep -q "$FAIL_TAG"; then[0m
+2026-04-18T17:03:18.3971601Z [36;1m    exit 1[0m
+2026-04-18T17:03:18.3971797Z [36;1m  fi[0m
+2026-04-18T17:03:18.3971972Z [36;1mdone[0m
+2026-04-18T17:03:18.3972256Z shell: bash -el {0}
+2026-04-18T17:03:18.3972459Z env:
+2026-04-18T17:03:18.3972706Z   LWS_NAME: vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28
+2026-04-18T17:03:18.3973117Z   LEADER_POD: vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0
+2026-04-18T17:03:18.3973670Z   LOG_PREFIX: /root/.cache/ascend-logs/releases-v0.18.0/vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28
+2026-04-18T17:03:18.3974201Z   FAIL_TAG: FAIL_TAG_DeepSeek-V3_2-W8A8-EP-aime2025.yaml
+2026-04-18T17:03:18.3974509Z ##[endgroup]
+2026-04-18T17:03:18.4050943Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-18T17:03:18.4051820Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-18T17:03:18.4052110Z ##[endgroup]
+2026-04-18T17:03:18.8407941Z (node:1031) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-18T17:03:18.8408964Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-18T17:03:19.2100411Z ==== Collecting logs from worker pod: vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0 ====
+2026-04-18T17:03:19.2101063Z ==== Collecting logs from worker pod: vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0-1 ====
+2026-04-18T17:03:19.2101656Z ==== Collecting logs from worker pod: vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0-2 ====
+2026-04-18T17:03:19.2102257Z ==== Collecting logs from worker pod: vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0-3 ====
+2026-04-18T17:03:19.8488324Z ====> Check NPU info
+2026-04-18T17:03:21.3081064Z +------------------------------------------------------------------------------------------------+
+2026-04-18T17:03:21.3088957Z | npu-smi 25.5.0                   Version: 25.5.0                                               |
+2026-04-18T17:03:21.3098018Z +---------------------------+---------------+----------------------------------------------------+
+2026-04-18T17:03:21.3106724Z | NPU   Name                | Health        | Power(W)    Temp(C)           Hugepages-Usage(page)|
+2026-04-18T17:03:21.3116022Z | Chip  Phy-ID              | Bus-Id        | AICore(%)   Memory-Usage(MB)  HBM-Usage(MB)        |
+2026-04-18T17:03:21.3124500Z +===========================+===============+====================================================+
+2026-04-18T17:03:21.3133728Z | 0     Ascend910           | OK            | 161.5       37                0    / 0             |
+2026-04-18T17:03:21.3142951Z | 0     0                   | 0000:9D:00.0  | 0           0    / 0          3164 / 65536         |
+2026-04-18T17:03:21.3151577Z +------------------------------------------------------------------------------------------------+
+2026-04-18T17:03:21.3160550Z | 0     Ascend910           | OK            | -           36                0    / 0             |
+2026-04-18T17:03:21.3169124Z | 1     1                   | 0000:9F:00.0  | 0           0    / 0          2898 / 65536         |
+2026-04-18T17:03:21.3177719Z +===========================+===============+====================================================+
+2026-04-18T17:03:21.3186455Z | 1     Ascend910           | OK            | 164.7       37                0    / 0             |
+2026-04-18T17:03:21.3194669Z | 0     2                   | 0000:99:00.0  | 0           0    / 0          3176 / 65536         |
+2026-04-18T17:03:21.3203415Z +------------------------------------------------------------------------------------------------+
+2026-04-18T17:03:21.3212753Z | 1     Ascend910           | OK            | -           37                0    / 0             |
+2026-04-18T17:03:21.3220939Z | 1     3                   | 0000:9B:00.0  | 0           0    / 0          2884 / 65536         |
+2026-04-18T17:03:21.3229328Z +===========================+===============+====================================================+
+2026-04-18T17:03:21.3237975Z | 2     Ascend910           | OK            | 163.8       37                0    / 0             |
+2026-04-18T17:03:21.3246227Z | 0     4                   | 0000:95:00.0  | 0           0    / 0          3159 / 65536         |
+2026-04-18T17:03:21.3254624Z +------------------------------------------------------------------------------------------------+
+2026-04-18T17:03:21.3263067Z | 2     Ascend910           | OK            | -           37                0    / 0             |
+2026-04-18T17:03:21.3271900Z | 1     5                   | 0000:97:00.0  | 0           0    / 0          2899 / 65536         |
+2026-04-18T17:03:21.3280455Z +===========================+===============+====================================================+
+2026-04-18T17:03:21.3288782Z | 3     Ascend910           | OK            | 169.2       37                0    / 0             |
+2026-04-18T17:03:21.3296864Z | 0     6                   | 0000:91:00.0  | 0           0    / 0          3166 / 65536         |
+2026-04-18T17:03:21.3306076Z +------------------------------------------------------------------------------------------------+
+2026-04-18T17:03:21.3314394Z | 3     Ascend910           | OK            | -           36                0    / 0             |
+2026-04-18T17:03:21.3324593Z | 1     7                   | 0000:93:00.0  | 0           0    / 0          2886 / 65536         |
+2026-04-18T17:03:21.3333175Z +===========================+===============+====================================================+
+2026-04-18T17:03:21.3342029Z | 4     Ascend910           | OK            | 166.7       37                0    / 0             |
+2026-04-18T17:03:21.3350555Z | 0     8                   | 0000:8D:00.0  | 0           0    / 0          3158 / 65536         |
+2026-04-18T17:03:21.3358776Z +------------------------------------------------------------------------------------------------+
+2026-04-18T17:03:21.3367261Z | 4     Ascend910           | OK            | -           36                0    / 0             |
+2026-04-18T17:03:21.3375168Z | 1     9                   | 0000:8F:00.0  | 0           0    / 0          2901 / 65536         |
+2026-04-18T17:03:21.3383437Z +===========================+===============+====================================================+
+2026-04-18T17:03:21.3392356Z | 5     Ascend910           | OK            | 162.1       35                0    / 0             |
+2026-04-18T17:03:21.3400704Z | 0     10                  | 0000:89:00.0  | 0           0    / 0          3156 / 65536         |
+2026-04-18T17:03:21.3408818Z +------------------------------------------------------------------------------------------------+
+2026-04-18T17:03:21.3416715Z | 5     Ascend910           | OK            | -           36                0    / 0             |
+2026-04-18T17:03:21.3425438Z | 1     11                  | 0000:8B:00.0  | 0           0    / 0          2893 / 65536         |
+2026-04-18T17:03:21.6129497Z +===========================+===============+====================================================+
+2026-04-18T17:03:21.6137240Z | 6     Ascend910           | OK            | 161.3       38                0    / 0             |
+2026-04-18T17:03:21.6145561Z | 0     12                  | 0000:85:00.0  | 0           0    / 0          3157 / 65536         |
+2026-04-18T17:03:21.6154222Z +------------------------------------------------------------------------------------------------+
+2026-04-18T17:03:21.6162913Z | 6     Ascend910           | OK            | -           36                0    / 0             |
+2026-04-18T17:03:21.6171792Z | 1     13                  | 0000:87:00.0  | 0           0    / 0          2897 / 65536         |
+2026-04-18T17:03:21.6180222Z +===========================+===============+====================================================+
+2026-04-18T17:03:21.6189557Z | 7     Ascend910           | OK            | 165.3       37                0    / 0             |
+2026-04-18T17:03:21.6198102Z | 0     14                  | 0000:81:00.0  | 0           0    / 0          3166 / 65536         |
+2026-04-18T17:03:21.6206617Z +------------------------------------------------------------------------------------------------+
+2026-04-18T17:03:21.6214554Z | 7     Ascend910           | OK            | -           37                0    / 0             |
+2026-04-18T17:03:21.6223317Z | 1     15                  | 0000:83:00.0  | 0           0    / 0          2884 / 65536         |
+2026-04-18T17:03:21.6231662Z +===========================+===============+====================================================+
+2026-04-18T17:03:21.6240801Z +---------------------------+---------------+----------------------------------------------------+
+2026-04-18T17:03:21.6249164Z | NPU     Chip              | Process id    | Process name             | Process memory(MB)      |
+2026-04-18T17:03:21.6257372Z +===========================+===============+====================================================+
+2026-04-18T17:03:21.6266137Z | No running processes found in NPU 0                                                            |
+2026-04-18T17:03:21.6275250Z +===========================+===============+====================================================+
+2026-04-18T17:03:21.6284105Z | No running processes found in NPU 1                                                            |
+2026-04-18T17:03:21.6292530Z +===========================+===============+====================================================+
+2026-04-18T17:03:21.6300567Z | No running processes found in NPU 2                                                            |
+2026-04-18T17:03:21.6309249Z +===========================+===============+====================================================+
+2026-04-18T17:03:21.6317920Z | No running processes found in NPU 3                                                            |
+2026-04-18T17:03:21.6326123Z +===========================+===============+====================================================+
+2026-04-18T17:03:21.6334499Z | No running processes found in NPU 4                                                            |
+2026-04-18T17:03:21.6342619Z +===========================+===============+====================================================+
+2026-04-18T17:03:21.6351287Z | No running processes found in NPU 5                                                            |
+2026-04-18T17:03:21.6359793Z +===========================+===============+====================================================+
+2026-04-18T17:03:21.6368129Z | No running processes found in NPU 6                                                            |
+2026-04-18T17:03:21.6376198Z +===========================+===============+====================================================+
+2026-04-18T17:03:21.6384305Z | No running processes found in NPU 7                                                            |
+2026-04-18T17:03:21.6392700Z +===========================+===============+====================================================+
+2026-04-18T17:03:21.6400378Z package_name=Ascend-cann-toolkit
+2026-04-18T17:03:21.6408210Z version=8.5.1
+2026-04-18T17:03:21.6416603Z innerversion=V100R001C25SPC002B220
+2026-04-18T17:03:21.6424966Z compatible_version=[V100R001C15],[V100R001C18],[V100R001C19],[V100R001C20],[V100R001C21],[V100R001C23]
+2026-04-18T17:03:21.6432769Z arch=aarch64
+2026-04-18T17:03:21.6440946Z os=linux
+2026-04-18T17:03:21.6449926Z path=/usr/local/Ascend/cann-8.5.1
+2026-04-18T17:03:21.6458098Z 
+2026-04-18T17:03:21.6466023Z [0;34m=== Clearing logs from previous runs ===[0m
+2026-04-18T17:03:21.6474172Z ====> Configure mirrors and git proxy
+2026-04-18T17:03:21.8213886Z Writing to /root/.config/pip/pip.conf
+2026-04-18T17:03:21.8536500Z Installed vLLM-related Python packages:
+2026-04-18T17:03:22.3846464Z ais_bench_benchmark                      3.0.20250930               /vllm-workspace/vllm-ascend/benchmark
+2026-04-18T17:03:22.3854669Z vllm                                     0.18.0+empty               /vllm-workspace/vllm
+2026-04-18T17:03:22.3863735Z vllm_ascend                              0.18.0rc2.dev57+g6bdc72949 /vllm-workspace/vllm-ascend
+2026-04-18T17:03:22.3874714Z 
+2026-04-18T17:03:22.3881233Z ============================
+2026-04-18T17:03:22.3890236Z vLLM Git information
+2026-04-18T17:03:22.3899116Z ============================
+2026-04-18T17:03:22.3907016Z Branch:      HEAD
+2026-04-18T17:03:22.3917276Z Commit hash: bcf2be96120005e9aea171927f85055a6a5c0cf6
+2026-04-18T17:03:22.3939559Z Author:      khluu <khluu000@gmail.com>
+2026-04-18T17:03:22.3960976Z Date:        2026-03-19 15:06:38 -0700
+2026-04-18T17:03:22.3984878Z Message:     [cherry-pick][Bugfix] Disable monolithic TRTLLM MoE for Renormalize routing (#37591)#37605
+2026-04-18T17:03:22.4009307Z Tags:        v0.18.0
+2026-04-18T17:03:22.4038655Z Remote:      origin	https://ghfast.top/https://github.com/vllm-project/vllm.git (fetch)
+2026-04-18T17:03:22.4046345Z 
+2026-04-18T17:03:22.4054985Z 
+2026-04-18T17:03:22.4062952Z ============================
+2026-04-18T17:03:22.4071696Z vLLM-Ascend Git information
+2026-04-18T17:03:22.4080044Z ============================
+2026-04-18T17:03:22.4088929Z Branch:      releases/v0.18.0
+2026-04-18T17:03:22.4154887Z Commit hash: 6bdc72949b2682a7f1c7804aadf10b34f37ed127
+2026-04-18T17:03:22.4163048Z Author:      wangbj127 <256472688+wangbj127@users.noreply.github.com>
+2026-04-18T17:03:22.4196128Z Date:        2026-04-18 20:43:42 +0800
+2026-04-18T17:03:22.4214699Z Message:     Revert "[v0.18.0][BugFix] Fix dimension mismatch error when SP padding causes num_tokens_padded != num_tokens_unpadded" (#8413)
+2026-04-18T17:03:22.4259592Z Tags:        
+2026-04-18T17:03:22.4281095Z Remote:      origin	https://ghfast.top/https://github.com/vllm-project/vllm-ascend (fetch)
+2026-04-18T17:03:22.4288795Z 
+2026-04-18T17:03:22.4296930Z ====> Check triton ascend info
+2026-04-18T17:03:22.4529006Z Ubuntu clang version 15.0.7
+2026-04-18T17:03:22.4536979Z Target: aarch64-unknown-linux-gnu
+2026-04-18T17:03:22.4544748Z Thread model: posix
+2026-04-18T17:03:22.4552922Z InstalledDir: /usr/bin
+2026-04-18T17:03:22.4561322Z Found candidate GCC installation: /usr/bin/../lib/gcc/aarch64-linux-gnu/11
+2026-04-18T17:03:22.4569745Z Selected GCC installation: /usr/bin/../lib/gcc/aarch64-linux-gnu/11
+2026-04-18T17:03:22.4578387Z Candidate multilib: .;@m64
+2026-04-18T17:03:22.4586371Z Selected multilib: .;@m64
+2026-04-18T17:03:22.4594962Z /usr/local/Ascend/cann-8.5.1/tools/bishengir/bin/bishengir-compile
+2026-04-18T17:03:22.9804724Z Name: triton-ascend
+2026-04-18T17:03:22.9825272Z Version: 3.2.0
+2026-04-18T17:03:22.9834194Z Summary: A language and compiler for custom Deep Learning operations on Ascend hardwares
+2026-04-18T17:03:22.9843226Z Home-page: https://gitcode.com/Ascend/triton-ascend/
+2026-04-18T17:03:22.9851833Z Author: 
+2026-04-18T17:03:22.9860773Z Author-email: 
+2026-04-18T17:03:22.9869192Z License: 
+2026-04-18T17:03:22.9878318Z Location: /usr/local/python3.11.14/lib/python3.11/site-packages
+2026-04-18T17:03:22.9886439Z Requires: 
+2026-04-18T17:03:22.9894705Z Required-by: vllm_ascend
+2026-04-18T17:03:35.1639032Z INFO 04-18 17:03:35 [__init__.py:44] Available plugins for group vllm.platform_plugins:
+2026-04-18T17:03:35.1646457Z INFO 04-18 17:03:35 [__init__.py:46] - ascend -> vllm_ascend:register
+2026-04-18T17:03:35.1656240Z INFO 04-18 17:03:35 [__init__.py:49] All plugins in this group will be loaded. Set `VLLM_PLUGINS` to control which plugins to load.
+2026-04-18T17:03:35.2045155Z INFO 04-18 17:03:35 [__init__.py:239] Platform plugin ascend is activated
+2026-04-18T17:03:40.2348543Z ============================= test session starts ==============================
+2026-04-18T17:03:40.2357097Z platform linux -- Python 3.11.14, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/python3.11.14/bin/python3
+2026-04-18T17:03:40.2366141Z cachedir: .pytest_cache
+2026-04-18T17:03:40.2374751Z rootdir: /vllm-workspace/vllm-ascend
+2026-04-18T17:03:40.2383452Z configfile: pyproject.toml
+2026-04-18T17:03:40.2392762Z plugins: asyncio-1.3.0, mock-3.15.1, cov-7.1.0, anyio-4.13.0
+2026-04-18T17:03:40.2402113Z asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+2026-04-18T17:03:40.8287098Z collecting ... collected 1 item
+2026-04-18T17:03:40.8294763Z 
+2026-04-18T17:03:40.8305508Z [2026-04-18 17:03:40] [INFO] Loading config yaml: tests/e2e/nightly/multi_node/config/DeepSeek-V3_2-W8A8-EP-aime2025.yaml
+2026-04-18T17:03:42.2383085Z tests/e2e/nightly/multi_node/scripts/test_multi_node.py::test_multi_node FAILED
+2026-04-18T17:03:42.2383619Z 
+2026-04-18T17:03:42.2393211Z =================================== FAILURES ===================================
+2026-04-18T17:03:42.2402625Z _______________________________ test_multi_node ________________________________
+2026-04-18T17:03:42.2410834Z 
+2026-04-18T17:03:42.2419381Z     @pytest.mark.asyncio
+2026-04-18T17:03:42.2428605Z     async def test_multi_node() -> None:
+2026-04-18T17:03:42.2437249Z >       config = MultiNodeConfigLoader.from_yaml()
+2026-04-18T17:03:42.2445855Z                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-04-18T17:03:42.2453742Z 
+2026-04-18T17:03:42.2462490Z tests/e2e/nightly/multi_node/scripts/test_multi_node.py:11: 
+2026-04-18T17:03:42.2470962Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-04-18T17:03:42.2480296Z tests/e2e/nightly/multi_node/scripts/multi_node_config.py:271: in from_yaml
+2026-04-18T17:03:42.2489413Z     config = cls._load_yaml(yaml_path)
+2026-04-18T17:03:42.2497442Z              ^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-04-18T17:03:42.2505976Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-04-18T17:03:42.2514709Z 
+2026-04-18T17:03:42.2524205Z cls = <class 'tests.e2e.nightly.multi_node.scripts.multi_node_config.MultiNodeConfigLoader'>
+2026-04-18T17:03:42.2533622Z yaml_path = 'DeepSeek-V3_2-W8A8-EP-aime2025.yaml'
+2026-04-18T17:03:42.2542529Z 
+2026-04-18T17:03:42.2551524Z     @classmethod
+2026-04-18T17:03:42.2560433Z     def _load_yaml(cls, yaml_path: Optional[str]) -> dict:
+2026-04-18T17:03:42.2569040Z         if not yaml_path:
+2026-04-18T17:03:42.2578168Z             yaml_path = os.getenv("CONFIG_YAML_PATH", cls.DEFAULT_CONFIG_NAME)
+2026-04-18T17:03:42.2586503Z     
+2026-04-18T17:03:42.2595046Z         full_path = os.path.join(CONFIG_BASE_PATH, yaml_path)
+2026-04-18T17:03:42.2604278Z         logger.info("Loading config yaml: %s", full_path)
+2026-04-18T17:03:42.2612508Z     
+2026-04-18T17:03:42.2621348Z >       with open(full_path, "r") as f:
+2026-04-18T17:03:42.2630475Z              ^^^^^^^^^^^^^^^^^^^^
+2026-04-18T17:03:42.2640056Z E       FileNotFoundError: [Errno 2] No such file or directory: 'tests/e2e/nightly/multi_node/config/DeepSeek-V3_2-W8A8-EP-aime2025.yaml'
+2026-04-18T17:03:42.2647821Z 
+2026-04-18T17:03:42.2656681Z tests/e2e/nightly/multi_node/scripts/multi_node_config.py:296: FileNotFoundError
+2026-04-18T17:03:42.2664824Z =============================== warnings summary ===============================
+2026-04-18T17:03:42.2673110Z <frozen importlib._bootstrap>:241
+2026-04-18T17:03:42.2682039Z   <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute
+2026-04-18T17:03:42.2690220Z 
+2026-04-18T17:03:42.2699101Z <frozen importlib._bootstrap>:241
+2026-04-18T17:03:42.2707875Z   <frozen importlib._bootstrap>:241: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute
+2026-04-18T17:03:42.2726875Z 
+2026-04-18T17:03:42.2727364Z vllm_ascend/patch/worker/patch_weight_utils.py:80
+2026-04-18T17:03:42.2733629Z   /vllm-workspace/vllm-ascend/vllm_ascend/patch/worker/patch_weight_utils.py:80: DeprecationWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html
+2026-04-18T17:03:42.2740786Z     module = original_import(name, globals, locals, fromlist, level)
+2026-04-18T17:03:42.2749135Z 
+2026-04-18T17:03:42.2758073Z -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+2026-04-18T17:03:42.2766937Z =========================== short test summary info ============================
+2026-04-18T17:03:42.2775119Z FAILED tests/e2e/nightly/multi_node/scripts/test_multi_node.py::test_multi_node
+2026-04-18T17:03:42.2783418Z ======================== 1 failed, 3 warnings in 0.75s =========================
+2026-04-18T17:03:44.0352342Z [0;31mFAIL_TAG_DeepSeek-V3_2-W8A8-EP-aime2025.yaml ✗ ERROR: Some tests failed, please check the error stack above for details. If this is insufficient to pinpoint the error, please download and review the logs of all other nodes from the job's summary.[0m
+2026-04-18T17:03:44.0617896Z Cleaning up background log streams...
+2026-04-18T17:03:44.0773406Z ##[error]Error: failed to run script step: Error: command terminated with non-zero exit code: command terminated with exit code 1
+2026-04-18T17:03:44.0822138Z ##[error]Process completed with exit code 1.
+2026-04-18T17:03:44.0910120Z ##[error]Executing the custom container implementation failed. Please contact your self hosted runner administrator.
+2026-04-18T17:03:44.1212025Z ##[group]Run set -euo pipefail
+2026-04-18T17:03:44.1212351Z [36;1mset -euo pipefail[0m
+2026-04-18T17:03:44.1212604Z [36;1mmkdir -p /tmp/benchmark_results[0m
+2026-04-18T17:03:44.1213223Z [36;1mecho "Fetching benchmark results from PVC at /root/.cache/benchmark_results/releases-v0.18.0-DeepSeek-V3_2-W8A8-EP-aime2025..."[0m
+2026-04-18T17:03:44.1213963Z [36;1m# Copy from PVC mounted directory (persists after pod termination)[0m
+2026-04-18T17:03:44.1214520Z [36;1mSRC="/root/.cache/benchmark_results/releases-v0.18.0-DeepSeek-V3_2-W8A8-EP-aime2025"[0m
+2026-04-18T17:03:44.1215028Z [36;1mif [ -d "$SRC" ] && [ "$(ls -A "$SRC" 2>/dev/null)" ]; then[0m
+2026-04-18T17:03:44.1215378Z [36;1m  cp -r "$SRC"/. /tmp/benchmark_results/[0m
+2026-04-18T17:03:44.1215754Z [36;1m  echo "Benchmark results fetched successfully from PVC:"[0m
+2026-04-18T17:03:44.1216103Z [36;1m  ls -la /tmp/benchmark_results/[0m
+2026-04-18T17:03:44.1216402Z [36;1m  # Clean up PVC contents after copying[0m
+2026-04-18T17:03:44.1216760Z [36;1m  echo "Cleaning up PVC contents at $SRC..."[0m
+2026-04-18T17:03:44.1217050Z [36;1m  rm -rf "${SRC:?}"/*[0m
+2026-04-18T17:03:44.1217331Z [36;1m  echo "PVC contents cleaned up successfully"[0m
+2026-04-18T17:03:44.1217627Z [36;1melse[0m
+2026-04-18T17:03:44.1217896Z [36;1m  echo "Warning: No benchmark results found in PVC at $SRC"[0m
+2026-04-18T17:03:44.1218343Z [36;1m  echo "Directory contents (if exists):"[0m
+2026-04-18T17:03:44.1218710Z [36;1m  ls -la "$SRC" 2>/dev/null || echo "Directory does not exist"[0m
+2026-04-18T17:03:44.1219027Z [36;1mfi[0m
+2026-04-18T17:03:44.1219300Z shell: bash -el {0}
+2026-04-18T17:03:44.1219494Z env:
+2026-04-18T17:03:44.1219738Z   LWS_NAME: vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28
+2026-04-18T17:03:44.1220338Z   LEADER_POD: vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0
+2026-04-18T17:03:44.1220877Z   LOG_PREFIX: /root/.cache/ascend-logs/releases-v0.18.0/vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28
+2026-04-18T17:03:44.1221413Z   FAIL_TAG: FAIL_TAG_DeepSeek-V3_2-W8A8-EP-aime2025.yaml
+2026-04-18T17:03:44.1221716Z ##[endgroup]
+2026-04-18T17:03:44.1297128Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-18T17:03:44.1297986Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-18T17:03:44.1298353Z ##[endgroup]
+2026-04-18T17:03:44.5607751Z (node:1098) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-18T17:03:44.5608816Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-18T17:03:44.9413328Z Fetching benchmark results from PVC at /root/.cache/benchmark_results/releases-v0.18.0-DeepSeek-V3_2-W8A8-EP-aime2025...
+2026-04-18T17:03:44.9452190Z Warning: No benchmark results found in PVC at /root/.cache/benchmark_results/releases-v0.18.0-DeepSeek-V3_2-W8A8-EP-aime2025
+2026-04-18T17:03:44.9452796Z Directory contents (if exists):
+2026-04-18T17:03:44.9458870Z Directory does not exist
+2026-04-18T17:03:45.2185652Z ##[group]Run echo "Current pod status:"
+2026-04-18T17:03:45.2186033Z [36;1mecho "Current pod status:"[0m
+2026-04-18T17:03:45.2186397Z [36;1mkubectl get pods -n "$NAMESPACE" --ignore-not-found=true[0m
+2026-04-18T17:03:45.2186905Z [36;1m[0m
+2026-04-18T17:03:45.2187135Z [36;1mecho "Deleting resources for [$LWS_NAME]..."[0m
+2026-04-18T17:03:45.2187543Z [36;1mkubectl delete -f ./lws.yaml --ignore-not-found=true || true[0m
+2026-04-18T17:03:45.2187898Z [36;1m[0m
+2026-04-18T17:03:45.2188163Z [36;1mecho "Waiting for pods of [$LWS_NAME] to fully terminate..."[0m
+2026-04-18T17:03:45.2188603Z [36;1mTIMEOUT=300[0m
+2026-04-18T17:03:45.2188822Z [36;1mSLEEP_INTERVAL=5[0m
+2026-04-18T17:03:45.2189051Z [36;1mSTART_TIME=$(date +%s)[0m
+2026-04-18T17:03:45.2189296Z [36;1mwhile true; do[0m
+2026-04-18T17:03:45.2189558Z [36;1m  ELAPSED=$(( $(date +%s) - START_TIME ))[0m
+2026-04-18T17:03:45.2189999Z [36;1m  if [[ $ELAPSED -ge $TIMEOUT ]]; then[0m
+2026-04-18T17:03:45.2190552Z [36;1m    echo "Timeout reached ($TIMEOUT seconds) waiting for termination, continuing anyway."[0m
+2026-04-18T17:03:45.2191097Z [36;1m    kubectl get pods -n "$NAMESPACE" | grep "^${LWS_NAME}-" || true[0m
+2026-04-18T17:03:45.2191448Z [36;1m    break[0m
+2026-04-18T17:03:45.2191646Z [36;1m  fi[0m
+2026-04-18T17:03:45.2192056Z [36;1m  PODS_EXIST=$(kubectl get pods -n "$NAMESPACE" -o jsonpath='{.items[*].metadata.name}' 2>/dev/null \[0m
+2026-04-18T17:03:45.2192570Z [36;1m    | tr ' ' '\n' | grep "^${LWS_NAME}-" || true)[0m
+2026-04-18T17:03:45.2192889Z [36;1m  if [[ -z "$PODS_EXIST" ]]; then[0m
+2026-04-18T17:03:45.2193212Z [36;1m    echo "All pods for [$LWS_NAME] have terminated."[0m
+2026-04-18T17:03:45.2193519Z [36;1m    break[0m
+2026-04-18T17:03:45.2193710Z [36;1m  fi[0m
+2026-04-18T17:03:45.2193959Z [36;1m  echo "Waiting for pods to terminate: $PODS_EXIST"[0m
+2026-04-18T17:03:45.2194291Z [36;1m  sleep $SLEEP_INTERVAL[0m
+2026-04-18T17:03:45.2194521Z [36;1mdone[0m
+2026-04-18T17:03:45.2194794Z shell: bash -el {0}
+2026-04-18T17:03:45.2195000Z env:
+2026-04-18T17:03:45.2195248Z   LWS_NAME: vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28
+2026-04-18T17:03:45.2195659Z   LEADER_POD: vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0
+2026-04-18T17:03:45.2196223Z   LOG_PREFIX: /root/.cache/ascend-logs/releases-v0.18.0/vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28
+2026-04-18T17:03:45.2196756Z   FAIL_TAG: FAIL_TAG_DeepSeek-V3_2-W8A8-EP-aime2025.yaml
+2026-04-18T17:03:45.2197062Z ##[endgroup]
+2026-04-18T17:03:45.2288501Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-18T17:03:45.2289391Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-18T17:03:45.2289674Z ##[endgroup]
+2026-04-18T17:03:45.6564550Z (node:1227) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-18T17:03:45.6565533Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-18T17:03:46.0291920Z Current pod status:
+2026-04-18T17:03:46.1261985Z NAME                                             READY   STATUS    RESTARTS      AGE
+2026-04-18T17:03:46.1262557Z linux-aarch64-a3-0-ggwx6-runner-x445l            1/1     Running   0             2m40s
+2026-04-18T17:03:46.1263235Z linux-aarch64-a3-0-ggwx6-runner-x445l-workflow   1/1     Running   0             116s
+2026-04-18T17:03:46.1263863Z vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0     0/1     Error     1 (39s ago)   98s
+2026-04-18T17:03:46.1264446Z vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0-1   1/1     Running   0             98s
+2026-04-18T17:03:46.1265022Z vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0-2   1/1     Running   1 (30s ago)   98s
+2026-04-18T17:03:46.1265594Z vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0-3   1/1     Running   0             98s
+2026-04-18T17:03:46.1273305Z Deleting resources for [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28]...
+2026-04-18T17:03:46.1841452Z leaderworkerset.leaderworkerset.x-k8s.io "vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28" deleted from vllm-project namespace
+2026-04-18T17:03:46.2006672Z service "vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-leader" deleted from vllm-project namespace
+2026-04-18T17:03:46.2155420Z Waiting for pods of [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28] to fully terminate...
+2026-04-18T17:03:46.2775080Z Waiting for pods to terminate: vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0
+2026-04-18T17:03:46.2775598Z vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0-1
+2026-04-18T17:03:46.2775952Z vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0-2
+2026-04-18T17:03:46.2776299Z vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0-3
+2026-04-18T17:03:51.3324007Z Waiting for pods to terminate: vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0-1
+2026-04-18T17:03:51.3324492Z vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0-2
+2026-04-18T17:03:51.3324831Z vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0-3
+2026-04-18T17:03:56.3829782Z All pods for [vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28] have terminated.
+2026-04-18T17:03:56.6751649Z ##[group]Run set -euo pipefail
+2026-04-18T17:03:56.6751984Z [36;1mset -euo pipefail[0m
+2026-04-18T17:03:56.6752221Z [36;1msize="4"[0m
+2026-04-18T17:03:56.6752433Z [36;1mDEST="/tmp/collected-logs"[0m
+2026-04-18T17:03:56.6752711Z [36;1mPLOG_PATH=/root/ascend/log[0m
+2026-04-18T17:03:56.6752981Z [36;1mKUBE_LOG_PATH=/var/log[0m
+2026-04-18T17:03:56.6753249Z [36;1mfor i in $(seq 0 $((size - 1))); do[0m
+2026-04-18T17:03:56.6753527Z [36;1m  if [ "${i}" -eq 0 ]; then[0m
+2026-04-18T17:03:56.6753775Z [36;1m    POD="${LWS_NAME}-0"[0m
+2026-04-18T17:03:56.6754019Z [36;1m  else[0m
+2026-04-18T17:03:56.6754224Z [36;1m    POD="${LWS_NAME}-0-${i}"[0m
+2026-04-18T17:03:56.6754465Z [36;1m  fi[0m
+2026-04-18T17:03:56.6754792Z [36;1m  mkdir -p "${DEST}/node${i}/${PLOG_PATH}" "${DEST}/node${i}/${KUBE_LOG_PATH}"[0m
+2026-04-18T17:03:56.6755181Z [36;1m  # pod stdout.[0m
+2026-04-18T17:03:56.6755670Z [36;1m  cp "/tmp/${POD}_logs.txt" "${DEST}/node${i}/${KUBE_LOG_PATH}/" 2>/dev/null || true[0m
+2026-04-18T17:03:56.6756081Z [36;1m  # Ascend plogs from PVC.[0m
+2026-04-18T17:03:56.6756367Z [36;1m  SRC="${LOG_PREFIX}/node_${i}_plogs"[0m
+2026-04-18T17:03:56.6756650Z [36;1m  if [ -d "$SRC" ]; then[0m
+2026-04-18T17:03:56.6756988Z [36;1m    cp -r "$SRC"/. "${DEST}/node${i}/${PLOG_PATH}/" 2>/dev/null || true[0m
+2026-04-18T17:03:56.6757342Z [36;1m  fi[0m
+2026-04-18T17:03:56.6757530Z [36;1mdone[0m
+2026-04-18T17:03:56.6757701Z [36;1m[0m
+2026-04-18T17:03:56.6757972Z [36;1mtar -czf /tmp/ascend-logs.tar.gz -C /tmp collected-logs[0m
+2026-04-18T17:03:56.6758376Z shell: bash -el {0}
+2026-04-18T17:03:56.6758570Z env:
+2026-04-18T17:03:56.6758916Z   LWS_NAME: vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28
+2026-04-18T17:03:56.6759308Z   LEADER_POD: vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0
+2026-04-18T17:03:56.6759994Z   LOG_PREFIX: /root/.cache/ascend-logs/releases-v0.18.0/vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28
+2026-04-18T17:03:56.6760584Z   FAIL_TAG: FAIL_TAG_DeepSeek-V3_2-W8A8-EP-aime2025.yaml
+2026-04-18T17:03:56.6760880Z ##[endgroup]
+2026-04-18T17:03:56.6848181Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-18T17:03:56.6849162Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-18T17:03:56.6849465Z ##[endgroup]
+2026-04-18T17:03:57.1143777Z (node:1367) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-18T17:03:57.1144785Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-18T17:03:57.8935165Z ##[group]Run ascend-gha-runners/artifact/upload@v0.3
+2026-04-18T17:03:57.8935509Z with:
+2026-04-18T17:03:57.8935778Z   name: DeepSeek-V3_2-W8A8-EP-aime2025.yaml-ascend-logs
+2026-04-18T17:03:57.8936106Z   path: /tmp/ascend-logs.tar.gz
+2026-04-18T17:03:57.8936356Z   retention-days: 7
+2026-04-18T17:03:57.8936573Z   if-no-files-found: warn
+2026-04-18T17:03:57.8936803Z   bucket: ascend-ci-cache-hk
+2026-04-18T17:03:57.8937085Z   endpoint: obs.ap-southeast-1.myhuaweicloud.com
+2026-04-18T17:03:57.8937361Z env:
+2026-04-18T17:03:57.8937600Z   LWS_NAME: vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28
+2026-04-18T17:03:57.8937991Z   LEADER_POD: vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0
+2026-04-18T17:03:57.8938524Z   LOG_PREFIX: /root/.cache/ascend-logs/releases-v0.18.0/vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28
+2026-04-18T17:03:57.8939372Z   FAIL_TAG: FAIL_TAG_DeepSeek-V3_2-W8A8-EP-aime2025.yaml
+2026-04-18T17:03:57.8939678Z ##[endgroup]
+2026-04-18T17:03:57.9359264Z ##[group]Run if command -v obsutil &>/dev/null; then
+2026-04-18T17:03:57.9359680Z [36;1mif command -v obsutil &>/dev/null; then[0m
+2026-04-18T17:03:57.9360210Z [36;1m  echo "obsutil already installed, skipping setup"[0m
+2026-04-18T17:03:57.9360541Z [36;1m  exit 0[0m
+2026-04-18T17:03:57.9360729Z [36;1mfi[0m
+2026-04-18T17:03:57.9360917Z [36;1m{[0m
+2026-04-18T17:03:57.9361114Z [36;1m  ARCH=$(uname -m)[0m
+2026-04-18T17:03:57.9361416Z [36;1m  if [ "${ARCH}" = "aarch64" ] || [ "${ARCH}" = "arm64" ]; then[0m
+2026-04-18T17:03:57.9361776Z [36;1m    OBSUTIL_ARCH="arm64"[0m
+2026-04-18T17:03:57.9362017Z [36;1m  else[0m
+2026-04-18T17:03:57.9362210Z [36;1m    OBSUTIL_ARCH="amd64"[0m
+2026-04-18T17:03:57.9362442Z [36;1m  fi[0m
+2026-04-18T17:03:57.9363018Z [36;1m  curl -sSL "https://obs-community.obs.cn-north-1.myhuaweicloud.com/obsutil/current/obsutil_linux_${OBSUTIL_ARCH}.tar.gz" \[0m
+2026-04-18T17:03:57.9363638Z [36;1m    -o /tmp/obsutil.tar.gz[0m
+2026-04-18T17:03:57.9363927Z [36;1m  tar -xzf /tmp/obsutil.tar.gz -C /tmp[0m
+2026-04-18T17:03:57.9364434Z [36;1m  OBSUTIL_DIR=$(find /tmp -maxdepth 1 -name "obsutil_linux_${OBSUTIL_ARCH}_*" -type d | head -1)[0m
+2026-04-18T17:03:57.9364915Z [36;1m  chmod +x "${OBSUTIL_DIR}/obsutil"[0m
+2026-04-18T17:03:57.9365217Z [36;1m  echo "${OBSUTIL_DIR}" >> $GITHUB_PATH[0m
+2026-04-18T17:03:57.9365503Z [36;1m} > /dev/null 2>&1[0m
+2026-04-18T17:03:57.9365737Z [36;1mecho "obsutil setup complete"[0m
+2026-04-18T17:03:57.9367195Z shell: bash --noprofile --norc -e -o pipefail {0}
+2026-04-18T17:03:57.9367494Z env:
+2026-04-18T17:03:57.9367742Z   LWS_NAME: vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28
+2026-04-18T17:03:57.9368144Z   LEADER_POD: vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0
+2026-04-18T17:03:57.9368693Z   LOG_PREFIX: /root/.cache/ascend-logs/releases-v0.18.0/vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28
+2026-04-18T17:03:57.9369351Z   FAIL_TAG: FAIL_TAG_DeepSeek-V3_2-W8A8-EP-aime2025.yaml
+2026-04-18T17:03:57.9369657Z ##[endgroup]
+2026-04-18T17:03:57.9473332Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-18T17:03:57.9474189Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-18T17:03:57.9474477Z ##[endgroup]
+2026-04-18T17:03:58.3828289Z (node:1522) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-18T17:03:58.3829318Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-18T17:03:59.4939502Z obsutil setup complete
+2026-04-18T17:04:00.9701663Z ##[group]Run obsutil config \
+2026-04-18T17:04:00.9701963Z [36;1mobsutil config \[0m
+2026-04-18T17:04:00.9702192Z [36;1m  -i= \[0m
+2026-04-18T17:04:00.9702382Z [36;1m  -k= \[0m
+2026-04-18T17:04:00.9702698Z [36;1m  -e=obs.ap-southeast-1.myhuaweicloud.com > /dev/null 2>&1[0m
+2026-04-18T17:04:00.9703091Z [36;1mecho "OBS credentials configured"[0m
+2026-04-18T17:04:00.9703718Z shell: bash --noprofile --norc -e -o pipefail {0}
+2026-04-18T17:04:00.9703995Z env:
+2026-04-18T17:04:00.9704477Z   LWS_NAME: vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28
+2026-04-18T17:04:00.9704881Z   LEADER_POD: vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0
+2026-04-18T17:04:00.9705426Z   LOG_PREFIX: /root/.cache/ascend-logs/releases-v0.18.0/vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28
+2026-04-18T17:04:00.9705962Z   FAIL_TAG: FAIL_TAG_DeepSeek-V3_2-W8A8-EP-aime2025.yaml
+2026-04-18T17:04:00.9706264Z ##[endgroup]
+2026-04-18T17:04:00.9827818Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-18T17:04:00.9828682Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-18T17:04:00.9829069Z ##[endgroup]
+2026-04-18T17:04:01.5303681Z (node:1774) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-18T17:04:01.5305055Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-18T17:04:02.8554719Z OBS credentials configured
+2026-04-18T17:04:03.2476526Z ##[group]Run set -euo pipefail
+2026-04-18T17:04:03.2477057Z [36;1mset -euo pipefail[0m
+2026-04-18T17:04:03.2477283Z [36;1m[0m
+2026-04-18T17:04:03.2477482Z [36;1mBUCKET="ascend-ci-cache-hk"[0m
+2026-04-18T17:04:03.2477832Z [36;1mENDPOINT="obs.ap-southeast-1.myhuaweicloud.com"[0m
+2026-04-18T17:04:03.2478259Z [36;1mNAME="DeepSeek-V3_2-W8A8-EP-aime2025.yaml-ascend-logs"[0m
+2026-04-18T17:04:03.2478643Z [36;1mFILE_PATH="/tmp/ascend-logs.tar.gz"[0m
+2026-04-18T17:04:03.2478947Z [36;1mREPO="vllm-project/vllm-ascend"[0m
+2026-04-18T17:04:03.2479315Z [36;1mRUN_ID="24608790351"[0m
+2026-04-18T17:04:03.2479539Z [36;1m[0m
+2026-04-18T17:04:03.2479811Z [36;1m# Deterministic path: artifacts/{repo}/{run_id}/{name}/[0m
+2026-04-18T17:04:03.2480402Z [36;1mOBJECT_PREFIX="artifacts/${REPO}/${RUN_ID}/${NAME}"[0m
+2026-04-18T17:04:03.2480828Z [36;1mMETA_KEY="artifacts/${REPO}/${RUN_ID}/_meta/${NAME}.json"[0m
+2026-04-18T17:04:03.2481154Z [36;1m[0m
+2026-04-18T17:04:03.2481450Z [36;1m# ── Expand multiline path input into include/exclude lists ──[0m
+2026-04-18T17:04:03.2481919Z [36;1m# Supports: single path, directory, glob, multiline, ! exclusions[0m
+2026-04-18T17:04:03.2482295Z [36;1mINCLUDE_PATTERNS=()[0m
+2026-04-18T17:04:03.2482528Z [36;1mEXCLUDE_PATTERNS=()[0m
+2026-04-18T17:04:03.2482773Z [36;1mwhile IFS= read -r line; do[0m
+2026-04-18T17:04:03.2483122Z [36;1m  line="${line#"${line%%[![:space:]]*}"}"  # trim leading whitespace[0m
+2026-04-18T17:04:03.2483548Z [36;1m  line="${line%"${line##*[![:space:]]}"}"  # trim trailing whitespace[0m
+2026-04-18T17:04:03.2483907Z [36;1m  [ -z "${line}" ] && continue[0m
+2026-04-18T17:04:03.2484182Z [36;1m  if [[ "${line}" == '!'* ]]; then[0m
+2026-04-18T17:04:03.2484462Z [36;1m    EXCLUDE_PATTERNS+=("${line:1}")[0m
+2026-04-18T17:04:03.2484731Z [36;1m  else[0m
+2026-04-18T17:04:03.2484943Z [36;1m    INCLUDE_PATTERNS+=("${line}")[0m
+2026-04-18T17:04:03.2485191Z [36;1m  fi[0m
+2026-04-18T17:04:03.2485385Z [36;1mdone <<< "${FILE_PATH}"[0m
+2026-04-18T17:04:03.2485609Z [36;1m[0m
+2026-04-18T17:04:03.2485859Z [36;1m# Collect matching files using find + glob expansion[0m
+2026-04-18T17:04:03.2486197Z [36;1mSTAGING_DIR=$(mktemp -d)[0m
+2026-04-18T17:04:03.2486435Z [36;1mFILE_COUNT=0[0m
+2026-04-18T17:04:03.2486638Z [36;1m[0m
+2026-04-18T17:04:03.2486857Z [36;1mfor PATTERN in "${INCLUDE_PATTERNS[@]}"; do[0m
+2026-04-18T17:04:03.2487211Z [36;1m  # Use bash glob expansion; fall back to literal path[0m
+2026-04-18T17:04:03.2487547Z [36;1m  shopt -s globstar nullglob[0m
+2026-04-18T17:04:03.2487817Z [36;1m  for MATCH in ${PATTERN}; do[0m
+2026-04-18T17:04:03.2488082Z [36;1m    [ -e "${MATCH}" ] || continue[0m
+2026-04-18T17:04:03.2488353Z [36;1m    if [ -d "${MATCH}" ]; then[0m
+2026-04-18T17:04:03.2488628Z [36;1m      while IFS= read -r -d '' f; do[0m
+2026-04-18T17:04:03.2488903Z [36;1m        REL="${f#./}"[0m
+2026-04-18T17:04:03.2489222Z [36;1m        # Check against exclude patterns[0m
+2026-04-18T17:04:03.2489503Z [36;1m        EXCLUDED=false[0m
+2026-04-18T17:04:03.2490136Z [36;1m        for EXCL in "${EXCLUDE_PATTERNS[@]}"; do[0m
+2026-04-18T17:04:03.2490461Z [36;1m          case "${REL}" in[0m
+2026-04-18T17:04:03.2490739Z [36;1m            ${EXCL}) EXCLUDED=true; break ;;[0m
+2026-04-18T17:04:03.2491020Z [36;1m          esac[0m
+2026-04-18T17:04:03.2491234Z [36;1m        done[0m
+2026-04-18T17:04:03.2491467Z [36;1m        if [ "${EXCLUDED}" = "false" ]; then[0m
+2026-04-18T17:04:03.2491776Z [36;1m          TARGET="${STAGING_DIR}/${REL}"[0m
+2026-04-18T17:04:03.2492089Z [36;1m          mkdir -p "$(dirname "${TARGET}")"[0m
+2026-04-18T17:04:03.2492375Z [36;1m          cp "${f}" "${TARGET}"[0m
+2026-04-18T17:04:03.2492656Z [36;1m          FILE_COUNT=$((FILE_COUNT + 1))[0m
+2026-04-18T17:04:03.2493039Z [36;1m        fi[0m
+2026-04-18T17:04:03.2493295Z [36;1m      done < <(find "${MATCH}" -type f -print0)[0m
+2026-04-18T17:04:03.2493586Z [36;1m    else[0m
+2026-04-18T17:04:03.2493785Z [36;1m      REL="${MATCH#./}"[0m
+2026-04-18T17:04:03.2494043Z [36;1m      EXCLUDED=false[0m
+2026-04-18T17:04:03.2494327Z [36;1m      for EXCL in "${EXCLUDE_PATTERNS[@]}"; do[0m
+2026-04-18T17:04:03.2494616Z [36;1m        case "${REL}" in[0m
+2026-04-18T17:04:03.2494893Z [36;1m          ${EXCL}) EXCLUDED=true; break ;;[0m
+2026-04-18T17:04:03.2495165Z [36;1m        esac[0m
+2026-04-18T17:04:03.2495359Z [36;1m      done[0m
+2026-04-18T17:04:03.2495584Z [36;1m      if [ "${EXCLUDED}" = "false" ]; then[0m
+2026-04-18T17:04:03.2495871Z [36;1m        TARGET="${STAGING_DIR}/${REL}"[0m
+2026-04-18T17:04:03.2496199Z [36;1m        mkdir -p "$(dirname "${TARGET}")"[0m
+2026-04-18T17:04:03.2496518Z [36;1m        cp "${MATCH}" "${TARGET}"[0m
+2026-04-18T17:04:03.2496805Z [36;1m        FILE_COUNT=$((FILE_COUNT + 1))[0m
+2026-04-18T17:04:03.2497065Z [36;1m      fi[0m
+2026-04-18T17:04:03.2497252Z [36;1m    fi[0m
+2026-04-18T17:04:03.2497433Z [36;1m  done[0m
+2026-04-18T17:04:03.2497624Z [36;1m  shopt -u globstar nullglob[0m
+2026-04-18T17:04:03.2497875Z [36;1mdone[0m
+2026-04-18T17:04:03.2498054Z [36;1m[0m
+2026-04-18T17:04:03.2498247Z [36;1m# ── Handle no files found ──[0m
+2026-04-18T17:04:03.2498524Z [36;1mif [ "${FILE_COUNT}" -eq 0 ]; then[0m
+2026-04-18T17:04:03.2498780Z [36;1m  case "warn" in[0m
+2026-04-18T17:04:03.2498997Z [36;1m    error)[0m
+2026-04-18T17:04:03.2499355Z [36;1m      echo "::error::No files found for path: ${FILE_PATH}"[0m
+2026-04-18T17:04:03.2499668Z [36;1m      exit 1[0m
+2026-04-18T17:04:03.2500014Z [36;1m      ;;[0m
+2026-04-18T17:04:03.2500219Z [36;1m    warn)[0m
+2026-04-18T17:04:03.2500544Z [36;1m      echo "::warning::No files found for path: ${FILE_PATH}, skipping upload"[0m
+2026-04-18T17:04:03.2500926Z [36;1m      exit 0[0m
+2026-04-18T17:04:03.2501120Z [36;1m      ;;[0m
+2026-04-18T17:04:03.2501316Z [36;1m    ignore)[0m
+2026-04-18T17:04:03.2501529Z [36;1m      exit 0[0m
+2026-04-18T17:04:03.2501717Z [36;1m      ;;[0m
+2026-04-18T17:04:03.2501902Z [36;1m  esac[0m
+2026-04-18T17:04:03.2502084Z [36;1mfi[0m
+2026-04-18T17:04:03.2502261Z [36;1m[0m
+2026-04-18T17:04:03.2502451Z [36;1m# ── Upload staged files ──[0m
+2026-04-18T17:04:03.2502779Z [36;1mTOTAL_SIZE=$(du -sb "${STAGING_DIR}" | awk '{print $1}')[0m
+2026-04-18T17:04:03.2503246Z [36;1mecho "Uploading ${FILE_COUNT} file(s), total size: ${TOTAL_SIZE} bytes"[0m
+2026-04-18T17:04:03.2503623Z [36;1m[0m
+2026-04-18T17:04:03.2503990Z [36;1m# Upload each top-level entry individually to avoid staging dir name leaking into OBS path[0m
+2026-04-18T17:04:03.2504467Z [36;1m> /tmp/obsutil_upload.log[0m
+2026-04-18T17:04:03.2504743Z [36;1mfor item in "${STAGING_DIR}"/*; do[0m
+2026-04-18T17:04:03.2505015Z [36;1m  [ -e "${item}" ] || continue[0m
+2026-04-18T17:04:03.2505506Z [36;1m  if ! obsutil cp "${item}" "obs://${BUCKET}/${OBJECT_PREFIX}/" -r -f >> /tmp/obsutil_upload.log 2>&1; then[0m
+2026-04-18T17:04:03.2506016Z [36;1m    echo "::error::Upload failed. See log:"[0m
+2026-04-18T17:04:03.2506315Z [36;1m    cat /tmp/obsutil_upload.log[0m
+2026-04-18T17:04:03.2506697Z [36;1m    exit 1[0m
+2026-04-18T17:04:03.2506902Z [36;1m  fi[0m
+2026-04-18T17:04:03.2507080Z [36;1mdone[0m
+2026-04-18T17:04:03.2507263Z [36;1m[0m
+2026-04-18T17:04:03.2507452Z [36;1mrm -rf "${STAGING_DIR}"[0m
+2026-04-18T17:04:03.2507823Z [36;1mecho "Uploaded ${FILE_COUNT} file(s), total size: ${TOTAL_SIZE} bytes"[0m
+2026-04-18T17:04:03.2508203Z [36;1m[0m
+2026-04-18T17:04:03.2508388Z [36;1m# ── Write metadata ──[0m
+2026-04-18T17:04:03.2508679Z [36;1mCREATED_AT=$(date -u +%Y-%m-%dT%H:%M:%SZ)[0m
+2026-04-18T17:04:03.2509007Z [36;1mcat > /tmp/_artifact_meta.json <<METAEOF[0m
+2026-04-18T17:04:03.2509342Z [36;1m{[0m
+2026-04-18T17:04:03.2509525Z [36;1m  "name": "${NAME}",[0m
+2026-04-18T17:04:03.2509763Z [36;1m  "repository": "${REPO}",[0m
+2026-04-18T17:04:03.2510316Z [36;1m  "run_id": "${RUN_ID}",[0m
+2026-04-18T17:04:03.2510591Z [36;1m  "object_prefix": "${OBJECT_PREFIX}",[0m
+2026-04-18T17:04:03.2510875Z [36;1m  "file_count": ${FILE_COUNT},[0m
+2026-04-18T17:04:03.2511152Z [36;1m  "total_size": ${TOTAL_SIZE},[0m
+2026-04-18T17:04:03.2511422Z [36;1m  "created_at": "${CREATED_AT}",[0m
+2026-04-18T17:04:03.2511684Z [36;1m  "retention_days": 7,[0m
+2026-04-18T17:04:03.2511930Z [36;1m  "workflow": "Nightly-A3",[0m
+2026-04-18T17:04:03.2512178Z [36;1m  "job": "e2e",[0m
+2026-04-18T17:04:03.2512455Z [36;1m  "sha": "bec63146cf1442542940d4c2ce9f7eee8ab9845c"[0m
+2026-04-18T17:04:03.2512754Z [36;1m}[0m
+2026-04-18T17:04:03.2512926Z [36;1mMETAEOF[0m
+2026-04-18T17:04:03.2513102Z [36;1m[0m
+2026-04-18T17:04:03.2513439Z [36;1mobsutil cp /tmp/_artifact_meta.json "obs://${BUCKET}/${META_KEY}" > /dev/null 2>&1[0m
+2026-04-18T17:04:03.2513868Z [36;1mif [ $? -ne 0 ]; then[0m
+2026-04-18T17:04:03.2514274Z [36;1m  echo "::warning::Failed to upload metadata, artifact files were uploaded successfully"[0m
+2026-04-18T17:04:03.2514708Z [36;1mfi[0m
+2026-04-18T17:04:03.2514874Z [36;1m[0m
+2026-04-18T17:04:03.2515057Z [36;1m# ── Set outputs ──[0m
+2026-04-18T17:04:03.2515394Z [36;1mARTIFACT_URL="https://${BUCKET}.${ENDPOINT}/${OBJECT_PREFIX}"[0m
+2026-04-18T17:04:03.2515817Z [36;1mecho "artifact_id=${OBJECT_PREFIX}" >> $GITHUB_OUTPUT[0m
+2026-04-18T17:04:03.2516213Z [36;1mecho "artifact_url=${ARTIFACT_URL}" >> $GITHUB_OUTPUT[0m
+2026-04-18T17:04:03.2516521Z [36;1m[0m
+2026-04-18T17:04:03.2516750Z [36;1mecho "Artifact '${NAME}' uploaded successfully"[0m
+2026-04-18T17:04:03.2517085Z [36;1mecho "  URL: ${ARTIFACT_URL}"[0m
+2026-04-18T17:04:03.2517467Z shell: bash --noprofile --norc -e -o pipefail {0}
+2026-04-18T17:04:03.2517760Z env:
+2026-04-18T17:04:03.2518013Z   LWS_NAME: vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28
+2026-04-18T17:04:03.2518401Z   LEADER_POD: vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0
+2026-04-18T17:04:03.2518948Z   LOG_PREFIX: /root/.cache/ascend-logs/releases-v0.18.0/vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28
+2026-04-18T17:04:03.2519550Z   FAIL_TAG: FAIL_TAG_DeepSeek-V3_2-W8A8-EP-aime2025.yaml
+2026-04-18T17:04:03.2519944Z ##[endgroup]
+2026-04-18T17:04:03.2607305Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-18T17:04:03.2608177Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-18T17:04:03.2608468Z ##[endgroup]
+2026-04-18T17:04:03.6875487Z (node:1958) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-18T17:04:03.6876479Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-18T17:04:04.1341501Z Uploading 1 file(s), total size: 15318 bytes
+2026-04-18T17:04:04.1996637Z ##[error]Upload failed. See log:
+2026-04-18T17:04:04.1999165Z Warn: Please set ak, sk and endpoint in the configuration file!
+2026-04-18T17:04:04.2117234Z ##[error]Error: failed to run script step: Error: command terminated with non-zero exit code: command terminated with exit code 1
+2026-04-18T17:04:04.2181546Z ##[error]Process completed with exit code 1.
+2026-04-18T17:04:04.2233170Z ##[error]Executing the custom container implementation failed. Please contact your self hosted runner administrator.
+2026-04-18T17:04:04.2700752Z ##[group]Run actions/upload-artifact@v7
+2026-04-18T17:04:04.2701056Z with:
+2026-04-18T17:04:04.2701353Z   name: releases-v0.18.0-DeepSeek-V3_2-W8A8-EP-aime2025-ascend-logs
+2026-04-18T17:04:04.2701733Z   path: /tmp/ascend-logs.tar.gz
+2026-04-18T17:04:04.2701981Z   retention-days: 7
+2026-04-18T17:04:04.2702190Z   if-no-files-found: warn
+2026-04-18T17:04:04.2702424Z   compression-level: 6
+2026-04-18T17:04:04.2702628Z   overwrite: false
+2026-04-18T17:04:04.2702854Z   include-hidden-files: false
+2026-04-18T17:04:04.2703105Z   archive: true
+2026-04-18T17:04:04.2703294Z env:
+2026-04-18T17:04:04.2703546Z   LWS_NAME: vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28
+2026-04-18T17:04:04.2704114Z   LEADER_POD: vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0
+2026-04-18T17:04:04.2704666Z   LOG_PREFIX: /root/.cache/ascend-logs/releases-v0.18.0/vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28
+2026-04-18T17:04:04.2705218Z   FAIL_TAG: FAIL_TAG_DeepSeek-V3_2-W8A8-EP-aime2025.yaml
+2026-04-18T17:04:04.2705576Z ##[endgroup]
+2026-04-18T17:04:04.2732772Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-18T17:04:04.2733612Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-18T17:04:04.2733907Z ##[endgroup]
+2026-04-18T17:04:04.7063026Z (node:2062) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-18T17:04:04.7064010Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-18T17:04:05.2729819Z With the provided path, there will be 1 file uploaded
+2026-04-18T17:04:05.2734132Z Artifact name is valid!
+2026-04-18T17:04:05.2734379Z Root directory input is valid!
+2026-04-18T17:04:07.4425067Z Uploading artifact: releases-v0.18.0-DeepSeek-V3_2-W8A8-EP-aime2025-ascend-logs.zip
+2026-04-18T17:04:07.4471398Z Beginning upload of artifact content to blob storage
+2026-04-18T17:04:08.5234151Z Uploaded bytes 7182
+2026-04-18T17:04:08.7456507Z Finished uploading artifact content to blob storage!
+2026-04-18T17:04:08.7457167Z SHA256 digest of uploaded artifact is 694a6ffe17aa12db1207989858dcd7281dd67378323a05865686e89a7457ca63
+2026-04-18T17:04:08.7457729Z Finalizing artifact upload
+2026-04-18T17:04:12.9496040Z Artifact releases-v0.18.0-DeepSeek-V3_2-W8A8-EP-aime2025-ascend-logs successfully finalized. Artifact ID 6512321963
+2026-04-18T17:04:12.9497123Z Artifact releases-v0.18.0-DeepSeek-V3_2-W8A8-EP-aime2025-ascend-logs has been successfully uploaded! Final size is 7182 bytes. Artifact ID is 6512321963
+2026-04-18T17:04:12.9498239Z Artifact download URL: https://github.com/vllm-project/vllm-ascend/actions/runs/24608790351/artifacts/6512321963
+2026-04-18T17:04:14.5858895Z ##[group]Run echo "artifact_ts=$(date -u +%Y%m%dT%H%M%SZ)" >> $GITHUB_OUTPUT
+2026-04-18T17:04:14.5859456Z [36;1mecho "artifact_ts=$(date -u +%Y%m%dT%H%M%SZ)" >> $GITHUB_OUTPUT[0m
+2026-04-18T17:04:14.5860148Z shell: bash -el {0}
+2026-04-18T17:04:14.5860357Z env:
+2026-04-18T17:04:14.5860610Z   LWS_NAME: vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28
+2026-04-18T17:04:14.5861006Z   LEADER_POD: vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0
+2026-04-18T17:04:14.5861563Z   LOG_PREFIX: /root/.cache/ascend-logs/releases-v0.18.0/vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28
+2026-04-18T17:04:14.5862109Z   FAIL_TAG: FAIL_TAG_DeepSeek-V3_2-W8A8-EP-aime2025.yaml
+2026-04-18T17:04:14.5862426Z ##[endgroup]
+2026-04-18T17:04:14.6066392Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-18T17:04:14.6067245Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-18T17:04:14.6067542Z ##[endgroup]
+2026-04-18T17:04:15.0431553Z (node:2366) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-18T17:04:15.0432582Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-18T17:04:17.0943426Z ##[group]Run ascend-gha-runners/artifact/upload@v0.3
+2026-04-18T17:04:17.0943761Z with:
+2026-04-18T17:04:17.0944183Z   name: nightly-test-benchmark-results-DeepSeek-V3_2-W8A8-EP-aime2025.yaml-20260418T170415Z
+2026-04-18T17:04:17.0944689Z   path: /tmp/benchmark_results/
+2026-04-18T17:04:17.0944949Z   if-no-files-found: warn
+2026-04-18T17:04:17.0945179Z   retention-days: 90
+2026-04-18T17:04:17.0945392Z   bucket: ascend-ci-cache-hk
+2026-04-18T17:04:17.0945679Z   endpoint: obs.ap-southeast-1.myhuaweicloud.com
+2026-04-18T17:04:17.0945975Z env:
+2026-04-18T17:04:17.0946216Z   LWS_NAME: vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28
+2026-04-18T17:04:17.0946614Z   LEADER_POD: vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0
+2026-04-18T17:04:17.0947169Z   LOG_PREFIX: /root/.cache/ascend-logs/releases-v0.18.0/vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28
+2026-04-18T17:04:17.0947908Z   FAIL_TAG: FAIL_TAG_DeepSeek-V3_2-W8A8-EP-aime2025.yaml
+2026-04-18T17:04:17.0948225Z ##[endgroup]
+2026-04-18T17:04:17.1267688Z ##[group]Run if command -v obsutil &>/dev/null; then
+2026-04-18T17:04:17.1268088Z [36;1mif command -v obsutil &>/dev/null; then[0m
+2026-04-18T17:04:17.1268462Z [36;1m  echo "obsutil already installed, skipping setup"[0m
+2026-04-18T17:04:17.1268776Z [36;1m  exit 0[0m
+2026-04-18T17:04:17.1268968Z [36;1mfi[0m
+2026-04-18T17:04:17.1269150Z [36;1m{[0m
+2026-04-18T17:04:17.1269345Z [36;1m  ARCH=$(uname -m)[0m
+2026-04-18T17:04:17.1269659Z [36;1m  if [ "${ARCH}" = "aarch64" ] || [ "${ARCH}" = "arm64" ]; then[0m
+2026-04-18T17:04:17.1270278Z [36;1m    OBSUTIL_ARCH="arm64"[0m
+2026-04-18T17:04:17.1270529Z [36;1m  else[0m
+2026-04-18T17:04:17.1270773Z [36;1m    OBSUTIL_ARCH="amd64"[0m
+2026-04-18T17:04:17.1271030Z [36;1m  fi[0m
+2026-04-18T17:04:17.1271586Z [36;1m  curl -sSL "https://obs-community.obs.cn-north-1.myhuaweicloud.com/obsutil/current/obsutil_linux_${OBSUTIL_ARCH}.tar.gz" \[0m
+2026-04-18T17:04:17.1272236Z [36;1m    -o /tmp/obsutil.tar.gz[0m
+2026-04-18T17:04:17.1272540Z [36;1m  tar -xzf /tmp/obsutil.tar.gz -C /tmp[0m
+2026-04-18T17:04:17.1273041Z [36;1m  OBSUTIL_DIR=$(find /tmp -maxdepth 1 -name "obsutil_linux_${OBSUTIL_ARCH}_*" -type d | head -1)[0m
+2026-04-18T17:04:17.1273536Z [36;1m  chmod +x "${OBSUTIL_DIR}/obsutil"[0m
+2026-04-18T17:04:17.1273833Z [36;1m  echo "${OBSUTIL_DIR}" >> $GITHUB_PATH[0m
+2026-04-18T17:04:17.1274120Z [36;1m} > /dev/null 2>&1[0m
+2026-04-18T17:04:17.1274372Z [36;1mecho "obsutil setup complete"[0m
+2026-04-18T17:04:17.1274782Z shell: bash --noprofile --norc -e -o pipefail {0}
+2026-04-18T17:04:17.1275066Z env:
+2026-04-18T17:04:17.1275324Z   LWS_NAME: vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28
+2026-04-18T17:04:17.1275731Z   LEADER_POD: vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0
+2026-04-18T17:04:17.1276286Z   LOG_PREFIX: /root/.cache/ascend-logs/releases-v0.18.0/vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28
+2026-04-18T17:04:17.1276839Z   FAIL_TAG: FAIL_TAG_DeepSeek-V3_2-W8A8-EP-aime2025.yaml
+2026-04-18T17:04:17.1277145Z ##[endgroup]
+2026-04-18T17:04:17.1400060Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-18T17:04:17.1400992Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-18T17:04:17.1401291Z ##[endgroup]
+2026-04-18T17:04:17.5703951Z (node:2687) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-18T17:04:17.5704961Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-18T17:04:18.0983512Z obsutil already installed, skipping setup
+2026-04-18T17:04:18.4580698Z ##[group]Run obsutil config \
+2026-04-18T17:04:18.4580985Z [36;1mobsutil config \[0m
+2026-04-18T17:04:18.4581228Z [36;1m  -i= \[0m
+2026-04-18T17:04:18.4581416Z [36;1m  -k= \[0m
+2026-04-18T17:04:18.4581723Z [36;1m  -e=obs.ap-southeast-1.myhuaweicloud.com > /dev/null 2>&1[0m
+2026-04-18T17:04:18.4582129Z [36;1mecho "OBS credentials configured"[0m
+2026-04-18T17:04:18.4582511Z shell: bash --noprofile --norc -e -o pipefail {0}
+2026-04-18T17:04:18.4583021Z env:
+2026-04-18T17:04:18.4583274Z   LWS_NAME: vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28
+2026-04-18T17:04:18.4583677Z   LEADER_POD: vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0
+2026-04-18T17:04:18.4584230Z   LOG_PREFIX: /root/.cache/ascend-logs/releases-v0.18.0/vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28
+2026-04-18T17:04:18.4584782Z   FAIL_TAG: FAIL_TAG_DeepSeek-V3_2-W8A8-EP-aime2025.yaml
+2026-04-18T17:04:18.4585092Z ##[endgroup]
+2026-04-18T17:04:18.4666403Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-18T17:04:18.4667240Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-18T17:04:18.4667542Z ##[endgroup]
+2026-04-18T17:04:18.8924024Z (node:2927) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-18T17:04:18.8925199Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-18T17:04:19.5406639Z OBS credentials configured
+2026-04-18T17:04:19.9168355Z ##[group]Run set -euo pipefail
+2026-04-18T17:04:19.9168776Z [36;1mset -euo pipefail[0m
+2026-04-18T17:04:19.9169008Z [36;1m[0m
+2026-04-18T17:04:19.9169214Z [36;1mBUCKET="ascend-ci-cache-hk"[0m
+2026-04-18T17:04:19.9169560Z [36;1mENDPOINT="obs.ap-southeast-1.myhuaweicloud.com"[0m
+2026-04-18T17:04:19.9170379Z [36;1mNAME="nightly-test-benchmark-results-DeepSeek-V3_2-W8A8-EP-aime2025.yaml-20260418T170415Z"[0m
+2026-04-18T17:04:19.9170928Z [36;1mFILE_PATH="/tmp/benchmark_results/"[0m
+2026-04-18T17:04:19.9171236Z [36;1mREPO="vllm-project/vllm-ascend"[0m
+2026-04-18T17:04:19.9171516Z [36;1mRUN_ID="24608790351"[0m
+2026-04-18T17:04:19.9171736Z [36;1m[0m
+2026-04-18T17:04:19.9172013Z [36;1m# Deterministic path: artifacts/{repo}/{run_id}/{name}/[0m
+2026-04-18T17:04:19.9172430Z [36;1mOBJECT_PREFIX="artifacts/${REPO}/${RUN_ID}/${NAME}"[0m
+2026-04-18T17:04:19.9172862Z [36;1mMETA_KEY="artifacts/${REPO}/${RUN_ID}/_meta/${NAME}.json"[0m
+2026-04-18T17:04:19.9173207Z [36;1m[0m
+2026-04-18T17:04:19.9173502Z [36;1m# ── Expand multiline path input into include/exclude lists ──[0m
+2026-04-18T17:04:19.9173982Z [36;1m# Supports: single path, directory, glob, multiline, ! exclusions[0m
+2026-04-18T17:04:19.9174370Z [36;1mINCLUDE_PATTERNS=()[0m
+2026-04-18T17:04:19.9174616Z [36;1mEXCLUDE_PATTERNS=()[0m
+2026-04-18T17:04:19.9174868Z [36;1mwhile IFS= read -r line; do[0m
+2026-04-18T17:04:19.9175218Z [36;1m  line="${line#"${line%%[![:space:]]*}"}"  # trim leading whitespace[0m
+2026-04-18T17:04:19.9175668Z [36;1m  line="${line%"${line##*[![:space:]]}"}"  # trim trailing whitespace[0m
+2026-04-18T17:04:19.9176040Z [36;1m  [ -z "${line}" ] && continue[0m
+2026-04-18T17:04:19.9176323Z [36;1m  if [[ "${line}" == '!'* ]]; then[0m
+2026-04-18T17:04:19.9176617Z [36;1m    EXCLUDE_PATTERNS+=("${line:1}")[0m
+2026-04-18T17:04:19.9176888Z [36;1m  else[0m
+2026-04-18T17:04:19.9177112Z [36;1m    INCLUDE_PATTERNS+=("${line}")[0m
+2026-04-18T17:04:19.9177377Z [36;1m  fi[0m
+2026-04-18T17:04:19.9177585Z [36;1mdone <<< "${FILE_PATH}"[0m
+2026-04-18T17:04:19.9177814Z [36;1m[0m
+2026-04-18T17:04:19.9178067Z [36;1m# Collect matching files using find + glob expansion[0m
+2026-04-18T17:04:19.9178411Z [36;1mSTAGING_DIR=$(mktemp -d)[0m
+2026-04-18T17:04:19.9178665Z [36;1mFILE_COUNT=0[0m
+2026-04-18T17:04:19.9178861Z [36;1m[0m
+2026-04-18T17:04:19.9179089Z [36;1mfor PATTERN in "${INCLUDE_PATTERNS[@]}"; do[0m
+2026-04-18T17:04:19.9179457Z [36;1m  # Use bash glob expansion; fall back to literal path[0m
+2026-04-18T17:04:19.9179797Z [36;1m  shopt -s globstar nullglob[0m
+2026-04-18T17:04:19.9180262Z [36;1m  for MATCH in ${PATTERN}; do[0m
+2026-04-18T17:04:19.9180537Z [36;1m    [ -e "${MATCH}" ] || continue[0m
+2026-04-18T17:04:19.9180812Z [36;1m    if [ -d "${MATCH}" ]; then[0m
+2026-04-18T17:04:19.9181098Z [36;1m      while IFS= read -r -d '' f; do[0m
+2026-04-18T17:04:19.9181390Z [36;1m        REL="${f#./}"[0m
+2026-04-18T17:04:19.9181874Z [36;1m        # Check against exclude patterns[0m
+2026-04-18T17:04:19.9182170Z [36;1m        EXCLUDED=false[0m
+2026-04-18T17:04:19.9182466Z [36;1m        for EXCL in "${EXCLUDE_PATTERNS[@]}"; do[0m
+2026-04-18T17:04:19.9182774Z [36;1m          case "${REL}" in[0m
+2026-04-18T17:04:19.9183065Z [36;1m            ${EXCL}) EXCLUDED=true; break ;;[0m
+2026-04-18T17:04:19.9183342Z [36;1m          esac[0m
+2026-04-18T17:04:19.9183562Z [36;1m        done[0m
+2026-04-18T17:04:19.9183800Z [36;1m        if [ "${EXCLUDED}" = "false" ]; then[0m
+2026-04-18T17:04:19.9184112Z [36;1m          TARGET="${STAGING_DIR}/${REL}"[0m
+2026-04-18T17:04:19.9184433Z [36;1m          mkdir -p "$(dirname "${TARGET}")"[0m
+2026-04-18T17:04:19.9184727Z [36;1m          cp "${f}" "${TARGET}"[0m
+2026-04-18T17:04:19.9185009Z [36;1m          FILE_COUNT=$((FILE_COUNT + 1))[0m
+2026-04-18T17:04:19.9185386Z [36;1m        fi[0m
+2026-04-18T17:04:19.9185647Z [36;1m      done < <(find "${MATCH}" -type f -print0)[0m
+2026-04-18T17:04:19.9185937Z [36;1m    else[0m
+2026-04-18T17:04:19.9186143Z [36;1m      REL="${MATCH#./}"[0m
+2026-04-18T17:04:19.9186395Z [36;1m      EXCLUDED=false[0m
+2026-04-18T17:04:19.9186680Z [36;1m      for EXCL in "${EXCLUDE_PATTERNS[@]}"; do[0m
+2026-04-18T17:04:19.9186977Z [36;1m        case "${REL}" in[0m
+2026-04-18T17:04:19.9187246Z [36;1m          ${EXCL}) EXCLUDED=true; break ;;[0m
+2026-04-18T17:04:19.9187522Z [36;1m        esac[0m
+2026-04-18T17:04:19.9187727Z [36;1m      done[0m
+2026-04-18T17:04:19.9187960Z [36;1m      if [ "${EXCLUDED}" = "false" ]; then[0m
+2026-04-18T17:04:19.9188259Z [36;1m        TARGET="${STAGING_DIR}/${REL}"[0m
+2026-04-18T17:04:19.9188572Z [36;1m        mkdir -p "$(dirname "${TARGET}")"[0m
+2026-04-18T17:04:19.9188870Z [36;1m        cp "${MATCH}" "${TARGET}"[0m
+2026-04-18T17:04:19.9189165Z [36;1m        FILE_COUNT=$((FILE_COUNT + 1))[0m
+2026-04-18T17:04:19.9189440Z [36;1m      fi[0m
+2026-04-18T17:04:19.9189622Z [36;1m    fi[0m
+2026-04-18T17:04:19.9189807Z [36;1m  done[0m
+2026-04-18T17:04:19.9190234Z [36;1m  shopt -u globstar nullglob[0m
+2026-04-18T17:04:19.9190505Z [36;1mdone[0m
+2026-04-18T17:04:19.9190688Z [36;1m[0m
+2026-04-18T17:04:19.9190896Z [36;1m# ── Handle no files found ──[0m
+2026-04-18T17:04:19.9191185Z [36;1mif [ "${FILE_COUNT}" -eq 0 ]; then[0m
+2026-04-18T17:04:19.9191469Z [36;1m  case "warn" in[0m
+2026-04-18T17:04:19.9191694Z [36;1m    error)[0m
+2026-04-18T17:04:19.9191971Z [36;1m      echo "::error::No files found for path: ${FILE_PATH}"[0m
+2026-04-18T17:04:19.9192296Z [36;1m      exit 1[0m
+2026-04-18T17:04:19.9192499Z [36;1m      ;;[0m
+2026-04-18T17:04:19.9192689Z [36;1m    warn)[0m
+2026-04-18T17:04:19.9193018Z [36;1m      echo "::warning::No files found for path: ${FILE_PATH}, skipping upload"[0m
+2026-04-18T17:04:19.9193402Z [36;1m      exit 0[0m
+2026-04-18T17:04:19.9193598Z [36;1m      ;;[0m
+2026-04-18T17:04:19.9193798Z [36;1m    ignore)[0m
+2026-04-18T17:04:19.9193991Z [36;1m      exit 0[0m
+2026-04-18T17:04:19.9194187Z [36;1m      ;;[0m
+2026-04-18T17:04:19.9194377Z [36;1m  esac[0m
+2026-04-18T17:04:19.9194564Z [36;1mfi[0m
+2026-04-18T17:04:19.9194737Z [36;1m[0m
+2026-04-18T17:04:19.9194921Z [36;1m# ── Upload staged files ──[0m
+2026-04-18T17:04:19.9195266Z [36;1mTOTAL_SIZE=$(du -sb "${STAGING_DIR}" | awk '{print $1}')[0m
+2026-04-18T17:04:19.9195744Z [36;1mecho "Uploading ${FILE_COUNT} file(s), total size: ${TOTAL_SIZE} bytes"[0m
+2026-04-18T17:04:19.9196126Z [36;1m[0m
+2026-04-18T17:04:19.9196507Z [36;1m# Upload each top-level entry individually to avoid staging dir name leaking into OBS path[0m
+2026-04-18T17:04:19.9196991Z [36;1m> /tmp/obsutil_upload.log[0m
+2026-04-18T17:04:19.9197278Z [36;1mfor item in "${STAGING_DIR}"/*; do[0m
+2026-04-18T17:04:19.9197562Z [36;1m  [ -e "${item}" ] || continue[0m
+2026-04-18T17:04:19.9198060Z [36;1m  if ! obsutil cp "${item}" "obs://${BUCKET}/${OBJECT_PREFIX}/" -r -f >> /tmp/obsutil_upload.log 2>&1; then[0m
+2026-04-18T17:04:19.9198588Z [36;1m    echo "::error::Upload failed. See log:"[0m
+2026-04-18T17:04:19.9199012Z [36;1m    cat /tmp/obsutil_upload.log[0m
+2026-04-18T17:04:19.9199285Z [36;1m    exit 1[0m
+2026-04-18T17:04:19.9199487Z [36;1m  fi[0m
+2026-04-18T17:04:19.9199678Z [36;1mdone[0m
+2026-04-18T17:04:19.9200037Z [36;1m[0m
+2026-04-18T17:04:19.9200251Z [36;1mrm -rf "${STAGING_DIR}"[0m
+2026-04-18T17:04:19.9200625Z [36;1mecho "Uploaded ${FILE_COUNT} file(s), total size: ${TOTAL_SIZE} bytes"[0m
+2026-04-18T17:04:19.9201001Z [36;1m[0m
+2026-04-18T17:04:19.9201190Z [36;1m# ── Write metadata ──[0m
+2026-04-18T17:04:19.9201482Z [36;1mCREATED_AT=$(date -u +%Y-%m-%dT%H:%M:%SZ)[0m
+2026-04-18T17:04:19.9201814Z [36;1mcat > /tmp/_artifact_meta.json <<METAEOF[0m
+2026-04-18T17:04:19.9202101Z [36;1m{[0m
+2026-04-18T17:04:19.9202296Z [36;1m  "name": "${NAME}",[0m
+2026-04-18T17:04:19.9202533Z [36;1m  "repository": "${REPO}",[0m
+2026-04-18T17:04:19.9202891Z [36;1m  "run_id": "${RUN_ID}",[0m
+2026-04-18T17:04:19.9203168Z [36;1m  "object_prefix": "${OBJECT_PREFIX}",[0m
+2026-04-18T17:04:19.9203473Z [36;1m  "file_count": ${FILE_COUNT},[0m
+2026-04-18T17:04:19.9203745Z [36;1m  "total_size": ${TOTAL_SIZE},[0m
+2026-04-18T17:04:19.9204036Z [36;1m  "created_at": "${CREATED_AT}",[0m
+2026-04-18T17:04:19.9204314Z [36;1m  "retention_days": 90,[0m
+2026-04-18T17:04:19.9204577Z [36;1m  "workflow": "Nightly-A3",[0m
+2026-04-18T17:04:19.9204834Z [36;1m  "job": "e2e",[0m
+2026-04-18T17:04:19.9205120Z [36;1m  "sha": "bec63146cf1442542940d4c2ce9f7eee8ab9845c"[0m
+2026-04-18T17:04:19.9205428Z [36;1m}[0m
+2026-04-18T17:04:19.9205633Z [36;1mMETAEOF[0m
+2026-04-18T17:04:19.9205820Z [36;1m[0m
+2026-04-18T17:04:19.9206165Z [36;1mobsutil cp /tmp/_artifact_meta.json "obs://${BUCKET}/${META_KEY}" > /dev/null 2>&1[0m
+2026-04-18T17:04:19.9206591Z [36;1mif [ $? -ne 0 ]; then[0m
+2026-04-18T17:04:19.9207052Z [36;1m  echo "::warning::Failed to upload metadata, artifact files were uploaded successfully"[0m
+2026-04-18T17:04:19.9207489Z [36;1mfi[0m
+2026-04-18T17:04:19.9207669Z [36;1m[0m
+2026-04-18T17:04:19.9207856Z [36;1m# ── Set outputs ──[0m
+2026-04-18T17:04:19.9208195Z [36;1mARTIFACT_URL="https://${BUCKET}.${ENDPOINT}/${OBJECT_PREFIX}"[0m
+2026-04-18T17:04:19.9208631Z [36;1mecho "artifact_id=${OBJECT_PREFIX}" >> $GITHUB_OUTPUT[0m
+2026-04-18T17:04:19.9209022Z [36;1mecho "artifact_url=${ARTIFACT_URL}" >> $GITHUB_OUTPUT[0m
+2026-04-18T17:04:19.9209338Z [36;1m[0m
+2026-04-18T17:04:19.9209580Z [36;1mecho "Artifact '${NAME}' uploaded successfully"[0m
+2026-04-18T17:04:19.9210094Z [36;1mecho "  URL: ${ARTIFACT_URL}"[0m
+2026-04-18T17:04:19.9210493Z shell: bash --noprofile --norc -e -o pipefail {0}
+2026-04-18T17:04:19.9210779Z env:
+2026-04-18T17:04:19.9211037Z   LWS_NAME: vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28
+2026-04-18T17:04:19.9211442Z   LEADER_POD: vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0
+2026-04-18T17:04:19.9211998Z   LOG_PREFIX: /root/.cache/ascend-logs/releases-v0.18.0/vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28
+2026-04-18T17:04:19.9212535Z   FAIL_TAG: FAIL_TAG_DeepSeek-V3_2-W8A8-EP-aime2025.yaml
+2026-04-18T17:04:19.9212849Z ##[endgroup]
+2026-04-18T17:04:19.9299349Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-18T17:04:19.9300457Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-18T17:04:19.9300753Z ##[endgroup]
+2026-04-18T17:04:20.3571169Z (node:3179) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-18T17:04:20.3572178Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-18T17:04:20.8672179Z ##[warning]No files found for path: /tmp/benchmark_results/, skipping upload
+2026-04-18T17:04:21.2585450Z ##[group]Run actions/upload-artifact@v4
+2026-04-18T17:04:21.2585781Z with:
+2026-04-18T17:04:21.2586270Z   name: nightly-test-benchmark-results-releases-v0.18.0-DeepSeek-V3_2-W8A8-EP-aime2025-20260418T170415Z
+2026-04-18T17:04:21.2586856Z   path: /tmp/benchmark_results/
+2026-04-18T17:04:21.2587119Z   if-no-files-found: warn
+2026-04-18T17:04:21.2587349Z   retention-days: 90
+2026-04-18T17:04:21.2587572Z   compression-level: 0
+2026-04-18T17:04:21.2587792Z   overwrite: false
+2026-04-18T17:04:21.2588014Z   include-hidden-files: false
+2026-04-18T17:04:21.2588259Z env:
+2026-04-18T17:04:21.2588501Z   LWS_NAME: vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28
+2026-04-18T17:04:21.2588915Z   LEADER_POD: vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28-0
+2026-04-18T17:04:21.2589472Z   LOG_PREFIX: /root/.cache/ascend-logs/releases-v0.18.0/vllm-deepseek-v3-2-w8a8-ep-aime2025-c22a28
+2026-04-18T17:04:21.2590297Z   FAIL_TAG: FAIL_TAG_DeepSeek-V3_2-W8A8-EP-aime2025.yaml
+2026-04-18T17:04:21.2590603Z ##[endgroup]
+2026-04-18T17:04:21.2616853Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-18T17:04:21.2617748Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-18T17:04:21.2618042Z ##[endgroup]
+2026-04-18T17:04:21.6877883Z (node:3443) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-18T17:04:21.6878886Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-18T17:04:22.4401213Z ##[warning]No files were found with the provided path: /tmp/benchmark_results/. No artifacts will be uploaded.
+2026-04-18T17:04:22.8346548Z Post job cleanup.
+2026-04-18T17:04:22.8379205Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-18T17:04:22.8380450Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-18T17:04:22.8380762Z ##[endgroup]
+2026-04-18T17:04:23.2662321Z (node:3717) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+2026-04-18T17:04:23.2663330Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-04-18T17:04:23.8972788Z [command]/usr/bin/git version
+2026-04-18T17:04:23.9002796Z git version 2.34.1
+2026-04-18T17:04:23.9032364Z Copying '/root/.gitconfig' to '/__w/_temp/05de31c6-d9dd-4605-89e4-a7b513dd21c2/.gitconfig'
+2026-04-18T17:04:23.9040588Z Temporarily overriding HOME='/__w/_temp/05de31c6-d9dd-4605-89e4-a7b513dd21c2' before making global git config changes
+2026-04-18T17:04:23.9041523Z Adding repository directory to the temporary git global config as a safe directory
+2026-04-18T17:04:23.9044840Z [command]/usr/bin/git config --global --add safe.directory /__w/vllm-ascend/vllm-ascend
+2026-04-18T17:04:23.9064596Z Removing SSH command configuration
+2026-04-18T17:04:23.9069072Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-04-18T17:04:23.9091553Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-04-18T17:04:23.9256477Z Removing HTTP extra header
+2026-04-18T17:04:23.9259796Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-04-18T17:04:23.9281787Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-04-18T17:04:23.9435613Z Removing includeIf entries pointing to credentials config files
+2026-04-18T17:04:23.9440198Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-04-18T17:04:23.9454764Z includeif.gitdir:/__w/vllm-ascend/vllm-ascend/.git.path
+2026-04-18T17:04:23.9455319Z includeif.gitdir:/__w/vllm-ascend/vllm-ascend/.git/worktrees/*.path
+2026-04-18T17:04:23.9455847Z includeif.gitdir:/github/workspace/.git.path
+2026-04-18T17:04:23.9456344Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-04-18T17:04:23.9461011Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/__w/vllm-ascend/vllm-ascend/.git.path
+2026-04-18T17:04:23.9473393Z /__w/_temp/git-credentials-ea634632-13f1-4997-81ab-639118f16fa3.config
+2026-04-18T17:04:23.9480417Z [command]/usr/bin/git config --local --unset includeif.gitdir:/__w/vllm-ascend/vllm-ascend/.git.path /__w/_temp/git-credentials-ea634632-13f1-4997-81ab-639118f16fa3.config
+2026-04-18T17:04:23.9500908Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/__w/vllm-ascend/vllm-ascend/.git/worktrees/*.path
+2026-04-18T17:04:23.9513510Z /__w/_temp/git-credentials-ea634632-13f1-4997-81ab-639118f16fa3.config
+2026-04-18T17:04:23.9519903Z [command]/usr/bin/git config --local --unset includeif.gitdir:/__w/vllm-ascend/vllm-ascend/.git/worktrees/*.path /__w/_temp/git-credentials-ea634632-13f1-4997-81ab-639118f16fa3.config
+2026-04-18T17:04:23.9539565Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+2026-04-18T17:04:23.9552377Z /github/runner_temp/git-credentials-ea634632-13f1-4997-81ab-639118f16fa3.config
+2026-04-18T17:04:23.9558633Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-ea634632-13f1-4997-81ab-639118f16fa3.config
+2026-04-18T17:04:23.9578029Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-04-18T17:04:23.9591008Z /github/runner_temp/git-credentials-ea634632-13f1-4997-81ab-639118f16fa3.config
+2026-04-18T17:04:23.9596508Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-ea634632-13f1-4997-81ab-639118f16fa3.config
+2026-04-18T17:04:23.9616389Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-04-18T17:04:23.9764458Z Removing credentials config '/__w/_temp/git-credentials-ea634632-13f1-4997-81ab-639118f16fa3.config'
+2026-04-18T17:04:42.8277735Z ##[group]Run '/home/runner/k8s/index.js'
+2026-04-18T17:04:42.8278928Z shell: /home/runner/externals/node20/bin/node {0}
+2026-04-18T17:04:42.8279271Z ##[endgroup]
+2026-04-18T17:04:43.2975544Z Cleaning up orphan processes
+2026-04-18T17:04:43.3006627Z ##[warning]Node.js 20 actions are deprecated. The following actions are running on Node.js 20 and may not work as expected: actions/upload-artifact@v4. Actions will be forced to run with Node.js 24 by default starting June 2nd, 2026. Please check if updated versions of these actions are available that support Node.js 24. To opt into Node.js 24 now, set the FORCE_JAVASCRIPT_ACTIONS_TO_NODE24=true environment variable on the runner or in your workflow file. Once Node.js 24 becomes the default, you can temporarily opt out by setting ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
