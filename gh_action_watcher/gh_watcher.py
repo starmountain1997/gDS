@@ -21,8 +21,12 @@ REPO = "vllm-project/vllm-ascend"
 WORKFLOW_NAME = "schedule_nightly_test_a3.yaml"
 TARGET_JOBS = [
     "multi-node-dpsk3.2-2node",
+    "deepseek-v3.2-W8A8-EP-aime2025",
     "deepseek-v3.2-W8A8-EP",
     "deepseek-v3-2-w8a8",
+    "multi-node-kimi-k2-instruct-w8a8",
+    "qwen3-235b-a22b",
+    "multi-node-qwen3-dp-mooncake-layerwise",
 ]
 
 
